@@ -11,9 +11,6 @@ class ExampleDashboard extends Controller {
     public function dashboard(Request $request) {
 
         if ($request->isLoggedIn()) {
-
-            $data = ['foo' => 'bar'];
-            $data['request'] = $request;
             $user = $this->dashboardModel->findUserById($request->getUserId());
             $data['name'] = $user->name;
             $data['email'] = $user->email;
