@@ -3,7 +3,7 @@
 class ExampleAuth extends Controller {
     private mixed $userModel;
 
-    function __construct() {
+    public function __construct() {
         $this->userModel = $this->model('ModelExampleUsers');
     }
 
