@@ -8,7 +8,7 @@ class ExampleAuth extends Controller {
     }
 
     function register(Request $request) {
-        if ($request->isLoggedIn()) {
+        if($request->isLoggedIn()) {
             redirect('/example/dashboard');
         }
 
