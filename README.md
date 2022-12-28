@@ -17,11 +17,14 @@ https://marketplace.visualstudio.com/items?itemName=SonarSource.sonarlint-vscode
 
 ### Setting up sonarlint
 - SonarLint is enabled automatically once it's installed
+- *This changes only for other projects that won't follow with Sonarlint cloud*
 - Settings > Search "Sonarlint" > Select "SonarLint" under Tools > Select "Rules" > Search "Open curly"
-Under languages we use, untick "An open curley braces should be located at the beginning of a line"
+Under languages we use, un-tick "An open curley braces should be located at the beginning of a line"
 
 ## SonarCloud 
 SonarCloud will run some tests on each branch merge request. *It won't allow  merging until all tests are passed.*
+
+See test results https://sonarcloud.io/summary/overall?id=Neethamadhu-Madurasinghe_UniGura
 ### Connecting SonarLint to SonarCloud
 - Settings > Search "Sonarlint" > Settings > Goto section under SonarQube/SonarCloud connections
 Add a new connection using "+" button > 
