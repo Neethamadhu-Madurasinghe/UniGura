@@ -30,3 +30,4 @@ See test results https://sonarcloud.io/summary/overall?id=Neethamadhu-Madurasing
 Add a new connection using "+" button > 
 - Give the new connection a name > Click next > Add a new token > Next... Create > Setup node.exe path > Ok
 - A popup will be appear at this point > Configure binding > Tick Bind project to SonarQube/SonarCloud > Select connection we mae earlier > Add Porject-key (Update local storage if needed) > Ok
+-
