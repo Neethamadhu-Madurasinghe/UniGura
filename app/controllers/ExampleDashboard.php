@@ -3,7 +3,7 @@
 class ExampleDashboard extends Controller {
     private mixed $dashboardModel;
 
-    function __construct() {
+    public function __construct() {
         $this->dashboardModel = $this->model('ModelExampleDashboard');
     }
 
