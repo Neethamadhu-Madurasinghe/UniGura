@@ -7,7 +7,7 @@ class ExampleAuth extends Controller {
         $this->userModel = $this->model('ModelExampleUsers');
     }
 
-    public function register(Request $request) {
+    function register(Request $request) {
         if ($request->isLoggedIn()) {
             redirect('/example/dashboard');
         }
