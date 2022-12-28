@@ -10,7 +10,7 @@ class ExampleDashboard extends Controller {
 
     public function dashboard(Request $request) {
 
-        if ($request->isLoggedIn()) {
+        if($request->isLoggedIn()) {
 
             $data = ['foo' => 'bar'];
             $data['request'] = $request;
