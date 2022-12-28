@@ -3,14 +3,14 @@
 class ExampleDashboard extends Controller {
     private mixed $dashboardModel;
 
-    public function __construct() {
+    function __construct() {
         $this->dashboardModel = $this->model('ModelExampleDashboard');
     }
 
 
     public function dashboard(Request $request) {
 
-        if($request->isLoggedIn()) {
+        if ($request->isLoggedIn()) {
 
             $data = ['foo' => 'bar'];
             $data['request'] = $request;
