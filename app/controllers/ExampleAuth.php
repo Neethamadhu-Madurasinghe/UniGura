@@ -12,7 +12,7 @@ class ExampleAuth extends Controller {
             redirect('/example/dashboard');
         }
 
-        if ($request->isPost()) {
+        if($request->isPost()){
 //            Input data
             $body = $request->getBody();
             $data = [
