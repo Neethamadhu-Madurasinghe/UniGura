@@ -1,0 +1,141 @@
+/* Google Fonts - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+:root{
+  
+  --primary-color:  #FFA620 ;
+
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-color);
+}
+.container {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  padding: 25px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+.container header{
+  position: relative;
+  font-size: 25px;
+  font-weight: 600;
+  color: #333;
+  margin-left: 50%;
+}
+.container header::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 3px;
+  width: 27px;
+  border-radius: 8px;
+  background-color: var(--primary-color);
+}
+
+.container form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 4px;
+}
+.image{
+  width: 85%;
+}
+form .field {
+  margin-bottom: 20px;
+}
+form .input-field {
+  position: relative;
+  height: 45px;
+  width: 90%;
+  margin-bottom: 20px;
+}
+.input-field input {
+  outline: none;
+  font-size: 14px;
+  font-weight: 400;
+  color: #333;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+  padding: 0 15px;
+  height: 42px;
+  margin: 8px 0;
+  width: 100%;
+}
+.invalid input {
+  border-color: #d93025;
+}
+.input-field .show-hide {
+  position: absolute;
+  right: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #919191;
+  cursor: pointer;
+  padding: 3px;
+}
+.field .error {
+  display: flex;
+  align-items: center;
+  margin-top: 6px;
+  color: #d93025;
+  font-size: 13px;
+  display: none;
+
+}
+.invalid .error {
+  display: flex;
+}
+.error .error-icon {
+  margin-right: 6px;
+  font-size: 15px;
+}
+.create-password .error {
+  align-items: flex-start;
+}
+.create-password .error-icon {
+  margin-top: 4px;
+}
+.button {
+  margin: 30px 0 6px;
+}
+.button input {
+  color: rgb(255, 255, 255);
+  font-size: 13px;
+  font-weight: 600;
+  width:70px; 
+  background: linear-gradient(135deg,#ffcc00 0%,#ff8800 100%);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 30px;
+  border: 0px solid white;
+  border-radius: 4px;
+}
+
+.option_div .check_box{
+  display: flex;
+  align-items: center;
+}
+.option_div span{
+  margin-left: 5px;
+  font-size: 15px;
+  color: #333;
+}
+.option_div .forget_div a{
+  font-size: 13px;
+  color: var(--primary-color);
+}
