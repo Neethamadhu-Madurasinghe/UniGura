@@ -32,7 +32,7 @@ class Request {
         if ($this->method() == 'get') {
             foreach ($_GET as $key => $value) {
                 if ($key !== 'url') {
-                    $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+                    $body[$key] = trim(filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS));
                 }
             }
         }
