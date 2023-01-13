@@ -1,0 +1,458 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background-color: #f5f5f5;
+}
+
+.payment{
+    display: grid;
+    grid-template-columns: 300px auto;
+    grid-gap: 20px;
+    padding: 20px;
+    height: 94vh;
+}
+
+.payment-left-side{
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    border: 2px solid green;
+}
+
+.payment-right-side{
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    border: 2px solid green;
+    height: 92vh;
+    overflow-y: scroll;
+}
+
+.payment-right-side::-webkit-scrollbar{
+    width: 0;
+}
+
+.payment-left-side img{
+    width: 50px;
+}
+
+.payoff-tutors{
+    border: 2px solid #F7931A;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.payoff-tutors h3{
+    font-size: 20px;
+}
+
+.tutor{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.tutor h3{
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+.all-tutor{
+    height: 72vh;
+    overflow-y: scroll;
+}
+
+.all-tutor::-webkit-scrollbar{
+    width: 0;
+}
+
+
+.all-tutor > div{
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.total-payoff{
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border: 2px solid #F7931A;
+    width: 350px;
+}
+
+.total-payoff .amount{
+    text-align: center;
+    padding: 5px;
+    line-height: 30px;
+}
+
+.pay-button{
+    margin-left: 10px;
+}
+
+.pay-button button{
+    background-color: #F7931A;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 100%;
+}
+
+
+
+/*  ----------------------------SEARCH BOX---------------------------------- */
+
+.search-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    border: 2px solid #F7931A;
+    border-radius: 5px;
+    height: 30px;
+}
+
+.search-box i{
+    color: #F7931A;
+    font-size: 16px;
+}
+
+.search-box input{
+    border: none;
+    outline: none;
+    padding: 10px;
+    width: 90%;
+    font-size: 16px;
+    height: 25px;
+}
+
+
+
+
+
+/* ----------------------------TABLE---------------------------------- */
+
+
+.class-details-table{
+    margin-top: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.class-details-table table{
+    width: 98%;
+    border-collapse: collapse;
+}
+
+.class-details-table th{
+    background-color: #F7931A;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+
+
+.class-details-table td{
+    background-color:transparent;
+    color: #585656;
+    padding: 10px;  
+    text-align: center;
+    border-bottom: 1px solid #a9a8a8;
+}
+
+.class-details-table #subject-thead{
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.class-details-table #classFees-thead{
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+
+.class-details-table img{
+    width: 15px;
+    border: 2px solid white;
+}
+
+.class-details-table h6{
+    font-size: 15px;
+    margin-left: 5px;
+}
+
+.class-details-table td div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100px;
+}
+
+
+/*============================ BANK SLIP UPLOADER ================================*/
+
+
+.bank-slip-uploader{
+    border-radius: 10px;
+    padding: 10px 20px;
+    height: 60vh;
+    border: 2px solid #F7931A;
+    width: 500px;
+}
+
+.drop-section img{
+    width: 100px;
+}
+
+.list-section img{
+    width: 30px;
+    margin-left: 10px;
+}
+
+.header-section{
+    text-align: center;
+}
+
+.drop-section{
+    border: 4px dotted #ccc;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    text-align: center;
+    border-radius: 5px;
+    height: 270px;
+}
+
+
+
+.drop-section label{
+    padding: 10px 20px;
+    background-color: rgb(248, 18, 18);
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.drop-section .col-1{
+    opacity: 1;
+}
+
+.drop-section .col-2{
+    position: relative;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    transition-duration: 0.4s;
+    font-size: 35px;
+    opacity: 0;
+    font-weight: bold;
+    bottom: 150px;
+    color: #a9a8a8;
+}
+
+
+.list{
+    list-style: none;
+}
+
+.list li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.list .details{
+    width: 70%;
+}
+
+.list-section li .details .file-name{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;    
+    width: 200px;
+    font-size: 15px;
+    width: 100%;
+} 
+
+.list-section{
+    display: none;
+}
+
+.list-section li .details .file-size{
+    font-size: 14px;
+    margin-top: 8px;
+} 
+
+.file-box .name{
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.list-section{
+    margin-top: 10px;
+}
+
+
+.list-section li .file-progress{
+    width: 100%;
+    height: 5px;
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+.list-section li .file-progress span{
+    display: block;
+    height: 100%;
+    background-color: #000;
+    border-radius: 5px;
+    width: 0%; 
+    transition-duration: 1s;
+}
+
+
+.list-section .icon{
+    font-size: 25px;
+    color: red;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.list-section .fa-circle-check{
+    color:#10bc10;
+}
+
+.in-prog{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+}
+
+.list{
+    height: 80px;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+}
+
+.list::-webkit-scrollbar{
+    width: 5px;
+}
+
+
+.file-box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+    border: 2px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+
+/* ===================================== BANK DETAILS ================================*/
+
+.paymentSlip-bankDetails{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin:40px 0;
+
+}
+
+.bank-details{
+    width: 45%;
+    border: 2px solid #F7931A;
+    padding: 10px 20px;
+    border-radius: 5px;
+    height: 60vh;
+    margin-left: 20px;
+}
+
+
+.bank-details-title{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 30px;
+}
+
+.bank-details-content > div{
+    margin-bottom: 20px;
+}
+
+.bank-details-content-text{
+    border: 2px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    height: 100%;
+    margin-top: 5px;
+    color: rgb(125, 120, 120);
+}
+
+.bank-details-content-text h3{
+    font-size: 17px;
+    font-weight: normal;
+}
+
+.money-history{
+    padding: 20px;
+}
+
+.money-history h1{
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+/*  ================================  SELECTED TUTOR DISPLAY NONE  ================================*/
+
+.selected-tutor{
+    display: none;
+}
+
+.empty-part{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    position: relative;
+    bottom: 30px;
+}
+
+.empty-part img{
+    width: 550px;
+}
+
+.empty-part .text-part{
+    font-size: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.tutor.selected{
+    background-color: #ff8e03bc;
+    color: #fff;
+    border-radius: 5px;
+}

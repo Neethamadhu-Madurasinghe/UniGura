@@ -1,0 +1,262 @@
+APPROOT : C:\xampp\htdocs\UniGura\app
+ROOT : C:\xampp\htdocs\UniGura
+URLROOT : http://localhost:8080/UniGura
+
+// load the student js file
+        // const script = document.createElement('script');
+        // script.src = "../student/main.js";
+        // document.head.prepend(script);
+
+
+
+<?php foreach ($data as $x) { ?>
+    <?php if (in_array($x->mode, $arrayModes) ){ ?>
+        <?php if(($x->classTemplate->session_rate >= $minFeesInput && $x->classTemplate->session_rate <= $maxFeesInput) || ($x->classTemplate->session_rate >= $minFeedSlider && $x->classTemplate->session_rate <= $maxFeedSlider)) { ?>
+            <div class="one-class">
+                <div class="tutor">
+                    <div class="profile-img">
+                        <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                    </div>
+                    <div class="name">
+                        <h1>Tutor Name</h1>
+                        <h1><?php echo $x->tutor->first_name . ' ' . $x->tutor->last_name ?></h1>
+                    </div>
+                </div>
+                <div class="student">
+                    <div class="name">
+                        <h1>Student Name</h1>
+                        <h1><?php echo $x->student->first_name . ' ' . $x->student->last_name ?></h1>
+                    </div>
+                    <div class="profile-img">
+                        <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                    </div>
+                </div>
+                <div class="class-details">
+                    <div class="subject">
+                        <h1>Subject: <?php echo $x->subject->name ?></h1>
+                    </div>
+                    <div class="module">
+                        <h1>Module: <?php echo $x->module->name ?></h1>
+                    </div>
+                    <div class="day">
+                        <h1>Day: <?php echo $x->classDay->title ?></h1>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+
+    <?php } else if(($x->classTemplate->session_rate >= $minFeesInput && $x->classTemplate->session_rate <= $maxFeesInput) || ($x->classTemplate->session_rate >= $minFeedSlider && $x->classTemplate->session_rate <= $maxFeedSlider)) { ?>
+        <?php if(in_array($x->mode, $arrayModes)) { ?>
+            <div class="one-class">
+                <div class="tutor">
+                    <div class="profile-img">
+                        <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                    </div>
+                    <div class="name">
+                        <h1>Tutor Name</h1>
+                        <h1><?php echo $x->tutor->first_name . ' ' . $x->tutor->last_name ?></h1>
+                    </div>
+                </div>
+                <div class="student">
+                    <div class="name">
+                        <h1>Student Name</h1>
+                        <h1><?php echo $x->student->first_name . ' ' . $x->student->last_name ?></h1>
+                    </div>
+                    <div class="profile-img">
+                        <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                    </div>
+                </div>
+                <div class="class-details">
+                    <div class="subject">
+                        <h1>Subject: <?php echo $x->subject->name ?></h1>
+                    </div>
+                    <div class="module">
+                        <h1>Module: <?php echo $x->module->name ?></h1>
+                    </div>
+                    <div class="day">
+                        <h1>Day: <?php echo $x->classDay->title ?></h1>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+    <?php } else if(in_array($x->mode, $arrayModes) || ($x->classTemplate->session_rate >= $minFeesInput && $x->classTemplate->session_rate <= $maxFeesInput) || ($x->classTemplate->session_rate >= $minFeedSlider && $x->classTemplate->session_rate <= $maxFeedSlider)) { ?>
+        <div class="one-class">
+            <div class="tutor">
+                <div class="profile-img">
+                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                </div>
+                <div class="name">
+                    <h1>Tutor Name</h1>
+                    <h1><?php echo $x->tutor->first_name . ' ' . $x->tutor->last_name ?></h1>
+                </div>
+            </div>
+            <div class="student">
+                <div class="name">
+                    <h1>Student Name</h1>
+                    <h1><?php echo $x->student->first_name . ' ' . $x->student->last_name ?></h1>
+                </div>
+                <div class="profile-img">
+                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                </div>
+            </div>
+            <div class="class-details">
+                <div class="subject">
+                    <h1>Subject: <?php echo $x->subject->name ?></h1>
+                </div>
+                <div class="module">
+                    <h1>Module: <?php echo $x->module->name ?></h1>
+                </div>
+                <div class="day">
+                    <h1>Day: <?php echo $x->classDay->title ?></h1>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+<?php } ?>
+
+
+
+
+    <?php if ($aClass->classTemplate->session_rate >= $filterResult['classFees'][0] && $aClass->classTemplate->session_rate <= $filterResult['classFees'][1]) { ?>
+        <div class="one-class">
+            <div class="tutor">
+                <div class="profile-img">
+                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                </div>
+                <div class="name">
+                    <h1>Tutor Name</h1>
+                    <h1><?php echo $aClass->tutor->first_name . ' ' . $aClass->tutor->last_name ?></h1>
+                </div>
+            </div>
+            <div class="student">
+                <div class="name">
+                    <h1>Student Name</h1>
+                    <h1><?php echo $aClass->student->first_name . ' ' . $aClass->student->last_name ?></h1>
+                </div>
+                <div class="profile-img">
+                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                </div>
+            </div>
+            <div class="class-details">
+                <div class="subject">
+                    <h1>Subject: <?php echo $aClass->subject->name ?></h1>
+                </div>
+                <div class="module">
+                    <h1>Module: <?php echo $aClass->module->name ?></h1>
+                </div>
+                <div class="day">
+                    <h1>Day: <?php echo $aClass->classDay->title ?></h1>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+
+
+    <?php foreach ($data as $aClass) { ?>
+
+    <?php if ($aClass->classTemplate->session_rate <= $filterResult['classFees'][1] ) { ?>
+        <?php if ($aClass->classTemplate->session_rate >= $filterResult['classFees'][0] ) { ?>
+            <?php if (in_array($aClass->classTemplate->mode, $filterResult['classConductMode'])) { ?>
+                <?php if (in_array($aClass->subject->name, $filterResult['classSubject'])) { ?>
+                    <?php $pageContent[] = $aClass; ?>
+                <?php } ?>
+            <?php } ?>
+        <?php } ?>
+    <?php } ?>
+
+<?php } ?>
+
+
+
+<?php
+$arrayModes =  explode(',', $_GET['classConductModeValue']);
+$arraySubject =  explode(',', $_GET['selectedSubject']);
+
+$FeesInput = explode(',', $_GET['classFeesInputField']);
+$minFeesInput = $FeesInput[0];
+$maxFeesInput = $FeesInput[1];
+
+$feedSlider = explode(',', $_GET['classFeesSliderField']);
+$minFeedSlider = $feedSlider[0];
+// $maxFeedSlider = $feedSlider[1];
+
+
+$filterResult = [];
+$pageContent = [];
+
+$filterResult['classConductMode'] = $arrayModes;
+$filterResult['classFees'] = $FeesInput;
+$filterResult['classSubject'] = $arraySubject;
+
+
+echo '<pre>';
+print_r($filterResult);
+echo '</pre>';
+
+// echo '<pre>';
+// print_r($data);
+// echo '</pre>';
+
+
+?>
+
+
+<?php foreach ($data as $aClass) { ?>
+
+    <?php if ($aClass->classTemplate->session_rate <= $filterResult['classFees'][1] ) { ?>
+        <?php if ($aClass->classTemplate->session_rate >= $filterResult['classFees'][0] ) { ?>
+            <?php if (in_array($aClass->classTemplate->mode, $filterResult['classConductMode'])) { ?>
+                <?php if (in_array($aClass->subject->name, $filterResult['classSubject'])) { ?>
+                    <?php $pageContent[] = $aClass; ?>
+                <?php } ?>
+            <?php } ?>
+        <?php } ?>
+    <?php } ?>
+
+<?php } ?>
+
+
+
+<?php 
+    $pageContent = array_unique($pageContent, SORT_REGULAR);
+    // $uniquePageContent = array_values($pageContent);
+
+    // echo '<pre>';
+    // print_r($pageContent);
+    // echo '</pre>';
+?>
+
+
+<?php foreach($pageContent as $aClass) { ?>
+    <div class="one-class">
+            <div class="tutor">
+                <div class="profile-img">
+                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                </div>
+                <div class="name">
+                    <h1>Tutor Name</h1>
+                    <h1><?php echo $aClass->tutor->first_name . ' ' . $aClass->tutor->last_name ?></h1>
+                </div>
+            </div>
+            <div class="student">
+                <div class="name">
+                    <h1>Student Name</h1>
+                    <h1><?php echo $aClass->student->first_name . ' ' . $aClass->student->last_name ?></h1>
+                </div>
+                <div class="profile-img">
+                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                </div>
+            </div>
+            <div class="class-details">
+                <div class="subject">
+                    <h1>Subject: <?php echo $aClass->subject->name ?></h1>
+                </div>
+                <div class="module">
+                    <h1>Module: <?php echo $aClass->module->name ?></h1>
+                </div>
+                <div class="day">
+                    <h1>Day: <?php echo $aClass->classDay->title ?></h1>
+                </div>
+            </div>
+        </div>
+<?php } ?>

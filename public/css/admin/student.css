@@ -1,0 +1,370 @@
+
+.student-page {
+    display: grid;
+    grid-template-columns: 80% 20%;
+    padding: 10px;
+    /* grid-gap: 10px; */
+    max-height: 95vh;
+    overflow: hidden;
+}
+
+
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f2f2f2;
+    border: 2px solid #FC941D;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f2f2f2;
+}
+
+
+.search-bar i {
+    color: #FC941D;
+    font-size: 20px;
+}
+
+.input input {
+    height: 50px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    margin-left: 15px;
+    font-size: 18px;
+}
+
+
+::placeholder {
+    font-size: 18px;
+}
+
+
+/* =========================RANGE SELECTION================================= */
+
+::selection {
+    color: #fff;
+    background: #FC941D;
+}
+
+
+header h2 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+header p {
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+.price-input {
+    width: 100%;
+    display: flex;
+    margin: 30px 0 35px;
+}
+
+.price-input .field {
+    display: flex;
+    width: 100%;
+    height: 45px;
+    align-items: center;
+}
+
+.field input {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    font-size: 19px;
+    margin-left: 8px;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #999;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.price-input .separator {
+    width: 70px;
+    display: flex;
+    font-size: 19px;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider {
+    height: 5px;
+    position: relative;
+    background: #ddd;
+    border-radius: 5px;
+}
+
+
+.slider .progress {
+    height: 100%;
+    left: 25%;
+    right: 25%;
+    position: absolute;
+    border-radius: 5px;
+    background: #FC941D;
+}
+
+.range-input {
+    position: relative;
+}
+
+.range-input input {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    top: -5px;
+    background: none;
+    pointer-events: none;
+    -webkit-appearance: none;
+    appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    height: 17px;
+    width: 17px;
+    border-radius: 50%;
+    background: #FC941D;
+    pointer-events: auto;
+    -webkit-appearance: none;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+}
+
+input[type="range"]::-moz-range-thumb {
+    height: 17px;
+    width: 17px;
+    border: none;
+    border-radius: 50%;
+    background: #FC941D;
+    pointer-events: auto;
+    -moz-appearance: none;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+}
+
+
+/*  =========================FILTER STYLE================================= */
+
+
+.filter-selection {
+    height:97vh;
+    overflow-y: scroll;
+}
+
+.filter-selection::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+.subject-select > div{
+    margin-bottom: 5px;
+}
+
+.mode-select > div{
+    margin-bottom: 5px;
+}
+
+.duration-select > div{
+    margin-bottom: 5px;
+}
+
+.visibility-select > div{
+    margin-bottom: 5px;
+}
+
+.subject-filter{
+    border: 2px solid #FC941D;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.subject-filter h1{
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+
+.mode-filter{
+    border: 2px solid #FC941D;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.mode-filter h1{
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+
+
+.visibility-filter{
+    border: 2px solid #FC941D;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 40px;
+}
+
+.visibility-filter h1{
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+
+
+.subject-select > div{
+    margin-bottom: 5px;
+}
+
+.mode-select > div{
+    margin-bottom: 5px;
+}
+
+.class-rating{
+    border: 2px solid #FC941D;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.class-rating h1{
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+
+.class-rating i{
+    color: #FC941D;
+    font-size: 20px;
+    margin-bottom: 5px;
+    margin-left: 15px;
+}
+
+
+/* ======================STUDENT CARD SECTION====================================  */
+
+
+.card-section{
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    column-gap: 40px;
+    justify-content: center;
+    padding: 20px;
+    height: 97vh;
+    overflow-y: scroll;
+}
+
+.card-section::-webkit-scrollbar {
+    display: none;
+}
+
+.card-section .card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+    background-color: #FC941D;
+    /* width: 350px; */
+    width: 96%;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+    height: 350px;
+}
+
+.card-section .card .profile-picture{
+    width: 200px;
+    height: 200px;
+    margin-bottom: 30px;
+    margin-top: 1px;
+}
+
+.card-section .card img{
+    width: 200px;
+    border-radius: 5px;
+}
+
+
+.card .info{
+    margin: 10px 0;
+}
+
+.card .info h5{
+    font-weight: 500;
+    font-size: 18px;   
+}
+
+.card > div{
+    margin-top: -20px;
+}
+
+
+.card .view-profile button{
+    background-color: #fc1d1d;
+    font-size: 20px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    height: 50px;
+    width: 140px;
+    position: relative;
+    top: 30px;
+}
+
+
+
+/* =========================FILTER BUTTON================================= */
+
+.filter-functions {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    align-items: center;
+}
+
+.filter-functions > div{
+    width: 100%;
+    align-items: center;
+    border: 2px solid #FC941D;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+.filter-functions button {
+    width: 100%;
+    height: 35px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.filter-functions i{
+    margin-right: 8px;
+}

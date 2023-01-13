@@ -1,0 +1,433 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+
+
+/* ----------------------------TABLE---------------------------------- */
+
+
+.class-details-table {
+    margin-top: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.class-details-table table {
+    width: 98%;
+}
+
+.class-details-table th {
+    background-color: #F7931A;
+    color: white;
+    padding: 5px;
+    text-align: center;
+}
+
+
+.class-details-table td {
+    background-color: #f9f9f9;
+    color: black;
+    text-align: center;
+}
+
+
+.class-details-table img {
+    width: 10px;
+}
+
+.class-details-table h6 {
+    font-size: 15px;
+    margin-left: 5px;
+}
+
+.class-details-table td div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+
+
+/* ---------------------------------------tutor-request-table----------------------------------------------------- */
+
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    width: 98%;
+    margin-left: 13px;
+}
+
+.table-header h3 {
+    font-size: 23px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
+.search-box {
+    border: 2px solid #F7931A;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    bottom: 5px;
+}
+
+.search-box i {
+    padding: 5px;
+    color: #F7931A;
+    font-size: 20px;
+}
+
+.search-box input {
+    border: none;
+    padding: 5px;
+    width: 200px;
+    outline: none;
+}
+
+
+.action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+}
+
+.action .check {
+    background-color: #00C305;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.action .view {
+    background-color: #2A8BF2;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.action input {
+    background-color: #DC3545;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+
+
+
+
+/* ---------------------------------------student complaints-table----------------------------------------------------- */
+
+.student-complaint-table {
+    margin-top: 50px;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    width: 98%;
+    margin-left: 13px;
+}
+
+.table-header h3 {
+    font-size: 23px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
+.search-box {
+    border: 2px solid #F7931A;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    bottom: 5px;
+}
+
+.search-box i {
+    padding: 5px;
+    color: #F7931A;
+    font-size: 20px;
+}
+
+.search-box input {
+    border: none;
+    padding: 5px;
+    width: 200px;
+    outline: none;
+}
+
+
+.action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    height: 8vh;
+}
+
+.action input[type="checkbox"] {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+
+.action .accept {
+    background-color: #00C305;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.action .reject {
+    background-color: #DC3545;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+
+/* ---------------------------------------tutor complaints-table----------------------------------------------------- */
+
+
+.tutor-complaint-table {
+    margin-top: 70px;
+}
+
+
+/* ------------------------filter-box------------------------------- */
+
+.search-filter {
+    display: flex;
+    justify-content: space-between;
+}
+
+.filter-box {
+    border: 2px solid #F7931A;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    position: relative;
+    bottom: 5px;
+    margin-left: 15px;
+}
+
+.filter-box i {
+    color: #F7931A;
+    font-size: 25px;
+}
+
+.filter-box img {
+    width: 25px;
+    padding-left: 5px;
+}
+
+.filter-box select {
+    border: none;
+    outline: none;
+    padding: 5px;
+    width: 100%;
+    font-size: 15px;
+    font-weight: bold;
+    color: #F7931A;
+}
+
+
+/* ----------------------------complaints-settings--------------------------- */
+
+.complaints-settings-btn {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-right: 15px;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+
+.complaints-settings-btn i span {
+    font-size: 17px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.complaints-settings-btn i {
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+
+.add-complaint {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.add-complaint input {
+    border: none;
+    outline: none;
+    border: 2px solid #F7931A;
+    border-radius: 5px;
+    width: 75%;
+    padding: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #F7931A;
+}
+
+.add-complaint a {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    border: 2px solid #F7931A;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.complaints-list {
+    padding: 10px;
+    height: 50vh;
+    overflow-y: scroll;
+    margin-top: 15px;
+}
+
+.one-complaint {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.close-btn {
+    font-size: 20px;
+    color: #F7931A;
+    cursor: pointer;
+    position: relative;
+    left: 12px;
+    top: 5px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.close-btn i {
+    font-size: 25px;
+    color: #F7931A;
+    cursor: pointer;
+}
+
+.one-complaint a {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    border: 2px solid #F7931A;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+
+/* ----------------------------complaints-settings POP UP --------------------------- */
+
+
+.complaint-setting {
+    width: 600px;
+    height: 500px;
+    background-color: #fff;
+    border-radius: 6px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s, visibility 0.4s;
+    z-index: 1;
+    border: 2px solid #F7931A;
+}
+
+
+
+.open_complaint_setting {
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+    top: 50%;
+}
+
+
+
+
+.save-cancel {
+    display: none;
+}
+
+.save-cancel.show {
+    display: block;
+}
+
+.complaint_input_filed {
+    background-color: #fff;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/*  ---------------------------------BLUR when complaints-settings POP UP--------------------------------- */
+
+.home.blur {
+    filter: blur(10px);
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(10px);
+    -ms-filter: blur(10px);
+    transition: filter 0.4s;
+}
+/* 

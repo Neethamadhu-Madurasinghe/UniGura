@@ -1,0 +1,315 @@
+/* *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background: #f5f5f5;
+} */
+
+.top-details-box{
+    width: 100%;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+.profile-picture img{
+    width: 150px;
+    border-radius: 50%;
+}
+
+.class-summary{
+    width: 40%;
+    margin-right: 50px;
+}
+
+.total-class{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    border: 2px solid #c91717;
+    padding: 8px;
+    border-radius: 5px;
+
+}
+
+.pending-amount{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    border: 2px solid #c91717;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.class-summary h1{
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.class-summary h2{
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.name-actions{
+    position: relative;
+
+}
+
+.student-details{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-left: 20px;
+}
+
+.name-actions{
+    margin-left: 30px;
+    margin-bottom: 15px;
+}
+
+.actions .chat button{
+    background: #c91717;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+.actions .chat i{
+    margin-right: 8px;
+    position: relative;
+    top: 2px;
+
+}
+
+
+
+/* ========================= CLASS CARDS ============================== */
+
+.active-classes{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 40px;
+    width: 90%;
+    margin: 20px auto;
+    height: 54vh;
+    display: none;
+    overflow-y: scroll;
+}
+
+.finished-classes{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 40px;
+    width: 80%;
+    margin: 20px auto;
+    display: none;
+}
+
+.one-class{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #c91717;
+}
+
+.tutor-profile img{
+    width: 100px;
+    border-radius: 50%;
+}
+
+.class-details{
+    margin-left: 30px;
+}
+
+.class-details > div{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    line-height: 1.4;
+}
+
+
+.class-details h1{
+    font-size: 18px;
+    font-weight:bold;
+}
+
+.class-details h2{
+    font-size: 18px;
+    font-weight: 400;
+    margin-left: 10px;
+}
+
+
+
+/* ========================= MENU SELECTION AREA ============================== */
+
+.filed-selection-btn{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: green;
+    padding: 10px;
+    border-radius: 5px;
+    width: 90%;
+    margin: 20px auto;
+}
+
+.filed-selection-btn button{
+    background: yellow;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+.filed-selection-btn button:hover{
+    background: #c91717;
+    color: white;
+}
+
+
+
+/* ========================= STUDENT INFO ============================== */
+
+.student-info{
+    width: 90%;
+    margin: 20px auto;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* display: none; */
+}
+
+.student-info > div{
+    width: 30%;
+}
+
+.student-info > div > div{
+    border: 2px solid #c91717;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px 0;
+
+}
+
+.student-info h1{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.student-info h2{
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.section-1 > div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.section-2 > div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+
+/*  ========================= HIDE SHOW / BLOCK UNBLOCK/ CHAT ============================== */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.functionalities .button{
+    display: inline-block;
+    height: 60px;
+    width: 60px;
+    /* float: left; */
+    margin: 0 5px;
+    background-color: #fff;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+    transition: all 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+
+.functionalities .button:hover{
+    width: 200px;
+}
+
+.functionalities .button .icon{
+    display: inline-block;
+    height: 60px;
+    width: 60px;
+    border-radius: 50px;
+    box-sizing: border-box;
+    line-height: 60px;
+    text-align: center;
+}
+
+.functionalities .button:nth-child(1):hover .icon{
+    background-color: red;
+}
+
+
+.functionalities .button:nth-child(2):hover .icon{
+    background-color: green;
+}
+
+.functionalities .button .icon img{
+    width: 40px;
+    vertical-align: middle;
+    transition: all 0.5s ease-in-out;
+}
+
+.functionalities .button:hover .icon i{
+    color: #fff;
+}
+
+
+.functionalities .button span{
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 60px;
+    margin-left: 10px;
+    transition: all 0.5s ease-in-out;
+}
+
+.functionalities .button:nth-child(1) span{
+    color: red;
+}
+
