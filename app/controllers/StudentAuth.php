@@ -78,6 +78,7 @@ class StudentAuth extends Controller {
 //        If user is logged in, then redirect to dashboard page
         if ($request->isLoggedIn()) {
 //            TODO: check user role and send to relevant dashboard
+            redirect('/example/dashboard');
         }
 
 //        If the request is a post request, then handle the incoming data
@@ -132,13 +133,20 @@ class StudentAuth extends Controller {
     public function createUserSession($user, $rememberUser = true) {
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_email'] = $user->email;
-        $_SESSION['user_name'] = $user->name;
+        $_SESSION['user_role'] = $user->role;
 
         if ($rememberUser) {
             $_SESSION['LAST_ACTIVITY'] = time();
         }
 
-        redirect('example/dashboard');
+        if ($user->role === 0) {
+            redirect('admin/dashboard');
+        }elseif ($user->role === 1) {
+            redirect('tutor/dashboard');
+        }elseif ($user->role === 2) {
+            redirect('example/dashboard');
+        }
+
     }
 
     public function logOut() {

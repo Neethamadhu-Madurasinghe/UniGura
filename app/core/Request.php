@@ -39,7 +39,7 @@ class Request {
 
         if ($this->method() == 'post') {
             foreach ($_POST as $key => $value) {
-                $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+                $body[$key] = trim(filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS));
             }
         }
 
@@ -97,6 +97,19 @@ class Request {
         }else {
             return false;
         }
+    }
+
+//    Methods to identify user role
+    public function isAdmin(): bool {
+        return $_SESSION['user_role'] === 0;
+    }
+
+    public function isTutor(): bool {
+        return $_SESSION['user_role'] === 1;
+    }
+
+    public function isStudent(): bool {
+        return $_SESSION['user_role'] === 2;
     }
 
 }

@@ -4,11 +4,12 @@
  */
 ?>
 
-<?php require_once APPROOT . '/views/student/inc/header.php'; ?>
+<?php
+require_once APPROOT . '/views/student/inc/Header.php';
+$header = new Header('Login', [URLROOT . '/public/css/student-register.css']);
+$header->render();
+?>
 
-<link  rel="stylesheet" href="<?php echo URLROOT ?>/public/css/student-register.css" />
-<title>Login</title>
-</head>
 <body>
 
 <div class="form-container">
@@ -34,4 +35,7 @@
     </form>
 </div>
 
-<?php require_once APPROOT . '/views/student/inc/footer.php'; ?>
+<?php require_once APPROOT . '/views/student/inc/Footer.php';
+    $footer = new Footer(['script.js']);
+    $footer->render();
+?>
