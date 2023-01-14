@@ -24,6 +24,7 @@ class Router {
         //      Not found route
         if ($callback === false) {
 //            TODO: Handle not found
+            header("HTTP/1.0 404 Not Found");
             echo '<pre>' . $this->request->getPath() . '</pre>';
             die('404');
         }
