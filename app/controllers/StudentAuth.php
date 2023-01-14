@@ -47,6 +47,7 @@ class StudentAuth extends Controller {
                 if ($this->userModel->register($data)) {
                     redirect('student/login');
                 }else {
+                    header("HTTP/1.0 500 Internal Server Error");
                     die('Something went wrong');
                 }
 

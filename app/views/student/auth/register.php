@@ -6,7 +6,11 @@
 
 <?php
 require_once APPROOT . '/views/student/inc/Header.php';
+require_once APPROOT . '/views/student/inc/Footer.php';
+
 $header = new Header('Login', [URLROOT . '/public/css/student-register.css']);
+$footer = new Footer(['script.js']);
+
 $header->render();
 ?>
 
@@ -35,7 +39,4 @@ $header->render();
     </form>
 </div>
 
-<?php require_once APPROOT . '/views/student/inc/Footer.php';
-    $footer = new Footer(['script.js']);
-    $footer->render();
-?>
+<?php $footer->render(); ?>
