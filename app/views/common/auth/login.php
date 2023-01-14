@@ -1,6 +1,7 @@
 <?php
 /**
  * @var $data
+ * @var $request
  */
 ?>
 
@@ -19,7 +20,7 @@ $header = new Header(
 );
 
 $footer = new Footer(['script.js']);
-$navbar = new LandingPageNavBar();
+$navbar = new LandingPageNavBar($request);
 
 $header->render();
 ?>

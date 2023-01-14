@@ -105,11 +105,11 @@ class Request {
     }
 
     public function isTutor(): bool {
-        return $_SESSION['user_role'] === 1;
+        return $_SESSION['user_role'] === 1 || $_SESSION['user_role'] === 3 || $_SESSION['user_role'] === 5;
     }
 
     public function isStudent(): bool {
-        return $_SESSION['user_role'] === 2;
+        return $_SESSION['user_role'] === 2 || $_SESSION['user_role'] === 4 || $_SESSION['user_role'] === 6;
     }
 
 }
