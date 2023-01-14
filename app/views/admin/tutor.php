@@ -16,307 +16,345 @@
     <div class="tutor-page">
 
         <div class="card-section">
-
-
-            <div class='card'>
-
+        <div class='card'>
                 <div class="delete-hide-show">
                     <div class="hide-show">
                         <div class="btn"></div>
-                        <button type="button" class="toggle-btn show">Show</button>
-                        <button type="button" class="toggle-btn hide">Hide</button>
+                        <button type="button" class="toggle-btn show" >Show</button>
+                        <button type="button" class="toggle-btn hide" >Hide</button>
                     </div>
                     <div class="delete">
                         <i class="fas fa-trash-alt"></i>
                     </div>
                 </div>
-
+        
                 <div class='profile-picture'>
                     <img src='../tutor/OIP.jpeg' alt='''>
                 </div>
+
+                <div class="card-blur-effect">
+                    <div class='view-profile'>
+                        <button class="view-profile-btn">View Profile</button>
+                    </div>
+                </div>
         
         
-                <div class=' name'>
+                <div class='name'>
                     <h2>viraj sandakelum</h2>
                 </div>
 
+                
+        
                 <div class='selection-menu'>
                     <div class='menu-1' id='menu-1'>
                         <h3>About</h3>
                     </div>
-
+        
                     <div class='menu-2' id='menu-2'>
-                        <h3>Classes</h3>
+                        <h3>Qualification</h3>
                     </div>
-
+        
                     <div class='menu-3' id='menu-3'>
                         <h3>Contact</h3>
                     </div>
                 </div>
-
+        
                 <div class='selection-info'>
                     <div class='info-1' id='info-1'>
-                        <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia voluptatum quidem aliquam,
+                        <small><i class="fa-solid fa-address-card"></i> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia voluptatum quidem aliquam,
                             culpa dolores, quam praesentium qui optio eos perferendis et placeat vel modi dolor? Sit rem
                             enim inventore quaerat?
                         </small>
                     </div>
-
+        
                     <div class='info-2' id='info-2'>
-                        <small>sandakelum</small>
+                        <small><i class="fa-solid fa-download"></i> - Education Qualification</small><br>
+                        <small><i class="fa-solid fa-download"></i> - National Identity Card Copy</small><br>
+                        <small><i class="fa-solid fa-download"></i> - University Entrance Letter</small><br>
+                        <small><i class="fa-solid fa-download"></i> - Advanced Level Result</small>
                     </div>
-
+        
                     <div class='info-3' id='info-3'>
-                        <small>anwarathna</small>
+                        <small><i class="fa-solid fa-phone"></i> - 0770406451</small><br>
+                        <small><i class="fa-solid fa-house"></i> - 62/1/2 Weera Uditha</small><br>
+                        <small><i class="fa-solid fa-location-dot"></i> - Piliyandala</small><br>
+                        <small><i class="fa-solid fa-venus-mars"></i> - Male</small>
                     </div>
                 </div>
-
-                <div class='view-profile'>
-                    <button class="view-profile-btn">View Profile</button>
-                </div>
-
             </div>
 
 
             <div class='card'>
-
                 <div class="delete-hide-show">
                     <div class="hide-show">
                         <div class="btn"></div>
-                        <button type="button" class="toggle-btn show">Show</button>
-                        <button type="button" class="toggle-btn hide">Hide</button>
+                        <button type="button" class="toggle-btn show" >Show</button>
+                        <button type="button" class="toggle-btn hide" >Hide</button>
                     </div>
                     <div class="delete">
                         <i class="fas fa-trash-alt"></i>
                     </div>
                 </div>
-
+        
                 <div class='profile-picture'>
                     <img src='../tutor/OIP.jpeg' alt='''>
                 </div>
+
+                <div class="card-blur-effect">
+                    <div class='view-profile'>
+                        <button class="view-profile-btn">View Profile</button>
+                    </div>
+                </div>
         
         
-                <div class=' name'>
+                <div class='name'>
                     <h2>viraj sandakelum</h2>
                 </div>
 
+                
+        
                 <div class='selection-menu'>
                     <div class='menu-1' id='menu-1'>
                         <h3>About</h3>
                     </div>
-
+        
                     <div class='menu-2' id='menu-2'>
-                        <h3>Classes</h3>
+                        <h3>Qualification</h3>
                     </div>
-
+        
                     <div class='menu-3' id='menu-3'>
                         <h3>Contact</h3>
                     </div>
                 </div>
-
+        
                 <div class='selection-info'>
                     <div class='info-1' id='info-1'>
-                        <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia voluptatum quidem aliquam,
+                        <small><i class="fa-solid fa-address-card"></i> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia voluptatum quidem aliquam,
                             culpa dolores, quam praesentium qui optio eos perferendis et placeat vel modi dolor? Sit rem
                             enim inventore quaerat?
                         </small>
                     </div>
-
+        
                     <div class='info-2' id='info-2'>
-                        <small>sandakelum</small>
+                        <small><i class="fa-solid fa-download"></i> - Education Qualification</small><br>
+                        <small><i class="fa-solid fa-download"></i> - National Identity Card Copy</small><br>
+                        <small><i class="fa-solid fa-download"></i> - University Entrance Letter</small><br>
+                        <small><i class="fa-solid fa-download"></i> - Advanced Level Result</small>
                     </div>
-
+        
                     <div class='info-3' id='info-3'>
-                        <small>anwarathna</small>
+                        <small><i class="fa-solid fa-phone"></i> - 0770406451</small><br>
+                        <small><i class="fa-solid fa-house"></i> - 62/1/2 Weera Uditha</small><br>
+                        <small><i class="fa-solid fa-location-dot"></i> - Piliyandala</small><br>
+                        <small><i class="fa-solid fa-venus-mars"></i> - Male</small>
                     </div>
                 </div>
-
-                <div class='view-profile'>
-                    <button>View Profile</button>
-                </div>
-
             </div>
 
-
             <div class='card'>
-
                 <div class="delete-hide-show">
                     <div class="hide-show">
                         <div class="btn"></div>
-                        <button type="button" class="toggle-btn show">Show</button>
-                        <button type="button" class="toggle-btn hide">Hide</button>
+                        <button type="button" class="toggle-btn show" >Show</button>
+                        <button type="button" class="toggle-btn hide" >Hide</button>
                     </div>
                     <div class="delete">
                         <i class="fas fa-trash-alt"></i>
                     </div>
                 </div>
-
+        
                 <div class='profile-picture'>
                     <img src='../tutor/OIP.jpeg' alt='''>
                 </div>
+
+                <div class="card-blur-effect">
+                    <div class='view-profile'>
+                        <button class="view-profile-btn">View Profile</button>
+                    </div>
+                </div>
         
         
-                <div class=' name'>
+                <div class='name'>
                     <h2>viraj sandakelum</h2>
                 </div>
 
+                
+        
                 <div class='selection-menu'>
                     <div class='menu-1' id='menu-1'>
                         <h3>About</h3>
                     </div>
-
+        
                     <div class='menu-2' id='menu-2'>
-                        <h3>Classes</h3>
+                        <h3>Qualification</h3>
                     </div>
-
+        
                     <div class='menu-3' id='menu-3'>
                         <h3>Contact</h3>
                     </div>
                 </div>
-
+        
                 <div class='selection-info'>
                     <div class='info-1' id='info-1'>
-                        <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia voluptatum quidem aliquam,
+                        <small><i class="fa-solid fa-address-card"></i> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia voluptatum quidem aliquam,
                             culpa dolores, quam praesentium qui optio eos perferendis et placeat vel modi dolor? Sit rem
                             enim inventore quaerat?
                         </small>
                     </div>
-
+        
                     <div class='info-2' id='info-2'>
-                        <small>sandakelum</small>
+                        <small><i class="fa-solid fa-download"></i> - Education Qualification</small><br>
+                        <small><i class="fa-solid fa-download"></i> - National Identity Card Copy</small><br>
+                        <small><i class="fa-solid fa-download"></i> - University Entrance Letter</small><br>
+                        <small><i class="fa-solid fa-download"></i> - Advanced Level Result</small>
                     </div>
-
+        
                     <div class='info-3' id='info-3'>
-                        <small>anwarathna</small>
+                        <small><i class="fa-solid fa-phone"></i> - 0770406451</small><br>
+                        <small><i class="fa-solid fa-house"></i> - 62/1/2 Weera Uditha</small><br>
+                        <small><i class="fa-solid fa-location-dot"></i> - Piliyandala</small><br>
+                        <small><i class="fa-solid fa-venus-mars"></i> - Male</small>
                     </div>
                 </div>
-
-                <div class='view-profile'>
-                    <button>View Profile</button>
-                </div>
-
             </div>
 
 
             <div class='card'>
-
                 <div class="delete-hide-show">
                     <div class="hide-show">
                         <div class="btn"></div>
-                        <button type="button" class="toggle-btn show">Show</button>
-                        <button type="button" class="toggle-btn hide">Hide</button>
+                        <button type="button" class="toggle-btn show" >Show</button>
+                        <button type="button" class="toggle-btn hide" >Hide</button>
                     </div>
                     <div class="delete">
                         <i class="fas fa-trash-alt"></i>
                     </div>
                 </div>
-
+        
                 <div class='profile-picture'>
                     <img src='../tutor/OIP.jpeg' alt='''>
                 </div>
+
+                <div class="card-blur-effect">
+                    <div class='view-profile'>
+                        <button class="view-profile-btn">View Profile</button>
+                    </div>
+                </div>
         
         
-                <div class=' name'>
+                <div class='name'>
                     <h2>viraj sandakelum</h2>
                 </div>
 
+                
+        
                 <div class='selection-menu'>
                     <div class='menu-1' id='menu-1'>
                         <h3>About</h3>
                     </div>
-
+        
                     <div class='menu-2' id='menu-2'>
-                        <h3>Classes</h3>
+                        <h3>Qualification</h3>
                     </div>
-
+        
                     <div class='menu-3' id='menu-3'>
                         <h3>Contact</h3>
                     </div>
                 </div>
-
+        
                 <div class='selection-info'>
                     <div class='info-1' id='info-1'>
-                        <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia voluptatum quidem aliquam,
+                        <small><i class="fa-solid fa-address-card"></i> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia voluptatum quidem aliquam,
                             culpa dolores, quam praesentium qui optio eos perferendis et placeat vel modi dolor? Sit rem
                             enim inventore quaerat?
                         </small>
                     </div>
-
+        
                     <div class='info-2' id='info-2'>
-                        <small>sandakelum</small>
+                        <small><i class="fa-solid fa-download"></i> - Education Qualification</small><br>
+                        <small><i class="fa-solid fa-download"></i> - National Identity Card Copy</small><br>
+                        <small><i class="fa-solid fa-download"></i> - University Entrance Letter</small><br>
+                        <small><i class="fa-solid fa-download"></i> - Advanced Level Result</small>
                     </div>
-
+        
                     <div class='info-3' id='info-3'>
-                        <small>anwarathna</small>
+                        <small><i class="fa-solid fa-phone"></i> - 0770406451</small><br>
+                        <small><i class="fa-solid fa-house"></i> - 62/1/2 Weera Uditha</small><br>
+                        <small><i class="fa-solid fa-location-dot"></i> - Piliyandala</small><br>
+                        <small><i class="fa-solid fa-venus-mars"></i> - Male</small>
                     </div>
                 </div>
-
-                <div class='view-profile'>
-                    <button>View Profile</button>
-                </div>
-
             </div>
 
 
-
             <div class='card'>
-
                 <div class="delete-hide-show">
                     <div class="hide-show">
                         <div class="btn"></div>
-                        <button type="button" class="toggle-btn show">Show</button>
-                        <button type="button" class="toggle-btn hide">Hide</button>
+                        <button type="button" class="toggle-btn show" >Show</button>
+                        <button type="button" class="toggle-btn hide" >Hide</button>
                     </div>
                     <div class="delete">
                         <i class="fas fa-trash-alt"></i>
                     </div>
                 </div>
-
+        
                 <div class='profile-picture'>
                     <img src='../tutor/OIP.jpeg' alt='''>
                 </div>
+
+                <div class="card-blur-effect">
+                    <div class='view-profile'>
+                        <button class="view-profile-btn">View Profile</button>
+                    </div>
+                </div>
         
         
-                <div class=' name'>
+                <div class='name'>
                     <h2>viraj sandakelum</h2>
                 </div>
 
+                
+        
                 <div class='selection-menu'>
                     <div class='menu-1' id='menu-1'>
                         <h3>About</h3>
                     </div>
-
+        
                     <div class='menu-2' id='menu-2'>
-                        <h3>Classes</h3>
+                        <h3>Qualification</h3>
                     </div>
-
+        
                     <div class='menu-3' id='menu-3'>
                         <h3>Contact</h3>
                     </div>
                 </div>
-
+        
                 <div class='selection-info'>
                     <div class='info-1' id='info-1'>
-                        <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia voluptatum quidem aliquam,
+                        <small><i class="fa-solid fa-address-card"></i> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia voluptatum quidem aliquam,
                             culpa dolores, quam praesentium qui optio eos perferendis et placeat vel modi dolor? Sit rem
                             enim inventore quaerat?
                         </small>
                     </div>
-
+        
                     <div class='info-2' id='info-2'>
-                        <small>sandakelum</small>
+                        <small><i class="fa-solid fa-download"></i> - Education Qualification</small><br>
+                        <small><i class="fa-solid fa-download"></i> - National Identity Card Copy</small><br>
+                        <small><i class="fa-solid fa-download"></i> - University Entrance Letter</small><br>
+                        <small><i class="fa-solid fa-download"></i> - Advanced Level Result</small>
                     </div>
-
-                    <div class='info-3' id='info-3'> // contact info
-                        <small>anwarathna</small>
+        
+                    <div class='info-3' id='info-3'>
+                        <small><i class="fa-solid fa-phone"></i> - 0770406451</small><br>
+                        <small><i class="fa-solid fa-house"></i> - 62/1/2 Weera Uditha</small><br>
+                        <small><i class="fa-solid fa-location-dot"></i> - Piliyandala</small><br>
+                        <small><i class="fa-solid fa-venus-mars"></i> - Male</small>
                     </div>
                 </div>
-
-                <div class='view-profile'>
-                    <button>View Profile</button>
-                </div>
-
             </div>
+
+
         </div>
 
         <div class="filter-selection">

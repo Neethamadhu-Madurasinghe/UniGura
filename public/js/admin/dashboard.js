@@ -130,15 +130,7 @@ class_.addEventListener("click", () => {
 
 
 
-// chat.addEventListener("click", () => {
-//     nav_link.forEach((link) => {
-//         link.classList.remove('active');
-//     })
 
-//     chat.classList.add('active');
-
-//     loadChat();
-// })
 
 request_complaint.addEventListener("click", () => {
     nav_link.forEach((link) => {
@@ -278,32 +270,37 @@ function loadRequestComplaint () {
 }
 
 
+// *========================================== CHAT PAGE ===========================================================
+
+
+chat.addEventListener("click", () => {
+    nav_link.forEach((link) => {
+        link.classList.remove('active');
+    })
+
+    chat.classList.add('active');
+
+    loadChat();
+})
 
 
 
+function loadChat () {
 
+    const home = document.getElementById("home");
 
-// function loadChat () {
+    const xhr = new XMLHttpRequest();
 
-//     const home = document.getElementById("home");
+    xhr.open("GET", "chat", true);
 
-//     const xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+        if (this.status === 200) {
+            home.innerHTML = this.responseText;
+        }
+    }
 
-//     xhr.open("GET", "../chat/chat.html", true);
-
-//     xhr.onload = function () {
-//         if (this.status === 200) {
-//             home.innerHTML = this.responseText;
-//         }
-
-//         // load the tutor js file
-//         const script = document.createElement('script');
-//         script.src = "../chat/chat.js";
-//         document.head.prepend(script);
-//     }
-
-//     xhr.send();
-// }
+    xhr.send();
+}
 
 
 
@@ -336,14 +333,14 @@ function loadClass () {
                 let maxPrice = parseInt(priceInput[1].value);
 
                 // if ((maxPrice - minPrice >= priceGap) && maxPrice <= rangeInput[1].max) {
-                    // if (e.target.className === "input-max") {
-                        rangeInput[0].value = maxPrice;
-                        range.style.right = 100 - (maxPrice / rangeInput[0].max) * 100 + "%";
-                    // } 
-                    // else {
-                    //     rangeInput[1].value = maxPrice;
-                    //     range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
-                    // }
+                // if (e.target.className === "input-max") {
+                rangeInput[0].value = maxPrice;
+                range.style.right = 100 - (maxPrice / rangeInput[0].max) * 100 + "%";
+                // } 
+                // else {
+                //     rangeInput[1].value = maxPrice;
+                //     range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
+                // }
                 // }
             });
         });
@@ -359,10 +356,10 @@ function loadClass () {
                 //         rangeInput[1].value = minVal + priceGap;
                 //     }
                 // } else {
-                    // priceInput[0].value = minVal;
-                    priceInput[1].value = maxVal;
-                    // range.style.left = ((minVal / rangeInput[0].max) * 100) + "%";
-                    range.style.right = 100 - (maxVal / rangeInput[0].max) * 100 + "%";
+                // priceInput[0].value = minVal;
+                priceInput[1].value = maxVal;
+                // range.style.left = ((minVal / rangeInput[0].max) * 100) + "%";
+                range.style.right = 100 - (maxVal / rangeInput[0].max) * 100 + "%";
                 // }
             });
         });
@@ -481,6 +478,7 @@ function loadClass () {
 
 
 // *========================================== SUBJECT PAGE ===========================================================
+
 
 subject.addEventListener("click", () => {
     nav_link.forEach((link) => {
@@ -1426,6 +1424,29 @@ function loadTutor () {
                 btn[i].style.borderTopLeftRadius = '30px';
                 btn[i].style.borderBottomLeftRadius = '30px';
                 hide[i].style.color = 'black';
+            });
+        }
+
+        // -------------------------CARD SHOW PROFILE BUTTON---------------------------------------
+
+        const profilePicture = document.querySelectorAll('.profile-picture');
+        const cardBlurEffect = document.querySelectorAll('.card-blur-effect');
+        const card = document.querySelectorAll('.card');
+        const viewProfileBtn = document.querySelectorAll('.view-profile-btn');
+
+
+
+        for (let i = 0; i < card.length; i++) {
+            card[i].addEventListener('mouseenter', function () {
+                cardBlurEffect[i].style.height = '59%';
+                viewProfileBtn[i].style.zIndex = '10';
+            });
+        }
+
+        for (let i = 0; i < card.length; i++) {
+            card[i].addEventListener('mouseleave', function () {
+                cardBlurEffect[i].style.height = '0%';
+                viewProfileBtn[i].style.zIndex = '-1';
             });
         }
 

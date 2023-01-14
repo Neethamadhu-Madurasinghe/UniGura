@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/401cc96be7.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../chat/chat.css">
+    <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/chat.css">
     <title>Document</title>
 </head>
 <body>
