@@ -19,7 +19,7 @@ $header = new Header(
     ]
 );
 
-$footer = new Footer(['script.js']);
+$footer = new Footer([]);
 $navbar = new LandingPageNavBar($request);
 
 $header->render();

@@ -11,7 +11,7 @@ require_once APPROOT . '/views/common/inc/Footer.php';
 require_once APPROOT . '/views/common/inc/components/LandingPageNavBar.php';
 
 $header = new Header(
-    'Register as a student',
+    'Register as a Tutor',
     [
         URLROOT . '/public/css/student-base-style.css',
         URLROOT . '/public/css/components/tutor-student-login-nav-bar.css',
@@ -19,7 +19,7 @@ $header = new Header(
     ]
     );
 
-$footer = new Footer(['script.js']);
+$footer = new Footer([]);
 $navbar = new LandingPageNavBar($request);
 
 $header->render();
@@ -37,7 +37,7 @@ $header->render();
         </div>
 
         <div class="login-form-container">
-            <h1>Register as a Student</h1>
+            <h1>Register as a Tutor</h1>
             <p>Already have an account?
                 <a href="<?php echo URLROOT . '/login' ?>">Login</a>
             </p>

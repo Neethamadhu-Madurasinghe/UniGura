@@ -3,17 +3,25 @@
 class TutorStudentAuth extends Controller {
     private mixed $userModel;
     private string $loginView = 'common/auth/login';
+    private string $registerView;
     private string $studentRegister = 'student/auth/register';
+    private string $tutorRegister = 'tutor/auth/register';
 
     public function __construct() {
-        $this->userModel = $this->model('ModelStudentAuth');
+        $this->userModel = $this->model('ModelTutorStudentAuth');
     }
 
 //   Handle Student register
-    public function studentRegister(Request $request) {
+    public function tutorStudentRegister(Request $request) {
+//       Check whether the request from tutor registration page or student registration page
+        if($request->getPath() == 'student/register') {
+            $this->registerView = 'student/auth/register';
+        }else {
+            $this->registerView = 'tutor/auth/register';
+        }
+
 //      If the user is logged in, then redirect user into dashboard
         if ($request->isLoggedIn()) {
-//            Doo
 //           TODO: Check user role and redirect to relevant dashboard
         }
 
@@ -41,12 +49,24 @@ class TutorStudentAuth extends Controller {
                 $data['confirm_password'] = $data['password'];
 
 //                Save data into database
-                if ($this->userModel->register($data)) {
-                    redirect('student/login');
+//                If current request is from student/register then save the data as a student, tutor otherwise
+                if ($request->getPath() == 'student/register') {
+                    if ($this->userModel->registerStudent($data)) {
+                        redirect('/login');
+                    }else {
+                        header("HTTP/1.0 500 Internal Server Error");
+                        die('Something went wrong');
+                    }
+
                 }else {
-                    header("HTTP/1.0 500 Internal Server Error");
-                    die('Something went wrong');
+                    if ($this->userModel->registerTutor($data)) {
+                        redirect('/login');
+                    }else {
+                        header("HTTP/1.0 500 Internal Server Error");
+                        die('Something went wrong');
+                    }
                 }
+
 
 //          If there is an error with data, when keep the user in the same page
             }else {
@@ -59,7 +79,7 @@ class TutorStudentAuth extends Controller {
                 ) {
                     $data['errors']['email_error'] = '';
                 }
-                $this->view($this->studentRegister, $request, $data);
+                $this->view($this->registerView, $request, $data);
             }
 
 //      If the request is a get request, show empty errors
@@ -76,9 +96,10 @@ class TutorStudentAuth extends Controller {
                 ]
             ];
 
-            $this->view($this->studentRegister, $request, $data);
+            $this->view($this->registerView, $request, $data);
         }
     }
+
 
 //   Handle login process
     public function login(Request $request) {
