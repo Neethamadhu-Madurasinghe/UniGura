@@ -35,8 +35,6 @@
 .image-area {
   width: 45%;
   padding-right: 20px;
-  display: flex;
-  align-items: center;
 }
 
 .image-area object {
@@ -144,7 +142,37 @@
   padding-left: 5px;
 }
 
+.remember-me-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-right: 20px;
+  width: 50%;
+}
 
+.remember-me-field label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  margin-left: 5px;
+}
+
+#login-remember-me {
+  height: 15px;
+}
+
+
+.reset-password-field {
+  width: 50%;
+  margin-bottom: 20px;
+}
+
+#reset-password {
+  font-family: 'DM Sans', sans-serif;
+  text-decoration: underline;
+  color: black;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
 
 .btn {
   width: 180px;
@@ -157,7 +185,6 @@
   cursor: pointer;
   transition: transform 0.1s;
   user-select: none;
-  margin-top: 20px;
 }
 
 .btn:hover {
@@ -167,4 +194,3 @@
 .btn:active {
   background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
 }
-

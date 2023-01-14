@@ -24,8 +24,8 @@ $router->registerController('/load-file', [FileLoader::class, 'loadFile']);
 
 
 
-$router->registerController('/student/login', [StudentAuth::class, 'login']);
-$router->registerController('/student/register', [StudentAuth::class, 'register']);
+$router->registerController('/login', [TutorStudentAuth::class, 'login']);
+$router->registerController('/student/register', [TutorStudentAuth::class, 'studentRegister']);
 
 
 

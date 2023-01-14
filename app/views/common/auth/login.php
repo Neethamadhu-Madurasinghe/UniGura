@@ -10,13 +10,13 @@ require_once APPROOT . '/views/common/inc/Footer.php';
 require_once APPROOT . '/views/common/inc/components/LandingPageNavBar.php';
 
 $header = new Header(
-    'Register as a student',
+    'Login',
     [
         URLROOT . '/public/css/student-base-style.css',
         URLROOT . '/public/css/components/tutor-student-login-nav-bar.css',
-        URLROOT . '/public/css/student-register.css',
+        URLROOT . '/public/css/tutor-student-login.css',
     ]
-    );
+);
 
 $footer = new Footer(['script.js']);
 $navbar = new LandingPageNavBar();
@@ -32,13 +32,15 @@ $header->render();
     <div class="main-container">
 
         <div class="image-area">
-            <object data="<?php echo URLROOT . '/public/img/Mobile login-rafiki.svg' ?>"> </object>
+            <object data="<?php echo URLROOT . '/public/img/Mobile login-pana.svg' ?>"> </object>
         </div>
 
         <div class="login-form-container">
-            <h1>Register as a Student</h1>
-            <p>Already have an account?
-                <a href="<?php echo URLROOT . '/login' ?>">Login</a>
+            <h1>Login</h1>
+            <p>Register as a
+                <a href="<?php echo URLROOT . '/student/register' ?>">Student</a>
+                or
+                <a href="<?php echo URLROOT . '/tutor/register' ?>">Tutor</a>
             </p>
 
             <form action="" class="login-form" method="POST">
@@ -64,13 +66,16 @@ $header->render();
                 </div>
 
                 <div class="form-row">
-                    <div class="form-field">
-                        <label for="confirm-password">Confirm Password</label>
-                        <input type="password" class="form-input" name="confirm-password" id="login-password">
+                    <div class="remember-me-field">
+                        <input type="checkbox" id="login-remember-me" name="remember-me">
+                        <label for="login-remember-me">Remember me</label>
+                    </div>
+                    <div class="reset-password-field">
+                        <a href="" id="reset-password">Reset password</a>
                     </div>
                 </div>
 
-                <input type="submit" value="Register" class="btn">
+                <input type="submit" value="Login" class="btn">
 
             </form>
         </div>

@@ -1,16 +1,16 @@
 <?php
 
-class StudentAuth extends Controller {
+class TutorStudentAuth extends Controller {
     private mixed $userModel;
-    private string $loginView = 'student/auth/login';
-    private string $registerView = 'student/auth/register';
+    private string $loginView = 'common/auth/login';
+    private string $studentRegister = 'student/auth/register';
 
     public function __construct() {
         $this->userModel = $this->model('ModelStudentAuth');
     }
 
 //   Handle Student register
-    public function register(Request $request) {
+    public function studentRegister(Request $request) {
 //      If the user is logged in, then redirect user into dashboard
         if ($request->isLoggedIn()) {
 //            Doo
@@ -26,8 +26,7 @@ class StudentAuth extends Controller {
                 'confirm_password' => $body['confirm-password'],
                 'errors' => [
                     'email_error' => '',
-                    'password_error' => '',
-                    'confirm_password_error' => ''
+                    'password_error' => ''
                 ]
             ];
 
@@ -36,9 +35,7 @@ class StudentAuth extends Controller {
             $data['errors']['password_error'] = $this->validatePassword($data['password'], $data['confirm_password']);
 
 //            Check whether there is any error - if not, save data into database and redirect user into login screen
-            if (empty($data['errors']['email_error'])
-                && empty($data['errors']['password_error'])
-                && empty($data['errors']['confirm_password_error'])) {
+            if (empty($data['errors']['email_error']) && empty($data['errors']['password_error'])) {
 //                Hash the password
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
                 $data['confirm_password'] = $data['password'];
@@ -53,7 +50,16 @@ class StudentAuth extends Controller {
 
 //          If there is an error with data, when keep the user in the same page
             }else {
-                $this->view($this->registerView, $request, $data);
+                $data['password'] = '';
+                $data['confirm-password'] = '';
+//               If password validation failed and email is already in use, then show the password error first
+                if (
+                    $data['errors']['password_error'] &&
+                    $data['errors']['email_error'] === 'Email is already registered'
+                ) {
+                    $data['errors']['email_error'] = '';
+                }
+                $this->view($this->studentRegister, $request, $data);
             }
 
 //      If the request is a get request, show empty errors
@@ -70,7 +76,7 @@ class StudentAuth extends Controller {
                 ]
             ];
 
-            $this->view($this->registerView, $request, $data);
+            $this->view($this->studentRegister, $request, $data);
         }
     }
 
@@ -160,8 +166,8 @@ class StudentAuth extends Controller {
         if (empty($password)) {
             return 'Please enter a valid password';
 
-        }elseif (strlen($password) < 8) {
-            return 'Password should be minimum 8 characters long';
+        }elseif (strlen($password) < 4) {
+            return 'Password should be minimum 4 characters long';
 
         }elseif ($password !== $confirmPassword) {
             return 'Please confirm the password';
