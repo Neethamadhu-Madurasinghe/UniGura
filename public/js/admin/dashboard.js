@@ -1438,7 +1438,7 @@ function loadTutor () {
 
         for (let i = 0; i < card.length; i++) {
             card[i].addEventListener('mouseenter', function () {
-                cardBlurEffect[i].style.height = '59%';
+                cardBlurEffect[i].style.height = '59.5%';
                 viewProfileBtn[i].style.zIndex = '10';
             });
         }

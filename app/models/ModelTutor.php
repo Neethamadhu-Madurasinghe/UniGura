@@ -19,4 +19,17 @@ class ModelTutor{
             return false;
         }
     }
+
+    public function getTutorContactDetails($tutorID){
+        $this->db->query("SELECT * FROM user WHERE id = :tutor_id");
+        $this->db->bind(':tutor_id', $tutorID);
+
+        $row = $this->db->resultOne();
+
+        if($this->db->rowCount() > 0) {
+            return $row;
+        }else {
+            return false;
+        }
+    }
 }
