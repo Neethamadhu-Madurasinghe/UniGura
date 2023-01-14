@@ -38,9 +38,6 @@
 }
 
 
-.class-details-table img {
-    width: 10px;
-}
 
 .class-details-table h6 {
     font-size: 15px;
@@ -97,6 +94,10 @@
     padding: 5px;
     width: 200px;
     outline: none;
+}
+
+.qualification-img{
+    width: 30px;
 }
 
 
@@ -230,6 +231,9 @@
     margin-left: 10px;
 }
 
+table tbody td div img{
+    width: 17px;
+}
 
 /* ---------------------------------------tutor complaints-table----------------------------------------------------- */
 

@@ -59,4 +59,8 @@ class ModelRequirementComplaints{
     }
 
 
+
+    // public function addReportReason(){
+    //     $this->db->query("INSERT INTO report_reason VLAUES ")
+    // }
 }

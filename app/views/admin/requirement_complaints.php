@@ -85,10 +85,10 @@
                             <td><?php echo $x->tutor->first_name . ' ' . $x->tutor->last_name ?></td>
                             <td><?php echo $x->tutor->phone_number ?></td>
                             <td><?php echo $x->university ?></td>
-                            <td><img src="<?php echo URLROOT ?>/public/images/download-icon.png" alt=""></td>
-                            <td><img src="<?php echo URLROOT ?>/public/images/download-icon.png" alt=""></td>
-                            <td><img src="<?php echo URLROOT ?>/public/images/download-icon.png" alt=""></td>
-                            <td><img src="<?php echo URLROOT ?>/public/images/download-icon.png" alt=""></td>
+                            <td><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></td>
+                            <td><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></td>
+                            <td><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></td>
+                            <td><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></td>
                             <td class="action">
                                 <button class="accept">ACCEPT</button>
                                 <button class="reject">REJECT</button>
@@ -145,14 +145,14 @@
                             <?php if ($studentComplaint->studentReport->is_inquired == 0) { ?>
                                 <td>
                                     <div class="complete-status">
-                                        <img src="./images/green-dot.png" alt="">
+                                        <img src="<?php echo URLROOT ?>/public/img/admin/green-dot.png" alt="">
                                         <h6>Completed</h6>
                                     </div>
                                 </td>
                             <?php } else if ($studentComplaint->studentReport->is_inquired == 1) { ?>
                                 <td>
                                     <div class="pending-status">
-                                        <img src="./images/blue-dot.png" alt="">
+                                        <img src="<?php echo URLROOT ?>/public/img/admin/red-dot.png" alt="">
                                         <h6>Pending</h6>
                                     </div>
                                 </td>
@@ -211,14 +211,14 @@
                                 <?php if ($tutorComplaint->tutorReport->is_inquired == 0) { ?>
                                     <td>
                                         <div class="complete-status">
-                                            <img src="./images/green-dot.png" alt="">
+                                            <img src="<?php echo URLROOT ?>/public/img/admin/green-dot.png" alt="">
                                             <h6>Completed</h6>
                                         </div>
                                     </td>
                                 <?php } else if ($tutorComplaint->tutorReport->is_inquired == 1) { ?>
                                     <td>
                                         <div class="pending-status">
-                                            <img src="./images/blue-dot.png" alt="">
+                                            <img src="<?php echo URLROOT ?>/public/img/admin/red-dot.png" alt="">
                                             <h6>Pending</h6>
                                         </div>
                                     </td>
