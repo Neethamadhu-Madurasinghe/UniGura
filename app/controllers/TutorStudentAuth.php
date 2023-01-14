@@ -3,9 +3,6 @@
 class TutorStudentAuth extends Controller {
     private mixed $userModel;
     private string $loginView = 'common/auth/login';
-    private string $registerView;
-    private string $studentRegister = 'student/auth/register';
-    private string $tutorRegister = 'tutor/auth/register';
 
     public function __construct() {
         $this->userModel = $this->model('ModelTutorStudentAuth');
@@ -14,10 +11,10 @@ class TutorStudentAuth extends Controller {
 //   Handle Student register
     public function tutorStudentRegister(Request $request) {
 //       Check whether the request from tutor registration page or student registration page
-        if($request->getPath() == 'student/register') {
-            $this->registerView = 'student/auth/register';
+        if ($request->getPath() == 'student/register') {
+            $registerView = 'student/auth/register';
         }else {
-            $this->registerView = 'tutor/auth/register';
+            $registerView = 'tutor/auth/register';
         }
 
 //      If the user is logged in, then redirect user into dashboard
@@ -79,7 +76,7 @@ class TutorStudentAuth extends Controller {
                 ) {
                     $data['errors']['email_error'] = '';
                 }
-                $this->view($this->registerView, $request, $data);
+                $this->view($registerView, $request, $data);
             }
 
 //      If the request is a get request, show empty errors
@@ -96,7 +93,7 @@ class TutorStudentAuth extends Controller {
                 ]
             ];
 
-            $this->view($this->registerView, $request, $data);
+            $this->view($registerView, $request, $data);
         }
     }
 

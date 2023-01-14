@@ -33,7 +33,9 @@ $header->render();
     <div class="main-container">
 
         <div class="image-area">
-            <object data="<?php echo URLROOT . '/public/img/Mobile login-pana.svg' ?>"> </object>
+            <object>
+                <img src="<?php echo URLROOT . '/public/img/Mobile login-pana.svg' ?>" alt="login">
+            </object>
         </div>
 
         <div class="login-form-container">
