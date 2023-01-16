@@ -74,6 +74,7 @@ function validateTelephoneNumber(String $telephone, ModelTutorStudentCompletePro
 
     }elseif ($modelObject->findUserByTelephoneNumber($telephone)) {
         return 'Telephone no. is already in use';
+
     }else {
         return '';
     }

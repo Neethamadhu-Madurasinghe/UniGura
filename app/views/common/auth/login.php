@@ -13,9 +13,9 @@ require_once APPROOT . '/views/common/inc/components/LandingPageNavBar.php';
 $header = new Header(
     'Login',
     [
-        URLROOT . '/public/css/student-base-style.css',
+        URLROOT . '/public/css/common/student-base-style.css',
         URLROOT . '/public/css/components/tutor-student-login-nav-bar.css',
-        URLROOT . '/public/css/tutor-student-login.css',
+        URLROOT . '/public/css/common/tutor-student-login.css',
     ]
 );
 
@@ -25,8 +25,6 @@ $navbar = new LandingPageNavBar($request);
 $header->render();
 ?>
 
-<body>
-
 <?php $navbar->render(); ?>
 
 <div class="main-area">
@@ -34,7 +32,7 @@ $header->render();
 
         <div class="image-area">
             <object>
-                <img src="<?php echo URLROOT . '/public/img/Mobile login-pana.svg' ?>" alt="login">
+                <img src="<?php echo URLROOT . '/public/img/common/Mobile login-pana.svg' ?>" alt="login">
             </object>
         </div>
 

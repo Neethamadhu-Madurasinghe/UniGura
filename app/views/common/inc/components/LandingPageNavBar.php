@@ -10,7 +10,7 @@ class LandingPageNavBar {
         echo '
             <div class="student-nav-bar">
                 <div class="logo-container">
-                    <img src="'. URLROOT . '/public/img/logo.png' .'" alt="" srcset="" class="nav-logo">
+                    <img src="'. URLROOT . '/public/img/common/logo.png' .'" alt="" srcset="" class="nav-logo">
                 </div>
                 <div class="nav-link-container-container">
                     <div class="nav-bar-link-container">

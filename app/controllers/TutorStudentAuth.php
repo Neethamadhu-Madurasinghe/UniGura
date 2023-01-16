@@ -170,6 +170,16 @@ class TutorStudentAuth extends Controller {
             redirect('tutor/dashboard');
         }elseif ($user->role === 2) {
             redirect('example/dashboard');
+        }elseif ($user->role === 3) {
+            redirect('tutor/validate-email');
+        }elseif ($user->role === 4) {
+            redirect('student/validate-email');
+        }elseif ($user->role === 5) {
+            redirect('tutor/complete-profile');
+        }elseif ($user->role === 6) {
+            redirect('student/complete-profile');
+        }elseif ($user->role === 7) {
+            redirect('/tutor/complete-qualifications');
         }
 
     }

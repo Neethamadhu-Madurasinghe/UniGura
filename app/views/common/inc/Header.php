@@ -23,6 +23,8 @@ class Header {
               <meta name="viewport" content="width=device-width, initial-scale=1.0">' .
               $cssLinks .
               '<title>' . $this->title . '</title>
-            </head>';
+            </head>
+            <body>
+            ';
     }
 }

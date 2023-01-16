@@ -28,6 +28,8 @@ $router->registerController('/login', [TutorStudentAuth::class, 'login']);
 $router->registerController('/student/register', [TutorStudentAuth::class, 'tutorStudentRegister']);
 $router->registerController('/tutor/register', [TutorStudentAuth::class, 'tutorStudentRegister']);
 
+$router->registerController('/student/complete-profile', [StudentProfile::class, 'studentCompleteProfile']);
+
 
 
 
