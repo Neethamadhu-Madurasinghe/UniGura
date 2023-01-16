@@ -19,38 +19,83 @@
         <div class="close-btn">
             <i class="fa fa-light fa-times" id="complaints-close-btn"></i>
         </div>
-        <div class="add-complaint">
-            <input type="text" placeholder="Add the new report reason">
-            <a href="#"><i class="fa fa-light fa-plus"></i> Complaint</a>
-        </div>
-        <div class="complaints-list">
-            <div class="one-complaint">
-                <input type="text" value="Reason" disabled class='complaint_input_filed'>
-                <a href="#" class="edit_icon_js"><i class="fa fa-light fa-edit"></i> Edit</a>
-                <div class="save-cancel">
-                    <a href="#" class="save_btn_js"><i class="fa fa-light fa-save"></i> Save</a>
-                    <a href="#" class="cancel_btn_js"><i class="fa fa-light fa-times"></i> Cancel</a>
+        <div class="complaint-reason">
+            <div class="student-complaint-reason">
+                <h1>Student Reason</h1>
+
+                <div class="add-complaint">
+                    <input type="text" placeholder="Add the new student report reason">
+                    <a href="#"><i class="fa fa-light fa-plus"></i> Complaint</a>
+                </div>
+                <div class="complaints-list">
+                    <div class="one-complaint">
+                        <input type="text" value="Reason" disabled class='complaint_input_filed'>
+                        <a href="#" class="edit_icon_js"><i class="fa fa-light fa-edit"></i> Edit</a>
+                        <div class="save-cancel">
+                            <a href="#" class="save_btn_js"><i class="fa fa-light fa-save"></i> Save</a>
+                            <a href="#" class="cancel_btn_js"><i class="fa fa-light fa-times"></i> Cancel</a>
+                        </div>
+                    </div>
+                    <div class="one-complaint">
+                        <h4>Reason</h4>
+                        <a href="#"><i class="fa fa-light fa-edit"></i> Edit</a>
+                    </div>
+                    <div class="one-complaint">
+                        <h4>Reason</h4>
+                        <a href="#"><i class="fa fa-light fa-edit"></i> Edit</a>
+                    </div>
+                    <div class="one-complaint">
+                        <h4>Reason</h4>
+                        <a href="#"><i class="fa fa-light fa-edit"></i> Edit</a>
+                    </div>
+                    <div class="one-complaint">
+                        <h4>Reason</h4>
+                        <a href="#"><i class="fa fa-light fa-edit"></i> Edit</a>
+                    </div>
+                    <div class="one-complaint">
+                        <h4>Reason</h4>
+                        <a href="#"><i class="fa fa-light fa-edit"></i> Edit</a>
+                    </div>
                 </div>
             </div>
-            <div class="one-complaint">
-                <h4>Reason</h4>
-                <a href="#"><i class="fa fa-light fa-edit"></i> Edit</a>
-            </div>
-            <div class="one-complaint">
-                <h4>Reason</h4>
-                <a href="#"><i class="fa fa-light fa-edit"></i> Edit</a>
-            </div>
-            <div class="one-complaint">
-                <h4>Reason</h4>
-                <a href="#"><i class="fa fa-light fa-edit"></i> Edit</a>
-            </div>
-            <div class="one-complaint">
-                <h4>Reason</h4>
-                <a href="#"><i class="fa fa-light fa-edit"></i> Edit</a>
-            </div>
-            <div class="one-complaint">
-                <h4>Reason</h4>
-                <a href="#"><i class="fa fa-light fa-edit"></i> Edit</a>
+
+            <div class="tutor-complaint-reason">
+                <h1>Tutor Reason</h1>
+
+                <div class="add-complaint">
+                    <input type="text" placeholder="Add the new tutor report reason">
+                    <a href="#"><i class="fa fa-light fa-plus"></i> Complaint</a>
+                </div>
+                <div class="complaints-list">
+                    <div class="one-complaint">
+                        <input type="text" value="Reason" disabled class='complaint_input_filed'>
+                        <a href="#" class="edit_icon_js"><i class="fa fa-light fa-edit"></i> Edit</a>
+                        <div class="save-cancel">
+                            <a href="#" class="save_btn_js"><i class="fa fa-light fa-save"></i> Save</a>
+                            <a href="#" class="cancel_btn_js"><i class="fa fa-light fa-times"></i> Cancel</a>
+                        </div>
+                    </div>
+                    <div class="one-complaint">
+                        <h4>Reason</h4>
+                        <a href="#"><i class="fa fa-light fa-edit"></i> Edit</a>
+                    </div>
+                    <div class="one-complaint">
+                        <h4>Reason</h4>
+                        <a href="#"><i class="fa fa-light fa-edit"></i> Edit</a>
+                    </div>
+                    <div class="one-complaint">
+                        <h4>Reason</h4>
+                        <a href="#"><i class="fa fa-light fa-edit"></i> Edit</a>
+                    </div>
+                    <div class="one-complaint">
+                        <h4>Reason</h4>
+                        <a href="#"><i class="fa fa-light fa-edit"></i> Edit</a>
+                    </div>
+                    <div class="one-complaint">
+                        <h4>Reason</h4>
+                        <a href="#"><i class="fa fa-light fa-edit"></i> Edit</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -103,7 +148,7 @@
 
     <div class="student-complaint-table">
         <div class="complaints-settings-btn">
-            <i class="fa fa-light fa-gear" id="complaints-settings-btn"> <span>Complaint Setting</span></i>
+            <i class="fa fa-light fa-gear" id="complaints-settings-btn"> <span>Complaint Reason</span></i>
         </div>
         <div class="table-header">
             <h3>Student's complaints</h3>

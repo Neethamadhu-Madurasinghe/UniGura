@@ -338,7 +338,10 @@ table tbody td div img{
     padding: 10px;
     height: 50vh;
     overflow-y: scroll;
-    margin-top: 15px;
+}
+
+.complaints-list::-webkit-scrollbar{
+    width: 0;
 }
 
 .one-complaint {
@@ -361,7 +364,7 @@ table tbody td div img{
 }
 
 .close-btn i {
-    font-size: 25px;
+    font-size: 30px;
     color: #F7931A;
     cursor: pointer;
 }
@@ -380,32 +383,46 @@ table tbody td div img{
 
 
 .complaint-setting {
-    width: 600px;
-    height: 500px;
+    width: 90%;
+    height: 550px;
     background-color: #fff;
     border-radius: 6px;
     position: absolute;
-    top: 0;
+    top: 0%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0.1);
+    transform: translate(-50%, -50%) scale(0);
     text-align: center;
-    padding: 0 30px 30px;
+    padding: 0 30px;
     color: #333;
     visibility: hidden;
-    transition: transform 0.4s, top 0.4s, visibility 0.4s;
     z-index: 1;
     border: 2px solid #F7931A;
 }
 
+.complaint-reason > div{
+    border: 2px solid #F7931A;
+    border-radius: 5px;
+    padding: 10px;
+    margin-right: 20px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+
+.complaint-reason{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
 
 
 .open_complaint_setting {
+    transition: transform 0.4s, top 0.4s, visibility 0.4s;
     visibility: visible;
     transform: translate(-50%, -50%) scale(1);
     top: 50%;
 }
-
-
 
 
 .save-cancel {
