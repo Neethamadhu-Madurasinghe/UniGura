@@ -80,39 +80,6 @@ const view_student_profile = document.getElementById('view-student-profile');
 
 
 
-notification.addEventListener("click", () => {
-    nav_link.forEach((link) => {
-        link.classList.remove('active');
-    })
-
-    notification.classList.add('active');
-
-    loadNotification();
-})
-
-
-
-function loadNotification () {
-
-    const home = document.getElementById("home");
-
-    const xhr = new XMLHttpRequest();
-
-    xhr.open("GET", "../notification/notification.html", true);
-
-    xhr.onload = function () {
-        if (this.status === 200) {
-            home.innerHTML = this.responseText;
-        }
-
-        // load the tutor js file
-        const script = document.createElement('script');
-        script.src = "../notification/notification.js";
-        document.head.prepend(script);
-    }
-
-    xhr.send();
-}
 
 
 
@@ -1593,3 +1560,42 @@ function loadStudent () {
     xhr.send();
 }
 
+
+
+
+// *========================================== NOTIFICATION PAGE ===========================================================
+
+
+notification.addEventListener("click", () => {
+    nav_link.forEach((link) => {
+        link.classList.remove('active');
+    })
+
+    notification.classList.add('active');
+
+    loadNotification();
+})
+
+
+
+function loadNotification () {
+
+    const home = document.getElementById("home");
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("GET", "notification", true);
+
+    xhr.onload = function () {
+        if (this.status === 200) {
+            home.innerHTML = this.responseText;
+        }
+
+        // load the tutor js file
+        const script = document.createElement('script');
+        script.src = "../notification/notification.js";
+        document.head.prepend(script);
+    }
+
+    xhr.send();
+}
