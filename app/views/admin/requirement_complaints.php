@@ -90,8 +90,8 @@
                             <td><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></td>
                             <td><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></td>
                             <td class="action">
-                                <button class="accept">ACCEPT</button>
-                                <button class="reject">REJECT</button>
+                                <button class="accept">Accept</button>
+                                <button class="reject">Reject</button>
                             </td>
                     </tr>
                 <?php } ?>
@@ -144,23 +144,23 @@
 
                             <?php if ($studentComplaint->studentReport->is_inquired == 0) { ?>
                                 <td>
-                                    <div class="complete-status">
+                                    <div class="solved-status">
                                         <img src="<?php echo URLROOT ?>/public/img/admin/green-dot.png" alt="">
-                                        <h6>Completed</h6>
+                                        <h6>Solved</h6>
                                     </div>
                                 </td>
                             <?php } else if ($studentComplaint->studentReport->is_inquired == 1) { ?>
                                 <td>
-                                    <div class="pending-status">
+                                    <div class="not-resolve-status">
                                         <img src="<?php echo URLROOT ?>/public/img/admin/red-dot.png" alt="">
-                                        <h6>Pending</h6>
+                                        <h6>Not Resolve</h6>
                                     </div>
                                 </td>
                             <?php } ?>
 
                             <td class="action">
                                 <input type="checkbox" name="complaint" id="complaint">
-                                <button class="view">VIEW</button>
+                                <button class="view">View</button>
                             </td>
 
                         <?php } ?>
@@ -212,21 +212,21 @@
                                     <td>
                                         <div class="complete-status">
                                             <img src="<?php echo URLROOT ?>/public/img/admin/green-dot.png" alt="">
-                                            <h6>Completed</h6>
+                                            <h6>Solved</h6>
                                         </div>
                                     </td>
                                 <?php } else if ($tutorComplaint->tutorReport->is_inquired == 1) { ?>
                                     <td>
-                                        <div class="pending-status">
+                                        <div class="Not Resolve-status">
                                             <img src="<?php echo URLROOT ?>/public/img/admin/red-dot.png" alt="">
-                                            <h6>Pending</h6>
+                                            <h6>Not Resolve</h6>
                                         </div>
                                     </td>
                                 <?php } ?>
 
                                 <td class="action">
                                     <input type="checkbox" name="complaint" id="complaint">
-                                    <button class="view">VIEW</button>
+                                    <button class="view">View</button>
                                 </td>
 
                             <?php } ?>
