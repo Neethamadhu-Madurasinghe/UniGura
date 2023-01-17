@@ -10,6 +10,12 @@ class TutorStudentAuth extends Controller {
 
 //   Handle Student register
     public function tutorStudentRegister(Request $request) {
+        if ($request->isLoggedIn()) {
+//            TODO: check user role and send to relevant dashboard
+            redirectBasedOnUserRole($request);
+        }
+
+
 //       Check whether the request from tutor registration page or student registration page
         if ($request->getPath() == 'student/register') {
             $registerView = 'student/auth/register';

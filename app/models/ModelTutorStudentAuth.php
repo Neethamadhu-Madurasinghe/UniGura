@@ -11,7 +11,7 @@ class ModelTutorStudentAuth {
         $this->db->query('INSERT INTO auth(email, password, role) VALUES (:email, :password, :role)');
         $this->db->bind('email', $data['email'], PDO::PARAM_STR);
         $this->db->bind('password', $data['password'], PDO::PARAM_STR);
-        $this->db->bind('role', 4, PDO::PARAM_INT);
+        $this->db->bind('role', 6, PDO::PARAM_INT);
 
 //      This function returns either true or false
         return $this->db->execute();
@@ -21,7 +21,7 @@ class ModelTutorStudentAuth {
         $this->db->query('INSERT INTO auth(email, password, role) VALUES (:email, :password, :role)');
         $this->db->bind('email', $data['email'], PDO::PARAM_STR);
         $this->db->bind('password', $data['password'], PDO::PARAM_STR);
-        $this->db->bind('role', 3, PDO::PARAM_INT);
+        $this->db->bind('role', 5, PDO::PARAM_INT);
 
 //      This function returns either true or false
         return $this->db->execute();
