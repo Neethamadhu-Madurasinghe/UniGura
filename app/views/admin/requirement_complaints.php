@@ -205,7 +205,7 @@
 
                             <td class="action">
                                 <input type="checkbox" name="complaint" id="complaint">
-                                <button class="view">View</button>
+                                <button class="view-student-complaint">View</button>
                             </td>
 
                         <?php } ?>
@@ -271,7 +271,7 @@
 
                                 <td class="action">
                                     <input type="checkbox" name="complaint" id="complaint">
-                                    <button class="view">View</button>
+                                    <button class="view-tutor-complaint">View</button>
                                 </td>
 
                             <?php } ?>

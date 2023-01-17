@@ -231,6 +231,36 @@ function loadRequestComplaint () {
                 edit_icon_js[i].style.display = "block";
             });
         }
+
+        /* ---------------------------------- view student complaint btn ---------------------------- */
+
+        const view_student_complaint = document.querySelectorAll(".view-student-complaint");
+
+        view_student_complaint.forEach((view_stu_complaint) => {
+
+            view_stu_complaint.addEventListener("click", () => {
+                const xhr = new XMLHttpRequest();
+
+                xhr.open("GET", "viewComplaint", true);
+
+                xhr.onload = function () {
+                    if (this.status === 200) {
+                        home.innerHTML = this.responseText;
+                    }
+
+                    /* ---------------------------------- back btn for student complain ---------------------------- */
+
+                    const student_complaint_back_btn = document.getElementById("student-complaint-back-btn");
+
+                    student_complaint_back_btn.addEventListener("click", () => {
+                        loadRequestComplaint();
+                    })
+                }
+
+                xhr.send();
+            })
+        })
+
     }
 
     xhr.send();

@@ -10,6 +10,12 @@
 </head>
 
 <body>
+
+    <div class="back-btn">
+        <button id="student-complaint-back-btn"><i class="fa-regular fa-circle-left"></i> <span>Back</span></button>
+    </div>
+
+
     <div class="tutor-name">
         <h1>Tutor Name</h1>
         <h3>Viraj Sandakelum</h3>
@@ -42,7 +48,7 @@
                         <div class="profile-img">
                             <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
                         </div>
-    
+
                         <div class="tutor-review-title">
                             <h3>Viraj Sandakelum</h3>
                             <h5>Report Reason</h5>
@@ -60,7 +66,7 @@
                         <div class="profile-img">
                             <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
                         </div>
-    
+
                         <div class="tutor-review-title">
                             <h3>Viraj Sandakelum</h3>
                             <h5>Report Reason</h5>
@@ -78,7 +84,7 @@
                         <div class="profile-img">
                             <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
                         </div>
-    
+
                         <div class="tutor-review-title">
                             <h3>Viraj Sandakelum</h3>
                             <h5>Report Reason</h5>
@@ -97,7 +103,7 @@
                         <div class="profile-img">
                             <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
                         </div>
-    
+
                         <div class="tutor-review-title">
                             <h3>Viraj Sandakelum</h3>
                             <h5>Report Reason</h5>
@@ -110,7 +116,7 @@
             </div>
         </div>
 
-        
+
     </div>
 
 </body>
