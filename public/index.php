@@ -57,6 +57,8 @@ $router->registerController('/admin/chat',[AdminChat::class,'chat']);
 
 $router->registerController('/admin/notification',[AdminNotification::class,'notification']);
 
+$router->registerController('/admin/viewComplaint',[AdminComplaintView::class,'viewComplaint']);
+
 
 
 
