@@ -80,5 +80,14 @@ function validateTelephoneNumber(String $telephone, ModelTutorStudentCompletePro
     }
 }
 
+function validateFilePath(String $filePath, String $messageOnError): String {
+    if (empty($filePath)) {
+        return $messageOnError;
+
+    }else {
+        return '';
+    }
+}
+
 
 ?>
