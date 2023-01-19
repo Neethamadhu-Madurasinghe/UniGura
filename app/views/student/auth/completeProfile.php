@@ -172,6 +172,6 @@ Header::render(
 <?php Footer::render(
     [
         'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js',
-        URLROOT . '/public/js/student/complete-profile.js'
+        URLROOT . '/public/js/common/student-tutor-complete-profile.js'
     ]
 ); ?>

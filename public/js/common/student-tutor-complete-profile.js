@@ -69,7 +69,6 @@ function generateMapComponent() {
     });
 
     // Hide the map by default
-    console.log(preferredClassModeInputUI.value, 'sd')
     if (preferredClassModeInputUI.value === 'online') {
         mapComponentUI.style.display = 'none';
         longitudeUI.style.display = 'none';
@@ -78,7 +77,7 @@ function generateMapComponent() {
 }
 
 
-// Helper function to convert coodinates from EPSG:3857 to EPSG:4326
+// Helper function to convert coordinates from EPSG:3857 to EPSG:4326
 function convertCoordinates(pos) {
     let x = pos[0];
     let y = pos[1];
