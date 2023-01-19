@@ -43,6 +43,7 @@ class ModelTutorStudentAuth {
         $this->db->bind('email', $email, PDO::PARAM_STR);
 
         $row = $this->db->resultOne();
+        
 //       If there is no record for given email then return false
         if (!$row) { return false; }
 
