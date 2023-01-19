@@ -89,5 +89,26 @@ function validateFilePath(String $filePath, String $messageOnError): String {
     }
 }
 
+function validateDescription(String $description): String {
+    if (strlen($description) >= 100) {
+        return 'Bio should have less than 1000 characters';
+
+    }else {
+        return '';
+    }
+}
+
+function validateUniversity(String $university): String {
+    if (empty($university) || !preg_match("/^[a-zA-Z\s]*$/", $university)) {
+        return 'Please enter a valid University';
+
+    }elseif (strlen($university) > 255) {
+        return 'University should have less than 255 characters ';
+
+    }else {
+        return '';
+    }
+}
+
 
 ?>
