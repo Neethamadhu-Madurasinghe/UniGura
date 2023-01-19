@@ -10,7 +10,7 @@ class ModelRequirementComplaints{
     }
 
     public function getStudentComplaints(){
-        $this->db->query("SELECT * FROM student_report_reason");
+        $this->db->query("SELECT * FROM student_report");
         return $this->db->resultAll();
     }
 
@@ -36,7 +36,7 @@ class ModelRequirementComplaints{
 
 
     public function getTutorComplaints(){
-        $this->db->query("SELECT * FROM tutor_report_reason");
+        $this->db->query("SELECT * FROM tutor_report");
         return $this->db->resultAll();
     }
 

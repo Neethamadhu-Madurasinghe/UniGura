@@ -181,20 +181,22 @@
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <?php foreach ($data['allStudentComplaints'] as $studentComplaint) { ?>
+                    <?php foreach ($data['allStudentComplaints'] as $studentComplaint) { ?>
+                        <tr>
                             <td><?php echo $studentComplaint->reportReason->description; ?></td>
                             <td><?php echo $studentComplaint->student->first_name . " " . $studentComplaint->student->last_name ?></td>
                             <td><?php echo $studentComplaint->tutor->first_name . " " . $studentComplaint->tutor->last_name ?></td>
 
-                            <?php if ($studentComplaint->studentReport->is_inquired == 0) { ?>
+                            <input type="hidden" class="complaint-id" value="<?php echo $studentComplaint->id; ?>">
+
+                            <?php if ($studentComplaint->is_inquired == 0) { ?>
                                 <td>
                                     <div class="solved-status">
                                         <img src="<?php echo URLROOT ?>/public/img/admin/green-dot.png" alt="">
                                         <h6>Solved</h6>
                                     </div>
                                 </td>
-                            <?php } else if ($studentComplaint->studentReport->is_inquired == 1) { ?>
+                            <?php } else if ($studentComplaint->is_inquired == 1) { ?>
                                 <td>
                                     <div class="not-resolve-status">
                                         <img src="<?php echo URLROOT ?>/public/img/admin/red-dot.png" alt="">
@@ -207,9 +209,8 @@
                                 <input type="checkbox" name="complaint" id="complaint">
                                 <button class="view-student-complaint">View</button>
                             </td>
-
-                        <?php } ?>
-                    </tr>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
@@ -247,8 +248,8 @@
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <?php foreach ($data['allTutorComplaints'] as $tutorComplaint) { ?>
+                        <?php foreach ($data['allTutorComplaints'] as $tutorComplaint) { ?>
+                            <tr>
                                 <td><?php echo $tutorComplaint->reportReason->description; ?></td>
                                 <td><?php echo $tutorComplaint->tutor->first_name . " " . $tutorComplaint->tutor->last_name ?></td>
                                 <td><?php echo $tutorComplaint->student->first_name . " " . $tutorComplaint->student->last_name ?></td>
@@ -273,9 +274,8 @@
                                     <input type="checkbox" name="complaint" id="complaint">
                                     <button class="view-tutor-complaint">View</button>
                                 </td>
-
-                            <?php } ?>
-                        </tr>
+                            </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>

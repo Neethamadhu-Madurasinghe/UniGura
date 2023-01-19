@@ -1,3 +1,4 @@
 {
-    "Codegeex.EnableExtension": false
+    "Codegeex.EnableExtension": false,
+    "git.ignoreLimitWarning": true
 }

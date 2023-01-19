@@ -235,13 +235,17 @@ function loadRequestComplaint () {
         /* ---------------------------------- view student complaint btn ---------------------------- */
 
         const view_student_complaint = document.querySelectorAll(".view-student-complaint");
+        const complaint_id = document.querySelectorAll(".complaint-id");
 
-        view_student_complaint.forEach((view_stu_complaint) => {
+        for (let i = 0; i < view_student_complaint.length; i++) {
+            view_student_complaint[i].addEventListener("click", function () {
+                const studentComplaintId = complaint_id[i].value;
+                console.log(studentComplaintId);
 
-            view_stu_complaint.addEventListener("click", () => {
                 const xhr = new XMLHttpRequest();
 
-                xhr.open("GET", "viewComplaint", true);
+                xhr.open("GET", "viewComplaint?studentComplaintId=" + studentComplaintId, true);
+
 
                 xhr.onload = function () {
                     if (this.status === 200) {
@@ -258,8 +262,12 @@ function loadRequestComplaint () {
                 }
 
                 xhr.send();
-            })
-        })
+            });
+        }
+
+
+
+
 
     }
 
@@ -664,7 +672,6 @@ function addSubjectFun (subject) {
         //     }
         // }
 
-        // use ajax
         for (let i = 0; i < showHideBtn.length; i++) {
             showHideBtn[i].addEventListener("click", function () {
                 if (is_hidden_filed[i].value == 1) {
