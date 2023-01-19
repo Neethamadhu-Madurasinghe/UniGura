@@ -1,0 +1,42 @@
+$this->db->query('INSERT INTO user(
+                 id,
+                 first_name,
+                 last_name,
+                 phone_number,
+                 letter_box_number,
+                 street,
+                 city,
+                 gender,
+                 profile_picture,
+                 mode
+                 ) VALUES (
+                           :id,
+                           :first_name,
+                           :last_name,
+                           :phone_number,
+                           :letter_box_number,
+                           :street,
+                           :city,
+                           :gender,
+                           :profile_picture,
+                           :mode
+                           )');
+
+        $this->db->bind('id', $data['id'], PDO::PARAM_INT);
+        $this->db->bind('first_name', $data['first_name'], PDO::PARAM_STR);
+        $this->db->bind('last_name', $data['last_name'], PDO::PARAM_STR);
+        $this->db->bind('phone_number', $data['telephone_number'], PDO::PARAM_STR);
+        $this->db->bind('letter_box_number', $data['letter_box_number'], PDO::PARAM_STR);
+        $this->db->bind('street', $data['street'], PDO::PARAM_STR);
+        $this->db->bind('city', $data['city'], PDO::PARAM_STR);
+        $this->db->bind('gender', $data['gender'], PDO::PARAM_STR);
+        $this->db->bind('profile_picture', $data['profile_picture'], PDO::PARAM_STR);
+        $this->db->bind('mode', $data['preferred_class_mode'], PDO::PARAM_STR);
+
+        $this->db->execute();
+
+
+        $location = 'POINT(' . floatval($data['latitude']) . " " . floatval($data['longitude']) . ')';
+        $this->db->query('UPDATE user SET location = ST_PointFromText(:location) WHERE id=:id');
+        $this->db->bind('location', $location, PDO::PARAM_STR);
+        $this->db->bind('id', $data['id'], PDO::PARAM_STR);

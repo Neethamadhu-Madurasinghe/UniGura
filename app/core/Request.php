@@ -32,14 +32,14 @@ class Request {
         if ($this->method() == 'get') {
             foreach ($_GET as $key => $value) {
                 if ($key !== 'url') {
-                    $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+                    $body[$key] = trim(filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS));
                 }
             }
         }
 
         if ($this->method() == 'post') {
             foreach ($_POST as $key => $value) {
-                $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+                $body[$key] = trim(filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS));
             }
         }
 
@@ -98,5 +98,60 @@ class Request {
             return false;
         }
     }
+
+//    Methods to identify user role
+
+    /**
+     * 0 - Admin
+     * 1 - Valid tutor
+     * 2 - Valid student
+     * 3 - Tutor, but has not validated his email
+     * 4 - Student, but has not validated his email
+     * 5 - Tutor, but has not completed his personal details
+     * 6 - Student, but has not completed his personal details
+     * 7 - Tutor, but has not completed his education qualification details
+     */
+    public function isAdmin(): bool {
+        return $_SESSION['user_role'] === 0;
+    }
+
+    public function isAnyTutor(): bool {
+        return $_SESSION['user_role'] === 1 || $_SESSION['user_role'] === 3
+            || $_SESSION['user_role'] === 5 || $_SESSION['user_role'] === 7;
+    }
+
+    public function isAnyStudent(): bool {
+        return $_SESSION['user_role'] === 2 || $_SESSION['user_role'] === 4 || $_SESSION['user_role'] === 6;
+    }
+
+
+    public function isTutor(): bool {
+        return $_SESSION['user_role'] === 1;
+    }
+
+    public function isStudent(): bool {
+        return $_SESSION['user_role'] === 2;
+    }
+
+    public function isEmailNotValidatedTutor(): bool {
+        return $_SESSION['user_role'] === 3;
+    }
+
+    public function isEmailNotValidatedStudent(): bool {
+        return $_SESSION['user_role'] === 4;
+    }
+
+    public function isProfileNotCompletedTutor(): bool {
+        return $_SESSION['user_role'] === 5;
+    }
+
+    public function isProfileNotCompletedStudent(): bool {
+        return $_SESSION['user_role'] === 6;
+    }
+
+    public function isQualificationNotCompletedTutor(): bool {
+        return $_SESSION['user_role'] === 7;
+    }
+
 
 }

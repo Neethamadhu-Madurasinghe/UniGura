@@ -22,6 +22,19 @@ $router->registerController('/load-file', [FileLoader::class, 'loadFile']);
 
 
 
+
+
+$router->registerController('/login', [TutorStudentAuth::class, 'login']);
+$router->registerController('/student/register', [TutorStudentAuth::class, 'tutorStudentRegister']);
+$router->registerController('/tutor/register', [TutorStudentAuth::class, 'tutorStudentRegister']);
+
+
+
+
+
+
+
+
 // Admin routes
 
 
@@ -32,7 +45,7 @@ $router->registerController('/load-file', [FileLoader::class, 'loadFile']);
 
 
 // Tutor routes
-
+$router->registerController('/tutor/complete-profile', [TutorStudentProfileComplete::class, 'tutorCompleteProfile']);
 
 
 
@@ -41,7 +54,7 @@ $router->registerController('/load-file', [FileLoader::class, 'loadFile']);
 
 
 // Student routes
-
+$router->registerController('/student/complete-profile', [TutorStudentProfileComplete::class, 'studentCompleteProfile']);
 
 
 $router->resolve();
