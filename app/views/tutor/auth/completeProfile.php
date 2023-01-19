@@ -21,12 +21,6 @@ $header = new Header(
 //    Student base style is used here, because In this part, both student and tutor looks same
 );
 
-$footer = new Footer(
-    [
-        'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js',
-        URLROOT . '/public/js/tutor/complete-profile.js'
-    ]
-);
 $navbar = new LandingPageNavBar($request);
 
 $header->render();
@@ -234,4 +228,9 @@ $header->render();
         </div>
     </div>
 
-<?php $footer->render(); ?>
+<?php Footer::render(
+    [
+        'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js',
+        URLROOT . '/public/js/tutor/complete-profile.js'
+    ]
+); ?>

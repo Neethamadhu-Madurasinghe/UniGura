@@ -19,7 +19,6 @@ $header = new Header(
     ]
 );
 
-$footer = new Footer([]);
 $navbar = new LandingPageNavBar($request);
 
 $header->render();
@@ -83,4 +82,4 @@ $header->render();
     </div>
 </div>
 
-<?php $footer->render(); ?>
+<?php Footer::render([]); ?>
