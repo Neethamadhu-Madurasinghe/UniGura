@@ -10,7 +10,9 @@ require_once APPROOT . '/views/common/inc/Header.php';
 require_once APPROOT . '/views/common/inc/Footer.php';
 require_once APPROOT . '/views/common/inc/components/LandingPageNavBar.php';
 
-$header = new Header(
+$navbar = new LandingPageNavBar($request);
+
+Header::render(
     'Complete Profile',
     [
         'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css',
@@ -20,10 +22,6 @@ $header = new Header(
     ]
 //    Student base style is used here, because In this part, both student and tutor looks same
 );
-
-$navbar = new LandingPageNavBar($request);
-
-$header->render();
 ?>
 
     <div class="main-area-container">

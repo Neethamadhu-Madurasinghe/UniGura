@@ -10,7 +10,10 @@ require_once APPROOT . '/views/common/inc/Header.php';
 require_once APPROOT . '/views/common/inc/Footer.php';
 require_once APPROOT . '/views/common/inc/components/LandingPageNavBar.php';
 
-$header = new Header(
+
+$navbar = new LandingPageNavBar($request);
+
+Header::render(
     'Login',
     [
         URLROOT . '/public/css/common/student-base-style.css',
@@ -18,10 +21,6 @@ $header = new Header(
         URLROOT . '/public/css/common/tutor-student-login.css',
     ]
 );
-
-$navbar = new LandingPageNavBar($request);
-
-$header->render();
 ?>
 
 <?php $navbar->render(); ?>
