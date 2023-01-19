@@ -29,7 +29,8 @@ LandingPageNavBar::render($request)
 
         <div class="image-area">
             <object>
-                <img src="<?php echo URLROOT . '/public/img/common/Mobile login-rafiki.svg' ?>" alt="register_page_image">
+                <img src="<?php echo URLROOT . '/public/img/common/Mobile login-rafiki.svg' ?>"
+                     alt="register_page_image">
             </object>
         </div>
 

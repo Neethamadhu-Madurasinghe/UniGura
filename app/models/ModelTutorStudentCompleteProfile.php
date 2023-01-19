@@ -10,7 +10,7 @@ class ModelTutorStudentCompleteProfile {
 //    Used to set all the profile data of a student
     public function setTutorStudentProfileDetails($data): bool {
         $this->db->query('INSERT INTO user SET
-                 id = :id,    
+                 id = :id,
                  first_name = :first_name,
                  last_name = :last_name,
                  phone_number = :phone_number,
@@ -59,8 +59,6 @@ class ModelTutorStudentCompleteProfile {
                  university_entrance_letter = :university_entrance_letter,
                  advanced_level_result = :advanced_level_result');
 
-        $location = 'POINT(' . floatval($data['latitude']) . " " . floatval($data['longitude']) . ')';
-
         $this->db->bind('id', $data['id'], PDO::PARAM_INT);
         $this->db->bind('description', $data['description'], PDO::PARAM_STR);
         $this->db->bind('university', $data['university'], PDO::PARAM_STR);
@@ -81,9 +79,9 @@ class ModelTutorStudentCompleteProfile {
         return $this->db->execute();
     }
 
-    public function findUserByTelephoneNumber(String $telephone_number): bool {
+    public function findUserByTelephoneNumber(String $telephoneNumber): bool {
         $this->db->query('SELECT * FROM user WHERE phone_number=:telephone_number');
-        $this->db->bind('telephone_number', $telephone_number, PDO::PARAM_STR);
+        $this->db->bind('telephone_number', $telephoneNumber, PDO::PARAM_STR);
 
         $this->db->resultOne();
 
