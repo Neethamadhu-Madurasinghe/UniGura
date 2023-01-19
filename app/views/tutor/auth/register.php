@@ -20,9 +20,9 @@ Header::render(
         URLROOT . '/public/css/common/tutor-student-register.css',
     ]
 );
-?>
 
-<?php $navbar->render(); ?>
+LandingPageNavBar::render($request)
+?>
 
 <div class="main-area">
     <div class="main-container">

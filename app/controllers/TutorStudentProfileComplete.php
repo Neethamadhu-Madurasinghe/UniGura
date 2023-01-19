@@ -274,7 +274,7 @@ class TutorStudentProfileComplete extends Controller {
                 'preferred_class_mode' => 'online',
                 'longitude' => 79.998407,
                 'latitude' => 6.853399,
-                'university' => 'pake campus',
+                'university' => '',
                 'education_qualification' => '',
 
                 'errors' => [
