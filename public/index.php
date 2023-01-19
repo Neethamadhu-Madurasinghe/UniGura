@@ -28,7 +28,6 @@ $router->registerController('/login', [TutorStudentAuth::class, 'login']);
 $router->registerController('/student/register', [TutorStudentAuth::class, 'tutorStudentRegister']);
 $router->registerController('/tutor/register', [TutorStudentAuth::class, 'tutorStudentRegister']);
 
-$router->registerController('/student/complete-profile', [StudentProfile::class, 'studentCompleteProfile']);
 
 
 
@@ -46,7 +45,7 @@ $router->registerController('/student/complete-profile', [StudentProfile::class,
 
 
 // Tutor routes
-
+$router->registerController('/tutor/complete-profile', [TutorStudentProfileComplete::class, 'tutorCompleteProfile']);
 
 
 
@@ -55,7 +54,7 @@ $router->registerController('/student/complete-profile', [StudentProfile::class,
 
 
 // Student routes
-
+$router->registerController('/student/complete-profile', [TutorStudentProfileComplete::class, 'studentCompleteProfile']);
 
 
 $router->resolve();

@@ -1,6 +1,6 @@
 <?php
 
-class StudentProfile extends Controller {
+class TutorStudentProfileComplete extends Controller {
     private ModelTutorStudentCompleteProfile $tutorStudentModel;
 
     public function __construct() {
@@ -208,17 +208,17 @@ class StudentProfile extends Controller {
             $data['errors']['city_error'] = validateCity($data['city']);
             $data['errors']['telephone_number_error'] =
                 validateTelephoneNumber($data['telephone_number'], $this->tutorStudentModel);
-            $data['errors']['description_error'] = $this->validateDescription($data['description']);
-            $data['errors']['university_error'] = $this->validateUniversity($data['university']);
-            $data['errors']['advanced_level_result_error'] = $this->validateFilePath(
+            $data['errors']['description_error'] = validateDescription($data['description']);
+            $data['errors']['university_error'] = validateUniversity($data['university']);
+            $data['errors']['advanced_level_result_error'] = validateFilePath(
                 $data['advanced_level_result'],
                 'Please upload Advanced Level results sheet'
             );
-            $data['errors']['id_copy_error'] = $this->validateFilePath(
+            $data['errors']['id_copy_error'] = validateFilePath(
                 $data['id_copy'],
                 'Please upload NIC copy'
             );
-            $data['errors']['university_entrance_letter_error'] = $this->validateFilePath(
+            $data['errors']['university_entrance_letter_error'] = validateFilePath(
                 $data['university_entrance_letter'],
                 'Please upload University Entrance Letter'
             );
@@ -270,7 +270,7 @@ class StudentProfile extends Controller {
                 'telephone_number' => '',
                 'gender' => 'not-selected',
                 'medium' => 'sinhala',
-                'description' => 'GGs',
+                'description' => '',
                 'preferred_class_mode' => 'online',
                 'longitude' => 79.998407,
                 'latitude' => 6.853399,
@@ -297,36 +297,6 @@ class StudentProfile extends Controller {
         }
 
         $this->view('tutor/auth/completeProfile', $request, $data);
-    }
-
-    private function validateDescription(String $description): String {
-        if (strlen($description) >= 100) {
-            return 'Bio should have less than 1000 characters';
-
-        }else {
-            return '';
-        }
-    }
-
-    private function validateUniversity(String $university): String {
-        if (empty($university) || !preg_match("/^[a-zA-Z\s]*$/", $university)) {
-            return 'Please enter a valid University';
-
-        }elseif (strlen($university) > 255) {
-            return 'University should have less than 255 characters ';
-
-        }else {
-            return '';
-        }
-    }
-
-    private function validateFilePath(String $filePath, String $messageOnError): String {
-        if (empty($filePath)) {
-            return $messageOnError;
-
-        }else {
-            return '';
-        }
     }
 
 }

@@ -8,7 +8,7 @@ class ModelTutorStudentCompleteProfile {
     }
 
 //    Used to set all the profile data of a student
-    public function setStudentProfileDetails($data): bool {
+    public function setTutorStudentProfileDetails($data): bool {
         $this->db->query('INSERT INTO user SET
                  id = :id,    
                  first_name = :first_name,
@@ -36,6 +36,38 @@ class ModelTutorStudentCompleteProfile {
         $this->db->bind('mode', $data['preferred_class_mode'], PDO::PARAM_STR);
         $this->db->bind('location', $location, PDO::PARAM_STR);
         $this->db->bind('srid', 4326, PDO::PARAM_INT);
+
+        return $this->db->execute();
+    }
+
+    public function setStudentExamYear($data): bool {
+        $this->db->query('INSERT INTO student(user_id, year_of_exam) VALUES (:id, :year_of_exam)');
+        $this->db->bind('id', $data['id'], PDO::PARAM_INT);
+        $this->db->bind('year_of_exam', $data['year_of_exam'], PDO::PARAM_INT);
+
+        return $this->db->execute();
+    }
+
+//    Sets tutor specific data when completing the profile
+    public function setTutorProfileDetails($data): bool {
+        $this->db->query('INSERT INTO tutor SET
+                 user_id = :id,
+                 description = :description,
+                 university = :university,
+                 education_qualification = :education_qualification,
+                 id_copy = :id_copy,
+                 university_entrance_letter = :university_entrance_letter,
+                 advanced_level_result = :advanced_level_result');
+
+        $location = 'POINT(' . floatval($data['latitude']) . " " . floatval($data['longitude']) . ')';
+
+        $this->db->bind('id', $data['id'], PDO::PARAM_INT);
+        $this->db->bind('description', $data['description'], PDO::PARAM_STR);
+        $this->db->bind('university', $data['university'], PDO::PARAM_STR);
+        $this->db->bind('education_qualification', $data['education_qualification'], PDO::PARAM_STR);
+        $this->db->bind('id_copy', $data['id_copy'], PDO::PARAM_STR);
+        $this->db->bind('university_entrance_letter', $data['university_entrance_letter'], PDO::PARAM_STR);
+        $this->db->bind('advanced_level_result', $data['advanced_level_result'], PDO::PARAM_STR);
 
         return $this->db->execute();
     }
