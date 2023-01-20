@@ -15,6 +15,7 @@ $router->registerController('/api/example', [ExampleRestAPI::class, 'testAPI']);
 
 // Common routes
 $router->registerController('/load-file', [FileLoader::class, 'loadFile']);
+$router->registerController('/logout', [TutorStudentAuth::class, 'logout']);
 
 
 
@@ -54,7 +55,14 @@ $router->registerController('/tutor/complete-profile', [TutorStudentProfileCompl
 
 
 // Student routes
-$router->registerController('/student/complete-profile', [TutorStudentProfileComplete::class, 'studentCompleteProfile']);
+$router->registerController(
+    '/student/complete-profile',
+    [TutorStudentProfileComplete::class, 'studentCompleteProfile']
+);
+$router->registerController(
+    '/student/dashboard',
+    [StudentDashboard::class, 'dashboard']
+);
 
 
 $router->resolve();

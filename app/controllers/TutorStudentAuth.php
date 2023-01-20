@@ -203,7 +203,7 @@ class TutorStudentAuth extends Controller {
     public function logOut() {
         session_unset();
         session_destroy();
-        redirect('/example/login');
+        redirect('/login');
     }
 
     private function validatePassword(string $password, string $confirmPassword): String {

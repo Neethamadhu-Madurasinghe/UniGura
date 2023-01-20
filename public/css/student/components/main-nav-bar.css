@@ -1,0 +1,119 @@
+.student-nav-bar {
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+}
+
+
+.logo-container {
+    align-self: flex-start;
+    margin: 10px 10px;
+}
+
+.nav-logo {
+    height: 50px;
+}
+
+.nav-link-container-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-bar-link-container {
+    width: 100%;
+    min-width: 100px;
+    max-width: 200px;
+    display: flex;
+
+    align-items: center;
+    margin-right: 10px;
+}
+
+.nav-bar-link-container a {
+    font-family: 'Heebo', sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    color: black;
+    margin-left: 5px;
+    margin-right: 5px;
+    position: relative;;
+
+}
+
+/* Notifcation bell CSS */
+
+.icon {
+    cursor: pointer;
+    margin-right: 10px;
+    margin-top: 5px;
+    line-height: 50px;
+}
+
+.icon span {
+    background: #f00;
+    padding: 4px;
+    border-radius: 50%;
+    color: #fff;
+    vertical-align: top;
+    margin-left: -25px;
+    font-size: 0.8rem;
+}
+
+.icon img {
+    display: inline-block;
+    width: 40px;
+    margin-top: 20px;
+}
+
+.icon:hover {
+    opacity: .7;
+}
+
+/* Bell css end */
+
+.profile-picture img {
+    width: 48px;
+    position: relative;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.profile-menu {
+    width: 120px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: #FFCFAC;
+    top: 65px;
+    right: 10px;
+    border: 2px rgb(255, 140, 0) solid;
+    transition: color 0.1s linear;
+}
+
+.profile-menu-hidden {
+    display: none;
+}
+
+.profile-menu a{
+    padding: 5px;
+    margin: 0px;
+}
+
+.profile-menu a:hover{
+    background-color: #feab6f;
+}
+
+.profile-menu :first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom: 0;
+}
+
+.profile-menu :last-child {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top: 0;
+}
