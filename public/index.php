@@ -15,6 +15,7 @@ $router->registerController('/api/example', [ExampleRestAPI::class, 'testAPI']);
 
 // Common routes
 $router->registerController('/load-file', [FileLoader::class, 'loadFile']);
+$router->registerController('/logout', [TutorStudentAuth::class, 'logout']);
 
 
 

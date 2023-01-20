@@ -18,11 +18,11 @@ class MainNavbar {
         
                         <div class="profile-picture">
                             <img
-                            src="' . URLROOT . $request->getUserProfilePicture() . '"
+                            src="' . URLROOT . $request->getUserPicture() . '"
                             alt="" class="profile-picture-img">
                             <div class="profile-menu profile-menu-hidden">
                                 <a href="#g">Profile</a>
-                                <a href="#f">Logout</a>
+                                <a href="' . URLROOT . '/logout' . '">Logout</a>
                             </div>
                         </div>
         
