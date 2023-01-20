@@ -1,7 +1,7 @@
 <?php
 
 class TutoringClassCard {
-    public static function render($data) {
+    public static function render($data): void {
         if (!$data['tutor']['profile_picture']) {
             $data['tutor']['profile_picture'] = '/public/img/common/profile.png';
         }
@@ -39,3 +39,4 @@ class TutoringClassCard {
         </div>';
     }
 }
+

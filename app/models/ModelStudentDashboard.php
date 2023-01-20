@@ -1,5 +1,4 @@
 <?php
-
 class ModelStudentDashboard {
     private Database $db;
 
@@ -14,7 +13,7 @@ class ModelStudentDashboard {
 //        Fetch all the records as an array of objects and covert it into an array of associative arrays
         $rows = json_decode(json_encode($this->db->resultAll()), true);
 
-        if(!$rows) { return $rows; }
+        if (!$rows) { return $rows; }
 
 //        After fetching tutoring classes, fetch the first name, last name and profile picture of each class's tutor
 //        Also do the same to  subject name and module name

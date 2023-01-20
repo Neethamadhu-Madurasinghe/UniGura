@@ -52,11 +52,13 @@ class StudentDashboard extends Controller {
 
 //      Fetch all the visible subjects
         $subjects = json_decode(json_encode($this->subjectModel->getVisibleSubjects()), true);
-
         $data['subjects'] = $subjects;
-        echo '<pre>';
-        print_r($data);
-        echo '</pre>';
+
+//        Uncomment this to see the data array
+//        echo '<pre>';
+//        print_r($data);
+//        echo '</pre>';
+
         $this->view('student/dashboard', $request, $data);
     }
 
@@ -107,9 +109,3 @@ class StudentDashboard extends Controller {
         return $filteredArray;
     }
 }
-
-
-
-
-?>
-

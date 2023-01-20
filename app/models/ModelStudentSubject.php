@@ -1,5 +1,4 @@
 <?php
-
 class ModelStudentSubject {
     private Database $db;
 
