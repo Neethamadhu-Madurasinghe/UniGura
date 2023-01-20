@@ -172,7 +172,7 @@ class TutorStudentAuth extends Controller {
             if (!$profilePicture) {
                 $profilePicture = '/public/img/common/profile.png';
             }
-            $_SESSION['user_picture'] = $user->profilePicture;
+            $_SESSION['user_picture'] = $profilePicture;
         }
 
 
@@ -185,7 +185,7 @@ class TutorStudentAuth extends Controller {
         }elseif ($user->role === 1) {
             redirect('tutor/dashboard');
         }elseif ($user->role === 2) {
-            redirect('example/dashboard');
+            redirect('student/dashboard');
         }elseif ($user->role === 3) {
             redirect('tutor/validate-email');
         }elseif ($user->role === 4) {
