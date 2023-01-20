@@ -74,6 +74,15 @@ class Request {
         }
     }
 
+    //  Get profile picture
+    public function getUserPicture() {
+        if ($this->isLoggedIn() && ($this->isStudent() || $this->isTutor())) {
+            return $_SESSION['user_picture'];
+        }else {
+            return false;
+        }
+    }
+
 //  If user_id is set, then check LAST_ACTIVITY is set
 //  If LAST_ACTIVITY is set, then check whether it is expired
 //  If LAST_ACTIVITY is not set, then it remember is set to true
@@ -152,6 +161,5 @@ class Request {
     public function isQualificationNotCompletedTutor(): bool {
         return $_SESSION['user_role'] === 7;
     }
-
 
 }
