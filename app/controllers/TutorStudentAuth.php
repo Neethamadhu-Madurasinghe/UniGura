@@ -1,7 +1,7 @@
 <?php
 
 class TutorStudentAuth extends Controller {
-    private mixed $userModel;
+    private ModelTutorStudentAuth $userModel;
     private string $loginView = 'common/auth/login';
 
     public function __construct() {
@@ -165,6 +165,16 @@ class TutorStudentAuth extends Controller {
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_email'] = $user->email;
         $_SESSION['user_role'] = $user->role;
+
+//        Fetch the user's profile picture if user is student or tutor
+        if ( $user->role == 1 || $user->role == 2) {
+            $profilePicture = $this->userModel->getUserProfilePicture($user->id);
+            if (!$profilePicture) {
+                $profilePicture = '/public/img/common/profile.png';
+            }
+            $_SESSION['user_picture'] = $user->profilePicture;
+        }
+
 
         if ($rememberUser) {
             $_SESSION['LAST_ACTIVITY'] = time();
