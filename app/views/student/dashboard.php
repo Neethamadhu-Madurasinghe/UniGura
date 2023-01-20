@@ -102,8 +102,12 @@ MainNavbar::render($request);
                         }
                     ?>
 
+
+
                     <div class="add-new-class-button-container">
-                        <img src="assests/plus 1.png" alt="">
+                        <a href="<?php echo URLROOT . '/student/find-tutor'?>">
+                            <img src="<?php echo URLROOT . '/public/img/student/plus 1.png'?>" alt="">
+                        </a>
                     </div>
 
                 </div>
@@ -118,3 +122,4 @@ MainNavbar::render($request);
     ]
 );
 ?>
+
