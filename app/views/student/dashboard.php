@@ -9,6 +9,7 @@
 require_once APPROOT . '/views/common/inc/Header.php';
 require_once APPROOT . '/views/common/inc/Footer.php';
 require_once APPROOT . '/views/student/inc/components/MainNavbar.php';
+require_once APPROOT . '/views/student/inc/components/TutoringClassCard.php';
 
 
 Header::render(
@@ -33,23 +34,61 @@ MainNavbar::render($request);
                     <h2>Filters</h2>
 
                     <form action="" id="home-filter" method="GET">
-                        <select name="cars" id="class-sort-by"  name="class-sort-by-subject" class="home-filters" onchange="this.form.submit()">
-                            <option value="volvo">Maths</option>
-                            <option value="saab">Physics</option>
-                            <option value="mercedes">Mercedes</option>
-                            <option value="audi">Audi</option>
+                        <select id="class-sort-by"
+                                name="class-sort-by-subject"
+                                class="home-filters"
+                                onchange="this.form.submit()">
+
+                            <option value="all">All</option>
+                            <?php
+                                foreach ($data['subjects'] as $subject) {
+                                    $selected = $data['class-sort-by-subject'] == $subject['id'] ? 'selected' : '';
+                                   echo '
+                                   <option
+                                   value="' . $subject["id"] . '"' . ' ' .
+                                   $selected . '>'
+                                    . $subject["name"] . '</option>';
+                                }
+                            ?>
+
                         </select>
 
-                        <select name="cars" id="class-sort-by" name="class-sort-by-completion"  class="home-filters"  onchange="this.form.submit()">
-                            <option value="all">All</option>
-                            <option value="saab">Completed</option>
-                            <option value="mercedes">Not Completed</option>
+                        <select id="class-sort-by"
+                                name="class-sort-by-completion"
+                                class="home-filters"
+                                onchange="this.form.submit()">
+
+                            <option value="all"
+                                <?php echo $data['class-sort-by-completion'] === 'all' ? 'selected' : '' ?>>
+                                All
+                            </option>
+                            <option value="completed"
+                                <?php echo $data['class-sort-by-completion'] === 'completed' ? 'selected' : '' ?>>
+                                Completed
+                            </option>
+                            <option value="not-completed"
+                                <?php echo $data['class-sort-by-completion'] === 'not-completed' ? 'selected' : '' ?>>
+                                Not Completed
+                            </option>
                         </select>
 
-                        <select name="cars" id="class-sort-by" name="class-sort-by-payment"  class="home-filters"  onchange="this.form.submit()">
-                            <option value="all">All</option>
-                            <option value="payment-due">Payment Due</option>
-                            <option value="payment-not-due">Payed</option>
+                        <select id="class-sort-by"
+                                name="class-sort-by-payment"
+                                class="home-filters"
+                                onchange="this.form.submit()">
+
+                            <option value="all"
+                                <?php echo $data['class-sort-by-payment'] === 'all' ? 'selected' : '' ?>>
+                                All
+                            </option>
+                            <option value="payment-due"
+                                <?php echo $data['class-sort-by-payment'] === 'payment-due' ? 'selected' : '' ?>>
+                                Payment Due
+                            </option>
+                            <option value="payment-not-due"
+                                <?php echo $data['class-sort-by-payment'] === 'payment-not-due' ? 'selected' : '' ?>>
+                                Payed
+                            </option>
                         </select>
 
                     </form>
@@ -57,33 +96,11 @@ MainNavbar::render($request);
 
                 <div class="class-container">
 
-                    <div class="class-card">
-                        <div class="class-card-top-section">
-                            <h2>Mechanics Theory</h2>
-                            <h4>Physics</h4>
-                        </div>
-                        <div class="class-card-bottom-section">
-                            <div class="name-row">
-                                <div class="class-card-profile-picture-container">
-                                    <img src="assests/profile.png" alt="" srcset="">
-                                </div>
-                                <p>John Doe</p>
-                                <div class="class-card-payment-due-container">
-                                    <img src="assests/money 1.png" alt="" class="payment-due-image">
-                                </div>
-                            </div>
-                            <div class="progress-bar-row">
-                                <p>65%</p>
-                                <div class="progress-bar-outer">
-                                    <div class="progress-bar-inner">
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="btn btn-enter-class">Enter</button>
-                        </div>
-                    </div>
-
-
+                    <?php
+                        foreach ($data['tutoring_classes'] as $record) {
+                            TutoringClassCard::render($record);
+                        }
+                    ?>
 
                     <div class="add-new-class-button-container">
                         <img src="assests/plus 1.png" alt="">
@@ -99,4 +116,6 @@ MainNavbar::render($request);
 
         URLROOT . '/public/js/student/student-main-nav-bar.js'
     ]
-); ?>
+);
+?>
+

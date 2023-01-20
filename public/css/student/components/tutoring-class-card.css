@@ -84,6 +84,10 @@
     height: 50%;
 }
 
+.payment-due-image-hidden {
+    display: none;
+}
+
 
 @media screen and (max-width: 600px) {
     .class-card-profile-picture-container {
