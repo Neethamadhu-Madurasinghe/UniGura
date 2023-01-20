@@ -54,4 +54,16 @@ class ModelTutorStudentAuth {
             return false;
         }
     }
+
+    //    Retrieves the profile picture of a user then the id is given
+    public function getUserProfilePicture($id): mixed {
+        $this->db->query('SELECT profile_picture FROM user WHERE id=:id');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        $row = $this->db->resultOne();
+        if (!$row) { return false; }
+        if ($row->profile_picture === NULL || $row->profile_picture === '') { return false; }
+
+        return $row->profile_picture;
+    }
 }
