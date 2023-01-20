@@ -18,7 +18,7 @@ class MainNavbar {
         
                         <div class="profile-picture">
                             <img
-                            src="' . URLROOT . self::getStudentProfilePicture($request->getUserId()) . '"
+                            src="' . URLROOT . $request->getUserProfilePicture() . '"
                             alt="" class="profile-picture-img">
                             <div class="profile-menu profile-menu-hidden">
                                 <a href="#g">Profile</a>
@@ -33,8 +33,8 @@ class MainNavbar {
     }
 
     private static function getStudentProfilePicture($id) {
-        $studentDashboardModel = new ModelStudentDashboard();
-        $img = $studentDashboardModel->getUserProfilePicture($id);
+        $tutorStudentAuth = new ModelTutorStudentAuth();
+        $img = $tutorStudentAuth->getUserProfilePicture($id);
         if ($img) {
             return $img;
         }else {

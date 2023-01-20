@@ -1,0 +1,142 @@
+.class-card {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin: 0px 10px 20px 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .class-card {
+        margin: 10px 0;
+        width: 100%;
+    }
+
+}
+
+.class-card-top-section {
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+}
+
+.class-card-top-section h2 {
+    color: white;
+    font-family: 'DM Sans';
+    font-weight: 200;
+    margin: 5px 0 0 10px;
+}
+
+.class-card-top-section h4 {
+    color: white;
+    font-family: 'DM Sans';
+    font-weight: 200;
+    margin: 0px 0 6px 10px;
+}
+
+.class-card-bottom-section {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.name-row {
+    width: 100%;
+    height: 60px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.class-card-profile-picture-container {
+    display: flex;
+    width: 15%;
+    height: 80%;
+}
+
+.name-row p {
+    width: 60%;
+    margin: 0;
+    font-family: 'DM Sans';
+    font-size: 1.1rem;
+}
+
+.class-card-payment-due-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 20%;
+    height: 80%;
+}
+
+.payment-due-image {
+    width: 40%;
+    height: 50%;
+}
+
+
+@media screen and (max-width: 600px) {
+    .class-card-profile-picture-container {
+        width: 20%;
+        height: 100%;
+    }
+
+    .name-row p {
+        width: 60%;
+        margin-left: 5px;
+    }
+
+    .class-card-payment-due-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 70px;
+        height: 80%;
+    }
+
+}
+
+.progress-bar-row {
+    height: 33%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.progress-bar-row p {
+    margin-bottom: 5px;
+    color: var(--bright-orange);
+    font-family: 'Manrope', sans-serif;
+    font-weight: bold;
+
+}
+
+
+.progress-bar-outer {
+    width: 100%;
+    height: 7px;
+    display: flex;
+    justify-content: flex-start;
+    border-radius: 5px;
+    background-color: var(--lightest-orrange);
+}
+
+.progress-bar-inner  {
+    height: 100%;
+    width: 65%;
+    border-radius: 5px;
+    background-color: var(--bright-orange);
+}
