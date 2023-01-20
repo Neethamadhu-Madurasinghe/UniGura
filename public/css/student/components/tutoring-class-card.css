@@ -29,14 +29,14 @@
 
 .class-card-top-section h2 {
     color: white;
-    font-family: 'DM Sans';
+    font-family: 'DM Sans', serif;
     font-weight: 200;
     margin: 5px 0 0 10px;
 }
 
 .class-card-top-section h4 {
     color: white;
-    font-family: 'DM Sans';
+    font-family: 'DM Sans', serif;
     font-weight: 200;
     margin: 0px 0 6px 10px;
 }
@@ -67,7 +67,7 @@
 .name-row p {
     width: 60%;
     margin: 0;
-    font-family: 'DM Sans';
+    font-family: 'DM Sans', serif;
     font-size: 1.1rem;
 }
 

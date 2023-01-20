@@ -86,12 +86,11 @@
     border: none;
     border-radius: 5px;
     background-color: #EFEFF1;
-    font-size: 0.9rem;
+    font-size: 1rem;
     padding: 7px;
     margin: 10px 0;
     width: 100%;
     font-weight: bold;
-    font-size: 1rem;
     font-family: 'Montserrat', sans-serif;
 }
 
