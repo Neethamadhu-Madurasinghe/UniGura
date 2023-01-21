@@ -250,6 +250,32 @@ function loadRequestComplaint () {
                         home.innerHTML = this.responseText;
                     }
 
+
+                    /* ---------------------------------- checkbox checking the complain is inquire or not ---------------------------- */
+
+                    const submit_status_btn = document.getElementById("submit-status-btn");
+                    const complainStatus = document.getElementById("complainStatus");
+
+
+                    submit_status_btn.addEventListener("click", function () {
+                        console.log("checked");
+
+                        const xhr = new XMLHttpRequest();
+
+                        xhr.open("GET", "updateComplainInquire?studentComplaintId=" + studentComplaintId + "&complainStatus=" + complainStatus.value, true);
+
+                        xhr.onload = function () {
+                            if (this.status === 200) {
+                                home.innerHTML = this.responseText;
+                            }
+
+                            loadRequestComplaint();
+                        }
+
+                        xhr.send();
+                    })
+
+
                     /* ---------------------------------- back btn for student complain ---------------------------- */
 
                     const student_complaint_back_btn = document.getElementById("student-complaint-back-btn");

@@ -153,7 +153,19 @@ body{
 }
 
 .complain-check input[type="checkbox"]{
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
+}
+
+.submit-status-btn button{
+    background-color: #FFA620;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    margin-left: 10px;
+    margin-bottom: 3px;
 }

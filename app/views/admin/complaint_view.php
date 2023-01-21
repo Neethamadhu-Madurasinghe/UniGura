@@ -13,31 +13,35 @@
 
     <?php
 
-        // echo '<pre>';
-        // print_r($data);
-        // echo '</pre>';
+    // echo '<pre>';
+    // print_r($data);
+    // echo '</pre>';
 
-        ?>
+    ?>
 
     <div class="back-btn">
         <button id="student-complaint-back-btn"><i class="fa-regular fa-circle-left"></i> <span>Back</span></button>
     </div>
 
     <div class="complain-check">
-        <form action="www.google.com" method="POST">
-            <label for="checking">
-                <?php if ($data['oneStudentComplaint']->is_inquired == 0) { ?>
-                    <input type="checkbox" name="checking" checked> Checking Complaint Status
-                <?php } else { ?>
-                    <input type="checkbox" name="checking"> Checking Complaint Status
-                <?php } ?>
-            </label>
+        <!-- <form action="updateComplainInquire" method="POST"> -->
 
-            <div class="submit-status-btn">
-                <button type="submit" name="submit-status-btn">Submit Status</button>
-            </div>
+        <input type="hidden" name="complainStatus" id="complainStatus" value="<?php echo $data['oneStudentComplaint']->is_inquired ?>">
+        <input type="hidden" name="complainID" value="<?php echo $data['oneStudentComplaint']->id ?>">
 
-        </form>
+        <label for="checking">
+            <?php if ($data['oneStudentComplaint']->is_inquired == 0) { ?>
+                <input type="checkbox" name="complainStatus" checked>
+            <?php } else { ?>
+                <input type="checkbox" name="complainStatus">
+            <?php } ?>
+        </label>
+
+
+        <div class="submit-status-btn">
+            <button type="submit" name="submit-status-btn" id="submit-status-btn">Submit Complaint Status</button>
+        </div>
+        <!-- </form> -->
     </div>
 
 
