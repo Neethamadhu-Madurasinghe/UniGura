@@ -138,3 +138,22 @@ body{
     font-size: 30px;
     color: black;
 }
+
+
+/* ======================================================= COMPLAIN CHECK STATUS =============================================================== */
+
+
+.complain-check{
+    margin: 20px 50px;
+    margin-top: 100px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-bottom: -120px;
+}
+
+.complain-check input[type="checkbox"]{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}

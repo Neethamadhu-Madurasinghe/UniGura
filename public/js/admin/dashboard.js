@@ -172,8 +172,6 @@ function loadRequestComplaint () {
 
         /* ---------------------------------- complaint setting ---------------------------- */
 
-
-
         const complaints_settings_btn = document.getElementById("complaints-settings-btn");
         const complaints_close_btn = document.getElementById("complaints-close-btn");
         const complaint_setting_box = document.getElementById("complaint-setting-box");
@@ -264,10 +262,6 @@ function loadRequestComplaint () {
                 xhr.send();
             });
         }
-
-
-
-
 
     }
 

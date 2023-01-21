@@ -206,7 +206,6 @@
                             <?php } ?>
 
                             <td class="action">
-                                <input type="checkbox" name="complaint" id="complaint">
                                 <button class="view-student-complaint">View</button>
                             </td>
                         </tr>
