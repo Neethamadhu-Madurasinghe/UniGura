@@ -182,7 +182,7 @@
                 </thead>
 
                 <tbody id="student-complain">
-                    <?php foreach ($data['allStudentComplaints'] as $studentComplaint) { ?>
+                    <?php foreach ($data['filterResult'] as $studentComplaint) { ?>
                         <tr>
                             <td><?php echo $studentComplaint->reportReason->description; ?></td>
                             <td><?php echo $studentComplaint->student->first_name . " " . $studentComplaint->student->last_name ?></td>

@@ -1,13 +1,19 @@
 <?php
 
-class ModelRequirementComplaints{
+class ModelAdminSearchFilter{
     
     private Database $db;
 
-    public function __construct()
-    {
+    public function __construct(){
         $this->db = new Database();
     }
+
+
+    public function filterStudent($studentName){
+        $this->db->query("SELECT * FROM user WHERE first_name LIKE '%$studentName%'");
+        return $this->db->resultAll();
+    }
+
 
     public function getStudentComplaints(){
         $this->db->query("SELECT * FROM student_report");
@@ -58,12 +64,6 @@ class ModelRequirementComplaints{
         return $this->db->resultAll();
     }
 
+    
 
-
-    public function addStudentComplainReason($description){
-        $this->db->query("INSERT INTO `report_reason`(`is_for_tutor`, `description`) VALUES (0, :description)");
-        
-        $this->db->bind(':description', $description);
-        return $this->db->execute();
-    }
 }

@@ -1,20 +1,17 @@
 <?php
 
-class AdminRequirementComplaints extends Controller
-{
+class AdminRequirementComplaints extends Controller{
+
     private mixed $requirementComplaintsModel;
 
-    public function __construct()
-    {
+    public function __construct(){
         $this->requirementComplaintsModel = $this->model('ModelRequirementComplaints');
     }
 
-    public function requirementComplaints(Request $request)
-    {
+    public function requirementComplaints(Request $request){
 
         $allStudentComplaints = $this->requirementComplaintsModel->getStudentComplaints();
         $allTutorComplaints = $this->requirementComplaintsModel->getTutorComplaints();
-
         $allTutorRequest = $this->requirementComplaintsModel->getTutorRequest();
 
         // echo '<pre>';
@@ -77,5 +74,18 @@ class AdminRequirementComplaints extends Controller
 
 
         $this->view('admin/requirement_complaints', $request, $data);
+    }
+
+    public function addStudentComplainReason(Request $request){
+        if($request->isGet()){
+            $data = $request->getBody();
+
+            $inputStudentReason = $data['inputStudentReason'];
+
+            $this->requirementComplaintsModel->addStudentComplainReason($inputStudentReason);
+
+            $this->requirementComplaints($request);
+
+        }
     }
 }
