@@ -74,6 +74,7 @@
 
 .profile-picture img {
     width: 48px;
+    height: 48px;
     position: relative;
     object-fit: cover;
     cursor: pointer;
