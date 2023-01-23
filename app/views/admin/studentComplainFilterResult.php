@@ -14,7 +14,6 @@
 
 <body>
 
-
     <div class="complaint-setting" id="complaint-setting-box">
         <div class="close-btn">
             <i class="fa fa-light fa-times" id="complaints-close-btn"></i>
@@ -179,7 +178,7 @@
                 </thead>
 
                 <tbody id="student-complain">
-                    <?php foreach ($data['searchResult'] as $studentComplaint) { ?>
+                    <?php foreach ($data['filterResult'] as $studentComplaint) { ?>
                         <tr>
                             <td><?php echo $studentComplaint->reportReason->description; ?></td>
                             <td><?php echo $studentComplaint->student->first_name . " " . $studentComplaint->student->last_name ?></td>

@@ -60,7 +60,7 @@ $router->registerController('/admin/viewComplaint',[AdminComplaintView::class,'v
 $router->registerController('/admin/updateComplainInquire',[AdminComplaintView::class,'updateComplainInquire']);
 
 
-$router->registerController('/admin/filter',[AdminFilter::class,'filter']);
+$router->registerController('/admin/studentComplainSearch',[AdminSearchFilter::class,'studentComplainSearch']);
 $router->registerController('/admin/studentComplainFilter',[AdminSearchFilter::class,'studentComplainFilter']);
 
 

@@ -165,7 +165,31 @@ function requestComplainJS () {
 
         const xhr = new XMLHttpRequest();
 
-        xhr.open("GET", "studentComplainFilter?search_student_name_value=" + search_student_name_value, true);
+        xhr.open("GET", "studentComplainSearch?search_student_name_value=" + search_student_name_value, true);
+
+        xhr.onload = function () {
+            if (this.status === 200) {
+                home.innerHTML = this.responseText;
+            }
+
+            requestComplainJS();
+        }
+
+        xhr.send();
+    })
+
+
+
+    /* ----------------------------------filter student complaint ---------------------------- */
+
+    const student_complaint_filter = document.getElementById("student-complaint-filter");
+
+    student_complaint_filter.addEventListener("change", () => {
+        var student_complaint_filter_value = student_complaint_filter.value;
+
+        const xhr = new XMLHttpRequest();
+
+        xhr.open("GET", "studentComplainFilter?student_complaint_filter_value=" + student_complaint_filter_value, true);
 
         xhr.onload = function () {
             if (this.status === 200) {
@@ -367,7 +391,29 @@ function loadRequestComplaint () {
 
             const xhr = new XMLHttpRequest();
 
-            xhr.open("GET", "studentComplainFilter?search_student_name_value=" + search_student_name_value, true);
+            xhr.open("GET", "studentComplainSearch?search_student_name_value=" + search_student_name_value, true);
+
+            xhr.onload = function () {
+                if (this.status === 200) {
+                    home.innerHTML = this.responseText;
+                }
+
+                requestComplainJS();
+            }
+
+            xhr.send();
+        })
+
+        /* ----------------------------------filter student complaint ---------------------------- */
+
+        const student_complaint_filter = document.getElementById("student-complaint-filter");
+
+        student_complaint_filter.addEventListener("change", () => {
+            var student_complaint_filter_value = student_complaint_filter.value;
+
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("GET", "studentComplainFilter?student_complaint_filter_value=" + student_complaint_filter_value, true);
 
             xhr.onload = function () {
                 if (this.status === 200) {
@@ -381,8 +427,6 @@ function loadRequestComplaint () {
         })
 
         requestComplainJS();
-
-
     }
 
     xhr.send();

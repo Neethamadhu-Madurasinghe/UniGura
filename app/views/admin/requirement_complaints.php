@@ -104,10 +104,6 @@
     <div class="tutor-request-table">
         <div class="table-header">
             <h3>Tutor’s Request</h3>
-            <div class="search-box">
-                <i class='bx bx-search icon'></i>
-                <input type="text" placeholder="Search...">
-            </div>
         </div>
         <div class="class-details-table">
             <table>
@@ -160,7 +156,8 @@
                 </div>
                 <div class="filter-box">
                     <i class='bx bx-filter-alt'></i>
-                    <select name="filter" id="filter">
+                    <select name="student-complaint-filter" id="student-complaint-filter">
+                        <option value="" selected disabled hidden>Choose here</option>
                         <option value="all">All</option>
                         <option value="solved">Solved</option>
                         <option value="not_resolve">Not Resolve</option>
