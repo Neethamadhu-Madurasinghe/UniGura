@@ -63,6 +63,12 @@ class Database {
         return $this->statement->fetchAll(PDO::FETCH_OBJ);
     }
 
+//    Get multiple records as the result in associative array format
+    public function resultAllAssoc(): array {
+        $this->execute();
+        return $this->statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 //    Get single record as the result
     public function resultOne() {
         $this->execute();
