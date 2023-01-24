@@ -319,14 +319,14 @@ table tbody td div img{
 }
 
 
-.add-complaint {
+.add-complaint form {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 15px;
 }
 
-.add-complaint input {
+.add-complaint form input {
     border: none;
     outline: none;
     border: 2px solid #F7931A;
@@ -338,7 +338,7 @@ table tbody td div img{
     color: #F7931A;
 }
 
-.add-complaint a {
+.add-complaint form button {
     text-decoration: none;
     font-size: 15px;
     font-weight: bold;
@@ -357,7 +357,7 @@ table tbody td div img{
     width: 0;
 }
 
-.one-complaint {
+.one-complaint form {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -365,7 +365,16 @@ table tbody td div img{
 }
 
 
-.one-complaint a {
+.one-complaint form a {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    border: 2px solid #F7931A;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.one-complaint form button {
     text-decoration: none;
     font-size: 15px;
     font-weight: bold;
@@ -481,3 +490,61 @@ table tbody td div img{
     background: #c91717;
     color: white;
 }
+
+
+
+/*===================================== CURVE NAV BAR ========================================== */
+
+.menu ul li{
+    position: relative;
+}
+
+
+.menu ul li.active a{
+    background-color: #f5f7fa;
+}
+
+
+.menu ul li.active p:nth-child(1){
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background-color: #faf7f5;
+    top: -12px;
+    left: 0;
+}
+
+
+.menu ul li.active p:nth-child(1)::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background-color: #FFA620;
+    border-bottom-right-radius: 60px;
+    left: 0;
+}
+
+
+
+.menu ul li.active p:nth-child(2){
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background-color: #faf7f5;
+    bottom: -12px;
+    left: 0;
+}
+
+
+.menu ul li.active p:nth-child(2)::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background-color: #FFA620;
+    border-top-right-radius: 60px;
+    bottom: 0;
+    left: 0;
+}
+

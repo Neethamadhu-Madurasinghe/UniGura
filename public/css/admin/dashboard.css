@@ -24,7 +24,7 @@
 body {
     min-height: 100vh;
     background-color: var(--body-color);
-    transition: var(--tran-05);
+    /* transition: var(--tran-05); */
     overflow: hidden;
 }
 
@@ -87,7 +87,7 @@ body.dark {
 .sidebar .text,
 .sidebar .icon {
     color:black;
-    transition: var(--tran-03);
+    /* transition: var(--tran-03); */
 }
 
 .sidebar .text {
@@ -175,7 +175,7 @@ body.dark .sidebar header .toggle {
     border-radius: 6px;
     background-color: var(--primary-color-light);
     cursor: pointer;
-    transition: var(--tran-05);
+    /* transition: var(--tran-05); */
 }
 
 .sidebar li.search-box input {
@@ -188,7 +188,7 @@ body.dark .sidebar header .toggle {
     border-radius: 6px;
     font-size: 17px;
     font-weight: 500;
-    transition: var(--tran-05);
+    /* transition: var(--tran-05); */
 }
 
 .sidebar li a {
@@ -199,7 +199,7 @@ body.dark .sidebar header .toggle {
     height: 70%;
     width: 100%;
     text-decoration: none;
-    transition: var(--tran-03);
+    /* transition: var(--tran-03); */
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
 }
@@ -289,7 +289,7 @@ body.dark .mode .sun-moon i.moon {
     left: 5px;
     transform: translateY(-50%);
     background-color: var(--sidebar-color);
-    transition: var(--tran-04);
+    /* transition: var(--tran-04); */
 }
 
 body.dark .switch::before {
@@ -300,7 +300,7 @@ body.dark .switch::before {
     border-radius: 6px;
     /* background-color: var(--primary-color-light); */
     position: relative;
-    transition: var(--tran-05);
+    /* transition: var(--tran-05); */
     width: 90%;
 }
 /* 
@@ -359,7 +359,7 @@ body.dark .home .text {
     position: absolute;
     width: 100%;
     height: 20px;
-    background-color: #faf7f5;
+    background-color: #ffffff;
     top: -12px;
     left: 0;
 }
@@ -381,7 +381,7 @@ body.dark .home .text {
     position: absolute;
     width: 100%;
     height: 20px;
-    background-color: #faf7f5;
+    background-color: #ffffff;
     bottom: -12px;
     left: 0;
 }
@@ -412,7 +412,6 @@ body.dark .home .text {
     height: 100vh;
     width: calc(100% - 240px);
     background-color: var(--body-color);
-    transition: var(--tran-05);
     border: 20px solid #FFA620;
     border-right: 40px solid #FFA620;
     border-left: none;
@@ -452,76 +451,6 @@ body.dark .home .text {
 }
 
 
-
-/* .profile_content {
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.profile_picture img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 20px;
-} */
-
-
-
-/* 
-.div1 nav {
-    color: rgb(0, 0, 0);
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    width: 95%;
-    margin: auto;
-    margin-top: 5px;
-    border-radius: 5px;
-    align-items: center;
-    height: 60px;
-}
-
-.nav-left {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.nav-left .userName {
-    margin-left: -20px;
-}
-
-.nav-left .greeding img {
-    width: 200px;
-    position: relative;
-}
-
-.notifiaction>img,
-.profile>img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-}
-
-.nav-right {
-    display: flex;
-    justify-content: space-around;
-    width: 15%;
-    flex-direction: row;
-}
-
-.nav-middle>h4 {
-    font-size: 40px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.admin_name {
-    font-size: 30px;
-    font-weight: bold;
-    text-transform: uppercase;
-} */
 
 
 /* ------------  drop down menu  ------------ */
@@ -882,7 +811,7 @@ body.dark .home .text {
     position: absolute;
     width: 100%;
     height: 20px;
-    background: #faf7f5;
+    background: #ffffff;
     border-top-right-radius: 60px;
     border-top-left-radius: 60px;
 }
@@ -901,7 +830,7 @@ body.dark .home .text {
     position: absolute;
     width: 100%;
     height: 20px;
-    background: #faf7f5;
+    background: #ffffff;
     border-bottom-right-radius: 60px;
     border-bottom-left-radius: 60px;
 }

@@ -1,5 +1,6 @@
 <?php require_once APPROOT . '/views/admin/side_bar.php'; ?>
 <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/requirementComplaint.css">
+<script defer src="<?php echo URLROOT ?>/public/js/admin/tutor_request.js"></script>
 
 
 
@@ -66,12 +67,8 @@
             </table>
         </div>
     </div>
-
-
 </section>
 
 
-
 </body>
-
 </html>

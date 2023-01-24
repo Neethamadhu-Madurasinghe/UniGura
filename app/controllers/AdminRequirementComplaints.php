@@ -1,14 +1,17 @@
 <?php
 
-class AdminRequirementComplaints extends Controller{
+class AdminRequirementComplaints extends Controller
+{
 
     private mixed $requirementComplaintsModel;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->requirementComplaintsModel = $this->model('ModelRequirementComplaints');
     }
 
-    public function requirementComplaints(Request $request){
+    public function requirementComplaints(Request $request)
+    {
 
         $allStudentComplaints = $this->requirementComplaintsModel->getStudentComplaints();
         $allTutorComplaints = $this->requirementComplaintsModel->getTutorComplaints();
@@ -72,17 +75,93 @@ class AdminRequirementComplaints extends Controller{
     }
 
 
-    
-    public function addStudentComplainReason(Request $request){
-        if($request->isGet()){
+
+    public function addStudentComplainReason(Request $request)
+    {
+        if ($request->isPost()) {
             $data = $request->getBody();
 
             $inputStudentReason = $data['inputStudentReason'];
 
             $this->requirementComplaintsModel->addStudentComplainReason($inputStudentReason);
 
-            $this->requirementComplaints($request);
+            $studentComplaintReason = $this->requirementComplaintsModel->getStudentComplaintReason();
+            $tutorComplaintReason = $this->requirementComplaintsModel->getTutorComplaintReason();
 
+            $data = [
+                'studentComplaintReason' => $studentComplaintReason,
+                'tutorComplaintReason' => $tutorComplaintReason
+            ];
+
+            $this->view('admin/complaint_settings', $request, $data);
         }
     }
+
+    public function addTutorComplainReason(Request $request)
+    {
+        if ($request->isPost()) {
+            $data = $request->getBody();
+
+            $inputTutorReason = $data['inputTutorReason'];
+
+            $this->requirementComplaintsModel->addTutorComplainReason($inputTutorReason);
+
+            $studentComplaintReason = $this->requirementComplaintsModel->getStudentComplaintReason();
+            $tutorComplaintReason = $this->requirementComplaintsModel->getTutorComplaintReason();
+
+            $data = [
+                'studentComplaintReason' => $studentComplaintReason,
+                'tutorComplaintReason' => $tutorComplaintReason
+            ];
+
+            $this->view('admin/complaint_settings', $request, $data);
+        }
+    }
+
+    public function updateStudentComplainReason(Request $request)
+    {
+        if ($request->isPost()) {
+            $data = $request->getBody();
+
+            $inputStudentReason = $data['inputStudentReason'];
+            $studentReasonId = $data['studentReasonId'];
+
+
+            $this->requirementComplaintsModel->updateStudentComplainReason($studentReasonId, $inputStudentReason);
+
+            $studentComplaintReason = $this->requirementComplaintsModel->getStudentComplaintReason();
+            $tutorComplaintReason = $this->requirementComplaintsModel->getTutorComplaintReason();
+
+            $data = [
+                'studentComplaintReason' => $studentComplaintReason,
+                'tutorComplaintReason' => $tutorComplaintReason
+            ];
+
+            $this->view('admin/complaint_settings', $request, $data);
+        }
+    }
+
+    public function updateTutorComplainReason(Request $request)
+    {
+        if ($request->isPost()) {
+            $data = $request->getBody();
+
+            $inputTutorReason = $data['inputTutorReason'];
+            $tutorReasonId = $data['tutorReasonId'];
+
+            $this->requirementComplaintsModel->updateTutorComplainReason($tutorReasonId, $inputTutorReason);
+
+            $studentComplaintReason = $this->requirementComplaintsModel->getStudentComplaintReason();
+            $tutorComplaintReason = $this->requirementComplaintsModel->getTutorComplaintReason();
+
+            $data = [
+                'studentComplaintReason' => $studentComplaintReason,
+                'tutorComplaintReason' => $tutorComplaintReason
+            ];
+
+            $this->view('admin/complaint_settings', $request, $data);
+        }
+    }
+
+
 }

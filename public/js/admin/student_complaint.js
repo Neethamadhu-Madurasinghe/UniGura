@@ -3,7 +3,7 @@
 
 const search_student_name = document.getElementById("search-student-name");
 const search_student_name_btn = document.getElementById("search-student-name-btn");
-const student_complain = document.getElementById("student-complain");   
+const student_complain = document.getElementById("student-complain");
 
 search_student_name_btn.addEventListener("click", () => {
     const search_student_name_value = search_student_name.value.toLowerCase();
@@ -42,6 +42,14 @@ student_complaint_filter.addEventListener("change", () => {
 
     xhr.send();
 })
+
+
+nav_link.forEach((link) => {
+    link.classList.remove('active');
+})
+
+request_complaint.classList.add('active');
+
 
 
 

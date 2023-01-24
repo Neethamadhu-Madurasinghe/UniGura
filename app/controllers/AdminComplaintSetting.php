@@ -11,21 +11,16 @@ class AdminComplaintSetting extends Controller
 
     public function complaintSetting(Request $request)
     {
-        // $allReportReason = $this->complaintSettingsModel->getReportReason();
 
-        // // echo '<pre>';
-        // // print_r($allReportReason);
-        // // echo '</pre>';
+        $studentComplaintReason = $this->complaintSettingsModel->getStudentComplaintReason();
+        $tutorComplaintReason = $this->complaintSettingsModel->getTutorComplaintReason();
 
-        // $data = [
-        //     'allReportReason' => $allReportReason
-        // ];
+        $data = [
+            'studentComplaintReason' => $studentComplaintReason,
+            'tutorComplaintReason' => $tutorComplaintReason
+        ];
 
-        // echo '<pre>';
-        // print_r($data);
-        // echo '</pre>';
-
-        $this->view('admin/complaint_settings', $request);
+        $this->view('admin/complaint_settings', $request, $data);
 
     }
 

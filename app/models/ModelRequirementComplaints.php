@@ -60,9 +60,44 @@ class ModelRequirementComplaints{
 
 
 
+    public function getStudentComplaintReason(){
+        $this->db->query("SELECT * FROM report_reason WHERE is_for_tutor = 0");
+        return $this->db->resultAll();
+    }
+
+    public function getTutorComplaintReason(){
+        $this->db->query("SELECT * FROM report_reason WHERE is_for_tutor = 1");
+        return $this->db->resultAll();
+    }
+
+
+
     public function addStudentComplainReason($description){
         $this->db->query("INSERT INTO `report_reason`(`is_for_tutor`, `description`) VALUES (0, :description)");
         
+        $this->db->bind(':description', $description);
+        return $this->db->execute();
+    }
+
+    public function addTutorComplainReason($description){
+        $this->db->query("INSERT INTO `report_reason`(`is_for_tutor`, `description`) VALUES (1, :description)");
+        
+        $this->db->bind(':description', $description);
+        return $this->db->execute();
+    }
+
+    public function updateStudentComplainReason($reasonID, $description){
+        $this->db->query("UPDATE `report_reason` SET `description` = :description WHERE id = :reason_id");
+        
+        $this->db->bind(':reason_id', $reasonID);
+        $this->db->bind(':description', $description);
+        return $this->db->execute();
+    }
+
+    public function updateTutorComplainReason($reasonID, $description){
+        $this->db->query("UPDATE `report_reason` SET `description` = :description WHERE id = :reason_id");
+        
+        $this->db->bind(':reason_id', $reasonID);
         $this->db->bind(':description', $description);
         return $this->db->execute();
     }

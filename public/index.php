@@ -46,6 +46,10 @@ $router->registerController('/admin/viewTutorProfile',[AdminTutorProfile::class,
 
 $router->registerController('/admin/requirementComplaints',[AdminRequirementComplaints::class,'requirementComplaints']);
 $router->registerController('/admin/addStudentComplainReason',[AdminRequirementComplaints::class,'addStudentComplainReason']);
+$router->registerController('/admin/addTutorComplainReason',[AdminRequirementComplaints::class,'addTutorComplainReason']);
+$router->registerController('/admin/updateStudentComplainReason',[AdminRequirementComplaints::class,'updateStudentComplainReason']);
+$router->registerController('/admin/updateTutorComplainReason',[AdminRequirementComplaints::class,'updateTutorComplainReason']);
+
 
 
 $router->registerController('/admin/payment',[AdminPayment::class,'payment']);

@@ -1,5 +1,6 @@
 <?php require_once APPROOT . '/views/admin/side_bar.php'; ?>
 <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/requirementComplaint.css">
+<script defer src="<?php echo URLROOT ?>/public/js/admin/complaint_setting.js"></script>
 
 
 
@@ -32,38 +33,25 @@
                 <h1>Student Reason</h1>
 
                 <div class="add-complaint">
-                    <input type="text" placeholder="Add the new student report reason" id="type-student-complain-reason">
-                    <button type="submit" id="add-student-complain-reason"><i class="fa fa-light fa-plus"></i> Complaint</button>
+                    <form action="addStudentComplainReason" method="POST">
+                        <input type="text" placeholder="Add the new student report reason" name="inputStudentReason">
+                        <button type="submit" id="add-student-complain-reason"><i class="fa fa-light fa-plus"></i> Complaint</button>
+                    </form>
                 </div>
                 <div class="complaints-list">
-                    <div class="one-complaint">
-                        <input type="text" value="Reason" disabled class='complaint_input_filed'>
-                        <a href="#" class="edit_icon_js"><i class="fa fa-light fa-edit"></i> Edit</a>
-                        <div class="save-cancel">
-                            <a href="#" class="save_btn_js"><i class="fa fa-light fa-save"></i> Save</a>
-                            <a href="#" class="cancel_btn_js"><i class="fa fa-light fa-times"></i> Cancel</a>
+                    <?php foreach ($data['studentComplaintReason'] as $reason) : ?>
+                        <div class="one-complaint">
+                            <form action="updateStudentComplainReason" method="POST">
+                                <input type="text" value="<?php echo $reason->description ?>" disabled class='complaint_input_filed' name="inputStudentReason">
+                                <input type="hidden" value="<?php echo $reason->id ?>" name="studentReasonId">
+                                <a href="#" class="edit_icon_js"><i class="fa fa-light fa-edit"></i> Edit</a>
+                                <div class="save-cancel">
+                                    <button type="submit"><i class="fa fa-light fa-save"></i> Save</button>
+                                    <a href="#" class="cancel_btn_js"><i class="fa fa-light fa-times"></i> Cancel</a>
+                                </div>
+                            </form>
                         </div>
-                    </div>
-                    <div class="one-complaint">
-                        <h4>Reason</h4>
-                        <a href="#"><i class="fa fa-light fa-edit"></i> Edit</a>
-                    </div>
-                    <div class="one-complaint">
-                        <h4>Reason</h4>
-                        <a href="#"><i class="fa fa-light fa-edit"></i> Edit</a>
-                    </div>
-                    <div class="one-complaint">
-                        <h4>Reason</h4>
-                        <a href="#"><i class="fa fa-light fa-edit"></i> Edit</a>
-                    </div>
-                    <div class="one-complaint">
-                        <h4>Reason</h4>
-                        <a href="#"><i class="fa fa-light fa-edit"></i> Edit</a>
-                    </div>
-                    <div class="one-complaint">
-                        <h4>Reason</h4>
-                        <a href="#"><i class="fa fa-light fa-edit"></i> Edit</a>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
 
@@ -71,38 +59,25 @@
                 <h1>Tutor Reason</h1>
 
                 <div class="add-complaint">
-                    <input type="text" placeholder="Add the new tutor report reason">
-                    <a href="#"><i class="fa fa-light fa-plus"></i> Complaint</a>
+                    <form action="addTutorComplainReason" method="POST">
+                        <input type="text" placeholder="Add the new tutor report reason" name="inputTutorReason">
+                        <button type="submit" id="add-tutor-complain-reason"><i class="fa fa-light fa-plus"></i> Complaint</button>
+                    </form>
                 </div>
                 <div class="complaints-list">
-                    <div class="one-complaint">
-                        <input type="text" value="Reason" disabled class='complaint_input_filed'>
-                        <a href="#" class="edit_icon_js"><i class="fa fa-light fa-edit"></i> Edit</a>
-                        <div class="save-cancel">
-                            <a href="#" class="save_btn_js"><i class="fa fa-light fa-save"></i> Save</a>
-                            <a href="#" class="cancel_btn_js"><i class="fa fa-light fa-times"></i> Cancel</a>
+                    <?php foreach ($data['tutorComplaintReason'] as $reason) : ?>
+                        <div class="one-complaint">
+                            <form action="updateTutorComplainReason" method="POST">
+                                <input type="text" value="<?php echo $reason->description ?>" disabled class='complaint_input_filed' name="inputTutorReason">
+                                <input type="hidden" value="<?php echo $reason->id ?>" name="tutorReasonId">
+                                <a href="#" class="edit_icon_js"><i class="fa fa-light fa-edit"></i> Edit</a>
+                                <div class="save-cancel">
+                                    <button type="submit"><i class="fa fa-light fa-save"></i> Save</button>
+                                    <a href="#" class="cancel_btn_js"><i class="fa fa-light fa-times"></i> Cancel</a>
+                                </div>
+                            </form>
                         </div>
-                    </div>
-                    <div class="one-complaint">
-                        <h4>Reason</h4>
-                        <a href="#"><i class="fa fa-light fa-edit"></i> Edit</a>
-                    </div>
-                    <div class="one-complaint">
-                        <h4>Reason</h4>
-                        <a href="#"><i class="fa fa-light fa-edit"></i> Edit</a>
-                    </div>
-                    <div class="one-complaint">
-                        <h4>Reason</h4>
-                        <a href="#"><i class="fa fa-light fa-edit"></i> Edit</a>
-                    </div>
-                    <div class="one-complaint">
-                        <h4>Reason</h4>
-                        <a href="#"><i class="fa fa-light fa-edit"></i> Edit</a>
-                    </div>
-                    <div class="one-complaint">
-                        <h4>Reason</h4>
-                        <a href="#"><i class="fa fa-light fa-edit"></i> Edit</a>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
