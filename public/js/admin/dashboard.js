@@ -203,24 +203,52 @@ function requestComplainJS () {
     })
 
 
-    /* ---------------------------------- complaint setting ---------------------------- */
+    // --------------------MENU SELECTION----------------------------------------
 
-    const complaints_settings_btn = document.getElementById("complaints-settings-btn");
-    const complaints_close_btn = document.getElementById("complaints-close-btn");
+    const tutor_request_table = document.getElementById("tutor-request-table");
+    const student_complaint_table = document.getElementById("student-complaint-table");
+    const tutor_complaint_table = document.getElementById("tutor-complaint-table");
     const complaint_setting_box = document.getElementById("complaint-setting-box");
 
 
+    const tutor_request_btn = document.getElementById("tutor-request-btn");
+    const student_complaint_btn = document.getElementById("student-complaint-btn");
+    const tutor_complaint_btn = document.getElementById("tutor-complaint-btn");
+    const complaint_setting_btn = document.getElementById("complaint-setting-btn");
 
-    complaints_settings_btn.addEventListener("click", () => {
-        complaint_setting_box.classList.add("open_complaint_setting");
-        // home.classList.add("blur");
+    tutor_request_table.style.display = "block";
+    student_complaint_table.style.display = "none";
+    tutor_complaint_table.style.display = "none";
+    complaint_setting_box.style.display = "none";
 
+    tutor_request_btn.addEventListener("click", () => {
+        tutor_request_table.style.display = "block";
+        student_complaint_table.style.display = "none";
+        tutor_complaint_table.style.display = "none";
+        complaint_setting_box.style.display = "none";
     })
 
-    complaints_close_btn.addEventListener("click", () => {
-        complaint_setting_box.classList.remove("open_complaint_setting");
-        // home.classList.remove("blur");
+    student_complaint_btn.addEventListener("click", () => {
+        tutor_request_table.style.display = "none";
+        student_complaint_table.style.display = "block";
+        tutor_complaint_table.style.display = "none";
+        complaint_setting_box.style.display = "none";
     })
+
+    tutor_complaint_btn.addEventListener("click", () => {
+        tutor_request_table.style.display = "none";
+        tutor_complaint_table.style.display = "block";
+        student_complaint_table.style.display = "none";
+        complaint_setting_box.style.display = "none";
+    })
+
+    complaint_setting_btn.addEventListener("click", () => {
+        tutor_request_table.style.display = "none";
+        student_complaint_table.style.display = "none";
+        tutor_complaint_table.style.display = "none";
+        complaint_setting_box.style.display = "block";
+    })
+
 
     /* ---------------------------------- add complaint reason ---------------------------- */
 
@@ -426,7 +454,58 @@ function loadRequestComplaint () {
             xhr.send();
         })
 
+
+        // --------------------MENU SELECTION----------------------------------------
+
+        const tutor_request_table = document.getElementById("tutor-request-table");
+        const student_complaint_table = document.getElementById("student-complaint-table");
+        const tutor_complaint_table = document.getElementById("tutor-complaint-table");
+        const complaint_setting_box = document.getElementById("complaint-setting-box");
+
+
+        const tutor_request_btn = document.getElementById("tutor-request-btn");
+        const student_complaint_btn = document.getElementById("student-complaint-btn");
+        const tutor_complaint_btn = document.getElementById("tutor-complaint-btn");
+        const complaint_setting_btn = document.getElementById("complaint-setting-btn");
+
+        tutor_request_table.style.display = "block";
+        student_complaint_table.style.display = "none";
+        tutor_complaint_table.style.display = "none";
+        complaint_setting_box.style.display = "none";
+
+        tutor_request_btn.addEventListener("click", () => {
+            tutor_request_table.style.display = "block";
+            student_complaint_table.style.display = "none";
+            tutor_complaint_table.style.display = "none";
+            complaint_setting_box.style.display = "none";
+        })
+
+        student_complaint_btn.addEventListener("click", () => {
+            tutor_request_table.style.display = "none";
+            student_complaint_table.style.display = "block";
+            tutor_complaint_table.style.display = "none";
+            complaint_setting_box.style.display = "none";
+        })
+
+        tutor_complaint_btn.addEventListener("click", () => {
+            tutor_request_table.style.display = "none";
+            tutor_complaint_table.style.display = "block";
+            student_complaint_table.style.display = "none";
+            complaint_setting_box.style.display = "none";
+        })
+
+        complaint_setting_btn.addEventListener("click", () => {
+            tutor_request_table.style.display = "none";
+            student_complaint_table.style.display = "none";
+            tutor_complaint_table.style.display = "none";
+            complaint_setting_box.style.display = "block";
+        })
+
+
         requestComplainJS();
+
+
+
     }
 
     xhr.send();

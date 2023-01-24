@@ -65,6 +65,14 @@ $router->registerController('/admin/studentComplainFilter',[AdminSearchFilter::c
 
 
 
+$router->registerController('/admin/tutorRequest',[AdminTutorRequest::class,'tutorRequest']);
+$router->registerController('/admin/studentComplaint',[AdminStudentComplaint::class,'studentComplaint']);
+$router->registerController('/admin/tutorComplaint',[AdminTutorComplaint::class,'tutorComplaint']);
+$router->registerController('/admin/complaintSetting',[AdminComplaintSetting::class,'complaintSetting']);
+
+
+
+
 
 
 // Tutor routes

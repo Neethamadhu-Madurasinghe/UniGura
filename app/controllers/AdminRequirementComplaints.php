@@ -41,21 +41,16 @@ class AdminRequirementComplaints extends Controller{
         }
 
 
-
         foreach ($allTutorComplaints as $x) {
-            $reportID = $x->report_id;
-            $tutorReport = $this->requirementComplaintsModel->tutorReportById($reportID);
-            $x->tutorReport = $tutorReport;
-
             $reasonID = $x->reason_id;
             $reportReason = $this->requirementComplaintsModel->reportReasonById($reasonID);
             $x->reportReason = $reportReason;
 
-            $tutorID = $x->tutorReport->tutor_id;
+            $tutorID = $x->tutor_id;
             $tutor = $this->requirementComplaintsModel->userById($tutorID);
             $x->tutor = $tutor;
 
-            $studentID = $x->tutorReport->student_id;
+            $studentID = $x->student_id;
             $student = $this->requirementComplaintsModel->userById($studentID);
             $x->student = $student;
         }
@@ -76,6 +71,8 @@ class AdminRequirementComplaints extends Controller{
         $this->view('admin/requirement_complaints', $request, $data);
     }
 
+
+    
     public function addStudentComplainReason(Request $request){
         if($request->isGet()){
             $data = $request->getBody();

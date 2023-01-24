@@ -143,7 +143,7 @@ body{
 /* ======================================================= COMPLAIN CHECK STATUS =============================================================== */
 
 
-.complain-check{
+.complain-check form{
     margin: 20px 50px;
     margin-top: 100px;
     display: flex;

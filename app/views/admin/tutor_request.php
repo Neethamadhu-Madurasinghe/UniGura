@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php require_once APPROOT . '/views/admin/side_bar.php'; ?>
+<link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/requirementComplaint.css">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/401cc96be7.js" crossorigin="anonymous"></script>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/requirementComplaint.css">
-    <title>Responsive side bar</title>
-</head>
 
-<body>
+
+<section class="home" id="home">
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
 
     <div class="menu-bar">
         <div class="menu-bar-selection-btn">
@@ -29,7 +25,6 @@
             </div>
         </div>
     </div>
-
 
 
     <div class="tutor-request-table" id="tutor-request-table">
@@ -71,6 +66,10 @@
             </table>
         </div>
     </div>
+
+
+</section>
+
 
 
 </body>

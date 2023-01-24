@@ -1,47 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php require_once APPROOT . '/views/admin/side_bar.php'; ?>
+<link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/complaintView.css">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/complaintView.css">
-    <title>Document</title>
-</head>
 
-<body>
 
-    <?php
 
-    // echo '<pre>';
-    // print_r($data);
-    // echo '</pre>';
+<section class="home" id="home">
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
 
-    ?>
-
-    <div class="back-btn">
+    <!-- <div class="back-btn">
         <button id="student-complaint-back-btn"><i class="fa-regular fa-circle-left"></i> <span>Back</span></button>
-    </div>
+    </div> -->
 
     <div class="complain-check">
-        <!-- <form action="updateComplainInquire" method="POST"> -->
+        <form action="updateComplainInquire" method="POST">
+            <input type="hidden" name="complainStatus" id="complainStatus" value="<?php echo $data['oneStudentComplaint']->is_inquired ?>">
+            <input type="hidden" name="complainID" value="<?php echo $data['oneStudentComplaint']->id ?>">
 
-        <input type="hidden" name="complainStatus" id="complainStatus" value="<?php echo $data['oneStudentComplaint']->is_inquired ?>">
-        <input type="hidden" name="complainID" value="<?php echo $data['oneStudentComplaint']->id ?>">
+            <label for="checking">
+                <?php if ($data['oneStudentComplaint']->is_inquired == 0) { ?>
+                    <input type="checkbox" name="complainStatus" checked>
+                <?php } else { ?>
+                    <input type="checkbox" name="complainStatus">
+                <?php } ?>
+            </label>
 
-        <label for="checking">
-            <?php if ($data['oneStudentComplaint']->is_inquired == 0) { ?>
-                <input type="checkbox" name="complainStatus" checked>
-            <?php } else { ?>
-                <input type="checkbox" name="complainStatus">
-            <?php } ?>
-        </label>
-
-
-        <div class="submit-status-btn">
-            <button type="submit" name="submit-status-btn" id="submit-status-btn">Submit Complaint Status</button>
-        </div>
-        <!-- </form> -->
+            <div class="submit-status-btn">
+                <button type="submit" name="submit-status-btn" id="submit-status-btn">Submit Complaint Status</button>
+            </div>
+        </form>
     </div>
 
 
@@ -90,6 +79,11 @@
             <?php endforeach; ?>
 
         </div>
+    </div>
+
+</section>
+
+
 
 </body>
 

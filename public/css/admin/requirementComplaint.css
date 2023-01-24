@@ -364,23 +364,6 @@ table tbody td div img{
     margin-bottom: 10px;
 }
 
-.close-btn {
-    font-size: 20px;
-    color: #F7931A;
-    cursor: pointer;
-    position: relative;
-    left: 12px;
-    top: 5px;
-    display: flex;
-    justify-content: right;
-    align-items: center;
-}
-
-.close-btn i {
-    font-size: 30px;
-    color: #F7931A;
-    cursor: pointer;
-}
 
 .one-complaint a {
     text-decoration: none;
@@ -401,21 +384,20 @@ table tbody td div img{
     background-color: #fff;
     border-radius: 6px;
     position: absolute;
-    top: 0%;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0);
+    transform: translate(-50%, -50%) scale(1);
     text-align: center;
     padding: 0 30px;
     color: #333;
-    visibility: hidden;
+    visibility: visible;
     z-index: 1;
-    border: 2px solid #F7931A;
 }
 
 .complaint-reason > div{
     border: 2px solid #F7931A;
     border-radius: 5px;
-    padding: 10px;
+    padding: 30px;
     margin-right: 20px;
     margin-top: 10px;
     width: 100%;
@@ -465,3 +447,37 @@ table tbody td div img{
     transition: filter 0.4s;
 }
 /* 
+
+
+
+
+
+/* ========================= MENU SELECTION AREA ============================== */
+
+.menu-bar-selection-btn{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: green;
+    padding: 10px;
+    border-radius: 5px;
+    width: 90%;
+    margin: 20px auto;
+}
+
+.menu-bar-selection-btn button{
+    background: yellow;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 5px;
+    /* transition: 0.5s; */
+}
+
+.menu-bar-selection-btn button:hover{
+    background: #c91717;
+    color: white;
+}

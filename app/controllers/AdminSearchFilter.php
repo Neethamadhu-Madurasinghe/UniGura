@@ -26,19 +26,15 @@ class AdminSearchFilter extends Controller{
         
         
         foreach ($allTutorComplaints as $x) {
-            $reportID = $x->report_id;
-            $tutorReport = $this->ModelAdminSearchFilter->tutorReportById($reportID);
-            $x->tutorReport = $tutorReport;
-
             $reasonID = $x->reason_id;
             $reportReason = $this->ModelAdminSearchFilter->reportReasonById($reasonID);
             $x->reportReason = $reportReason;
 
-            $tutorID = $x->tutorReport->tutor_id;
+            $tutorID = $x->tutor_id;
             $tutor = $this->ModelAdminSearchFilter->userById($tutorID);
             $x->tutor = $tutor;
 
-            $studentID = $x->tutorReport->student_id;
+            $studentID = $x->student_id;
             $student = $this->ModelAdminSearchFilter->userById($studentID);
             $x->student = $student;
         }
@@ -97,7 +93,7 @@ class AdminSearchFilter extends Controller{
         $allTutorRequest = $this->ModelAdminSearchFilter->getTutorRequest();
 
         // echo '<pre>';
-        // print_r($allStudentComplaints);
+        // print_r($this->studentComplaintsSearchResult);
         // echo '</pre>';
 
         foreach ($allTutorRequest as $x) {
@@ -108,19 +104,15 @@ class AdminSearchFilter extends Controller{
 
         
         foreach ($allTutorComplaints as $x) {
-            $reportID = $x->report_id;
-            $tutorReport = $this->ModelAdminSearchFilter->tutorReportById($reportID);
-            $x->tutorReport = $tutorReport;
-
             $reasonID = $x->reason_id;
             $reportReason = $this->ModelAdminSearchFilter->reportReasonById($reasonID);
             $x->reportReason = $reportReason;
 
-            $tutorID = $x->tutorReport->tutor_id;
+            $tutorID = $x->tutor_id;
             $tutor = $this->ModelAdminSearchFilter->userById($tutorID);
             $x->tutor = $tutor;
 
-            $studentID = $x->tutorReport->student_id;
+            $studentID = $x->student_id;
             $student = $this->ModelAdminSearchFilter->userById($studentID);
             $x->student = $student;
         }
