@@ -121,15 +121,15 @@ class FindTutor extends Controller {
 //          Filter the records according to the number of Consecutive free slots tutor has -
 //          above filter reduces the work of this filter
             $data['class_templates'] = $this->filterTutoringClassTemplateByConsecutiveFreeSlots(
-                                                $data['class_templates'],
-                                                $body['day']
-                                              );
+                $data['class_templates'],
+                $body['day'],
+                $body['time']
+            );
 
 //          Filter based on time asked by user
 
 
             header('Content-type: application/json');
-//            print_r($data);
             echo json_encode($data['class_templates']);
             return;
 
@@ -161,21 +161,29 @@ class FindTutor extends Controller {
         return $filteredArray;
     }
 
-//    Takes all the time slots of each tutor of input array based on the day given (if day = all then
-//    this function fetches timeslots for every day of the week, and checks whether
+//    Takes all the time slots of each tutor of input array based on the day and time given (if day = all then
+//    this function fetches timeslots for every day of the week), and checks whether
 //    that tutor has enough Consecutive timeslots To fit the specified tutoring class
 //    If true, that tutoring class result will be sent in the returning array
     private function filterTutoringClassTemplateByConsecutiveFreeSlots(
                                                                 array $tutoringClassTemplates,
-                                                                string $day
+                                                                string $day,
+                                                                string $time
                                                                         ): array {
         $filteredArray = [];
 
         foreach ($tutoringClassTemplates as $tutoringClassTemplate) {
-//          A tutor has 56 time slots. (7x8). Make an array of 7 sub arrays from the resulting array
+//          By default, a tutor has 56 time slots. (7x8). Make an array of 7 sub arrays (1 per day)
+//          from the resulting array But the user requested a specific time, then this value should
+//          be changed accordingly
+            $timeSlotsPerDay = 8;
+            if ($time !== 'all') {
+               $timeSlotsPerDay = (24 - intval($time)) / 2;
+            }
+
             $timeSlots = array_chunk(
-                $this->studentModel->getTimeSlotStatesByTutorId($tutoringClassTemplate['tutor_id'], $day),
-                8
+                $this->studentModel->getTimeSlotStatesByTutorId($tutoringClassTemplate['tutor_id'], $day, $time),
+                $timeSlotsPerDay
             );
 
 //          Convert each subarray representing a day into a string
@@ -183,7 +191,7 @@ class FindTutor extends Controller {
 
 //          Use string matching algorithm on each day
             foreach ($timeSlots as $day) {
-                if (strpos($day, str_repeat('1', $tutoringClassTemplate['duration']/2))) {
+                if (str_contains($day, str_repeat('1', $tutoringClassTemplate['duration'] / 2))) {
                     $filteredArray[] = $tutoringClassTemplate;
                     break;
                 }
@@ -207,7 +215,7 @@ class FindTutor extends Controller {
  */
 
 function arrayToString(array $timeSlotStateArray): string {
-    return implode("", array_map(function ($entry) {
+    return implode('', array_map(function ($entry) {
         return $entry['state'];
     }, $timeSlotStateArray));
 }

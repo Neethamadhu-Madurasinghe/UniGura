@@ -31,19 +31,32 @@ class ModelStudent {
     }
 
 //    Return all states of all the timeslots when the tutor id is given
-    public function getTimeSlotStatesByTutorId($id, string $day = 'all'): array {
+    public function getTimeSlotStatesByTutorId($id, string $day = 'all', string $time = 'all'): array {
         $dayString = ' ';
+        $timeString = ' ';
 
         if ($day !== 'all') {
             $dayString = ' AND day=:day ';
         }
 
-        $this->db->query('SELECT state FROM time_slot WHERE tutor_id=:id' . $dayString . 'ORDER BY day, time;');
+        if ($time !== 'all') {
+            $timeString = ' AND time>=:time ';
+            $time = $time . ':00:00';
+        }
+
+        $this->db->query('SELECT state FROM time_slot WHERE tutor_id=:id'
+                                                . $dayString
+                                                . $timeString .
+                                                'ORDER BY day, time;');
 
         $this->db->bind('id', $id, PDO::PARAM_INT);
 
         if ($day !== 'all') {
             $this->db->bind('day', $day, PDO::PARAM_STR);
+        }
+
+        if ($time !== 'all') {
+            $this->db->bind('time', $time, PDO::PARAM_STR);
         }
 
         return $this->db->resultAllAssoc();
