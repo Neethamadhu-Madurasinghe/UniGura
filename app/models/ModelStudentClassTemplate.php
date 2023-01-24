@@ -8,7 +8,6 @@ class ModelStudentClassTemplate {
 
     public function getClassTemplate(array $data): array {
         $genderString = '';
-        $modeString = '';
         $locationString = '';
         $orderString = ' ORDER BY ' . $data['sort_by'];
 
@@ -16,14 +15,9 @@ class ModelStudentClassTemplate {
             $genderString = ' AND gender=:gender ';
         }
 
-//        If the user is asking for online classes, then we should show tutoring classes with tag 'online' and 'both'
-//        So we get the all the classes which are not equal to physical
-        if ($data['mode'] == 'online' || $data['mode'] == 'physical') {
-            $modeString = ' AND mode!=:mode ';
-        }
+
         $userLocation = 'POINT(' . floatval($data['latitude']) . " " . floatval($data['longitude']) . ')';
-        if ($data['mode'] != 'online') {
-//            $userLocation = 'POINT(' . floatval($data['latitude']) . " " . floatval($data['longitude']) . ')';
+        if ($data['mode'] == 'physical') {
             $locationString = ' AND ST_Distance_Sphere(location, ST_PointFromText(:user_location, :srid)) <= :distance ';
         }
 
@@ -54,9 +48,9 @@ class ModelStudentClassTemplate {
                                 AND module_id=:module_id
                                 AND class_type=:class_type
                                 AND medium!=:medium 
-                                AND session_rate BETWEEN :price_low AND :price_high'
+                                AND session_rate BETWEEN :price_low AND :price_high
+                                AND mode IN (:mode1, :mode2)'
                                 . $genderString
-                                . $modeString
                                 . $locationString
                                 . $orderString
                                        );
@@ -75,16 +69,18 @@ class ModelStudentClassTemplate {
             $this->db->bind('gender', $data['gender'], PDO::PARAM_STR);
         }
 
-        if ($data['mode'] != 'online') {
+        if ($data['mode'] == 'physical') {
             $this->db->bind('user_location', $userLocation, PDO::PARAM_STR);
             $this->db->bind('srid', 4326, PDO::PARAM_INT);
             $this->db->bind('distance', $data['distance'] * 1000, PDO::PARAM_INT);
-        }
+            $this->db->bind('mode1', 'physical', PDO::PARAM_STR);
 
-        if ($data['mode'] == 'online' || $data['mode'] == 'physical') {
-            $data['mode'] = $data['mode'] == 'online' ? 'physical' : 'online';
-            $this->db->bind('mode', $data['mode'], PDO::PARAM_STR);
+        }else {
+            $this->db->bind('mode1', 'online', PDO::PARAM_STR);
+
         }
+        $this->db->bind('mode2', 'both', PDO::PARAM_STR);
+
 
         $data['medium'] = $data['medium'] == 'sinhala' ? 'english' : 'sinhala';
         $this->db->bind('medium', $data['medium'], PDO::PARAM_STR);
