@@ -126,8 +126,6 @@ class FindTutor extends Controller {
                 $body['time']
             );
 
-//          Filter based on time asked by user
-
 
             header('Content-type: application/json');
             echo json_encode($data['class_templates']);
@@ -190,8 +188,8 @@ class FindTutor extends Controller {
             $timeSlots = array_map('arrayToString', $timeSlots);
 
 //          Use string matching algorithm on each day
-            foreach ($timeSlots as $day) {
-                if (str_contains($day, str_repeat('1', $tutoringClassTemplate['duration'] / 2))) {
+            foreach ($timeSlots as $timeSlotString) {
+                if (str_contains($timeSlotString, str_repeat('1', $tutoringClassTemplate['duration'] / 2))) {
                     $filteredArray[] = $tutoringClassTemplate;
                     break;
                 }
