@@ -11,7 +11,7 @@ class FindTutor extends Controller {
     }
 
     public function getModule(Request $request) {
-//        Cors support
+//      Cors support
         cors();
 
         if (true) {
@@ -33,7 +33,7 @@ class FindTutor extends Controller {
     }
 
     public function findTutoringClass(Request $request) {
-//        Cors support
+//       Cors support
         cors();
 
         $body = $request->getBody();
@@ -57,34 +57,6 @@ class FindTutor extends Controller {
             isset($body['longitude']) ||
             isset($body['sort_by'])
         ) {
-//            Normalize the price range
-            switch ($body['price']) {
-                case '1000':
-                    $body['min_price'] = 0;
-                    $body['max_price'] = 1000;
-                    break;
-
-                case '1000-2000':
-                    $body['min_price'] = 1000;
-                    $body['max_price'] = 1500;
-                    break;
-
-                case '2000-3000':
-                    $body['min_price'] = 2000;
-                    $body['max_price'] = 3000;
-                    break;
-
-                case '3000':
-                    $body['min_price'] = 3000;
-                    $body['max_price'] = 30000;
-                    break;
-
-                default:
-                    $body['min_price'] = 0;
-                    $body['max_price'] = 30000;
-                    break;
-            }
-
 //            Check if the user is asking for use his default location
             if ($body['mode'] != 'online' && $body['location'] == 'default') {
                 $userLocation = $this->studentModel->getStudentLocation($request->getUserId());
@@ -141,6 +113,34 @@ class FindTutor extends Controller {
         echo json_encode($body);
 
 
+    }
+
+    public function getTutorTimeTable(Request $request) {
+//      Cors support
+        cors();
+
+        $body = $request->getBody();
+        $data = [];
+
+        $data = $this->studentModel->getTimeTable($body['tutor_id']);
+
+        header('Content-type: application/json');
+        echo json_encode($data);
+    }
+
+    public function sendTutorRequest(Request $request) {
+//       Cors support
+        cors();
+
+//      Sending a tutor request is a POST
+        if ($request->isPost()) {
+            $body = json_decode(file_get_contents('php://input'), true);
+
+            header('Content-type: application/json');
+            print_r($body);
+
+
+        }
     }
 
 //    Filters classes based on session duration and the number of free slots the tutor has

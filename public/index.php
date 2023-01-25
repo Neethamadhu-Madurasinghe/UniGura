@@ -65,6 +65,8 @@ $router->registerController(
 );
 $router->registerController('/api/modules', [FindTutor::class, 'getModule']);
 $router->registerController('/api/find-tutoring-class', [FindTutor::class, 'findTutoringClass']);
+$router->registerController('/api/time-table', [FindTutor::class, 'getTutorTimeTable']);
+$router->registerController('/api/request', [FindTutor::class, 'sendTutorRequest']);
 
 
 $router->resolve();

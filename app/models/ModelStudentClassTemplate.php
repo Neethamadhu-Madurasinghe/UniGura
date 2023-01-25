@@ -15,7 +15,6 @@ class ModelStudentClassTemplate {
             $genderString = ' AND gender=:gender ';
         }
 
-
         $userLocation = 'POINT(' . floatval($data['latitude']) . " " . floatval($data['longitude']) . ')';
         if ($data['mode'] == 'physical') {
             $locationString = ' AND ST_Distance_Sphere(location, ST_PointFromText(:user_location, :srid)) <= :distance ';
@@ -47,8 +46,8 @@ class ModelStudentClassTemplate {
                                 WHERE subject_id=:subject_id
                                 AND module_id=:module_id
                                 AND class_type=:class_type
-                                AND medium!=:medium 
-                                AND session_rate BETWEEN :price_low AND :price_high
+                                AND medium=:medium 
+                                AND session_rate <= :price
                                 AND mode IN (:mode1, :mode2)'
                                 . $genderString
                                 . $locationString
@@ -59,8 +58,8 @@ class ModelStudentClassTemplate {
         $this->db->bind('subject_id', $data['subject'], PDO::PARAM_INT);
         $this->db->bind('module_id', $data['module'], PDO::PARAM_INT);
         $this->db->bind('class_type', $data['class_type'], PDO::PARAM_STR);
-        $this->db->bind('price_low', $data['min_price'], PDO::PARAM_INT);
-        $this->db->bind('price_high', $data['max_price'], PDO::PARAM_INT);
+        $this->db->bind('price', $data['price'], PDO::PARAM_INT);
+        $this->db->bind('medium', $data['medium'], PDO::PARAM_INT);
         $this->db->bind('user_location1', $userLocation, PDO::PARAM_STR);
         $this->db->bind('srid1', 4326, PDO::PARAM_INT);
 
@@ -80,10 +79,6 @@ class ModelStudentClassTemplate {
 
         }
         $this->db->bind('mode2', 'both', PDO::PARAM_STR);
-
-
-        $data['medium'] = $data['medium'] == 'sinhala' ? 'english' : 'sinhala';
-        $this->db->bind('medium', $data['medium'], PDO::PARAM_STR);
 
         $rows = $this->db->resultAllAssoc();
 

@@ -15,7 +15,7 @@ class ModelStudent {
         return $this->db->resultOne();
     }
 
-// TODO: This functin should be moved into tutor model
+// TODO: This function should be moved into tutor model
 // Check whether a tutor has enough number of free slots when the tutor id and required number of free slots are given
     public function isTutorFree($id, $numberOfSlots): bool {
         $this->db->query('SELECT COUNT(id) AS count FROM time_slot WHERE
@@ -59,6 +59,12 @@ class ModelStudent {
             $this->db->bind('time', $time, PDO::PARAM_STR);
         }
 
+        return $this->db->resultAllAssoc();
+    }
+
+    public function getTimeTable($id): array {
+        $this->db->query('SELECT id, day, time, state FROM time_slot WHERE tutor_id=:id ORDER BY day, time');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
         return $this->db->resultAllAssoc();
     }
 }
