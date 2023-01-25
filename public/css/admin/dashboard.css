@@ -9,7 +9,7 @@
 
 :root {
     --body-color:  #ffffff;
-    --sidebar-color: #FFFFFF;
+    --sidebar-color: #ffffff;
     --primary-color:  #FFA620 ;
     --primary-color-light: #fdf2ea;
     --toggle-color: rgb(221, 221, 221);
@@ -351,7 +351,7 @@ body.dark .home .text {
 
 
 .menu ul li.active a{
-    background-color: #f5f7fa;
+    background-color: #ffffff;
 }
 
 

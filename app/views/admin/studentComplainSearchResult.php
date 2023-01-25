@@ -40,7 +40,7 @@
                 <?php } ?>
 
                 <td class="action">
-                    <button class="view-student-complaint">View</button>
+                    <a href="viewComplaint?studentComplaintId=<?php echo $studentComplaint->id; ?>"><button class="view-student-complaint">View</button></a>
                 </td>
             </tr>
         <?php } ?>

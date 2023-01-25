@@ -1,5 +1,7 @@
 <?php require_once APPROOT . '/views/admin/side_bar.php'; ?>
 <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/complaintView.css">
+<script defer src="<?php echo URLROOT ?>/public/js/admin/complaint_view.js"></script>
+
 
 
 

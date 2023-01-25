@@ -1342,8 +1342,6 @@ payment.addEventListener("click", () => {
 
 function loadPayment () {
 
-    console.log("load payment");
-
     const home = document.getElementById("home");
 
     const xhr = new XMLHttpRequest();
