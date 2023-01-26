@@ -1,5 +1,6 @@
 .class-card {
     width: 400px;
+    min-width: 350px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -60,8 +61,6 @@
 
 .class-card-profile-picture-container {
     display: flex;
-    width: 15%;
-    height: 80%;
 }
 
 .class-card-profile-picture-container img {
@@ -74,7 +73,7 @@
 
 .name-row p {
     width: 60%;
-    margin: 0;
+    margin: 15px;
     font-family: 'DM Sans', serif;
     font-size: 1.1rem;
 }
@@ -83,12 +82,11 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    width: 20%;
-    height: 80%;
+    width: 50px;
+    height: 50px;
 }
 
 .payment-due-image {
-    width: 40%;
     height: 50%;
 }
 

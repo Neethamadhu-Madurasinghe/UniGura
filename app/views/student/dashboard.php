@@ -34,13 +34,9 @@ MainNavbar::render($request);
                     <h2>Filters</h2>
 
                     <form action="" id="home-filter" method="GET">
-                        <select id="class-sort-by"
-                                name="class-sort-by-subject"
-                                class="home-filters"
-                                onchange="this.form.submit()">
-
-                            <option value="all" style="display: none;">Subject</option>
-                            <option value="all" selected>All</option>
+                        <select id="sort-subject" name="sort-subject" class="home-filters"">
+                            <option value="all" style="display: none;" selected>Subject</option>
+                            <option value="all">All</option>
                             <?php
                                 foreach ($data['subjects'] as $subject) {
                                     $selected = $data['class-sort-by-subject'] == $subject['id'] ? 'selected' : '';
@@ -51,60 +47,29 @@ MainNavbar::render($request);
                                     . $subject["name"] . '</option>';
                                 }
                             ?>
-
                         </select>
 
-                        <select id="class-sort-by"
-                                name="class-sort-by-completion"
-                                class="home-filters"
-                                onchange="this.form.submit()">
-
-                            <option value="all"
-                                <?php echo $data['class-sort-by-completion'] === 'all' ? 'selected' : '' ?>>
-                                All
-                            </option>
-                            <option value="completed"
-                                <?php echo $data['class-sort-by-completion'] === 'completed' ? 'selected' : '' ?>>
-                                Completed
-                            </option>
-                            <option value="not-completed"
-                                <?php echo $data['class-sort-by-completion'] === 'not-completed' ? 'selected' : '' ?>>
-                                Not Completed
-                            </option>
+                        <select id="sort-completion" name="sort-completion" class="home-filters">
+                            <option value="all" style="display: none;" selected>Completion Status</option>
+                            <option value="all">All</option>
+                            <option value="completed">Completed</option>
+                            <option value="not-completed">Not Completed</option>
                         </select>
 
-                        <select id="class-sort-by"
-                                name="class-sort-by-payment"
-                                class="home-filters"
-                                onchange="this.form.submit()">
-
-                            <option value="all"
-                                <?php echo $data['class-sort-by-payment'] === 'all' ? 'selected' : '' ?>>
-                                All
-                            </option>
-                            <option value="payment-due"
-                                <?php echo $data['class-sort-by-payment'] === 'payment-due' ? 'selected' : '' ?>>
-                                Payment Due
-                            </option>
-                            <option value="payment-not-due"
-                                <?php echo $data['class-sort-by-payment'] === 'payment-not-due' ? 'selected' : '' ?>>
-                                Payed
-                            </option>
+                        <select id="sort-payment" name="sort-payment" class="home-filters">
+                            <option value="all" style="display: none;" selected>Payment Status</option>
+                            <option value="all">All</option>
+                            <option value="payment-due">Payment Due</option>
+                            <option value="payment-not-due">Payed</option>
                         </select>
 
                     </form>
                 </div>
 
                 <div class="class-container">
+                    <div class="class-card-container">
 
-                    <?php
-                        foreach ($data['tutoring_classes'] as $record) {
-                            TutoringClassCard::render($record);
-                        }
-                    ?>
-
-
-
+                    </div>
                     <div class="add-new-class-button-container">
                         <a href="<?php echo URLROOT . '/student/find-tutor'?>">
                             <img src="<?php echo URLROOT . '/public/img/student/plus 1.png'?>" alt="">
@@ -119,7 +84,8 @@ MainNavbar::render($request);
 <?php Footer::render(
     [
 
-        URLROOT . '/public/js/student/student-main-nav-bar.js'
+        URLROOT . '/public/js/student/student-main-nav-bar.js',
+        URLROOT . '/public/js/student/student-dashboard.js'
     ]
 );
 ?>
