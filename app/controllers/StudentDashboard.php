@@ -8,56 +8,64 @@ class StudentDashboard extends Controller {
         $this->subjectModel = $this->model('ModelStudentSubject');
     }
 
-    public function dashboard(Request $request) {
+    public function takenClasses(Request $request) {
+        cors();
         $body = $request->getBody();
 
-        $data = [
-            'class-sort-by-subject' => $body['class-sort-by-subject'] ?? '',
-            'class-sort-by-completion' =>  $body['class-sort-by-completion'] ?? '',
-            'class-sort-by-payment' =>  $body['class-sort-by-payment'] ?? ''
-        ];
-
+        $data = [];
 
 //        Fetch all the classes of this student
         $data['tutoring_classes'] = $this->dashboardModel->getTutoringClassByStudentId($request->getUserId());
 
 //        Filter tutoring class list according to the request
-        if (!($data['class-sort-by-subject'] === '' || $data['class-sort-by-subject'] === 'all')) {
+        if (!($body['sort-subject'] === '' || $body['sort-subject'] === 'all')) {
             $data['tutoring_classes'] = $this->filterTutoringClassBySubject(
                 $data['tutoring_classes'],
-                $data['class-sort-by-subject']
+                $body['sort-subject']
             );
         }
 
-        if (!($data['class-sort-by-completion'] === '' || $data['class-sort-by-completion'] === 'all')) {
+        if (!($body['sort-completion'] === '' || $body['sort-completion'] === 'all')) {
             $data['tutoring_classes'] = $this->filterTutoringClassByCompletion(
                 $data['tutoring_classes'],
-                $data['class-sort-by-completion']
+                $body['sort-completion']
             );
         }
 
-        if (!($data['class-sort-by-completion'] === '' || $data['class-sort-by-completion'] === 'all')) {
+        if (!($body['sort-completion'] === '' || $body['sort-completion'] === 'all')) {
             $data['tutoring_classes'] = $this->filterTutoringClassByCompletion(
                 $data['tutoring_classes'],
-                $data['class-sort-by-completion']
+                $body['sort-completion']
             );
         }
 
-        if (!($data['class-sort-by-payment'] === '' || $data['class-sort-by-payment'] === 'all')) {
+        if (!($body['sort-payment'] === '' || $body['sort-payment'] === 'all')) {
             $data['tutoring_classes'] = $this->filterTutoringClassByPayment(
                 $data['tutoring_classes'],
-                $data['class-sort-by-payment']
+                $body['sort-payment']
             );
         }
 
-//      Fetch all the visible subjects
-        $subjects = json_decode(json_encode($this->subjectModel->getVisibleSubjects()), true);
-        $data['subjects'] = $subjects;
+        header('Content-type: application/json');
+        echo json_encode($data);
+    }
 
-//        Uncomment this to see the data array
-//        echo '<pre>';
-//        print_r($data);
-//        echo '</pre>';
+    public function dashboard(Request $request) {
+//       Redirect user to login page if not logged in
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+//       Redirect user to
+        if (!$request->isStudent()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        $data = [];
+
+//      Fetch all the visible subjects
+        $subjects = $this->subjectModel->getVisibleSubjects();
+        $data['subjects'] = $subjects;
 
         $this->view('student/dashboard', $request, $data);
     }

@@ -8,6 +8,6 @@ class ModelStudentSubject {
 
     public function getVisibleSubjects() {
         $this->db->query('SELECT * FROM subject where is_hidden=0');
-        return $this->db->resultAll();
+        return $this->db->resultAllAssoc();
     }
 }
