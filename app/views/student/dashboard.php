@@ -39,7 +39,8 @@ MainNavbar::render($request);
                                 class="home-filters"
                                 onchange="this.form.submit()">
 
-                            <option value="all">All</option>
+                            <option value="all" style="display: none;">Subject</option>
+                            <option value="all" selected>All</option>
                             <?php
                                 foreach ($data['subjects'] as $subject) {
                                     $selected = $data['class-sort-by-subject'] == $subject['id'] ? 'selected' : '';

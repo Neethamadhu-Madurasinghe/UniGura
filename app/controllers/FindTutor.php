@@ -135,7 +135,8 @@ class FindTutor extends Controller {
 //      Sending a tutor request is a POST
         if ($request->isPost()) {
             $body = json_decode(file_get_contents('php://input'), true);
-
+            $body['student_id'] = $request->getUserId();
+            print_r($_SESSION);
             header('Content-type: application/json');
             print_r($body);
 
