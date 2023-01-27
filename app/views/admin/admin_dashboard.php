@@ -115,13 +115,14 @@
                         <p></p>
                         <a href="#">
                             <i class="fa fa-bell icon"></i>
-                            <span class="text nav-text">Notification</span>
+                            <span class="text nav-text">Notification</span>&nbsp;&nbsp;
+                            <span class="num-of-notifications">03</span>
                         </a>
                     </li>
                     <li class="nav-link" id="profile">
                         <p></p>
                         <p></p>
-                        <a href="#">
+                        <a href="profileView">
                             <i class="fa fa-user icon"></i>
                             <span class="text nav-text">Profile</span>
                         </a>

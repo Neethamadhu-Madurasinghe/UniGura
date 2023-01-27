@@ -46,6 +46,7 @@ const notification = document.getElementById('notification');
 const request_complaint = document.getElementById('request-complaint');
 const nav_link = document.querySelectorAll(".nav-link");
 const view_student_profile = document.getElementById('view-student-profile');
+const profile = document.getElementById('profile');
 
 
 // view_student_profile.addEventListener("click", () => {
