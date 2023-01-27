@@ -633,6 +633,7 @@ function loadClass () {
         const classSubject = document.querySelectorAll('.class-subject');
 
         const classRating = document.querySelectorAll('.class-rating');
+        const searchClasses = document.getElementById('search-classes');
 
         var classConductModeValue = [];
         var classFeesInputField = [];
@@ -698,9 +699,13 @@ function loadClass () {
             // classFeesSliderField.push(minSliderFees);
             classFeesSliderField.push(maxSliderFees);
 
+            $searchResult = searchClasses.value;
+
+            console.log(classConductModeValue, classFeesSliderField, selectedSubject, selectedRating);
+
 
             const xhttp = new XMLHttpRequest();
-            xhttp.open('GET', `filter?classConductModeValue=${classConductModeValue}&classFeesInputField=${classFeesInputField}&classFeesSliderField=${classFeesSliderField}&selectedSubject=${selectedSubject}&selectedRating=${selectedRating}`, true);
+            xhttp.open('GET', `filter?classConductModeValue=${classConductModeValue}&classFeesInputField=${classFeesInputField}&classFeesSliderField=${classFeesSliderField}&selectedSubject=${selectedSubject}&selectedRating=${selectedRating}&searchResult=${$searchResult}`, true);
 
             xhttp.onload = function () {
                 if (this.status === 200) {

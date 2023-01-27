@@ -66,7 +66,7 @@
                         <i class="fas fa-search"></i>
                     </div>
                     <div class="input">
-                        <input type="text" placeholder="Search for Class">
+                        <input type="text" placeholder="Search for Class" id="search-classes">
                     </div>
                 </div>
             </div>

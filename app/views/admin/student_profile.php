@@ -156,7 +156,7 @@
                 </div>
                 <div class="day">
                     <h1>Day: </h1>
-                    <h2>Monday</h2>
+                    <h2>sdfsf</h2>
                 </div>
             </div>
         </div>

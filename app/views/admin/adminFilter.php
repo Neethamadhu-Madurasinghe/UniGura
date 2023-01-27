@@ -7,10 +7,11 @@ $classConductMode = [];
 $classFees = [];
 $selectedSubject = [];
 $selectedRating = [];
+$searchResult = '';
 
-    // echo '<pre>';
-    // print_r($data);
-    // echo '</pre>';
+// echo '<pre>';
+// print_r($data);
+// echo '</pre>';
 
 if (isset($_GET['classConductModeValue'])) {
     $classConductMode = $_GET['classConductModeValue'];
@@ -59,118 +60,83 @@ if (isset($_GET['selectedRating'])) {
     // echo '</pre>';
 }
 
+if (isset($_GET['searchResult'])) {
+    $searchResult = $_GET['searchResult'];
 
-
-if (!empty($classConductMode) && !empty($classFees) && !empty($selectedSubject) && !empty($selectedRating)) {
-    // echo "classConductModeValue, classFeesInputField, selectedSubject and selectedRating is set";
-    foreach ($data as $aClass) {
-        if (in_array($aClass->mode, $classConductMode) && ($aClass->classTemplate->session_rate <= $classFees[0]) && in_array($aClass->subject->name, $selectedSubject) && in_array($aClass->classTemplate->rating_count, $selectedRating)) {
-            $filterResult[] = $aClass;
-        }
-    }
-} else if (!empty($classConductMode) && !empty($classFees) && !empty($selectedRating)) {
-    // echo "classConductModeValue, classFeesInputField and selectedRating is set";
-    foreach ($data as $aClass) {
-        if (in_array($aClass->mode, $classConductMode) && ($aClass->classTemplate->session_rate <= $classFees[0]) && in_array($aClass->classTemplate->rating_count, $selectedRating)) {
-            $filterResult[] = $aClass;
-        }
-    }
-} else if (!empty($classConductMode) && !empty($selectedSubject) && !empty($selectedRating)) {
-    // echo "classConductModeValue, selectedSubject and selectedRating is set";
-    foreach ($data as $aClass) {
-        if (in_array($aClass->mode, $classConductMode) && in_array($aClass->subject->name, $selectedSubject) && in_array($aClass->classTemplate->rating_count, $selectedRating)) {
-            $filterResult[] = $aClass;
-        }
-    }
-} else if (!empty($classFees) && !empty($selectedSubject) && !empty($selectedRating)) {
-    // echo "classFeesInputField, selectedSubject and selectedRating is set";
-    foreach ($data as $aClass) {
-        if (($aClass->classTemplate->session_rate <= $classFees[0]) && in_array($aClass->subject->name, $selectedSubject) && in_array($aClass->classTemplate->rating_count, $selectedRating)) {
-            $filterResult[] = $aClass;
-        }
-    }
-} else if (!empty($classConductMode) && !empty($classFees) && !empty($selectedSubject)) {
-    // echo "classConductModeValue, classFeesInputField and selectedSubject is set";
-    foreach ($data as $aClass) {
-        if (in_array($aClass->mode, $classConductMode) && ($aClass->classTemplate->session_rate <= $classFees[0]) && in_array($aClass->subject->name, $selectedSubject)) {
-            $filterResult[] = $aClass;
-        }
-    }
-} else if (!empty($classConductMode) && !empty($classFees)) {
-    // echo "classConductModeValue and classFeesInputField is set";
-    foreach ($data as $aClass) {
-        if (in_array($aClass->mode, $classConductMode) && ($aClass->classTemplate->session_rate <= $classFees[0])) {
-            $filterResult[] = $aClass;
-        }
-    }
-} else if (!empty($classConductMode) && !empty($selectedSubject)) {
-    // echo "classConductModeValue and selectedSubject is set";
-    foreach ($data as $aClass) {
-        if (in_array($aClass->mode, $classConductMode) && in_array($aClass->subject->name, $selectedSubject)) {
-            $filterResult[] = $aClass;
-        }
-    }
-} else if (!empty($classFees) && !empty($selectedSubject)) {
-    // echo "classFeesInputField and selectedSubject is set";
-    foreach ($data as $aClass) {
-        if (($aClass->classTemplate->session_rate <= $classFees[0]) && in_array($aClass->subject->name, $selectedSubject)) {
-            $filterResult[] = $aClass;
-        }
-    }
-} else if (!empty($classConductMode) && !empty($selectedRating)) {
-    // echo "classConductModeValue and selectedRating is set";
-    foreach ($data as $aClass) {
-        if (in_array($aClass->mode, $classConductMode) && in_array($aClass->classTemplate->rating_count, $selectedRating)) {
-            $filterResult[] = $aClass;
-        }
-    }
-} else if (!empty($classFees) && !empty($selectedRating)) {
-    // echo "classFeesInputField and selectedRating is set";
-    foreach ($data as $aClass) {
-        if (($aClass->classTemplate->session_rate <= $classFees[0]) && in_array($aClass->classTemplate->rating_count, $selectedRating)) {
-            $filterResult[] = $aClass;
-        }
-    }
-} else if (!empty($selectedSubject) && !empty($selectedRating)) {
-    // echo "selectedSubject and selectedRating is set";
-    foreach ($data as $aClass) {
-        if (in_array($aClass->subject->name, $selectedSubject) && in_array($aClass->classTemplate->rating_count, $selectedRating)) {
-            $filterResult[] = $aClass;
-        }
-    }
-} else if (!empty($classConductMode)) {
-    // echo "classConductModeValue is set";
-    foreach ($data as $aClass) {
-        if (in_array($aClass->mode, $classConductMode)) {
-            $filterResult[] = $aClass;
-        }
-    }
-} else if (!empty($classFees)) {
-    // echo "classFeesInputField is set";
-    foreach ($data as $aClass) {
-        if ($aClass->classTemplate->session_rate <= $classFees[0]) {
-            $filterResult[] = $aClass;
-        }
-    }
-} else if (!empty($selectedSubject)) {
-    // echo "selectedSubject is set";
-    foreach ($data as $aClass) {
-        if (in_array($aClass->subject->name, $selectedSubject)) {
-            $filterResult[] = $aClass;
-        }
-    }
-} else if (!empty($selectedRating)) {
-    // echo "selectedRating is set";
-    foreach ($data as $aClass) {
-        if (in_array($aClass->classTemplate->rating_count, $selectedRating)) {
-            $filterResult[] = $aClass;
-        }
-    }
-} else {
-    // echo "Nothing is set";
-    $filterResult = $data;
+    // echo '<pre>';
+    // print_r($searchResult);
+    // echo '</pre>';
 }
 
+
+
+
+if (!empty($searchResult)) {
+    foreach ($data as $aClass) {
+        if (str_contains(strtolower($aClass->tutor->first_name), strtolower($searchResult)) || str_contains(strtolower($aClass->tutor->last_name), strtolower($searchResult))) {
+            array_push($filterResult, $aClass);
+        }else{
+            $index = array_search($aClass, $data);
+            array_splice($data, $index, 1);
+        }
+    }
+}
+
+
+
+if (!empty($classConductMode)) {
+    foreach ($data as $aClass) {
+        if (in_array($aClass->mode, $classConductMode)) {
+            array_push($filterResult, $aClass);
+        } else {
+            $index = array_search($aClass, $data);
+            array_splice($data, $index, 1);
+        }
+    }
+}
+
+
+
+
+if (!empty($classFees)) {
+    foreach ($data as $aClass) {
+        if ($aClass->classTemplate->session_rate <= $classFees[0]) {
+            array_push($filterResult, $aClass);
+        } else {
+            $index = array_search($aClass, $data);
+            array_splice($data, $index, 1);
+        }
+    }
+}
+
+
+if (!empty($selectedSubject)) {
+    foreach ($data as $aClass) {
+        if (in_array($aClass->subject->name, $selectedSubject)) {
+            array_push($filterResult, $aClass);
+        } else {
+            $index = array_search($aClass, $data);
+            array_splice($data, $index, 1);
+        }
+    }
+}
+
+
+
+if (!empty($selectedRating)) {
+    foreach ($data as $aClass) {
+        if (in_array($aClass->classTemplate->rating_count, $selectedRating)) {
+            array_push($filterResult, $aClass);
+        } else {
+            $index = array_search($aClass, $data);
+            array_splice($data, $index, 1);
+        }
+    }
+}
+
+
+
+$filterResult = $data;
 
 $pageContent = array_unique($filterResult, SORT_REGULAR);
 $pageContent = array_values($pageContent);
@@ -179,6 +145,7 @@ $pageContent = array_values($pageContent);
 // echo '<pre>';
 // print_r($pageContent);
 // echo '</pre>';
+
 ?>
 
 

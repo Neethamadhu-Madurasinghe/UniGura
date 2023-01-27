@@ -13,10 +13,15 @@
 
 <body>
 
+    <?php
+        echo '<pre>';
+        print_r($data);
+        echo '</pre>';
+    ?>
+
     <div class="student-page">
 
         <div class="card-section">
-
             <?php foreach ($data as $aStudent) : ?>
                 <div class="card">
                     <div class="profile-picture">
@@ -30,11 +35,10 @@
                         <h5>Exam Year: <?php echo $aStudent->year_of_exam ?></h5>
                     </div>
                     <div class="view-profile">
-                        <button class="view-student-profile-btn">View Profile</button>
+                        <a href="viewStudentProfile?studentID=<?php echo $aStudent->user_id ?>"><button class="view-student-profile-btn">View Profile</button></a>
                     </div>
                 </div>
             <?php endforeach; ?>
-
         </div>
 
         <div class="filter-selection">
@@ -88,26 +92,6 @@
                     <div class="checkbox-button">
                         <input type="checkbox" id="history" name="subject" value="history">
                         <label for="history">History</label>
-                    </div>
-                    <div class="checkbox-button">
-                        <input type="checkbox" id="geography" name="subject" value="geography">
-                        <label for="geography">Geography</label>
-                    </div>
-                    <div class="checkbox-button">
-                        <input type="checkbox" id="art" name="subject" value="art">
-                        <label for="art">Art</label>
-                    </div>
-                    <div class="checkbox-button">
-                        <input type="checkbox" id="music" name="subject" value="music">
-                        <label for="music">Music</label>
-                    </div>
-                    <div class="checkbox-button">
-                        <input type="checkbox" id="technology" name="subject" value="technology">
-                        <label for="technology">Technology</label>
-                    </div>
-                    <div class="checkbox-button">
-                        <input type="checkbox" id="physical-education" name="subject" value="physical-education">
-                        <label for="physical-education">Physical Education</label>
                     </div>
                     <div class="checkbox-button">
                         <input type="checkbox" id="other" name="subject" value="all">

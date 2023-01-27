@@ -76,6 +76,8 @@ $router->registerController('/admin/studentComplaint',[AdminStudentComplaint::cl
 $router->registerController('/admin/tutorComplaint',[AdminTutorComplaint::class,'tutorComplaint']);
 $router->registerController('/admin/complaintSetting',[AdminComplaintSetting::class,'complaintSetting']);
 
+$router->registerController('/admin/filter',[AdminFilter::class,'filter']);
+
 
 
 
