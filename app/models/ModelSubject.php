@@ -34,28 +34,34 @@ class ModelSubject
 
     public function addSubject($subjectName){
 
-        $this->db->query('INSERT INTO `subject`(`name`, `is_hidden`) VALUES (:name,0)');
-        $this->db->bind(':name', $subjectName, PDO::PARAM_STR);
+        try{
+            $this->db->query('INSERT INTO `subject`(`name`, `is_hidden`) VALUES (:name,0)');
+            $this->db->bind(':name', $subjectName, PDO::PARAM_STR);
+            $this->db->execute();
+        }
+        catch(PDOException $e){
+            if(str_contains($e->getMessage(), 'Duplicate entry')){
+                return 'Duplicate entry';
+            }
 
-
-        if($this->db->execute()){
-            return true;
-        }else{
-            return false;
         }
     }
 
     public function addModule($moduleName, $subjectId){
 
-        $this->db->query('INSERT INTO `module`(`name`, `subject_id`,`is_hidden`) VALUES (:name,:subject_id,0)');
-        $this->db->bind(':name', $moduleName, PDO::PARAM_STR);
-        $this->db->bind(':subject_id', $subjectId, PDO::PARAM_INT);
-
-        if($this->db->execute()){
-            return true;
-        }else{
-            return false;
+        try{
+            $this->db->query('INSERT INTO `module`(`name`, `subject_id`,`is_hidden`) VALUES (:name,:subject_id,0)');
+            $this->db->bind(':name', $moduleName, PDO::PARAM_STR);
+            $this->db->bind(':subject_id', $subjectId, PDO::PARAM_INT);
+            $this->db->execute();
         }
+        catch(PDOException $e){
+            if(str_contains($e->getMessage(), 'Duplicate entry')){
+                return 'Duplicate entry';
+            }
+
+        }
+
     }
 
     public function updateModule($moduleName, $moduleId){

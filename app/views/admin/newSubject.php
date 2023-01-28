@@ -12,6 +12,7 @@
 </head>
 
 <body>
+
     <div class="div2">
 
         <div class="container">
@@ -24,6 +25,12 @@
                             if (isset($_GET['error'])) {
                                 if ($_GET['error'] == "inputsEmpty") {
                                     echo "Fill the fields";
+                                }
+                            }
+
+                            if(isset($data[2])){
+                                if($data[2] == 'Duplicate entry'){
+                                    echo "Duplicate entry";
                                 }
                             }
                             ?>

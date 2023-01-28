@@ -50,7 +50,7 @@
             </div>
 
             <div class="selected-tutor" id="selected-tutor">
-                
+
                 <!-- loaded body -->
 
             </div>
@@ -75,29 +75,19 @@
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td>Viraj Sandakelum</td>
-                        <td>Rs. 1350.00</td>
-                        <td>2021-05-01</td>
-                        <td>10:00 AM</td>
-                        <td><a href="#">View</a></td>
-                    </tr>
 
-                    <tr>
-                        <td>Viraj Sandakelum</td>
-                        <td>Rs. 1350.00</td>
-                        <td>2021-05-01</td>
-                        <td>10:00 AM</td>
-                        <td><a href="#">View</a></td>
-                    </tr>
+                    <?php foreach ($data as $Withdrawal) : ?>
+                        <?php if ($Withdrawal->is_withdrawed == 1) : ?>
+                            <tr>
+                                <td><?php echo $Withdrawal->tutor->first_name . " " . $Withdrawal->tutor->first_name ?></td>
+                                <td>Rs. <?php echo $Withdrawal->amount ?>.00</td>
+                                <td><?php echo explode(" ", $Withdrawal->timestamp)[0] ?></td>
+                                <td><?php echo explode(" ", $Withdrawal->timestamp)[1] ?></td>
+                                <td><a href="#">View</a></td>
+                            </tr>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
 
-                    <tr>
-                        <td>Viraj Sandakelum</td>
-                        <td>Rs. 1350.00</td>
-                        <td>2021-05-01</td>
-                        <td>10:00 AM</td>
-                        <td><a href="#">View</a></td>
-                    </tr>
                 </tbody>
             </table>
         </div>
@@ -117,29 +107,19 @@
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td>Viraj Sandakelum</td>
-                        <td>Rs. 1350.00</td>
-                        <td>2021-05-01</td>
-                        <td>10:00 AM</td>
-                        <td><a href="#">View</a></td>
-                    </tr>
 
-                    <tr>
-                        <td>Viraj Sandakelum</td>
-                        <td>Rs. 1350.00</td>
-                        <td>2021-05-01</td>
-                        <td>10:00 AM</td>
-                        <td><a href="#">View</a></td>
-                    </tr>
-
-                    <tr>
-                        <td>Viraj Sandakelum</td>
-                        <td>Rs. 1350.00</td>
-                        <td>2021-05-01</td>
-                        <td>10:00 AM</td>
-                        <td><a href="#">View</a></td>
-                    </tr>
+                    <?php foreach ($data as $Withdrawal) : ?>
+                        <?php if ($Withdrawal->is_withdrawed == 0) : ?>
+                            <tr>
+                                <td><?php echo $Withdrawal->tutor->first_name . " " . $Withdrawal->tutor->first_name ?></td>
+                                <td>Rs. <?php echo $Withdrawal->amount ?>.00</td>
+                                <td><?php echo explode(" ", $Withdrawal->timestamp)[0] ?></td>
+                                <td><?php echo explode(" ", $Withdrawal->timestamp)[1] ?></td>
+                                <td><a href="#">View</a></td>
+                            </tr>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    
                 </tbody>
             </table>
 

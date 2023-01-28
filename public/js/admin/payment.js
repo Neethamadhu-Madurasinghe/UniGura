@@ -163,7 +163,6 @@ function loadFileUploader () {
 
         http.onload = function () {
             if (this.status == 405) {
-                console.log("trespnseText")
                 document.querySelector('.icon').innerHTML = '<i class="fa-solid fa-circle-check"></i>  <i class="fa-solid fa-trash"></i>'
             }
         }

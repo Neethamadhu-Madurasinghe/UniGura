@@ -257,7 +257,6 @@ body{
 }
 
 .drop-section .col-2{
-    position: relative;
     left: 0;
     z-index: -1;
     width: 100%;
