@@ -1858,6 +1858,7 @@ notification.addEventListener("click", () => {
 
 function loadNotification () {
 
+
     const home = document.getElementById("home");
 
     const xhr = new XMLHttpRequest();
@@ -1869,11 +1870,37 @@ function loadNotification () {
             home.innerHTML = this.responseText;
         }
 
-        // load the tutor js file
-        const script = document.createElement('script');
-        script.src = "../notification/notification.js";
-        document.head.prepend(script);
+        const notification_close_btn = document.querySelectorAll('.notification-close-btn');
+
+
+        notification_close_btn.forEach((closeBtn) => {
+            closeBtn.addEventListener('click', function (event) {
+
+                var notificationID = event.target.getAttribute('notificationID');
+
+                console.log(notificationID);
+
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", "notification/clearNotification?notificationID=" + notificationID, true);
+
+                xhr.onload = function () {
+                    if (this.status === 200) {
+                        home.innerHTML = this.responseText;
+                    }
+                }
+
+                xhr.send();
+
+                loadNotification();
+            })
+        })
+
     }
 
+
     xhr.send();
+
+
+
+
 }

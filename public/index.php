@@ -59,6 +59,8 @@ $router->registerController('/admin/selectedTutorDetails',[AdminPayment::class,'
 $router->registerController('/admin/chat',[AdminChat::class,'chat']);
 
 $router->registerController('/admin/notification',[AdminNotification::class,'notification']);
+$router->registerController('/admin/notification/clearNotification',[AdminNotification::class,'clearNotification']);
+
 
 $router->registerController('/admin/viewComplaint',[AdminComplaintView::class,'viewComplaint']);
 $router->registerController('/admin/updateComplainInquire',[AdminComplaintView::class,'updateComplainInquire']);
