@@ -100,6 +100,9 @@ class ModelStudent{
         }
     }
 
+
+
+
     public function getSubjectById($subjectID){
         $this->db->query("SELECT * FROM subject WHERE id = :subjectID");
         $this->db->bind(':subjectID', $subjectID);
@@ -121,6 +124,20 @@ class ModelStudent{
 
         if($this->db->rowCount() >= 0) {
             return $row;
+        }else {
+            return false;
+        }
+    }
+
+
+    public function getClassDayByTutorialClassId($tutorialClassID){
+        $this->db->query("SELECT * FROM day WHERE class_id = :tutorialClassID");
+        $this->db->bind(':tutorialClassID', $tutorialClassID);
+
+        $rows = $this->db->resultAll();
+
+        if($this->db->rowCount() >= 0) {
+            return $rows;
         }else {
             return false;
         }

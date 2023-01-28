@@ -18,6 +18,8 @@ class AdminStudentProfile extends Controller{
 
             $student->studentDetails = $this->studentModel->getStudentById($studentId);
 
+
+
             $allActiveClasses = $student->activeClasses = $this->studentModel->getActiveTutorialClass($studentId);
 
             $student->completedClasses = $this->studentModel->getCompletedTutorialClass($studentId);
@@ -25,9 +27,9 @@ class AdminStudentProfile extends Controller{
             $allActiveClasses = array_map(function($aActiveClass){
                 $aActiveClass->tutor = $this->studentModel->getTutorById($aActiveClass->tutor_id);
                 $aActiveClass->student = $this->studentModel->getStudentById($aActiveClass->student_id);
-                $aActiveClass->classTemplate = $this->studentModel->getClassTemplateById($aActiveClass->class_template_id);
-                $aActiveClass->subject = $this->studentModel->getSubjectById($aActiveClass->classTemplate->subject_id);
-                $aActiveClass->module = $this->studentModel->getModuleById($aActiveClass->classTemplate->module_id);
+                $aActiveClass->tutorialClassTemplate = $this->studentModel->getClassTemplateById($aActiveClass->class_template_id);
+                $aActiveClass->subject = $this->studentModel->getSubjectById($aActiveClass->tutorialClassTemplate->subject_id);
+                $aActiveClass->module = $this->studentModel->getModuleById($aActiveClass->tutorialClassTemplate->module_id);
                 return $aActiveClass;
             },$allActiveClasses);
 

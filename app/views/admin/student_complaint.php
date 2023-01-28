@@ -41,7 +41,7 @@
                 <div class="filter-box">
                     <i class='bx bx-filter-alt'></i>
                     <select name="student-complaint-filter" id="student-complaint-filter">
-                        <option value="" selected disabled hidden>Choose here</option>
+                        <option value="not_choose" selected disabled hidden>Choose here</option>
                         <option value="all">All</option>
                         <option value="solved">Solved</option>
                         <option value="not_resolve">Not Resolve</option>

@@ -22,7 +22,7 @@
             <div class="chat-list">
                 <div class="one-chat">
                     <div class="profile-image">
-                        <img src="./profile.png" alt="">
+                        <img src="<?php echo URLROOT; ?>/public/img/admin/profile.png" alt="">
                     </div>
                     <div class="chat-details">
                         <div class="name">
@@ -36,7 +36,7 @@
 
                 <div class="one-chat">
                     <div class="profile-image">
-                        <img src="./profile.png" alt="">
+                        <img src="<?php echo URLROOT; ?>/public/img/admin/profile.png" alt="">
                     </div>
                     <div class="chat-details">
                         <div class="name">
@@ -50,23 +50,7 @@
 
                 <div class="one-chat">
                     <div class="profile-image">
-                        <img src="./profile.png" alt="">
-                    </div>
-                    <div class="chat-details">
-                        <div class="name">
-                            <h3>Viraj Sandakelum</h3>
-                        </div>
-                        <div class="last-message">
-                            <p>Hey, how are you?</p>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="one-chat">
-                    <div class="profile-image">
-                        <img src="./profile.png" alt="">
+                        <img src="<?php echo URLROOT; ?>/public/img/admin/profile.png" alt="">
                     </div>
                     <div class="chat-details">
                         <div class="name">
@@ -82,22 +66,7 @@
 
                 <div class="one-chat">
                     <div class="profile-image">
-                        <img src="./profile.png" alt="">
-                    </div>
-                    <div class="chat-details">
-                        <div class="name">
-                            <h3>Viraj Sandakelum</h3>
-                        </div>
-                        <div class="last-message">
-                            <p>Hey, how are you?</p>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="one-chat">
-                    <div class="profile-image">
-                        <img src="./profile.png" alt="">
+                        <img src="<?php echo URLROOT; ?>/public/img/admin/profile.png" alt="">
                     </div>
                     <div class="chat-details">
                         <div class="name">
@@ -113,7 +82,22 @@
 
                 <div class="one-chat">
                     <div class="profile-image">
-                        <img src="./profile.png" alt="">
+                        <img src="<?php echo URLROOT; ?>/public/img/admin/profile.png" alt="">
+                    </div>
+                    <div class="chat-details">
+                        <div class="name">
+                            <h3>Viraj Sandakelum</h3>
+                        </div>
+                        <div class="last-message">
+                            <p>Hey, how are you?</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="one-chat">
+                    <div class="profile-image">
+                        <img src="<?php echo URLROOT; ?>/public/img/admin/profile.png" alt="">
                     </div>
                     <div class="chat-details">
                         <div class="name">
@@ -129,7 +113,7 @@
 
                 <div class="one-chat">
                     <div class="profile-image">
-                        <img src="./profile.png" alt="">
+                        <img src="<?php echo URLROOT; ?>/public/img/admin/profile.png" alt="">
                     </div>
                     <div class="chat-details">
                         <div class="name">
@@ -143,11 +127,9 @@
 
 
 
-
-
                 <div class="one-chat">
                     <div class="profile-image">
-                        <img src="./profile.png" alt="">
+                        <img src="<?php echo URLROOT; ?>/public/img/admin/profile.png" alt="">
                     </div>
                     <div class="chat-details">
                         <div class="name">
@@ -162,7 +144,7 @@
 
                 <div class="one-chat">
                     <div class="profile-image">
-                        <img src="./profile.png" alt="">
+                        <img src="<?php echo URLROOT; ?>/public/img/admin/profile.png" alt="">
                     </div>
                     <div class="chat-details">
                         <div class="name">
@@ -180,7 +162,7 @@
 
             <div class="chat-header">
                 <div class="profile-image">
-                    <img src="./profile.png" alt="">
+                    <img src="<?php echo URLROOT; ?>/public/img/admin/profile.png" alt="">
                 </div>
                 <div class="name">
                     <h3>Viraj Sandakelum</h3>

@@ -91,6 +91,7 @@ body{
     border: none;
     border-radius: 10px;
     outline: none;
+    background-color: #f1f1f1;
 }
 
 .chat-send a{
@@ -99,7 +100,7 @@ body{
     border-radius: 10px;
     margin-left: 10px;
     text-decoration: none;
-    color: #fff;
+    color: #f1f1f1;
 }
 
 
