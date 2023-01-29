@@ -4,12 +4,14 @@ class FindTutor extends Controller {
     private ModelStudent $studentModel;
     private ModelStudentClassTemplate $classTemplateModel;
     private ModelStudentSubject $subjectModel;
+    private ModelStudentRequest $requestModel;
 
     public function __construct() {
         $this->moduleModel = $this->model('ModelStudentModule');
         $this->studentModel = $this->model('ModelStudent');
         $this->classTemplateModel = $this->model('ModelStudentClassTemplate');
         $this->subjectModel = $this->model('ModelStudentSubject');
+        $this->requestModel = $this->model('ModelStudentRequest');
     }
 
     public function findTutor(Request $request) {
@@ -23,10 +25,10 @@ class FindTutor extends Controller {
             redirectBasedOnUserRole($request);
         }
 
-        $data = [];
+        $data = ['modules' => []];
 
 //      Fetch all the visible subjects, modules and maximum class price
-        $data['subjects'] = $this->subjectModel->getVisibleSubjects();
+        $data['subjects'] = $this->subjectModel->getVisibleSubjects(true);
         if (count($data['subjects']) > 0) {
             $data['modules'] = $this->moduleModel->getModulesBySubjectId($data['subjects'][0]['id']);
         }
@@ -94,8 +96,10 @@ class FindTutor extends Controller {
 //            Check if the user is asking for use his default location
             if ($body['mode'] != 'online' && $body['location'] == 'default') {
                 $userLocation = $this->studentModel->getStudentLocation($request->getUserId());
+
+//                Check if user has not specified a default location
                 if ($userLocation->longitude == 0 || $userLocation->latitude == 0) {
-//                    TODO: send invalid repond code !!
+                    header("HTTP/1.0 400 Bad Request");
                     return;
                 }
                 $body['longitude'] = $userLocation->longitude;
@@ -140,6 +144,7 @@ class FindTutor extends Controller {
 
         }else {
 //            TODO: send invalid respond code !!
+            header("HTTP/1.0 400 Bad Request");
         }
 
 
@@ -168,12 +173,57 @@ class FindTutor extends Controller {
 
 //      Sending a tutor request is a POST
         if ($request->isPost()) {
+//          Unauthorized error code
+            if (!$request->isLoggedIn() || !$request->isStudent()) {
+                header("HTTP/1.0 401 Forbidden");
+                return;
+            }
+
+//          Get payload
             $body = json_decode(file_get_contents('php://input'), true);
             $body['student_id'] = $request->getUserId();
-            header('Content-type: application/json');
+
+//          Validate incoming payload
+            $isError = false;
+
+            if (
+                !(isset($body['duration']) &&
+                isset($body['template_id']) &&
+                isset($body['tutor_id']) &&
+                isset($body['mode']) &&
+                isset($body['time_slots']) &&
+                count($body['time_slots']) !== isset($body['duration']) /2)
+            ) {
+                $isError = true;
+            }
+
+            if ($isError) {
+                header("HTTP/1.0 400 Bad Request");
+                return;
+            }
+
+//          Check if the same student has sent same request previously
+            if ($this->requestModel->doesRequestExist($body)) {
+                header("HTTP/1.0 403 Forbidden");
+                return;
+            }
+
+//          If all the checks are passed, then make the reqeust
+            if ($this->requestModel->makeRequest($body)) {
+                header("HTTP/1.0 200 Success");
+                print_r($body);
+                return;
+            }
+
+            header("HTTP/1.0 500 Internal Server Error");
             print_r($body);
 
+//            header('Content-type: application/json');
+//            print_r($body);
 
+        } else {
+//          This route has not get requests
+            header("HTTP/1.0 404 Not found");
         }
     }
 

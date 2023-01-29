@@ -61,23 +61,21 @@ Header::render(
 
         <div class="filter-section-container">
             <h1>Find Tutors</h1>
-
             <div class="filter-container">
                 <form action="" class="filter-form" method="GET" id="filter-form">
-
                     <div class="form-filter-container">
+
                         <select name="subject" class="tutor-filter filter-sm" id="subject">
                             <?php
                             foreach ($data['subjects'] as $subject) {
                                 echo '<option value="' . $subject['id'] . '">' . $subject['name'] . '</option>';
-
                             }
                             ?>
                         </select>
 
                         <select name="module" class="tutor-filter filter-md" id="module">
                             <?php
-                            foreach ($data['module'] as $module) {
+                            foreach ($data['modules'] as $module) {
                                 echo '<option value="' . $module['id'] . '">' . $module['name'] . '</option>';
 
                             }

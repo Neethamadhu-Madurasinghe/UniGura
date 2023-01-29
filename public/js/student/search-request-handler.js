@@ -159,6 +159,11 @@ async function sendSearchClassRequest() {
 
 
   const respond = await fetch('http://localhost/unigura/api/find-tutoring-class?' + new URLSearchParams(filterValues))
+  if(respond.status !== 200) {
+    showErrorMessage('Something went wrong. Please try again');
+    console.log(result);
+    return;
+  }
   LastSearch = JSON.parse(JSON.stringify(filterValues));
 
   const result = await respond.json()

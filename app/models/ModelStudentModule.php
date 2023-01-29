@@ -10,6 +10,6 @@ class ModelStudentModule {
         $this->db->query('SELECT * FROM module WHERE subject_id=:subject_id AND is_hidden=0');
         $this->db->bind('subject_id', $subjectId, PDO::PARAM_INT);
 
-        return $this->db->resultAll();
+        return $this->db->resultAllAssoc();
     }
 }
