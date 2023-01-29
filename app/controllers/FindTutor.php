@@ -3,11 +3,45 @@ class FindTutor extends Controller {
     private ModelStudentModule $moduleModel;
     private ModelStudent $studentModel;
     private ModelStudentClassTemplate $classTemplateModel;
+    private ModelStudentSubject $subjectModel;
 
     public function __construct() {
         $this->moduleModel = $this->model('ModelStudentModule');
         $this->studentModel = $this->model('ModelStudent');
         $this->classTemplateModel = $this->model('ModelStudentClassTemplate');
+        $this->subjectModel = $this->model('ModelStudentSubject');
+    }
+
+    public function findTutor(Request $request) {
+//       Redirect user to login page if not logged in
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+//       Redirect user to
+        if (!$request->isStudent()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        $data = [];
+
+//      Fetch all the visible subjects, modules and maximum class price
+        $data['subjects'] = $this->subjectModel->getVisibleSubjects();
+        if (count($data['subjects']) > 0) {
+            $data['modules'] = $this->moduleModel->getModulesBySubjectId($data['subjects'][0]['id']);
+        }
+        $data['max_price'] = $this->classTemplateModel->getMaximumClassPrice()->max_price;
+        $data['max_price'] = $data['max_price'] ?: 0;
+
+//       Fetch user specific default filter values
+        $data['preferred_class_mode'] = $this->studentModel->getStudentMode($request->getUserId())->mode;
+        $location = $this->studentModel->getStudentLocation($request->getUserId());
+        $data['latitude'] = $data['preferred_class_mode'] == 'online' ? '7.1224323' : $location->latitude;
+        $data['longitude'] = $data['preferred_class_mode'] == 'online' ? '81.12345' : $location->longitude;
+        $data['is_default'] = $data['preferred_class_mode'] != 'online';
+
+        $this->view('student/findTutor', $request, $data);
+
     }
 
     public function getModule(Request $request) {
@@ -21,7 +55,7 @@ class FindTutor extends Controller {
             ];
 
             if (isset($body['subject_id'])) {
-                $data['modules'] = $this->moduleModel->getModule($body['subject_id']);
+                $data['modules'] = $this->moduleModel->getModulesBySubjectId($body['subject_id']);
             }
 
             header('Content-type: application/json');
@@ -136,7 +170,6 @@ class FindTutor extends Controller {
         if ($request->isPost()) {
             $body = json_decode(file_get_contents('php://input'), true);
             $body['student_id'] = $request->getUserId();
-            print_r($_SESSION);
             header('Content-type: application/json');
             print_r($body);
 

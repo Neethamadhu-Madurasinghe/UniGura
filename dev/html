@@ -1,0 +1,5 @@
+<div class="popup-request-send-success">
+      <object data="assests/success.svg" type=""></object>
+      <p>Request has been Sent Successfully</p>
+      <button class="btn btn-search">OK</button>
+    </div>

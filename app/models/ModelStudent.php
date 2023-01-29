@@ -15,6 +15,13 @@ class ModelStudent {
         return $this->db->resultOne();
     }
 
+    public function getStudentMode($id) {
+        $this->db->query('SELECT mode FROM user WHERE id=:id');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        return $this->db->resultOne();
+    }
+
 // TODO: This function should be moved into tutor model
 // Check whether a tutor has enough number of free slots when the tutor id and required number of free slots are given
     public function isTutorFree($id, $numberOfSlots): bool {

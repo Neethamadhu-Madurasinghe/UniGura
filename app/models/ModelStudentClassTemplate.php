@@ -105,4 +105,9 @@ class ModelStudentClassTemplate {
 
         return $rows;
     }
+
+    public function getMaximumClassPrice() {
+        $this->db->query('SELECT MAX(session_rate) AS max_price FROM `tutoring_class_template`');
+        return $this->db->resultOne();
+    }
 }

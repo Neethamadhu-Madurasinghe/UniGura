@@ -143,7 +143,7 @@ Header::render(
                         <div id="marker"
                              title="Marker"
                              style="<?php echo 'background:url(' . URLROOT . '/public/img/student/marker-64.ico)
-                                     no-repeat top center;' ?>">
+                                     no-repeat top center; background-size: contain;' ?>">
 
                         </div>
                         <input type="number"
