@@ -1,0 +1,29 @@
+.popup-error-message, .popup-success-message {
+    height: 300px;
+    width: 450px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0 30px 0;
+}
+
+@media screen and (max-width: 768px) {
+    .popup-error-message, .popup-success-message   {
+        width: 90%;
+    }
+}
+
+.popup-error-message img, .popup-success-message img {
+    height: 75px;
+}
+
+.popup-error-message p, .popup-success-message p {
+    font-weight: bold;
+    font-size: 1.2rem;
+    width: 80%;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+}

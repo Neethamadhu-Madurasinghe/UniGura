@@ -16,6 +16,7 @@ Header::render(
     'Find Tutuor',
     [
         'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css',
+        URLROOT . '/public/css/student/components/error-success-popup.css',
         URLROOT . '/public/css/common/student-base-style.css',
         URLROOT . '/public/css/student/components/main-nav-bar.css',
         URLROOT . '/public/css/student/find-tutor.css',
@@ -26,12 +27,20 @@ Header::render(
 
 ?>
 
-<div class="error-layout-backgound invisible">
+<div class="error-layout-background invisible">
+
     <div class="popup-error-message invisible">
         <img src="<?php echo URLROOT . '/public/img/student/cross.png' ?>" alt="" srcset="">
         <p id="error-message">Request has been Sent Successfully</p>
         <button class="btn btn-search" id="error-ok">OK</button>
     </div>
+
+    <div class="popup-success-message invisible">
+        <img src="<?php echo URLROOT . '/public/img/student/success.png' ?>" alt="" srcset="">
+        <p id="success-message">Request has been Sent Successfully</p>
+        <button class="btn btn-search" id="success-ok">OK</button>
+    </div>
+
 </div>
 
 <div class="layout-background invisible">

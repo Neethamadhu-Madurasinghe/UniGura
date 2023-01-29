@@ -317,7 +317,7 @@
     justify-content: center;
 }
 
-.error-layout-backgound {
+.error-layout-background {
     z-index: 2;
     height: 100%;
     width: 100%;
@@ -363,36 +363,6 @@
     .popup-button-container {
         width: 100%;
     }
-}
-
-.popup-error-message {
-    height: 300px;
-    width: 450px;
-    background-color: white;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 30px 0 30px 0;
-}
-
-@media screen and (max-width: 768px) {
-    .popup-error-message {
-        width: 90%;
-    }
-}
-
-.popup-error-message img {
-    height: 75px;
-}
-
-.popup-error-message p {
-    font-weight: bold;
-    font-size: 1.2rem;
-    width: 80%;
-    text-align: center;
-    font-family: 'DM Sans', sans-serif;
 }
 
 /* Invisibility classes */

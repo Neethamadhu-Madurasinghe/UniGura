@@ -5,6 +5,7 @@ class FindTutor extends Controller {
     private ModelStudentClassTemplate $classTemplateModel;
     private ModelStudentSubject $subjectModel;
     private ModelStudentRequest $requestModel;
+    private ModelStudentTimeSlot $timeSlotModel;
 
     public function __construct() {
         $this->moduleModel = $this->model('ModelStudentModule');
@@ -12,6 +13,7 @@ class FindTutor extends Controller {
         $this->classTemplateModel = $this->model('ModelStudentClassTemplate');
         $this->subjectModel = $this->model('ModelStudentSubject');
         $this->requestModel = $this->model('ModelStudentRequest');
+        $this->timeSlotModel = $this->model('ModelStudentTimeSlot');
     }
 
     public function findTutor(Request $request) {
@@ -161,7 +163,7 @@ class FindTutor extends Controller {
         $body = $request->getBody();
         $data = [];
 
-        $data = $this->studentModel->getTimeTable($body['tutor_id']);
+        $data = $this->timeSlotModel->getTimeTable($body['tutor_id']);
 
         header('Content-type: application/json');
         echo json_encode($data);
@@ -196,6 +198,22 @@ class FindTutor extends Controller {
             ) {
                 $isError = true;
             }
+
+//           Check validity of timeslots
+//           Check whether each slot is a free slot
+            foreach ($body['time_slots'] as $timeSlotId) {
+                if (!$this->timeSlotModel->isTimeSlotFree($timeSlotId)) {
+                    $isError = true;
+                }
+            }
+            
+//           Check whether time slots are consecutive
+            for ($i = 0; $i < count($body['time_slots']) - 1; $i++) {
+                if ($body['time_slots'][$i+1] - $body['time_slots'][$i] != 1) {
+                    $isError = true;
+                }
+            }
+
 
             if ($isError) {
                 header("HTTP/1.0 400 Bad Request");

@@ -93,7 +93,7 @@ bodyUI.addEventListener('click', e => {
 popupTimeTableCancelButtonUI.addEventListener('click', e => {
   hideTimeTable()
   unsortedTimeSlots = [];
-  sortedTimeSlots
+  sortedTimeSlots = [];
   request.duration = 0;
   selectedSlots.clear();
 })

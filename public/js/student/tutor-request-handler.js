@@ -48,10 +48,16 @@ function handleTutorRequestResponse(status) {
       break;
 
     case 200:
-  //    TODO
+      showSuccessMessage('Tutor request has been sent successfully', () => {
+        hideTimeTable()
+        unsortedTimeSlots = [];
+        sortedTimeSlots = [];
+        request.duration = 0;
+        selectedSlots.clear();
+      })
       break;
 
     default:
-      showErrorMessage('An Error occurred. Please try again')
+      showErrorMessage('An error occurred. Please try again')
   }
 }
