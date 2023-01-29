@@ -6,7 +6,12 @@ class TutoringClassCard {
             $data['tutor']['profile_picture'] = '/public/img/common/profile.png';
         }
 
-        $data['completion'] = round($data['incomplete_day_count'] * 100 / $data['day_count']);
+        if ($data['day_count'] > 0) {
+            $data['completion'] = round($data['incomplete_day_count'] * 100 / $data['day_count']);
+        }else {
+            $data['completion'] = 0;
+        }
+
         $data["class_type"] = ucfirst($data["class_type"]);
 
         echo '
@@ -24,7 +29,9 @@ class TutoringClassCard {
                      <div class="class-card-payment-due-container">
                         <img
                         src="' . URLROOT . "/public/img/common/money 1.png" . '"
-                        class="payment-due-image' . ($data["payment_due_day_count"] > 0 ? "payment-due-image" : "") .'">
+                        class="' . ($data["payment_due_day_count"] > 0 ?
+                                    "payment-due-image" :
+                                    "payment-due-image-hidden") .'">
                      </div>
                 </div>
                 

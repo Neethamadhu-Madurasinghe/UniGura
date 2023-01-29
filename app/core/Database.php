@@ -63,6 +63,12 @@ class Database {
         return $this->statement->fetchAll(PDO::FETCH_OBJ);
     }
 
+//    Get multiple records as the result in associative array format
+    public function resultAllAssoc(): array {
+        $this->execute();
+        return $this->statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 //    Get single record as the result
     public function resultOne() {
         $this->execute();
@@ -72,5 +78,27 @@ class Database {
 //    Get the number of rows in the result
     public function rowCount(): int {
         return $this->statement->rowCount();
+    }
+
+//    Get the id of the latest insertion
+    public function lastId(): string {
+        return $this->dbh->lastInsertId();
+    }
+
+//    Start a transaction
+    public function startTransaction() {
+        $this->dbh->beginTransaction();
+    }
+
+//    Commit a transaction
+    public function commitTransaction(): bool {
+        try {
+            $this->dbh->commit();
+            return true;
+
+        }catch (Exception $e) {
+            $this->dbh->rollBack();
+            return false;
+        }
     }
 }

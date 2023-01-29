@@ -3,12 +3,14 @@
     display: flex;
     justify-content: space-between;
     background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    padding: 0 1% 0 1%;
 }
 
 
 .logo-container {
     align-self: flex-start;
     margin: 10px 10px;
+    cursor: pointer;
 }
 
 .nav-logo {
@@ -74,6 +76,7 @@
 
 .profile-picture img {
     width: 48px;
+    height: 48px;
     position: relative;
     object-fit: cover;
     cursor: pointer;

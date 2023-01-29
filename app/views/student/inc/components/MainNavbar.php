@@ -5,7 +5,9 @@ class MainNavbar {
         echo '
             <div class="student-nav-bar">
                 <div class="logo-container">
-                    <img src="' . URLROOT . '/public/img/common/logo.png' . '" alt="" srcset="" class="nav-logo">
+                    <a href="' . URLROOT . '/student/dashboard' . '">
+                        <img src="' . URLROOT . '/public/img/common/logo.png' . '" alt="" srcset="" class="nav-logo">
+                    </a>
                 </div>
                 
                 <div class="nav-link-container-container">
