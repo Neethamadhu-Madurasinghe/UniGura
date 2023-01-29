@@ -50,6 +50,7 @@ Header::render(
 
         <div class="time-table-container">
             <table id="time-table">
+                <caption style="display: none">Hidden Caption</caption>
                 <th></th>
             </table>
         </div>

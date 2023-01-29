@@ -25,8 +25,8 @@ bodyUI.addEventListener('click', async (e) => {
 
     const respond = await fetch('http://localhost/unigura/api/time-table?' + new URLSearchParams({ tutor_id: request.tutor_id}));
     unsortedTimeSlots = await respond.json();
-    sortedTimeSlots = sortTimeSlot(unsortedTimeSlots, request.duration/2);
-    // Remove unusalble time slots eg- if class requires 2 slots, then remove all isolated single timeslots
+    sortedTimeSlots = sortTimeSlot(unsortedTimeSlots);
+    // Remove unusable time slots eg- if class requires 2 slots, then remove all isolated single timeslots
     removeUnusableSlots(unsortedTimeSlots, request.duration/2);
 
     renderTimeTable(sortedTimeSlots);

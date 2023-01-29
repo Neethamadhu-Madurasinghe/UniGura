@@ -222,7 +222,6 @@ class FindTutor extends Controller {
 //          If all the checks are passed, then make the request
             if ($this->requestModel->makeRequest($body)) {
                 header("HTTP/1.0 200 Success");
-                print_r($body);
                 return;
             }
 

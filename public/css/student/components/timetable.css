@@ -28,7 +28,7 @@
     color: var(--bright-orange);
     font-size: 0.75rem;
     width: 80px;
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', serif;
 }
 
 .slot {
@@ -77,7 +77,7 @@
         color: var(--bright-orange);
         font-size: 0.8rem;
         min-width: 76px;
-        font-family: 'Montserrat';
+        font-family: 'Montserrat', serif;
     }
 
 }
