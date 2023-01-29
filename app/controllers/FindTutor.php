@@ -206,14 +206,13 @@ class FindTutor extends Controller {
                     $isError = true;
                 }
             }
-            
+
 //           Check whether time slots are consecutive
             for ($i = 0; $i < count($body['time_slots']) - 1; $i++) {
                 if ($body['time_slots'][$i+1] - $body['time_slots'][$i] != 1) {
                     $isError = true;
                 }
             }
-
 
             if ($isError) {
                 header("HTTP/1.0 400 Bad Request");
@@ -226,7 +225,7 @@ class FindTutor extends Controller {
                 return;
             }
 
-//          If all the checks are passed, then make the reqeust
+//          If all the checks are passed, then make the request
             if ($this->requestModel->makeRequest($body)) {
                 header("HTTP/1.0 200 Success");
                 print_r($body);

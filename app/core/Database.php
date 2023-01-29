@@ -79,4 +79,26 @@ class Database {
     public function rowCount(): int {
         return $this->statement->rowCount();
     }
+
+//    Get the id of the latest insertion
+    public function lastId(): string {
+        return $this->dbh->lastInsertId();
+    }
+
+//    Start a transaction
+    public function startTransaction() {
+        $this->dbh->beginTransaction();
+    }
+
+//    Commit a transaction
+    public function commitTransaction(): bool {
+        try {
+            $this->dbh->commit();
+            return true;
+
+        }catch (Exception $e) {
+            $this->dbh->rollBack();
+            return false;
+        }
+    }
 }
