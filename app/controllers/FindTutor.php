@@ -18,6 +18,7 @@ class FindTutor extends Controller {
 
     public function findTutor(Request $request) {
 //       Redirect user to login page if not logged in
+        cors();
         if (!$request->isLoggedIn()) {
             redirect('/login');
         }
@@ -226,7 +227,6 @@ class FindTutor extends Controller {
             }
 
             header("HTTP/1.0 500 Internal Server Error");
-            print_r($body);
 
         } else {
 //          This route has not get requests
