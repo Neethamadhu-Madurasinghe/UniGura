@@ -52,22 +52,17 @@ class FindTutor extends Controller {
 //      Cors support
         cors();
 
-        if (true) {
-            $body = $request->getBody();
-            $data = [
-                'modules' => []
-            ];
+        $body = $request->getBody();
+        $data = [
+            'modules' => []
+        ];
 
-            if (isset($body['subject_id'])) {
-                $data['modules'] = $this->moduleModel->getModulesBySubjectId($body['subject_id']);
-            }
-
-            header('Content-type: application/json');
-            echo json_encode($data);
-
-        }else {
-//            TODO: Fix the auth problem
+        if (isset($body['subject_id'])) {
+            $data['modules'] = $this->moduleModel->getModulesBySubjectId($body['subject_id']);
         }
+
+        header('Content-type: application/json');
+        echo json_encode($data);
     }
 
     public function findTutoringClass(Request $request) {
@@ -145,7 +140,6 @@ class FindTutor extends Controller {
 
 
         }else {
-//            TODO: send invalid respond code !!
             header("HTTP/1.0 400 Bad Request");
         }
 
@@ -181,7 +175,7 @@ class FindTutor extends Controller {
                 return;
             }
 
-//          Get payload
+//          Get the payload
             $body = json_decode(file_get_contents('php://input'), true);
             $body['student_id'] = $request->getUserId();
 
@@ -199,7 +193,7 @@ class FindTutor extends Controller {
                 $isError = true;
             }
 
-//           Check validity of timeslots
+//           Check the validity of timeslots
 //           Check whether each slot is a free slot
             foreach ($body['time_slots'] as $timeSlotId) {
                 if (!$this->timeSlotModel->isTimeSlotFree($timeSlotId)) {
@@ -235,9 +229,6 @@ class FindTutor extends Controller {
             header("HTTP/1.0 500 Internal Server Error");
             print_r($body);
 
-//            header('Content-type: application/json');
-//            print_r($body);
-
         } else {
 //          This route has not get requests
             header("HTTP/1.0 404 Not found");
@@ -265,10 +256,10 @@ class FindTutor extends Controller {
 //    that tutor has enough Consecutive timeslots To fit the specified tutoring class
 //    If true, that tutoring class result will be sent in the returning array
     private function filterTutoringClassTemplateByConsecutiveFreeSlots(
-                                                                array $tutoringClassTemplates,
-                                                                string $day,
-                                                                string $time
-                                                                        ): array {
+        array $tutoringClassTemplates,
+        string $day,
+        string $time
+        ): array {
         $filteredArray = [];
 
         foreach ($tutoringClassTemplates as $tutoringClassTemplate) {
