@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php require_once APPROOT . '/views/admin/side_bar.php'; ?>
+<link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/newSubject.css">
+<script defer src="<?php echo URLROOT ?>/public/js/admin/subject.js"></script>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/newSubject.css">
-    <script src="https://kit.fontawesome.com/401cc96be7.js" crossorigin="anonymous"></script>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>Uni-Gura Subject</title>
-</head>
 
-<body>
+
+<section class="home" id="home">
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+
 
     <div class="div2">
 
@@ -28,8 +26,8 @@
                                 }
                             }
 
-                            if(isset($data[2])){
-                                if($data[2] == 'Duplicate entry'){
+                            if (isset($data[2])) {
+                                if ($data[2] == 'Duplicate entry') {
                                     echo "Duplicate entry";
                                 }
                             }
@@ -100,10 +98,10 @@
                         echo "<div class='actions'>";
                         echo "<div class='hide_show'>";
                         if ($row2->is_hidden == 1) {
-                        echo "<div class='show_btn'>";
-                        echo "<button class='show save showHideBtn'>Show</button>";
-                        // echo "<a href='#'><button class='show'>Show</button></a>";
-                        echo "</div>";
+                            echo "<div class='show_btn'>";
+                            echo "<button class='show save showHideBtn'>Show</button>";
+                            // echo "<a href='#'><button class='show'>Show</button></a>";
+                            echo "</div>";
                         }
                         if ($row2->is_hidden == 0) {
                             echo "<div class='hide_btn'>";
@@ -129,6 +127,10 @@
             </div>
         </div>
     </div>
+
+
+</section>
+
 
 </body>
 

@@ -1,17 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/401cc96be7.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/class.css">
-    <title>Document</title>
-</head>
-<body>
+<?php require_once APPROOT . '/views/admin/side_bar.php'; ?>
+<script defer src="<?php echo URLROOT ?>/public/js/admin/class.js"></script>
+<link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/class.css">
 
 
+
+
+
+<section class="home" id="home">
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
     <div class="class-page">
 
         <div class="all-classes" id="all-classes">
@@ -193,13 +192,13 @@
                     <h1>By Subject</h1>
                 </div>
                 <div class="subject-select">
-                    <?php foreach($data['allSubjects'] as $subjects) {?>
+                    <?php foreach ($data['allSubjects'] as $subjects) { ?>
                         <div class="checkbox-button">
                             <input type="checkbox" id="<?php echo $subjects->name; ?>" name="subject" value="<?php echo $subjects->name; ?>" class="class-subject">
                             <label for="<?php echo $subjects->name; ?>"><?php echo $subjects->name; ?></label>
                         </div>
                     <?php } ?>
-                    
+
                     <div class="checkbox-button">
                         <input type="checkbox" id="other" name="subject" value="all">
                         <label for="other">All</label>
@@ -211,7 +210,10 @@
 
 
 
+</section>
+
 
 
 </body>
+
 </html>

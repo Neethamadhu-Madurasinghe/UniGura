@@ -1,3 +1,7 @@
+// *========================================== CHAT PAGE ===========================================================
+
+
+
 const body = document.querySelector('body'),
     sidebar = body.querySelector('nav'),
     toggle = body.querySelector(".toggle"),
@@ -19,13 +23,17 @@ toggle.addEventListener("click", () => {
 
 
 
+const chat = document.getElementById('chat');
 const nav_link = document.querySelectorAll(".nav-link");
-const profile = document.getElementById('profile');
+
 
 
 nav_link.forEach((link) => {
     link.classList.remove('active');
 })
 
-profile.classList.add('active');
+chat.classList.add('active');
+
+
+
 

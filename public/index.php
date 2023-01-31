@@ -40,6 +40,7 @@ $router->registerController('/admin/viewStudentProfile', [AdminStudentProfile::c
 
 $router->registerController('/admin/class',[AdminClass::class,'class']);
 
+
 $router->registerController('/admin/tutor',[AdminTutor::class,'tutor']);
 $router->registerController('/admin/viewTutorProfile',[AdminTutorProfile::class,'viewTutorProfile']);
 
@@ -58,16 +59,21 @@ $router->registerController('/admin/selectedTutorDetails',[AdminPayment::class,'
 
 $router->registerController('/admin/chat',[AdminChat::class,'chat']);
 
+
+
 $router->registerController('/admin/notification',[AdminNotification::class,'notification']);
 $router->registerController('/admin/notification/clearNotification',[AdminNotification::class,'clearNotification']);
+
+
 
 
 $router->registerController('/admin/viewComplaint',[AdminComplaintView::class,'viewComplaint']);
 $router->registerController('/admin/updateComplainInquire',[AdminComplaintView::class,'updateComplainInquire']);
 
 
-$router->registerController('/admin/studentComplainSearchFilter',[AdminSearchFilter::class,'studentComplainSearchFilter']);
 
+
+$router->registerController('/admin/studentComplainSearchFilter',[AdminSearchFilter::class,'studentComplainSearchFilter']);
 $router->registerController('/admin/studentComplainFilter',[AdminSearchFilter::class,'studentComplainFilter']);
 $router->registerController('/admin/tutorComplainSearch',[AdminSearchFilter::class,'tutorComplainSearch']);
 

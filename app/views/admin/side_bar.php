@@ -8,7 +8,6 @@
     <script src="https://kit.fontawesome.com/401cc96be7.js" crossorigin="anonymous"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/dashboard.css">
-    <script defer src="<?php echo URLROOT ?>/public/js/admin/dashboard.js"></script>
     <title>Responsive side bar</title>
 </head>
 
@@ -22,7 +21,7 @@
                 </span>
 
                 <!-- <div class="text logo-text">
-                    <span class="name">Codinglab</span>
+                    <span class="name">UniGura</span>
                     <span class="profession">Web developer</span>
                 </div> -->
             </div>
@@ -51,7 +50,7 @@
                     <li class="nav-link" id="student">
                         <p></p>
                         <p></p>
-                        <a href="#">
+                        <a href="student">
                             <i class="fa fa-graduation-cap icon"></i>
                             <span class="text nav-text">Student</span>
                         </a>
@@ -60,7 +59,7 @@
                     <li class="nav-link" id="tutor">
                         <p></p>
                         <p></p>
-                        <a href="#">
+                        <a href="tutor">
                             <i class="fa fa-person-chalkboard icon"></i>
                             <span class="text nav-text">Tutor</span>
                         </a>
@@ -69,7 +68,7 @@
                     <li class="nav-link" id="class">
                         <p></p>
                         <p></p>
-                        <a href="#">
+                        <a href="class">
                             <i class="fa fa-school icon"></i>
                             <span class="text nav-text">Class</span>
                         </a>
@@ -78,7 +77,7 @@
                     <li class="nav-link subjectLink" id="subject">
                         <p></p>
                         <p></p>
-                        <a href="#">
+                        <a href="subjectModule">
                             <i class="fa fa-light fa-book icon"></i>
                             <span class="text nav-text">Subject</span>
                         </a>
@@ -87,7 +86,7 @@
                     <li class="nav-link" id="chat">
                         <p></p>
                         <p></p>
-                        <a href="#">
+                        <a href="chat">
                             <i class="fa fa-envelope icon"></i>
                             <span class="text nav-text">Chat</span>
                         </a>
@@ -96,7 +95,7 @@
                     <li class="nav-link" id="request-complaint">
                         <p></p>
                         <p></p>
-                        <a href="#">
+                        <a href="tutorRequest">
                             <i class="fa fa-headset icon"></i>
                             <span class="text nav-text">Request & Complaint</span>
                         </a>
@@ -105,7 +104,7 @@
                     <li class="nav-link" id="payment">
                         <p></p>
                         <p></p>
-                        <a href="#">
+                        <a href="payment">
                             <i class="fa fa-money-bill-wave icon"></i>
                             <span class="text nav-text">Payment</span>
                         </a>
@@ -113,7 +112,7 @@
                     <li class="nav-link" id="notification">
                         <p></p>
                         <p></p>
-                        <a href="#">
+                        <a href="notification">
                             <i class="fa fa-bell icon"></i>
                             <span class="text nav-text">Notification</span>
                         </a>
@@ -121,7 +120,7 @@
                     <li class="nav-link" id="profile">
                         <p></p>
                         <p></p>
-                        <a href="#">
+                        <a href="profileView">
                             <i class="fa fa-user icon"></i>
                             <span class="text nav-text">Profile</span>
                         </a>
