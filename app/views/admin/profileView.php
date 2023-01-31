@@ -15,18 +15,18 @@
 
         <h3>Change Admin Password</h3>
 
-        <form action="#" method="POST">
+        <form action="updatePassword" method="POST">
             <div class="form-field">
                 <label for="first-name">Current Password <span>Please enter a valid password</span></label><br>
-                <input type="text" name="first-name" id="">
+                <input type="text" name="currentPassword" id="">
             </div>
             <div class="form-field">
                 <label for="last-name">New Password <span>Please enter a valid password</span></label><br>
-                <input type="text" name="last-name" id="">
+                <input type="text" name="newPassword" id="">
             </div>
             <div class="form-field">
                 <label for="last-name">Confirm New Password <span>Password is does't match</span></label><br>
-                <input type="text" name="last-name" id="">
+                <input type="text" name="confirmPassword" id="">
             </div>
 
             <div class="functionality">

@@ -81,6 +81,7 @@ $router->registerController('/admin/complaintSetting',[AdminComplaintSetting::cl
 $router->registerController('/admin/filter',[AdminFilter::class,'filter']);
 
 $router->registerController('/admin/profileView',[AdminProfileView::class,'profileView']);
+$router->registerController('/admin/updatePassword',[AdminProfileView::class,'updatePassword']);
 
 
 
