@@ -7,6 +7,22 @@ class TutorClassGig extends Controller {
         $this->reportModel = $this->model('ModelStudentReport');
     }
 
+    public function tutorProfile(Request $request) {
+//       Redirect user to login page if not logged in
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+//       Redirect user to correct page is user is not a student
+        if (!$request->isStudent()) {
+            redirectBasedOnUserRole($request);
+        }
+        $data = [];
+
+        $this->view('student/tutorProfile', $request, $data);
+    }
+
+
     public function reportTutor(Request $request) {
 //      Cors support
         cors();
