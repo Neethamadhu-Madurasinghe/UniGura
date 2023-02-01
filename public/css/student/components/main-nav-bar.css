@@ -58,13 +58,13 @@
     border-radius: 50%;
     color: #fff;
     vertical-align: top;
-    margin-left: -25px;
-    font-size: 0.8rem;
+    margin-left: -20px;
+    font-size: 0.7rem;
 }
 
 .icon img {
     display: inline-block;
-    width: 40px;
+    width: 28px;
     margin-top: 20px;
 }
 
@@ -94,6 +94,7 @@
     right: 10px;
     border: 2px rgb(255, 140, 0) solid;
     transition: color 0.1s linear;
+    z-index: 1;
 }
 
 .profile-menu-hidden {

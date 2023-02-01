@@ -18,7 +18,6 @@ class FindTutor extends Controller {
 
     public function findTutor(Request $request) {
 //       Redirect user to login page if not logged in
-        cors();
         if (!$request->isLoggedIn()) {
             redirect('/login');
         }

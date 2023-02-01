@@ -1,7 +1,7 @@
 <?php
 
-class TutoringClassReview {
-    public static function render(object $data): void {
+class TutoringClassReviewCard {
+    public static function render(array $data): void {
 //       Format data
         $data['profile_picture'] = $data['profile_picture'] ?: '/public/img/common/profile.png';
 
