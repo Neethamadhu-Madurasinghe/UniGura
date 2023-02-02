@@ -53,6 +53,20 @@ Header::render(
 
 <div class="layout-background invisible">
 
+    <div class="popup-select-mode invisible">
+        <h2>Select Preferred Class Method</h2>
+        <div class="select-mode-container">
+            <input type="radio" name="mode" id="class-mode" value="online" checked="true">
+            <label for="class-mode">Online</label>
+            <input type="radio" name="mode" id="class-mode" value="physical">
+            <label for="class-mode">Physical</label>
+        </div>
+        <div class="select-mode-button-container">
+            <button class="btn btn-sm" id="mode-cancel">Cancel</button>
+            <button class="btn btn-sm" id="mode-ok">OK</button>
+        </div>
+    </div>
+
     <div class="popup-tutor-other-class invisible">
         <h2>Other Classes</h2>
         <div class="other-class-container">

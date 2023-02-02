@@ -31,7 +31,7 @@ async function requestTimeTable() {
   renderTimeTable(sortedTimeSlots);
 }
 
-// Event listners to time slots
+// Event listeners to time slots
 bodyUI.addEventListener('click', e => {
   const selectedSlotIndex = e.target.dataset.index;
 
