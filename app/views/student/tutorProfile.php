@@ -56,10 +56,26 @@ Header::render(
     <div class="popup-select-mode invisible">
         <h2>Select Preferred Class Method</h2>
         <div class="select-mode-container">
-            <input type="radio" name="mode" id="class-mode" value="online" checked="true">
-            <label for="class-mode">Online</label>
-            <input type="radio" name="mode" id="class-mode" value="physical">
-            <label for="class-mode">Physical</label>
+            <?php
+                if ($data['mode_on_template'] == 'both') {
+                    echo '
+                        <input type="radio" name="mode" id="class-mode" value="online" checked="true">
+                        <label for="class-mode">Online</label>
+                        <input type="radio" name="mode" id="class-mode" value="physical">
+                        <label for="class-mode">Physical</label>
+                    ';
+                } else if($data['mode_on_template'] == 'online') {
+                    echo '
+                        <input type="radio" name="mode" id="class-mode" value="online" checked="true">
+                        <label for="class-mode">Online</label>
+                    ';
+                } else {
+                    echo '
+                        <input type="radio" name="mode" id="class-mode" value="physical">
+                        <label for="class-mode">Physical</label>
+                    ';
+                }
+            ?>
         </div>
         <div class="select-mode-button-container">
             <button class="btn btn-sm" id="mode-cancel">Cancel</button>

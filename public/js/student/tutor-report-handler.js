@@ -21,7 +21,7 @@ reportTutorButtonUI.addEventListener('click', e => {
 // Check for error and send the report data to server
 reportSubmitButtonUI.addEventListener('click', async (e) => {
   let isChecked = false;
-  for (i = 0; i < reportReasonRadioButtonsUI.length; i++) {
+  for (let i = 0; i < reportReasonRadioButtonsUI.length; i++) {
     if (reportReasonRadioButtonsUI[i].checked) {
       isChecked = true;
       report.reason_id = reportReasonRadioButtonsUI[i].value;

@@ -68,6 +68,7 @@ class StudentTutorProfile extends Controller {
         $data['session_rate'] = $classTemplateData->session_rate;
         $data['description'] = $classTemplateData->description;
         $data['current_rating'] = $classTemplateData->current_rating;
+        $data['mode_on_template'] = $classTemplateData->mode;
 
 //      Get number of day of classTemplate
         $numberOfDays = $this->classTemplateModel->getNumberOfDayOfClass($body['template_id']);
@@ -89,7 +90,6 @@ class StudentTutorProfile extends Controller {
         }
 
         $data['other_classes'] = $otherClasses;
-
         $this->view('student/tutorProfile', $request, $data);
 
 
