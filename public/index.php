@@ -47,6 +47,8 @@ $router->registerController('/tutor/register', [TutorStudentAuth::class, 'tutorS
 
 // Tutor routes
 $router->registerController('/tutor/complete-profile', [TutorStudentProfileComplete::class, 'tutorCompleteProfile']);
+$router->registerController('/tutor/create-course', [TutorCreateCourse:: class, 'tutorcreatecourse'] );
+$router->registerController('/tutor/storeData', [TutorCreateCourse:: class, 'storeData'] );
 
 
 
