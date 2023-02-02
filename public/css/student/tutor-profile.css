@@ -266,6 +266,29 @@
     justify-content: center;
 }
 
+.popup-select-mode {
+    height: 250px;
+    width: 450px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0 30px 0;
+}
+
+@media screen and (max-width: 600px) {
+    .popup-select-mode {
+        width: 90%
+    }
+
+}
+
+.select-mode-container {
+    margin: 20px;
+}
+
 .popup-tutor-other-class {
     width: 450px;
     max-height: 500px;
@@ -444,6 +467,13 @@
         height: 40px;
         margin: 10px;
     }
+}
+
+.btn-sm {
+    width: 140px;
+    height: 32px;
+    font-size: 1rem;
+    margin: 10px;
 }
 
 /* Invisibility classes */
