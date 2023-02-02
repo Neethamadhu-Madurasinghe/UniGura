@@ -31,6 +31,8 @@ $router->registerController('/tutor/register', [TutorStudentAuth::class, 'tutorS
 
 
 
+echo $_SESSION['user_role'];
+
 
 
 
@@ -50,6 +52,18 @@ $router->registerController('/tutor/complete-profile', [TutorStudentProfileCompl
 
 
 
+$router->registerController('/tutor/pending', [TutorPending::class, 'tutorPending']);
+
+$router->registerController('/tutor/aproved', [TutorPending::class, 'tutorAproved']);
+$router->registerController('tutor/complete-bank-detials', [TutorPending::class, 'tutorCompleteBankDetials']);
+
+$router->registerController('/tutor/dashboard', [TutorDashboard::class, 'dashboard']);
+$router->registerController('/tutor/dashboard/create-class-template', [TutorDashboard::class, 'createClassTemplate']);
+
+$router->registerController('/tutor/notifications', [TutorNotification::class, 'notification']);
+
+
+
 
 
 
@@ -59,6 +73,7 @@ $router->registerController(
     '/student/complete-profile',
     [TutorStudentProfileComplete::class, 'studentCompleteProfile']
 );
+
 $router->registerController(
     '/student/dashboard',
     [StudentDashboard::class, 'dashboard']

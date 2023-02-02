@@ -1,0 +1,99 @@
+.container {
+    position: absolute;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    background: #ffff;
+    padding: 20px;
+    width: 93%;
+    left: 7%;
+    right: 0%;
+    height: 100vh;
+    background-color: var(--primary-color);
+}
+
+
+.container .left {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.container .right {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+
+/* user greeting component */
+
+.container .right #usergreeting {
+    display: grid;
+    grid-template-columns: 30% 60%;
+    grid-column-gap: 10%;
+}
+
+.container .right #usergreeting #details {
+    display: grid;
+    /* Set a fixed width and height if required */
+    padding-top: 20%;
+    grid-template-rows: 25% 55%;
+}
+
+.container .right #usergreeting #details #createcoursebtn {
+    display: grid;
+    align-items: end;
+}
+
+.container .right #usergreeting #details #createcoursebtn button {
+    box-sizing: border-box;
+    width: 185px;
+    height: 50px;
+    border: none;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 16px;
+    background: linear-gradient(180deg, #F7711A 0%, #FFA620 100%);
+    border-radius: 10px;
+}
+
+.container .card  {
+    padding :  4%;
+}
+
+
+
+.myclasses .content{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 20px;
+    grid-column-gap: 20px;
+}
+
+.myclasses .content .component{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid 1px #F7711A ;
+    border-radius: 10px ;
+}
+
+
+.myclasses .content .component .count{
+    font-size: 50px;
+    font-weight: 800;
+}
+
+
+.myclasses .content .component .heading{
+    background: linear-gradient(180deg, #F7711A 0%, #FFA620 100%);
+    border-radius: 10px 10px 0px 0px;
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+    height: 40px;
+    font-weight: 600;
+}
+
+

@@ -1,0 +1,30 @@
+.container {
+    display: grid;
+    width: 60%;
+    margin-left: 20%;
+    justify-content: center;
+
+
+}
+
+.header {
+    font-family: 'Heebo';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 18px;
+    letter-spacing: -0.28px;
+    color: #F7711A;
+    border-bottom: 1px solid rgb(210, 207, 207);
+}
+
+img {
+    width: 400px;
+    height: auto;
+}
+
+.text {
+    font-weight: 700;
+    font-size: 15px;
+    justify-items: center;
+}

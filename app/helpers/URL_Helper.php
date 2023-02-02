@@ -23,10 +23,21 @@ function redirectBasedOnUserRole(Request $request): void {
         redirect('tutor/complete-profile');
     }elseif ($request->isProfileNotCompletedStudent()) {
         redirect('student/complete-profile');
-    }elseif ($request->isQualificationNotCompletedTutor()) {
-        redirect('/tutor/complete-qualifications');
+    }elseif ($request->isBankDetialsNotCompletedTutor()) {
+        redirect('tutor/complete-bank-detials');
+    }
+    elseif ($request->isNotApprovedTutor()) {
+        redirect('/tutor/pending');
+    }
+
+    //new function added by sachithra
+    elseif($request->isApprovedTutor()){
+        redirect('tutor/aproved');
     }
 }
+
+
+
 
 
 

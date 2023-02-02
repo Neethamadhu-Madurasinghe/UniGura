@@ -118,11 +118,19 @@ class Request {
      * 4 - Student, but has not validated his email
      * 5 - Tutor, but has not completed his personal details
      * 6 - Student, but has not completed his personal details
-     * 7 - Tutor, but has not completed his education qualification details
+     * 7-  Tutor aproved, but has not completed bank details
+     * 9 - Tutor had to complete bank details
+     * 
+     * 
+     * 
+     * 7- Tutor not approved
+     * 8- Tutor aproved
+     * 9- Tutor hasn't complete bank details
      */
     public function isAdmin(): bool {
         return $_SESSION['user_role'] === 0;
     }
+
 
     public function isAnyTutor(): bool {
         return $_SESSION['user_role'] === 1 || $_SESSION['user_role'] === 3
@@ -158,8 +166,22 @@ class Request {
         return $_SESSION['user_role'] === 6;
     }
 
-    public function isQualificationNotCompletedTutor(): bool {
+    public function isNotApprovedTutor(): bool {
         return $_SESSION['user_role'] === 7;
     }
+
+    // public function isQualificationNotCompletedTutor(): bool {
+    //     return $_SESSION['user_role'] === 9;
+    // }
+
+    public function isBankDetialsNotCompletedTutor(): bool {
+        return $_SESSION['user_role'] === 9;
+    }
+
+
+    public function isApprovedTutor():bool{
+        return $_SESSION['user_role'] === 8;
+    }
+    
 
 }
