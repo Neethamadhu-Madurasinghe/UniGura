@@ -95,7 +95,7 @@
 .toast {
     background-color: var(--lightest-orrange);
     border-radius: 5px;
-    padding: 5px;
+    padding: 4px 8px;
     margin: 5px 10px 5px 0;
     font-weight: bold;
 }
@@ -109,6 +109,7 @@
     align-items: center;
     justify-content: center;
     font-weight: normal;
+    margin-top: 10px;
 
 }
 
@@ -177,7 +178,7 @@
 }
 
 .middle-section {
-    margin-top: 50px;
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -1,9 +1,17 @@
+.nav-bar-container {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+
+}
+
 .student-nav-bar {
     height: 70px;
+    width: 92%;
     display: flex;
     justify-content: space-between;
-    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
-    padding: 0 1% 0 1%;
 }
 
 
@@ -103,7 +111,7 @@
 
 .profile-menu a{
     padding: 5px;
-    margin: 0px;
+    margin: 0;
 }
 
 .profile-menu a:hover{
