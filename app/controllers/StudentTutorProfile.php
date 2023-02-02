@@ -25,11 +25,12 @@ class StudentTutorProfile extends Controller {
         }
 
         $body = $request->getBody();
-        if (!(isset($body['template_id']) &&
-            isset($body['mode']) &&
-            $this->classTemplateModel->doesTemplateExist($body['template_id']))
-        ) {
-//            TODO: Handdle
+        if (!(isset($body['template_id']) && $this->classTemplateModel->doesTemplateExist($body['template_id']))) {
+//            TODO: Handle
+        }
+
+        if (!isset($body['mode'])) {
+            $body['mode'] = "none";
         }
 
         $data = [

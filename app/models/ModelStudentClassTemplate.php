@@ -129,7 +129,7 @@ class ModelStudentClassTemplate {
         return $this->db->resultOne()->day_count;
     }
 
-    public function getClassTemplateByTutorId($id): object {
+    public function getClassTemplateByTutorId($id): array {
         $this->db->query('SELECT * FROM tutoring_class_tutor WHERE tutor_id=:tutor_id');
         $this->db->bind('tutor_id', $id, PDO::PARAM_INT);
 
