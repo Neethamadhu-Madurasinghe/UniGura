@@ -24,6 +24,7 @@ class ModelTutorDashboard {
         }
     }
 
+
     public function getModulesBySubjectId($subjectId): array {
         $this->db->query('SELECT * FROM module WHERE subject_id=:subject_id AND is_hidden=0');
         $this->db->bind('subject_id', $subjectId, PDO::PARAM_INT);
@@ -35,14 +36,17 @@ class ModelTutorDashboard {
         $this->db->query('SELECT * FROM subject where is_hidden=0');
         $subjects = $this->db->resultAllAssoc();
 
+
         if ($onlyWithModules) {
             $subjects = array_filter($subjects, function($subject): bool {
                $this->db->query('SELECT * FROM module WHERE subject_id=:subject_id AND is_hidden=0');
                $this->db->bind('subject_id', $subject['id']);
 
+
                return count($this->db->resultAllAssoc()) > 0;
            });
         }
+
 
 //      array_filter maintains the original array indexes, array_values removes this
         return array_values($subjects);

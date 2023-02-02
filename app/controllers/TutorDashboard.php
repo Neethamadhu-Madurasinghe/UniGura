@@ -45,11 +45,13 @@ class TutorDashboard extends Controller
 
         if (count($subjects) > 0) {
             $modules = $this->dashboardModel->getModulesBySubjectId($subjects[0]['id']);
+
         }
         if ($request->isPost()) {
             $body = $request->getBody();
 
-            //print_r($body);
+            print_r($body);
+
 
             $data = [
                 'id' => $request->getUserId(),
@@ -93,6 +95,7 @@ class TutorDashboard extends Controller
                 'modules' => $modules,
                 'subject_id'=> '',
                 'module_id'=> '',
+
                 'session_rate' => '',
                 'class_type' => '',
                 'mode' => '',
@@ -104,12 +107,10 @@ class TutorDashboard extends Controller
                 ]
 
             ];
-            print_r($data);
         }
 
         $this->view('tutor/createcclasstemplate', $request, $data);
     }
-
 
     public function getModule(Request $request) {
         //      Cors support
@@ -127,5 +128,6 @@ class TutorDashboard extends Controller
                 header('Content-type: application/json');
                 echo json_encode($data);
             }
+
+        }
         
-}
