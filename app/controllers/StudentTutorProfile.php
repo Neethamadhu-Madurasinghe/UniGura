@@ -80,7 +80,15 @@ class StudentTutorProfile extends Controller {
         $data['report_reasons'] = $this->reportReasonModel->getStudentReportReason();
 
 //      Get all the other class templates this tutor
-//        TODO: Implement get other class templates from same tutor
+        $tutorId = $this->classTemplateModel->getTutorIdByClassTemplateId($data['template_id']);
+        $otherClasses = $this->classTemplateModel->getClassTemplateByTutorId($tutorId, $data['template_id']);
+
+//      Format data
+        foreach ($otherClasses as $key => $value) {
+            $otherClasses[$key]['mode_display'] = ucfirst($value['mode']);
+        }
+
+        $data['other_classes'] = $otherClasses;
 
         $this->view('student/tutorProfile', $request, $data);
 

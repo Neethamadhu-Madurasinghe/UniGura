@@ -129,10 +129,31 @@ class ModelStudentClassTemplate {
         return $this->db->resultOne()->day_count;
     }
 
-    public function getClassTemplateByTutorId($id): array {
-        $this->db->query('SELECT * FROM tutoring_class_tutor WHERE tutor_id=:tutor_id');
+    public function getClassTemplateByTutorId($id, $templateId = false): array {
+        $templateString = '';
+        if ($templateId) {
+            $templateString = ' AND id!=:template_id';
+        }
+
+        $this->db->query('SELECT * FROM tutoring_class_tutor WHERE user_id=:tutor_id' . $templateString);
         $this->db->bind('tutor_id', $id, PDO::PARAM_INT);
 
+        if ($templateId) {
+            $this->db->bind('template_id', $templateId, PDO::PARAM_INT);
+        }
+
         return $this->db->resultAllAssoc();
+    }
+
+    public function getTutorIdByClassTemplateId($id): mixed {
+        $this->db->query('SELECT user_id FROM tutoring_class_tutor WHERE id=:id');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        $result =  $this->db->resultOne();
+        if ($result) {
+            return $result->user_id;
+        }else {
+            return false;
+        }
     }
 }

@@ -341,9 +341,14 @@
     user-select: none;
     cursor: pointer;
     transition: color 0.1s;
+    color: black;
 }
 
-.other-class-card p:hover {
+.other-class-link {
+    text-decoration: none;
+}
+
+.other-class-link p:hover {
     color: var(--dark-orange);
 }
 

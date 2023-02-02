@@ -71,50 +71,26 @@ Header::render(
         <h2>Other Classes</h2>
         <div class="other-class-container">
 
-            <div class="other-class-card">
-                <div class="icon-container">
-                    <object data="assests/Paper_Plus.svg" type=""></object>
-                </div>
-                <p>
-                    Physics - Light (Theory)
-                </p>
-            </div>
+            <?php
+                foreach ($data['other_classes'] as $otherClass) {
+                    echo '
+                        <div class="other-class-card">
+                            <div class="icon-container">
+                                <object data="assests/Paper_Plus.svg" type=""></object>
+                            </div>
+                            <a class="other-class-link" href="/Unigura/student/tutor-profile?template_id=' . $otherClass['id']  . '">
+                                <p>'
+                                    . $otherClass['subject_name']
+                                    . ' - '
+                                    . $otherClass['module_name']
+                                    . ' (' . $otherClass['mode_display'] . ')' .
+                                '</p>
+                            </a>
+                        </div>
+                    ';
+                }
 
-            <div class="other-class-card">
-                <div class="icon-container">
-                    <object data="assests/Paper_Plus.svg" type=""></object>
-                </div>
-                <p>
-                    Physics - Light (Theory)
-                </p>
-            </div>
-
-            <div class="other-class-card">
-                <div class="icon-container">
-                    <object data="assests/Paper_Plus.svg" type=""></object>
-                </div>
-                <p>
-                    Physics - Light (Theory)
-                </p>
-            </div>
-
-            <div class="other-class-card">
-                <div class="icon-container">
-                    <object data="assests/Paper_Plus.svg" type=""></object>
-                </div>
-                <p>
-                    Physics - Light (Theory)
-                </p>
-            </div>
-
-            <div class="other-class-card">
-                <div class="icon-container">
-                    <object data="assests/Paper_Plus.svg" type=""></object>
-                </div>
-                <p>
-                    Physics - Light (Theory)
-                </p>
-            </div>
+            ?>
 
         </div>
 
