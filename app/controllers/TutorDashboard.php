@@ -37,19 +37,19 @@ class TutorDashboard extends Controller
 
     public function createClassTemplate(Request $request)
     {
+        $data = ['modules' => []];
+
+        //      Fetch all the visible subjects, modules and maximum class price
+        $subjects = $this->dashboardModel->getVisibleSubjects(true);
+
+
+        if (count($subjects) > 0) {
+            $modules = $this->dashboardModel->getModulesBySubjectId($subjects[0]['id']);
+        }
         if ($request->isPost()) {
             $body = $request->getBody();
 
-            print_r($body);
-
-            $data = ['modules' => []];
-
-//      Fetch all the visible subjects, modules and maximum class price
-        $data['subjects'] = $this->subjectModel->getVisibleSubjects(true);
-        if (count($data['subjects']) > 0) {
-            $data['modules'] = $this->moduleModel->getModulesBySubjectId($data['subjects'][0]['id']);
-        }
-
+            //print_r($body);
 
             $data = [
                 'id' => $request->getUserId(),
@@ -75,13 +75,13 @@ class TutorDashboard extends Controller
 
             if (!$hasErrors) {
 
-                if ($this->dashboardModel->setTutorclassTemplate($data)){
+                if ($this->dashboardModel->setTutorclassTemplate($data)) {
                     redirect('tutor/dashboard');
                 } else {
                     header("HTTP/1.0 500 Internal Server Error");
                     die('Something went wrong');
                 }
-            } 
+            }
 
             $this->view('tutor/dashboard', $request, $data);
 
@@ -89,8 +89,10 @@ class TutorDashboard extends Controller
         } else {
             $data = [
                 'id' => $request->getUserId(),
-                'subject_id' =>'',
-                'module_id' => '',
+                'subjects' => $subjects,
+                'modules' => $modules,
+                'subject_id'=> '',
+                'module_id'=> '',
                 'session_rate' => '',
                 'class_type' => '',
                 'mode' => '',
@@ -102,27 +104,28 @@ class TutorDashboard extends Controller
                 ]
 
             ];
-
+            print_r($data);
         }
 
         $this->view('tutor/createcclasstemplate', $request, $data);
     }
 
 
-    // public function getModule(Request $request) {
-    //     //      Cors support
-    //             cors();
+    public function getModule(Request $request) {
+        //      Cors support
+                cors();
+
+                $body = $request->getBody();
+                $data = [
+                    'modules' => []
+                ];
         
-    //             $body = $request->getBody();
-    //             $data = [
-    //                 'modules' => []
-    //             ];
+                if (isset($body['subject_id'])) {
+                    $data['modules'] = $this->dashboardModel->getModulesBySubjectId($body['subject_id']);
+                }
         
-    //             if (isset($body['subject_id'])) {
-    //                 $data['modules'] = $this->moduleModel->getModulesBySubjectId($body['subject_id']);
-    //             }
+                header('Content-type: application/json');
+                echo json_encode($data);
+            }
         
-    //             header('Content-type: application/json');
-    //             echo json_encode($data);
-    //         }
 }

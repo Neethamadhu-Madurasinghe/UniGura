@@ -59,6 +59,7 @@ $router->registerController('tutor/complete-bank-detials', [TutorPending::class,
 
 $router->registerController('/tutor/dashboard', [TutorDashboard::class, 'dashboard']);
 $router->registerController('/tutor/dashboard/create-class-template', [TutorDashboard::class, 'createClassTemplate']);
+$router->registerController('/tutor/dashboard/api/modules', [TutorDashboard::class, 'getModule']);
 
 $router->registerController('/tutor/notifications', [TutorNotification::class, 'notification']);
 

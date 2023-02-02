@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var $data
  * @var $request
@@ -34,12 +35,24 @@ Header::render(
                         <div class="form-field">
                             <label for="subject-id">Subject
                             </label>
-                            <input type="text" name="subject-id" id="" value="<?php echo $data['subject_id'] ?>">
+                            <select name="subject" class="tutor-filter filter-sm" id="subject">
+                                <?php
+                                foreach ($data['subjects'] as $subject) {
+                                    echo '<option value="' . $subject['id'] . '">' . $subject['name'] . '</option>';
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div class="form-field">
-                            <label for="module-id">Module
+                            <label for="account-name"> Module
                             </label>
-                            <input type="text" name="module_id" id="" value="<?php echo $data['module_id'] ?>">
+                            <select name="module" class="tutor-filter filter-md" id="module">
+                                <?php
+                                foreach ($data['modules'] as $module) {
+                                    echo '<option value="' . $module['id'] . '">' . $module['name'] . '</option>';
+                                }
+                                ?>
+                            </select>
                         </div>
                     </div>
                     <div class="form-row">
@@ -69,15 +82,40 @@ Header::render(
                             <input type="text" name="duration" id="" value="<?php echo $data['duration'] ?>">
                         </div>
                     </div>
-                <div id="submit-btn-container">
-                    <input type="submit" value="create" class="btn btn-search">
+                    <div id="submit-btn-container">
+                        <input type="submit" value="create" class="btn btn-search">
+                    </div>
                 </div>
-            </div>
 
 
 
 
         </form>
+        <script>
+            const subjectUI = document.getElementById('subject');
+            let moduleUI = document.getElementById('module');
+
+            subjectUI.addEventListener('change', async (e) => {
+                const respond = await fetch(`http://localhost/unigura/api/modules?subject_id=${subjectUI.value}`)
+                if (respond.status == 200) {
+                    const result = await respond.json();
+                    if (result.modules) {
+                        const optionsUI = moduleUI.getElementsByTagName("option");
+                        while (optionsUI.length > 0) {
+                            moduleUI.removeChild(optionsUI[0]);
+                        }
+                        result.modules.forEach(module => {
+                            const optionUI = document.createElement("option");
+                            optionUI.value = module.id; // set the value of the option
+                            optionUI.text = module.name;
+                            moduleUI.add(optionUI);
+                        });
+                        filterValues.module = moduleUI.value;
+                    }
+                }
+
+            });
+        </script>
 
     </div>
 </div>
@@ -85,7 +123,5 @@ Header::render(
 
 
 <?php Footer::render(
-    [
-
-    ]
+    []
 ); ?>
