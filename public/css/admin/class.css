@@ -1,10 +1,3 @@
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-} */
-
 .class-page {
     display: grid;
     grid-template-columns: 80% 20%;
@@ -122,7 +115,7 @@
     margin-right: 5px;
 }
 
-.name{
+.name {
     text-align: left;
     width: 90%;
     background: #FC941D;
@@ -140,7 +133,7 @@
     font-weight: 500;
 }
 
-.class-details{
+.class-details {
     text-align: left;
     width: 90%;
     margin-top: 5px;
@@ -270,7 +263,7 @@ input[type="range"]::-moz-range-thumb {
 
 
 .filter-selection {
-    height:97vh;
+    height: 97vh;
     overflow-y: scroll;
 }
 
@@ -278,31 +271,31 @@ input[type="range"]::-moz-range-thumb {
     display: none;
 }
 
-.subject-filter{
+.subject-filter {
     border: 2px solid #FC941D;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 40px;
 }
 
-.subject-filter h1{
+.subject-filter h1 {
     font-size: 23px;
     margin-bottom: 10px;
 }
 
-.mode-filter{
+.mode-filter {
     border: 2px solid #FC941D;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 20px;
 }
 
-.mode-filter h1{
+.mode-filter h1 {
     font-size: 23px;
     margin-bottom: 10px;
 }
 
-.fees-filter{
+.fees-filter {
     border: 2px solid #FC941D;
     border-radius: 5px;
     padding: 10px;
@@ -310,32 +303,32 @@ input[type="range"]::-moz-range-thumb {
     margin-bottom: 20px;
 }
 
-.fees-filter h1{
+.fees-filter h1 {
     font-size: 23px;
     margin-bottom: 10px;
 }
 
-.subject-select > div{
+.subject-select>div {
     margin-bottom: 5px;
 }
 
-.mode-select > div{
+.mode-select>div {
     margin-bottom: 5px;
 }
 
-.class-rating{
+.class-rating {
     border: 2px solid #FC941D;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 20px;
 }
 
-.class-rating h1{
+.class-rating h1 {
     font-size: 23px;
     margin-bottom: 10px;
 }
 
-.class-rating i{
+.class-rating i {
     color: #FC941D;
     font-size: 20px;
     margin-bottom: 5px;
@@ -353,7 +346,7 @@ input[type="range"]::-moz-range-thumb {
     align-items: center;
 }
 
-.filter-functions > div{
+.filter-functions>div {
     width: 100%;
     align-items: center;
     border: 2px solid #FC941D;
@@ -372,10 +365,21 @@ input[type="range"]::-moz-range-thumb {
     transition: 0.3s;
 }
 
-.filter-functions i{
+.filter-functions i {
     margin-right: 8px;
 }
 
 
 
 
+input[type="checkbox"] {
+    width: 25px;
+    height: 25px;
+    background-color: rgb(228, 37, 37);
+    border-radius: 5px;
+    border: 20px solid rgb(28, 14, 226);
+}
+
+input[type="checkbox"]:checked {
+    background-color: #4CAF50;
+}

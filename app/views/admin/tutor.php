@@ -34,7 +34,7 @@
 
                     <div class="card-blur-effect">
                         <div class=' view-profile'>
-                        <button class="view-profile-btn">View Profile</button>
+                        <a href="viewTutorProfile"><button class="view-profile-btn">View Profile</button></a>
                     </div>
                 </div>
 
@@ -230,14 +230,9 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 
     </div>
-
-
-
     </div>
 
 </section>

@@ -148,55 +148,39 @@ for (let i = 0; i < card.length; i++) {
     });
 }
 
-// ------------------------- TUTOR VIEW PROFILE BUTTON  ---------------------------------------
-
-const view_profile_btn = document.querySelectorAll('.view-profile-btn');
-
-view_profile_btn.forEach((viewProfile) => {
-    viewProfile.addEventListener('click', function () {
-        console.log('clicked');
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET", "viewTutorProfile", true);
-
-        xhr.onload = function () {
-            if (this.status === 200) {
-                home.innerHTML = this.responseText;
-            }
 
 
-            // --------------------MENU SELECTION----------------------------------------
-
-            const finished_classes = document.querySelectorAll('.finished-classes');
-            const active_classes = document.querySelectorAll('.active-classes');
-            const tutor_info = document.querySelectorAll('.tutor-info');
 
 
-            const info_btn = document.querySelectorAll('.info-btn');
-            const active_class_btn = document.querySelectorAll('.active-class-btn');
-            const finished_class_btn = document.querySelectorAll('.finished-class-btn');
+// --------------------MENU SELECTION----------------------------------------
+
+const finished_classes = document.querySelectorAll('.finished-classes');
+const active_classes = document.querySelectorAll('.active-classes');
+const tutor_info = document.querySelectorAll('.tutor-info');
 
 
-            tutor_info[0].style.display = 'flex';
+const info_btn = document.querySelectorAll('.info-btn');
+const active_class_btn = document.querySelectorAll('.active-class-btn');
+const finished_class_btn = document.querySelectorAll('.finished-class-btn');
 
-            info_btn[0].addEventListener('click', function () {
-                tutor_info[0].style.display = 'flex';
-                active_classes[0].style.display = 'none';
-                finished_classes[0].style.display = 'none';
-            });
 
-            active_class_btn[0].addEventListener('click', function () {
-                tutor_info[0].style.display = 'none';
-                active_classes[0].style.display = 'grid';
-                finished_classes[0].style.display = 'none';
-            });
+tutor_info[0].style.display = 'flex';
 
-            finished_class_btn[0].addEventListener('click', function () {
-                tutor_info[0].style.display = 'none';
-                active_classes[0].style.display = 'none';
-                finished_classes[0].style.display = 'grid';
-            });
-        }
+info_btn[0].addEventListener('click', function () {
+    tutor_info[0].style.display = 'flex';
+    active_classes[0].style.display = 'none';
+    finished_classes[0].style.display = 'none';
+});
 
-        xhr.send();
-    })
-})
+active_class_btn[0].addEventListener('click', function () {
+    tutor_info[0].style.display = 'none';
+    active_classes[0].style.display = 'grid';
+    finished_classes[0].style.display = 'none';
+});
+
+finished_class_btn[0].addEventListener('click', function () {
+    tutor_info[0].style.display = 'none';
+    active_classes[0].style.display = 'none';
+    finished_classes[0].style.display = 'grid';
+});
+

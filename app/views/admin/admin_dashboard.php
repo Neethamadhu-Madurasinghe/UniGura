@@ -1,478 +1,411 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/401cc96be7.js" crossorigin="anonymous"></script>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/dashboard.css">
-    <script defer src="<?php echo URLROOT ?>/public/js/admin/dashboard.js"></script>
-    <title>Responsive side bar</title>
-</head>
-
-<body>
-
-    <nav class="sidebar">
-        <header>
-            <div class="image-text">
-                <span class="image">
-                    <img src="images/without-logo.png" alt="" id="image">
-                </span>
-
-                <!-- <div class="text logo-text">
-                    <span class="name">Codinglab</span>
-                    <span class="profession">Web developer</span>
-                </div> -->
-            </div>
-
-            <i class='bx bx-chevron-right toggle'></i>
-        </header>
-
-        <div class="menu-bar">
-            <div class="menu">
-
-                <!-- <li class="search-box">
-                    <i class='bx bx-search icon'></i>
-                    <input type="text" placeholder="Search...">
-                </li> -->
-
-                <ul class="menu-links">
-                    <li class="nav-link active" id="dashboard">
-                        <p></p>
-                        <p></p>
-                        <a href="#">
-                            <i class='fa fa-home-alt icon'></i>
-                            <span class="text nav-text">Dashboard</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link" id="student">
-                        <p></p>
-                        <p></p>
-                        <a href="#">
-                            <i class="fa fa-graduation-cap icon"></i>
-                            <span class="text nav-text">Student</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link" id="tutor">
-                        <p></p>
-                        <p></p>
-                        <a href="#">
-                            <i class="fa fa-person-chalkboard icon"></i>
-                            <span class="text nav-text">Tutor</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link" id="class">
-                        <p></p>
-                        <p></p>
-                        <a href="#">
-                            <i class="fa fa-school icon"></i>
-                            <span class="text nav-text">Class</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link subjectLink" id="subject">
-                        <p></p>
-                        <p></p>
-                        <a href="#">
-                            <i class="fa fa-light fa-book icon"></i>
-                            <span class="text nav-text">Subject</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link" id="chat">
-                        <p></p>
-                        <p></p>
-                        <a href="#">
-                            <i class="fa fa-envelope icon"></i>
-                            <span class="text nav-text">Chat</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link" id="request-complaint">
-                        <p></p>
-                        <p></p>
-                        <a href="#">
-                            <i class="fa fa-headset icon"></i>
-                            <span class="text nav-text">Request & Complaint</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link" id="payment">
-                        <p></p>
-                        <p></p>
-                        <a href="#">
-                            <i class="fa fa-money-bill-wave icon"></i>
-                            <span class="text nav-text">Payment</span>
-                        </a>
-                    </li>
-                    <li class="nav-link" id="notification">
-                        <p></p>
-                        <p></p>
-                        <a href="#">
-                            <i class="fa fa-bell icon"></i>
-                            <span class="text nav-text">Notification</span>&nbsp;&nbsp;
-                            <span class="num-of-notifications">03</span>
-                        </a>
-                    </li>
-                    <li class="nav-link" id="profile">
-                        <p></p>
-                        <p></p>
-                        <a href="profileView">
-                            <i class="fa fa-user icon"></i>
-                            <span class="text nav-text">Profile</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link" id="logout">
-                        <p></p>
-                        <p></p>
-                        <a href="#">
-                            <i class='bx bx-log-out icon'></i>
-                            <span class="text nav-text">logout</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-
-            <div class="bottom-content">
-                <!-- <li class="logout">
-                    <a href="#">
-                        <i class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">Logout</span>
-                    </a>
-                </li> -->
-
-                <!-- <li class="mode">
-                    <div class="sun-moon">
-                        <i class='bx bx-moon icon moon'></i>
-                        <i class='bx bx-sun icon sun'></i>
-                    </div>
-                    <span class="mode-text text">Dark mode</span>
-
-                    <div class="toggle-switch">
-                        <span class="switch"></span>
-                    </div>
-                </li> -->
-
-            </div>
-        </div>
-
-    </nav>
-
-    <section class="home" id="home">
-        <p></p>
-        <p></p>
-        <p></p>
-        <p></p>
+<?php require_once APPROOT . '/views/admin/side_bar.php'; ?>
+<script defer src="<?php echo URLROOT ?>/public/js/admin/dashboard.js"></script>
+<link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/dashboard.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
-        <div class="parent">
-            <div class="div1">
-                <!--=========================== TODO============================== -->
-            </div>
-            <div class="div2">
-                <div class="menu_btn">
 
-                    <a href="#">
+<section class="home" id="home">
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+
+    <div class="parent">
+        <div class="left_sidebar">
+            <div class="summary-tutor-student-class-subject">
+                <div class="tutor-student-class-subject">
+                    <div class="tutor-subject-module">
                         <div class="tutors">
-                            <div class="details">
-                                <h2>TUTORS</h2>
-                                <h2>- 00 -</h2>
-                            </div>
-                            <div class="icon">
-                                <i class="fa-solid fa-person-chalkboard"></i>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="#">
-                        <div class="students">
-                            <div class="details">
-                                <h2>STUDENTS</h2>
-                                <h2>- 00 -</h2>
-                            </div>
-                            <div class="icon">
-                                <i class="fa fa-light fa-graduation-cap"></i>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="#">
-                        <div class="classes">
-                            <div class="details">
-                                <h2>CLASSES</h2>
-                                <h2>- 00 -</h2>
-                            </div>
-                            <div class="icon">
-                                <i class="fa fa-school"></i>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="../admin-subject/newSubject.php">
-                        <div class="subjects">
-                            <div class="details">
-                                <h2>SUBJECTS</h2>
-                                <h2>- 00 -</h2>
-                            </div>
-                            <div class="icon">
-                                <i class="fa fa-light fa-book"></i>
-                            </div>
-                        </div>
-                    </a>
-
-                </div>
-
-
-                <div class="class-details-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th id="tutor-thead">Tutor</th>
-                                <th>Student</th>
-                                <th>Status</th>
-                                <th>Subject</th>
-                                <th id="classFees-thead">Class Fees</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr>
-                                <td>Viraj Sandakelum</td>
-                                <td>Viraj Sandakelum</td>
-                                <td>
-                                    <!-- <div class="complete-status">
-                                        <img src="./images/green-dot.png" alt="">
-                                        <h6>Completed</h6>
-                                    </div> -->
-
-                                    <div class="pending-status">
-                                        <img src="./images/blue-dot.png" alt="">
-                                        <h6>Pending</h6>
+                            <h2>Tutors</h2>
+                            <div class="image-info">
+                                <div class="tutor-image">
+                                    <img src="<?php echo URLROOT ?>/public/img/admin/tutor.png" alt="">
+                                </div>
+                                <div class="tutors-info">
+                                    <div class="total">
+                                        <h3>Total :</h3>
+                                        <span>20</span>
                                     </div>
-
-                                    <!-- <div class="today-status">
-                                        <img src="./images/red-dot.png" alt="">
-                                        <h6>Today</h6>
-                                    </div> -->
-
-                                </td>
-                                <td>Combine Mathtematics</td>
-                                <td>RS.20000</td>
-                            </tr>
-
-
-                            <tr>
-                                <td>Viraj Sandakelum</td>
-                                <td>Viraj Sandakelum</td>
-                                <td>
-                                    <!-- <div class="complete-status">
-                                        <img src="./images/green-dot.png" alt="">
-                                        <h6>Completed</h6>
-                                    </div> -->
-
-                                    <div class="pending-status">
-                                        <img src="./images/blue-dot.png" alt="">
-                                        <h6>Pending</h6>
+                                    <div class="hide">
+                                        <h3>Hide :</h3>
+                                        <span>20</span>
                                     </div>
-
-                                    <!-- <div class="today-status">
-                                        <img src="./images/red-dot.png" alt="">
-                                        <h6>Today</h6>
-                                    </div> -->
-
-                                </td>
-                                <td>Combine Mathtematics</td>
-                                <td>RS.20000</td>
-                            </tr>
-
-
-
-                            <tr>
-                                <td>Viraj Sandakelum</td>
-                                <td>Viraj Sandakelum</td>
-                                <td>
-                                    <!-- <div class="complete-status">
-                                        <img src="./images/green-dot.png" alt="">
-                                        <h6>Completed</h6>
-                                    </div> -->
-
-                                    <div class="pending-status">
-                                        <img src="./images/blue-dot.png" alt="">
-                                        <h6>Pending</h6>
+                                    <div class="block">
+                                        <h3>Block :</h3>
+                                        <span>20</span>
                                     </div>
-
-                                    <!-- <div class="today-status">
-                                        <img src="./images/red-dot.png" alt="">
-                                        <h6>Today</h6>
-                                    </div> -->
-
-                                </td>
-                                <td>Combine Mathtematics</td>
-                                <td>RS.20000</td>
-                            </tr>   
-
-
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-
-            <div class="div3">
-                <div class="right_sidebar">
-
-                    <div class="new_approval">
-                        <div class="title">
-                            <h2>New Approval</h2>
-                            <a href="#">View All</a>
+                                    <div class="online">
+                                        <h3>Online :</h3>
+                                        <span>20</span>
+                                    </div>
+                                    <div class="physical">
+                                        <h3>Physical :</h3>
+                                        <span>20</span>
+                                    </div>
+                                    <div class="both">
+                                        <h3>Both :</h3>
+                                        <span>20</span>
+                                    </div>
+                                    <div class="1st-year">
+                                        <h3>1st Year :</h3>
+                                        <span>20</span>
+                                    </div>
+                                    <div class="2nd-year">
+                                        <h3>2nd Year :</h3>
+                                        <span>20</span>
+                                    </div>
+                                    <div class="3rd-year">
+                                        <h3>3rd Year :</h3>
+                                        <span>20</span>
+                                    </div>
+                                    <div class="4th-year">
+                                        <h3>4th Year :</h3>
+                                        <span>20</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="requested_list">
-                            <!-- <div class="no_request">
-                                <img src="./emptyTutorRequest.png" alt="">
-                                <span>Looks like you haven't tutor request yet</span>
-                            </div> -->
-
-
-                            <div class="available-request">
-                                <div class="profile-img">
-                                    <img src="./images/profile.png" alt="">
+                        <div class="subject-module">
+                            <h2>Subjects & Modules</h2>
+                            <div class="image-info">
+                                <div class="subject-module-image">
+                                    <img src="<?php echo URLROOT ?>/public/img/admin/subject.png" alt="">
                                 </div>
-                                <div class="request-details">
-                                    <h3>Viraj Sandakelum</h3>
-                                    <span>Complaint about the tutor</span>
-                                </div>
-                            </div>
-
-
-                            <div class="available-request">
-                                <div class="profile-img">
-                                    <img src="./images/profile.png" alt="">
-                                </div>
-                                <div class="request-details">
-                                    <h3>Viraj Sandakelum</h3>
-                                    <span>Complaint about the tutor</span>
-                                </div>
-                            </div>
-
-
-
-                            <div class="available-request">
-                                <div class="profile-img">
-                                    <img src="./images/profile.png" alt="">
-                                </div>
-                                <div class="request-details">
-                                    <h3>Viraj Sandakelum</h3>
-                                    <span>Complaint about the tutor</span>
-                                </div>
-                            </div>
-
-
-
-                            <div class="available-request">
-                                <div class="profile-img">
-                                    <img src="./images/profile.png" alt="">
-                                </div>
-                                <div class="request-details">
-                                    <h3>Viraj Sandakelum</h3>
-                                    <span>Complaint about the tutor</span>
-                                </div>
-                            </div>
-
-
-                            <div class="available-request">
-                                <div class="profile-img">
-                                    <img src="./images/profile.png" alt="">
-                                </div>
-                                <div class="request-details">
-                                    <h3>Viraj Sandakelum</h3>
-                                    <span>Complaint about the tutor</span>
+                                <div class="subject-module-info">
+                                    <div class="Subject">
+                                        <h3>Subject :</h3>
+                                        <span>20</span>
+                                    </div>
+                                    <div class="module">
+                                        <h3>Modules :</h3>
+                                        <span>20</span>
+                                    </div>
+                                    <div class="hide-subject">
+                                        <h3>Hide Subject :</h3>
+                                        <span>20</span>
+                                    </div>
+                                    <div class="show-subject">
+                                        <h3>Show Subject :</h3>
+                                        <span>20</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="complaints">
-                        <div class="title">
-                            <h2>Complaints</h2>
-                            <a href="#">View All</a>
+                    <div class="class-student">
+                        <div class="students">
+                            <h2>Students</h2>
+                            <div class="image-info">
+                                <div class="student-image">
+                                    <img src="<?php echo URLROOT ?>/public/img/admin/student.png" alt="">
+                                </div>
+                                <div class="students-info">
+                                    <div class="total">
+                                        <h3>Total :</h3>
+                                        <span>20</span>
+                                    </div>
+                                    <div class="block">
+                                        <h3>Block :</h3>
+                                        <span>20</span>
+                                    </div>
+                                    <div class="online">
+                                        <h3>Online :</h3>
+                                        <span>20</span>
+                                    </div>
+                                    <div class="physical">
+                                        <h3>Physical :</h3>
+                                        <span>20</span>
+                                    </div>
+                                    <div class="both">
+                                        <h3>Both :</h3>
+                                        <span>20</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="complaints_list">
-                            <!-- <div class="no_complaint">
+                        <div class="classes">
+                            <h2>Classes</h2>
+                            <div class="image-info">
+                                <div class="class-image">
+                                    <img src="<?php echo URLROOT ?>/public/img/admin/class.png" alt="">
+                                </div>
+                                <div class="classes-info">
+                                    <div class="total">
+                                        <h3>Total :</h3>
+                                        <span>20</span>
+                                    </div>
+                                    <div class="online">
+                                        <h3>Online :</h3>
+                                        <span>20</span>
+                                    </div>
+                                    <div class="physical">
+                                        <h3>Physical :</h3>
+                                        <span>20</span>
+                                    </div>
+                                    <div class="both">
+                                        <h3>Both :</h3>
+                                        <span>20</span>
+                                    </div>
+                                    <div class="active-class">
+                                        <h3>Active :</h3>
+                                        <span>20</span>
+                                    </div>
+                                    <div class="completed-class">
+                                        <h3>Completed :</h3>
+                                        <span>20</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="approval-complaint">
+                <div class="new_approval">
+                    <div class="title">
+                        <h2>New Approval</h2>
+                        <a href="#">View All</a>
+                    </div>
+                    <div class="requested_list">
+                        <!-- <div class="no_request">
+                                                    <img src="./emptyTutorRequest.png" alt="">
+                                                    <span>Looks like you haven't tutor request yet</span>
+                                                </div> -->
+
+
+                        <div class="available-request">
+                            <div class="profile-img">
+                                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                            </div>
+                            <div class="request-details">
+                                <h3>Viraj Sandakelum</h3>
+                                <span>Complaint about the tutor</span>
+                            </div>
+                        </div>
+
+
+                        <div class="available-request">
+                            <div class="profile-img">
+                                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                            </div>
+                            <div class="request-details">
+                                <h3>Viraj Sandakelum</h3>
+                                <span>Complaint about the tutor</span>
+                            </div>
+                        </div>
+
+
+
+                        <div class="available-request">
+                            <div class="profile-img">
+                                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                            </div>
+                            <div class="request-details">
+                                <h3>Viraj Sandakelum</h3>
+                                <span>Complaint about the tutor</span>
+                            </div>
+                        </div>
+
+
+
+                        <div class="available-request">
+                            <div class="profile-img">
+                                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                            </div>
+                            <div class="request-details">
+                                <h3>Viraj Sandakelum</h3>
+                                <span>Complaint about the tutor</span>
+                            </div>
+                        </div>
+
+
+                        <div class="available-request">
+                            <div class="profile-img">
+                                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                            </div>
+                            <div class="request-details">
+                                <h3>Viraj Sandakelum</h3>
+                                <span>Complaint about the tutor</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="complaints">
+                    <div class="title">
+                        <h2>Complaints</h2>
+                        <a href="#">View All</a>
+                    </div>
+                    <div class="complaints_list">
+                        <!-- <div class="no_complaint">
                                 <img src="./emptyCompliants.png" alt="">
                                 <span>Looks like you haven't complaints yet</span>
                             </div> -->
 
-                            <div class="available-complaints">
-                                <div class="profile-img">
-                                    <img src="./images/profile.png" alt="">
-                                </div>
-                                <div class="complaint-details">
-                                    <h3>Viraj Sandakelum</h3>
-                                    <span>Complaint about the tutor</span>
-                                </div>
+                        <div class="available-complaints">
+                            <div class="profile-img">
+                                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
                             </div>
-
-
-                            <div class="available-complaints">
-                                <div class="profile-img">
-                                    <img src="./images/profile.png" alt="">
-                                </div>
-                                <div class="complaint-details">
-                                    <h3>Viraj Sandakelum</h3>
-                                    <span>Complaint about the tutor</span>
-                                </div>
+                            <div class="complaint-details">
+                                <h3>Viraj Sandakelum</h3>
+                                <span>Complaint about the tutor</span>
                             </div>
+                        </div>
 
 
-                            <div class="available-complaints">
-                                <div class="profile-img">
-                                    <img src="./images/profile.png" alt="">
-                                </div>
-                                <div class="complaint-details">
-                                    <h3>Viraj Sandakelum</h3>
-                                    <span>Complaint about the tutor</span>
-                                </div>
+                        <div class="available-complaints">
+                            <div class="profile-img">
+                                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
                             </div>
-
-
-
-                            <div class="available-complaints">
-                                <div class="profile-img">
-                                    <img src="./images/profile.png" alt="">
-                                </div>
-                                <div class="complaint-details">
-                                    <h3>Viraj Sandakelum</h3>
-                                    <span>Complaint about the tutor</span>
-                                </div>
+                            <div class="complaint-details">
+                                <h3>Viraj Sandakelum</h3>
+                                <span>Complaint about the tutor</span>
                             </div>
+                        </div>
 
-                            <div class="available-complaints">
-                                <div class="profile-img">
-                                    <img src="./images/profile.png" alt="">
-                                </div>
-                                <div class="complaint-details">
-                                    <h3>Viraj Sandakelum</h3>
-                                    <span>Complaint about the tutor</span>
-                                </div>
+
+                        <div class="available-complaints">
+                            <div class="profile-img">
+                                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                            </div>
+                            <div class="complaint-details">
+                                <h3>Viraj Sandakelum</h3>
+                                <span>Complaint about the tutor</span>
+                            </div>
+                        </div>
+
+
+
+                        <div class="available-complaints">
+                            <div class="profile-img">
+                                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                            </div>
+                            <div class="complaint-details">
+                                <h3>Viraj Sandakelum</h3>
+                                <span>Complaint about the tutor</span>
+                            </div>
+                        </div>
+
+                        <div class="available-complaints">
+                            <div class="profile-img">
+                                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                            </div>
+                            <div class="complaint-details">
+                                <h3>Viraj Sandakelum</h3>
+                                <span>Complaint about the tutor</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    
 
-    <script>
-        console.log("aaaaaaaaaaaaaaa");
-    </script>
+
+        </div>
+        <div class="right_sidebar">
+
+            <div class="payment-summary">
+                <div class="total-transaction">
+                    <div class="info">
+                        <img src="<?php echo URLROOT ?>/public/img/admin/transaction.png" alt="">
+                        <h2>Total Transaction</h2>
+                    </div>
+                    <span>Rs. 1000</span>
+                </div>
+                <div class="total-student-payment">
+                    <div class="info">
+                        <img src="<?php echo URLROOT ?>/public/img/admin/payment.png" alt="">
+                        <h2>Total Student Payment</h2>
+                    </div>
+                    <span>Rs. 1000</span>
+                </div>
+                <div class="total-tutor-withdrawal">
+                    <div class="info">
+                        <img src="<?php echo URLROOT ?>/public/img/admin/withdrawal.png" alt="">
+                        <h2>Total Tutor Withdrawal</h2>
+                    </div>
+                    <span>Rs. 1000</span>
+                </div>
+                <div class="profit">
+                    <div class="info">
+                        <img src="<?php echo URLROOT ?>/public/img/admin/profit.png" alt="">
+                        <h2>Profit</h2>
+                    </div>
+                    <span>Rs. 1000</span>
+                </div>
+            </div>
+
+
+            <div style="width: 300px; display: flex; justify-content: center; align-items: center;" class="myChart">
+                <canvas id="myChart"></canvas>
+            </div>
+
+            <div style="width: 270px; text-align: center;" class="myChart2">
+                <canvas id="myChart2"></canvas>
+            </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+            <script>
+                const ctx = document.getElementById('myChart');
+
+                const myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Tutor', 'Student'],
+                        datasets: [{
+                            label: '# of Votes',
+                            data: [12, 19],
+                            backgroundColor: [
+                                'rgba(255, 99, 132)',
+                                'rgba(54, 162, 235)',
+                            ],
+                            borderWidth: 1,
+                            hoverOffset: 4
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'x',
+                    }
+
+                });
+            </script>
+
+
+            <script>
+                const ctx2 = document.getElementById('myChart2');
+
+                const myChart2 = new Chart(ctx2, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Active Classes', 'Completed Classes'],
+                        datasets: [{
+                            label: '# of Votes',
+                            data: [12, 19],
+                            backgroundColor: [
+                                'rgba(255, 99, 132)',
+                                'rgba(54, 162, 235)',
+                            ],
+                            borderWidth: 1,
+                            hoverOffset: 4
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'x',
+                    }
+
+                });
+            </script>
+
+        </div>
+    </div>
+
+
+
+</section>
 
 </body>
 

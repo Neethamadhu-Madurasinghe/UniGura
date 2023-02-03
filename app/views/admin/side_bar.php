@@ -41,7 +41,7 @@
                     <li class="nav-link active" id="dashboard">
                         <p></p>
                         <p></p>
-                        <a href="#">
+                        <a href="dashboard">
                             <i class='fa fa-home-alt icon'></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>

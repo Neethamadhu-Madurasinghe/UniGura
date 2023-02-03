@@ -1,4 +1,3 @@
-console.log("dashboard.js loaded");
 
 const body = document.querySelector('body'),
     sidebar = body.querySelector('nav'),
@@ -20,77 +19,17 @@ toggle.addEventListener("click", () => {
 
 
 
-
 const dashboard = document.getElementById("dashboard");
-const student = document.getElementById("student");
-const tutor = document.getElementById("tutor");
-const class_ = document.getElementById("class");
-const subject = document.getElementById('subject');
-const payment = document.getElementById('payment');
-const chat = document.getElementById('chat');
-const notification = document.getElementById('notification');
-const request_complaint = document.getElementById('request-complaint');
 const nav_link = document.querySelectorAll(".nav-link");
-const view_student_profile = document.getElementById('view-student-profile');
-const profile = document.getElementById('profile');
 
 
-// view_student_profile.addEventListener("click", () => {
-//     nav_link.forEach((link) => {
-//         link.classList.remove('active');
-//     })
-
-//     student.classList.add('active');
-//     loadStudentProfile();
-// })
-
-// function loadStudentProfile () {
-//     const home = document.getElementById("home");
-
-//     const xhr = new XMLHttpRequest();
-
-//     xhr.open("GET", "../student-profile/index.html", true);
-
-//     xhr.onload = function () {
-//         if (this.status === 200) {
-//             home.innerHTML = this.responseText;
-//         }
-
-//         // load the student js file
-//         const script = document.createElement('script');
-//         script.src = "../student-profile/main.js";
-//         document.head.prepend(script);
-//     }
-
-//     xhr.send();
-// }
-
-
-
-
-request_complaint.addEventListener("click", () => {
-    nav_link.forEach((link) => {
-        link.classList.remove('active');
-    })
-
-    request_complaint.classList.add('active');
-
-    loadRequestComplaint();
+nav_link.forEach((link) => {
+    link.classList.remove('active');
 })
 
+dashboard.classList.add('active');
 
 
-
-// // load page using ajax
-
-// dashboard.addEventListener("click", () => {
-//     nav_link.forEach((link) => {
-//         link.classList.remove('active');
-//     })
-
-//     dashboard.classList.add('active');
-//     loadDashboard();
-// })
 
 // function loadDashboard () {
 

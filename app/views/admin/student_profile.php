@@ -1,25 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php require_once APPROOT . '/views/admin/side_bar.php'; ?>
+<link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/admin/studentProfile.css">
+<script defer src="<?php echo URLROOT ?>/public/js/admin/student.js"></script>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <script defer src="./main.js"></script>
-    <script src="https://kit.fontawesome.com/401cc96be7.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/admin/studentProfile.css">
-    <title>Document</title>
-</head>
 
-<body>
+
+<section class="home" id="home">
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+
     <div class="top-details-box">
         <div class="student-details">
             <div class="profile-picture">
                 <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
             </div>
             <div class="name-actions">
-                <div class="name">  
+                <div class="name">
                     <h1>Viraj Sandakelum<span>(Student)</span></h1><br>
                 </div>
                 <div class="actions">
@@ -139,7 +136,7 @@
 
         <div class="one-class">
             <div class="tutor-profile">
-                <img src="./profile.png" alt="">
+                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
             </div>
             <div class="class-details">
                 <div class="tutor-name">
@@ -163,7 +160,7 @@
 
         <div class="one-class">
             <div class="tutor-profile">
-                <img src="./profile.png" alt="">
+                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
             </div>
             <div class="class-details">
                 <div class="tutor-name">
@@ -187,33 +184,7 @@
 
         <div class="one-class">
             <div class="tutor-profile">
-                <img src="./profile.png" alt="">
-            </div>
-            <div class="class-details">
-                <div class="tutor-name">
-                    <h1>Tutor: </h1>
-                    <h2>Viraj Sandakelum</h2>
-                </div>
-                <div class="subject">
-                    <h1>Subject: </h1>
-                    <h2>Maths</h2>
-                </div>
-                <div class="lessson">
-                    <h1>Lesson: </h1>
-                    <h2>Lesson 1</h2>
-                </div>
-                <div class="day">
-                    <h1>Day: </h1>
-                    <h2>Monday</h2>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="one-class">
-            <div class="tutor-profile">
-                <img src="./profile.png" alt="">
+                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
             </div>
             <div class="class-details">
                 <div class="tutor-name">
@@ -239,32 +210,7 @@
 
         <div class="one-class">
             <div class="tutor-profile">
-                <img src="./profile.png" alt="">
-            </div>
-            <div class="class-details">
-                <div class="tutor-name">
-                    <h1>Tutor: </h1>
-                    <h2>Viraj Sandakelum</h2>
-                </div>
-                <div class="subject">
-                    <h1>Subject: </h1>
-                    <h2>Maths</h2>
-                </div>
-                <div class="lessson">
-                    <h1>Lesson: </h1>
-                    <h2>Lesson 1</h2>
-                </div>
-                <div class="day">
-                    <h1>Day: </h1>
-                    <h2>Monday</h2>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="one-class">
-            <div class="tutor-profile">
-                <img src="./profile.png" alt="">
+                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
             </div>
             <div class="class-details">
                 <div class="tutor-name">
@@ -290,7 +236,32 @@
 
         <div class="one-class">
             <div class="tutor-profile">
-                <img src="./profile.png" alt="">
+                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
+            </div>
+            <div class="class-details">
+                <div class="tutor-name">
+                    <h1>Tutor: </h1>
+                    <h2>Viraj Sandakelum</h2>
+                </div>
+                <div class="subject">
+                    <h1>Subject: </h1>
+                    <h2>Maths</h2>
+                </div>
+                <div class="lessson">
+                    <h1>Lesson: </h1>
+                    <h2>Lesson 1</h2>
+                </div>
+                <div class="day">
+                    <h1>Day: </h1>
+                    <h2>Monday</h2>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="one-class">
+            <div class="tutor-profile">
+                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
             </div>
             <div class="class-details">
                 <div class="tutor-name">
@@ -316,7 +287,7 @@
 
         <div class="one-class">
             <div class="tutor-profile">
-                <img src="./profile.png" alt="">
+                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
             </div>
             <div class="class-details">
                 <div class="tutor-name">
@@ -342,32 +313,7 @@
 
         <div class="one-class">
             <div class="tutor-profile">
-                <img src="./profile.png" alt="">
-            </div>
-            <div class="class-details">
-                <div class="tutor-name">
-                    <h1>Tutor: </h1>
-                    <h2>Viraj Sandakelum</h2>
-                </div>
-                <div class="subject">
-                    <h1>Subject: </h1>
-                    <h2>Maths</h2>
-                </div>
-                <div class="lessson">
-                    <h1>Lesson: </h1>
-                    <h2>Lesson 1</h2>
-                </div>
-                <div class="day">
-                    <h1>Day: </h1>
-                    <h2>Monday</h2>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="one-class">
-            <div class="tutor-profile">
-                <img src="./profile.png" alt="">
+                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
             </div>
             <div class="class-details">
                 <div class="tutor-name">
@@ -393,7 +339,58 @@
 
         <div class="one-class">
             <div class="tutor-profile">
-                <img src="./profile.png" alt="">
+                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
+            </div>
+            <div class="class-details">
+                <div class="tutor-name">
+                    <h1>Tutor: </h1>
+                    <h2>Viraj Sandakelum</h2>
+                </div>
+                <div class="subject">
+                    <h1>Subject: </h1>
+                    <h2>Maths</h2>
+                </div>
+                <div class="lessson">
+                    <h1>Lesson: </h1>
+                    <h2>Lesson 1</h2>
+                </div>
+                <div class="day">
+                    <h1>Day: </h1>
+                    <h2>Monday</h2>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="one-class">
+            <div class="tutor-profile">
+                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
+            </div>
+            <div class="class-details">
+                <div class="tutor-name">
+                    <h1>Tutor: </h1>
+                    <h2>Viraj Sandakelum</h2>
+                </div>
+                <div class="subject">
+                    <h1>Subject: </h1>
+                    <h2>Maths</h2>
+                </div>
+                <div class="lessson">
+                    <h1>Lesson: </h1>
+                    <h2>Lesson 1</h2>
+                </div>
+                <div class="day">
+                    <h1>Day: </h1>
+                    <h2>Monday</h2>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="one-class">
+            <div class="tutor-profile">
+                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
             </div>
             <div class="class-details">
                 <div class="tutor-name">
@@ -422,7 +419,7 @@
 
         <div class="one-class">
             <div class="tutor-profile">
-                <img src="./profile.png" alt="">
+                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
             </div>
             <div class="class-details">
                 <div class="tutor-name">
@@ -447,7 +444,7 @@
 
         <div class="one-class">
             <div class="tutor-profile">
-                <img src="./profile.png" alt="">
+                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
             </div>
             <div class="class-details">
                 <div class="tutor-name">
@@ -473,7 +470,7 @@
 
         <div class="one-class">
             <div class="tutor-profile">
-                <img src="./profile.png" alt="">
+                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
             </div>
             <div class="class-details">
                 <div class="tutor-name">
@@ -496,6 +493,10 @@
         </div>
 
     </div>
+
+</section>
+
+
 
 </body>
 
