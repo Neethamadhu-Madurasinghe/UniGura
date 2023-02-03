@@ -12,6 +12,7 @@ function validateName(string $name): String {
     }
 }
 
+
 function validateLetterBoxNumber(string $number): String {
     if (empty($number) || !preg_match("/^[a-zA-Z0-9-\/\s]*$/", $number)) {
         return 'Please enter a valid number';
@@ -23,6 +24,8 @@ function validateLetterBoxNumber(string $number): String {
         return '';
     }
 }
+
+
 
 function validateStreet(string $street): String {
     if (empty($street) || !preg_match("/^[a-zA-Z-\s]*$/", $street)) {
@@ -109,6 +112,28 @@ function validateUniversity(String $university): String {
         return '';
     }
 }
+
+
+
+
+//created by sachithra
+
+function validateRate(string $number): String {
+    if (filter_var($number, FILTER_VALIDATE_INT)) {
+        $int = intval($number);
+        if ($int >= 500 && $int < 5000) {
+          return "";
+        } else {
+            return "Amount must in a range between LKR (500 - 5000)";
+        }
+      } else {
+         return "Please enter a valid amount";
+      }
+}
+
+
+
+
 
 
 

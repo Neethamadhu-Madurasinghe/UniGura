@@ -37,6 +37,24 @@ class TutorDashboard extends Controller
 
     public function createClassTemplate(Request $request)
     {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        if ($request->isProfileNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isNotApprovedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isBankDetialsNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+
         $data = ['modules' => []];
 
         //      Fetch all the visible subjects, modules and maximum class price
@@ -51,9 +69,6 @@ class TutorDashboard extends Controller
             $body = $request->getBody();
 
 
-            print_r($body);
-
-
             $data = [
                 'id' => $request->getUserId(),
                 'subject_id' => $body['subject'],
@@ -65,27 +80,37 @@ class TutorDashboard extends Controller
                 'medium' => $body['medium'],
 
                 'errors' => [
-                    'session_rate_error' => ''
+                    'session_rate_error' => '',
+                    'class_template_duplipate_error' => ''
                 ]
 
             ];
 
-            //           Validate all the fields
-            // $data['errors']['session_rate_error'] = validateName($data['session_rate']);
+            //Validate all the fields
+            $data['errors']['session_rate_error'] = validateRate($data['session_rate']);
+        
 
-            $hasErrors = FALSE;
-
-            if (!$hasErrors) {
-
-                if ($this->dashboardModel->setTutorclassTemplate($data)) {
-                    redirect('tutor/dashboard');
-                } else {
-                    header("HTTP/1.0 500 Internal Server Error");
-                    die('Something went wrong');
+            if ($data['errors']['session_rate_error'] == '') {
+                
+                if ($this->dashboardModel->getTutoringClassDetails($data) == 0){
+                    if ($this->dashboardModel->setTutorclassTemplate($data)) {
+                        redirect('tutor/dashboard');
+                    } else {
+                        header("HTTP/1.0 500 Internal Server Error");
+                        die('Something went wrong');
+                    }
                 }
-            }
+                else{
+                    $data['errors']['class_template_duplipate_error'] = 'Class Template Already Exists!';
+                }
 
-            $this->view('tutor/dashboard', $request, $data);
+                
+            }
+            
+            $data['subjects'] = $subjects;
+            $data['modules'] = $modules;
+
+            $this->view('tutor/createcclasstemplate', $request, $data);
 
             //        If the request is a GET request, then serve the page
         } else {
@@ -100,7 +125,8 @@ class TutorDashboard extends Controller
                 'medium' => '',
 
                 'errors' => [
-                    'session_rate_error' => ''
+                    'session_rate_error' => '',
+                    'class_template_duplipate_error' => ''
                 ]
 
             ];
