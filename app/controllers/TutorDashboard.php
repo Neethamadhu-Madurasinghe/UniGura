@@ -45,18 +45,19 @@ class TutorDashboard extends Controller
 
         if (count($subjects) > 0) {
             $modules = $this->dashboardModel->getModulesBySubjectId($subjects[0]['id']);
-
         }
+
         if ($request->isPost()) {
             $body = $request->getBody();
+
 
             print_r($body);
 
 
             $data = [
                 'id' => $request->getUserId(),
-                'subject_id' => $body['subject-id'],
-                'module_id' => $body['module_id'],
+                'subject_id' => $body['subject'],
+                'module_id' => $body['module'],
                 'session_rate' => $body['session_rate'],
                 'class_type' => $body['class_type'],
                 'mode' => $body['mode'],
@@ -73,7 +74,6 @@ class TutorDashboard extends Controller
             // $data['errors']['session_rate_error'] = validateName($data['session_rate']);
 
             $hasErrors = FALSE;
-
 
             if (!$hasErrors) {
 
@@ -93,9 +93,6 @@ class TutorDashboard extends Controller
                 'id' => $request->getUserId(),
                 'subjects' => $subjects,
                 'modules' => $modules,
-                'subject_id'=> '',
-                'module_id'=> '',
-
                 'session_rate' => '',
                 'class_type' => '',
                 'mode' => '',
@@ -117,16 +114,16 @@ class TutorDashboard extends Controller
                 cors();
 
                 $body = $request->getBody();
+             
                 $data = [
                     'modules' => []
                 ];
         
-                if (isset($body['subject_id'])) {
-                    $data['modules'] = $this->dashboardModel->getModulesBySubjectId($body['subject_id']);
-                }
-        
+                $data['modules'] = $this->dashboardModel->getModulesBySubjectId($body['subject_id']);
+                
+
                 header('Content-type: application/json');
-                echo json_encode($data);
+                echo json_encode($data['modules']);
             }
 
         }

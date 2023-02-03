@@ -31,7 +31,6 @@ $router->registerController('/tutor/register', [TutorStudentAuth::class, 'tutorS
 
 
 
-echo $_SESSION['user_role'];
 
 
 
