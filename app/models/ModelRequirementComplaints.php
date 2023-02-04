@@ -9,9 +9,15 @@ class ModelRequirementComplaints{
         $this->db = new Database();
     }
 
-    public function getStudentComplaints(){
-        $this->db->query("SELECT * FROM student_report");
+    public function getStudentComplaints($start,$rowsPerPage){
+        $this->db->query("SELECT * FROM student_report LIMIT $start, $rowsPerPage");
         return $this->db->resultAll();
+    }
+
+    public function totalNumOfStudentComplaints(){
+        $this->db->query("SELECT * FROM student_report");
+        $this->db->resultAll();
+        return $this->db->rowCount();
     }
 
     public function studentReportById($reportID){
@@ -101,4 +107,5 @@ class ModelRequirementComplaints{
         $this->db->bind(':description', $description);
         return $this->db->execute();
     }
+
 }

@@ -11,8 +11,33 @@ class AdminStudentComplaint extends Controller
 
     public function studentComplaint(Request $request)
     {
+        $rowsPerPage = 5;
+        $totalNumOfStudentComplaints = $this->studentComplaintModel->totalNumOfStudentComplaints();
+        $lastPageNum = ceil($totalNumOfStudentComplaints / $rowsPerPage);
 
-        $allStudentComplaints = $this->studentComplaintModel->getStudentComplaints();
+        if (isset($_GET['currentPageNum'])) {
+            $currentPageNum = $_GET['currentPageNum'];
+        } else {
+            $currentPageNum = 1;
+        }
+
+        $start = ($currentPageNum - 1) * $rowsPerPage;
+
+        $allStudentComplaints = $this->studentComplaintModel->getStudentComplaints($start, $rowsPerPage);
+
+        // next page
+        if ($currentPageNum < $lastPageNum) {
+            $nextPageNum = $currentPageNum + 1;
+        } else {
+            $nextPageNum = $lastPageNum;
+        }
+
+        // previous page
+        if ($currentPageNum > 1) {
+            $previousPageNum = $currentPageNum - 1;
+        } else {
+            $previousPageNum = 1;
+        }
 
         // echo '<pre>';
         // print_r($allStudentComplaints);
@@ -34,7 +59,11 @@ class AdminStudentComplaint extends Controller
 
 
         $data = [
-            'allStudentComplaints' => $allStudentComplaints
+            'allStudentComplaints' => $allStudentComplaints,
+            'lastPageNum' => $lastPageNum,
+            'nextPageNum' => $nextPageNum,
+            'previousPageNum' => $previousPageNum,
+            'currentPageNum' => $currentPageNum,
         ];
 
         // echo '<pre>';
