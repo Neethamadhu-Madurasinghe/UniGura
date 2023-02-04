@@ -156,7 +156,16 @@ section.table {
     box-shadow: 0 .4rem .8rem #0005;
     border-radius: .8rem;
     background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+}
 
+section.selected-tutor-payment-view{
+    margin: 10px;
+    height: 30vh;
+    background-color: #fff5;
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
 }
 
 .table-header {
@@ -178,6 +187,16 @@ section.table {
 
 .table-body {
     height: 27vh;
+    width: 95%;
+    background-color: #fffb;
+    margin: .8rem auto;
+    border-radius: .6rem;
+    overflow: overlay;
+}
+
+
+.selected-tutor-table-body {
+    height: 20vh;
     width: 95%;
     background-color: #fffb;
     margin: .8rem auto;

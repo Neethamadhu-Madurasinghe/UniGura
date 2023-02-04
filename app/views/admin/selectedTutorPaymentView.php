@@ -108,11 +108,11 @@
 
 
 
-<section class="table">
+<section class="table selected-tutor-payment-view">
     <section class="table-header">
         <h1>Tutor class Details</h1>
     </section>
-    <section class="table-body">
+    <section class="table-body selected-tutor-table-body">
         <table>
             <thead>
                 <tr>
