@@ -1,4 +1,8 @@
 {
     "Codegeex.EnableExtension": false,
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "sonarlint.connectedMode.project": {
+        "connectionId": "",
+        "projectKey": ""
+    }
 }

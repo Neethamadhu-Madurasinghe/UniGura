@@ -1,4 +1,3 @@
-
 .student-page {
     display: grid;
     grid-template-columns: 80% 20%;
@@ -169,7 +168,7 @@ input[type="range"]::-moz-range-thumb {
 
 
 .filter-selection {
-    height:97vh;
+    height: 97vh;
     overflow-y: scroll;
 }
 
@@ -178,81 +177,81 @@ input[type="range"]::-moz-range-thumb {
 }
 
 
-.subject-select > div{
+.subject-select>div {
     margin-bottom: 5px;
 }
 
-.mode-select > div{
+.mode-select>div {
     margin-bottom: 5px;
 }
 
-.duration-select > div{
+.duration-select>div {
     margin-bottom: 5px;
 }
 
-.visibility-select > div{
+.visibility-select>div {
     margin-bottom: 5px;
 }
 
-.subject-filter{
+.subject-filter {
     border: 2px solid #FC941D;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 20px;
 }
 
-.subject-filter h1{
+.subject-filter h1 {
     font-size: 23px;
     margin-bottom: 10px;
 }
 
-.mode-filter{
+.mode-filter {
     border: 2px solid #FC941D;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 20px;
 }
 
-.mode-filter h1{
+.mode-filter h1 {
     font-size: 23px;
     margin-bottom: 10px;
 }
 
 
-.visibility-filter{
+.visibility-filter {
     border: 2px solid #FC941D;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 40px;
 }
 
-.visibility-filter h1{
+.visibility-filter h1 {
     font-size: 23px;
     margin-bottom: 10px;
 }
 
 
-.subject-select > div{
+.subject-select>div {
     margin-bottom: 5px;
 }
 
-.mode-select > div{
+.mode-select>div {
     margin-bottom: 5px;
 }
 
-.class-rating{
+.class-rating {
     border: 2px solid #FC941D;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 20px;
 }
 
-.class-rating h1{
+.class-rating h1 {
     font-size: 23px;
     margin-bottom: 10px;
 }
 
-.class-rating i{
+.class-rating i {
     color: #FC941D;
     font-size: 20px;
     margin-bottom: 5px;
@@ -263,7 +262,7 @@ input[type="range"]::-moz-range-thumb {
 /* ======================STUDENT CARD SECTION====================================  */
 
 
-.card-section{
+.card-section {
     display: grid;
     grid-template-columns: 30% 30% 30%;
     column-gap: 40px;
@@ -277,7 +276,7 @@ input[type="range"]::-moz-range-thumb {
     display: none;
 }
 
-.card-section .card{
+.card-section .card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -291,34 +290,34 @@ input[type="range"]::-moz-range-thumb {
     height: 350px;
 }
 
-.card-section .card .profile-picture{
+.card-section .card .profile-picture {
     width: 200px;
     height: 200px;
     margin-bottom: 30px;
     margin-top: 1px;
 }
 
-.card-section .card img{
+.card-section .card img {
     width: 200px;
     border-radius: 5px;
 }
 
 
-.card .info{
+.card .info {
     margin: 10px 0;
 }
 
-.card .info h5{
+.card .info h5 {
     font-weight: 500;
-    font-size: 18px;   
+    font-size: 18px;
 }
 
-.card > div{
+.card>div {
     margin-top: -20px;
 }
 
 
-.card .view-profile button{
+.card .view-profile button {
     background-color: #fc1d1d;
     font-size: 20px;
     cursor: pointer;
@@ -345,7 +344,7 @@ input[type="range"]::-moz-range-thumb {
     align-items: center;
 }
 
-.filter-functions > div{
+.filter-functions>div {
     width: 100%;
     align-items: center;
     border: 2px solid #FC941D;
@@ -364,12 +363,55 @@ input[type="range"]::-moz-range-thumb {
     transition: 0.3s;
 }
 
-.filter-functions i{
+.filter-functions i {
     margin-right: 8px;
 }
 
-#maths {
-    accent-color: green;
-    block-size: 50px;
-    inline-size: 55px;
+
+
+/* =========================== CHECKBOX STYLE =========================================== */
+
+.checkbox-button label{
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.checkbox {
+    display: none;
+}
+
+.checkbox+label {
+    position: relative;
+    cursor: pointer;
+    padding-left: 25px;
+    user-select: none;
+    margin-right: 50px;
+}
+
+.checkbox+label:before {
+    content: "\2716";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    font-size: 14px;
+    height: 20px;
+    border: none;
+    background: #f20707bc;
+    border-radius: 5px;
+    color: #fff;
+    transition: 0.3s;
+    text-align: center;
+}
+
+.checkbox:checked+label:before {
+    content: "✔";
+    background-color: #0d0;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bolder;
+    border-radius: 5px;
+    transition: 0.3s;
 }

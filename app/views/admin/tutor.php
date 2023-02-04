@@ -120,44 +120,24 @@
             </div>
             <div class="subject-select">
                 <div class="checkbox-button">
-                    <input type="checkbox" id="maths" name="subject" value="maths">
-                    <label for="maths">Maths</label>
+                    <input type="checkbox" id="maths" name="subject" value="maths" class="maths checkbox">
+                    <label for="maths">&nbspMaths</label>
                 </div>
                 <div class="checkbox-button">
-                    <input type="checkbox" id="science" name="subject" value="science">
-                    <label for="science">Science</label>
+                    <input type="checkbox" id="science" name="subject" value="science" class="science checkbox">
+                    <label for="science">&nbspScience</label>
                 </div>
                 <div class="checkbox-button">
-                    <input type="checkbox" id="english" name="subject" value="english">
-                    <label for="english">English</label>
+                    <input type="checkbox" id="english" name="subject" value="english" class="english checkbox">
+                    <label for="english">&nbspEnglish</label>
                 </div>
                 <div class="checkbox-button">
-                    <input type="checkbox" id="history" name="subject" value="history">
-                    <label for="history">History</label>
+                    <input type="checkbox" id="history" name="subject" value="history" class="history checkbox">
+                    <label for="history">&nbspHistory</label>
                 </div>
                 <div class="checkbox-button">
-                    <input type="checkbox" id="geography" name="subject" value="geography">
-                    <label for="geography">Geography</label>
-                </div>
-                <div class="checkbox-button">
-                    <input type="checkbox" id="art" name="subject" value="art">
-                    <label for="art">Art</label>
-                </div>
-                <div class="checkbox-button">
-                    <input type="checkbox" id="music" name="subject" value="music">
-                    <label for="music">Music</label>
-                </div>
-                <div class="checkbox-button">
-                    <input type="checkbox" id="technology" name="subject" value="technology">
-                    <label for="technology">Technology</label>
-                </div>
-                <div class="checkbox-button">
-                    <input type="checkbox" id="physical-education" name="subject" value="physical-education">
-                    <label for="physical-education">Physical Education</label>
-                </div>
-                <div class="checkbox-button">
-                    <input type="checkbox" id="other" name="subject" value="all">
-                    <label for="other">All</label>
+                    <input type="checkbox" id="other" name="subject" value="all" class="other checkbox">
+                    <label for="other">&nbspAll</label>
                 </div>
             </div>
         </div>
@@ -169,16 +149,16 @@
             </div>
             <div class="mode-select">
                 <div class="checkbox-button">
-                    <input type="checkbox" id="online" name="mode" value="online">
-                    <label for="online">Online</label>
+                    <input type="checkbox" id="online" name="mode" value="online" class="online checkbox">
+                    <label for="online">&nbspOnline</label>
                 </div>
                 <div class="checkbox-button">
-                    <input type="checkbox" id="offline" name="mode" value="offline">
-                    <label for="offline">Offline</label>
+                    <input type="checkbox" id="offline" name="mode" value="offline" class="offline checkbox">
+                    <label for="offline">&nbspOffline</label>
                 </div>
                 <div class="checkbox-button">
-                    <input type="checkbox" id="offline" name="mode" value="both">
-                    <label for="offline">Both</label>
+                    <input type="checkbox" id="offline" name="mode" value="both" class="both checkbox">
+                    <label for="offline">&nbspBoth</label>
                 </div>
             </div>
         </div>
@@ -189,20 +169,20 @@
             </div>
             <div class="duration-select">
                 <div class="checkbox-button">
-                    <input type="checkbox" id="other" name="subject" value="all">
-                    <label for="other">1st Year</label>
+                    <input type="checkbox" id="1stYear" name="1stYear" value="1stYear" class="1stYear checkbox">
+                    <label for="1stYear">1st Year</label>
                 </div>
                 <div class="checkbox-button">
-                    <input type="checkbox" id="other" name="subject" value="all">
-                    <label for="other">2nd Year</label>
+                    <input type="checkbox" id="2ndYear" name="2ndYear" value="2ndYear" class="2ndYear checkbox">
+                    <label for="2ndYear">2nd Year</label>
                 </div>
                 <div class="checkbox-button">
-                    <input type="checkbox" id="other" name="subject" value="all">
-                    <label for="other">3rd Year</label>
+                    <input type="checkbox" id="3rdYear" name="3rdYear" value="3rdYear" class="3rdYear checkbox">
+                    <label for="3rdYear">3rd Year</label>
                 </div>
                 <div class="checkbox-button">
-                    <input type="checkbox" id="other" name="subject" value="all">
-                    <label for="other">4th Year</label>
+                    <input type="checkbox" id="4thYear" name="4thYear" value="4thYear" class="4thYear checkbox">
+                    <label for="4thYear">4th Year</label>
                 </div>
             </div>
         </div>
@@ -213,20 +193,20 @@
             </div>
             <div class="visibility-select">
                 <div class="checkbox-button">
-                    <input type="checkbox" id="other" name="subject" value="all">
-                    <label for="other">Show</label>
+                    <input type="checkbox" id="show" name="show" value="show" class="show checkbox">
+                    <label for="show">&nbspShow</label>
                 </div>
                 <div class="checkbox-button">
-                    <input type="checkbox" id="other" name="subject" value="all">
-                    <label for="other">Hide</label>
+                    <input type="checkbox" id="hide" name="hide" value="hide" class="hide checkbox">
+                    <label for="other">&nbspHide</label>
                 </div>
                 <div class="checkbox-button">
-                    <input type="checkbox" id="other" name="subject" value="all">
-                    <label for="other">Unblock</label>
+                    <input type="checkbox" id="unblock" name="unblock" value="unblock" class="unblock checkbox">
+                    <label for="unblock">&nbspUnblock</label>
                 </div>
                 <div class="checkbox-button">
-                    <input type="checkbox" id="other" name="subject" value="all">
-                    <label for="other">Block</label>
+                    <input type="checkbox" id="block" name="block" value="block" class="block checkbox">
+                    <label for="block">&nbspBlock</label>
                 </div>
             </div>
         </div>

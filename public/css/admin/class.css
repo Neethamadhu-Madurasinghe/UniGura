@@ -329,10 +329,10 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .class-rating i {
-    color: #FC941D;
+    color: #fbc11b;
     font-size: 20px;
-    margin-bottom: 5px;
-    margin-left: 15px;
+    margin-bottom: 15px;
+    margin-left: 3px;
 }
 
 
@@ -372,14 +372,49 @@ input[type="range"]::-moz-range-thumb {
 
 
 
-input[type="checkbox"] {
-    width: 25px;
-    height: 25px;
-    background-color: rgb(228, 37, 37);
-    border-radius: 5px;
-    border: 20px solid rgb(28, 14, 226);
+
+/* =========================== CHECKBOX STYLE =========================================== */
+
+.checkbox-button label{
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 500;
 }
 
-input[type="checkbox"]:checked {
-    background-color: #4CAF50;
+.checkbox {
+    display: none;
+}
+
+.checkbox+label {
+    position: relative;
+    cursor: pointer;
+    padding-left: 25px;
+    user-select: none;
+}
+
+.checkbox+label:before {
+    content: "\2716";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    font-size: 14px;
+    height: 20px;
+    border: none;
+    background: #f20707bc;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.checkbox:checked+label:before {
+    content: "✔";
+    background-color: #0d0;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bolder;
+    border-radius: 5px;
+    transition: 0.3s;
 }

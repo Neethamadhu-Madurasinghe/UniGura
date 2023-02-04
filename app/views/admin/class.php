@@ -114,53 +114,53 @@
                 </div>
                 <div class="rating-select-using-star">
                     <div class="star">
-                        <input type="checkbox" id="star-5" name="rating" value="5" class="class-rating">
-                        <label for="star-5" title="5 stars">
+                        <input type="checkbox" id="star-5" name="rating" value="5" class="class-rating checkbox">
+                        <label for="star-5" title="5 Stars And Up">
                             <i class="active fa fa-star"></i>
                             <i class="active fa fa-star"></i>
                             <i class="active fa fa-star"></i>
                             <i class="active fa fa-star"></i>
-                            <i class="active fa fa-star"></i>
+                            <i class="active fa fa-star"></i><small> And Up</small>
                         </label>
                     </div>
                     <div class="star">
-                        <input type="checkbox" id="star-4" name="rating" value="4" class="class-rating">
-                        <label for="star-4" title="4 stars">
+                        <input type="checkbox" id="star-4" name="rating" value="4" class="class-rating checkbox">
+                        <label for="star-4" title="4 Stars And Up">
                             <i class="active fa fa-star"></i>
                             <i class="active fa fa-star"></i>
                             <i class="active fa fa-star"></i>
                             <i class="active fa fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i><small> And Up</small>
                         </label>
                     </div>
                     <div class="star">
-                        <input type="checkbox" id="star-3" name="rating" value="3" class="class-rating">
-                        <label for="star-3" title="3 stars">
+                        <input type="checkbox" id="star-3" name="rating" value="3" class="class-rating checkbox">
+                        <label for="star-3" title="3 Stars And Up">
                             <i class="active fa fa-star"></i>
                             <i class="active fa fa-star"></i>
                             <i class="active fa fa-star"></i>
                             <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i><small> And Up</small>
                         </label>
                     </div>
                     <div class="star">
-                        <input type="checkbox" id="star-2" name="rating" value="2" class="class-rating">
-                        <label for="star-2" title="2 stars">
+                        <input type="checkbox" id="star-2" name="rating" value="2" class="class-rating checkbox">
+                        <label for="star-2" title="2 Stars And Up">
                             <i class="active fa fa-star"></i>
                             <i class="active fa fa-star"></i>
                             <i class="fa-regular fa-star"></i>
                             <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i><small> And Up</small>
                         </label>
                     </div>
                     <div class="star">
-                        <input type="checkbox" id="star-1" name="rating" value="1" class="class-rating">
-                        <label for="star-1" title="1 star">
+                        <input type="checkbox" id="star-1" name="rating" value="1" class="class-rating checkbox">
+                        <label for="star-1" title="1 Stars And Up">
                             <i class="active fa fa-star"></i>
                             <i class="fa-regular fa-star"></i>
                             <i class="fa-regular fa-star"></i>
                             <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i><small> And Up</small>
                         </label>
                     </div>
 
@@ -173,16 +173,16 @@
                 </div>
                 <div class="mode-select">
                     <div class="checkbox-button">
-                        <input type="checkbox" id="online-mode" name="mode" value="online" class="class-conduct-mode">
-                        <label for="online">Online</label>
+                        <input type="checkbox" id="online" name="mode" value="online" class="online checkbox">
+                        <label for="online">&nbspOnline</label>
                     </div>
                     <div class="checkbox-button">
-                        <input type="checkbox" id="physical-mode" name="mode" value="physical" class="class-conduct-mode">
-                        <label for="physical">Physical</label>
+                        <input type="checkbox" id="offline" name="mode" value="offline" class="offline checkbox">
+                        <label for="offline">&nbspOffline</label>
                     </div>
                     <div class="checkbox-button">
-                        <input type="checkbox" id="both-mode" name="mode" value="both" class="class-conduct-mode">
-                        <label for="both">Both</label>
+                        <input type="checkbox" id="offline" name="mode" value="both" class="both checkbox">
+                        <label for="offline">&nbspBoth</label>
                     </div>
                 </div>
             </div>
@@ -194,14 +194,14 @@
                 <div class="subject-select">
                     <?php foreach ($data['allSubjects'] as $subjects) { ?>
                         <div class="checkbox-button">
-                            <input type="checkbox" id="<?php echo $subjects->name; ?>" name="subject" value="<?php echo $subjects->name; ?>" class="class-subject">
-                            <label for="<?php echo $subjects->name; ?>"><?php echo $subjects->name; ?></label>
+                            <input type="checkbox" id="<?php echo $subjects->name; ?>" name="subject" value="<?php echo $subjects->name; ?>" class="<?php echo $subjects->name; ?> checkbox">
+                            <label for="<?php echo $subjects->name; ?>">&nbsp<?php echo $subjects->name; ?></label>
                         </div>
                     <?php } ?>
 
                     <div class="checkbox-button">
-                        <input type="checkbox" id="other" name="subject" value="all">
-                        <label for="other">All</label>
+                        <input type="checkbox" id="all" name="subject" value="all" class="all checkbox">
+                        <label for="all">All</label>
                     </div>
                 </div>
             </div>
