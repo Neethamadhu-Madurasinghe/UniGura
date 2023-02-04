@@ -29,38 +29,41 @@
     </div>
 
 
-    <div class="tutor-complaint-table" id="tutor-complaint-table">
-        <div class="table-header">
-            <h3>Tutor's complaints</h3>
-            <div class="search-filter">
-                <div class="search-box">
-                    <i class='bx bx-search icon'></i>
-                    <input type="text" placeholder="Search by Student Name...">
-                </div>
-                <div class="filter-box">
-                    <i class='bx bx-filter-alt'></i>
-                    <select name="filter" id="filter">
-                        <option value="all">All</option>
-                        <option value="solved">Solved</option>
-                        <option value="not_resolve">Not Resolve</option>
-                    </select>
-                </div>
-            </div>
-        </div>
 
-        <div class="class-details-table">
+
+    <section class="table">
+        <section class="table-header">
+            <h1>TUTOR'S COMPLAINTS</h1>
+            <div class="search">
+                <i class="fas fa-regular fa-search"></i>
+                <input type="text" placeholder="Search by Tutor Name..." id="search-tutor-name">
+                <button class="search-btn" id="search-student-name-btn">Search</button>
+            </div>
+            <div class="filter">
+                <div class="filter-icon">
+                    <i class="fas fa-regular fa-filter"></i>
+                </div>
+                <select name="tutor-complaint-filter" id="tutor-complaint-filter">
+                    <option value="not_choose" selected disabled hidden>Choose here</option>
+                    <option value="all">All</option>
+                    <option value="solved">Solved</option>
+                    <option value="not_resolve">Not Resolve</option>
+                </select>
+            </div>
+        </section>
+        <section class="table-body">
             <table>
                 <thead>
                     <tr>
-                        <th>complaint's Title</th>
-                        <th>Tutor</th>
+                        <th>Complaint's Title</th>
                         <th>Student</th>
+                        <th>Tutor</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
+                <tbody id="tutor-complain">
 
-                <tbody>
                     <?php foreach ($data['allTutorComplaints'] as $tutorComplaint) { ?>
                         <tr>
                             <td><?php echo $tutorComplaint->reportReason->description; ?></td>
@@ -91,10 +94,26 @@
                     <?php } ?>
                 </tbody>
             </table>
+        </section>
+
+        <div class="pagination">
+            <div class="first">
+                <button><a href="#"><i class="fas fa-regular fa-backward-fast"></i> First</a></button>
+            </div>
+            <div class="previous">
+                <button><a href="#"><i class="fas fa-regular fa-backward-step"></i> Previous</a></button>
+            </div>
+            <div class="page-count">
+                <h3>1 Page of 10</h3>
+            </div>
+            <div class="next">
+                <button><a href="#">Next <i class="fas fa-regular fa-forward-step"></i></a></button>
+            </div>
+            <div class="last">
+                <button><a href="#">Last <i class="fas fa-regular fa-forward-fast"></i></a></button>
+            </div>
         </div>
-
-    </div>
-
+    </section>
 </section>
 
 
