@@ -12,9 +12,22 @@
 
     <div class="student-page">
 
+
+
         <div class="card-section">
             <?php foreach ($data as $aStudent) : ?>
                 <div class="card">
+                    <div class="mode-hide-show">
+                        <div class="online-physical-both">
+                            <img src="<?php echo URLROOT; ?>/public/img/admin/online.png" alt="" class="online">
+                            <img src="<?php echo URLROOT; ?>/public/img/admin/physical.png" alt="" class="physical">
+
+                        </div>
+                        <div class="hide-show">
+                            <img src="<?php echo URLROOT; ?>/public/img/admin/block.png" alt="" class="block">
+                            <img src="<?php echo URLROOT; ?>/public/img/admin/hide.png" alt="" class="hide">
+                        </div>
+                    </div>
                     <div class="profile-picture">
                         <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="student profile picture">
                     </div>
@@ -106,8 +119,8 @@
                         <label for="offline">&nbspOffline</label>
                     </div>
                     <div class="checkbox-button">
-                        <input type="checkbox" id="offline" name="mode" value="both" class="both checkbox">
-                        <label for="offline">&nbspBoth</label>
+                        <input type="checkbox" id="both" name="mode" value="both" class="both checkbox">
+                        <label for="both">&nbspBoth</label>
                     </div>
                 </div>
             </div>

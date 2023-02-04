@@ -181,8 +181,8 @@
                         <label for="offline">&nbspOffline</label>
                     </div>
                     <div class="checkbox-button">
-                        <input type="checkbox" id="offline" name="mode" value="both" class="both checkbox">
-                        <label for="offline">&nbspBoth</label>
+                        <input type="checkbox" id="both" name="mode" value="both" class="both checkbox">
+                        <label for="both">&nbspBoth</label>
                     </div>
                 </div>
             </div>

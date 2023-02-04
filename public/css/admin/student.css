@@ -286,21 +286,34 @@ input[type="range"]::-moz-range-thumb {
     border-radius: 10px;
     margin-bottom: 40px;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
-    height: 350px;
+    height: 330px;
+    background-color: #fbc36e;
+    text-align: center;
 }
 
 .card-section .card .profile-picture {
     width: 200px;
     height: 200px;
-    margin-bottom: 30px;
-    margin-top: 1px;
+    text-align: center;
 }
 
 .card-section .card img {
-    width: 200px;
+    width: 150px;
     border-radius: 5px;
 }
 
+
+.card-section .name{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-section .name h2{
+    font-size: 20px;
+    font-weight: bold;
+    padding: 5px;
+}
 
 .card .info {
     margin: 10px 0;
@@ -311,25 +324,27 @@ input[type="range"]::-moz-range-thumb {
     font-size: 18px;
 }
 
-.card>div {
-    margin-top: -20px;
-}
-
 
 .card .view-profile button {
-    background-color: #fc1d1d;
-    font-size: 20px;
-    cursor: pointer;
-    outline: none;
-    border: none;
-    padding: 10px;
-    text-align: center;
-    border-radius: 5px;
+    font-size: 1rem;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
     color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.1s;
+    user-select: none;
     height: 50px;
     width: 140px;
     position: relative;
-    top: 30px;
+}
+
+.card .view-profile button:hover {
+    transform: scale(1.05);
+}
+
+.card .view-profile button:active {
+    background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
 }
 
 
@@ -360,6 +375,7 @@ input[type="range"]::-moz-range-thumb {
     font-weight: 500;
     cursor: pointer;
     transition: 0.3s;
+    border-radius: 5px;
 }
 
 .filter-functions i {
@@ -414,3 +430,50 @@ input[type="range"]::-moz-range-thumb {
     border-radius: 5px;
     transition: 0.3s;
 }
+
+
+
+/* ====================== HIDE SHOW MODE SUMMARY============================ */
+
+.online-physical-both{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+.card-section .online-physical-both .online{
+    width: 26px;
+}
+
+.card-section .online-physical-both .physical{
+    width: 40px;
+    margin-top: 10px;
+}
+
+
+.mode-hide-show{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    position: relative;
+    top: 30px;
+    padding: 10px;
+    height: 20px;
+}
+
+
+.hide-show{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.card-section .hide-show img{
+    width: 32px;
+    margin-top: 10px;
+}
+
