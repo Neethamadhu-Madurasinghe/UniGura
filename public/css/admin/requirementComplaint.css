@@ -221,6 +221,36 @@ tbody img{
 }
 
 
+.action-tutor-request{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.action-tutor-request .accept{
+    background-color: #2A8BF2;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.action-tutor-request .reject{
+    background-color: red;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
 
 
 /* ------------------------filter-box------------------------------- */

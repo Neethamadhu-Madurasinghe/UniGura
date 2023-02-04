@@ -27,48 +27,47 @@
         </div>
     </div>
 
-
-    <div class="tutor-request-table" id="tutor-request-table">
-        <div class="table-header">
-            <h3>Tutor’s Request</h3>
-        </div>
-        <div class="class-details-table">
+    <section class="table tutor-request-table" id="tutor-request-table">
+        <section class="table-header">
+            <h1>TUTOR'S REQUEST</h1>
+        </section>
+        <section class="table-body">
             <table>
                 <thead>
                     <tr>
                         <th>Tutor</th>
                         <th>Contact</th>
                         <th>University</th>
-                        <th style="width:100px">ID Copy</th>
-                        <th style="width:100px">A/L Result Sheet</th>
-                        <th style="width:90px">University Letter</th>
-                        <th style="width:80px">Hightest Qualification</th>
+                        <th>ID Copy</th>
+                        <th>A/L Result Sheet</th>
+                        <th>University Letter</th>
+                        <th>Hightest Qualification</th>
                         <th>Action</th>
                     </tr>
                 </thead>
-
-                <tbody>
-                    <tr>
-                        <?php foreach ($data['allTutorRequest'] as $x) { ?>
-                            <td><?php echo $x->tutor->first_name . ' ' . $x->tutor->last_name ?></td>
-                            <td><?php echo $x->tutor->phone_number ?></td>
-                            <td><?php echo $x->university ?></td>
-                            <td><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></td>
-                            <td><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></td>
-                            <td><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></td>
-                            <td><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></td>
-                            <td class="action">
-                                <button class="accept">Accept</button>
-                                <button class="reject">Reject</button>
-                            </td>
-                    </tr>
-                <?php } ?>
+                <tbody id="student-complain">
+                    <?php foreach ($data['allTutorRequest'] as $x) { ?>
+                        <td><?php echo $x->tutor->first_name . ' ' . $x->tutor->last_name ?></td>
+                        <td><?php echo $x->tutor->phone_number ?></td>
+                        <td><?php echo $x->university ?></td>
+                        <td><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></td>
+                        <td><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></td>
+                        <td><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></td>
+                        <td><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></td>
+                        <td class="action action-tutor-request">
+                            <button class="accept">Accept</button>
+                            <button class="reject">Reject</button>
+                        </td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
-        </div>
-    </div>
-</section>
+
+        </section>
+
+    </section>
 
 
-</body>
-</html>
+    </body>
+
+    </html>
