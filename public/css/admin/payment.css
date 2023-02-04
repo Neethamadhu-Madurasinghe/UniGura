@@ -148,64 +148,96 @@ body{
 /* ----------------------------TABLE---------------------------------- */
 
 
-.class-details-table{
-    margin-top: 15px;
-    text-align: center;
+section.table {
+    margin: 10px;
+    height: 40vh;
+    background-color: #fff5;
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+
+}
+
+.table-header {
+    width: 100%;
+    height: 20%;
+    background-color: #fff4;
+    padding: .8rem 1rem;
     display: flex;
-    justify-content: center;
-    margin-bottom: 40px;
-}
-
-.class-details-table table{
-    width: 98%;
-    border-collapse: collapse;
-}
-
-.class-details-table th{
-    background-color: #F7931A;
-    color: white;
-    padding: 10px;
-    text-align: center;
-}
-
-
-
-.class-details-table td{
-    background-color:transparent;
-    color: #585656;
-    padding: 10px;  
-    text-align: center;
-    border-bottom: 1px solid #a9a8a8;
-}
-
-.class-details-table #subject-thead{
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-}
-
-.class-details-table #classFees-thead{
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-}
-
-
-.class-details-table img{
-    width: 15px;
-    border: 2px solid white;
-}
-
-.class-details-table h6{
-    font-size: 15px;
-    margin-left: 5px;
-}
-
-.class-details-table td div {
-    display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    text-align: center;
-    width: 100px;
 }
+
+.table-header h1{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+
+.table-body {
+    height: 27vh;
+    width: 95%;
+    background-color: #fffb;
+    margin: .8rem auto;
+    border-radius: .6rem;
+    overflow: overlay;
+}
+
+.table-body::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.table-body::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.table-body:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
+table {
+    width: 100%;
+}
+
+
+table,
+th,
+td {
+    border-collapse: collapse;
+    padding: 1rem;
+    text-align: center;
+}
+
+thead th {
+    background-color: #ffa620a3;
+    text-transform: capitalize;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #0000000b;
+}
+
+tbody tr:hover {
+    background-color: #ffa62044;
+}
+
+
+tbody button{
+    background-color: #2A8BF2;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 100%;
+}
+
+
 
 
 /*============================ BANK SLIP UPLOADER ================================*/

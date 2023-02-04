@@ -1,7 +1,7 @@
 <?php
-    // echo '<pre>';
-    // print_r($data);
-    // echo '</pre>';
+// echo '<pre>';
+// print_r($data);
+// echo '</pre>';
 
 ?>
 
@@ -108,30 +108,34 @@
 
 
 
-<div class="class-details-table">
-    <table>
-        <thead>
-            <tr>
-                <th id="subject-thead">Student</th>
-                <th>Subject</th>
-                <th>Lesson</th>
-                <th>Day</th>
-                <th>Method</th>
-                <th id="classFees-thead">Class Fess</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <?php foreach($data['tutorPaymentDetails'] as $aTutorPaymentDetails): ?>
+<section class="table">
+    <section class="table-header">
+        <h1>Tutor class Details</h1>
+    </section>
+    <section class="table-body">
+        <table>
+            <thead>
                 <tr>
-                    <td><?php echo $aTutorPaymentDetails->student->first_name . ' ' . $aTutorPaymentDetails->student->last_name ?></td>
-                    <td><?php echo $aTutorPaymentDetails->subject->name ?></td>
-                    <td><?php echo $aTutorPaymentDetails->module->name ?></td>
-                    <td>ssssssssssssss</td>
-                    <td><?php echo $aTutorPaymentDetails->tutorialClass->mode ?></td>
-                    <td><?php echo $aTutorPaymentDetails->amount ?></td>
+                    <th>Student</th>
+                    <th>Subject</th>
+                    <th>Lesson</th>
+                    <th>Day</th>
+                    <th>Method</th>
+                    <th>Class Fess</th>
                 </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                <?php foreach ($data['tutorPaymentDetails'] as $aTutorPaymentDetails) : ?>
+                    <tr>
+                        <td><?php echo $aTutorPaymentDetails->student->first_name . ' ' . $aTutorPaymentDetails->student->last_name ?></td>
+                        <td><?php echo $aTutorPaymentDetails->subject->name ?></td>
+                        <td><?php echo $aTutorPaymentDetails->module->name ?></td>
+                        <td>ssssssssssssss</td>
+                        <td><?php echo $aTutorPaymentDetails->tutorialClass->mode ?></td>
+                        <td><?php echo $aTutorPaymentDetails->amount ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </section>
+</section>

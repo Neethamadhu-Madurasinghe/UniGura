@@ -61,69 +61,70 @@
 
     <br><br>
     <div class="money-history">
-        <h1>Tutor Withdrawal History</h1>
-        <div class="class-details-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th id="subject-thead">Tutor</th>
-                        <th>Payment</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th id="classFees-thead">Receipt</th>
-                    </tr>
-                </thead>
+        <section class="table">
+            <section class="table-header">
+                <h1>Tutor Withdrawal History</h1>
+            </section>
+            <section class="table-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student</th>
+                            <th>Payment</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Receipt</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($data as $Withdrawal) : ?>
+                            <?php if ($Withdrawal->is_withdrawed == 1) : ?>
+                                <tr>
+                                    <td><?php echo $Withdrawal->tutor->first_name . " " . $Withdrawal->tutor->first_name ?></td>
+                                    <td>Rs. <?php echo $Withdrawal->amount ?>.00</td>
+                                    <td><?php echo explode(" ", $Withdrawal->timestamp)[0] ?></td>
+                                    <td><?php echo explode(" ", $Withdrawal->timestamp)[1] ?></td>
+                                    <td><a href="#"><button>View</button></a></td>
+                                </tr>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </section>
+        </section>
 
-                <tbody>
-
-                    <?php foreach ($data as $Withdrawal) : ?>
-                        <?php if ($Withdrawal->is_withdrawed == 1) : ?>
-                            <tr>
-                                <td><?php echo $Withdrawal->tutor->first_name . " " . $Withdrawal->tutor->first_name ?></td>
-                                <td>Rs. <?php echo $Withdrawal->amount ?>.00</td>
-                                <td><?php echo explode(" ", $Withdrawal->timestamp)[0] ?></td>
-                                <td><?php echo explode(" ", $Withdrawal->timestamp)[1] ?></td>
-                                <td><a href="#">View</a></td>
-                            </tr>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-
-                </tbody>
-            </table>
-        </div>
-
-
-        <h1>Student Payment History</h1>
-        <div class="class-details-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th id="subject-thead">Student</th>
-                        <th>Payment</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th id="classFees-thead">Receipt</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-
-                    <?php foreach ($data as $Withdrawal) : ?>
-                        <?php if ($Withdrawal->is_withdrawed == 0) : ?>
-                            <tr>
-                                <td><?php echo $Withdrawal->tutor->first_name . " " . $Withdrawal->tutor->first_name ?></td>
-                                <td>Rs. <?php echo $Withdrawal->amount ?>.00</td>
-                                <td><?php echo explode(" ", $Withdrawal->timestamp)[0] ?></td>
-                                <td><?php echo explode(" ", $Withdrawal->timestamp)[1] ?></td>
-                                <td><a href="#">View</a></td>
-                            </tr>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                    
-                </tbody>
-            </table>
-
-        </div>
+        <br>
+        <section class="table">
+            <section class="table-header">
+                <h1>Student Payment History</h1>
+            </section>
+            <section class="table-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student</th>
+                            <th>Payment</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Receipt</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($data as $Withdrawal) : ?>
+                            <?php if ($Withdrawal->is_withdrawed == 0) : ?>
+                                <tr>
+                                    <td><?php echo $Withdrawal->tutor->first_name . " " . $Withdrawal->tutor->first_name ?></td>
+                                    <td>Rs. <?php echo $Withdrawal->amount ?>.00</td>
+                                    <td><?php echo explode(" ", $Withdrawal->timestamp)[0] ?></td>
+                                    <td><?php echo explode(" ", $Withdrawal->timestamp)[1] ?></td>
+                                    <td><a href="#"><button>View</button></a></td>
+                                </tr>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </section>
+        </section>
     </div>
 
 </section>

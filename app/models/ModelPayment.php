@@ -7,8 +7,8 @@ class ModelPayment{
         $this->db = new Database();
     }
 
-    public function allPayoffTutor(){
-        $this->db->query("SELECT * FROM `payment` WHERE `is_withdrawed` = '0'");
+    public function allPaymentDetails(){
+        $this->db->query("SELECT * FROM `payment`");
         return $this->db->resultAll();
     }
 

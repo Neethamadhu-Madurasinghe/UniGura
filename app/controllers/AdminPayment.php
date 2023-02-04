@@ -11,13 +11,13 @@ class AdminPayment extends Controller
 
     public function payment(Request $request){
 
-        $allPayoffTutor = $this->paymentModel->allPayoffTutor();
+        $allPayment = $this->paymentModel->allPaymentDetails();
 
-        foreach($allPayoffTutor as $tutor){
+        foreach($allPayment as $tutor){
             $tutor->tutor = $this->paymentModel->getTutorById($tutor->tutor_id);
         }
 
-        $data = $allPayoffTutor;
+        $data = $allPayment;
 
         // echo '<pre>';
         // print_r($data);
