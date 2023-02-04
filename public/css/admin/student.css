@@ -178,7 +178,6 @@ input[type="range"]::-moz-range-thumb {
 }
 
 
-
 .subject-select > div{
     margin-bottom: 5px;
 }
@@ -367,4 +366,10 @@ input[type="range"]::-moz-range-thumb {
 
 .filter-functions i{
     margin-right: 8px;
+}
+
+#maths {
+    accent-color: green;
+    block-size: 50px;
+    inline-size: 55px;
 }

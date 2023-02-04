@@ -29,40 +29,39 @@
     </div>
 
 
-    <div class="student-complaint-table" id="student-complaint-table">
-        <div class="table-header">
-            <h3>Student's complaints</h3>
-            <div class="search-filter">
-                <div class="search-box">
-                    <i class='bx bx-search icon'></i>
-                    <input type="text" placeholder="Search by Student Name..." id="search-student-name">
-                    <button class="search-btn" id="search-student-name-btn">Search</button>
-                </div>
-                <div class="filter-box">
-                    <i class='bx bx-filter-alt'></i>
-                    <select name="student-complaint-filter" id="student-complaint-filter">
-                        <option value="not_choose" selected disabled hidden>Choose here</option>
-                        <option value="all">All</option>
-                        <option value="solved">Solved</option>
-                        <option value="not_resolve">Not Resolve</option>
-                    </select>
-                </div>
+    <section class="table">
+        <section class="table-header">
+            <h1>STUDENT'S COMPLAINTS</h1>
+            <div class="search">
+                <i class="fas fa-regular fa-search"></i>
+                <input type="text" placeholder="Search by Student Name..." id="search-student-name">
+                <button class="search-btn" id="search-student-name-btn">Search</button>
             </div>
-        </div>
-
-        <div class="class-details-table">
+            <div class="filter">
+                <div class="filter-icon">
+                    <i class="fas fa-regular fa-filter"></i>
+                </div>
+                <select name="student-complaint-filter" id="student-complaint-filter">
+                    <option value="not_choose" selected disabled hidden>Choose here</option>
+                    <option value="all">All</option>
+                    <option value="solved">Solved</option>
+                    <option value="not_resolve">Not Resolve</option>
+                </select>
+            </div>
+        </section>
+        <section class="table-body">
             <table>
                 <thead>
                     <tr>
-                        <th>complaint's Title</th>
+                        <th>Complaint's Title</th>
                         <th>Student</th>
                         <th>Tutor</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
-
                 <tbody id="student-complain">
+
                     <?php foreach ($data['allStudentComplaints'] as $studentComplaint) { ?>
                         <tr>
                             <td><?php echo $studentComplaint->reportReason->description; ?></td>
@@ -71,14 +70,14 @@
 
                             <input type="hidden" class="complaint-id" value="<?php echo $studentComplaint->id; ?>">
 
-                            <?php if ($studentComplaint->is_inquired == 0) { ?>
+                            <?php if ($studentComplaint->is_inquired == 1) { ?>
                                 <td>
                                     <div class="solved-status">
                                         <img src="<?php echo URLROOT ?>/public/img/admin/green-dot.png" alt="">
                                         <h6>Solved</h6>
                                     </div>
                                 </td>
-                            <?php } else if ($studentComplaint->is_inquired == 1) { ?>
+                            <?php } else if ($studentComplaint->is_inquired == 0) { ?>
                                 <td>
                                     <div class="not-resolve-status">
                                         <img src="<?php echo URLROOT ?>/public/img/admin/red-dot.png" alt="">
@@ -94,8 +93,26 @@
                     <?php } ?>
                 </tbody>
             </table>
+
+        </section>
+        <div class="pagination">
+            <div class="first">
+                <button><a href="#"><i class="fas fa-regular fa-backward-fast"></i> First</a></button>
+            </div>
+            <div class="previous">
+                <button><a href="#"><i class="fas fa-regular fa-backward-step"></i> Previous</a></button>
+            </div>
+            <div class="page-count">
+                <h3>Page 4 of 24</h3>
+            </div>
+            <div class="next">
+                <button><a href="#">Next <i class="fas fa-regular fa-forward-step"></i></a></button>
+            </div>
+            <div class="last">
+                <button><a href="#">Last <i class="fas fa-regular fa-forward-fast"></i></a></button>
+            </div>
         </div>
-    </div>
+    </section>
 </section>
 
 

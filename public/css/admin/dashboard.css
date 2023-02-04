@@ -437,10 +437,10 @@ body.dark .home .text {
     padding: 15px;
 }
 
-.left_sidebar .approval-complaint{
+.left_sidebar .approval-complaint {
     display: flex;
     justify-content: space-around;
-    align-items: center;    
+    align-items: center;
     padding: 0 20px;
 }
 
@@ -592,31 +592,34 @@ body.dark .home .text {
     width: 50px;
 }
 
-.payment-summary >div{
+.payment-summary>div {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #aaa8a8;
     padding: 5px;
     border-radius: 5px;
     height: 60px;
     margin-top: 8px;
+    background: rgba(227, 171, 5, 0.6);
+    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(50px);
+    border: 1px solid rgba(161, 93, 137, 0.3);
 }
 
-.payment-summary .info{
+.payment-summary .info {
     display: flex;
     justify-content: left;
     align-items: center;
     width: 100%;
 }
 
-.payment-summary .info h2{
+.payment-summary .info h2 {
     font-size: 18px;
     font-weight: bold;
     margin-left: 10px;
 }
 
-.payment-summary span{
+.payment-summary span {
     font-size: 20px;
     font-weight: bold;
     width: 50%;
@@ -679,7 +682,7 @@ body.dark .home .text {
     padding: 10px;
 }
 
-.tutor-student-class-subject span{
+.tutor-student-class-subject span {
     font-size: 18px;
     font-weight: bold;
 }
@@ -753,13 +756,11 @@ body.dark .home .text {
     line-height: 1.2;
 }
 
-.myChart2{
+.myChart2 {
     margin-top: 16px;
     margin-left: 20px;
 }
 
-.myChart{
+.myChart {
     margin-top: 10px;
 }
-
-
