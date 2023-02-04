@@ -10,30 +10,30 @@
     <p></p>
     <p></p>
 
-
     <div class="tutor-page">
 
         <div class="card-section">
 
             <?php foreach ($data as $aTutor) : ?>
                 <div class='card'>
-                    <div class="delete-hide-show">
-                        <div class="hide-show">
-                            <div class="btn"></div>
-                            <button type="button" class="toggle-btn show">Show</button>
-                            <button type="button" class="toggle-btn hide">Hide</button>
+                    <div class="mode-hide-show">
+                        <div class="online-physical-both">
+                            <img src="<?php echo URLROOT; ?>/public/img/admin/online.png" alt="" class="online">
+                            <img src="<?php echo URLROOT; ?>/public/img/admin/physical.png" alt="" class="physical">
+
                         </div>
-                        <div class="delete">
-                            <i class="fas fa-trash-alt"></i>
+                        <div class="hide-show">
+                            <img src="<?php echo URLROOT; ?>/public/img/admin/block.png" alt="" class="block">
+                            <img src="<?php echo URLROOT; ?>/public/img/admin/hide.png" alt="" class="hide">
                         </div>
                     </div>
 
                     <div class='profile-picture'>
-                        <img src='../tutor/OIP.jpeg' alt='''>
+                        <img src="<?php echo URLROOT; ?>/public/img/admin/profile.png" alt="">
                     </div>
 
                     <div class="card-blur-effect">
-                        <div class=' view-profile'>
+                        <div class='view-profile'>
                         <a href="viewTutorProfile"><button class="view-profile-btn">View Profile</button></a>
                     </div>
                 </div>
@@ -42,7 +42,6 @@
                 <div class='name'>
                     <h2><?php echo $aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name; ?></h2>
                 </div>
-
 
 
                 <div class='selection-menu'>
@@ -85,11 +84,6 @@
 
 
     <div class="filter-selection">
-
-        <div class="total-student">
-            <!-- <h1>15</h1> -->
-        </div>
-
         <div class="search">
             <div class="search-bar">
                 <div class="icon">
@@ -100,7 +94,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="filter-functions">
             <div class="search-btn">
@@ -153,8 +146,8 @@
                     <label for="online">&nbspOnline</label>
                 </div>
                 <div class="checkbox-button">
-                    <input type="checkbox" id="offline" name="mode" value="offline" class="offline checkbox">
-                    <label for="offline">&nbspOffline</label>
+                    <input type="checkbox" id="physical" name="mode" value="physical" class="physical checkbox">
+                    <label for="physical">&nbspPhysical</label>
                 </div>
                 <div class="checkbox-button">
                     <input type="checkbox" id="offline" name="mode" value="both" class="both checkbox">

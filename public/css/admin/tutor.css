@@ -9,7 +9,6 @@
     display: grid;
     grid-template-columns: 80% 20%;
     padding: 10px;
-    /* grid-gap: 10px; */
     max-height: 95vh;
     overflow: hidden;
 }
@@ -225,15 +224,13 @@ input[type="range"]::-moz-range-thumb {
     border: 2px solid #FC941D;
     border-radius: 5px;
     padding: 10px;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
 }
 
 .visibility-filter h1{
     font-size: 23px;
     margin-bottom: 10px;
 }
-
-
 
 
 .subject-select > div{
@@ -293,11 +290,11 @@ input[type="range"]::-moz-range-thumb {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: linear-gradient(315deg, #F7931A 0%, #FFD200 74%);
+    background-color: #fbc36e;
     /* width: 350px; */
     width: 96%;
     height: 370px;
-    border-radius: 10px;
+    border-radius: 5px;
     border: 3px solid #FC941D;
     margin-bottom: 50px;
     position: relative;
@@ -309,16 +306,23 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .name{
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     position: relative;
+    text-align: center;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 3px;
 }
 
 .selection-menu{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 30px 0;
+    padding: 27px 0;
     width: 100%;
     user-select: none;
     position: relative;
@@ -376,13 +380,24 @@ input[type="range"]::-moz-range-thumb {
     height: 50px;
     width: 140px;
     position: relative;
+    user-select: none;
+    transition: transform 0.1s;
     z-index: -1;
+}
+
+
+.card .view-profile button:hover {
+    transform: scale(1.05);
+}
+
+.card .view-profile button:active {
+    background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
 }
 
 .card .view-profile{
     position: relative;
-    left: 30%;
-    top: 40%;
+    left: 26%;
+    top: 27%;
     
 }
 
@@ -392,8 +407,7 @@ input[type="range"]::-moz-range-thumb {
     left: 0;
     width: 100%;
     height: 0%;
-    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
-    border-radius: 5px;
+    background-color: #fbc36e;
     transition: height 0.8s linear;
 }
 
@@ -404,8 +418,8 @@ input[type="range"]::-moz-range-thumb {
 
 
 .profile-picture img{
-    width: 150px;
-    height: 150px;
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
     position: relative;
     top: 30px;
@@ -413,9 +427,27 @@ input[type="range"]::-moz-range-thumb {
 
 
 
-/* ====================== HIDE SHOW ============================ */
+/* ====================== HIDE SHOW MODE SUMMARY============================ */
 
-.delete-hide-show{
+.online-physical-both{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 45px;
+}
+
+.online-physical-both .online{
+    width: 26px;
+}
+
+.online-physical-both .physical{
+    width: 40px;
+    margin-top: 10px;
+}
+
+
+.mode-hide-show{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -426,42 +458,20 @@ input[type="range"]::-moz-range-thumb {
     height: 20px;
 }
 
-.delete-hide-show i{
-    font-size: 30px;
-    cursor: pointer;
-}
-
 
 .hide-show{
-    background: rgb(255, 255, 255);
-    padding: 5px;
-    position: relative;
-    right: 10px;
-    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 35px;
 }
 
-.toggle-btn{
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    position: relative;
-    text-align: center;
-    border-radius: 30px;
-    width: 45%;
+.hide-show img{
+    width: 32px;
+    margin-top: 10px;
 }
 
-.btn{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width:50%;
-    height: 100%;
-    background-color: rgb(3,208,40);
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
-    transition: 0.5s;
-}
 
 
 /* =========================FILTER BUTTON================================= */
@@ -490,6 +500,7 @@ input[type="range"]::-moz-range-thumb {
     font-weight: 500;
     cursor: pointer;
     transition: 0.3s;
+    border-radius: 5px;
 }
 
 .filter-functions i{

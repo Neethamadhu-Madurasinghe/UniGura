@@ -64,8 +64,8 @@ for (let i = 0; i < menu_1.length; i++) {
         info_2[i].style.display = 'none';
         info_3[i].style.display = 'none';
         menu_1[i].style.backgroundColor = 'white';
-        menu_2[i].style.backgroundColor = '#fc941d93';
-        menu_3[i].style.backgroundColor = '#fc941d93';
+        menu_2[i].style.backgroundColor = '#fbc36e';
+        menu_3[i].style.backgroundColor = '#fbc36e';
 
     });
 }
@@ -76,9 +76,9 @@ for (let i = 0; i < menu_1.length; i++) {
         info_1[i].style.display = 'none';
         info_2[i].style.display = 'block';
         info_3[i].style.display = 'none';
-        menu_1[i].style.backgroundColor = '#fc941d93';
+        menu_1[i].style.backgroundColor = '#fbc36e';
         menu_2[i].style.backgroundColor = 'white';
-        menu_3[i].style.backgroundColor = '#fc941d93';
+        menu_3[i].style.backgroundColor = '#fbc36e';
     });
 }
 
@@ -88,42 +88,13 @@ for (let i = 0; i < menu_1.length; i++) {
         info_1[i].style.display = 'none';
         info_2[i].style.display = 'none';
         info_3[i].style.display = 'block';
-        menu_1[i].style.backgroundColor = '#fc941d93';
-        menu_2[i].style.backgroundColor = '#fc941d93';
+        menu_1[i].style.backgroundColor = '#fbc36e';
+        menu_2[i].style.backgroundColor = '#fbc36e';
         menu_3[i].style.backgroundColor = 'white';
     });
 }
 
 
-// -------------------------HIDE SHOW BUTTON---------------------------------------
-
-const btn = document.querySelectorAll('.btn');
-const hide = document.querySelectorAll('.hide');
-const show = document.querySelectorAll('.show');
-
-for (let i = 0; i < hide.length; i++) {
-    hide[i].addEventListener('click', function () {
-        btn[i].style.left = '42px';
-        btn[i].style.backgroundColor = 'red';
-        btn[i].style.borderTopRightRadius = '30px';
-        btn[i].style.borderBottomRightRadius = '30px';
-        btn[i].style.borderTopLeftRadius = '0px';
-        btn[i].style.borderBottomLeftRadius = '0px';
-        hide[i].style.color = 'white';
-    });
-}
-
-for (let i = 0; i < show.length; i++) {
-    show[i].addEventListener('click', function () {
-        btn[i].style.left = '0px';
-        btn[i].style.backgroundColor = '#6ab04c';
-        btn[i].style.borderTopRightRadius = '0px';
-        btn[i].style.borderBottomRightRadius = '0px';
-        btn[i].style.borderTopLeftRadius = '30px';
-        btn[i].style.borderBottomLeftRadius = '30px';
-        hide[i].style.color = 'black';
-    });
-}
 
 // -------------------------CARD SHOW PROFILE BUTTON---------------------------------------
 
@@ -136,8 +107,9 @@ const viewProfileBtn = document.querySelectorAll('.view-profile-btn');
 
 for (let i = 0; i < card.length; i++) {
     card[i].addEventListener('mouseenter', function () {
-        cardBlurEffect[i].style.height = '59.5%';
+        cardBlurEffect[i].style.height = '70%';
         viewProfileBtn[i].style.zIndex = '10';
+        card[i].style.backgroundColor = '#fbc36e';
     });
 }
 
@@ -145,6 +117,8 @@ for (let i = 0; i < card.length; i++) {
     card[i].addEventListener('mouseleave', function () {
         cardBlurEffect[i].style.height = '0%';
         viewProfileBtn[i].style.zIndex = '-1';
+        card[i].style.backgroundColor = '#fbc36e';
+
     });
 }
 
