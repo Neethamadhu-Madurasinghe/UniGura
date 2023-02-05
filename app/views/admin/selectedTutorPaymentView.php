@@ -1,20 +1,5 @@
-<?php
-// echo '<pre>';
-// print_r($data);
-// echo '</pre>';
-
-?>
-
-
-
 <div class="total-payoff">
-    <div class="amount">
-        <h2>Total Payoffs</h2>
-        <h3>Rs. fgh</h3>
-    </div>
-    <div class="pay-button">
-        <button>Pay For Tutor</button>
-    </div>
+    <h2>Total Payoffs: <span>Rs. 5000</span></h2>
 </div>
 
 

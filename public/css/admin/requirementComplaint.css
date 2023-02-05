@@ -94,7 +94,6 @@ section.table {
 }
 
 
-
 .table-body {
     height: 57vh;
     width: 95%;
@@ -159,7 +158,6 @@ tbody td div h6{
 
 tbody img{
     width: 20px;
-    border-radius: 50%;
 }
 
 .pagination {
@@ -221,6 +219,19 @@ tbody img{
 }
 
 
+.action .view-tutor-complaint {
+    background-color: #2A8BF2;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+
 .action-tutor-request{
     display: flex;
     justify-content: center;
@@ -251,6 +262,10 @@ tbody img{
     margin-left: 10px;
 }
 
+
+.student-complaint td img{
+    width: 30px;
+}
 
 
 /* ------------------------filter-box------------------------------- */
@@ -382,23 +397,20 @@ tbody img{
 
 
 
-
-
 /* ========================= MENU SELECTION AREA ============================== */
 
 .menu-bar-selection-btn{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background: green;
     padding: 10px;
     border-radius: 5px;
     width: 90%;
     margin: 20px auto;
+    background-color: #ffa620a3;
 }
 
 .menu-bar-selection-btn button{
-    background: yellow;
     border: none;
     outline: none;
     cursor: pointer;
@@ -406,13 +418,17 @@ tbody img{
     font-weight: 500;
     padding: 10px;
     border-radius: 5px;
-    /* transition: 0.5s; */
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
 }
 
-.menu-bar-selection-btn button:hover{
-    background: #c91717;
-    color: white;
+.menu-bar-selection-btn button:hover {
+    transform: scale(1.05);
 }
+
+.menu-bar-selection-btn button:active {
+    background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
+}
+
 
 
 
@@ -478,18 +494,19 @@ tbody img{
 
 .complaint-setting {
     width: 90%;
-    height: 550px;
-    background-color: #fff;
+    height: 600px;
     border-radius: 6px;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%);
     text-align: center;
     padding: 0 30px;
     color: #333;
     visibility: visible;
     z-index: 1;
+    background-color: #ffa620a3;
+    margin-top: 30px;
 }
 
 .complaint-reason > div{
@@ -497,8 +514,9 @@ tbody img{
     border-radius: 5px;
     padding: 30px;
     margin-right: 20px;
-    margin-top: 10px;
+    margin-top: 40px;
     width: 100%;
+    background-color: #fffb;
 }
 
 

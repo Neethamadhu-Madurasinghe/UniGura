@@ -184,22 +184,6 @@
 
 }
 
-/* 
-.show.animation{
-    animation: show_btn 1s forwards;
-}
-
-
-@keyframes show_btn {
-    0% {
-        transform: rotate3d(0, 0, 0, 0deg);
-    }
-    100% {
-        transform: rotate3d(0, 200, 0, 360deg);
-    }
-} */
-
-
 .hide_btn button {
     background-color: #ff0404d2;
     border-radius: 5px;
@@ -262,4 +246,12 @@ hr {
     font-weight: bold;
     width: 100%;
     color: #000000;
+}
+
+
+
+.subject_module_area{
+    background: #000;
+    overflow-y: scroll;
+    height: 100vh;
 }

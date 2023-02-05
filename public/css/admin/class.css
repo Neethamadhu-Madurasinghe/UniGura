@@ -275,7 +275,7 @@ input[type="range"]::-moz-range-thumb {
     border: 2px solid #FC941D;
     border-radius: 5px;
     padding: 10px;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 .subject-filter h1 {

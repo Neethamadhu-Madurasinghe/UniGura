@@ -25,7 +25,7 @@
                 <?php foreach ($data as $tutor) : ?>
                     <div class="tutor">
                         <input type="hidden" value="<?php echo $tutor->tutor_id ?>" class="tutorId">
-                        <div class="tutor-img">
+                        <div class="tutor-img" >
                             <img src="<?php echo URLROOT; ?>/public/img/admin/profile.png" alt="">
                         </div>
                         <div class="tutor-name">
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <div class="payment-right-side">
+        <div class="payment-right-side before-selected-payment-right-side" id="payment-right-side">
 
             <div class="empty-part" id="empty-part">
                 <div class="image-part">
@@ -45,18 +45,17 @@
                 </div>
                 <div class="text-part">
                     <h1>There is no tutor selected</h1>
-                    <p>Please select a tutor to pay</p>
+                    <p>Please select a tutor to see details</p>
                 </div>
             </div>
 
             <div class="selected-tutor" id="selected-tutor">
 
-                <!-- loaded body -->
+                <!-- loaded selected tutor payment body -->
 
             </div>
         </div>
     </div>
-
 
 
     <br><br>

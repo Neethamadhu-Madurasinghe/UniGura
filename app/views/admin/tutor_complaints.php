@@ -87,8 +87,7 @@
                             <?php } ?>
 
                             <td class="action">
-                                <input type="checkbox" name="complaint" id="complaint">
-                                <button class="view-tutor-complaint">View</button>
+                                <a href="#"><button class="view-tutor-complaint">View</button></a>
                             </td>
                         </tr>
                     <?php } ?>

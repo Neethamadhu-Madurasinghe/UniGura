@@ -45,7 +45,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody id="student-complain">
+                <tbody id="student-complain" class="student-complaint">
                     <?php foreach ($data['allTutorRequest'] as $x) { ?>
                         <td><?php echo $x->tutor->first_name . ' ' . $x->tutor->last_name ?></td>
                         <td><?php echo $x->tutor->phone_number ?></td>
