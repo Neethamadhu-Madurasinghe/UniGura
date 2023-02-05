@@ -384,6 +384,8 @@ tbody img{
     border: 2px solid #F7931A;
     padding: 5px;
     border-radius: 5px;
+    margin-top: 15px;
+
 }
 
 .one-complaint form button {
@@ -393,8 +395,22 @@ tbody img{
     border: 2px solid #F7931A;
     padding: 5px;
     border-radius: 5px;
+    margin-top: 15px;
+
 }
 
+.one-complaint input{
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    width: 80%;
+    padding: 8px;
+    font-size: 17px;
+    font-weight: bold;
+    background-color: #ffa620a3;
+    color: black;
+    margin-top: 15px;
+}
 
 
 /* ========================= MENU SELECTION AREA ============================== */
@@ -512,7 +528,7 @@ tbody img{
 .complaint-reason > div{
     border: 2px solid #F7931A;
     border-radius: 5px;
-    padding: 30px;
+    padding: 20px 40px;
     margin-right: 20px;
     margin-top: 40px;
     width: 100%;

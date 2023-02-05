@@ -12,8 +12,15 @@
     font-size: 30px;
     font-weight: bold;
     text-transform: uppercase;
-    margin-top: 10px;
+    margin-top: 20px;
     text-decoration: underline;
+}
+
+.add-subject{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
 }
 
 .form {
@@ -29,38 +36,23 @@
     border: 2px solid #F7931A;
 }
 
-.form label span {
-    color: red;
-    font-size: 15px;
-    font-weight: bold;
-}
-
-
-.form .add-subject label {
-    font-size: 20px;
-    font-weight: bold;
-    width: 100%;
-    text-align: left;
-    margin-bottom: -8px;
-}
-
 .form .add-subject input {
     width: 100%;
-    height: 40px;
+    height: 35px;
     border: 2px solid #F7931A;
     border-radius: 5px;
     padding: 10px;
-    font-size: 20px;
-    margin-top: 10px;
-    user-select: none;
+    background-color: #EBEFF2;
+    margin-right: 15px;
+    font-size: 17px;
 }
 
 
 .form .add-subject button {
-    width: 40%;
-    height: 40px;
+    width: 21%;
+    height: 37px;
     background-color: #F7931A;
-    border: none;
+    border: 2px solid black;
     border-radius: 5px;
     font-size: 17px;
     font-weight: bold;
@@ -74,8 +66,6 @@
 
 
 
-
-
 /* ---------------------------SUBJECT - MODULE-------------------------------- */
 
 .subject_module_area {
@@ -83,8 +73,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
     grid-gap: 40px;
-    margin-top: 50px;
-    margin-bottom: 90px;
+    margin-top: 40px;
     width: calc(100% - 78px);
 }
 
@@ -93,7 +82,7 @@
     border-radius: 5px;
     border: 2px solid #F7931A;
     height: 39vh;
-    padding: 15px;
+    /* padding: 15px; */
     /* width: 26vw; */
     background-color: #f2f2f2;
 }
@@ -104,7 +93,13 @@
     align-items: center;
     margin-bottom: 10px;
     padding-bottom: 10px;
+    padding: 15px;
+    border-bottom: 3px solid #F7931A;
+}
 
+
+.subject_module_box .module{
+    padding: 15px;
 }
 
 .subject_module_box .actions {
@@ -121,14 +116,10 @@
 
 
 .subject_name h3 {
-    font-size: 40px;
-    font-weight: 400;
-    font-family: 'Russo One', sans-serif;
+    font-size: 27px;
+    font-weight: bold;
 }
 
-.insert_module {
-    margin-bottom: 10px;
-}
 
 .module_loop {
     margin-bottom: 10px;
@@ -137,7 +128,8 @@
 .insert_module {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    margin-bottom: 10px;
+
 }
 
 .insert_module input {
@@ -197,28 +189,26 @@
 }
 
 
-
 .show_module {
     height: 18vh;
     margin-top: 20px;
     overflow-y: scroll;
+    padding-right: 5px;
 }
-
 
 .show_module::-webkit-scrollbar {
-    display: none;
+    width: 0.5rem;
+    height: 0.5rem;
 }
 
+.show_module::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #f7941a6b;
+    visibility: hidden;
+}
 
-hr {
-    position: relative;
-    bottom: 15px;
-    right: 17px;
-    /* width: 26vw; */
-    background-color: #F7931A;
-    height: 4px;
-    outline: none;
-    border: none;
+.show_module:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
 }
 
 .subject_module_area a .edit_icon {
@@ -242,7 +232,7 @@ hr {
 .module_input_filed {
     border: none;
     outline: none;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: bold;
     width: 100%;
     color: #000000;
@@ -251,7 +241,23 @@ hr {
 
 
 .subject_module_area{
-    background: #000;
     overflow-y: scroll;
-    height: 100vh;
+    height: 65vh;
+    padding-right: 20px;
+}
+
+
+.subject_module_area::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.subject_module_area::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #f7941a6b;
+    visibility: hidden;
+}
+
+.subject_module_area:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
 }

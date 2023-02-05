@@ -126,41 +126,23 @@
                         </a>
                     </li>
 
-                    <li class="nav-link" id="logout">
-                        <p></p>
-                        <p></p>
-                        <a href="#">
-                            <i class='bx bx-log-out icon'></i>
-                            <span class="text nav-text">logout</span>
-                        </a>
-                    </li>
+
 
                 </ul>
             </div>
 
             <div class="bottom-content">
-                <!-- <li class="logout">
+
+                <br>
+                <li class="nav-link" id="logout">
+                    <p></p>
+                    <p></p>
                     <a href="#">
                         <i class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">Logout</span>
+                        <span class="text nav-text">logout</span>
                     </a>
-                </li> -->
-
-                <!-- <li class="mode">
-                    <div class="sun-moon">
-                        <i class='bx bx-moon icon moon'></i>
-                        <i class='bx bx-sun icon sun'></i>
-                    </div>
-                    <span class="mode-text text">Dark mode</span>
-
-                    <div class="toggle-switch">
-                        <span class="switch"></span>
-                    </div>
-                </li> -->
-
+                </li>
             </div>
         </div>
 
     </nav>
-
-    

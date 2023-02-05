@@ -14,37 +14,17 @@
     <div class="div2">
 
         <div class="container">
-            <h2>Add New Subject</h2><br><br>
+            <h2>Subjects & Modules</h2><br><br>
 
             <div class="form">
                 <div class="add-subject">
-                    <label for="">Subject Name<span> *
-                            <?php
-                            if (isset($_GET['error'])) {
-                                if ($_GET['error'] == "inputsEmpty") {
-                                    echo "Fill the fields";
-                                }
-                            }
-
-                            if (isset($data[2])) {
-                                if ($data[2] == 'Duplicate entry') {
-                                    echo "Duplicate entry";
-                                }
-                            }
-                            ?>
-                        </span></label>
-                    <br>
                     <input type="text" name="subjectName" placeholder="Type the Subject Name..." id="typeSubject">
-                    <br><br>
-                    <button type="submit" id="addSubject"><i class="fa-regular fa-plus"></i>Subject</button>
+                    <button type="submit" id="addSubject"><i class="fa-regular fa-plus"></i></button>
                 </div>
             </div>
 
-
             <div class="subject_module_area">
-
                 <?php
-
                 foreach ($data[0] as $row1) {
                     echo "<div class='subject_module_box'>";
                     echo "<div class='subject'>";
@@ -73,7 +53,6 @@
                     echo "</div>";
                     echo "</div>";
 
-                    echo "<hr>";
 
                     echo "<div class='module'>";
                     echo "<div class='drop_down_part'>";

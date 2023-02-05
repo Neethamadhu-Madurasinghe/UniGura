@@ -50,9 +50,10 @@ body.dark {
     padding: 10px 0px;
     padding-left: 14px;
     background: #FFA620;
-    /* background-image: linear-gradient(100deg, #f7941ac1 0%, #ffd0007b 74%); */
+    background-image: linear-gradient(100deg, #f7941ac1 0%, #ffd0007b 74%);
     transition: var(--tran-05);
     z-index: 100;
+
 }
 
 .sidebar.close {
@@ -192,7 +193,7 @@ body.dark .sidebar header .toggle {
 
 .sidebar li a {
     list-style: none;
-    background-color: #FFA620;
+    background-color: #ffa6200c;
     display: flex;
     align-items: center;
     height: 70%;
@@ -370,9 +371,10 @@ body.dark .home .text {
     position: absolute;
     width: 100%;
     height: 20px;
-    background-color: #FFA620;
     border-bottom-right-radius: 60px;
     left: 0;
+    background: rgb(254, 183, 17);
+    background: linear-gradient(266deg, rgba(254, 183, 17, 1) 22%, rgba(249, 155, 26, 1) 96%);
 }
 
 
@@ -392,10 +394,11 @@ body.dark .home .text {
     position: absolute;
     width: 100%;
     height: 20px;
-    background-color: #FFA620;
     border-top-right-radius: 60px;
     bottom: 0;
     left: 0;
+    background: rgb(254, 183, 17);
+    background: linear-gradient(266deg, rgba(254, 183, 17, 1) 22%, rgba(249, 155, 26, 1) 96%);
 }
 
 
@@ -628,7 +631,7 @@ body.dark .home .text {
 
 /* ===============================CURVE THE BODY======================================= */
 
-.home{
+.home {
     position: relative;
 }
 

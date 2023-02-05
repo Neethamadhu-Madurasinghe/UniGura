@@ -108,7 +108,7 @@ body {
 }
 
 
-.all-tutor>div {
+.all-tutor .tutor {
     padding: 5px;
     border-radius: 5px;
     height: 60px;
@@ -117,7 +117,16 @@ body {
     backdrop-filter: blur(100px);
     border: 1px solid rgba(161, 93, 137, 0.3);
     margin-bottom: 12px;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
 }
+
+.all-tutor .tutor > div{
+    position: relative;
+    z-index: -1;
+}
+
 
 .total-payoff{
     border: 2px solid #F7931A;
