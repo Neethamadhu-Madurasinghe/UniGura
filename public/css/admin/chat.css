@@ -12,7 +12,7 @@ body{
 .chat{
     display: grid;
     grid-template-columns: 1fr 2fr;
-    height: 94vh;   
+    height: 90vh;   
     column-gap: 20px;
     padding: 20px;
 }
@@ -38,7 +38,7 @@ body{
 
 .chat-body{
     background: #fff;
-    height: 75vh;
+    height: 74vh;
     overflow-y: scroll;
     border: 2px solid #FC941D;
     border-top: none;
@@ -46,9 +46,21 @@ body{
     border-bottom-left-radius: 10px;
 }
 
-.chat-body::-webkit-scrollbar{
-    display: none;
+.chat-body::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
 }
+
+.chat-body::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.chat-body:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
 
 .chat-body .receiver-side{
     display: flex;
@@ -91,7 +103,7 @@ body{
     border: none;
     border-radius: 10px;
     outline: none;
-    background-color: #f1f1f1;
+    background-color: #fff;
 }
 
 .chat-send a{
@@ -108,14 +120,12 @@ body{
     background: #fff;
     width: 20px auto;
     padding: 10px;
-    border: 2px solid tomato;
+    border: 2px solid #FC941D;
     border-radius: 10px;
     height: 90vh;
 }
 
-.left-side::-webkit-scrollbar{
-    display: none;
-}
+
 
 
 .left-side .create-new-chat button{
@@ -173,9 +183,21 @@ body{
     overflow-y: scroll;
 }
 
-.chat-list::-webkit-scrollbar{
-    display: none;
+.chat-list::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
 }
+
+.chat-list::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.chat-list:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
 
 .one-chat{
     display: flex;

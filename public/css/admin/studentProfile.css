@@ -1,14 +1,3 @@
-/* *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body{
-    font-family: 'Poppins', sans-serif;
-    background: #f5f5f5;
-} */
-
 .top-details-box{
     width: 97%;
     background: white;
@@ -34,18 +23,18 @@ body{
     justify-content: space-between;
     align-items: center;
     margin: 10px 0;
-    border: 2px solid #c91717;
+    border: 2px solid #FFA620;
     padding: 8px;
     border-radius: 5px;
-
 }
+
 
 .pending-amount{
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 10px 0;
-    border: 2px solid #c91717;
+    border: 2px solid #FFA620;
     padding: 8px;
     border-radius: 5px;
 }
@@ -78,7 +67,7 @@ body{
 }
 
 .actions .chat button{
-    background: #c91717;
+    background: #FFA620;
     border: none;
     outline: none;
     cursor: pointer;
@@ -109,6 +98,23 @@ body{
     height: 54vh;
     display: none;
     overflow-y: scroll;
+    padding-right: 20px;
+}
+
+
+.active-classes::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.active-classes::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.active-classes:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
 }
 
 .finished-classes{
@@ -127,7 +133,7 @@ body{
     background: white;
     padding: 10px;
     border-radius: 5px;
-    border: 2px solid #c91717;
+    border: 2px solid #FFA620;
 }
 
 .tutor-profile img{
@@ -163,19 +169,19 @@ body{
 
 /* ========================= MENU SELECTION AREA ============================== */
 
+
 .filed-selection-btn{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background: green;
     padding: 10px;
     border-radius: 5px;
-    width: 96%;
+    width: 90%;
     margin: 20px auto;
+    background-color: #ffa620a3;
 }
 
 .filed-selection-btn button{
-    background: yellow;
     border: none;
     outline: none;
     cursor: pointer;
@@ -183,13 +189,18 @@ body{
     font-weight: 500;
     padding: 10px;
     border-radius: 5px;
-    transition: 0.5s;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    user-select: none;
 }
 
-.filed-selection-btn button:hover{
-    background: #c91717;
-    color: white;
+.filed-selection-btn button:hover {
+    transform: scale(1.05);
 }
+
+.filed-selection-btn button:active {
+    background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
+}
+
 
 
 
@@ -212,7 +223,7 @@ body{
 }
 
 .student-info > div > div{
-    border: 2px solid #c91717;
+    border: 2px solid #FC941D;
     padding: 10px;
     border-radius: 5px;
     margin: 20px 0;
@@ -246,71 +257,27 @@ body{
 
 /*  ========================= HIDE SHOW / BLOCK UNBLOCK/ CHAT ============================== */
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.actions{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
-.functionalities .button{
-    display: inline-block;
-    height: 60px;
-    width: 60px;
-    /* float: left; */
-    margin: 0 5px;
-    background-color: #fff;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 10px 10px rgba(0,0,0,0.1);
-    transition: all 0.5s ease-in-out;
-    overflow: hidden;
-}
-
-
-.functionalities .button:hover{
-    width: 200px;
-}
-
-.functionalities .button .icon{
-    display: inline-block;
-    height: 60px;
-    width: 60px;
-    border-radius: 50px;
-    box-sizing: border-box;
-    line-height: 60px;
-    text-align: center;
-}
-
-.functionalities .button:nth-child(1):hover .icon{
-    background-color: red;
-}
-
-
-.functionalities .button:nth-child(2):hover .icon{
-    background-color: green;
-}
-
-.functionalities .button .icon img{
+.actions .button img{
     width: 40px;
     vertical-align: middle;
-
-    transition: all 0.5s ease-in-out;
 }
 
-.functionalities .button:hover .icon i{
-    color: #fff;
+.actions .button{
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 1px 1px 2px 2px #FC941D;
+    height: 57px;
+    width: 57px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 13px;
+    margin-right: 10px;
 }
-
-
-.functionalities .button span{
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 60px;
-    margin-left: 10px;
-    transition: all 0.5s ease-in-out;
-}
-
-.functionalities .button:nth-child(1) span{
-    color: red;
-}
-

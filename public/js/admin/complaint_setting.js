@@ -49,9 +49,9 @@ for (let i = 0; i < edit_icon_js.length; i++) {
         complaint_input_filed[i].style.transition = "all 0.5s ease";
         complaint_input_filed[i].style.backgroundColor = "#fff";
         complaint_input_filed[i].style.color = "#000";
-        complaint_input_filed[i].style.padding = "3px";
-        complaint_input_filed[i].style.width = "50%";
-        complaint_input_filed[i].style.height = "30px";
+        complaint_input_filed[i].style.padding = "8px";
+        complaint_input_filed[i].style.width = "60%";
+        complaint_input_filed[i].style.height = "36px";
 
         save_cancel[i].classList.add("show");
         edit_icon_js[i].style.display = "none";
@@ -63,9 +63,10 @@ for (let i = 0; i < cancel_btn_js.length; i++) {
         complaint_input_filed[i].disabled = true;
         complaint_input_filed[i].style.borderRadius = "0";
         complaint_input_filed[i].style.border = "none";
-        complaint_input_filed[i].style.backgroundColor = "transparent";
+        complaint_input_filed[i].style.backgroundColor = "#ffa620a3";
         complaint_input_filed[i].style.color = "#000";
-        complaint_input_filed[i].style.padding = "0";
+        complaint_input_filed[i].style.padding = "8px";
+        complaint_input_filed[i].style.width = "60%";
 
         save_cancel[i].classList.remove("show");
         edit_icon_js[i].style.display = "block";

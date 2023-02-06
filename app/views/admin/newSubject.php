@@ -10,11 +10,35 @@
     <p></p>
     <p></p>
 
-
     <div class="div2">
 
-        <div class="container">
+        <div class="container" id="container">
             <h2>Subjects & Modules</h2><br><br>
+
+            <?php if (isset($data[2])) : ?>
+                <?php if ($data[2] == 'Duplicate entry') : ?>
+                    <div class="popup" id="popup">
+                        <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
+                        <h2>Duplicate Entry!</h2>
+                        <h4>This subject name already exists.</h4>
+                        <button type="button" id="closePopup">OK</button>
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>
+
+
+            <?php if (isset($data[3])) : ?>
+                <?php if ($data[3] == 'Duplicate entry') : ?>
+                    <div class="popup" id="popup">
+                        <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
+                        <h2>Duplicate Entry!</h2>
+                        <h4>This module name already exists.</h4>
+                        <button type="button" id="closePopup">OK</button>
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>
+
+
 
             <div class="form">
                 <div class="add-subject">

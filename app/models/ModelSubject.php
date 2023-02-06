@@ -41,7 +41,7 @@ class ModelSubject
         }
         catch(PDOException $e){
             if(str_contains($e->getMessage(), 'Duplicate entry')){
-                return 'Duplicate entry';
+                return 'Duplicate entry';   
             }
 
         }

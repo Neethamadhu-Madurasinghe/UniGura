@@ -139,6 +139,7 @@ function addSubjectFun (subject) {
             // console.log(this.responseText);
         }
 
+
         const subjectPage = document.getElementById('subject');
         const nav_link = document.querySelectorAll(".nav-link");
 
@@ -234,6 +235,18 @@ function addSubjectFun (subject) {
                 updateModuleFun(module_name, module_id);
             });
         }
+
+
+        /* --------------------------- DUPLICATE ENTRY POPUP ERROR MESSAGE -------------------------------- */
+
+        const popup = document.getElementById('popup');
+        const closePopupBtn = document.getElementById('closePopup');
+        const container = document.getElementById('container');
+
+        closePopupBtn.addEventListener("click", function () {
+            popup.style.display = "none";
+            // container.classList.add('blur');
+        })
     }
 
     xhr.send();
@@ -353,6 +366,15 @@ function addModuleFun (module, subjectId) {
                 updateModuleFun(module_name, module_id);
             });
         }
+
+        /* --------------------------- DUPLICATE ENTRY POPUP ERROR MESSAGE -------------------------------- */
+
+        const popup = document.getElementById('popup');
+        const closePopupBtn = document.getElementById('closePopup');
+
+        closePopupBtn.addEventListener("click", function () {
+            popup.style.display = "none";
+        })
     }
 
     xhr.send();
@@ -595,3 +617,6 @@ function updateModuleHideShowFun (is_hidden, module_id) {
     }
     xhr.send();
 }
+
+
+

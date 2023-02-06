@@ -317,7 +317,7 @@
                 </div>
                 <div class="total-student-payment">
                     <div class="info">
-                        <img src="<?php echo URLROOT ?>/public/img/admin/payment.png" alt="">
+                        <img src="<?php echo URLROOT ?>/public/img/admin/dashboard-payment.png" alt="">
                         <h2>Total Student Payment</h2>
                     </div>
                     <span>Rs. 1000</span>

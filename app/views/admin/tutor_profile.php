@@ -20,37 +20,20 @@
                     <h1>Viraj Sandakelum<span>(Tutor)</span></h1><br>
                 </div>
                 <div class="actions">
-                    <div class="functionalities">
-                        <div class="button">
-                            <div class="icon">
-                                <a href="#"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/show.png"></a>
-                            </div>
-                            <span>Show</span>
-                        </div>
-                        <div class="button">
-                            <div class="icon">
-                                <a href="#"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/hide.png"></a>
-                            </div>
-                            <span>Hide</span>
-                        </div>
-                        <div class="button">
-                            <div class="icon">
-                                <a href="#"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/block.png"></a>
-                            </div>
-                            <span>Block</span>
-                        </div>
-                        <div class="button">
-                            <div class="icon">
-                                <a href="#"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/unblock.png"></a>
-                            </div>
-                            <span>Unblock</span>
-                        </div>
-                        <div class="button">
-                            <div class="icon">
-                                <a href="#"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/chat.png"></a>
-                            </div>
-                            <span>Chat</span>
-                        </div>
+                    <div class="button">
+                        <a href="#" title="Show"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/show.png"></a>
+                    </div>
+                    <div class="button">
+                        <a href="#" title="Hide"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/hide.png"></a>
+                    </div>
+                    <div class="button">
+                        <a href="#" title="Block"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/block.png"></a>
+                    </div>
+                    <div class="button">
+                        <a href="#" title="Unblock"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/unblock.png"></a>
+                    </div>
+                    <div class="button">
+                        <a href="#" title="Chat"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/chat.png"></a>
                     </div>
                 </div>
             </div>

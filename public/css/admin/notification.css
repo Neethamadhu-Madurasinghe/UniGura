@@ -22,7 +22,7 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #FFA620;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
     padding: 0px 10px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;

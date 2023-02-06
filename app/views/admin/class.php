@@ -5,14 +5,13 @@
 
 
 
-
 <section class="home" id="home">
     <p></p>
     <p></p>
     <p></p>
     <p></p>
-    <div class="class-page">
 
+    <div class="class-page">
         <div class="all-classes" id="all-classes">
 
             <?php foreach ($data['allClasses'] as $x) { ?>

@@ -14,8 +14,29 @@ body {
     grid-template-columns: 300px auto;
     grid-gap: 20px;
     padding: 20px;
-    height: 94vh;
 }
+
+.payment-page{
+    height: 94vh;
+    overflow-y: scroll;
+}
+
+
+.payment-page::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.payment-page::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.payment-page   :hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
 
 .payment-left-side {
     background-color: #fff;
@@ -183,7 +204,7 @@ section.table {
 
 section.selected-tutor-payment-view {
     margin: 10px;
-    height: 30vh;
+    height: 38vh;
     background-color: #fff5;
     backdrop-filter: blur(7px);
     box-shadow: 0 .4rem .8rem #0005;
@@ -218,7 +239,7 @@ section.selected-tutor-payment-view {
 
 
 .selected-tutor-table-body {
-    height: 20vh;
+    height: 27vh;
     width: 95%;
     background-color: #fffb;
     margin: .8rem auto;
@@ -501,6 +522,26 @@ tbody button {
 
 .selected-tutor {
     display: none;
+    height: 87vh;
+    overflow-y: scroll;
+    padding-right: 10px;
+    padding-bottom: 25px;
+}
+
+
+.selected-tutor::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.selected-tutor::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.selected-tutor:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
 }
 
 .empty-part {

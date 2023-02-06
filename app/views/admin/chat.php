@@ -3,10 +3,6 @@
 <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/chat.css">
 
 
-
-
-
-
 <section class="home" id="home">
     <p></p>
     <p></p>
@@ -23,6 +19,7 @@
                 <input type="text" placeholder="Search Chat by Name">
             </div>
             <div class="chat-list">
+                <br><br><br><br>
                 <div class="one-chat">
                     <div class="profile-image">
                         <img src="<?php echo URLROOT; ?>/public/img/admin/profile.png" alt="">
@@ -51,20 +48,6 @@
                     </div>
                 </div>
 
-                <div class="one-chat">
-                    <div class="profile-image">
-                        <img src="<?php echo URLROOT; ?>/public/img/admin/profile.png" alt="">
-                    </div>
-                    <div class="chat-details">
-                        <div class="name">
-                            <h3>Viraj Sandakelum</h3>
-                        </div>
-                        <div class="last-message">
-                            <p>Hey, how are you?</p>
-                        </div>
-                    </div>
-                </div>
-
 
 
                 <div class="one-chat">
@@ -80,6 +63,22 @@
                         </div>
                     </div>
                 </div>
+
+
+                <div class="one-chat">
+                    <div class="profile-image">
+                        <img src="<?php echo URLROOT; ?>/public/img/admin/profile.png" alt="">
+                    </div>
+                    <div class="chat-details">
+                        <div class="name">
+                            <h3>Viraj Sandakelum</h3>
+                        </div>
+                        <div class="last-message">
+                            <p>Hey, how are you?</p>
+                        </div>
+                    </div>
+                </div>
+
 
 
 
