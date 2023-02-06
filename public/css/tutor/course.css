@@ -1,0 +1,14 @@
+.header{
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%); 
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    flex-wrap: column;
+    align-items: center;
+}
+
+.header .subhead{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+

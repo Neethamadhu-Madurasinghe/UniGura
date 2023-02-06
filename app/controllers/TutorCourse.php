@@ -7,8 +7,19 @@ class TutorCourse extends Controller
     {
 
         $body = $request->getBody();
-        print_r($body);
+        $data = [];
+
+        $data = [
+            'id' => $request->getUserId(),
+            'subject' => $body['subject'],
+            'module' => $body['module']
+        ];
+
+
+        $this->view('tutor/course', $request, $data);
     }
+
+    
 
     }
         

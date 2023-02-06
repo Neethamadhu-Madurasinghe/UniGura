@@ -105,14 +105,14 @@
 }
 
 #mycourses #content .class-template .class-card{
-    background-color: white;
     display: grid;
     grid-template-rows: 1fr 2fr 1fr;
-    border-radius: 5px;
     height: 200px;
     border: solid 1px #FFA620 ;
     margin-bottom: 5px;
     padding: 10px;
+    background: linear-gradient(180deg, #F5F3FB 0%, #FDFBFD 100%);
+    border-radius: 10px;
 }
 
 #mycourses #content .class-template .class-card .header{
