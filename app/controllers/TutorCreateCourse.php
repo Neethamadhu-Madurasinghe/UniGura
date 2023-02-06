@@ -61,11 +61,4 @@ class TutorCreateCourse extends Controller{
 
     }
 
-
-
-    
-
-
-
-
 }

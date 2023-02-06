@@ -52,6 +52,12 @@ Header::render(
                     </div>
                     <div class="form-row">
                         <div class="form-field">
+                            <label for="last-name">Subject
+                              <!--  <span><?php echo $data['errors']['subject_error'] ?></span> -->
+                            </label>
+                            <input type="text" name="lsubject" id="" value="<?php echo $data['subject'] ?>">
+                        </div>
+                        <div class="form-field">
                             <label for="telephone-number">Phone Number
                                <!-- <span><?php echo $data['errors']['phone_number_error'] ?></span> -->
                             </label>
@@ -60,23 +66,14 @@ Header::render(
                                    id=""
                                    value="<?php echo $data['phone_number'] ?>">
                         </div>
-
-                        <div class="form-field">
-                            <label for="letter-box-number">Letter Box Number
-                              <!--  <span><?php echo $data['errors']['letter_box_number_error'] ?></span> -->
-                            </label>
-                            <input type="text"
-                                   name="letter-box-number"
-                                   id=""
-                                   value="<?php echo $data['letter_box_number'] ?>">
-                        </div>
+                        
                     </div>
                     <div class="form-row">
                         <div class="form-field">
-                            <label for="street">Street
-                             <!--   <span><?php echo $data['errors']['street_error'] ?></span> -->
+                            <label for="street">District
+                             <!--   <span><?php echo $data['errors']['district_error'] ?></span> -->
                             </label>
-                            <input type="text" name="street" id="" value="<?php echo $data['street'] ?>">
+                            <input type="text" name="district" id="" value="<?php echo $data['district'] ?>">
                         </div>
                     
                         <div class="form-field">
@@ -87,111 +84,6 @@ Header::render(
                         </div>
                         
                     </div>
-
-                    <div class="form-row">
-                        <div class="form-field">
-                            <label for="gender">Gender</label>
-                            <select name="gender" id="">
-                                <option value="not-selected"
-                                    <?php echo $data['gender'] === 'not-selected' ? 'selected' : '' ?>>
-                                    Not Selected
-                                </option>
-                                <option value="male"
-                                    <?php echo $data['gender'] === 'male' ? 'selected' : '' ?>>Male</option>
-                                <option value="female"
-                                    <?php echo $data['gender'] === 'female' ? 'selected' : '' ?>>Female</option>
-                            </select>
-                        </div>
-
-                        <div class="form-field">
-                            <label for="preferred-class-mode">Preferred Class Mode</label>
-                            <select name="preferred-class-mode" id="preferred-class-mode">
-                                <option value="online"
-                                    <?php echo $data['mode'] === 'online' ? 'selected' : '' ?>>
-                                    Online
-                                </option>
-                                <option value="physical"
-                                    <?php echo $data['mode'] === 'physical' ? 'selected' : '' ?>>
-                                    Physical
-                                </option>
-                                <option value="both"
-                                    <?php echo $data['mode'] === 'both' ? 'selected' : '' ?>>
-                                    Both
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-
-                    </div>
-
-                    <div class="map-container" id="map-container">
-                        <p>Select location</p>
-                        <div id="map" class="map"></div>
-                        <div id="marker"
-                             title="Marker"
-                             style="<?php echo 'background:url(' . URLROOT . '/public/img/student/marker-64.ico)
-                                     no-repeat top center;' ?>">
-
-                        </div>
-                        <input type="number"
-                               id="longitude"
-                               name="longitude"
-                               readonly
-                               value="<?php echo $data['longitude']; ?>">
-
-                        <input type="number"
-                               id="latitude"
-                               name="latitude"
-                               readonly
-                               value="<?php echo $data['latitude']; ?>">
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-field" id="description-field">
-                            <label for="description">Bio (1000 words max)
-                              <!--  <span><?php echo $data['errors']['description_error'] ?></span> -->
-                            </label>
-                            <?php echo '<textarea name="description" id="">' . $data['description'] . '</textarea>'?>
-
-                        </div>
-                    </div>
-
-
-                    <div class="form-row upload-btn-row">
-                        <div class="form-field btn-field">
-                            <!--<span class="upload-button-error">
-                                <?php echo $data['errors']['advanced_level_result_error'] ?>
-                            </span> -->
-                            <input type="file" id="actual-al-result-btn" name="advanced-level-result" hidden/>
-                            <label for="actual-al-result-btn" id="al-result-upload-btn">
-                                Upload A/L Result Sheet
-                            </label>
-                        </div>
-                        <div class="form-field btn-field">
-                            <!--<span class="upload-button-error">
-                                <?php echo $data['errors']['id_copy_error'] ?>
-                            </span> -->
-                            <input type="file" id="actual-identity-card-btn" name="id-copy" hidden/>
-                            <label for="actual-identity-card-btn" id="al-identity-card-btn">
-                                Upload Identity Card Photo
-                            </label>
-                        </div>
-                        <div class="form-field btn-field">
-                           <!-- <span class="upload-button-error">
-                                <?php echo $data['errors']['university_entrance_letter_error'] ?>
-                            </span> -->
-                            <input type="file" id="actual-university-entrance-letter"
-                                   name="university-entrance-letter" hidden/>
-                            <label for="actual-university-entrance-letter" id="university-entrance-letter">
-                                Upload University Entrance Letter
-                            </label>
-                        </div>
-                    </div>
-
-
-
 
                     <div id="submit-btn-container">
                         <input type="submit" value="Finish" class="btn btn-search">

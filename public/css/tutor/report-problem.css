@@ -39,7 +39,8 @@ input[type="radio"] {
     box-sizing: border-box;
     width: 100%;
     background: #e8c7a4;
-    border: grey
+    border: grey;
+    resize: none;
   
     
   }

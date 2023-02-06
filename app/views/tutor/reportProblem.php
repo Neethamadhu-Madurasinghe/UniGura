@@ -17,15 +17,15 @@ Header::render(
     [
         'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css',
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css',
-        URLROOT . '/public/css/common/student-base-style.css',
+        //URLROOT . '/public/css/common/student-base-style.css',
         URLROOT . '/public/css/tutor/report-problem.css',
     ]
-//    Student base style is used here, because In this part, both student and tutor looks same
+
 );
 ?>
 
 
-    <form>
+    <form action="" method="POST">
         <h1>Report a Problem</h1>
         <input type="radio" name="report" value="student">Student do not attend to class at time<br>
         <input type="radio" name="report" value="payments">Payments not done in time<br>

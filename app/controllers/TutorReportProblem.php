@@ -9,6 +9,9 @@ class TutorReportProblem extends Controller{
     
     public function tutorreportProblem(Request $request){
 
+        $data = [];
+
+        $this->view('tutor/reportProblem', $request,$data);
     }
 
 
