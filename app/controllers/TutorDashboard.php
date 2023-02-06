@@ -9,6 +9,7 @@ class TutorDashboard extends Controller
     }
 
 
+
     public function dashboard(Request $request)
     {
 
@@ -31,7 +32,11 @@ class TutorDashboard extends Controller
         $data = [];
 
         //Fetch all the classes of this student
+        $data['tutor_name'] = get_object_vars($this->dashboardModel->getTutorName($request->getUserId()));
         $data['active_class_count'] = json_encode($this->dashboardModel->countTutoringActiveClasses($request->getUserId()));
+        $data['tutoring_class_template'] = json_encode($this->dashboardModel->getTutoringClassTemplates($request->getUserId()));
+
+    
         $this->view('tutor/dashboard', $request, $data);
     }
 

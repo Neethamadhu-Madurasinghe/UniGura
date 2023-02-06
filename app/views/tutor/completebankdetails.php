@@ -19,7 +19,7 @@ Header::render(
         'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css',
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css',
         URLROOT . '/public/css/common/student-base-style.css',
-        URLROOT . '/public/css/tutor/complete-profile.css',
+        URLROOT . '/public/css/tutor/complete-profile.css'
     ]
     //    Student base style is used here, because In this part, both student and tutor looks same
 );
@@ -59,25 +59,19 @@ Header::render(
                             <input type="text" name="branch" id="" value="<?php echo $data['branch'] ?>">
                         </div>
                     </div>
-                <div id="submit-btn-container">
-                    <input type="submit" value="Finish" class="btn btn-search">
+
+                    <div id="submit-btn-container">
+                        <input type="submit" id="submit" value="Next" class="btn btn-search">
+                    </div>
                 </div>
-            </div>
-
-
-
-
         </form>
-
     </div>
 </div>
 
 
-
 <?php Footer::render(
     [
-        'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js',
-        URLROOT . '/public/js/common/student-tutor-complete-profile.js',
+        'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js'
 
     ]
 ); ?>

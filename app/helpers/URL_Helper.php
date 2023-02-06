@@ -26,10 +26,12 @@ function redirectBasedOnUserRole(Request $request): void {
     }elseif ($request->isBankDetialsNotCompletedTutor()) {
         redirect('tutor/complete-bank-detials');
     }
+    elseif ($request->isTimeSlotNotCompletedTutor()) {
+        redirect('tutor/tutor-time-slot-input');
+    }
     elseif ($request->isNotApprovedTutor()) {
         redirect('/tutor/pending');
     }
-
     //new function added by sachithra
     elseif($request->isApprovedTutor()){
         redirect('tutor/aproved');

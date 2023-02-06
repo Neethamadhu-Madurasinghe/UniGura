@@ -15,7 +15,7 @@ Header::render(
     'Tutor Dashboard',
     [
         URLROOT . '/public/css/tutor/base.css?v=1.0',
-        URLROOT . '/public/css/tutor/dashboard.css?v=1.3'
+        URLROOT . '/public/css/tutor/dashboard.css?v=1.8'
     ]
 );
 
@@ -29,7 +29,11 @@ MainNavbar::render($request);
             <div class="card" id="usergreeting">
                 <div id="details">
                     <div class="text">
-                        <h1>Hello Sachithra</h1>
+                        <h1>Hello 
+                            <?php print_r( $data['tutor_name']['first_name']);
+                                
+                            ?> 
+                        </h1>
                         <p>Its Good to see you !</p>
                     </div>
                     <div id="createcoursebtn">
@@ -89,7 +93,48 @@ MainNavbar::render($request);
                 <div id="heading">
                     <h1>My Courses</h1>
                 </div>
-                <div id="content"></div>
+                <div id="content">
+                    <div class="class-template">
+                        <?php
+                        $classes = json_decode($data['tutoring_class_template']);
+
+                        foreach ($classes as $class) {
+                            $array = (array) $class;
+                            $subject = (string) $array['subject'];
+                            $module = (string) $array['module'];
+                            $mode = (string) $array['mode'];
+                            $medium = (string) $array['medium'];
+
+                            echo "
+                            <div class='class-card'> 
+                                <div class='header'>
+                                    <div >
+                                        <h2>$subject</h2>
+                                        <p>$module</p>
+                                        <p>$mode</p>
+                                        <p>$medium</p>
+                                    </div>
+                                    <i class='fa-solid fa-user user'></i>
+                                </div>
+                                <div>
+                                    <p></p>
+                                    <p></p>
+                                </div>   
+                                <div class='footer'>
+                                    <div>
+                                        <i class='fa-solid fa-star'></i>
+                                    </div>
+                                    <div>
+                                        <i class='fa-regular fa-pen-to-square'></i>
+                                        <i class='fa-solid fa-trash'></i>
+                                        <i class='fa-solid fa-eye-slash'></i>
+                                    </div>         
+                                </div>                      
+                            </div>";
+                        }
+                        ?>
+                    </div>
+                </div>
             </div>
             <div class="card" id="balancetime">
                 <div id="heading">
@@ -126,6 +171,14 @@ MainNavbar::render($request);
         //Getting block class count
 
         // Get the modal - Result Model
+
+        const cards = document.querySelectorAll(".class-card");
+        cards.forEach(card => {
+            console.log(card)
+            card.addEventListener("click", function() {
+                window.location = "http://localhost/unigura/tutor/viewcourse?subject=" + this.querySelector("h2").textContent + "&module=" + this.querySelector("p").textContent;
+            });
+        });
     </script>
 </section>
 

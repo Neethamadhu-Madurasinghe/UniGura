@@ -9,6 +9,13 @@ class ModelTutorDashboard
         $this->db = new Database();
     }
 
+    public function getTutorName($id){
+        $this->db->query('SELECT first_name FROM user where id = :id');
+        $this->db->bind('id',$id,PDO::PARAM_INT);
+        $result = $this->db->resultOne();
+        return $result;
+    }
+
     public function countTutoringActiveClasses($id)
     {
 
@@ -96,4 +103,22 @@ class ModelTutorDashboard
 
         return $this->db->execute();
     }
+
+    public function getTutoringClassTemplates($id) : array
+    {
+        $this->db->query(' SELECT c.mode, c.medium, m.name as module , s.name as subject
+        FROM tutoring_class_template AS c
+        JOIN subject AS s 
+        ON c.subject_id = s.id
+        JOIN module AS m 
+        ON c.module_id = m.id
+        WHERE c.tutor_id = :id;');
+
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        return $this->db->resultAllAssoc();
+    }
+
+
+  
 }

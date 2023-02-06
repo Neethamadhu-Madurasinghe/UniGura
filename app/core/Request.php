@@ -170,9 +170,9 @@ class Request {
         return $_SESSION['user_role'] === 7;
     }
 
-    // public function isQualificationNotCompletedTutor(): bool {
-    //     return $_SESSION['user_role'] === 9;
-    // }
+    public function isTimeSlotNotCompletedTutor(): bool {
+        return $_SESSION['user_role'] === 10;
+    }
 
     public function isBankDetialsNotCompletedTutor(): bool {
         return $_SESSION['user_role'] === 9;

@@ -17,7 +17,7 @@ Header::render(
         'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css',
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css',
         URLROOT . '/public/css/common/student-base-style.css',
-        URLROOT . '/public/css/tutor/create-class-template.css?v=1.4'
+        URLROOT . '/public/css/tutor/create-class-template.css?v=1.1'
     ]
     //    Student base style is used here, because In this part, both student and tutor looks same
 );
