@@ -264,7 +264,7 @@
 }
 
 .actions .button img{
-    width: 40px;
+    width: 30px;
     vertical-align: middle;
 }
 
@@ -273,8 +273,8 @@
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 1px 1px 2px 2px #FC941D;
-    height: 57px;
-    width: 57px;
+    height: 48px;
+    width: 48px;
     display: flex;
     justify-content: center;
     align-items: center;

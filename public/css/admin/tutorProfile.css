@@ -1,11 +1,35 @@
+.tutor-profile-page{
+    height: 95vh;
+    overflow-y: scroll;
+}
+
+
+.tutor-profile-page::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.tutor-profile-page::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.tutor-profile-page:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
+
+
 .top-details-box {
-    width: 100%;
+    width: 95%;
     background: white;
     display: flex;
     justify-content: space-around;
     align-items: center;
     margin: 20px auto;
     padding: 10px;
+    border-radius: 10px;
 }
 
 .profile-picture img {
@@ -24,7 +48,7 @@
     justify-content: space-between;
     align-items: center;
     margin: 10px 0;
-    border: 2px solid #c91717;
+    border: 2px solid #FC941D;
     padding: 8px;
     border-radius: 5px;
 
@@ -35,7 +59,7 @@
     justify-content: space-between;
     align-items: center;
     margin: 10px 0;
-    border: 2px solid #c91717;
+    border: 2px solid #FC941D;
     padding: 8px;
     border-radius: 5px;
 }
@@ -68,7 +92,7 @@
 }
 
 .actions .chat button {
-    background: #c91717;
+    background: #FC941D;
     border: none;
     outline: none;
     cursor: pointer;
@@ -94,21 +118,59 @@
     display: grid;
     grid-template-columns: auto auto auto;
     grid-gap: 40px;
-    width: 90%;
+    width: 95%;
     margin: 20px auto;
     height: 54vh;
     display: none;
     overflow-y: scroll;
+    padding-right: 15px;
 }
+
+
+.active-classes::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.active-classes::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.active-classes:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
 
 .finished-classes {
     display: grid;
     grid-template-columns: auto auto auto;
     grid-gap: 40px;
-    width: 80%;
+    width: 95%;
     margin: 20px auto;
     display: none;
+    height: 54vh;
+    padding-right: 15px;
+    overflow-y: scroll;
 }
+
+.finished-classes::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.finished-classes::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.finished-classes:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
+
 
 .one-class {
     display: flex;
@@ -117,7 +179,8 @@
     background: white;
     padding: 10px;
     border-radius: 5px;
-    border: 2px solid #c91717;
+    border: 2px solid #FC941D;
+    height: 130px;
 }
 
 .tutor-profile img {
@@ -190,11 +253,11 @@
 /* ========================= tutor INFO ============================== */
 
 .tutor-info {
-    width: 100%;
+    width: 95%;
     margin: 20px auto;
     background: white;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 10px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -206,7 +269,7 @@
 }
 
 .tutor-info>div>div {
-    border: 2px solid #c91717;
+    border: 2px solid #FC941D;
     padding: 10px;
     border-radius: 5px;
     margin: 20px 0;
@@ -247,7 +310,7 @@
 }
 
 .actions .button img{
-    width: 40px;
+    width: 30px;
     vertical-align: middle;
 }
 
@@ -256,8 +319,8 @@
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 1px 1px 2px 2px #FC941D;
-    height: 57px;
-    width: 57px;
+    height: 48px;
+    width: 48px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -339,41 +402,4 @@
 
 .slot-selected {
     background-image: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
-}
-
-@media screen and (max-width: 1024px) {
-    .time-table-container {
-        overflow-x: scroll;
-    }
-
-    .pop-time-table {
-        width: 95%;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .pop-time-table {
-        width: 95%;
-    }
-
-    #time-table tr th {
-        color: var(--bright-orange);
-        font-size: 0.8rem;
-        min-width: 76px;
-        font-family: 'Montserrat';
-    }
-
-}
-
-.popup-button-container {
-    margin-top: 30px;
-    width: 60%;
-    display: flex;
-    justify-content: space-between;
-}
-
-@media screen and (max-width: 768px) {
-    .popup-button-container {
-        width: 100%;
-    }
 }

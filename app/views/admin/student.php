@@ -137,7 +137,7 @@
                     </div>
                     <div class="checkbox-button">
                         <input type="checkbox" id="hide" name="hide" value="hide" class="hide checkbox">
-                        <label for="other">&nbspHide</label>
+                        <label for="hide">&nbspHide</label>
                     </div>
                     <div class="checkbox-button">
                         <input type="checkbox" id="unblock" name="unblock" value="unblock" class="unblock checkbox">

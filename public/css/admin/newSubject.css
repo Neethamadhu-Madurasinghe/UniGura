@@ -16,7 +16,7 @@
     text-decoration: underline;
 }
 
-.add-subject{
+.add-subject {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -98,7 +98,7 @@
 }
 
 
-.subject_module_box .module{
+.subject_module_box .module {
     padding: 15px;
 }
 
@@ -240,7 +240,7 @@
 
 
 
-.subject_module_area{
+.subject_module_area {
     overflow-y: scroll;
     height: 65vh;
     padding-right: 20px;
@@ -266,14 +266,14 @@
 /* --------------------------- DUPLICATE ENTRY POPUP ERROR MESSAGE -------------------------------- */
 
 
-.popup img{
+.popup img {
     width: 100px;
-    margin-top: -50px; 
+    margin-top: -50px;
     border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.popup{
+.popup {
     width: 400px;
     background-color: #F7931A;
     border-radius: 6px;
@@ -288,27 +288,27 @@
     transition: transform 0.4s, top 0.4s, visibility 0.4s;
 }
 
-.open_popup{
+.open_popup {
     visibility: visible;
     top: 50%;
-    transform: translate(-50%,-50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
 }
 
 
-.close_popup{
+.close_popup {
     visibility: hidden;
     top: 0%;
-    transform: translate(-50%,-50%) scale(0);
+    transform: translate(-50%, -50%) scale(0);
 }
 
-.popup h2{
+.popup h2 {
     font-size: 38px;
     font-weight: 500;
     margin: 10px;
     margin-bottom: 20px;
 }
 
-.popup button{
+.popup button {
     width: 100%;
     margin-top: 50px;
     padding: 10px 0;
@@ -319,9 +319,5 @@
     cursor: pointer;
     font-size: 18px;
     border-radius: 4px;
-    box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 }
-
-
-
-
