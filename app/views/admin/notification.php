@@ -23,7 +23,6 @@
 
                         <div class="notification-title">
                             <h3><?php echo $notification->user->first_name . ' ' . $notification->user->last_name ?> | <?php echo $notification->title ?></h3>
-                            <!-- <h5>15 Feb, 2022 | 05:10 PM</h5> -->
                             <h5><?php echo explode(' ', $notification->created_at)[0] ?> | <?php echo explode(' ', $notification->created_at)[1] ?></h5>
                         </div>
                     </div>

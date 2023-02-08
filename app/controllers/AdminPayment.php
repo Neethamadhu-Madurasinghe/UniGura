@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class AdminPayment extends Controller
 {
@@ -13,7 +13,7 @@ class AdminPayment extends Controller
 
         $allPayment = $this->paymentModel->allPaymentDetails();
 
-        foreach($allPayment as $tutor){
+        foreach ($allPayment as $tutor){
             $tutor->tutor = $this->paymentModel->getTutorById($tutor->tutor_id);
         }
 
@@ -29,14 +29,14 @@ class AdminPayment extends Controller
 
     public function selectedTutorDetails(Request $request){
         
-        if($request->isGet()){
+        if ($request->isGet()){
             $bodyData = $request->getBody();
             $tutorId = $bodyData['selectedTutorId'];
 
             $tutorBankDetails = $this->paymentModel->selectedTutorBankDetails($tutorId);
             $tutorPaymentDetails = $this->paymentModel->paymentDetailsByTutorId($tutorId);
 
-            foreach($tutorPaymentDetails as $aTutorPaymentDetails){
+            foreach ($tutorPaymentDetails as $aTutorPaymentDetails){
                 $aTutorPaymentDetails->classDay = $this->paymentModel->classDayByDayId($aTutorPaymentDetails->day_id);
                 $aTutorPaymentDetails->tutorialClass = $this->paymentModel->getTutorialClassByClassId($aTutorPaymentDetails->classDay->class_id);
                 $aTutorPaymentDetails->classTemplate = $this->paymentModel->getClassTemplateByClassTemplateId($aTutorPaymentDetails->tutorialClass->class_template_id);
@@ -59,5 +59,4 @@ class AdminPayment extends Controller
             $this->view('admin/selectedTutorPaymentView', $request, $data);
         }
     }
-
 }

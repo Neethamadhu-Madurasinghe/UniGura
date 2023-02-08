@@ -46,7 +46,7 @@ body {
 }
 
 .before-selected-payment-right-side .empty-part {
-    background-color: #fff;
+    /* background-color: #fff; */
     padding: 20px;
     border-radius: 5px;
     border: 2px solid #F7931A;
@@ -195,7 +195,7 @@ body {
 section.table {
     margin: 10px;
     height: 40vh;
-    background-color: #fff5;
+    /* background-color: #fff5; */
     backdrop-filter: blur(7px);
     box-shadow: 0 .4rem .8rem #0005;
     border-radius: .8rem;
@@ -205,7 +205,7 @@ section.table {
 section.selected-tutor-payment-view {
     margin: 10px;
     height: 38vh;
-    background-color: #fff5;
+    /* background-color: #fff5; */
     backdrop-filter: blur(7px);
     box-shadow: 0 .4rem .8rem #0005;
     border-radius: .8rem;
@@ -385,7 +385,7 @@ tbody button {
     justify-content: space-between;
     width: 200px;
     font-size: 15px;
-    width: 100%;
+    /* width: 100%; */
 }
 
 .list-section {

@@ -1,10 +1,9 @@
 <?php
 
-
 class AdminStudent extends Controller{
     private mixed $studentModel;
 
-    public function __construct(){
+    public function __construct() {
         $this->studentModel = $this->model('ModelStudent');
     }
 

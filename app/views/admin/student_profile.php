@@ -13,7 +13,7 @@
     <div class="top-details-box">
         <div class="student-details">
             <div class="profile-picture">
-                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
+                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
             </div>
             <div class="name-actions">
                 <div class="name">

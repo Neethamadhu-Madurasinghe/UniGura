@@ -40,8 +40,8 @@ const student_complaint_filter = document.getElementById("student-complaint-filt
 
 
 search_student_name_btn.addEventListener("click", () => {
-    var search_student_name_value = search_student_name.value.toLowerCase();
-    var student_complaint_filter_value = student_complaint_filter.value;
+    let search_student_name_value = search_student_name.value.toLowerCase();
+    let student_complaint_filter_value = student_complaint_filter.value;
 
     console.log(search_student_name_value);
     console.log(student_complaint_filter_value);
@@ -62,8 +62,8 @@ search_student_name_btn.addEventListener("click", () => {
 
 
 student_complaint_filter.addEventListener("change", () => {
-    var search_student_name_value = search_student_name.value.toLowerCase();
-    var student_complaint_filter_value = student_complaint_filter.value;
+    let search_student_name_value = search_student_name.value.toLowerCase();
+    let student_complaint_filter_value = student_complaint_filter.value;
 
     console.log(search_student_name_value);
     console.log(student_complaint_filter_value);
@@ -76,7 +76,7 @@ student_complaint_filter.addEventListener("change", () => {
     xhr.onload = function () {
         if (this.status === 200) {
             student_complain.innerHTML = this.responseText;
-            searchFilterResult = this.responseText;
+            // searchFilterResult = this.responseText;
         }
     }
 

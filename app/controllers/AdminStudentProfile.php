@@ -10,7 +10,7 @@ class AdminStudentProfile extends Controller{
 
     public function viewStudentProfile(Request $request) {
 
-        if($request->isGet()){
+        if ($request->isGet()){
             $bodyData = $request->getBody();
             $studentId = $bodyData['studentID'];
 
@@ -29,7 +29,7 @@ class AdminStudentProfile extends Controller{
                 $aActiveClass->subject = $this->studentModel->getSubjectById($aActiveClass->tutorialClassTemplate->subject_id);
                 $aActiveClass->module = $this->studentModel->getModuleById($aActiveClass->tutorialClassTemplate->module_id);
                 return $aActiveClass;
-            },$allActiveClasses);
+            }, $allActiveClasses);
 
 
             // echo '<pre>';

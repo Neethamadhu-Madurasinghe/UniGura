@@ -31,12 +31,6 @@
 
         <div class="menu-bar">
             <div class="menu">
-
-                <!-- <li class="search-box">
-                    <i class='bx bx-search icon'></i>
-                    <input type="text" placeholder="Search...">
-                </li> -->
-
                 <ul class="menu-links">
                     <li class="nav-link active" id="dashboard">
                         <p></p>
@@ -125,23 +119,21 @@
                             <span class="text nav-text">Profile</span>
                         </a>
                     </li>
-
-
-
                 </ul>
             </div>
 
             <div class="bottom-content">
-
                 <br>
-                <li class="nav-link" id="logout">
-                    <p></p>
-                    <p></p>
-                    <a href="#">
-                        <i class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">logout</span>
-                    </a>
-                </li>
+                <ul>
+                    <li class="nav-link" id="logout">
+                        <p></p>
+                        <p></p>
+                        <a href="#">
+                            <i class='bx bx-log-out icon'></i>
+                            <span class="text nav-text">logout</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
 

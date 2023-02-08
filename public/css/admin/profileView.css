@@ -1,6 +1,6 @@
 :root {
     --bright-orange: #FF8125;
-    --lightest-orrange: #FFCFAC;
+    --lightest-orange: #FFCFAC;
     --dark-orange: #F7711A;
 }
 
@@ -15,11 +15,11 @@
 
 .tutor-profile {
     width: 500px;
-    margin-top: 20px;
-    width: 100%;
+    /* margin-top: 20px; */
+    /* width: 100%; */
     height: 100%;
     max-width: 500px;
-    margin: auto;
+    /* margin: auto; */
     margin-top: 90px;
 }
 

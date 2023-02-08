@@ -1,18 +1,15 @@
 <?php
 
 
-class AdminSearchFilter extends Controller
-{
+class AdminSearchFilter extends Controller {
     private mixed $ModelAdminSearchFilter;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->ModelAdminSearchFilter = $this->model('ModelAdminSearchFilter');
     }
 
 
-    public function studentComplainSearchFilter(Request $request)
-    {
+    public function studentComplainSearchFilter(Request $request) {
 
         $allStudentComplaints = $this->ModelAdminSearchFilter->getStudentComplaints();
         $allTutorComplaints = $this->ModelAdminSearchFilter->getTutorComplaints();
@@ -94,7 +91,7 @@ class AdminSearchFilter extends Controller
                     }
                 }
             }
-        } else if ($studentName != '') {
+        } elseif ($studentName != '') {
             $studentName = $_GET['search_student_name_value'];
 
             foreach ($allStudentComplaints as $x) {
@@ -102,7 +99,7 @@ class AdminSearchFilter extends Controller
                     array_push($filterResult, $x);
                 }
             }
-        } else if ($filterType != '') {
+        } elseif ($filterType != '') {
             $filterType = $_GET['student_complaint_filter_value'];
 
             if ($filterType == 'not_resolve') {
@@ -121,7 +118,6 @@ class AdminSearchFilter extends Controller
             }
 
             if ($filterType == 'all') {
-
                 foreach ($allStudentComplaints as $x) {
                     if (str_contains(strtolower($x->student->first_name), strtolower($studentName))) {
                         array_push($filterResult, $x);

@@ -1,38 +1,37 @@
 <?php
 
-class ModelRequirementComplaints{
-    
+class ModelRequirementComplaints {
+
     private Database $db;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->db = new Database();
     }
 
-    public function getStudentComplaints($start,$rowsPerPage){
+    public function getStudentComplaints($start, $rowsPerPage) {
         $this->db->query("SELECT * FROM student_report LIMIT $start, $rowsPerPage");
         return $this->db->resultAll();
     }
 
-    public function totalNumOfStudentComplaints(){
+    public function totalNumOfStudentComplaints() {
         $this->db->query("SELECT * FROM student_report");
         $this->db->resultAll();
         return $this->db->rowCount();
     }
 
-    public function studentReportById($reportID){
+    public function studentReportById($reportID) {
         $this->db->query("SELECT * FROM student_report WHERE id = :report_id");
         $this->db->bind(':report_id', $reportID);
         return $this->db->resultOne();
     }
 
-    public function reportSeasonById($reasonID){
+    public function reportSeasonById($reasonID) {
         $this->db->query("SELECT * FROM report_reason WHERE id = :reason_id");
         $this->db->bind(':reason_id', $reasonID);
         return $this->db->resultOne();
     }
 
-    public function userById($userID){
+    public function userById($userID) {
         $this->db->query("SELECT * FROM user WHERE id = :user_id");
         $this->db->bind(':user_id', $userID);
         return $this->db->resultOne();
@@ -41,71 +40,70 @@ class ModelRequirementComplaints{
 
 
 
-    public function getTutorComplaints(){
+    public function getTutorComplaints() {
         $this->db->query("SELECT * FROM tutor_report");
         return $this->db->resultAll();
     }
 
-    public function tutorReportById($reportID){
+    public function tutorReportById($reportID) {
         $this->db->query("SELECT * FROM tutor_report WHERE id = :report_id");
         $this->db->bind(':report_id', $reportID);
         return $this->db->resultOne();
     }
 
-    public function reportReasonById($reasonID){
+    public function reportReasonById($reasonID) {
         $this->db->query("SELECT * FROM report_reason WHERE id = :reason_id");
         $this->db->bind(':reason_id', $reasonID);
         return $this->db->resultOne();
     }
 
 
-    public function getTutorRequest(){
+    public function getTutorRequest() {
         $this->db->query("SELECT * FROM tutor");
         return $this->db->resultAll();
     }
 
 
 
-    public function getStudentComplaintReason(){
+    public function getStudentComplaintReason() {
         $this->db->query("SELECT * FROM report_reason WHERE is_for_tutor = 0");
         return $this->db->resultAll();
     }
 
-    public function getTutorComplaintReason(){
+    public function getTutorComplaintReason() {
         $this->db->query("SELECT * FROM report_reason WHERE is_for_tutor = 1");
         return $this->db->resultAll();
     }
 
 
 
-    public function addStudentComplainReason($description){
+    public function addStudentComplainReason($description) {
         $this->db->query("INSERT INTO `report_reason`(`is_for_tutor`, `description`) VALUES (0, :description)");
-        
+
         $this->db->bind(':description', $description);
         return $this->db->execute();
     }
 
-    public function addTutorComplainReason($description){
+    public function addTutorComplainReason($description) {
         $this->db->query("INSERT INTO `report_reason`(`is_for_tutor`, `description`) VALUES (1, :description)");
-        
+
         $this->db->bind(':description', $description);
         return $this->db->execute();
     }
 
-    public function updateStudentComplainReason($reasonID, $description){
+    public function updateStudentComplainReason($reasonID, $description) {
         $this->db->query("UPDATE `report_reason` SET `description` = :description WHERE id = :reason_id");
-        
+
         $this->db->bind(':reason_id', $reasonID);
         $this->db->bind(':description', $description);
         return $this->db->execute();
     }
 
-    public function updateTutorComplainReason($reasonID, $description){
+    public function updateTutorComplainReason($reasonID, $description) {
         $this->db->query("UPDATE `report_reason` SET `description` = :description WHERE id = :reason_id");
-        
+
         $this->db->bind(':reason_id', $reasonID);
         $this->db->bind(':description', $description);
         return $this->db->execute();
     }
-
 }

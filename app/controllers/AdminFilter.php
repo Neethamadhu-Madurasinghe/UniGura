@@ -27,6 +27,7 @@ class AdminFilter extends Controller
 
             $classConductModeValue = $bodyData['classConductModeFilterValue'];
             $visibilityFilterValue = $bodyData['visibilityFilterValue'];
+            $searchStudentName = $bodyData['searchStudentName'];
 
 
             $arrayModes =  explode(',', $classConductModeValue);
@@ -40,13 +41,13 @@ class AdminFilter extends Controller
 
             if (empty($classConductModeValue) && empty($visibilityFilterValue)) {
                 $pageContent = $allStudent;
-            } else if (empty($classConductModeValue) && !empty($visibilityFilterValue)) {
+            } elseif (empty($classConductModeValue) && !empty($visibilityFilterValue)) {
                 foreach ($allStudent as $aStudent) {
                     if (in_array($aStudent->student->is_banned, $arrayVisibility)) {
                         array_push($pageContent, $aStudent);
                     }
                 }
-            } else if (!empty($classConductModeValue) && empty($visibilityFilterValue)) {
+            } elseif (!empty($classConductModeValue) && empty($visibilityFilterValue)) {
                 foreach ($allStudent as $aStudent) {
                     if (in_array($aStudent->student->mode, $arrayModes)) {
                         array_push($pageContent, $aStudent);

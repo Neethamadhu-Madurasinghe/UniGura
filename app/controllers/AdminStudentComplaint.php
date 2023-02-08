@@ -1,16 +1,13 @@
 <?php
 
-class AdminStudentComplaint extends Controller
-{
+class AdminStudentComplaint extends Controller {
     private mixed $studentComplaintModel;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->studentComplaintModel = $this->model('ModelRequirementComplaints');
     }
 
-    public function studentComplaint(Request $request)
-    {
+    public function studentComplaint(Request $request){
         $rowsPerPage = 5;
         $totalNumOfStudentComplaints = $this->studentComplaintModel->totalNumOfStudentComplaints();
         $lastPageNum = ceil($totalNumOfStudentComplaints / $rowsPerPage);

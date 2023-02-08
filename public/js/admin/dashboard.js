@@ -30,34 +30,6 @@ nav_link.forEach((link) => {
 dashboard.classList.add('active');
 
 
-
-// function loadDashboard () {
-
-//     const home = document.getElementById("home");
-
-//     const xhr = new XMLHttpRequest();
-
-//     // load AdminDashboard controller
-
-//     // xhr.open("GET", "<?php echo URLROOT; ?>/app/views/admin/admin_dashboard.php", true);
-
-
-
-//     xhr.onload = function () {
-//         if (this.status === 200) {
-//             home.innerHTML = this.responseText;
-//         }
-
-//         // load the dashboard js file
-//         const script = document.createElement('script');
-//         script.src = "../admin-dashboard/main.js";
-//         document.head.prepend(script);
-//     }
-
-//     xhr.send();
-// }
-
-
 function requestComplainJS () {
 
     /* ----------------------------------search student complaint ---------------------------- */
@@ -90,7 +62,7 @@ function requestComplainJS () {
     const student_complaint_filter = document.getElementById("student-complaint-filter");
 
     student_complaint_filter.addEventListener("change", () => {
-        var student_complaint_filter_value = student_complaint_filter.value;
+        let student_complaint_filter_value = student_complaint_filter.value;
 
         const xhr = new XMLHttpRequest();
 
@@ -163,7 +135,7 @@ function requestComplainJS () {
 
 
     add_student_complain_reason.addEventListener("click", () => {
-        var inputReason = type_student_complain_reason.value;
+        let inputReason = type_student_complain_reason.value;
 
         if (inputReason == "") {
             alert("Warning: Please enter a reason");
@@ -177,13 +149,6 @@ function requestComplainJS () {
                     home.innerHTML = this.responseText;
                 }
 
-                // const complaint_setting = document.querySelector(".complaint-setting");
-
-                // complaint_setting.style.visibility = "visible";
-                // complaint_setting.style.scale = "1";
-                // complaint_setting.style.transform = "translate(-50%,-50%)";
-                // complaint_setting.style.position = "absolute";
-                // complaint_setting.style.top = "50%";
 
                 const complaint_setting_box = document.getElementById("complaint-setting-box");
                 complaint_setting_box.classList.add("open_complaint_setting");
@@ -342,7 +307,7 @@ function loadRequestComplaint () {
         const student_complaint_filter = document.getElementById("student-complaint-filter");
 
         student_complaint_filter.addEventListener("change", () => {
-            var student_complaint_filter_value = student_complaint_filter.value;
+            let student_complaint_filter_value = student_complaint_filter.value;
 
             const xhr = new XMLHttpRequest();
 

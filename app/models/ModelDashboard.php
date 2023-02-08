@@ -1,7 +1,6 @@
 <?php
 
-class ModelDashboard
-{
+class ModelDashboard {
     private Database $db;
 
     public function __construct() {
@@ -13,7 +12,7 @@ class ModelDashboard
 
         $rows = $this->db->resultAll();
 
-        if($this->db->rowCount() >= 0) {
+        if ($this->db->rowCount() >= 0) {
             return $rows;
         }else {
             return false;
@@ -25,7 +24,7 @@ class ModelDashboard
 
         $rows = $this->db->resultAll();
         
-        if($this->db->rowCount() >= 0) {    
+        if ($this->db->rowCount() >= 0) {
             return $rows;
         }else {
             return false;

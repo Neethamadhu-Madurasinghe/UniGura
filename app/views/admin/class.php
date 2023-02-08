@@ -98,7 +98,6 @@
                     <div class="progress"></div>
                 </div>
                 <div class="range-input">
-                    <!-- <input type="range" class="range-min" min="0" max="10000" value="0000" step="100" id="class-fees-slider-min" disabled> -->
                     <input type="range" class="range-max" min="0" max="10000" value="0" step="100" id="class-fees-slider-max">
                 </div>
             </div>
@@ -203,11 +202,7 @@
         </div>
     </div>
 
-
-
 </section>
-
-
 
 </body>
 

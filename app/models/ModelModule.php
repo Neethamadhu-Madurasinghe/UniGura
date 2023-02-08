@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class ModelModule{
     private Database $db;
@@ -6,7 +6,4 @@ class ModelModule{
     public function __construct(){
         $this->db = new Database();
     }
-
-    
-        
 }

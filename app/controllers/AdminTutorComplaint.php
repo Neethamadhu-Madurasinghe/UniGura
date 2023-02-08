@@ -1,23 +1,16 @@
 <?php
 
 
-class AdminTutorComplaint extends Controller
-{
+class AdminTutorComplaint extends Controller {
     private mixed $tutorComplaintModel;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->tutorComplaintModel = $this->model('ModelRequirementComplaints');
     }
 
-    public function tutorComplaint(Request $request)
-    {
+    public function tutorComplaint(Request $request) {
 
         $allTutorComplaints = $this->tutorComplaintModel->getTutorComplaints();
-
-        // echo '<pre>';
-        // print_r($allTutorComplaints);
-        // echo '</pre>';
 
         foreach ($allTutorComplaints as $x) {
             $reasonID = $x->reason_id;
@@ -36,10 +29,6 @@ class AdminTutorComplaint extends Controller
         $data = [
             'allTutorComplaints' => $allTutorComplaints
         ];
-
-        // echo '<pre>';
-        // print_r($data);
-        // echo '</pre>';
 
         $this->view('admin/tutor_complaints', $request, $data);
 

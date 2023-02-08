@@ -1,17 +1,14 @@
 <?php
 
-class AdminSubjectModule extends Controller
-{
+class AdminSubjectModule extends Controller {
     private mixed $subjectModel;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->subjectModel = $this->model('ModelSubject');
     }
 
 
-    public function subjectsAndModules(Request $request)
-    {
+    public function subjectsAndModules(Request $request) {
 
         $duplicateSubject = [];
         $duplicateModule = [];

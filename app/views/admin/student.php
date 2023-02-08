@@ -63,7 +63,7 @@
                         <i class="fas fa-search"></i>
                     </div>
                     <div class="input">
-                        <input type="text" placeholder="Search for Student">
+                        <input type="text" placeholder="Search for Student" id="searchStudent">
                     </div>
                 </div>
             </div>

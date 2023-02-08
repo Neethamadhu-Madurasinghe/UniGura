@@ -1,29 +1,31 @@
 <?php
 
-class ModelAdminNotification{
+class ModelAdminNotification
+{
     private Database $db;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->db = new Database();
     }
 
-    public function getAllUnseenNotifications(){
+    public function getAllUnseenNotifications()
+    {
         $this->db->query('SELECT * FROM notification WHERE is_seen = 0');
-        $result = $this->db->resultAll();
-        return $result;
+        return $this->db->resultAll();
     }
 
-    public function getUserById($userID){
+    public function getUserById($userID)
+    {
         $this->db->query('SELECT * FROM user WHERE id = :user_id');
         $this->db->bind(':user_id', $userID);
-        $result = $this->db->resultOne();
-        return $result;
+        return $this->db->resultOne();
     }
 
-    public function clearNotification($notificationID){
+    public function clearNotification($notificationID)
+    {
         $this->db->query('UPDATE notification SET is_seen = 1 WHERE id = :notification_id');
         $this->db->bind(':notification_id', $notificationID);
-        $result = $this->db->execute();
-        return $result;
+        return $this->db->execute();
     }
 }

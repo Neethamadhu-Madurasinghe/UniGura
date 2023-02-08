@@ -9,19 +9,12 @@ $selectedSubject = [];
 $selectedRating = [];
 $searchResult = '';
 
-// echo '<pre>';
-// print_r($data);
-// echo '</pre>';
 
 if (isset($_GET['classConductModeValue'])) {
     $classConductMode = $_GET['classConductModeValue'];
     $classConductMode = explode(',', $classConductMode);
     $classConductMode = array_filter($classConductMode);
     $classConductMode = array_values($classConductMode);
-
-    // echo '<pre>';
-    // print_r($classConductMode);
-    // echo '</pre>';
 }
 
 
@@ -30,10 +23,6 @@ if (isset($_GET['classFeesInputField'])) {
     $classFees = explode(',', $classFees);
     $classFees = array_filter($classFees);
     $classFees = array_values($classFees);
-
-    // echo '<pre>';
-    // print_r($classFees);
-    // echo '</pre>';
 }
 
 
@@ -42,10 +31,6 @@ if (isset($_GET['selectedSubject'])) {
     $selectedSubject = explode(',', $selectedSubject);
     $selectedSubject = array_filter($selectedSubject);
     $selectedSubject = array_values($selectedSubject);
-
-    // echo '<pre>';
-    // print_r($selectedSubject);
-    // echo '</pre>';
 }
 
 
@@ -54,18 +39,10 @@ if (isset($_GET['selectedRating'])) {
     $selectedRating = explode(',', $selectedRating);
     $selectedRating = array_filter($selectedRating);
     $selectedRating = array_values($selectedRating);
-
-    // echo '<pre>';
-    // print_r($selectedRating);
-    // echo '</pre>';
 }
 
 if (isset($_GET['searchResult'])) {
     $searchResult = $_GET['searchResult'];
-
-    // echo '<pre>';
-    // print_r($searchResult);
-    // echo '</pre>';
 }
 
 
@@ -75,7 +52,7 @@ if (!empty($searchResult)) {
     foreach ($data as $aClass) {
         if (str_contains(strtolower($aClass->tutor->first_name), strtolower($searchResult)) || str_contains(strtolower($aClass->tutor->last_name), strtolower($searchResult))) {
             array_push($filterResult, $aClass);
-        }else{
+        } else {
             $index = array_search($aClass, $data);
             array_splice($data, $index, 1);
         }
@@ -141,10 +118,6 @@ $filterResult = $data;
 $pageContent = array_unique($filterResult, SORT_REGULAR);
 $pageContent = array_values($pageContent);
 
-
-// echo '<pre>';
-// print_r($pageContent);
-// echo '</pre>';
 
 ?>
 

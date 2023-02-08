@@ -42,7 +42,7 @@ const notification_close_btn = document.querySelectorAll('.notification-close-bt
 notification_close_btn.forEach((closeBtn) => {
     closeBtn.addEventListener('click', function (event) {
 
-        var notificationID = event.target.getAttribute('notificationID');
+        let notificationID = event.target.getAttribute('notificationID');
 
         console.log(notificationID);
 

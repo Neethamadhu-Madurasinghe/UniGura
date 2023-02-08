@@ -60,14 +60,14 @@
             <div class="time-table-container">
                 <table id="time-table">
                     <tr class="time-table-titles">
-                        <th>Time</th>
-                        <th>Monday</th>
-                        <th>Tuesday</th>
-                        <th>Wednesday</th>
-                        <th>Thursday</th>
-                        <th>Friday</th>
-                        <th>Satday</th>
-                        <th>Sunday</th>
+                        <th id="">Monday</th>
+                        <th id="">Tuesday</th>
+                        <th id="">Time</th>
+                        <th id="">Wednesday</th>
+                        <th id="">Thursday</th>
+                        <th id="">Friday</th>
+                        <th id="">Satday</th>
+                        <th id="">Sunday</th>
                     </tr>
 
                     <tr>

@@ -89,8 +89,8 @@ function loadFileUploader () {
     const col_2 = document.getElementById('col-2')
     const list_section = document.getElementById('list-section')
     const list = document.querySelector('.list')
-    const in_prog = document.getElementById('in-prog')
-    const fileIcon = document.querySelectorAll('.fileIcon')
+    // const in_prog = document.getElementById('in-prog')
+    // const fileIcon = document.querySelectorAll('.fileIcon')
 
 
 
@@ -113,7 +113,7 @@ function loadFileUploader () {
     })
 
     function typeValidation (type) {
-        var splitType = type.split('/')[0];
+        let splitType = type.split('/')[0];
         if (type == 'application/pdf' || splitType == 'image' || splitType == 'video') {
             return true;
         } else {
@@ -170,7 +170,7 @@ function loadFileUploader () {
     function uploadFile (file) {
 
         list_section.style.display = 'block'
-        var li = document.createElement('li')
+        let li = document.createElement('li')
         li.classList.add('in-prog')
 
         li.innerHTML = ` 
@@ -190,7 +190,7 @@ function loadFileUploader () {
 
         list.appendChild(li)
         const http = new XMLHttpRequest();
-        var data = new FormData();
+        let data = new FormData();
         data.append('file', file);
 
         http.onload = function () {
@@ -202,7 +202,7 @@ function loadFileUploader () {
         http.upload.addEventListener('progress', (event) => {
             document.querySelector('.icon').innerHTML = '<i class="fa-solid fa-circle-xmark"></i>'
 
-            var percentComplete = (event.loaded / event.total) * 100;
+            let percentComplete = (event.loaded / event.total) * 100;
             li.querySelectorAll('span')[0].innerHTML = Math.round(percentComplete) + '%'
             li.querySelectorAll('span')[1].style.width = Math.round(percentComplete) + '%'
 

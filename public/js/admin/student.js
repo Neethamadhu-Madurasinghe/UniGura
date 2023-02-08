@@ -42,6 +42,7 @@ const filterBtn = document.getElementById('filter');
 const classConductModeFilter = document.querySelectorAll('.class-conduct-mode');
 const cardSection = document.getElementById('card-section');
 const visibilityFilter = document.querySelectorAll('.visibility-filter');
+const searchStudent = document.getElementById('searchStudent');
 
 let classConductModeFilterValue = [];
 let visibilityFilterValue = [];
@@ -55,6 +56,8 @@ function arrayRemove (arr, value) {
 
 
 filterBtn.addEventListener('click', () => {
+    let searchStudentName = searchStudent.value.toLowerCase();
+
     for (let i = 0; i < classConductModeFilter.length; i++) {
         if (classConductModeFilter[i].checked == true) {
             classConductModeFilterValue.push(classConductModeFilter[i].value);
@@ -81,10 +84,10 @@ filterBtn.addEventListener('click', () => {
     visibilityFilterValue = uniqueVisibility;
 
 
-    console.log(classConductModeFilterValue, visibilityFilterValue);
+    console.log(classConductModeFilterValue, visibilityFilterValue, searchStudentName);
 
     const xhttp = new XMLHttpRequest();
-    xhttp.open('GET', `filterForStudentPage?classConductModeFilterValue=${classConductModeFilterValue}&visibilityFilterValue=${visibilityFilterValue}`, true);
+    xhttp.open('GET', `filterForStudentPage?classConductModeFilterValue=${classConductModeFilterValue}&visibilityFilterValue=${visibilityFilterValue}$searchStudentName=${searchStudentName}`, true);
 
     xhttp.onload = function () {
         if (this.status === 200) {

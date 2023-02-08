@@ -149,14 +149,12 @@ filterBtn.addEventListener('click', () => {
     classFeesInputField.push(minInputFees);
     classFeesInputField.push(maxInputFees);
 
-    // const minSliderFees = classFeesSliderMin.value;
     const maxSliderFees = classFeesSliderMax.value;
 
     classFeesSliderField = [];
-    // classFeesSliderField.push(minSliderFees);
     classFeesSliderField.push(maxSliderFees);
 
-    $searchResult = searchClasses.value;
+    // let searchResult = searchClasses.value;
 
     console.log(classConductModeValue, classFeesSliderField, selectedSubject, selectedRating);
 
