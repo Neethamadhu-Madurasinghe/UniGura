@@ -92,11 +92,11 @@ const classSubject = document.querySelectorAll('.class-subject');
 const classRating = document.querySelectorAll('.class-rating');
 const searchClasses = document.getElementById('search-classes');
 
-var classConductModeValue = [];
-var classFeesInputField = [];
-var classFeesSliderField = [];
-var selectedSubject = [];
-var selectedRating = [];
+let classConductModeValue = [];
+let classFeesInputField = [];
+let classFeesSliderField = [];
+let selectedSubject = [];
+let selectedRating = [];
 
 function arrayRemove (arr, value) {
     return arr.filter(function (element) {
@@ -134,10 +134,10 @@ filterBtn.addEventListener('click', () => {
 
 
 
-    var uniqueClassModes = [...new Set(classConductModeValue)];
+    let uniqueClassModes = [...new Set(classConductModeValue)];
     classConductModeValue = uniqueClassModes;
 
-    var uniqueSubjects = [...new Set(selectedSubject)];
+    let uniqueSubjects = [...new Set(selectedSubject)];
     selectedSubject = uniqueSubjects;
 
 

@@ -47,22 +47,6 @@
                                         <h3>Both :</h3>
                                         <span>20</span>
                                     </div>
-                                    <div class="1st-year">
-                                        <h3>1st Year :</h3>
-                                        <span>20</span>
-                                    </div>
-                                    <div class="2nd-year">
-                                        <h3>2nd Year :</h3>
-                                        <span>20</span>
-                                    </div>
-                                    <div class="3rd-year">
-                                        <h3>3rd Year :</h3>
-                                        <span>20</span>
-                                    </div>
-                                    <div class="4th-year">
-                                        <h3>4th Year :</h3>
-                                        <span>20</span>
-                                    </div>
                                 </div>
                             </div>
                         </div>

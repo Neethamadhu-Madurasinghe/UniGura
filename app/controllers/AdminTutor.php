@@ -11,7 +11,7 @@ class AdminTutor extends Controller{
     public function tutor(Request $request){
         $allTutors = $this->tutorModel->getAllTutor();
 
-        foreach($allTutors as $tutor){
+        foreach ($allTutors as $tutor){
             $tutorID = $tutor->user_id;
             $tutorContactDetails = $this->tutorModel->getTutorContactDetails($tutorID);
             $tutor->contactDetails = $tutorContactDetails;
@@ -23,7 +23,7 @@ class AdminTutor extends Controller{
         // print_r($data);
         // echo '</pre>';
 
-        $this->view('admin/tutor', $request,$data);
+        $this->view('admin/tutor', $request, $data);
     }
 
 }

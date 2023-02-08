@@ -38,37 +38,60 @@ student.classList.add('active');
 
 
 
-// --------------------MENU SELECTION----------------------------------------
+const filterBtn = document.getElementById('filter');
+const classConductModeFilter = document.querySelectorAll('.class-conduct-mode');
+const cardSection = document.getElementById('card-section');
+const visibilityFilter = document.querySelectorAll('.visibility-filter');
 
-const finished_classes = document.querySelectorAll('.finished-classes');
-const active_classes = document.querySelectorAll('.active-classes');
-const student_info = document.querySelectorAll('.student-info');
-
-
-const info_btn = document.querySelectorAll('.info-btn');
-const active_class_btn = document.querySelectorAll('.active-class-btn');
-const finished_class_btn = document.querySelectorAll('.finished-class-btn');
+let classConductModeFilterValue = [];
+let visibilityFilterValue = [];
 
 
-student_info[0].style.display = 'flex';
+function arrayRemove (arr, value) {
+    return arr.filter(function (element) {
+        return element != value;
+    });
+}
 
-info_btn[0].addEventListener('click', function () {
-    student_info[0].style.display = 'flex';
-    active_classes[0].style.display = 'none';
-    finished_classes[0].style.display = 'none';
+
+filterBtn.addEventListener('click', () => {
+    for (let i = 0; i < classConductModeFilter.length; i++) {
+        if (classConductModeFilter[i].checked == true) {
+            classConductModeFilterValue.push(classConductModeFilter[i].value);
+        }
+        if (classConductModeFilter[i].checked == false) {
+            classConductModeFilterValue = arrayRemove(classConductModeFilterValue, classConductModeFilter[i].value);
+        }
+    }
+
+    for (let i = 0; i < visibilityFilter.length; i++) {
+        if (visibilityFilter[i].checked == true) {
+            visibilityFilterValue.push(visibilityFilter[i].value);
+        }
+        if (visibilityFilter[i].checked == false) {
+            visibilityFilterValue = arrayRemove(visibilityFilterValue, visibilityFilter[i].value);
+        }
+    }
+
+
+    let uniqueClassModes = [...new Set(classConductModeFilterValue)];
+    classConductModeFilterValue = uniqueClassModes;
+
+    let uniqueVisibility = [...new Set(visibilityFilterValue)];
+    visibilityFilterValue = uniqueVisibility;
+
+
+    console.log(classConductModeFilterValue, visibilityFilterValue);
+
+    const xhttp = new XMLHttpRequest();
+    xhttp.open('GET', `filterForStudentPage?classConductModeFilterValue=${classConductModeFilterValue}&visibilityFilterValue=${visibilityFilterValue}`, true);
+
+    xhttp.onload = function () {
+        if (this.status === 200) {
+            cardSection.innerHTML = this.responseText;
+        }
+    }
+
+    xhttp.send();
+
 });
-
-active_class_btn[0].addEventListener('click', function () {
-    student_info[0].style.display = 'none';
-    active_classes[0].style.display = 'grid';
-    finished_classes[0].style.display = 'none';
-});
-
-finished_class_btn[0].addEventListener('click', function () {
-    student_info[0].style.display = 'none';
-    active_classes[0].style.display = 'none';
-    finished_classes[0].style.display = 'grid';
-});
-
-
-

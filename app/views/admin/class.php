@@ -54,10 +54,6 @@
 
         <div class="filter-selection">
 
-            <div class="total-student">
-                <!-- <h1>15</h1> -->
-            </div>
-
             <div class="search">
                 <div class="search-bar">
                     <div class="icon">

@@ -2,50 +2,67 @@
 
 class AdminFilter extends Controller
 {
-    private mixed $classModel;
+    private mixed $filterModel;
 
     public function __construct()
     {
-        $this->classModel = $this->model('ModelClass');
-
+        $this->filterModel = $this->model('AdminFilterModel');
     }
 
-    public function filter(Request $request)
+
+    public function filterForStudentPage(Request $request)
     {
-        $allClasses = $this->classModel->getAllClasses();
 
-        foreach ($allClasses as $x) {
-            $studentId = $x->student_id;
-            $tutorId = $x->tutor_id;
-            $classId = $x->id;
-            $classTemplateId = $x->class_template_id;
+        $allStudent = $this->filterModel->getAllStudent();
 
-            $student = $this->classModel->findStudent($studentId);
-            $tutor = $this->classModel->findTutor($tutorId);
-            $classDay = $this->classModel->findClassDay($classId);
-            $classTemplate = $this->classModel->findTutoringClassTemplate($classTemplateId);
-
-            $x->student = $student;
-            $x->tutor = $tutor;
-            $x->classDay = $classDay;
-            $x->classTemplate = $classTemplate;
-
-
-            $module = $this->classModel->findModule($classTemplate->module_id);
-            $x->module = $module;
-
-            $subject = $this->classModel->findSubject($classTemplate->subject_id);
-            $x->subject = $subject;
+        foreach ($allStudent as $aStudent) {
+            $studentID = $aStudent->user_id;
+            $student = $this->filterModel->getStudentById($studentID);
+            $aStudent->student = $student;
         }
 
-        $data = $allClasses;
 
-        // $data = $this->filterModel->filterAll($beforeFilter, $request);
+        if ($request->isGet()) {
+            $bodyData = $request->getBody();
 
-        // echo '<pre>';
-        // print_r($allClasses);
-        // echo '</pre>';
+            $classConductModeValue = $bodyData['classConductModeFilterValue'];
+            $visibilityFilterValue = $bodyData['visibilityFilterValue'];
 
-        $this->view('admin/adminFilter', $request, $data);
+
+            $arrayModes =  explode(',', $classConductModeValue);
+            $arrayVisibility =  explode(',', $visibilityFilterValue);
+
+            $filterResult = [];
+            $pageContent = [];
+
+            $filterResult['classConductMode'] = $arrayModes;
+            $filterResult['visibility'] = $arrayVisibility;
+
+            if (empty($classConductModeValue) && empty($visibilityFilterValue)) {
+                $pageContent = $allStudent;
+            } else if (empty($classConductModeValue) && !empty($visibilityFilterValue)) {
+                foreach ($allStudent as $aStudent) {
+                    if (in_array($aStudent->student->is_banned, $arrayVisibility)) {
+                        array_push($pageContent, $aStudent);
+                    }
+                }
+            } else if (!empty($classConductModeValue) && empty($visibilityFilterValue)) {
+                foreach ($allStudent as $aStudent) {
+                    if (in_array($aStudent->student->mode, $arrayModes)) {
+                        array_push($pageContent, $aStudent);
+                    }
+                }
+            } else {
+                foreach ($allStudent as $aStudent) {
+                    if (in_array($aStudent->student->mode, $arrayModes) && in_array($aStudent->student->is_banned, $arrayVisibility)) {
+                        array_push($pageContent, $aStudent);
+                    }
+                }
+            }
+        }
+
+        $data = $pageContent;
+
+        $this->view('admin/studentSearch&FilterOutput', $request, $data);
     }
 }

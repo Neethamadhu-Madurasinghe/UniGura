@@ -12,20 +12,30 @@
 
     <div class="student-page">
 
-
-
-        <div class="card-section">
+        <div class="card-section" id="card-section">
             <?php foreach ($data as $aStudent) : ?>
                 <div class="card">
                     <div class="mode-hide-show">
                         <div class="online-physical-both">
-                            <img src="<?php echo URLROOT; ?>/public/img/admin/online.png" alt="" class="online">
-                            <img src="<?php echo URLROOT; ?>/public/img/admin/physical.png" alt="" class="physical">
+                            <?php if ($aStudent->student->mode == 'online') : ?>
+                                <img src="<?php echo URLROOT; ?>/public/img/admin/online.png" alt="" class="online">
+                            <?php endif; ?>
+                            <?php if ($aStudent->student->mode == 'physical') : ?>
+                                <img src="<?php echo URLROOT; ?>/public/img/admin/physical.png" alt="" class="physical">
+                            <?php endif; ?>
+                            <?php if ($aStudent->student->mode == 'both') : ?>
+                                <img src="<?php echo URLROOT; ?>/public/img/admin/online.png" alt="" class="online">
+                                <img src="<?php echo URLROOT; ?>/public/img/admin/physical.png" alt="" class="physical">
+                            <?php endif; ?>
 
                         </div>
                         <div class="hide-show">
-                            <img src="<?php echo URLROOT; ?>/public/img/admin/block.png" alt="" class="block">
-                            <img src="<?php echo URLROOT; ?>/public/img/admin/hide.png" alt="" class="hide">
+                            <?php if ($aStudent->student->is_banned == '1') : ?>
+                                <img src="<?php echo URLROOT; ?>/public/img/admin/block.png" alt="" class="block">
+                            <?php endif; ?>
+                            <?php if ($aStudent->student->is_banned == '0') : ?>
+                                <img src="<?php echo URLROOT; ?>/public/img/admin/hide.png" alt="" class="hide">
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="profile-picture">
@@ -47,17 +57,13 @@
 
         <div class="filter-selection">
 
-            <div class="total-student">
-                <!-- <h1>15</h1> -->
-            </div>
-
             <div class="search">
                 <div class="search-bar">
                     <div class="icon">
                         <i class="fas fa-search"></i>
                     </div>
                     <div class="input">
-                        <input type="text" placeholder="Search for Class">
+                        <input type="text" placeholder="Search for Student">
                     </div>
                 </div>
             </div>
@@ -76,50 +82,21 @@
             </div>
 
 
-            <div class="subject-filter">
-                <div class="subject">
-                    <h1>By Subject</h1>
-                </div>
-                <div class="subject-select">
-                    <div class="checkbox-button">
-                        <input type="checkbox" id="maths" name="subject" value="maths" class="maths checkbox">
-                        <label for="maths">&nbspMaths</label>
-                    </div>
-                    <div class="checkbox-button">
-                        <input type="checkbox" id="science" name="subject" value="science" class="science checkbox">
-                        <label for="science">&nbspScience</label>
-                    </div>
-                    <div class="checkbox-button">
-                        <input type="checkbox" id="english" name="subject" value="english" class="english checkbox">
-                        <label for="english">&nbspEnglish</label>
-                    </div>
-                    <div class="checkbox-button">
-                        <input type="checkbox" id="history" name="subject" value="history" class="history checkbox">
-                        <label for="history">&nbspHistory</label>
-                    </div>
-                    <div class="checkbox-button">
-                        <input type="checkbox" id="other" name="subject" value="all" class="other checkbox">
-                        <label for="other">&nbspAll</label>
-                    </div>
-                </div>
-            </div>
-
-
             <div class="mode-filter">
                 <div class="mode">
                     <h1>By Mode</h1>
                 </div>
                 <div class="mode-select">
                     <div class="checkbox-button">
-                        <input type="checkbox" id="online" name="mode" value="online" class="online checkbox">
+                        <input type="checkbox" id="online" name="mode" value="online" class="online checkbox class-conduct-mode">
                         <label for="online">&nbspOnline</label>
                     </div>
                     <div class="checkbox-button">
-                        <input type="checkbox" id="offline" name="mode" value="offline" class="offline checkbox">
-                        <label for="offline">&nbspOffline</label>
+                        <input type="checkbox" id="physical" name="mode" value="physical" class="physical checkbox class-conduct-mode">
+                        <label for="physical">&nbspPhysical</label>
                     </div>
                     <div class="checkbox-button">
-                        <input type="checkbox" id="both" name="mode" value="both" class="both checkbox">
+                        <input type="checkbox" id="both" name="mode" value="both" class="both checkbox class-conduct-mode">
                         <label for="both">&nbspBoth</label>
                     </div>
                 </div>
@@ -128,24 +105,16 @@
 
             <div class="visibility-filter">
                 <div class="duration">
-                    <h1>By Visibility</h1>
+                    <h1>By Visibility(Perm)</h1>
                 </div>
                 <div class="visibility-select">
                     <div class="checkbox-button">
-                        <input type="checkbox" id="show" name="show" value="show" class="show checkbox">
-                        <label for="show">&nbspShow</label>
+                        <input type="checkbox" id="banned" name="banned" value="1" class="banned checkbox visibility-filter">
+                        <label for="banned">&nbspBanned</label>
                     </div>
                     <div class="checkbox-button">
-                        <input type="checkbox" id="hide" name="hide" value="hide" class="hide checkbox">
-                        <label for="hide">&nbspHide</label>
-                    </div>
-                    <div class="checkbox-button">
-                        <input type="checkbox" id="unblock" name="unblock" value="unblock" class="unblock checkbox">
-                        <label for="unblock">&nbspUnblock</label>
-                    </div>
-                    <div class="checkbox-button">
-                        <input type="checkbox" id="block" name="block" value="block" class="block checkbox">
-                        <label for="block">&nbspBlock</label>
+                        <input type="checkbox" id="unbanned" name="unbanned" value="0" class="unbanned checkbox visibility-filter">
+                        <label for="unbanned">&nbspUnBanned</label>
                     </div>
                 </div>
             </div>

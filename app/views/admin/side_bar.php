@@ -8,7 +8,7 @@
     <script src="https://kit.fontawesome.com/401cc96be7.js" crossorigin="anonymous"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/dashboard.css">
-    <title>Responsive side bar</title>
+    <title>UniGura</title>
 </head>
 
 <body>
