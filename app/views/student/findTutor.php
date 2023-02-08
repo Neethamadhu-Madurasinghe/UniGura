@@ -31,13 +31,13 @@ Header::render(
 
     <div class="popup-error-message invisible">
         <img src="<?php echo URLROOT . '/public/img/student/cross.png' ?>" alt="" srcset="">
-        <p id="error-message">Request has been Sent Successfully</p>
+        <p id="error-message"></p>
         <button class="btn btn-search" id="error-ok">OK</button>
     </div>
 
     <div class="popup-success-message invisible">
         <img src="<?php echo URLROOT . '/public/img/student/success.png' ?>" alt="" srcset="">
-        <p id="success-message">Request has been Sent Successfully</p>
+        <p id="success-message"></p>
         <button class="btn btn-search" id="success-ok">OK</button>
     </div>
 
@@ -250,6 +250,7 @@ Header::render(
         URLROOT . '/public/js/student/search-request-handler.js',
         URLROOT . '/public/js/student/timetable-handler.js',
         URLROOT . '/public/js/student/tutor-request-handler.js',
+        URLROOT . '/public/js/student/tutor-seemore-handler.js'
     ]
 );
 ?>
