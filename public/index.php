@@ -68,6 +68,7 @@ $router->registerController('/tutor/viewcourse', [TutorCourse::class, 'viewcours
 
 
 $router->registerController('/tutor/notifications', [TutorNotification::class, 'notification']);
+$router->registerController('/tutor/classes',[TutorClasses::class, 'tutorClass']);
 
 
 //payment checkout

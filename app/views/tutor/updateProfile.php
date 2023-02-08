@@ -36,18 +36,17 @@ Header::render(
 
                 <div class="form-main-area">
 
-                    <div class="form-row">
-                        <div class="form-field">
+                <div class="form-field">
                             <label for="first-name">First Name
-                               <!--  <span><?php echo $data['errors']['first_name_error'] ?></span> -->
+                                <!-- <span><?php echo $data['errors']['first_name_error'] ?></span>  -->
                             </label>
-                            <input type="text" name="first-name" id="" value="<?php echo $data['first_name'] ?>">
+                            <input type="text" name="first-name" id="" >
                         </div>
                         <div class="form-field">
                             <label for="last-name">Last Name
                               <!--  <span><?php echo $data['errors']['last_name_error'] ?></span> -->
                             </label>
-                            <input type="text" name="last-name" id="" value="<?php echo $data['last_name'] ?>">
+                            <input type="text" name="last-name" id="" >
                         </div>
                     </div>
                     <div class="form-row">
@@ -55,7 +54,7 @@ Header::render(
                             <label for="last-name">Subject
                               <!--  <span><?php echo $data['errors']['subject_error'] ?></span> -->
                             </label>
-                            <input type="text" name="lsubject" id="" value="<?php echo $data['subject'] ?>">
+                            <input type="text" name="lsubject" id="" >
                         </div>
                         <div class="form-field">
                             <label for="telephone-number">Phone Number
@@ -63,8 +62,7 @@ Header::render(
                             </label>
                             <input type="text"
                                    name="phone-number"
-                                   id=""
-                                   value="<?php echo $data['phone_number'] ?>">
+                                   id="">
                         </div>
                         
                     </div>
@@ -73,14 +71,14 @@ Header::render(
                             <label for="street">District
                              <!--   <span><?php echo $data['errors']['district_error'] ?></span> -->
                             </label>
-                            <input type="text" name="district" id="" value="<?php echo $data['district'] ?>">
+                            <input type="text" name="district" id="" >
                         </div>
                     
                         <div class="form-field">
                             <label for="city">City 
                                 <!--<span><?php echo $data['errors']['city_error'] ?></span> -->
                             </label>
-                            <input type="text" name="city" id="" value="<?php echo $data['city'] ?>">
+                            <input type="text" name="city" id="">
                         </div>
                         
                     </div>
@@ -88,11 +86,7 @@ Header::render(
                     <div id="submit-btn-container">
                         <input type="submit" value="Finish" class="btn btn-search">
                     </div>
-                </div>
-            </form>
-
-        </div>
-    </div>
+                
 
 <?php Footer::render(
     [

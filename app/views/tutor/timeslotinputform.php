@@ -19,7 +19,7 @@ Header::render(
         'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css',
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css',
         URLROOT . '/public/css/common/student-base-style.css',
-        URLROOT . '/public/css/tutor/complete-bank.css?v=2.2'
+        URLROOT . '/public/css/tutor/complete-bank.css?v=2.3'
     ]
     //    Student base style is used here, because In this part, both student and tutor looks same
 );
@@ -170,7 +170,8 @@ Header::render(
         }
         //convert the json object to a string and store it in a hidden input field
 
-        fetch('http://localhost/unigura/tutor/tutor-time-slot-inputs', {
+     
+        fetch('http://localhost:8080/unigura/tutor/tutor-time-slot-inputs', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -182,7 +183,7 @@ Header::render(
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
-                window.location.href = 'http://localhost/unigura/tutor/dashboard';
+                window.location.href = 'http://localhost:81/unigura/tutor/dashboard';
             })
             .catch((error) => {
                 console.error('Have Error');

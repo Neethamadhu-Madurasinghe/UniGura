@@ -9,6 +9,16 @@ class TutorReportProblem extends Controller{
     
     public function tutorreportProblem(Request $request){
 
+        if ($request->isPost()){
+            $bodyData = $request->getBody();
+
+            echo '<pre>';
+            echo print_r($bodyData);
+            echo '</pre>';
+
+
+        }
+
         $data = [];
 
         $this->view('tutor/reportProblem', $request,$data);
