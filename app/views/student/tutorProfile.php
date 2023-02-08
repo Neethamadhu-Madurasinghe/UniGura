@@ -201,6 +201,7 @@ Header::render(
                 <div class="time-table-container">
                     <table id="time-table">
                         <caption class="invisible"></caption>
+                        <th></th>
                         <!-- Time slot data goes here -->
                     </table>
                 </div>
