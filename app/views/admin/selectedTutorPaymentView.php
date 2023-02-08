@@ -120,6 +120,7 @@
                         <td><?php echo $aTutorPaymentDetails->amount ?></td>
                     </tr>
                 <?php endforeach; ?>
+                
             </tbody>
         </table>
     </section>
