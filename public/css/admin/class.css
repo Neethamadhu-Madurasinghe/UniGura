@@ -1,0 +1,420 @@
+.class-page {
+    display: grid;
+    grid-template-columns: 80% 20%;
+    padding: 10px;
+    /* grid-gap: 10px; */
+    max-height: 95vh;
+    overflow: hidden;
+}
+
+
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f2f2f2;
+    border: 2px solid #FC941D;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f2f2f2;
+}
+
+
+.search-bar i {
+    color: #FC941D;
+    font-size: 20px;
+}
+
+.input input {
+    height: 50px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    margin-left: 15px;
+    font-size: 18px;
+}
+
+
+::placeholder {
+    font-size: 18px;
+}
+
+
+
+
+/* =========================CLASSES================================= */
+
+.all-classes {
+    display: grid;
+    grid-template-columns: 32% 32% 32%;
+    column-gap: 20px;
+    justify-content: center;
+    padding: 10px;
+    height: 97vh;
+    overflow-y: scroll;
+}
+
+.all-classes::-webkit-scrollbar {
+    width: 0px;
+}
+
+.one-class {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    border: 2px solid #FC941D;
+    /* width: 340px; */
+    width: 96%;
+    border-radius: 10px;
+    height: 280px;
+    margin-bottom: 25px;
+}
+
+.one-class img {
+    width: 60px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.student {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 96%;
+    border: 2px solid #FC941D;
+    border-radius: 5px;
+    padding: 0 5px;
+    margin-bottom: 10px;
+}
+
+.tutor {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 96%;
+    border: 2px solid #FC941D;
+    border-radius: 5px;
+    padding: 0 5px;
+    margin-bottom: 10px;
+}
+
+.tutor img {
+    margin-right: 5px;
+}
+
+.name {
+    text-align: left;
+    width: 90%;
+    background: #FC941D;
+    border-radius: 5px;
+    border: 2px solid #0b0b0b;
+    padding: 5px;
+}
+
+.student img {
+    margin-left: 5px;
+}
+
+.name h1 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.class-details {
+    text-align: left;
+    width: 90%;
+    margin-top: 5px;
+    line-height: 1.3;
+}
+
+
+.class-details h1 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+/* =========================RANGE SELECTION================================= */
+
+::selection {
+    color: #fff;
+    background: #FC941D;
+}
+
+
+header h2 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+header p {
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+.price-input {
+    width: 100%;
+    display: flex;
+    margin: 30px 0 35px;
+}
+
+.price-input .field {
+    display: flex;
+    width: 100%;
+    height: 45px;
+    align-items: center;
+}
+
+.field input {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    font-size: 19px;
+    margin-left: 8px;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #999;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.price-input .separator {
+    width: 70px;
+    display: flex;
+    font-size: 19px;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider {
+    height: 5px;
+    position: relative;
+    background: #ddd;
+    border-radius: 5px;
+}
+
+
+.slider .progress {
+    height: 100%;
+    left: 0%;
+    /* right: 25%; */
+    position: absolute;
+    border-radius: 5px;
+    background: #FC941D;
+}
+
+.range-input {
+    position: relative;
+}
+
+.range-input input {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    top: -5px;
+    background: none;
+    pointer-events: none;
+    -webkit-appearance: none;
+    appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    height: 17px;
+    width: 17px;
+    border-radius: 50%;
+    background: #FC941D;
+    pointer-events: auto;
+    -webkit-appearance: none;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+}
+
+input[type="range"]::-moz-range-thumb {
+    height: 17px;
+    width: 17px;
+    border: none;
+    border-radius: 50%;
+    background: #FC941D;
+    pointer-events: auto;
+    -moz-appearance: none;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+}
+
+
+/*  =========================FILTER STYLE================================= */
+
+
+.filter-selection {
+    height: 97vh;
+    overflow-y: scroll;
+}
+
+.filter-selection::-webkit-scrollbar {
+    display: none;
+}
+
+.subject-filter {
+    border: 2px solid #FC941D;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 50px;
+}
+
+.subject-filter h1 {
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+
+.mode-filter {
+    border: 2px solid #FC941D;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.mode-filter h1 {
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+
+.fees-filter {
+    border: 2px solid #FC941D;
+    border-radius: 5px;
+    padding: 10px;
+    height: 240px;
+    margin-bottom: 20px;
+}
+
+.fees-filter h1 {
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+
+.subject-select>div {
+    margin-bottom: 5px;
+}
+
+.mode-select>div {
+    margin-bottom: 5px;
+}
+
+.class-rating {
+    border: 2px solid #FC941D;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.class-rating h1 {
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+
+.class-rating i {
+    color: #fbc11b;
+    font-size: 20px;
+    margin-bottom: 15px;
+    margin-left: 3px;
+}
+
+
+
+/* =========================FILTER BUTTON================================= */
+
+.filter-functions {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    align-items: center;
+}
+
+.filter-functions>div {
+    width: 100%;
+    align-items: center;
+    border: 2px solid #FC941D;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+.filter-functions button {
+    width: 100%;
+    height: 35px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.filter-functions i {
+    margin-right: 8px;
+}
+
+
+
+
+
+/* =========================== CHECKBOX STYLE =========================================== */
+
+.checkbox-button label{
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.checkbox {
+    display: none;
+}
+
+.checkbox+label {
+    position: relative;
+    cursor: pointer;
+    padding-left: 25px;
+    user-select: none;
+}
+
+.checkbox+label:before {
+    content: "\2716";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    font-size: 14px;
+    height: 20px;
+    border: none;
+    background: #f20707bc;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.checkbox:checked+label:before {
+    content: "✔";
+    background-color: #0d0;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bolder;
+    border-radius: 5px;
+    transition: 0.3s;
+}
