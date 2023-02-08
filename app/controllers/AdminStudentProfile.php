@@ -5,7 +5,7 @@ class AdminStudentProfile extends Controller{
     private mixed $studentModel;
 
     public function __construct() {
-        $this->studentModel = $this->model('ModelStudent');
+        $this->studentModel = $this->model('ModelAdminStudent');
     }
 
     public function viewStudentProfile(Request $request) {

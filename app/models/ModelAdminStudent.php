@@ -1,6 +1,6 @@
 <?php
 
-class ModelStudent {
+class ModelAdminStudent {
 
     private Database $db;
 
