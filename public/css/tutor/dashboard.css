@@ -46,6 +46,10 @@
     align-items: end;
 }
 
+.container .right #usergreeting #details #createcoursebtn a {
+    text-decoration: none;
+}
+
 .container .right #usergreeting #details #createcoursebtn button {
     box-sizing: border-box;
     width: 185px;
@@ -131,4 +135,3 @@
     margin-top:12px;
     margin-left:  50px;
 }
-

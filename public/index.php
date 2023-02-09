@@ -43,10 +43,10 @@ $router->registerController('/tutor/register', [TutorStudentAuth::class, 'tutorS
 
 // Tutor routes
 $router->registerController('/tutor/complete-profile', [TutorStudentProfileComplete::class, 'tutorCompleteProfile']);
-$router->registerController('/tutor/create-course', [TutorCreateCourse:: class, 'tutorcreatecourse'] );
-$router->registerController('/tutor/storeData', [TutorCreateCourse:: class, 'storeData'] );
-$router->registerController('/tutor/update-profile',[TutorUpdateProfile:: class, 'tutorupdateProfile']);
-$router->registerController('/tutor/report-problem',[TutorReportProblem:: class, 'tutorreportProblem']);
+$router->registerController('/tutor/create-course', [TutorCreateCourse::class, 'tutorcreatecourse']);
+$router->registerController('/tutor/storeData', [TutorCreateCourse::class, 'storeData']);
+$router->registerController('/tutor/update-profile', [TutorUpdateProfile::class, 'tutorupdateProfile']);
+$router->registerController('/tutor/report-problem', [TutorReportProblem::class, 'tutorreportProblem']);
 
 
 
@@ -69,7 +69,7 @@ $router->registerController('/tutor/classes', [TutorClass::class, 'mainpage']);
 
 
 $router->registerController('/tutor/notifications', [TutorNotification::class, 'notification']);
-$router->registerController('/tutor/classes',[TutorClasses::class, 'tutorClass']);
+
 
 
 //payment checkout

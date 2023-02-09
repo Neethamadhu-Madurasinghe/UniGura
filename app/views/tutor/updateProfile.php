@@ -9,87 +9,250 @@
 <?php
 require_once APPROOT . '/views/common/inc/Header.php';
 require_once APPROOT . '/views/common/inc/Footer.php';
-require_once APPROOT . '/views/common/inc/components/LandingPageNavBar.php';
-
-$navbar = new LandingPageNavBar($request);
+require_once APPROOT . '/views/tutor/inc/components/MainNavbar.php';
 
 Header::render(
-    'Complete Profile',
+    'update profile',
     [
-        'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css',
-        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css',
-        URLROOT . '/public/css/common/student-base-style.css',
-        URLROOT . '/public/css/tutor/complete-profile.css',
+        URLROOT . '/public/css/tutor/base.css?v=1.8',
+        URLROOT . '/public/css/tutor/style.css?v=1.9',
+        URLROOT . '/public/css/tutor/updateProfile.css'
     ]
-    //    Student base style is used here, because In this part, both student and tutor looks same
 );
+MainNavbar::render($request);
 ?>
 
+<section>
 <div class="main-area-container">
-    <div class="main-area">
-        <h1 class="main-title">My Profile</h1>
-        <form action="update-profile" id="complete-profile-form" method="POST" enctype='multipart/form-data'>
-            <div class="upload-picture-container">
-                <img src="<?php echo URLROOT . '/public/img/tutor/profile.png' ?>" alt="" id="profile-picture">
-                <input type="file" id="actual-btn" name="profile-picture" accept="image/*" hidden />
-                <label for="actual-btn" id="profile-image-upload-btn">Upload Profile Picture</label>
+
+    <div class="parent">
+        <div class="div1">
+            <form action="update-profile" id="complete-profile-form" method="POST" enctype='multipart/form-data'>
+                <div class="upload-picture-container">
+                    <h1 class="main-title">My Profile</h1>
+                    <img src="<?php echo URLROOT; ?>/public/img/tutor/profile.png" alt="" id="profile-picture">
+                    <input type="file" id="actual-btn" name="profile-picture" accept="image/*" hidden />
+                    <label for="actual-btn" id="profile-image-upload-btn">Upload Profile Picture</label>
+                </div>
+                <div class="tutor-profile">
+                    <form action="updatePassword" method="POST">
+                        <div class="form-field">
+                            <label for="first-name">First Name
+                                <!-- <span>Please enter a valid password</span></label><br> -->
+                                <input type="text" name="currentPassword" id="">
+                        </div>
+                        <div class="form-field">
+                            <label for="last-name">Last Name
+                                <!-- <span>Please enter a valid password</span></label><br> -->
+                                <input type="text" name="newPassword" id="">
+                        </div>
+                        <div class="form-field">
+                            <label for="last-name">Subject
+                                <!-- <span>Password is does't match</span></label><br> -->
+                                <input type="text" name="confirmPassword" id="">
+                        </div>
+                        <div class="form-field">
+                            <label for="last-name">Phone Number
+                                <!-- <span>Password is does't match</span></label><br> -->
+                                <input type="text" name="confirmPassword" id="">
+                        </div>
+                        <div class="form-field">
+                            <label for="last-name">District
+                                <!-- <span>Password is does't match</span></label><br> -->
+                                <input type="text" name="confirmPassword" id="">
+                        </div>
+                        <div class="form-field">
+                            <label for="last-name">City
+                                <!-- <span>Password is does't match</span></label><br> -->
+                                <input type="text" name="confirmPassword" id="">
+                        </div>
+
+                        <div class="change-password">
+                            <button type="submit" class="btn btn-change-password">Save Changes</button>
+                        </div>
+                    </form>
+
+                </div>
+
+        </div>
+
+
+        <div class="div2">
+            <h2>Bank Details</h2><br>
+            <div class="form-field">
+                <label for="last-name">Account Name
+                    <!--  <span><?php echo $data['errors']['last_name_error'] ?></span> -->
+                </label>
+                <input type="text" name="last-name" id="">
             </div>
+            <div class="form-field">
+                <label for="last-name">Account Number
+                    <!--  <span><?php echo $data['errors']['last_name_error'] ?></span> -->
+                </label>
+                <input type="text" name="last-name" id="">
+            </div>
+            <div class="form-field">
+                <label for="last-name">Bank Name
+                    <!--  <span><?php echo $data['errors']['last_name_error'] ?></span> -->
+                </label>
+                <input type="text" name="last-name" id="">
+            </div>
+            <div class="form-field">
+                <label for="last-name">Branch
+                    <!--  <span><?php echo $data['errors']['last_name_error'] ?></span> -->
+                </label>
+                <input type="text" name="last-name" id="">
+            </div>
+        </div>
 
-            <div class="form-main-area">
 
-                <div class="form-field">
-                    <label for="first-name">First Name
-                        <!-- <span><?php echo $data['errors']['first_name_error'] ?></span>  -->
-                    </label>
-                    <input type="text" name="first-name" id="">
-                </div>
-                <div class="form-field">
-                    <label for="last-name">Last Name
-                        <!--  <span><?php echo $data['errors']['last_name_error'] ?></span> -->
-                    </label>
-                    <input type="text" name="last-name" id="">
+        <div class="div3">
+            <h2>Class Details</h2><br>
+            <div class="form-field">
+                <label for="last-name">Preferred class mode
+                    <!--  <span><?php echo $data['errors']['last_name_error'] ?></span> -->
+                </label>
+                <input type="text" name="last-name" id="">
+            </div>
+            <div class="form-field">
+                <label for="last-name">Medium
+                    <!--  <span><?php echo $data['errors']['last_name_error'] ?></span> -->
+                </label>
+                <input type="text" name="last-name" id="">
+            </div>
+            <div class="form-field">
+                <label for="last-name">Mode
+                    <!--  <span><?php echo $data['errors']['last_name_error'] ?></span> -->
+                </label>
+                <input type="text" name="last-name" id="">
+            </div>
+            <div class="form-field">
+                <label for="last-name">Location
+                    <!--  <span><?php echo $data['errors']['last_name_error'] ?></span> -->
+                </label>
+                <input type="text" name="last-name" id="">
+            </div>
+        </div>
+
+        <!--===================================== Tutor AVAILABLE TIME SLOTS========================= -->
+        <div class="div4">
+            <h2>Update Your Available Time Slots</h2><br>
+
+            <div class="pop-time-table">
+                <div class="time-table-container">
+                    <table id="time-table">
+                        <tr class="time-table-titles">
+                            <th id="">Time</th>
+                            <th id="">Monday</th>
+                            <th id="">Tuesday</th>
+                            <th id="">Wednesday</th>
+                            <th id="">Thursday</th>
+                            <th id="">Friday</th>
+                            <th id="">Satday</th>
+                            <th id="">Sunday</th>
+                        </tr>
+
+                        <tr>
+                            <th>8.00-10.00</th>
+                            <td class="slot slot-used"></td>
+                            <td class="slot slot-used"></td>
+                            <td class="slot slot-free"></td>
+                            <td class="slot slot-free"></td>
+                            <td class="slot slot-used"></td>
+                            <td class="slot slot-used"></td>
+                            <td class="slot slot-used"></td>
+                        </tr>
+
+                        <tr>
+                            <th>10.00-12.00</th>
+                            <td class="slot slot-used"></td>
+                            <td class="slot slot-selected"></td>
+                            <td class="slot slot-free"></td>
+                            <td class="slot slot-free"></td>
+                            <td class="slot slot-used"></td>
+                            <td class="slot slot-used"></td>
+                            <td class="slot slot-used"></td>
+                        </tr>
+
+                        <tr>
+                            <th>12.00-14.00</th>
+                            <td class="slot slot-used"></td>
+                            <td class="slot slot-selected"></td>
+                            <td class="slot slot-free"></td>
+                            <td class="slot slot-free"></td>
+                            <td class="slot slot-used"></td>
+                            <td class="slot slot-used"></td>
+                            <td class="slot slot-used"></td>
+                        </tr>
+
+                        <tr>
+                            <th>14.00-16.00</th>
+                            <td class="slot slot-used"></td>
+                            <td class="slot slot-selected"></td>
+                            <td class="slot slot-free"></td>
+                            <td class="slot slot-free"></td>
+                            <td class="slot slot-used"></td>
+                            <td class="slot slot-used"></td>
+                            <td class="slot slot-used"></td>
+                        </tr>
+
+                        <tr>
+                            <th>16.00-18.00</th>
+                            <td class="slot slot-used"></td>
+                            <td class="slot slot-selected"></td>
+                            <td class="slot slot-free"></td>
+                            <td class="slot slot-free"></td>
+                            <td class="slot slot-used"></td>
+                            <td class="slot slot-used"></td>
+                            <td class="slot slot-used"></td>
+                        </tr>
+
+                        <tr>
+                            <th>18.00-20.00</th>
+                            <td class="slot slot-used"></td>
+                            <td class="slot slot-selected"></td>
+                            <td class="slot slot-free"></td>
+                            <td class="slot slot-free"></td>
+                            <td class="slot slot-used"></td>
+                            <td class="slot slot-used"></td>
+                            <td class="slot slot-used"></td>
+                        </tr>
+
+                        <tr>
+                            <th>20.00-22.00</th>
+                            <td class="slot slot-used"></td>
+                            <td class="slot slot-selected"></td>
+                            <td class="slot slot-free"></td>
+                            <td class="slot slot-free"></td>
+                            <td class="slot slot-used"></td>
+                            <td class="slot slot-used"></td>
+                            <td class="slot slot-used"></td>
+                        </tr>
+
+                        <tr>
+                            <th>22.00-00.00</th>
+                            <td class="slot slot-used"></td>
+                            <td class="slot slot-selected"></td>
+                            <td class="slot slot-free"></td>
+                            <td class="slot slot-free"></td>
+                            <td class="slot slot-used"></td>
+                            <td class="slot slot-used"></td>
+                            <td class="slot slot-used"></td>
+                        </tr>
+
+                        </tr>
+                    </table>
+
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-field">
-                    <label for="last-name">Subject
-                        <!--  <span><?php echo $data['errors']['subject_error'] ?></span> -->
-                    </label>
-                    <input type="text" name="lsubject" id="">
-                </div>
-                <div class="form-field">
-                    <label for="telephone-number">Phone Number
-                        <!-- <span><?php echo $data['errors']['phone_number_error'] ?></span> -->
-                    </label>
-                    <input type="text" name="phone-number" id="">
-                </div>
-
-            </div>
-            <div class="form-row">
-                <div class="form-field">
-                    <label for="street">District
-                        <!--   <span><?php echo $data['errors']['district_error'] ?></span> -->
-                    </label>
-                    <input type="text" name="district" id="">
-                </div>
-
-                <div class="form-field">
-                    <label for="city">City
-                        <!--<span><?php echo $data['errors']['city_error'] ?></span> -->
-                    </label>
-                    <input type="text" name="city" id="">
-                </div>
-
-            </div>
-
-            <div id="submit-btn-container">
-                <input type="submit" value="Finish" class="btn btn-search">
-            </div>
+        </div>
+    </div>
+</div>
+</section>
 
 
-            <?php Footer::render(
-                [
-                    'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js',
-                    URLROOT . '/public/js/common/student-tutor-complete-profile.js'
-                ]
-            ); ?>
+<?php Footer::render(
+     [
+          URLROOT . '/public/js/tutor/tutor-main.js?v=1.2'
+     ]
+);

@@ -76,7 +76,6 @@ form .form-main-area {
     flex-direction: row;
     justify-content: flex-end;
     width: 60%;
-    
 }
 
 
@@ -95,6 +94,8 @@ form .form-main-area {
     text-align: center;
     margin-top: 15px;
     margin-left: 15px;
+    border: 2px solid black;
+
 }
 
 .btn:hover {

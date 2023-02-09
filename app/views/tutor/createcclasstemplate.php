@@ -9,6 +9,22 @@
 <?php
 require_once APPROOT . '/views/common/inc/Header.php';
 require_once APPROOT . '/views/common/inc/Footer.php';
+require_once APPROOT . '/views/tutor/inc/components/MainNavbar.php';
+
+Header::render(
+    'Tutor Dashboard',
+    [
+        URLROOT . '/public/css/tutor/base.css?v=1.0',
+        URLROOT . '/public/css/tutor/dashboard.css?v=1.8'
+    ]
+);
+
+MainNavbar::render($request);
+?>
+
+<?php
+require_once APPROOT . '/views/common/inc/Header.php';
+require_once APPROOT . '/views/common/inc/Footer.php';
 
 
 Header::render(
@@ -27,70 +43,71 @@ Header::render(
     <span><?php echo $data['errors']['class_template_duplipate_error'] ?></span>
     <form action="" method="POST" enctype='multipart/form-data'>
         <div class="form-main-area">
-                <div class="form-field">
-                    <label for="subject-id">Subject</label>
-                    <select name="subject"  id="subject">
-                        <?php
-                        foreach ($data['subjects'] as $subject) {
-                            echo '<option value="' . $subject['id'] . '">' . $subject['name'] . '</option>';
-                        }
-                        ?>
-                    </select>
-                </div>
-                <div class="form-field">
-                    <label for="account-name"> Module
-                    </label>
-                    <select name="module" class="tutor-filter filter-md" id="module">
-                        <?php
-                        foreach ($data['modules'] as $module) {
-                            echo '<option value="' . $module['id'] . '">' . $module['name'] . '</option>';
-                        }
-                        ?>
-                    </select>
-                </div>
-                <div class="form-field">
-                    <label for="account-name"> Rate
-                    <span><?php echo $data['errors']['session_rate_error'] ?></span>
-                    </label>
-                    <input type="text" name="session_rate" id="" value="<?php echo $data['session_rate'] ?>">
-                </div>
-                <div class="form-field">
-                    <label for="class-type"> Type
-                    </label>
-                    <select name="class_type" id="type">
-                        <option value="Theory">Theory</option>
-                        <option value="Revision">Revision</option>
-                        <option value="Paper Class">Paper</option>
-                    </select>
-                </div>
-                <div class="form-field">
-                    <label for="class-mode"> Preffered Mode </label>
-                    <select name="mode" id="mode">
-                        <option value="Physical">Physical</option>
-                        <option value="Online">Online</option>
-                        <option value="Both">Both</option>
-                    </select>
-                </div>
-                <div class="form-field">
-                    <label for="class-medium"> Medium </label>
-                    <select name="medium" id="medium">
-                        <option value="Sinhala">Sinhala</option>
-                        <option value="English">English</option>
-                        <option value="Tamil">Tamil</option>
-                    </select>
-                </div>
-                <div class="form-field">
-                    <label for="class-duration"> Duration </label>
-                    <select name="duration" id="duration">
-                        <option value="2">2 hours</option>
-                        <option value="4">4 hours</option>
-                        <option value="6">6 hours</option>
-                    </select>
-                </div>
-                    </div>
-            <div class="btn-container">
-                <input type="submit" value="create" class="btn">
+            <div class="form-field">
+                <label for="subject-id">Subject</label>
+                <select name="subject" id="subject">
+                    <?php
+                    foreach ($data['subjects'] as $subject) {
+                        echo '<option value="' . $subject['id'] . '">' . $subject['name'] . '</option>';
+                    }
+                    ?>
+                </select>
             </div>
+            <div class="form-field">
+                <label for="account-name"> Module
+                </label>
+                <select name="module" class="tutor-filter filter-md" id="module">
+                    <?php
+                    foreach ($data['modules'] as $module) {
+                        echo '<option value="' . $module['id'] . '">' . $module['name'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="form-field">
+                <label for="class-duration"> Duration </label>
+                <select name="duration" id="duration">
+                    <option value="2">2 hours</option>
+                    <option value="4">4 hours</option>
+                    <option value="6">6 hours</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label for="account-name"> Rate (Per Session)
+                    <span><?php echo $data['errors']['session_rate_error'] ?></span>
+                </label>
+                <input type="text" name="session_rate" id="" value="<?php echo $data['session_rate'] ?>">
+            </div>
+            <div class="form-field">
+                <label for="class-type"> Type
+                </label>
+                <select name="class_type" id="type">
+                    <option value="Theory">Theory</option>
+                    <option value="Revision">Revision</option>
+                    <option value="Paper Class">Paper</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label for="class-mode"> Preferred Mode </label>
+                <select name="mode" id="mode">
+                    <option value="Physical">Physical</option>
+                    <option value="Online">Online</option>
+                    <option value="Both">Both</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label for="class-medium"> Medium </label>
+                <select name="medium" id="medium">
+                    <option value="Sinhala">Sinhala</option>
+                    <option value="English">English</option>
+                    <option value="Tamil">Tamil</option>
+                </select>
+            </div>
+            
+        </div>
+        <div class="btn-container">
+            <input type="submit" value="Create" class="btn">
+        </div>
 
 
 

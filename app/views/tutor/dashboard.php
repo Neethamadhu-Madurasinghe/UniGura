@@ -68,7 +68,7 @@ MainNavbar::render($request);
             </div>
             <div class="card" id="pendingrequets">
                 <div id="heading">
-                    <h1>Pending Request</h1>
+                    <h1>Pending Requests</h1>
                 </div>
                 <div id="content">
                 <div class="class-template">

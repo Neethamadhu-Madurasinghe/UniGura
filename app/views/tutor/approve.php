@@ -35,7 +35,7 @@ Header::render(
             To make your profile live please complete the required details
         </div>
         <div class="button">
-            <a href="<?php echo URLROOT?>/tutor/complete-bank-detials">Complete profile</a>
+            <a href="<?php echo URLROOT?>/tutor/complete-bank-detials">Complete Profile</a>
         </div>
         
     </div>

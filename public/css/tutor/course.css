@@ -50,4 +50,5 @@
 .class-card  .body .content .footer{
     display: flex;
     justify-items: flex-end;
+    background-color: #fff;
 }
