@@ -14,7 +14,7 @@ Header::render(
     'Tutor Notifications',
     [
         URLROOT . '/public/css/tutor/base.css?v=1.0',
-        URLROOT . '/public/css/tutor/style.css?v=1.0'
+        URLROOT . '/public/css/tutor/style.css?v=1.2'
     ]
 );
 
@@ -26,7 +26,7 @@ MainNavbar::render($request);
           <div class="msg_container_one">
           <div class="msg_box_one">
                <header>
-               <img src="images/user.jpg">
+               <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg" >
                <h4 style="margin-top: 5%;"> Isuru Udana</h4>
                </header>
                <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;">Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo </p>
@@ -34,7 +34,7 @@ MainNavbar::render($request);
           </div>
           <div class="msg_box_one">
                <header>
-               <img src="images/user.jpg">
+               <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg" >
                <h4 style="margin-top: 5%;"> Isuru Udana</h4>
                </header>
                <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;">Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo </p>
@@ -42,7 +42,7 @@ MainNavbar::render($request);
           </div>
           <div class="msg_box_one">
                <header>
-               <img src="images/user.jpg">
+               <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg" >
                <h4 style="margin-top: 5%;"> Isuru Udana</h4>
                </header>
                <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;">Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo </p>
@@ -50,7 +50,7 @@ MainNavbar::render($request);
           </div>
           <div class="msg_box_one">
                <header>
-               <img src="images/user.jpg">
+               <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg" >
                <h4 style="margin-top: 5%;"> Isuru Udana</h4>
                </header>
                <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;">Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo </p>
@@ -58,7 +58,7 @@ MainNavbar::render($request);
           </div>
           <div class="msg_box_one">
                <header>
-               <img src="images/user.jpg">
+               <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg" >
                <h4 style="margin-top: 5%;"> Isuru Udana</h4>
                </header>
                <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;">Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo </p>
@@ -66,7 +66,7 @@ MainNavbar::render($request);
           </div>
           <div class="msg_box_one">
                <header>
-               <img src="images/user.jpg">
+               <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg" >
                <h4 style="margin-top: 5%;"> Isuru Udana</h4>
                </header>
                <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;">Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo </p>
@@ -74,7 +74,7 @@ MainNavbar::render($request);
           </div>
           <div class="msg_box_one">
                <header>
-               <img src="images/user.jpg">
+               <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg" >
                <h4 style="margin-top: 5%;"> Isuru Udana</h4>
                </header>
                <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;">Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo </p>
@@ -92,7 +92,7 @@ MainNavbar::render($request);
                     
                     <div class="msg_box_two" style="margin-top: 0px;">
                          <header>
-                         <img src="images/user.jpg">
+                         <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg" >
                          <h4 style="margin-top: 5%;"> Isuru Udana</h4>
                          </header>
                          <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;">Request for a class reshedule</p>
@@ -100,7 +100,7 @@ MainNavbar::render($request);
                     </div>
                     <div class="msg_box_two" style="margin-top: 0px;">
                          <header>
-                         <img src="images/user.jpg">
+                         <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg" >
                          <h4 style="margin-top: 5%;"> Isuru Udana</h4>
                          </header>
                          <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;">Submited activity on organic course</p>
@@ -108,7 +108,7 @@ MainNavbar::render($request);
                     </div>
                     <div class="msg_box_two" style="margin-top: 0px;">
                          <header>
-                         <img src="images/user.jpg">
+                         <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg" >
                          <h4 style="margin-top: 5%;"> Isuru Udana</h4>
                          </header>
                          <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;">Submited activity on organic course</p>
@@ -116,7 +116,7 @@ MainNavbar::render($request);
                     </div>
                     <div class="msg_box_two" style="margin-top: 0px;">
                          <header>
-                         <img src="images/user.jpg">
+                         <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg" >
                          <h4 style="margin-top: 5%;"> Isuru Udana</h4>
                          </header>
                          <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;">Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo </p>
@@ -124,7 +124,7 @@ MainNavbar::render($request);
                     </div>
                     <div class="msg_box_two" style="margin-top: 0px;">
                          <header>
-                         <img src="images/user.jpg">
+                         <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg" >
                          <h4 style="margin-top: 5%;"> Isuru Udana</h4>
                          </header>
                          <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;">Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo </p>
@@ -132,7 +132,7 @@ MainNavbar::render($request);
                     </div>
                     <div class="msg_box_two" style="margin-top: 0px;">
                          <header>
-                         <img src="images/user.jpg">
+                         <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg" >
                          <h4 style="margin-top: 5%;"> Isuru Udana</h4>
                          </header>
                          <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;">Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo </p>
@@ -140,7 +140,7 @@ MainNavbar::render($request);
                     </div>
                     <div class="msg_box_two" style="margin-top: 0px;">
                          <header>
-                         <img src="images/user.jpg">
+                         <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg" >
                          <h4 style="margin-top: 5%;"> Isuru Udana</h4>
                          </header>
                          <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;">Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo </p>
@@ -158,7 +158,7 @@ MainNavbar::render($request);
             <li class="card">
                <div class="msg_box" style="margin-top: 0px;">
                     <header>
-                    <img src="images/user.jpg">
+                    <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg" >
                     <h4 style="margin-top: 5%;"> Isuru Udana</h4>
                     </header>
                     <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;">Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo </p>
@@ -168,7 +168,7 @@ MainNavbar::render($request);
              <li class="card">
                <div class="msg_box" style="margin-top: 0px;">
                     <header>
-                    <img src="images/user.jpg">
+                    <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg" >
                     <h4 style="margin-top: 5%;"> Isuru Udana</h4>
                     </header>
                     <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;">Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo </p>
@@ -178,7 +178,7 @@ MainNavbar::render($request);
              <li class="card">
                <div class="msg_box" style="margin-top: 0px;">
                     <header>
-                    <img src="images/user.jpg">
+                    <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg" >
                     <h4 style="margin-top: 5%;"> Isuru Udana</h4>
                     </header>
                     <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;">Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo </p>
@@ -188,7 +188,7 @@ MainNavbar::render($request);
              <li class="card">
                <div class="msg_box" style="margin-top: 0px;">
                     <header>
-                    <img src="images/user.jpg">
+                    <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg" >
                     <h4 style="margin-top: 5%;"> Isuru Udana</h4>
                     </header>
                     <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;">Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo </p>
@@ -198,7 +198,7 @@ MainNavbar::render($request);
              <li class="card">
                <div class="msg_box" style="margin-top: 0px;">
                     <header>
-                    <img src="images/user.jpg">
+                    <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg" >
                     <h4 style="margin-top: 5%;"> Isuru Udana</h4>
                     </header>
                     <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;">Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo </p>
@@ -208,7 +208,7 @@ MainNavbar::render($request);
              <li class="card">
                <div class="msg_box" style="margin-top: 0px;">
                     <header>
-                    <img src="images/user.jpg">
+                    <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg" >
                     <h4 style="margin-top: 5%;"> Isuru Udana</h4>
                     </header>
                     <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;">Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo </p>
@@ -218,7 +218,7 @@ MainNavbar::render($request);
              <li class="card">
                <div class="msg_box" style="margin-top: 0px;">
                     <header>
-                    <img src="images/user.jpg">
+                    <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg" >
                     <h4 style="margin-top: 5%;"> Isuru Udana</h4>
                     </header>
                     <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;">Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo </p>

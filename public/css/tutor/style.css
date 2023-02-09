@@ -117,7 +117,7 @@ p {
      }
      .msg_container_two{
           overflow-y: auto;
-          height: 350px;
+          height: 300px;
           padding-right: 10px;
 
 
@@ -171,7 +171,7 @@ p {
           border-radius: 10px;
           padding: 20px;
           width: 95%;
-          height: 300px;
+          height: 340px;
           overflow-y: auto;
      }
      .msg_box{

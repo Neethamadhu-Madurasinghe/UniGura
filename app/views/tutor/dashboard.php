@@ -14,8 +14,8 @@ require_once APPROOT . '/views/tutor/inc/components/MainNavbar.php';
 Header::render(
     'Tutor Dashboard',
     [
-        URLROOT . '/public/css/tutor/base.css?v=2.1',
-        URLROOT . '/public/css/tutor/dashboard.css?v=2.2'
+        URLROOT . '/public/css/tutor/base.css?v=2.3',
+        URLROOT . '/public/css/tutor/dashboard.css?v=2.3'
     ]
 );
 
@@ -227,7 +227,7 @@ MainNavbar::render($request);
         let halt_slots = 56 - (working_slots + acting_slots)
 
         var data = [working_slots, acting_slots, 50];
-        var colors = ['#ff0000', '#00ff00', '#0000ff'];
+        var colors = ['#ff8d00', '#ffb75e', '#d2d2d2'];
 
         var piechart = document.getElementById("piechart");
         var chartWidth = piechart.offsetWidth;
