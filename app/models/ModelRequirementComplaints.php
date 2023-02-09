@@ -59,7 +59,7 @@ class ModelRequirementComplaints {
 
 
     public function getTutorRequest() {
-        $this->db->query("SELECT * FROM tutor");
+        $this->db->query("SELECT * FROM tutor WHERE is_approved=0");
         return $this->db->resultAll();
     }
 
