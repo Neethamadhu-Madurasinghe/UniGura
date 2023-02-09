@@ -1,0 +1,95 @@
+:root {
+    --bright-orange: #FF8125;
+    --lightest-orange: #FFCFAC;
+    --dark-orange: #F7711A;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.tutor-profile {
+    width: 500px;
+    /* margin-top: 20px; */
+    /* width: 100%; */
+    height: 100%;
+    max-width: 500px;
+    /* margin: auto; */
+    margin-top: 90px;
+}
+
+.tutor-profile h3{
+    font-family: 'DM Sans', sans-serif;
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+.tutor-profile form>div {
+    margin-bottom: 20px;
+    width: 500px;
+}
+
+.form-field label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    width: 500px;
+}
+
+.form-field label span {
+    color: red;
+    font-size: 0.7rem;
+    font-weight: normal;
+}
+
+
+.form-field input,
+.form-field select {
+    border: none;
+    background-color: rgb(255, 237, 220);
+    border-bottom: 1px solid var(--bright-orange);
+    font-size: 1rem;
+    height: 35px;
+    border-radius: 5px;
+    padding-left: 5px;
+    width: 500px;
+    margin-top: 6px;
+}
+
+
+
+.btn {
+    width: 180px;
+    height: 40px;
+    font-size: 1rem;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.1s;
+    user-select: none;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn:active {
+    background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
+}
+
+
+.functionality {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    align-items: center;
+}

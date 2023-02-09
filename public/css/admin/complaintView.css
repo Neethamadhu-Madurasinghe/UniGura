@@ -1,0 +1,171 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background-color: white;
+}
+
+.tutor-name, .student-name, .description, .report-reason{
+    margin:20px 50px;
+}
+
+
+.tutor-name h1, .student-name h1,.description h1, .report-reason h1{
+    font-size: 20px;
+    font-weight: 600;    
+    margin-bottom: 5px;
+}
+
+.tutor-name h3, .student-name h3, .report-reason h3{
+    font-size: 17px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    border: 2px solid #FFA620;
+    padding: 10px;
+    border-radius: 5px;
+    width: 370px;
+    background-color: #F5F5F5;
+}
+
+
+.description h3{
+    font-size: 17px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    border: 2px solid #FFA620;
+    padding: 10px;
+    border-radius: 5px;
+    width: 600px;
+    background-color: #F5F5F5;
+}
+
+
+
+/* ================================================== REVIEW SECTION ===================================================================== */
+
+
+.tutor-review-section{
+    /* width: 70%; */
+    margin: 20px 50px;
+    margin-top: 60px;
+}
+
+.one-tutor-review{
+    margin-top: 30px;
+}
+
+.tutor-review-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #FFA620;
+    padding: 0px 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+}
+
+.profile-img img{
+    width: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: 3px;
+}
+
+.tutor-review-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.tutor-review-description{
+    background-color: white;
+    padding: 10px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 2px solid #FFA620;
+    /* background-color: #F5F5F5; */
+}
+
+
+.tutor-review-title h3{
+    font-size: 20px;
+}
+
+.tutor-review-title h5{
+    font-size: 17px;
+}
+
+.tutor-review-title{
+    line-height: 1.4;
+}
+
+
+/* ======================================================= BACK BUTTON =============================================================== */
+
+.back-btn{
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: -70px;
+}
+
+.back-btn button{
+    background-color: #FFA620;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
+.back-btn span{
+    font-size: 27px;
+    color: black;
+}
+
+
+.back-btn i{
+    font-size: 30px;
+    color: black;
+}
+
+
+/* ======================================================= COMPLAIN CHECK STATUS =============================================================== */
+
+
+.complain-check form{
+    margin: 20px 50px;
+    margin-top: 100px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-bottom: -120px;
+}
+
+.complain-check input[type="checkbox"]{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.submit-status-btn button{
+    background-color: #FFA620;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    margin-left: 10px;
+    margin-bottom: 3px;
+}

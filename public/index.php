@@ -38,9 +38,66 @@ $router->registerController('/tutor/register', [TutorStudentAuth::class, 'tutorS
 
 // Admin routes
 
+$router->registerController('/admin/dashboard', [AdminDashboard::class, 'dashboard']);
+$router->registerController('/admin/subjectModule', [AdminSubjectModule::class, 'subjectsAndModules']);
+$router->registerController('/admin/addSubject', [AdminSubjectModule::class, 'addSubject']);
+$router->registerController('/admin/addModule', [AdminSubjectModule::class, 'addModule']);
+$router->registerController('/admin/updateModule', [AdminSubjectModule::class, 'updateModule']);
+$router->registerController('/admin/updateModuleHideShow', [AdminSubjectModule::class, 'updateModuleHideShow']);
 
 
 
+$router->registerController('/admin/student', [AdminStudent::class, 'student']);
+$router->registerController('/admin/viewStudentProfile', [AdminStudentProfile::class, 'viewStudentProfile']);
+
+
+
+$router->registerController('/admin/class', [AdminClass::class, 'class']);
+
+
+$router->registerController('/admin/tutor', [AdminTutor::class, 'tutor']);
+$router->registerController('/admin/viewTutorProfile', [AdminTutorProfile::class, 'viewTutorProfile']);
+
+
+$router->registerController('/admin/requirementComplaints', [AdminRequirementComplaints::class, 'requirementComplaints']);
+$router->registerController('/admin/addStudentComplainReason', [AdminRequirementComplaints::class, 'addStudentComplainReason']);
+$router->registerController('/admin/addTutorComplainReason', [AdminRequirementComplaints::class, 'addTutorComplainReason']);
+$router->registerController('/admin/updateStudentComplainReason', [AdminRequirementComplaints::class, 'updateStudentComplainReason']);
+$router->registerController('/admin/updateTutorComplainReason', [AdminRequirementComplaints::class, 'updateTutorComplainReason']);
+
+
+
+$router->registerController('/admin/payment', [AdminPayment::class, 'payment']);
+$router->registerController('/admin/selectedTutorDetails', [AdminPayment::class, 'selectedTutorDetails']);
+
+
+$router->registerController('/admin/chat', [AdminChat::class, 'chat']);
+
+
+
+$router->registerController('/admin/notification', [AdminNotification::class, 'notification']);
+$router->registerController('/admin/notification/clearNotification', [AdminNotification::class, 'clearNotification']);
+
+
+
+
+$router->registerController('/admin/viewComplaint', [AdminComplaintView::class, 'viewComplaint']);
+$router->registerController('/admin/updateComplainInquire', [AdminComplaintView::class, 'updateComplainInquire']);
+
+
+
+$router->registerController('/admin/tutorRequest', [AdminTutorRequest::class, 'tutorRequest']);
+$router->registerController('/admin/studentComplaint', [AdminStudentComplaint::class, 'studentComplaint']);
+$router->registerController('/admin/tutorComplaint', [AdminTutorComplaint::class, 'tutorComplaint']);
+$router->registerController('/admin/complaintSetting', [AdminComplaintSetting::class, 'complaintSetting']);
+
+
+$router->registerController('/admin/profileView', [AdminProfileView::class, 'profileView']);
+$router->registerController('/admin/updatePassword', [AdminProfileView::class, 'updatePassword']);
+
+
+
+$router->registerController('/admin/filterForStudentPage', [AdminFilter::class, 'filterForStudentPage']);
 
 
 
@@ -70,6 +127,9 @@ $router->registerController('/api/time-table', [FindTutor::class, 'getTutorTimeT
 $router->registerController('/api/request', [FindTutor::class, 'sendTutorRequest']);
 $router->registerController('/student/find-tutor', [FindTutor::class, 'findTutor']);
 $router->registerController('/student/profile', [StudentProfile::class, 'profile']);
+$router->registerController('/api/report-tutor', [StudentTutorProfile::class, 'reportTutor']);
+$router->registerController('/student/tutor-profile', [StudentTutorProfile::class, 'tutorProfile']);
+
 
 
 $router->resolve();
