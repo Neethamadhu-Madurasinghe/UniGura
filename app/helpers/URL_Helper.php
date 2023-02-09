@@ -14,7 +14,7 @@ function redirectBasedOnUserRole(Request $request): void {
     }elseif ($request->isTutor()) {
         redirect('tutor/dashboard');
     }elseif ($request->isStudent()) {
-        redirect('example/dashboard');
+        redirect('student/dashboard');
     }elseif ($request->isEmailNotValidatedTutor()) {
         redirect('tutor/validate-email');
     }elseif ($request->isEmailNotValidatedStudent()) {

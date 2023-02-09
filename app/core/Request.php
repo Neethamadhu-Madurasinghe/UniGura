@@ -76,7 +76,7 @@ class Request {
 
     //  Get profile picture
     public function getUserPicture() {
-        if ($this->isLoggedIn() && ($this->isStudent() || $this->isTutor())) {
+        if ($this->isJustLoggedIn() && ($this->isStudent() || $this->isTutor())) {
             return $_SESSION['user_picture'];
         }else {
             return false;
@@ -100,6 +100,19 @@ class Request {
                     session_destroy();
                     return false;
                 }
+            }else {
+                return true;
+            }
+        }else {
+            return false;
+        }
+    }
+
+//    Function to just check whether user is logged in without changing anything
+    private function isJustLoggedIn(): bool {
+        if (isset($_SESSION['user_id'])) {
+            if (isset($_SESSION['LAST_ACTIVITY'])) {
+                return time() - $_SESSION['LAST_ACTIVITY'] < 3600;
             }else {
                 return true;
             }

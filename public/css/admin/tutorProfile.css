@@ -1,0 +1,404 @@
+.tutor-profile-page{
+    height: 95vh;
+    overflow-y: scroll;
+}
+
+
+.tutor-profile-page::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.tutor-profile-page::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.tutor-profile-page:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
+
+
+.top-details-box {
+    width: 95%;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px auto;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.profile-picture img {
+    width: 150px;
+    border-radius: 50%;
+}
+
+
+.class-summary {
+    width: 40%;
+    margin-right: 50px;
+}
+
+.total-class {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    border: 2px solid #FC941D;
+    padding: 8px;
+    border-radius: 5px;
+
+}
+
+.pending-amount {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    border: 2px solid #FC941D;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.class-summary h1 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.class-summary h2 {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.name-actions {
+    position: relative;
+
+}
+
+.tutor-details {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-left: 20px;
+}
+
+.name-actions {
+    margin-left: 30px;
+    margin-bottom: 15px;
+}
+
+.actions .chat button {
+    background: #FC941D;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+.actions .chat i {
+    margin-right: 8px;
+    position: relative;
+    top: 2px;
+
+}
+
+
+
+/* ========================= CLASS CARDS ============================== */
+
+.active-classes {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 40px;
+    width: 95%;
+    margin: 20px auto;
+    height: 54vh;
+    display: none;
+    overflow-y: scroll;
+    padding-right: 15px;
+}
+
+
+.active-classes::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.active-classes::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.active-classes:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
+
+.finished-classes {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 40px;
+    width: 95%;
+    margin: 20px auto;
+    display: none;
+    height: 54vh;
+    padding-right: 15px;
+    overflow-y: scroll;
+}
+
+.finished-classes::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.finished-classes::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.finished-classes:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
+
+
+.one-class {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #FC941D;
+    height: 130px;
+}
+
+.tutor-profile img {
+    width: 100px;
+    border-radius: 50%;
+}
+
+.class-details {
+    margin-left: 30px;
+}
+
+.class-details>div {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    line-height: 1.4;
+}
+
+
+.class-details h1 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.class-details h2 {
+    font-size: 18px;
+    font-weight: 400;
+    margin-left: 10px;
+}
+
+
+
+/* ========================= MENU SELECTION AREA ============================== */
+
+
+.filed-selection-btn{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    width: 90%;
+    margin: 20px auto;
+    background-color: #ffa620a3;
+}
+
+.filed-selection-btn button{
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 5px;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    user-select: none;
+}
+
+.filed-selection-btn button:hover {
+    transform: scale(1.05);
+}
+
+.filed-selection-btn button:active {
+    background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
+}
+
+
+
+/* ========================= tutor INFO ============================== */
+
+.tutor-info {
+    width: 95%;
+    margin: 20px auto;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* display: none; */
+}
+
+.tutor-info>div {
+    width: 30%;
+}
+
+.tutor-info>div>div {
+    border: 2px solid #FC941D;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px 0;
+
+}
+
+.tutor-info h1 {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.tutor-info h2 {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.section-1>div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.section-2>div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+
+/*  ========================= HIDE SHOW / BLOCK UNBLOCK/ CHAT ============================== */
+
+.actions{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.actions .button img{
+    width: 30px;
+    vertical-align: middle;
+}
+
+.actions .button{
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 1px 1px 2px 2px #FC941D;
+    height: 48px;
+    width: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 13px;
+    margin-right: 10px;
+}
+
+
+
+
+/* ============================================== TIME SLOT OF TUTOR ====================================== */
+
+.color-introduce table tr{
+    display: flex;
+    flex-direction: column;
+}
+
+.color-introduce table tr td{
+    width: 110px;
+    padding: 10px;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pop-time-table {
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    margin: 20px auto;
+    width: 100%;
+}
+
+.pop-time-table h2 {
+    font-family: 'DM Sans', sans-serif;
+}
+
+.time-table-container {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#time-table {
+    width: 100%;
+    border-spacing: 15px;
+
+}
+
+#time-table tr th {
+    color: var(--bright-orange);
+    font-size: 0.75rem;
+    width: 80px;
+}
+
+.slot {
+    border-radius: 5px;
+    height: 36px;
+    width: 100px;
+    margin: 10px;
+}
+
+
+.slot-used {
+    background-color: #d2d4f5;
+
+}
+
+.slot-free {
+    background-color:#FFCFAC;
+}
+
+.slot-selected {
+    background-image: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+}

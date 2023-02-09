@@ -1,0 +1,8 @@
+{
+    "Codegeex.EnableExtension": false,
+    "git.ignoreLimitWarning": true,
+    "sonarlint.connectedMode.project": {
+        "connectionId": "Viraj-UniGura",
+        "projectKey": "Neethamadhu-Madurasinghe_UniGura"
+    }
+}
