@@ -7,4 +7,10 @@ class StudentClass extends Controller {
 
         $this->view('/student/tutoringClass', $request, $data);
     }
+
+    public function chat(Request $request) {
+        $data = [];
+
+        $this->view('/student/chat', $request, $data);
+    }
 }
