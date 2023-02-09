@@ -30,8 +30,7 @@ MainNavbar::render($request);
                 <div id="details">
                     <div class="text">
                         <h1>Hello 
-                            <?php print_r( $data['tutor_name']['first_name']);
-                                
+                            <?php print_r( $data['tutor_name']['first_name']);        
                             ?> 
                         </h1>
                         <p>Its Good to see you !</p>
@@ -71,7 +70,52 @@ MainNavbar::render($request);
                 <div id="heading">
                     <h1>Pending Request</h1>
                 </div>
-                <div id="content"></div>
+                <div id="content">
+                <div class="class-template">
+                        <?php
+                        $classes = json_decode($data['tutor_requests']);
+
+                        foreach ($classes as $class) {
+                            $array = (array) $class;
+                            $student_first_name = (string) $array['first_name'] ;
+                            $student_last_name = (string) $array['last_name'] ;
+                            $module = (string) $array['module'];
+                            $subject = (string) $array['subject'];
+                            $mode = (string) $array['mode'];
+                            $c_id = (string) $array['class_template_id'];
+
+                            echo "
+                            <div class='class-card'> 
+                                <div class='header'>
+                                    <div>
+                                        
+                                        <p>$student_first_name  $student_last_name</p>
+                                        <div>$module</div>
+                                        <div>$subject</div>
+                                        <div>$mode</div>
+                                        <h3 style = 'display:none;'>$c_id</h3>
+                                    </div>
+                                    <i class='fa-solid fa-user user'></i>
+                                </div>
+                                <div>
+                                    <p></p>
+                                    <p></p>
+                                </div>   
+                                <div class='footer'>
+                                    <div>
+                                        <i class='fa-solid fa-star'></i>
+                                    </div>
+                                    <div>
+                                        <i class='fa-regular fa-pen-to-square'></i>
+                                        <i class='fa-solid fa-trash'></i>
+                                        <i class='fa-solid fa-eye-slash'></i>
+                                    </div>         
+                                </div>                      
+                            </div>";
+                        }
+                        ?>
+                    </div>
+                </div>
             </div>
             <div class="card" id="payments">
                 <div id="heading">
@@ -104,15 +148,17 @@ MainNavbar::render($request);
                             $module = (string) $array['module'];
                             $mode = (string) $array['mode'];
                             $medium = (string) $array['medium'];
+                            $c_id = (string) $array['course_id'];
 
                             echo "
                             <div class='class-card'> 
                                 <div class='header'>
-                                    <div >
+                                    <div>
                                         <h2>$subject</h2>
                                         <p>$module</p>
-                                        <p>$mode</p>
-                                        <p>$medium</p>
+                                        <div>$mode</div>
+                                        <div>$medium </div>
+                                        <h3 style = 'display:none;'>$c_id</h3>
                                     </div>
                                     <i class='fa-solid fa-user user'></i>
                                 </div>
@@ -158,7 +204,6 @@ MainNavbar::render($request);
         //Getting active class count
         let class_counts = <?php echo $data['active_class_count'] ?>;
 
-
         active_class_count.innerHTML = class_counts['active'];
         block_class_count.innerHTML = class_counts['blocked'];
         complete_class_count.innerHTML = class_counts['complete'];
@@ -176,7 +221,7 @@ MainNavbar::render($request);
         cards.forEach(card => {
             console.log(card)
             card.addEventListener("click", function() {
-                window.location = "http://localhost/unigura/tutor/viewcourse?subject=" + this.querySelector("h2").textContent + "&module=" + this.querySelector("p").textContent;
+                window.location = "http://localhost/unigura/tutor/viewcourse?subject=" + this.querySelector("h2").textContent + "&module=" + this.querySelector("p").textContent + "&id=" + this.querySelector("h3").textContent;
             });
         });
     </script>

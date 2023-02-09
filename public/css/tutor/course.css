@@ -5,6 +5,7 @@
     display: flex;
     flex-wrap: column;
     align-items: center;
+    border-radius: 10px;
 }
 
 .header .subhead{
@@ -12,3 +13,41 @@
     grid-template-columns: 1fr 1fr;
 }
 
+.class-template {
+    padding-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.class-card{
+    background: linear-gradient(180deg, #F5F3FB 0%, #FDFBFD 100%);
+    border-radius: 10px;
+}
+
+
+.class-card .header{
+    border-radius: 10px 10px 0px 0px;
+}
+
+.class-card  .body {
+    padding: 10px;
+}
+
+.class-card  .body .content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 40px;
+    margin-bottom: 2px;
+    
+}
+
+.class-card  .body .content p{
+    font-size: 20px;
+}
+
+.class-card  .body .content .footer{
+    display: flex;
+    justify-items: flex-end;
+}

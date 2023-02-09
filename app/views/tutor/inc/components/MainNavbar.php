@@ -62,7 +62,7 @@ class MainNavbar {
                     </li>
 
                     <li class="nav-link myclass">
-                        <a href="#">
+                        <a href="' . URLROOT . '/tutor/classes'  . '">
                             <i class="fa-solid fa-graduation-cap icon"></i>
                             <span class="text nav-text">Classes</span>
                         </a>
@@ -79,7 +79,7 @@ class MainNavbar {
                     </a>
                 </li>
                 <li class="">
-                    <a href="#">
+                    <a href="' . URLROOT . '/logout' . '">
                         <i class="fa-solid fa-right-from-bracket icon"></i>
                         <span class="text nav-text">Logout</span>
                     </a>

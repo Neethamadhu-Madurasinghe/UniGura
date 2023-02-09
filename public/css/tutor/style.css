@@ -1,0 +1,525 @@
+body{
+     margin: 0;
+     background: linear-gradient(180deg, #F7711A 0%, #FFA620 100%);
+     font-family: "Poppins", sans-serif;
+     font-size: 1rem;
+     font-weight: 400;
+     line-height: 1.5;
+     color: #000000;
+     text-align: left;
+     padding: 5%;
+     height: 100%;
+     padding-top: 2%;
+   }
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+h2{
+     font-weight: 400;
+}
+h4{
+     font-weight: 600;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 15px;
+}
+
+/* notificaton start */
+     .notification{
+          display: grid;
+          grid-template-columns: 1fr 2fr;
+          gap: 30px;
+     }
+     .New_Student_Request{
+          background: linear-gradient(180deg, #F5F3FB 0%, #FDFBFD 100%);
+          border-radius: 10px;
+          padding: 20px;
+          width: 90%;
+          height: 770px;
+     }
+     .msg_container_one{
+          overflow-y: auto;
+          width: 100%;
+          height: 720px;
+          padding-right: 10px;
+          margin-top: 20px;
+
+
+     }
+     .msg_box_one{
+          background-color: #ffffff;
+          border-radius: 10px;
+          padding: 5%; 
+          height: fit-content;
+          margin-bottom: 20px;
+
+     }
+     .msg_box_one:hover{
+          box-shadow: 0 5px 35px rgb(0 0 0 / 7%);
+     }
+     .msg_box_one header{
+          display: grid;
+          grid-template-columns: 1fr 5fr;
+
+     }
+
+     .msg_box_one img{
+          border-radius: 50%;
+          width: 80%;
+
+     }
+     .msg_box_one button{
+          background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+          border-radius: 20px;
+          color: #ffffff;
+          font-size: 13px;
+          padding: 7px;
+          border: 0px ;
+          width: 40%;
+          margin-left: 60%;
+          cursor: pointer;
+          margin-top:0px ;
+     }
+     .msg_box_one button:hover{
+          background: #ff8f0ea9;
+          color: #ffffff;
+          font-size: 13px;
+          padding: 7px;
+          border: 0px ;   
+     }
+
+     .part_two{
+          display: grid;
+          grid-template-columns: 1fr;
+          height: 100%;
+          gap: 30px;
+     }
+
+     .Student_Notification{
+          background: linear-gradient(180deg, #F5F3FB 0%, #FDFBFD 100%);
+          border-radius: 10px;
+          padding: 20px;
+          width: 95%;
+          height: 400px;
+     }
+     .Student_Notification .half{
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 20px;
+     }
+     .msg_container_two{
+          overflow-y: auto;
+          height: 350px;
+          padding-right: 10px;
+
+
+
+
+     }
+     .msg_box_two{
+          background-color: #ffffff;
+          border-radius: 10px;
+          padding: 5%;  
+          height: fit-content;
+     }
+     .msg_box_two:hover{
+          box-shadow: 0 5px 35px rgb(0 0 0 / 7%);
+     }
+     .msg_box_two header{
+          display: grid;
+          grid-template-columns: 1fr 5fr;
+
+     }
+
+     .msg_box_two img{
+          border-radius: 50%;
+          width: 80%;
+
+     }
+     .msg_box_two button{
+          background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+          border-radius: 20px;
+          color: #ffffff;
+          font-size: 13px;
+          padding: 7px;
+          border: 0px ;
+          width: 40%;
+          margin-left: 60%;
+          cursor: pointer;
+          margin-top:0px ;
+     }
+     .msg_box_two button:hover{
+          background: #ff8f0ea9;
+          color: #ffffff;
+          font-size: 13px;
+          padding: 7px;
+          border: 0px ;   
+     }
+
+ 
+
+     .System_Notification{
+          background: linear-gradient(180deg, #F5F3FB 0%, #FDFBFD 100%);
+          border-radius: 10px;
+          padding: 20px;
+          width: 95%;
+          height: 300px;
+          overflow-y: auto;
+     }
+     .msg_box{
+          background-color: #ffffff;
+          border-radius: 10px;
+          padding: 5%;
+          margin-top: 20px;
+          height: fit-content;
+     }
+     .msg_box:hover{
+          box-shadow: 0 5px 35px rgb(0 0 0 / 7%);
+     }
+     .msg_box header{
+          display: grid;
+          grid-template-columns: 1fr 5fr;
+
+     }
+
+     .msg_box img{
+          border-radius: 50%;
+          width: 80%;
+
+     }
+     .msg_box button{
+          background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+          border-radius: 20px;
+          color: #ffffff;
+          font-size: 13px;
+          padding: 7px;
+          border: 0px ;
+          width: 40%;
+          margin-left: 60%;
+          cursor: pointer;
+          margin-top:0px ;
+     }
+     .msg_box button:hover{
+          background: #ff8f0ea9;
+          color: #ffffff;
+          font-size: 13px;
+          padding: 7px;
+          border: 0px ;   
+     }
+
+     .cards {
+          display: flex;
+          overflow-x: scroll;
+          scroll-snap-type: x mandatory;
+        }
+        .card {
+          display: flex;
+          width: 100%;
+          flex-direction: column;
+          flex: 0 0 100%;
+          scroll-snap-align: start;
+          margin-left: 0px;
+          background-color: #f7721a00;
+          margin-bottom: 20px;
+         
+        }
+     
+        .msg_container_two::-webkit-scrollbar {
+          width: 12px;
+          background-color: #ffffff;
+          padding-top: 12px;
+          border-radius: 92px;
+          border-right:10px solid white ;
+        }
+        .msg_container_one::-webkit-scrollbar {
+          width: 12px;
+          background-color: #ffffff;
+          padding-top: 12px;
+          border-radius: 92px;
+        }
+        .cards::-webkit-scrollbar {
+          height: 12px;
+          background-color: #ffffff;
+          padding-top: 12px;
+          
+     
+        }
+        .cards::-webkit-scrollbar-thumb,
+        .cards::-webkit-scrollbar-track {
+          border-radius: 92px;
+          
+     
+     
+        }
+        
+        .msg_container_one::-webkit-scrollbar-thumb,
+        .msg_container_one::-webkit-scrollbar-track {
+          border-radius: 92px;
+          
+     
+     
+        }
+        .msg_container_two::-webkit-scrollbar-thumb,
+        .msg_container_two::-webkit-scrollbar-track {
+          border-radius: 92px;
+          
+     
+     
+        }
+        .cards::-webkit-scrollbar-thumb {
+          background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+          
+        }
+        .msg_container_one::-webkit-scrollbar-thumb {
+          background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+          
+        }
+        .msg_container_two::-webkit-scrollbar-thumb {
+          background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+          
+        }
+        .cards::-webkit-scrollbar-track {
+          background: var(--thumb);
+          
+        }
+        @media (min-width: 500px) {
+          .card {
+            flex-basis: calc(100% - 10px);
+          }
+          .card:not(:last-child) {
+            margin-right: 20px;
+          }
+        }
+        @media (min-width: 700px) {
+          .card {
+            flex-basis: calc(calc(100% - 20px));
+          }
+          .card:not(:last-child) {
+            margin-right: 10px;
+          }
+        }
+        @media (min-width: 1100px) {
+          .card {
+            flex-basis: calc(50% );
+               width: fit-content;
+          }
+     
+          .card:not(:last-child) {
+            margin-right: 20px;
+          }
+        }
+
+
+
+
+/* notificaton end */
+
+/* start Active classes */
+.textbox_one{
+     margin-top: 10px;
+     display: grid;
+     gap: 0px;
+     height: fit-content;
+     grid-template-columns: 1fr 10fr;
+}
+.textbox_one .img01{
+     border-radius: 0%;
+     margin: 0;
+     margin-top: 6px;
+     width: 90%;
+     
+}
+.textbox_one .img02{
+     margin: 0;
+     border-radius: 0%;
+     margin-top: 8px;
+     width: 70%;
+}
+.Student{
+     background: linear-gradient(180deg, #F5F3FB 0%, #FDFBFD 100%);
+     border-radius: 10px;
+     padding: 20px;
+     width: 95%;
+     height: 770px;
+}
+.Student .half{
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 20px;
+}
+.day_box_container{
+     overflow-y: auto;
+     height: 550px;
+     padding-right: 10px;
+
+
+
+
+}
+.day_box{
+     background-color: #ffffff;
+     border-radius: 10px;
+     padding: 5%;  
+     height: fit-content;
+}
+.day_box:hover{
+     box-shadow: 0 5px 35px rgb(0 0 0 / 7%);
+}
+
+.day_box img{
+     border-radius: 50%;
+     width: 80%;
+
+}
+.day_box button{
+     background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+     border-radius: 20px;
+     color: #ffffff;
+     font-size: 13px;
+     padding: 7px;
+     border: 0px ;
+     width: 40%;
+     margin-left: 60%;
+     cursor: pointer;
+     margin-top:0px ;
+}
+.day_box button:hover{
+     background: #ff8f0ea9;
+     color: #ffffff;
+     font-size: 13px;
+     padding: 7px;
+     border: 0px ;   
+}
+
+.container {
+     display: block;
+     position: relative;
+     padding-left: 35px;
+     margin-bottom: 12px;
+     cursor: pointer;
+     font-size: 20px;
+     -webkit-user-select: none;
+     -moz-user-select: none;
+     -ms-user-select: none;
+     user-select: none;
+   }
+   
+   /* Hide the browser's default checkbox */
+   .container input {
+     position: absolute;
+     opacity: 0;
+     cursor: pointer;
+     height: 0;
+     width: 0;
+   }
+   
+   /* Create a custom checkbox */
+   .checkmark {
+     position: absolute;
+     top: 0;
+     left: 0;
+     height: 25px;
+     width: 25px;
+     background-color: #ffffff;
+     border-radius: 4px;
+     border:1px solid #f7721adc;
+   }
+   
+   /* On mouse-over, add a grey background color */
+   .container:hover input ~ .checkmark {
+     background-color: #ffffff;
+     border:1px solid #f7721adc;
+     border-radius: 4px;
+   }
+   
+   /* When the checkbox is checked, add a blue background */
+   .container input:checked ~ .checkmark {
+     background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+     border-radius: 4px;
+     border:0px solid #f7721adc;
+   }
+   
+   /* Create the checkmark/indicator (hidden when not checked) */
+   .checkmark:after {
+     content: "";
+     position: absolute;
+     display: none;
+   }
+   
+   /* Show the checkmark when checked */
+   .container input:checked ~ .checkmark:after {
+     display: block;
+   }
+   
+   /* Style the checkmark/indicator */
+   .container .checkmark:after {
+     left: 9px;
+     top: 5px;
+     width: 5px;
+     height: 10px;
+     border: solid white;
+     border-width: 0 3px 3px 0;
+     -webkit-transform: rotate(45deg);
+     -ms-transform: rotate(45deg);
+     transform: rotate(45deg);
+   }
+   .textbox_two{
+
+     display: grid;
+     gap: 0px;
+     height: fit-content;
+     grid-template-columns: 1fr 20fr;
+}
+.textbox_two .img03{
+     border-radius: 0%;
+     margin: 0;
+     margin-top: 6px;
+     width: 90%;
+     
+}
+.textbox_two .img04{
+     margin: 0;
+     border-radius: 0%;
+     margin-top: 8px;
+     width: 70%;
+}
+
+.Student button{
+     background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+     border-radius: 6px;
+     color: #ffffff;
+     font-size: 13px;
+     padding: 7px;
+     border: 0px ;
+     width: 20%;
+     margin-left: 0%;
+     cursor: pointer;
+     margin-right:10px ;
+     margin-bottom: 40px;
+}
+.day_box_container::-webkit-scrollbar-thumb,
+.day_box_container::-webkit-scrollbar-track {
+  border-radius: 92px;
+  
+
+
+}
+
+.day_box_container::-webkit-scrollbar {
+     width: 12px;
+     background-color: #ffffff;
+     padding-top: 12px;
+     border-radius: 92px;
+     border-right:10px solid white ;
+   }
+   .day_box_container::-webkit-scrollbar-thumb {
+     background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+   }
+/* end Active classes */
+
