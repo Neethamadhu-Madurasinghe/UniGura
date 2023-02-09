@@ -56,8 +56,8 @@ class MainNavbar
                         </a>
                     </li>
 
-                    <li href="' . URLROOT . '/tutor/payements'  . '">
-                        <a href="#">
+                    <li class="nav-link">
+                        <a  href="' . URLROOT . '/tutor/payments'  . '">
                             <i class="fa-solid fa-chart-line icon"></i>
                             <span class="text nav-text">Payments</span>
                         </a>

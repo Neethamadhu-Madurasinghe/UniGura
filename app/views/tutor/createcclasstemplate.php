@@ -65,7 +65,7 @@ Header::render(
                 </select>
             </div>
             <div class="form-field">
-                <label for="class-duration"> Duration </label>
+                <label for="class-duration"> Session Duration </label>
                 <select name="duration" id="duration">
                     <option value="2">2 hours</option>
                     <option value="4">4 hours</option>

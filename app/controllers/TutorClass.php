@@ -9,7 +9,7 @@ class TutorClass extends Controller
     {
 
        $data = [];
- echo "ss";     
+   
 
         $this->view('tutor/classes', $request, $data);
     }

@@ -15,14 +15,13 @@ Header::render(
     'update profile',
     [
         URLROOT . '/public/css/tutor/base.css?v=1.8',
-        URLROOT . '/public/css/tutor/style.css?v=1.9',
-        URLROOT . '/public/css/tutor/updateProfile.css'
+        URLROOT . '/public/css/tutor/updateProfile.css?v=1.2'
     ]
 );
 MainNavbar::render($request);
 ?>
 
-<section>
+
 <div class="main-area-container">
 
     <div class="parent">
@@ -248,7 +247,7 @@ MainNavbar::render($request);
         </div>
     </div>
 </div>
-</section>
+
 
 
 <?php Footer::render(
