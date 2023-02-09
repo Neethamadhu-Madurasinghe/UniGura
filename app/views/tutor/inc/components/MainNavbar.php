@@ -1,7 +1,9 @@
 <?php
 
-class MainNavbar {
-    public static function render(Request $request): void {
+class MainNavbar
+{
+    public static function render(Request $request): void
+    {
         echo '
         <nav class="sidebar close">
         <header>
@@ -73,7 +75,7 @@ class MainNavbar {
 
             <div class="bottom-content">
                 <li class="">
-                    <a href="#">
+                <a href="' . URLROOT . '/tutor/update-profile'  . '">
                         <i class="fa-solid fa-user icon"></i>
                         <span class="text nav-text">User</span>
                     </a>
@@ -101,12 +103,13 @@ class MainNavbar {
     </nav>   ';
     }
 
-    private static function getStudentProfilePicture($id) {
+    private static function getStudentProfilePicture($id)
+    {
         $tutorStudentAuth = new ModelTutorStudentAuth();
         $img = $tutorStudentAuth->getUserProfilePicture($id);
         if ($img) {
             return $img;
-        }else {
+        } else {
             return '/public/img/student/profile.png';
         }
     }

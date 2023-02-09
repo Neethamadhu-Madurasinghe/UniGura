@@ -201,6 +201,18 @@ Header::render(
 
         </form>
 
+        <!-- <script>
+            const form = document.querySelector("form"),
+    nextBtn = form.querySelector(".nextBtn"),
+    backBtn = form.querySelector(".backBtn");
+            nextBtn.addEventListener("click", () => {
+    form.classList.add('secActive');
+    console.log('ok')
+})
+
+backBtn.addEventListener("click", () => form.classList.remove('secActive'));
+        </script> -->
+
     </div>
 </div>
 
@@ -209,7 +221,7 @@ Header::render(
 <?php Footer::render(
     [
         'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js',
-        URLROOT . '/public/js/common/student-tutor-complete-profile.js',
+        URLROOT . '/public/js/common/student-tutor-complete-profile.js?v=1.0',
 
     ]
 ); ?>

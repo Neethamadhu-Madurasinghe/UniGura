@@ -38,6 +38,8 @@ class TutorUpdateProfile extends Controller{
 
             ];
         }
+
+        $data = [];
         // $errors =[];
         // if (empty($first_name)) {
         //     $errors[] = 'First name is required';

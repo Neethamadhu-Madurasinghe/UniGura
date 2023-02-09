@@ -122,7 +122,6 @@ class TutorPending extends Controller
                 'account_number' => $body['account-number'],
                 'account_name' => $body['account-name'],
                 'branch' => $body['branch'],
-                'time_slots' => $body['data'],
                 'errors' => [
                     'account_number_error' => '',
                     'account_name_error' => '',
@@ -140,8 +139,6 @@ class TutorPending extends Controller
                     $hasErrors = TRUE;
                 }
             }
-
-            print_r($data['time_slots']);
             if (!$hasErrors) {
                 //              Not storing user's location if he selected online mode
                 $tutor_id = $request->getUserId();
