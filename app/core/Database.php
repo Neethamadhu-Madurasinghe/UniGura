@@ -75,6 +75,12 @@ class Database {
         return $this->statement->fetch(PDO::FETCH_OBJ);
     }
 
+//    Get single record as the result, but as an associative array
+    public function resultOneAssoc(): array {
+        $this->execute();
+        return $this->statement->fetch(PDO::FETCH_ASSOC);
+    }
+
 //    Get the number of rows in the result
     public function rowCount(): int {
         return $this->statement->rowCount();
