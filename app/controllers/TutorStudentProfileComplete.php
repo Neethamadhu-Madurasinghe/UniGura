@@ -242,9 +242,9 @@ class TutorStudentProfileComplete extends Controller {
 
                 if ($this->tutorStudentModel->setTutorStudentProfileDetails($data) &&
                     $this->tutorStudentModel->setTutorProfileDetails($data) &&
-                    $_SESSION['user_picture'] = $data['profile_picture'];
                     $this->tutorStudentModel->setUserRole($request->getUserId(), 7)) {
                     $_SESSION['user_role'] = 7;
+                    $_SESSION['user_picture'] = $data['profile_picture'];
                     redirect('tutor/pending');
                 }else {
                     header("HTTP/1.0 500 Internal Server Error");
