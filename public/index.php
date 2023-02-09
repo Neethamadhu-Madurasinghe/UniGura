@@ -126,8 +126,10 @@ $router->registerController('/api/find-tutoring-class', [FindTutor::class, 'find
 $router->registerController('/api/time-table', [FindTutor::class, 'getTutorTimeTable']);
 $router->registerController('/api/request', [FindTutor::class, 'sendTutorRequest']);
 $router->registerController('/student/find-tutor', [FindTutor::class, 'findTutor']);
+$router->registerController('/student/profile', [StudentProfile::class, 'profile']);
 $router->registerController('/api/report-tutor', [StudentTutorProfile::class, 'reportTutor']);
 $router->registerController('/student/tutor-profile', [StudentTutorProfile::class, 'tutorProfile']);
+
 
 
 $router->resolve();
