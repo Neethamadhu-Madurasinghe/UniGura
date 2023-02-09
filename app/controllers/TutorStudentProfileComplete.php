@@ -244,6 +244,7 @@ class TutorStudentProfileComplete extends Controller {
                     $this->tutorStudentModel->setTutorProfileDetails($data) &&
                     $this->tutorStudentModel->setUserRole($request->getUserId(), 1)) {
                     $_SESSION['user_role'] = 1;
+                    $_SESSION['user_picture'] = $data['profile_picture'];
                     redirect('tutor/not-approved');
                 }else {
                     header("HTTP/1.0 500 Internal Server Error");
