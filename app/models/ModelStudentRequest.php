@@ -54,4 +54,45 @@ class ModelStudentRequest {
 
         return $this->db->commitTransaction();
     }
+
+
+
+
+    public function getRequestsByStudentId($id): array {
+        $this->db->query('SELECT id FROM request WHERE student_id=:id');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        $requestIds = $this->db->resultAllAssoc();
+        $requests = [];
+
+        foreach ($requestIds as $requestId) {
+            $this->db->query('SELECT 
+                                request.id,
+                                request.mode,
+                                request.class_template_id,
+                                user.first_name,
+                                user.last_name 
+                                FROM request INNER JOIN user ON
+                                request.tutor_id = user.id WHERE request.id=:id;');
+
+
+            $this->db->bind('id', $requestId['id'], PDO::PARAM_INT);
+            $request = $this->db->resultOneAssoc();
+
+            $this->db->query('SELECT subject.name AS subject_name,
+                                module.name AS module_name
+                                FROM tutoring_class_template INNER JOIN subject ON
+                                tutoring_class_template.subject_id = subject.id INNER JOIN module ON
+                                tutoring_class_template.module_id = module.id WHERE tutoring_class_template.id=:id');
+
+            $this->db->bind('id', $request['class_template_id'], PDO::PARAM_INT);
+            $subjectModule = $this->db->resultOneAssoc();
+
+            $request['subject'] = $subjectModule['subject_name'];
+            $request['module'] = $subjectModule['module_name'];
+            $requests[] = $request;
+        }
+
+        return $requests;
+    }
 }
