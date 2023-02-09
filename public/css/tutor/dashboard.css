@@ -1,0 +1,335 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&display=swap');
+
+body{
+     margin: 0;
+     font-family: 'Poppins', sans-serif;
+     font-size: 1rem;
+     font-weight: 400;
+     line-height: 1.5;
+     color: #000000;
+     text-align: left;
+     padding: 10%;
+     height: 100%;
+     padding-top:20px;
+   }
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+
+}
+
+h2{
+     font-weight: 600;
+     font-family: 'Poppins', sans-serif;
+     margin-top: 0px;
+}
+h4{
+     font-weight: 600;
+     font-family: 'Poppins', sans-serif;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 15px;
+}
+.container {
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 40px;
+    background: #ffff;
+    padding: 20px;
+    width: 90%;
+    left: 8%;
+    right: 0%;
+    height: 100vh;
+    background-color: #99999800;
+}
+
+
+.container .right {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.container .left {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+    height: fit-content;
+}
+
+
+/* user greeting component */
+
+.container .left #usergreeting {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    height: 200px;
+}
+
+h1{
+    padding-top: 25px;
+    font-weight: 500;
+}
+.container .left #usergreeting #details {
+    display: grid;
+    /* Set a fixed width and height if required */
+    height: 180px;
+
+}
+
+.container .left #usergreeting #details #createcoursebtn {
+    display: grid;
+    align-items: end;
+}
+
+.container .right #usergreeting #details #createcoursebtn a {
+    text-decoration: none;
+}
+
+.container .right #usergreeting #details #createcoursebtn button {
+    box-sizing: border-box;
+    width: 170px;
+    height: 50px;
+    border: none;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 14px;
+    background: linear-gradient(180deg, #F7711A 0%, #FFA620 100%);
+    border-radius: 10px;
+    margin-top: 50px;
+    position: absolute;
+}
+
+.container .card  {
+    padding :  25px;
+    padding-top: 0px;
+}
+
+#image{
+    width: 60%;
+    height: auto;
+    margin-left: 35%;
+    margin-top: 0px;
+}
+
+
+.myclasses .content{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 25px;
+    padding-top: 0px;
+    grid-column-gap: 30px;
+}
+
+.myclasses .content .component{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid 2px #F7711A ;
+    border-radius: 10px ;
+    height: 150px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+
+.myclasses .content .component .count{
+    font-size: 30px;
+    font-weight: 800;
+    color: #F7711A;
+    padding-top: 15px;
+
+}
+
+.myclasses .content .component .view_all{
+    font-size: 15px;
+    font-weight: 600;
+    color: #999998;
+    text-decoration: underline;
+    cursor: pointer;
+
+}
+
+
+.myclasses .content .component .heading{
+    background: linear-gradient(180deg, #F7711A 0%, #FFA620 100%);
+    border-radius: 10px 10px 0px 0px;
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+    height: 40px;
+    font-weight: 600;
+    color: white;
+
+}
+
+/* class template rendering style */
+
+#mycourses #content .class-template{
+    height: 500px; 
+    overflow: scroll;
+    padding: 10px;
+}
+
+#mycourses #content .class-template .class-card{
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
+    height: 200px;
+    border: solid 1px #FFA620 ;
+    margin-bottom: 5px;
+    padding: 10px;
+    background: linear-gradient(180deg, #F5F3FB 0%, #FDFBFD 100%);
+    border-radius: 10px;
+}
+
+#mycourses #content .class-template .class-card .header{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+#mycourses #content .class-template .class-card .footer{ 
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+
+#mycourses #content .class-template .class-card .header .user{
+    margin-top:12px;
+    margin-left:  50px;
+}
+
+
+#balancetime{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+}
+
+#balancetime #content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#piechart {
+    margin: 20px; 
+    width: 300px;
+    height: 300px;
+}
+
+/* pending requests */
+
+.msg_box{
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 5%;
+    margin-top: 20px;
+    height: fit-content;
+}
+.msg_box:hover{
+    box-shadow: 0 5px 35px rgb(0 0 0 / 7%);
+}
+.msg_box header{
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+
+}
+
+.msg_box img{
+    border-radius: 50%;
+    width: 80%;
+
+}
+.msg_box button{
+    background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+    border-radius: 20px;
+    color: #ffffff;
+    font-size: 13px;
+    padding: 7px;
+    border: 0px ;
+    width: 40%;
+    margin-left: 60%;
+    cursor: pointer;
+    margin-top:0px ;
+}
+.msg_box button:hover{
+    background: #ff8f0ea9;
+    color: #ffffff;
+    font-size: 13px;
+    padding: 7px;
+    border: 0px ;   
+}
+
+.cards {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+  }
+  .cardss {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    margin-left: 0px;
+    background-color: #f7721a00;
+    margin-bottom: 20px;
+   
+  }
+
+  .cards::-webkit-scrollbar {
+    height: 12px;
+    background-color: #ffffff;
+    padding-top: 12px;
+    
+
+  }
+  .cards::-webkit-scrollbar-thumb,
+  .cards::-webkit-scrollbar-track {
+    border-radius: 92px;
+    
+
+
+  }
+
+  .cards::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+    
+  }
+  .cards::-webkit-scrollbar-track {
+    background: var(--thumb);
+    
+  }
+  @media (min-width: 500px) {
+    .cardss {
+      flex-basis: calc(100% - 10px);
+    }
+    .cardss:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+  @media (min-width: 700px) {
+    .cardss {
+      flex-basis: calc(calc(50% - 20px));
+    }
+    .cardss:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+  @media (min-width: 1100px) {
+    .cardss {
+      flex-basis: calc(50% -30ප්ං);
+         width: fit-content;
+    }
+
+    .cardss:not(:last-child) {
+      margin-right: 20px;
+    }
+  }

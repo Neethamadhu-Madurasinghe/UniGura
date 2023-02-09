@@ -135,7 +135,7 @@ class TutorStudentProfileComplete extends Controller {
         if (!$request->isProfileNotCompletedTutor()) {
             redirectBasedOnUserRole($request);
         }
-
+        
         if ($request->isPost()) {
             $body = $request->getBody();
 
@@ -242,9 +242,9 @@ class TutorStudentProfileComplete extends Controller {
 
                 if ($this->tutorStudentModel->setTutorStudentProfileDetails($data) &&
                     $this->tutorStudentModel->setTutorProfileDetails($data) &&
-                    $this->tutorStudentModel->setUserRole($request->getUserId(), 1)) {
-                    $_SESSION['user_role'] = 1;
-                    redirect('tutor/not-approved');
+                    $this->tutorStudentModel->setUserRole($request->getUserId(), 7)) {
+                    $_SESSION['user_role'] = 7;
+                    redirect('tutor/pending');
                 }else {
                     header("HTTP/1.0 500 Internal Server Error");
                     die('Something went wrong');
@@ -299,5 +299,7 @@ class TutorStudentProfileComplete extends Controller {
 
         $this->view('tutor/auth/completeProfile', $request, $data);
     }
+
+   
 
 }

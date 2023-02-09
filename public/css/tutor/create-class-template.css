@@ -1,0 +1,109 @@
+.main-area {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-title {
+    margin: 20px 0 0 0;
+    align-self: center;
+}
+
+.sub-title {
+    margin: 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    margin-top: 20px;
+}
+
+
+form .form-main-area {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+  
+}
+
+.form-field {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+    
+}
+
+.form-field label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align:justify;
+}
+
+
+.form-field label span {
+    color: red;
+    font-size: 0.7rem;
+    font-weight: normal;
+}
+
+
+.form-field input, .form-field select, .form-field textarea  {
+    border: none;
+    background-color: rgb(255, 237, 220);
+    border-bottom: 1px solid var(--bright-orange);
+    font-size: 1rem;
+    height: 35px;
+    border-radius: 5px;
+    padding-left: 5px;
+    width: 80%;
+    margin-left: 20%;
+}
+
+
+
+
+
+.btn-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 60%;
+}
+
+
+.btn {
+    width: 180px;
+    height: 40px;
+    font-size: 1rem;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.1s;
+    user-select: none;
+    padding: 10px;
+    text-align: center;
+    margin-top: 15px;
+    margin-left: 15px;
+    border: 2px solid black;
+
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn:active {
+    background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
+}
+
+

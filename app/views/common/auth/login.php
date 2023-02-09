@@ -24,7 +24,6 @@ LandingPageNavBar::render($request)
 
 <div class="main-area">
     <div class="main-container">
-
         <div class="image-area">
             <object>
                 <img src="<?php echo URLROOT . '/public/img/common/Mobile login-pana.svg' ?>" alt="login">
