@@ -14,7 +14,7 @@ class MainNavbar {
                 </div>
             </div>
 
-            <i class="fa-solid fa-chevron-right toggle"></i>
+            <i style="display:none;" class="fa-solid fa-chevron-right toggle"></i>
         </header>
 
         <div class="menu-bar">
@@ -27,7 +27,7 @@ class MainNavbar {
 
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="' . URLROOT . '/tutor/chat'  . '">
                             <i class="fa-regular fa-envelope icon"></i>
                             <span class="text nav-text">Messages</span>
                         </a>
@@ -48,16 +48,16 @@ class MainNavbar {
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="' . URLROOT . '/tutor/notifications'  . '">
                             <i class="fa-solid fa-calendar-days icon"></i>
                             <span class="text nav-text">Calender</span>
                         </a>
                     </li>
 
-                    <li class="nav-link">
+                    <li href="' . URLROOT . '/tutor/payements'  . '">
                         <a href="#">
                             <i class="fa-solid fa-chart-line icon"></i>
-                            <span class="text nav-text">Analytics</span>
+                            <span class="text nav-text">Payments</span>
                         </a>
                     </li>
 

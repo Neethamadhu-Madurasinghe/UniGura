@@ -65,6 +65,19 @@ MainNavbar::render($request);
                     </div>
                     <button class="msg_box button">View Details</button>
                 </div>
+                <div class="msg_box_one">
+                    <header>
+                    <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg">
+                        <h4 style="margin-top: 5%;">Sachithra Kavinda</h4>
+                    </header>
+                    <div class="textbox_one">
+                    <img src="<?php echo URLROOT ?>/public/img/tutor/class/icons/BookBookmark.png">
+                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Mechanics Theory</p>
+                        <img src="<?php echo URLROOT ?>/public/img/tutor/class/icons/cast.png">
+                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Online</p>
+                    </div>
+                    <button class="msg_box button">View Details</button>
+                </div>
             </div>
 
         </div>

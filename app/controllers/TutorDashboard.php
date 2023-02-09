@@ -35,9 +35,11 @@ class TutorDashboard extends Controller
         $data['tutor_name'] = get_object_vars($this->dashboardModel->getTutorName($request->getUserId()));
         $data['active_class_count'] = json_encode($this->dashboardModel->countTutoringActiveClasses($request->getUserId()));
         $data['tutoring_class_template'] = json_encode($this->dashboardModel->getTutoringClassTemplates($request->getUserId()));
+        $data['tutor_time_slots'] = json_encode($this->dashboardModel->getTutorTimeSlots($request->getUserId()));
 
         $data['tutor_requests'] = json_encode($this->dashboardModel->getStudentRequests($request->getUserId()));
 
+  
         
         $this->view('tutor/dashboard', $request, $data);
     }

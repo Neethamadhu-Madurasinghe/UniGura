@@ -39,7 +39,7 @@ class ModelTutorPending
         $this->db->bind('account_name', $data['account_name'], PDO::PARAM_STR);
         $this->db->bind('branch', $data['branch'], PDO::PARAM_STR);
 
-
+        
         return $this->db->execute();
     }
 

@@ -24,6 +24,14 @@
     margin-bottom: 20px;
 }
 
+.class_template{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+
+
 
 
 

@@ -9,9 +9,10 @@ class ModelTutorDashboard
         $this->db = new Database();
     }
 
-    public function getTutorName($id){
+    public function getTutorName($id)
+    {
         $this->db->query('SELECT first_name FROM user where id = :id');
-        $this->db->bind('id',$id,PDO::PARAM_INT);
+        $this->db->bind('id', $id, PDO::PARAM_INT);
         $result = $this->db->resultOne();
         return $result;
     }
@@ -65,7 +66,7 @@ class ModelTutorDashboard
     }
 
 
-    public function getTutoringClassDetails($data) : int
+    public function getTutoringClassDetails($data): int
     {
         $this->db->query(' SELECT tutor_id
         FROM tutoring_class_template
@@ -104,7 +105,7 @@ class ModelTutorDashboard
         return $this->db->execute();
     }
 
-    public function getTutoringClassTemplates($id) : array
+    public function getTutoringClassTemplates($id): array
     {
         $this->db->query(' SELECT c.mode, c.medium, m.name as module , s.name as subject, c.id as course_id
         FROM tutoring_class_template AS c
@@ -119,16 +120,24 @@ class ModelTutorDashboard
         return $this->db->resultAllAssoc();
     }
 
-    public function getStudentRequests($id) : array
+    public function getStudentRequests($id): array
     {
         $this->db->query(' SELECT r.id , r.class_template_id , r.mode , r.tutor_id , r.student_id , s.name as subject , m.name as module , u.first_name , u.last_name FROM request AS r JOIN tutoring_class_template AS c ON r.class_template_id = c.id JOIN subject AS s ON c.subject_id = s.id JOIN module AS m ON c.module_id = m.id JOIN user AS u ON r.student_id = u.id WHERE r.tutor_id = :id;');
-
         $this->db->bind('id', $id, PDO::PARAM_INT);
-
         return $this->db->resultAllAssoc();
     }
 
 
+    public function getTutorTimeSlots($id): array
+    {
+        $this->db->query("SELECT 
+                COUNT(CASE WHEN state = '1' THEN 1 END) AS active_count,
+                COUNT(CASE WHEN state = '2' THEN 1 END) AS working_count
+            FROM time_slot WHERE tutor_id = :tutor_id;");
 
-  
+        $this->db->bind('tutor_id', $id, PDO::PARAM_INT);
+        $this->db->execute();
+
+        return $this->db->resultAll();
+    }
 }
