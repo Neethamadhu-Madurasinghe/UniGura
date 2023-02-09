@@ -6,16 +6,23 @@
     background: #ffffff;
     padding: 20px;
     width: 93%;
-    left: 7%;
+    left: 20%;
     right: 0%;
     height: 100vh;
     background-color: var(--primary-color);
     opacity: 0;
 }
 
+.notification.close{
+    left: 34%;
+    width: 80%;
+}
+
 .classes .left {
     display: grid;
     grid-template-rows: 1fr;
+    left: 50%;
+    width: 80%;
 
 }
 

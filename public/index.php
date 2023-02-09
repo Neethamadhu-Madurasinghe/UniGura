@@ -63,7 +63,8 @@ $router->registerController('/tutor/dashboard', [TutorDashboard::class, 'dashboa
 $router->registerController('/tutor/dashboard/create-class-template', [TutorDashboard::class, 'createClassTemplate']);
 $router->registerController('/tutor/dashboard/api/modules', [TutorDashboard::class, 'getModule']);
 $router->registerController('/tutor/viewcourse', [TutorCourse::class, 'viewcourse']);
-
+$router->registerController('/tutor/createday', [TutorCourse::class, 'createDay']);
+$router->registerController('/tutor/classes', [TutorClass::class, 'mainpage']);
 
 
 

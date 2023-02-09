@@ -8,4 +8,4 @@ define('DB_NAME', 'unigura');
 
 define('APPROOT', dirname(dirname(__FILE__)));
 define('ROOT', dirname(dirname(dirname(__FILE__))));
-define('URLROOT', 'http://localhost:8080/unigura');
+define('URLROOT', 'http://localhost/unigura');

@@ -16,6 +16,8 @@ const body = document.querySelector('body'),
             sidebar.classList.toggle("close");
             container.classList.toggle("close");
             notification.classList.toggle("close");
+            classcontent.classList.toggle("close");
+
         })
 
 
@@ -24,24 +26,7 @@ const body = document.querySelector('body'),
           
         })
 
-        // homebtn.addEventListener("click" , () =>{
-        //     notification.classList.remove("active");
-        //     container.classList.toggle("active");
-        //     console.log('ok')
-        // })
-
-        notifybtn.addEventListener("click" , () =>{
-            container.classList.remove("active");
-            notification.classList.toggle("active");
-            console.log('ok')
-        })
-
-
-        classbtn.addEventListener("click" , () =>{
-            // notification.classList.remove("active");
-            classcontent.classList.toggle("active");
-            console.log('ok')
-        })
+        
 
         modeSwitch.addEventListener("click" , () =>{
             body.classList.toggle("dark");

@@ -306,7 +306,6 @@ body.dark .switch::before {
     width: 80%;
 }
 
-
 .sidebar .close~.container {
     left: 30%;
     height: 100vh;
@@ -314,6 +313,8 @@ body.dark .switch::before {
     background-color: red;
 
 }
+
+
 
 .btn {
     width: 180px;

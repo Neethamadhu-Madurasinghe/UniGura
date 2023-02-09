@@ -27,11 +27,11 @@ Header::render(
 
     <form action="report-problem" method="POST">
         <h1>Report a Problem</h1>
-        <input type="radio" name="report" value="Student do not attend to class at time">Student do not attend to class at time<br>
-        <input type="radio" name="report" value="Payments not done in time">Payments not done in time<br>
-        <input type="radio" name="report" value="Online connectivity problems">Online connectivity problems<br>
-        <input type="radio" name="report" value="Prank">Prank<br>
-        <input type="radio" name="report" value="Other">Other<br><br>
+        <input type="radio" name="report" value="Student do not attend to class at time"> Student do not attend to class at time<br>
+        <input type="radio" name="report" value="Payments not done in time"> Payments not done in time<br>
+        <input type="radio" name="report" value="Online connectivity problems"> Online connectivity problems<br>
+        <input type="radio" name="report" value="Prank"> Prank<br>
+        <input type="radio" name="report" value="Other"> Other<br><br>
 
         <label for="description">Leave a Comment(Optional): </label><br><br>
         <textarea id="description" name="description" rows="5" cols="30"></textarea><br><br>
