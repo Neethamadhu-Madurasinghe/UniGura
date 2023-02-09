@@ -164,6 +164,7 @@ $router->registerController('/student/profile', [StudentProfile::class, 'profile
 $router->registerController('/api/report-tutor', [StudentTutorProfile::class, 'reportTutor']);
 $router->registerController('/student/tutor-profile', [StudentTutorProfile::class, 'tutorProfile']);
 $router->registerController('/student/class', [StudentClass::class, 'tutoringClass']);
+$router->registerController('/student/chat', [StudentClass::class, 'chat']);
 
 
 $router->resolve();
