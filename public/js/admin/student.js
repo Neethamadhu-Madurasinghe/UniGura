@@ -36,6 +36,41 @@ student.classList.add('active');
 
 
 
+// --------------------MENU SELECTION----------------------------------------
+
+const finished_classes = document.querySelectorAll('.finished-classes');
+const active_classes = document.querySelectorAll('.active-classes');
+const student_info = document.querySelectorAll('.student-info');
+
+
+const info_btn = document.querySelectorAll('.info-btn');
+const active_class_btn = document.querySelectorAll('.active-class-btn');
+const finished_class_btn = document.querySelectorAll('.finished-class-btn');
+
+
+student_info[0].style.display = 'flex';
+
+info_btn[0].addEventListener('click', function () {
+    student_info[0].style.display = 'flex';
+    active_classes[0].style.display = 'none';
+    finished_classes[0].style.display = 'none';
+});
+
+active_class_btn[0].addEventListener('click', function () {
+    student_info[0].style.display = 'none';
+    active_classes[0].style.display = 'grid';
+    finished_classes[0].style.display = 'none';
+});
+
+finished_class_btn[0].addEventListener('click', function () {
+    student_info[0].style.display = 'none';
+    active_classes[0].style.display = 'none';
+    finished_classes[0].style.display = 'grid';
+});
+
+
+
+
 
 
 const filterBtn = document.getElementById('filter');
@@ -98,3 +133,6 @@ filterBtn.addEventListener('click', () => {
     xhttp.send();
 
 });
+
+
+
