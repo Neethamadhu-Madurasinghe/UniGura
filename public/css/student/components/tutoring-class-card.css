@@ -39,7 +39,7 @@
     color: white;
     font-family: 'DM Sans', serif;
     font-weight: 200;
-    margin: 0px 0 6px 10px;
+    margin: 0 0 6px 10px;
 }
 
 .class-card-bottom-section {
@@ -73,7 +73,7 @@
 
 .name-row p {
     width: 60%;
-    margin: 15px;
+    margin: 15px 15px 15px 5px;
     font-family: 'DM Sans', serif;
     font-size: 1.1rem;
 }
@@ -123,17 +123,15 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .progress-bar-row p {
-    margin-bottom: 5px;
     color: var(--bright-orange);
     font-family: 'Manrope', sans-serif;
     font-weight: bold;
-
+    margin: 5px 0;
 }
-
 
 .progress-bar-outer {
     width: 100%;

@@ -68,7 +68,10 @@ MainNavbar::render($request);
 
                 <div class="class-container">
                     <div class="class-card-container">
-
+                        <div class="no-class-message-container">
+                            <h1>Currently you have taken 0 tutoring classes</h1>
+                            <h3>Add a class by clicking below button</h3>
+                        </div>
                     </div>
                     <div class="add-new-class-button-container">
                         <a href="<?php echo URLROOT . '/student/find-tutor'?>">
