@@ -59,10 +59,10 @@ class TutorStudentProfileComplete extends Controller {
 //           Validate all the fields
             $data['errors']['first_name_error'] = validateName($data['first_name']);
             $data['errors']['last_name_error'] = validateName($data['last_name']);
-            $data['errors']['address_line_1'] = validateLetterBoxNumber($data['address_line_1']);
-            $data['errors']['address_line_2'] = validateLetterBoxNumber($data['address_line_2']);
+            $data['errors']['address_line_1'] = validateAddressLines($data['address_line_1']);
+            $data['errors']['address_line_2'] = validateAddressLines($data['address_line_2']);
             $data['errors']['city_error'] = validateCity($data['city']);
-            $data['errors']['district'] = validateCity($data['district']);
+            $data['errors']['district'] = validateDistrict($data['district']);
             $data['errors']['year_of_exam_error'] = validateYearOfExam($data['year_of_exam']);
             $data['errors']['telephone_number_error'] =
                 validateTelephoneNumber($data['telephone_number'], $this->tutorStudentModel);
