@@ -77,15 +77,6 @@
                         </a>
                     </li>
 
-                    <li class="nav-link" id="chat">
-                        <p></p>
-                        <p></p>
-                        <a href="chat">
-                            <i class="fa fa-envelope icon"></i>
-                            <span class="text nav-text">Chat</span>
-                        </a>
-                    </li>
-
                     <li class="nav-link" id="request-complaint">
                         <p></p>
                         <p></p>
