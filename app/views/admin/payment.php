@@ -10,6 +10,13 @@
     <p></p>
     <p></p>
 
+    <?php
+        echo '<pre>';
+            print_r($data);
+            echo '</pre>';
+
+    ?>
+
     <div class="payment-page">
         <div class="payment">
             <div class="payment-left-side">

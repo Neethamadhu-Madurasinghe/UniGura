@@ -84,6 +84,8 @@ $router->registerController('/admin/updatePassword', [AdminProfileView::class, '
 
 
 $router->registerController('/admin/filterForStudentPage', [AdminFilter::class, 'filterForStudentPage']);
+$router->registerController('/admin/filterForTutorPage',[AdminFilter::class,'filterForTutorPage']);
+$router->registerController('/admin/filterForClassPage',[AdminFilter::class,'filterForClassPage']);
 
 
 

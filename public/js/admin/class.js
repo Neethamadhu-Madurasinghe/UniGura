@@ -1,5 +1,3 @@
-console.log("class.js loaded");
-
 const body = document.querySelector('body'),
     sidebar = body.querySelector('nav'),
     toggle = body.querySelector(".toggle"),
@@ -64,16 +62,6 @@ rangeInput.forEach(input => {
 });
 
 
-// ====================== RESET FILTER ==================================
-
-const filterResetBtn = document.getElementById("filter-reset-btn");
-
-filterResetBtn.addEventListener("click", () => {
-
-    loadClass();
-});
-
-
 
 // ====================== filter section js code ==================================
 
@@ -82,15 +70,16 @@ const allClasses = document.getElementById('all-classes');
 const filterBtn = document.getElementById('filter');
 const classConductMode = document.querySelectorAll('.class-conduct-mode');
 
-const classFeesSliderMin = document.querySelector('#class-fees-slider-min');
-const classFeesSliderMax = document.querySelector('#class-fees-slider-max');
-const classFeesInputMin = document.querySelector('#class-fees-input-min');
 const classFeesInputMax = document.querySelector('#class-fees-input-max');
+const classFeesSliderMax = document.querySelector('#class-fees-slider-max');
 
 const classSubject = document.querySelectorAll('.class-subject');
 
 const classRating = document.querySelectorAll('.class-rating');
 const searchClasses = document.getElementById('search-classes');
+
+const cardSection = document.getElementById('card-section');
+
 
 let classConductModeValue = [];
 let classFeesInputField = [];
@@ -104,68 +93,172 @@ function arrayRemove (arr, value) {
     });
 }
 
-filterBtn.addEventListener('click', () => {
-    for (let i = 0; i < classConductMode.length; i++) {
-        if (classConductMode[i].checked == true) {
-            classConductModeValue.push(classConductMode[i].value);
-        }
-        if (classConductMode[i].checked == false) {
-            classConductModeValue = arrayRemove(classConductModeValue, classConductMode[i].value);
-        }
-    }
-
-    for (let i = 0; i < classSubject.length; i++) {
-        if (classSubject[i].checked == true) {
-            selectedSubject.push(classSubject[i].value);
-        }
-        if (classSubject[i].checked == false) {
-            selectedSubject = arrayRemove(selectedSubject, classSubject[i].value);
-        }
-    }
-
-    for (let i = 0; i < classRating.length; i++) {
-        if (classRating[i].checked == true) {
-            selectedRating.push(classRating[i].value);
-        }
-        if (classRating[i].checked == false) {
-            selectedRating = arrayRemove(selectedRating, classRating[i].value);
-        }
-    }
 
 
-
-    let uniqueClassModes = [...new Set(classConductModeValue)];
-    classConductModeValue = uniqueClassModes;
-
-    let uniqueSubjects = [...new Set(selectedSubject)];
-    selectedSubject = uniqueSubjects;
-
-
-    const minInputFees = classFeesInputMin.value;
-    const maxInputFees = classFeesInputMax.value;
-
-
-    classFeesInputField = [];
-    classFeesInputField.push(minInputFees);
-    classFeesInputField.push(maxInputFees);
-
-    const maxSliderFees = classFeesSliderMax.value;
-
-    classFeesSliderField = [];
-    classFeesSliderField.push(maxSliderFees);
-
-    // let searchResult = searchClasses.value;
-
-    console.log(classConductModeValue, classFeesSliderField, selectedSubject, selectedRating);
-
+searchClasses.addEventListener('keyup', function () {
+    let searchClassValue = searchClasses.value.toLowerCase();  
+    let classFeesInputMaxValue = classFeesInputMax.value;
 
     const xhttp = new XMLHttpRequest();
-    xhttp.open('GET', `filter?classConductModeValue=${classConductModeValue}&classFeesInputField=${classFeesInputField}&classFeesSliderField=${classFeesSliderField}&selectedSubject=${selectedSubject}&selectedRating=${selectedRating}&searchResult=${$searchResult}`, true);
+    xhttp.open('GET', `filterForClassPage?searchClassValue=${searchClassValue}&classFeesInputMaxValue=${classFeesInputMaxValue}&ratingFilterValue=${ratingFilterValue}&classConductModeFilterValue=${classConductModeFilterValue}&subjectFilterValue=${subjectFilterValue}`, true);
 
     xhttp.onload = function () {
         if (this.status === 200) {
             allClasses.innerHTML = this.responseText;
         }
     }
+
     xhttp.send();
 });
+
+
+classFeesInputMax.addEventListener('input', function () {
+    let searchClassValue = searchClasses.value.toLowerCase();
+    let classFeesInputMaxValue = classFeesInputMax.value;
+
+    console.log(searchClassValue, classFeesInputMaxValue);
+
+    const xhttp = new XMLHttpRequest();
+    xhttp.open('GET', `filterForClassPage?searchClassValue=${searchClassValue}&classFeesInputMaxValue=${classFeesInputMaxValue}&ratingFilterValue=${ratingFilterValue}&classConductModeFilterValue=${classConductModeFilterValue}&subjectFilterValue=${subjectFilterValue}`, true);
+
+    xhttp.onload = function () {
+        if (this.status === 200) {
+            allClasses.innerHTML = this.responseText;
+        }
+    }
+
+    xhttp.send();
+});
+
+
+classFeesSliderMax.addEventListener('input', function () {
+    let searchClassValue = searchClasses.value.toLowerCase();
+    let classFeesInputMaxValue = classFeesInputMax.value;
+
+    console.log(searchClassValue, classFeesInputMaxValue);
+
+    const xhttp = new XMLHttpRequest();
+    xhttp.open('GET', `filterForClassPage?searchClassValue=${searchClassValue}&classFeesInputMaxValue=${classFeesInputMaxValue}&ratingFilterValue=${ratingFilterValue}&classConductModeFilterValue=${classConductModeFilterValue}&subjectFilterValue=${subjectFilterValue}`, true);
+
+    xhttp.onload = function () {
+        if (this.status === 200) {
+            allClasses.innerHTML = this.responseText;
+        }
+    }
+
+    xhttp.send();
+});
+
+
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+var selectedValues = [];
+var ratingFilterValue = [];
+var classConductModeFilterValue = [];
+var subjectFilterValue = [];
+
+
+// let searchClassValue = searchClasses.value.toLowerCase();
+// let classFeesInputMaxValue = classFeesInputMax.value;
+
+// console.log(searchClassValue, classFeesInputMaxValue);
+
+for (var i = 0; i < checkboxes.length; i++) {
+    checkboxes[i].addEventListener('click', function () {
+        if (this.checked) {
+            selectedValues.push(this.value);
+        } else {
+            var index = selectedValues.indexOf(this.value);
+            if (index !== -1) {
+                selectedValues.splice(index, 1);
+            }
+        }
+
+        let searchClassValue = searchClasses.value.toLowerCase();
+        let classFeesInputMaxValue = classFeesInputMax.value;
+
+
+        ratingFilterValue = selectedValues.filter(value => value === '1' || value === '2' || value === '3' || value === '4' || value === '5');
+        classConductModeFilterValue = selectedValues.filter(value => value === 'both' || value === 'online' || value === 'physical');
+        subjectFilterValue = selectedValues.filter(value => value !== 'both' && value !== 'online' && value !== 'physical' && value !== '1' && value !== '2' && value !== '3' && value !== '4' && value !== '5');
+
+
+        console.log(searchClassValue, classFeesInputMaxValue, ratingFilterValue, classConductModeFilterValue, subjectFilterValue);
+
+        const xhttp = new XMLHttpRequest();
+        xhttp.open('GET', `filterForClassPage?searchClassValue=${searchClassValue}&classFeesInputMaxValue=${classFeesInputMaxValue}&ratingFilterValue=${ratingFilterValue}&classConductModeFilterValue=${classConductModeFilterValue}&subjectFilterValue=${subjectFilterValue}`, true);
+
+        xhttp.onload = function () {
+            if (this.status === 200) {
+                allClasses.innerHTML = this.responseText;
+            }
+        }
+
+        xhttp.send();
+    });
+}
+
+
+
+// for (let i = 0; i < classConductMode.length; i++) {
+//     if (classConductMode[i].checked == true) {
+//         classConductModeValue.push(classConductMode[i].value);
+//     }
+//     if (classConductMode[i].checked == false) {
+//         classConductModeValue = arrayRemove(classConductModeValue, classConductMode[i].value);
+//     }
+// }
+
+// for (let i = 0; i < classSubject.length; i++) {
+//     if (classSubject[i].checked == true) {
+//         selectedSubject.push(classSubject[i].value);
+//     }
+//     if (classSubject[i].checked == false) {
+//         selectedSubject = arrayRemove(selectedSubject, classSubject[i].value);
+//     }
+// }
+
+// for (let i = 0; i < classRating.length; i++) {
+//     if (classRating[i].checked == true) {
+//         selectedRating.push(classRating[i].value);
+//     }
+//     if (classRating[i].checked == false) {
+//         selectedRating = arrayRemove(selectedRating, classRating[i].value);
+//     }
+// }
+
+
+
+// let uniqueClassModes = [...new Set(classConductModeValue)];
+// classConductModeValue = uniqueClassModes;
+
+// let uniqueSubjects = [...new Set(selectedSubject)];
+// selectedSubject = uniqueSubjects;
+
+
+// const minInputFees = classFeesInputMin.value;
+// const maxInputFees = classFeesInputMax.value;
+
+
+// classFeesInputField = [];
+// classFeesInputField.push(minInputFees);
+// classFeesInputField.push(maxInputFees);
+
+// const maxSliderFees = classFeesSliderMax.value;
+
+// classFeesSliderField = [];
+// classFeesSliderField.push(maxSliderFees);
+
+// // let searchResult = searchClasses.value;
+
+// console.log(classConductModeValue, classFeesSliderField, selectedSubject, selectedRating);
+
+
+// const xhttp = new XMLHttpRequest();
+// // xhttp.open('GET', `filter?classConductModeValue=${classConductModeValue}&classFeesInputField=${classFeesInputField}&classFeesSliderField=${classFeesSliderField}&selectedSubject=${selectedSubject}&selectedRating=${selectedRating}&searchResult=${$searchResult}`, true);
+
+// xhttp.onload = function () {
+//     if (this.status === 200) {
+//         allClasses.innerHTML = this.responseText;
+//     }
+// }
+// xhttp.send();

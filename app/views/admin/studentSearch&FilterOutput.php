@@ -1,3 +1,13 @@
+<?php if (empty($data)) : ?>
+    <div class="result-not-found">
+        <img src="<?php echo URLROOT; ?>/public/img/admin/resultNotFound.png" alt=""><br>
+        <h1>Result Not Found</h1>
+        <p>We couldn't find any result for your search.</p>
+        <p>Try searching again.</p>
+    </div>
+<?php endif; ?>
+
+
 <?php foreach ($data as $aStudent) : ?>
     <div class="card">
         <div class="mode-hide-show">

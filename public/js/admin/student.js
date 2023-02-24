@@ -1,7 +1,6 @@
 
 // *========================================== STUDENT PAGE ===========================================================
 
-console.log("student.js loaded");
 
 const body = document.querySelector('body'),
     sidebar = body.querySelector('nav'),
@@ -27,7 +26,6 @@ toggle.addEventListener("click", () => {
 const student = document.getElementById("student");
 const nav_link = document.querySelectorAll(".nav-link");
 
-
 nav_link.forEach((link) => {
     link.classList.remove('active');
 })
@@ -36,48 +34,14 @@ student.classList.add('active');
 
 
 
-// --------------------MENU SELECTION----------------------------------------
-
-const finished_classes = document.querySelectorAll('.finished-classes');
-const active_classes = document.querySelectorAll('.active-classes');
-const student_info = document.querySelectorAll('.student-info');
+// ------------------------- FILTER & SEARCH SELECTION ---------------------------------------
 
 
-const info_btn = document.querySelectorAll('.info-btn');
-const active_class_btn = document.querySelectorAll('.active-class-btn');
-const finished_class_btn = document.querySelectorAll('.finished-class-btn');
-
-
-student_info[0].style.display = 'flex';
-
-info_btn[0].addEventListener('click', function () {
-    student_info[0].style.display = 'flex';
-    active_classes[0].style.display = 'none';
-    finished_classes[0].style.display = 'none';
-});
-
-active_class_btn[0].addEventListener('click', function () {
-    student_info[0].style.display = 'none';
-    active_classes[0].style.display = 'grid';
-    finished_classes[0].style.display = 'none';
-});
-
-finished_class_btn[0].addEventListener('click', function () {
-    student_info[0].style.display = 'none';
-    active_classes[0].style.display = 'none';
-    finished_classes[0].style.display = 'grid';
-});
-
-
-
-
-
-
-const filterBtn = document.getElementById('filter');
 const classConductModeFilter = document.querySelectorAll('.class-conduct-mode');
 const cardSection = document.getElementById('card-section');
-const visibilityFilter = document.querySelectorAll('.visibility-filter');
+const visibilityFilter = document.querySelectorAll('.student-visibility-filter');
 const searchStudent = document.getElementById('searchStudent');
+
 
 let classConductModeFilterValue = [];
 let visibilityFilterValue = [];
@@ -89,40 +53,15 @@ function arrayRemove (arr, value) {
     });
 }
 
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+var selectedValues = [];
 
-filterBtn.addEventListener('click', () => {
+
+searchStudent.addEventListener('keyup', function () {
     let searchStudentName = searchStudent.value.toLowerCase();
 
-    for (let i = 0; i < classConductModeFilter.length; i++) {
-        if (classConductModeFilter[i].checked == true) {
-            classConductModeFilterValue.push(classConductModeFilter[i].value);
-        }
-        if (classConductModeFilter[i].checked == false) {
-            classConductModeFilterValue = arrayRemove(classConductModeFilterValue, classConductModeFilter[i].value);
-        }
-    }
-
-    for (let i = 0; i < visibilityFilter.length; i++) {
-        if (visibilityFilter[i].checked == true) {
-            visibilityFilterValue.push(visibilityFilter[i].value);
-        }
-        if (visibilityFilter[i].checked == false) {
-            visibilityFilterValue = arrayRemove(visibilityFilterValue, visibilityFilter[i].value);
-        }
-    }
-
-
-    let uniqueClassModes = [...new Set(classConductModeFilterValue)];
-    classConductModeFilterValue = uniqueClassModes;
-
-    let uniqueVisibility = [...new Set(visibilityFilterValue)];
-    visibilityFilterValue = uniqueVisibility;
-
-
-    console.log(classConductModeFilterValue, visibilityFilterValue, searchStudentName);
-
     const xhttp = new XMLHttpRequest();
-    xhttp.open('GET', `filterForStudentPage?classConductModeFilterValue=${classConductModeFilterValue}&visibilityFilterValue=${visibilityFilterValue}$searchStudentName=${searchStudentName}`, true);
+    xhttp.open('GET', `filterForStudentPage?classConductModeFilterValue=${classConductModeFilterValue}&visibilityFilterValue=${visibilityFilterValue}&searchStudentName=${searchStudentName}`, true);
 
     xhttp.onload = function () {
         if (this.status === 200) {
@@ -131,8 +70,38 @@ filterBtn.addEventListener('click', () => {
     }
 
     xhttp.send();
-
-});
-
+})
 
 
+
+for (var i = 0; i < checkboxes.length; i++) {
+    checkboxes[i].addEventListener('click', function () {
+        if (this.checked) {
+            selectedValues.push(this.value);
+        } else {
+            var index = selectedValues.indexOf(this.value);
+            if (index !== -1) {
+                selectedValues.splice(index, 1);
+            }
+        }
+
+        let searchStudentName = searchStudent.value.toLowerCase();
+
+
+        classConductModeFilterValue = selectedValues.filter(values => values.length > 1);
+        visibilityFilterValue = selectedValues.filter(values => values.length === 1);
+
+        console.log(classConductModeFilterValue, visibilityFilterValue);
+
+        const xhttp = new XMLHttpRequest();
+        xhttp.open('GET', `filterForStudentPage?classConductModeFilterValue=${classConductModeFilterValue}&visibilityFilterValue=${visibilityFilterValue}&searchStudentName=${searchStudentName}`, true);
+
+        xhttp.onload = function () {
+            if (this.status === 200) {
+                cardSection.innerHTML = this.responseText;
+            }
+        }
+
+        xhttp.send();
+    });
+}

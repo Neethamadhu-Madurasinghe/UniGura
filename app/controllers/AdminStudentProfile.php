@@ -18,27 +18,20 @@ class AdminStudentProfile extends Controller{
 
             $student->studentDetails = $this->studentModel->getStudentById($studentId);
 
-            $allActiveClasses = $student->activeClasses = $this->studentModel->getActiveTutorialClass($studentId);
+            $student->allClassDays = $this->studentModel->getAllClassDays();
 
-            $student->completedClasses = $this->studentModel->getCompletedTutorialClass($studentId);
-
-            $allActiveClasses = array_map(function ($aActiveClass) {
-                $aActiveClass->tutor = $this->studentModel->getTutorById($aActiveClass->tutor_id);
-                $aActiveClass->student = $this->studentModel->getStudentById($aActiveClass->student_id);
-                $aActiveClass->tutorialClassTemplate = $this->studentModel->getClassTemplateById($aActiveClass->class_template_id);
-                $aActiveClass->subject = $this->studentModel->getSubjectById($aActiveClass->tutorialClassTemplate->subject_id);
-                $aActiveClass->module = $this->studentModel->getModuleById($aActiveClass->tutorialClassTemplate->module_id);
-                return $aActiveClass;
-            }, $allActiveClasses);
-
-
-            // echo '<pre>';
-            // print_r($allActiveClasses);
-            // echo '</pre>';
-
+            foreach ($student->allClassDays as $classDay){
+                $classDay->tutorialClass = $this->studentModel->getAllTutorialClassesByClassId($classDay->class_id);
+                $classDay->classTemplateDetails = $this->studentModel->getClassTemplateByClassTemplateId($classDay->tutorialClass->class_template_id);
+                $classDay->tutorDetails = $this->studentModel->getTutorById($classDay->tutorialClass->tutor_id);
+                $classDay->subject = $this->studentModel->getSubjectById($classDay->classTemplateDetails->subject_id);
+                $classDay->module = $this->studentModel->getModuleById($classDay->classTemplateDetails->module_id);
+            }
         }
 
+        $data = [$student];
+
         
-        $this->view('admin/student_profile',$request);
+        $this->view('admin/student_profile',$request,$data);
     }
 }

@@ -1,6 +1,6 @@
 <?php require_once APPROOT . '/views/admin/side_bar.php'; ?>
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/admin/tutorProfile.css">
-<script defer src="<?php echo URLROOT ?>/public/js/admin/tutor.js"></script>
+<script defer src="<?php echo URLROOT ?>/public/js/admin/tutorProfile.js"></script>
 
 
 
@@ -9,6 +9,12 @@
     <p></p>
     <p></p>
     <p></p>
+
+    <?php
+    echo '<pre>';
+    print_r($data);
+    echo '</pre>';
+    ?>
 
     <div class="tutor-profile-page">
         <div class="top-details-box">
@@ -161,46 +167,46 @@
             <div class="section-1">
                 <div class="first-name">
                     <h1>First Name: </h1>
-                    <h2>Viraj</h2>
+                    <h2><?php echo $data[0]->first_name; ?></h2>
                 </div>
                 <div class="letter-box-number">
                     <h1>Letter Box Number: </h1>
-                    <h2>123</h2>
+                    <h2><?php echo $data[0]->letter_box_number; ?></h2>
                 </div>
                 <div class="city">
                     <h1>City: </h1>
-                    <h2>Colombo</h2>
+                    <h2><?php echo $data[0]->city; ?></h2>
                 </div>
                 <div class="tel-number">
                     <h1>Tel Number: </h1>
-                    <h2>0771234567</h2>
+                    <h2><?php echo $data[0]->phone_number; ?></h2>
                 </div>
                 <div class="medium">
                     <h1>Medium: </h1>
-                    <h2>Sinhala</h2>
+                    <h2><?php echo $data[0]->medium; ?></h2>
                 </div>
             </div>
 
             <div class="section-2">
                 <div class="last-name">
                     <h1>Last Name: </h1>
-                    <h2>Sandakelum</h2>
+                    <h2><?php echo $data[0]->last_name; ?></h2>
                 </div>
                 <div class="street">
                     <h1>Street: </h1>
-                    <h2>Colombo</h2>
+                    <h2><?php echo $data[0]->street; ?></h2>
                 </div>
                 <div class="year-of-exam">
                     <h1>Year of Exam: </h1>
-                    <h2>2021</h2>
+                    <h2><?php echo $data[0]->year_of_exam; ?></h2>
                 </div>
                 <div class="gender">
                     <h1>Gender : </h1>
-                    <h2>Male</h2>
+                    <h2><?php echo $data[0]->gender; ?></h2>
                 </div>
                 <div class="preferred-class-mode">
                     <h1>Preferred Class Mode: </h1>
-                    <h2>Online</h2>
+                    <h2><?php echo $data[0]->mode; ?></h2>
                 </div>
             </div>
         </div>
@@ -209,367 +215,65 @@
 
         <div class="active-classes">
 
-            <div class="one-class">
-                <div class="tutor-profile">
-                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
-                </div>
-                <div class="class-details">
-                    <div class="tutor-name">
-                        <h1>Tutor: </h1>
-                        <h2>Viraj Sandakelum</h2>
+            <?php foreach ($data[0]->allClassDays as $aClassDay) : ?>
+                <div class="one-class">
+                    <div class="student-profile">
+                        <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
                     </div>
-                    <div class="subject">
-                        <h1>Subject: </h1>
-                        <h2>Maths</h2>
-                    </div>
-                    <div class="lessson">
-                        <h1>Lesson: </h1>
-                        <h2>Lesson 1</h2>
-                    </div>
-                    <div class="day">
-                        <h1>Day: </h1>
-                        <h2>Monday</h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="one-class">
-                <div class="tutor-profile">
-                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
-                </div>
-                <div class="class-details">
-                    <div class="tutor-name">
-                        <h1>Tutor: </h1>
-                        <h2>Viraj Sandakelum</h2>
-                    </div>
-                    <div class="subject">
-                        <h1>Subject: </h1>
-                        <h2>Maths</h2>
-                    </div>
-                    <div class="lessson">
-                        <h1>Lesson: </h1>
-                        <h2>Lesson 1</h2>
-                    </div>
-                    <div class="day">
-                        <h1>Day: </h1>
-                        <h2>Monday</h2>
+                    <div class="class-details">
+                        <div class="student-name">
+                            <h1>student: </h1>
+                            <h2><?php echo $aClassDay->studentDetails->first_name . ' ' . $aClassDay->studentDetails->last_name ?></h2>
+                        </div>
+                        <div class="subject">
+                            <h1>Subject: </h1>
+                            <h2><?php echo $aClassDay->subject->name ?></h2>
+                        </div>
+                        <div class="lessson">
+                            <h1>Lesson: </h1>
+                            <h2><?php echo $aClassDay->module->name ?></h2>
+                        </div>
+                        <div class="day">
+                            <h1>Day: </h1>
+                            <h2><?php echo $aClassDay->title ?></h2>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="one-class">
-                <div class="tutor-profile">
-                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
-                </div>
-                <div class="class-details">
-                    <div class="tutor-name">
-                        <h1>Tutor: </h1>
-                        <h2>Viraj Sandakelum</h2>
-                    </div>
-                    <div class="subject">
-                        <h1>Subject: </h1>
-                        <h2>Maths</h2>
-                    </div>
-                    <div class="lessson">
-                        <h1>Lesson: </h1>
-                        <h2>Lesson 1</h2>
-                    </div>
-                    <div class="day">
-                        <h1>Day: </h1>
-                        <h2>Monday</h2>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="one-class">
-                <div class="tutor-profile">
-                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
-                </div>
-                <div class="class-details">
-                    <div class="tutor-name">
-                        <h1>Tutor: </h1>
-                        <h2>Viraj Sandakelum</h2>
-                    </div>
-                    <div class="subject">
-                        <h1>Subject: </h1>
-                        <h2>Maths</h2>
-                    </div>
-                    <div class="lessson">
-                        <h1>Lesson: </h1>
-                        <h2>Lesson 1</h2>
-                    </div>
-                    <div class="day">
-                        <h1>Day: </h1>
-                        <h2>Monday</h2>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="one-class">
-                <div class="tutor-profile">
-                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
-                </div>
-                <div class="class-details">
-                    <div class="tutor-name">
-                        <h1>Tutor: </h1>
-                        <h2>Viraj Sandakelum</h2>
-                    </div>
-                    <div class="subject">
-                        <h1>Subject: </h1>
-                        <h2>Maths</h2>
-                    </div>
-                    <div class="lessson">
-                        <h1>Lesson: </h1>
-                        <h2>Lesson 1</h2>
-                    </div>
-                    <div class="day">
-                        <h1>Day: </h1>
-                        <h2>Monday</h2>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="one-class">
-                <div class="tutor-profile">
-                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
-                </div>
-                <div class="class-details">
-                    <div class="tutor-name">
-                        <h1>Tutor: </h1>
-                        <h2>Viraj Sandakelum</h2>
-                    </div>
-                    <div class="subject">
-                        <h1>Subject: </h1>
-                        <h2>Maths</h2>
-                    </div>
-                    <div class="lessson">
-                        <h1>Lesson: </h1>
-                        <h2>Lesson 1</h2>
-                    </div>
-                    <div class="day">
-                        <h1>Day: </h1>
-                        <h2>Monday</h2>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="one-class">
-                <div class="tutor-profile">
-                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
-                </div>
-                <div class="class-details">
-                    <div class="tutor-name">
-                        <h1>Tutor: </h1>
-                        <h2>Viraj Sandakelum</h2>
-                    </div>
-                    <div class="subject">
-                        <h1>Subject: </h1>
-                        <h2>Maths</h2>
-                    </div>
-                    <div class="lessson">
-                        <h1>Lesson: </h1>
-                        <h2>Lesson 1</h2>
-                    </div>
-                    <div class="day">
-                        <h1>Day: </h1>
-                        <h2>Monday</h2>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="one-class">
-                <div class="tutor-profile">
-                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
-                </div>
-                <div class="class-details">
-                    <div class="tutor-name">
-                        <h1>Tutor: </h1>
-                        <h2>Viraj Sandakelum</h2>
-                    </div>
-                    <div class="subject">
-                        <h1>Subject: </h1>
-                        <h2>Maths</h2>
-                    </div>
-                    <div class="lessson">
-                        <h1>Lesson: </h1>
-                        <h2>Lesson 1</h2>
-                    </div>
-                    <div class="day">
-                        <h1>Day: </h1>
-                        <h2>Monday</h2>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="one-class">
-                <div class="tutor-profile">
-                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
-                </div>
-                <div class="class-details">
-                    <div class="tutor-name">
-                        <h1>Tutor: </h1>
-                        <h2>Viraj Sandakelum</h2>
-                    </div>
-                    <div class="subject">
-                        <h1>Subject: </h1>
-                        <h2>Maths</h2>
-                    </div>
-                    <div class="lessson">
-                        <h1>Lesson: </h1>
-                        <h2>Lesson 1</h2>
-                    </div>
-                    <div class="day">
-                        <h1>Day: </h1>
-                        <h2>Monday</h2>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="one-class">
-                <div class="tutor-profile">
-                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
-                </div>
-                <div class="class-details">
-                    <div class="tutor-name">
-                        <h1>Tutor: </h1>
-                        <h2>Viraj Sandakelum</h2>
-                    </div>
-                    <div class="subject">
-                        <h1>Subject: </h1>
-                        <h2>Maths</h2>
-                    </div>
-                    <div class="lessson">
-                        <h1>Lesson: </h1>
-                        <h2>Lesson 1</h2>
-                    </div>
-                    <div class="day">
-                        <h1>Day: </h1>
-                        <h2>Monday</h2>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="one-class">
-                <div class="tutor-profile">
-                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
-                </div>
-                <div class="class-details">
-                    <div class="tutor-name">
-                        <h1>Tutor: </h1>
-                        <h2>Viraj Sandakelum</h2>
-                    </div>
-                    <div class="subject">
-                        <h1>Subject: </h1>
-                        <h2>Maths</h2>
-                    </div>
-                    <div class="lessson">
-                        <h1>Lesson: </h1>
-                        <h2>Lesson 1</h2>
-                    </div>
-                    <div class="day">
-                        <h1>Day: </h1>
-                        <h2>Monday</h2>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
 
         </div>
 
 
         <div class="finished-classes">
 
-            <div class="one-class">
-                <div class="tutor-profile">
-                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
-                </div>
-                <div class="class-details">
-                    <div class="tutor-name">
-                        <h1>Tutor: </h1>
-                        <h2>Viraj Sandakelum</h2>
+            <?php foreach ($data[0]->allClassDays as $aClassDay) : ?>
+                <div class="one-class">
+                    <div class="student-profile">
+                        <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
                     </div>
-                    <div class="subject">
-                        <h1>Subject: </h1>
-                        <h2>Maths</h2>
-                    </div>
-                    <div class="lessson">
-                        <h1>Lesson: </h1>
-                        <h2>Lesson 1</h2>
-                    </div>
-                    <div class="day">
-                        <h1>Day: </h1>
-                        <h2>Monday</h2>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="one-class">
-                <div class="tutor-profile">
-                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
-                </div>
-                <div class="class-details">
-                    <div class="tutor-name">
-                        <h1>Tutor: </h1>
-                        <h2>Viraj Sandakelum</h2>
-                    </div>
-                    <div class="subject">
-                        <h1>Subject: </h1>
-                        <h2>Maths</h2>
-                    </div>
-                    <div class="lessson">
-                        <h1>Lesson: </h1>
-                        <h2>Lesson 1</h2>
-                    </div>
-                    <div class="day">
-                        <h1>Day: </h1>
-                        <h2>Monday</h2>
+                    <div class="class-details">
+                        <div class="student-name">
+                            <h1>student: </h1>
+                            <h2><?php echo $aClassDay->studentDetails->first_name . ' ' . $aClassDay->studentDetails->last_name ?></h2>
+                        </div>
+                        <div class="subject">
+                            <h1>Subject: </h1>
+                            <h2><?php echo $aClassDay->subject->name ?></h2>
+                        </div>
+                        <div class="lessson">
+                            <h1>Lesson: </h1>
+                            <h2><?php echo $aClassDay->module->name ?></h2>
+                        </div>
+                        <div class="day">
+                            <h1>Day: </h1>
+                            <h2><?php echo $aClassDay->title ?></h2>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-
-
-            <div class="one-class">
-                <div class="tutor-profile">
-                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
-                </div>
-                <div class="class-details">
-                    <div class="tutor-name">
-                        <h1>Tutor: </h1>
-                        <h2>Viraj Sandakelum</h2>
-                    </div>
-                    <div class="subject">
-                        <h1>Subject: </h1>
-                        <h2>Maths</h2>
-                    </div>
-                    <div class="lessson">
-                        <h1>Lesson: </h1>
-                        <h2>Lesson 1</h2>
-                    </div>
-                    <div class="day">
-                        <h1>Day: </h1>
-                        <h2>Monday</h2>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
 
         </div>
     </div>
-
 </section>
 
 
