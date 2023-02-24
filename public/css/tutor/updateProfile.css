@@ -20,11 +20,7 @@
 }
 
 .div2 {
-<<<<<<< Updated upstream
-    grid-area:1/2/3/4;
-=======
     width: 100%;
->>>>>>> Stashed changes
     background-color: #fff;
     margin: 20px;
     padding: 20px;
