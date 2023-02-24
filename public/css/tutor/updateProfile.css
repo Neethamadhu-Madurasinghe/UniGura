@@ -6,8 +6,7 @@
 
 .parent {
     display: grid;
-    grid-template-columns: 33% 33% 33%;
-    grid-template-rows: 41% 57%;
+    grid-template-columns: 1fr 2fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 }
@@ -21,7 +20,11 @@
 }
 
 .div2 {
+<<<<<<< Updated upstream
     grid-area:1/2/3/4;
+=======
+    width: 100%;
+>>>>>>> Stashed changes
     background-color: #fff;
     margin: 20px;
     padding: 20px;

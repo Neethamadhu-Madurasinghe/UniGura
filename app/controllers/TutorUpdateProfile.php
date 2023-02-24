@@ -19,27 +19,39 @@ class TutorUpdateProfile extends Controller{
                 'phone_number' => $body['phone_number'],
                 'letter_box_number' => $body['letter_box_number'],
                 'street' => $body['street'],
-                'city' => $body['city'],
-                'gender' => $body['gender'],
-                'profile_picture' => $body['profile_picture'],
-                'mode' => $body['mode'],
+                'city' => $body['city']
 
-                'errors' => [
-                    'first_name_error' => '',
-                    'last_name_error' => '',
-                    'phone_number_error' => '',
-                    'letter_box_number_error' => '',
-                    'street_error' => '',
-                    'city_error' => '',
-                    'gender_error' => '',
-                    'profile_picture_error' => '',
-                    'mode_error' => ''
-                ]
+                // 'errors' => [
+                //     'first_name_error' => '',
+                //     'last_name_error' => '',
+                //     'phone_number_error' => '',
+                //     'letter_box_number_error' => '',
+                //     'street_error' => '',
+                //     'city_error' => '',
+                //     'gender_error' => '',
+                //     'profile_picture_error' => '',
+                //     'mode_error' => ''
+                // ]
 
             ];
+
+            $this->updateProfile->update($body['first_name'],$body['last_name'],$body['phone_number'],$body['letter_box_number'],$body['street'],$body['city'],'28');
+
         }
 
-        $data = [];
+        $tutorProfileDetails = $this->updateProfile->getTutorUserInfo('28');
+        $tutorBankDetails = $this->updateProfile->getTutorBankDetails('28');
+        //$getTutorEducationDetails = $this->updateProfile->
+
+
+        $data = [
+            
+            "tutorProfileDetails" => $tutorProfileDetails, 
+            "tutorBankDetails" => $tutorBankDetails
+        
+        ];
+
+
         // $errors =[];
         // if (empty($first_name)) {
         //     $errors[] = 'First name is required';
