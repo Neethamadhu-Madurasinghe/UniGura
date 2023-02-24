@@ -98,8 +98,8 @@ class AdminFilter extends Controller
 
         foreach ($allTutors as $tutor) {
             $tutorID = $tutor->user_id;
-            $tut = $this->filterModel->getTut($tutorID);
-            $tutor = $tut;
+            $tutorContactDetails = $this->filterModel->getTutorContactDetails($tutorID);
+            $tutor->contactDetails = $tutorContactDetails;
         }
 
 
@@ -124,7 +124,7 @@ class AdminFilter extends Controller
                 foreach ($allTutors as $aTutor) {
 
                     $currentTime = new DateTime();
-                    $joinedDate = new DateTime($aTutor->joined_date);
+                    $joinedDate = new DateTime($aTutor->contactDetails->joined_date);
 
                     $tutorTimeDuration =  $currentTime->diff($joinedDate)->format("%y");
 
@@ -134,7 +134,7 @@ class AdminFilter extends Controller
                 }
             } elseif (empty($searchTutorName) && empty($classConductModeValue) && !empty($visibilityFilterValue) && empty($tutorDurationFilterValue)) {
                 foreach ($allTutors as $aTutor) {
-                    if (in_array($aTutor->is_banned, $arrayVisibility)) {
+                    if (in_array($aTutor->contactDetails->is_banned, $arrayVisibility)) {
                         array_push($filterResult, $aTutor);
                     }
                 }
@@ -142,17 +142,17 @@ class AdminFilter extends Controller
                 foreach ($allTutors as $aTutor) {
 
                     $currentTime = new DateTime();
-                    $joinedDate = new DateTime($aTutor->joined_date);
+                    $joinedDate = new DateTime($aTutor->contactDetails->joined_date);
 
                     $tutorTimeDuration =  $currentTime->diff($joinedDate)->format("%y");
 
-                    if (in_array($aTutor->is_banned, $arrayVisibility) && $tutorTimeDuration <= $tutorDurationFilterValue) {
+                    if (in_array($aTutor->contactDetails->is_banned, $arrayVisibility) && $tutorTimeDuration <= $tutorDurationFilterValue) {
                         array_push($filterResult, $aTutor);
                     }
                 }
             } elseif (empty($searchTutorName) && !empty($classConductModeValue) && empty($visibilityFilterValue) && empty($tutorDurationFilterValue)) {
                 foreach ($allTutors as $aTutor) {
-                    if (in_array($aTutor->mode, $arrayModes)) {
+                    if (in_array($aTutor->contactDetails->mode, $arrayModes)) {
                         array_push($filterResult, $aTutor);
                     }
                 }
@@ -160,17 +160,17 @@ class AdminFilter extends Controller
                 foreach ($allTutors as $aTutor) {
 
                     $currentTime = new DateTime();
-                    $joinedDate = new DateTime($aTutor->joined_date);
+                    $joinedDate = new DateTime($aTutor->contactDetails->joined_date);
 
                     $tutorTimeDuration =  $currentTime->diff($joinedDate)->format("%y");
 
-                    if (in_array($aTutor->mode, $arrayModes) && $tutorTimeDuration <= $tutorDurationFilterValue) {
+                    if (in_array($aTutor->contactDetails->mode, $arrayModes) && $tutorTimeDuration <= $tutorDurationFilterValue) {
                         array_push($filterResult, $aTutor);
                     }
                 }
             } elseif (empty($searchTutorName) && !empty($classConductModeValue) && !empty($visibilityFilterValue)) {
                 foreach ($allTutors as $aTutor) {
-                    if (in_array($aTutor->mode, $arrayModes) && in_array($aTutor->is_banned, $arrayVisibility)) {
+                    if (in_array($aTutor->contactDetails->mode, $arrayModes) && in_array($aTutor->contactDetails->is_banned, $arrayVisibility)) {
                         array_push($filterResult, $aTutor);
                     }
                 }
@@ -178,17 +178,17 @@ class AdminFilter extends Controller
                 foreach ($allTutors as $aTutor) {
 
                     $currentTime = new DateTime();
-                    $joinedDate = new DateTime($aTutor->joined_date);
+                    $joinedDate = new DateTime($aTutor->contactDetails->joined_date);
 
                     $tutorTimeDuration =  $currentTime->diff($joinedDate)->format("%y");
 
-                    if (in_array($aTutor->mode, $arrayModes) && in_array($aTutor->is_banned, $arrayVisibility) && $tutorTimeDuration <= $tutorDurationFilterValue) {
+                    if (in_array($aTutor->contactDetails->mode, $arrayModes) && in_array($aTutor->contactDetails->is_banned, $arrayVisibility) && $tutorTimeDuration <= $tutorDurationFilterValue) {
                         array_push($filterResult, $aTutor);
                     }
                 }
             } elseif (!empty($searchTutorName) && empty($classConductModeValue) && empty($visibilityFilterValue) && empty($tutorDurationFilterValue)) {
                 foreach ($allTutors as $aTutor) {
-                    if (str_contains(strtolower($aTutor->first_name . ' ' . $aTutor->last_name), strtolower($searchTutorName))) {
+                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName))) {
                         array_push($filterResult, $aTutor);
                     }
                 }
@@ -196,17 +196,17 @@ class AdminFilter extends Controller
                 foreach ($allTutors as $aTutor) {
 
                     $currentTime = new DateTime();
-                    $joinedDate = new DateTime($aTutor->joined_date);
+                    $joinedDate = new DateTime($aTutor->contactDetails->joined_date);
 
                     $tutorTimeDuration =  $currentTime->diff($joinedDate)->format("%y");
 
-                    if (str_contains(strtolower($aTutor->first_name . ' ' . $aTutor->last_name), strtolower($searchTutorName)) && $tutorTimeDuration <= $tutorDurationFilterValue) {
+                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && $tutorTimeDuration <= $tutorDurationFilterValue) {
                         array_push($filterResult, $aTutor);
                     }
                 }
             } elseif (!empty($searchTutorName) && empty($classConductModeValue) && !empty($visibilityFilterValue) && empty($tutorDurationFilterValue)) {
                 foreach ($allTutors as $aTutor) {
-                    if (str_contains(strtolower($aTutor->first_name . ' ' . $aTutor->last_name), strtolower($searchTutorName)) && in_array($aTutor->is_banned, $arrayVisibility)) {
+                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && in_array($aTutor->contactDetails->is_banned, $arrayVisibility)) {
                         array_push($filterResult, $aTutor);
                     }
                 }
@@ -214,17 +214,17 @@ class AdminFilter extends Controller
                 foreach ($allTutors as $aTutor) {
 
                     $currentTime = new DateTime();
-                    $joinedDate = new DateTime($aTutor->joined_date);
+                    $joinedDate = new DateTime($aTutor->contactDetails->joined_date);
 
                     $tutorTimeDuration =  $currentTime->diff($joinedDate)->format("%y");
 
-                    if (str_contains(strtolower($aTutor->first_name . ' ' . $aTutor->last_name), strtolower($searchTutorName)) && in_array($aTutor->is_banned, $arrayVisibility) && $tutorTimeDuration <= $tutorDurationFilterValue) {
+                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && in_array($aTutor->contactDetails->is_banned, $arrayVisibility) && $tutorTimeDuration <= $tutorDurationFilterValue) {
                         array_push($filterResult, $aTutor);
                     }
                 }
             } elseif (!empty($searchTutorName) && !empty($classConductModeValue) && empty($visibilityFilterValue) && empty($tutorDurationFilterValue)) {
                 foreach ($allTutors as $aTutor) {
-                    if (str_contains(strtolower($aTutor->first_name . ' ' . $aTutor->last_name), strtolower($searchTutorName)) && in_array($aTutor->mode, $arrayModes)) {
+                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && in_array($aTutor->contactDetails->mode, $arrayModes)) {
                         array_push($filterResult, $aTutor);
                     }
                 }
@@ -232,17 +232,17 @@ class AdminFilter extends Controller
                 foreach ($allTutors as $aTutor) {
 
                     $currentTime = new DateTime();
-                    $joinedDate = new DateTime($aTutor->joined_date);
+                    $joinedDate = new DateTime($aTutor->contactDetails->joined_date);
 
                     $tutorTimeDuration =  $currentTime->diff($joinedDate)->format("%y");
 
-                    if (str_contains(strtolower($aTutor->first_name . ' ' . $aTutor->last_name), strtolower($searchTutorName)) && in_array($aTutor->mode, $arrayModes) && $tutorTimeDuration <= $tutorDurationFilterValue) {
+                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && in_array($aTutor->contactDetails->mode, $arrayModes) && $tutorTimeDuration <= $tutorDurationFilterValue) {
                         array_push($filterResult, $aTutor);
                     }
                 }
             } elseif (!empty($searchTutorName) && !empty($classConductModeValue) && !empty($visibilityFilterValue) && empty($tutorDurationFilterValue)) {
                 foreach ($allTutors as $aTutor) {
-                    if (str_contains(strtolower($aTutor->first_name . ' ' . $aTutor->last_name), strtolower($searchTutorName)) && in_array($aTutor->mode, $arrayModes) && in_array($aTutor->is_banned, $arrayVisibility)) {
+                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && in_array($aTutor->contactDetails->mode, $arrayModes) && in_array($aTutor->contactDetails->is_banned, $arrayVisibility)) {
                         array_push($filterResult, $aTutor);
                     }
                 }
@@ -250,11 +250,11 @@ class AdminFilter extends Controller
                 foreach ($allTutors as $aTutor) {
 
                     $currentTime = new DateTime();
-                    $joinedDate = new DateTime($aTutor->joined_date);
+                    $joinedDate = new DateTime($aTutor->contactDetails->joined_date);
 
                     $tutorTimeDuration =  $currentTime->diff($joinedDate)->format("%y");
 
-                    if (str_contains(strtolower($aTutor->first_name . ' ' . $aTutor->last_name), strtolower($searchTutorName)) && in_array($aTutor->mode, $arrayModes) && in_array($aTutor->is_banned, $arrayVisibility) && $tutorTimeDuration <= $tutorDurationFilterValue) {
+                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && in_array($aTutor->contactDetails->mode, $arrayModes) && in_array($aTutor->contactDetails->is_banned, $arrayVisibility) && $tutorTimeDuration <= $tutorDurationFilterValue) {
                         array_push($filterResult, $aTutor);
                     }
                 }
