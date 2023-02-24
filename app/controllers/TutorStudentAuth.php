@@ -135,6 +135,8 @@ class TutorStudentAuth extends Controller {
                 $loggedUser = $this->userModel->login($data['email'], $data['password']);
                 if ($loggedUser) {
                     $this->createUserSession($loggedUser);
+
+
                 }else {
                     $data['errors']['password_error'] = 'Password is incorrect';
                     $this->view($this->loginView, $request, $data);
@@ -194,11 +196,18 @@ class TutorStudentAuth extends Controller {
             redirect('tutor/complete-profile');
         }elseif ($user->role === 6) {
             redirect('student/complete-profile');
-        }elseif ($user->role === 7) {
+        }
+        elseif ($user->role === 7) {
             redirect('/tutor/pending');
+        }
+        elseif ($user->role === 8) {
+            redirect('/tutor/aproved');
         }
         elseif ($user->role === 9) {
             redirect('/tutor/complete-bank-detials');
+        }
+        elseif ($user->role === 10) {
+            redirect('/tutor/tutor-time-slot-input');
         }
 
     }

@@ -193,8 +193,12 @@ class TutorPending extends Controller
             redirectBasedOnUserRole($request);
         }
 
+        echo $_SESSION['user_role'];
+
         $this->view('tutor/timeslotinputform', $request);
     }
+
+
 
     public function help(Request $request)
     {
@@ -210,12 +214,11 @@ class TutorPending extends Controller
 
         $tutor_id = $request->getUserId();
 
-        
-        $model_data = $this->tutorPendingModel->setTutorTimeSlots($data, $tutor_id);
-        $model_user = $this->tutorPendingModel->setUserRole($tutor_id, 10);
-        $_SESSION['user_role'] = 1;
 
-    
+        $model_data = $this->tutorPendingModel->setTutorTimeSlots($data, $tutor_id);
+        $model_user = $this->tutorPendingModel->setUserRole($tutor_id, 1);
+        $_SESSION['user_role'] = 1;
+        
 
         echo json_encode([
             "message" => "Data saved successfully"

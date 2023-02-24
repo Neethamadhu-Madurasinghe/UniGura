@@ -15,15 +15,14 @@ Header::render(
     'update profile',
     [
         URLROOT . '/public/css/tutor/base.css?v=1.8',
-        URLROOT . '/public/css/tutor/updateProfile.css?v=1.2'
+        URLROOT . '/public/css/tutor/style.css?v=1.8',
+        URLROOT . '/public/css/tutor/updateProfile.css?v=1.4'
     ]
 );
 MainNavbar::render($request);
 ?>
 
-
 <div class="main-area-container">
-
     <div class="parent">
         <div class="div1">
             <form action="update-profile" id="complete-profile-form" method="POST" enctype='multipart/form-data'>
@@ -78,6 +77,7 @@ MainNavbar::render($request);
 
         <div class="div2">
             <h2>Bank Details</h2><br>
+            <div class="bank-container">
             <div class="form-field">
                 <label for="last-name">Account Name
                     <!--  <span><?php echo $data['errors']['last_name_error'] ?></span> -->
@@ -98,45 +98,17 @@ MainNavbar::render($request);
             </div>
             <div class="form-field">
                 <label for="last-name">Branch
-                    <!--  <span><?php echo $data['errors']['last_name_error'] ?></span> -->
+                    <!--<span><?php echo $data['errors']['last_name_error'] ?></span> -->
                 </label>
                 <input type="text" name="last-name" id="">
             </div>
         </div>
-
-
-        <div class="div3">
-            <h2>Class Details</h2><br>
-            <div class="form-field">
-                <label for="last-name">Preferred class mode
-                    <!--  <span><?php echo $data['errors']['last_name_error'] ?></span> -->
-                </label>
-                <input type="text" name="last-name" id="">
-            </div>
-            <div class="form-field">
-                <label for="last-name">Medium
-                    <!--  <span><?php echo $data['errors']['last_name_error'] ?></span> -->
-                </label>
-                <input type="text" name="last-name" id="">
-            </div>
-            <div class="form-field">
-                <label for="last-name">Mode
-                    <!--  <span><?php echo $data['errors']['last_name_error'] ?></span> -->
-                </label>
-                <input type="text" name="last-name" id="">
-            </div>
-            <div class="form-field">
-                <label for="last-name">Location
-                    <!--  <span><?php echo $data['errors']['last_name_error'] ?></span> -->
-                </label>
-                <input type="text" name="last-name" id="">
-            </div>
+        </div>
         </div>
 
         <!--===================================== Tutor AVAILABLE TIME SLOTS========================= -->
         <div class="div4">
             <h2>Update Your Available Time Slots</h2><br>
-
             <div class="pop-time-table">
                 <div class="time-table-container">
                     <table id="time-table">

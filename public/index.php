@@ -125,7 +125,7 @@ $router->registerController('/tutor/classes', [TutorClass::class, 'mainpage']);
 $router->registerController('/tutor/payments', [TutorPayments::class, 'mainpage']);
 $router->registerController('/tutor/chat', [TutorChat::class, 'mainpage']);
 $router->registerController('/tutor/notification', [TutorNotification::class, 'mainpage']);
-$router->registerController('/tutor/calender', [TutorCalender::class, 'mainpage']);
+
 
 
 
