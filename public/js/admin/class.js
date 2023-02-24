@@ -95,31 +95,13 @@ function arrayRemove (arr, value) {
 
 
 
-searchClasses.addEventListener('keyup', function () {
-    let searchClassValue = searchClasses.value.toLowerCase();  
-    let classFeesInputMaxValue = classFeesInputMax.value;
-
-    const xhttp = new XMLHttpRequest();
-    xhttp.open('GET', `filterForClassPage?searchClassValue=${searchClassValue}&classFeesInputMaxValue=${classFeesInputMaxValue}&ratingFilterValue=${ratingFilterValue}&classConductModeFilterValue=${classConductModeFilterValue}&subjectFilterValue=${subjectFilterValue}`, true);
-
-    xhttp.onload = function () {
-        if (this.status === 200) {
-            allClasses.innerHTML = this.responseText;
-        }
-    }
-
-    xhttp.send();
-});
-
-
 classFeesInputMax.addEventListener('input', function () {
-    let searchClassValue = searchClasses.value.toLowerCase();
     let classFeesInputMaxValue = classFeesInputMax.value;
 
-    console.log(searchClassValue, classFeesInputMaxValue);
+    console.log(classFeesInputMaxValue);
 
     const xhttp = new XMLHttpRequest();
-    xhttp.open('GET', `filterForClassPage?searchClassValue=${searchClassValue}&classFeesInputMaxValue=${classFeesInputMaxValue}&ratingFilterValue=${ratingFilterValue}&classConductModeFilterValue=${classConductModeFilterValue}&subjectFilterValue=${subjectFilterValue}`, true);
+    xhttp.open('GET', `filterForClassPage?classFeesInputMaxValue=${classFeesInputMaxValue}&ratingFilterValue=${ratingFilterValue}&classConductModeFilterValue=${classConductModeFilterValue}&subjectFilterValue=${subjectFilterValue}`, true);
 
     xhttp.onload = function () {
         if (this.status === 200) {
@@ -132,13 +114,12 @@ classFeesInputMax.addEventListener('input', function () {
 
 
 classFeesSliderMax.addEventListener('input', function () {
-    let searchClassValue = searchClasses.value.toLowerCase();
     let classFeesInputMaxValue = classFeesInputMax.value;
 
-    console.log(searchClassValue, classFeesInputMaxValue);
+    console.log(classFeesInputMaxValue);
 
     const xhttp = new XMLHttpRequest();
-    xhttp.open('GET', `filterForClassPage?searchClassValue=${searchClassValue}&classFeesInputMaxValue=${classFeesInputMaxValue}&ratingFilterValue=${ratingFilterValue}&classConductModeFilterValue=${classConductModeFilterValue}&subjectFilterValue=${subjectFilterValue}`, true);
+    xhttp.open('GET', `filterForClassPage?classFeesInputMaxValue=${classFeesInputMaxValue}&ratingFilterValue=${ratingFilterValue}&classConductModeFilterValue=${classConductModeFilterValue}&subjectFilterValue=${subjectFilterValue}`, true);
 
     xhttp.onload = function () {
         if (this.status === 200) {
@@ -173,7 +154,7 @@ for (var i = 0; i < checkboxes.length; i++) {
             }
         }
 
-        let searchClassValue = searchClasses.value.toLowerCase();
+        // let searchClassValue = searchClasses.value.toLowerCase();
         let classFeesInputMaxValue = classFeesInputMax.value;
 
 
@@ -182,10 +163,10 @@ for (var i = 0; i < checkboxes.length; i++) {
         subjectFilterValue = selectedValues.filter(value => value !== 'both' && value !== 'online' && value !== 'physical' && value !== '1' && value !== '2' && value !== '3' && value !== '4' && value !== '5');
 
 
-        console.log(searchClassValue, classFeesInputMaxValue, ratingFilterValue, classConductModeFilterValue, subjectFilterValue);
+        console.log(classFeesInputMaxValue, ratingFilterValue, classConductModeFilterValue, subjectFilterValue);
 
         const xhttp = new XMLHttpRequest();
-        xhttp.open('GET', `filterForClassPage?searchClassValue=${searchClassValue}&classFeesInputMaxValue=${classFeesInputMaxValue}&ratingFilterValue=${ratingFilterValue}&classConductModeFilterValue=${classConductModeFilterValue}&subjectFilterValue=${subjectFilterValue}`, true);
+        xhttp.open('GET', `filterForClassPage?classFeesInputMaxValue=${classFeesInputMaxValue}&ratingFilterValue=${ratingFilterValue}&classConductModeFilterValue=${classConductModeFilterValue}&subjectFilterValue=${subjectFilterValue}`, true);
 
         xhttp.onload = function () {
             if (this.status === 200) {
@@ -197,68 +178,3 @@ for (var i = 0; i < checkboxes.length; i++) {
     });
 }
 
-
-
-// for (let i = 0; i < classConductMode.length; i++) {
-//     if (classConductMode[i].checked == true) {
-//         classConductModeValue.push(classConductMode[i].value);
-//     }
-//     if (classConductMode[i].checked == false) {
-//         classConductModeValue = arrayRemove(classConductModeValue, classConductMode[i].value);
-//     }
-// }
-
-// for (let i = 0; i < classSubject.length; i++) {
-//     if (classSubject[i].checked == true) {
-//         selectedSubject.push(classSubject[i].value);
-//     }
-//     if (classSubject[i].checked == false) {
-//         selectedSubject = arrayRemove(selectedSubject, classSubject[i].value);
-//     }
-// }
-
-// for (let i = 0; i < classRating.length; i++) {
-//     if (classRating[i].checked == true) {
-//         selectedRating.push(classRating[i].value);
-//     }
-//     if (classRating[i].checked == false) {
-//         selectedRating = arrayRemove(selectedRating, classRating[i].value);
-//     }
-// }
-
-
-
-// let uniqueClassModes = [...new Set(classConductModeValue)];
-// classConductModeValue = uniqueClassModes;
-
-// let uniqueSubjects = [...new Set(selectedSubject)];
-// selectedSubject = uniqueSubjects;
-
-
-// const minInputFees = classFeesInputMin.value;
-// const maxInputFees = classFeesInputMax.value;
-
-
-// classFeesInputField = [];
-// classFeesInputField.push(minInputFees);
-// classFeesInputField.push(maxInputFees);
-
-// const maxSliderFees = classFeesSliderMax.value;
-
-// classFeesSliderField = [];
-// classFeesSliderField.push(maxSliderFees);
-
-// // let searchResult = searchClasses.value;
-
-// console.log(classConductModeValue, classFeesSliderField, selectedSubject, selectedRating);
-
-
-// const xhttp = new XMLHttpRequest();
-// // xhttp.open('GET', `filter?classConductModeValue=${classConductModeValue}&classFeesInputField=${classFeesInputField}&classFeesSliderField=${classFeesSliderField}&selectedSubject=${selectedSubject}&selectedRating=${selectedRating}&searchResult=${$searchResult}`, true);
-
-// xhttp.onload = function () {
-//     if (this.status === 200) {
-//         allClasses.innerHTML = this.responseText;
-//     }
-// }
-// xhttp.send();

@@ -53,7 +53,7 @@
 
         <div class="filter-selection">
 
-            <div class="search">
+            <!-- <div class="search">
                 <div class="search-bar">
                     <div class="icon">
                         <i class="fas fa-search"></i>
@@ -62,7 +62,7 @@
                         <input type="text" placeholder="Search by Tutor or Student Name" id="search-classes">
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="fees-filter">
                 <header>

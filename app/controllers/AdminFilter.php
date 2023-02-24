@@ -313,7 +313,7 @@ class AdminFilter extends Controller
         if ($request->isGet()) {
             $bodyData = $request->getBody();
 
-            $searchClassValue = $bodyData['searchClassValue'];
+            // $searchClassValue = $bodyData['searchClassValue'];
             $classFeesInputMaxValue = $bodyData['classFeesInputMaxValue'];
             $ratingFilterValue = $bodyData['ratingFilterValue'];
             $classConductModeFilterValue = $bodyData['classConductModeFilterValue'];
@@ -323,540 +323,126 @@ class AdminFilter extends Controller
             $arrayModes = explode(',', $classConductModeFilterValue);
             $arraySubjects = explode(',', $subjectFilterValue);
 
-
-            if (empty($searchClassValue) && empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                $filterResult = $allClasses;
-            } elseif (!empty($searchClassValue) && empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue))) {
-                        array_push($filterResult, $aClass);
-                    }
-                }
-            } elseif (empty($searchClassValue) && !empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
+            if (!empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
                     if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (empty($searchClassValue) && empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
+            } elseif (!empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if ($aClass->classTemplate->rating_count >= $ratingCount) {
-                            array_push($filterResult, $aClass);
-                        }
+                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->subject->name, $arraySubjects)) {
+                        array_push($filterResult, $aClass);
                     }
-                }
-            } elseif (empty($searchClassValue) && empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if (in_array($aClass->mode, $arrayModes)) {
+
+                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array('all', $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (empty($searchClassValue) && empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if (in_array($aClass->subject->name, $arraySubjects)) {
-                        array_push($filterResult, $aClass);
-                    }
-                    if (in_array('all', $arraySubjects)) {
-                        $filterResult = $allClasses;
-                    }
-                }
-            } elseif (!empty($searchClassValue) && !empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->session_rate <= $classFeesInputMaxValue) {
-                        array_push($filterResult, $aClass);
-                    }
-                }
-            } elseif (!empty($searchClassValue) && empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->rating_count >= $ratingCount) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (!empty($searchClassValue) && empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && in_array($aClass->mode, $arrayModes)) {
-                        array_push($filterResult, $aClass);
-                    }
-                }
-            } elseif (!empty($searchClassValue) && empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && in_array($aClass->subject->name, $arraySubjects)) {
-                        array_push($filterResult, $aClass);
-                    }
-                    if (in_array('all', $arraySubjects)) {
-                        $filterResult = $allClasses;
-                    }
-                }
-            } elseif (empty($searchClassValue) && !empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && $aClass->classTemplate->rating_count >= $ratingCount) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (empty($searchClassValue) && !empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
+            } elseif (!empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
                     if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->mode, $arrayModes)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (empty($searchClassValue) && !empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->subject->name, $arraySubjects)) {
-                        array_push($filterResult, $aClass);
-                    }
-                    if (in_array('all', $arraySubjects)) {
-                        $filterResult = $allClasses;
-                    }
-                }
-            } elseif (empty($searchClassValue) && empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if ($aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->mode, $arrayModes)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (empty($searchClassValue) && empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if ($aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->subject->name, $arraySubjects)) {
-                            array_push($filterResult, $aClass);
-                        }
-                        if (in_array('all', $arraySubjects)) {
-                            $filterResult = $allClasses;
-                        }
-                    }
-                }
-            } elseif (empty($searchClassValue) && empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if (in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
-                        array_push($filterResult, $aClass);
-                    }
-                    if (in_array('all', $arraySubjects)) {
-                        $filterResult = $allClasses;
-                    }
-                }
-            } elseif (!empty($searchClassValue) && !empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->session_rate <= $classFeesInputMaxValue && $aClass->classTemplate->rating_count >= $ratingCount) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (!empty($searchClassValue) && !empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->mode, $arrayModes)) {
-                        array_push($filterResult, $aClass);
-                    }
-                }
-            } elseif (!empty($searchClassValue) && !empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->subject->name, $arraySubjects)) {
-                        array_push($filterResult, $aClass);
-                    }
-                    if (in_array('all', $arraySubjects)) {
-                        $filterResult = $allClasses;
-                    }
-                }
-            } elseif (!empty($searchClassValue) && empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->mode, $arrayModes)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (!empty($searchClassValue) && empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->subject->name, $arraySubjects)) {
-                            array_push($filterResult, $aClass);
-                        }
-                        if (in_array('all', $arraySubjects)) {
-                            $filterResult = $allClasses;
-                        }
-                    }
-                }
-            } elseif (!empty($searchClassValue) && empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
-                        array_push($filterResult, $aClass);
-                    }
-                    if (in_array('all', $arraySubjects)) {
-                        $filterResult = $allClasses;
-                    }
-                }
-            } elseif (empty($searchClassValue) && !empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && $aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->mode, $arrayModes)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (empty($searchClassValue) && !empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && $aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->subject->name, $arraySubjects)) {
-                            array_push($filterResult, $aClass);
-                        }
-                        if (in_array('all', $arraySubjects)) {
-                            $filterResult = $allClasses;
-                        }
-                    }
-                }
-            } elseif (empty($searchClassValue) && !empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
+            } elseif (!empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
                     if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
+                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->mode, $arrayModes) && in_array('all', $arraySubjects)) {
+                        array_push($filterResult, $aClass);
+                    }
+                }
+            } elseif (!empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
+                foreach ($allClasses as $aClass) {
+                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->classTemplate->current_rating, $arrayRating)) {
+                        array_push($filterResult, $aClass);
+                    }
+                }
+            } elseif (!empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
+                foreach ($allClasses as $aClass) {
+                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->classTemplate->current_rating, $arrayRating) && in_array($aClass->subject->name, $arraySubjects)) {
+                        array_push($filterResult, $aClass);
+                    }
+                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->classTemplate->current_rating, $arrayRating) && in_array('all', $arraySubjects)) {
+                        array_push($filterResult, $aClass);
+                    }
+                }
+            } elseif (!empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
+                foreach ($allClasses as $aClass) {
+                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->classTemplate->current_rating, $arrayRating) && in_array($aClass->mode, $arrayModes)) {
+                        array_push($filterResult, $aClass);
+                    }
+                }
+            } elseif (!empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
+                foreach ($allClasses as $aClass) {
+                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->classTemplate->current_rating, $arrayRating) && in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
+                        array_push($filterResult, $aClass);
+                    }
+                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->classTemplate->current_rating, $arrayRating) && in_array($aClass->mode, $arrayModes) && in_array('all', $arraySubjects)) {
+                        array_push($filterResult, $aClass);
+                    }
+                }
+            } elseif (empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
+                foreach ($allClasses as $aClass) {
+                    if (in_array($aClass->classTemplate->current_rating, $arrayRating)) {
+                        array_push($filterResult, $aClass);
+                    }
+                }
+            } elseif (empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
+                foreach ($allClasses as $aClass) {
+                    if (in_array($aClass->classTemplate->current_rating, $arrayRating) && in_array($aClass->subject->name, $arraySubjects)) {
+                        array_push($filterResult, $aClass);
+                    }
+                    if (in_array($aClass->classTemplate->current_rating, $arrayRating) && in_array('all', $arraySubjects)) {
+                        array_push($filterResult, $aClass);
+                    }
+                }
+            } elseif (empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
+                foreach ($allClasses as $aClass) {
+                    if (in_array($aClass->classTemplate->current_rating, $arrayRating) && in_array($aClass->classTemplate->mode, $arrayModes)) {
+                        array_push($filterResult, $aClass);
+                    }
+                }
+            } elseif (empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
+                foreach ($allClasses as $aClass) {
+                    if (in_array($aClass->classTemplate->current_rating, $arrayRating) && in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
+                        array_push($filterResult, $aClass);
+                    }
+                    if (in_array($aClass->classTemplate->current_rating, $arrayRating) && in_array($aClass->mode, $arrayModes) && in_array('all', $arraySubjects)) {
+                        array_push($filterResult, $aClass);
+                    }
+                }
+            } elseif (empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
+                foreach ($allClasses as $aClass) {
+                    if (in_array($aClass->classTemplate->mode, $arrayModes)) {
+                        array_push($filterResult, $aClass);
+                    }
+                }
+            } elseif (empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
+                foreach ($allClasses as $aClass) {
+                    if (in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
+                        array_push($filterResult, $aClass);
+                    }
+                    if (in_array($aClass->mode, $arrayModes) && in_array('all', $arraySubjects)) {
+                        array_push($filterResult, $aClass);
+                    }
+                }
+            } elseif (empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
+                foreach ($allClasses as $aClass) {
                     if (in_array('all', $arraySubjects)) {
-                        $filterResult = $allClasses;
-                    }
-                }
-            } elseif (empty($searchClassValue) && empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if ($aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
-                            array_push($filterResult, $aClass);
-                        }
-                        if (in_array('all', $arraySubjects)) {
-                            $filterResult = $allClasses;
-                        }
-                    }
-                }
-            } elseif (!empty($searchClassValue) && !empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->session_rate <= $classFeesInputMaxValue && $aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
-                            array_push($filterResult, $aClass);
-                        }
-                        if (in_array('all', $arraySubjects)) {
-                            $filterResult = $allClasses;
-                        }
-                    }
-                }
-            } elseif (!empty($searchClassValue) && !empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->session_rate <= $classFeesInputMaxValue && $aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->mode, $arrayModes)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (!empty($searchClassValue) && !empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->session_rate <= $classFeesInputMaxValue && $aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->subject->name, $arraySubjects)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (!empty($searchClassValue) && !empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
-                            array_push($filterResult, $aClass);
-                        }
-                }
-            } elseif (!empty($searchClassValue) && empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (empty($searchClassValue) && !empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && $aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (empty($searchClassValue) && empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if ($aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->mode, $arrayModes)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (empty($searchClassValue) && empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if ($aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->subject->name, $arraySubjects)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (empty($searchClassValue) && empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if (in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (!empty($searchClassValue) && !empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->session_rate <= $classFeesInputMaxValue) {
-                        array_push($filterResult, $aClass);
-                    }
-                }
-            } elseif (!empty($searchClassValue) && empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->rating_count >= $ratingCount) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (!empty($searchClassValue) && empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && in_array($aClass->mode, $arrayModes)) {
-                        array_push($filterResult, $aClass);
-                    }
-                }
-            } elseif (!empty($searchClassValue) && empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && in_array($aClass->subject->name, $arraySubjects)) {
-                        array_push($filterResult, $aClass);
-                    }
-                }
-            } elseif (empty($searchClassValue) && !empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && $aClass->classTemplate->rating_count >= $ratingCount) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (empty($searchClassValue) && !empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->mode, $arrayModes)) {
-                        array_push($filterResult, $aClass);
-                    }
-                }
-            } elseif (empty($searchClassValue) && !empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->subject->name, $arraySubjects)) {
-                        array_push($filterResult, $aClass);
-                    }
-                }
-            } elseif (empty($searchClassValue) && empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if ($aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->mode, $arrayModes)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (empty($searchClassValue) && empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if ($aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->subject->name, $arraySubjects)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (empty($searchClassValue) && empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if (in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
-                        array_push($filterResult, $aClass);
-                    }
-                }
-            } elseif (!empty($searchClassValue) && !empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->session_rate <= $classFeesInputMaxValue && $aClass->classTemplate->rating_count >= $ratingCount) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (!empty($searchClassValue) && !empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->mode, $arrayModes)) {
-                        array_push($filterResult, $aClass);
-                    }
-                }
-            } elseif (!empty($searchClassValue) && !empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->subject->name, $arraySubjects)) {
-                        array_push($filterResult, $aClass);
-                    }
-                }
-            } elseif (!empty($searchClassValue) && empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->mode, $arrayModes)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (!empty($searchClassValue) && empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->subject->name, $arraySubjects)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (!empty($searchClassValue) && empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
-                        array_push($filterResult, $aClass);
-                    }
-                }
-            } elseif (empty($searchClassValue) && !empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && $aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->mode, $arrayModes)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (empty($searchClassValue) && !empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && $aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->subject->name, $arraySubjects)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (empty($searchClassValue) && !empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
-                        array_push($filterResult, $aClass);
-                    }
-                }
-            } elseif (empty($searchClassValue) && empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if ($aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (!empty($searchClassValue) && !empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->session_rate <= $classFeesInputMaxValue && $aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->mode, $arrayModes)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (!empty($searchClassValue) && !empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->session_rate <= $classFeesInputMaxValue && $aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->subject->name, $arraySubjects)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (!empty($searchClassValue) && !empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
-                        array_push($filterResult, $aClass);
-                    }
-                }
-            } elseif (!empty($searchClassValue) && empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (!empty($searchClassValue) && !empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->session_rate <= $classFeesInputMaxValue && $aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (empty($searchClassValue) && !empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && $aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (empty($searchClassValue) && !empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && $aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->mode, $arrayModes)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (empty($searchClassValue) && !empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && $aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->subject->name, $arraySubjects)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (empty($searchClassValue) && !empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
-                        array_push($filterResult, $aClass);
-                    }
-                }
-            } elseif (empty($searchClassValue) && empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if ($aClass->classTemplate->rating_count >= $ratingCount && in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (!empty($searchClassValue) && empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue))) {
-                        array_push($filterResult, $aClass);
-                    }
-                }
-            } elseif (!empty($searchClassValue) && !empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->session_rate <= $classFeesInputMaxValue) {
-                        array_push($filterResult, $aClass);
-                    }
-                }
-            } elseif (!empty($searchClassValue) && empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    foreach ($arrayRating as $ratingCount) {
-                        if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && $aClass->classTemplate->rating_count >= $ratingCount) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (!empty($searchClassValue) && empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && in_array($aClass->mode, $arrayModes)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
-            } elseif (!empty($searchClassValue) && empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
-                foreach ($allClasses as $aClass) {
-                    if (str_contains(strtolower($aClass->student->first_name . ' ' . $aClass->student->last_name), strtolower($searchClassValue)) || str_contains(strtolower($aClass->tutor->first_name . ' ' . $aClass->tutor->last_name), strtolower($searchClassValue)) && in_array($aClass->subject->name, $arraySubjects)) {
-                            array_push($filterResult, $aClass);
-                        }
-                    }
-                }
+            } elseif (empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
+                $filterResult = $allClasses;
+            } else {
+                $filterResult = $allClasses;
             }
-            
         }
-    
-        
+
+
         $uniqueFilterResult = array_unique($filterResult, SORT_REGULAR);
 
         $data = [
@@ -864,5 +450,5 @@ class AdminFilter extends Controller
         ];
 
         $this->view('admin/classSearch&FilterOutput', $request, $data);
-    
-
+    }
+}

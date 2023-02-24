@@ -300,7 +300,7 @@ input[type="range"]::-moz-range-thumb {
     border-radius: 5px;
     padding: 10px;
     height: 240px;
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
 .fees-filter h1 {

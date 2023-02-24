@@ -1,5 +1,4 @@
 
-
 <?php if (empty($data['allClasses'])) : ?>
     <div class="result-not-found">
         <img src="<?php echo URLROOT; ?>/public/img/admin/resultNotFound.png" alt=""><br>
