@@ -31,9 +31,10 @@ class TutorStudentProfileComplete extends Controller {
                 'profile_picture' => $imagePath,
                 'first_name' => $body['first-name'],
                 'last_name' => $body['last-name'],
-                'letter_box_number' => $body['letter-box-number'],
-                'street' => $body['street'],
+                'address_line_1' => $body['address_line_1'],
+                'address_line_2' => $body['address_line_2'],
                 'city' => $body['city'],
+                'district' => $body['district'],
                 'year_of_exam' => $body['year-of-exam'],
                 'telephone_number' => $body['telephone-number'],
                 'gender' => $body['gender'],
@@ -45,9 +46,10 @@ class TutorStudentProfileComplete extends Controller {
                 'errors' => [
                     'first_name_error' => '',
                     'last_name_error' => '',
-                    'letter_box_number_error' => '',
-                    'street_error' => '',
-                    'city_error' => '',
+                    'address_line_1' => '',
+                    'address_line_2' => '',
+                    'city' => '',
+                    'district' => '',
                     'year_of_exam_error' => '',
                     'telephone_number_error' => ''
                 ]
@@ -57,9 +59,10 @@ class TutorStudentProfileComplete extends Controller {
 //           Validate all the fields
             $data['errors']['first_name_error'] = validateName($data['first_name']);
             $data['errors']['last_name_error'] = validateName($data['last_name']);
-            $data['errors']['letter_box_number_error'] = validateLetterBoxNumber($data['letter_box_number']);
-            $data['errors']['street_error'] = validateStreet($data['street']);
+            $data['errors']['address_line_1'] = validateLetterBoxNumber($data['address_line_1']);
+            $data['errors']['address_line_2'] = validateLetterBoxNumber($data['address_line_2']);
             $data['errors']['city_error'] = validateCity($data['city']);
+            $data['errors']['district'] = validateCity($data['district']);
             $data['errors']['year_of_exam_error'] = validateYearOfExam($data['year_of_exam']);
             $data['errors']['telephone_number_error'] =
                 validateTelephoneNumber($data['telephone_number'], $this->tutorStudentModel);
@@ -67,9 +70,10 @@ class TutorStudentProfileComplete extends Controller {
             if (
                 $data['errors']['first_name_error'] === '' &&
                 $data['errors']['last_name_error'] === '' &&
-                $data['errors']['letter_box_number_error'] === '' &&
-                $data['errors']['street_error'] === '' &&
+                $data['errors']['address_line_1'] === '' &&
+                $data['errors']['address_line_2'] === '' &&
                 $data['errors']['city_error'] === '' &&
+                $data['errors']['district'] === '' &&
                 $data['errors']['year_of_exam_error'] === '' &&
                 $data['errors']['telephone_number_error'] === ''
             ) {
@@ -99,9 +103,10 @@ class TutorStudentProfileComplete extends Controller {
             $data = [
                 'first_name' => '',
                 'last_name' => '',
-                'letter_box_number' => '',
-                'street' => '',
+                'address_line_1' => '',
+                'address_line_2' => '',
                 'city' => '',
+                'district' => '',
                 'year_of_exam' => 0,
                 'telephone_number' => '',
                 'gender' => 'not-selected',
@@ -113,9 +118,10 @@ class TutorStudentProfileComplete extends Controller {
                 'errors' => [
                     'first_name_error' => '',
                     'last_name_error' => '',
-                    'letter_box_number_error' => '',
-                    'street_error' => '',
+                    'address_line_1' => '',
+                    'address_line_2' => '',
                     'city_error' => '',
+                    'district' => '',
                     'year_of_exam_error' => '',
                     'telephone_number_error' => ''
                 ]
