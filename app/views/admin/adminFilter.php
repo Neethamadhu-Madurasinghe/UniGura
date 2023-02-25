@@ -10,6 +10,7 @@ $selectedRating = [];
 $searchResult = '';
 
 
+
 if (isset($_GET['classConductModeValue'])) {
     $classConductMode = $_GET['classConductModeValue'];
     $classConductMode = explode(',', $classConductMode);

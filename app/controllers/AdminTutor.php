@@ -5,7 +5,7 @@ class AdminTutor extends Controller{
     private mixed $tutorModel;
 
     public function __construct() {
-        $this->tutorModel = $this->model('ModelTutor');
+        $this->tutorModel = $this->model('ModelAdminTutor');
     }
 
     public function tutor(Request $request) {

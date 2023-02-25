@@ -7,7 +7,7 @@ class AdminRequirementComplaints extends Controller
 
     public function __construct()
     {
-        $this->requirementComplaintsModel = $this->model('ModelRequirementComplaints');
+        $this->requirementComplaintsModel = $this->model('ModelAdminRequirementComplaints');
     }
 
     public function requirementComplaints(Request $request)

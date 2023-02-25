@@ -6,7 +6,7 @@ class AdminPayment extends Controller
 
     public function __construct()
     {
-        $this->paymentModel = $this->model('ModelPayment');
+        $this->paymentModel = $this->model('ModelAdminPayment');
     }
 
     public function payment(Request $request){

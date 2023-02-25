@@ -1,54 +1,55 @@
 <?php
 
-class ModelAdminStudent {
-
+class ModelAdminTutor{
     private Database $db;
 
     public function __construct() {
         $this->db = new Database();
     }
 
-    public function getAllStudent() {
-        $this->db->query("SELECT * FROM student");
+    public function getAllTutor() {
+        $this->db->query("SELECT * FROM tutor");
 
         $rows = $this->db->resultAll();
 
         if ($this->db->rowCount() >= 0) {
             return $rows;
-        } else {
+        }else {
             return false;
         }
     }
 
-    public function getStudent($studentID) {
-        $this->db->query("SELECT * FROM student WHERE user_id = :studentID");
-        $this->db->bind(':studentID', $studentID);
-
-        $rows = $this->db->resultOne();
-
-        if ($this->db->rowCount() >= 0) {
-            return $rows;
-        } else {
-            return false;
-        }
-    }
-
-    public function getStudentById($studentID) {
-        $this->db->query("SELECT * FROM user WHERE id = :studentID");
-        $this->db->bind(':studentID', $studentID);
+    public function getTutorContactDetails($tutorID) {
+        $this->db->query("SELECT * FROM user WHERE id = :tutor_id");
+        $this->db->bind(':tutor_id', $tutorID);
 
         $row = $this->db->resultOne();
 
-        if ($this->db->rowCount() >= 0) {
+        if ($this->db->rowCount() > 0) {
             return $row;
-        } else {
+        }else {
             return false;
         }
     }
 
-    public function getAllTutorialClassesByStudentId($studentID) {
-        $this->db->query("SELECT * FROM tutoring_class WHERE student_id = :studentID");
-        $this->db->bind(':studentID', $studentID);
+    public function getStudentContactDetails($studentID) {
+        $this->db->query("SELECT * FROM user WHERE id = :student_id");
+        $this->db->bind(':student_id', $studentID);
+
+        $row = $this->db->resultOne();
+
+        if ($this->db->rowCount() > 0) {
+            return $row;
+        }else {
+            return false;
+        }
+    }
+
+
+
+    public function getAllTutorialClassesByTutorId($tutorID) {
+        $this->db->query("SELECT * FROM tutoring_class WHERE tutor_id = :tutorID");
+        $this->db->bind(':tutorID', $tutorID);
 
         $rows = $this->db->resultAll();
 
@@ -154,6 +155,30 @@ class ModelAdminStudent {
 
         return $this->db->resultOne();
     }
-        
 
+    public function getStudentById($studentID) {
+        $this->db->query("SELECT * FROM student WHERE user_id = :studentID");
+        $this->db->bind(':studentID', $studentID);
+
+        $rows = $this->db->resultOne();
+
+        if ($this->db->rowCount() >= 0) {
+            return $rows;
+        } else {
+            return false;
+        }
+    }
+
+    public function getTutorByUserId($userID) {
+        $this->db->query("SELECT * FROM tutor WHERE user_id = :userID");
+        $this->db->bind(':userID', $userID);
+
+        $rows = $this->db->resultOne();
+
+        if ($this->db->rowCount() >= 0) {
+            return $rows;
+        } else {
+            return false;
+        }
+    }
 }

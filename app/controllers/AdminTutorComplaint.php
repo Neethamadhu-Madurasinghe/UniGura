@@ -5,7 +5,7 @@ class AdminTutorComplaint extends Controller {
     private mixed $tutorComplaintModel;
 
     public function __construct() {
-        $this->tutorComplaintModel = $this->model('ModelRequirementComplaints');
+        $this->tutorComplaintModel = $this->model('ModelAdminRequirementComplaints');
     }
 
     public function tutorComplaint(Request $request) {

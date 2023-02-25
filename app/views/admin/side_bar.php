@@ -77,12 +77,12 @@
                         </a>
                     </li>
 
-                    <li class="nav-link" id="chat">
+                    <li class="nav-link subjectLink" id="statistic">
                         <p></p>
                         <p></p>
-                        <a href="chat">
-                            <i class="fa fa-envelope icon"></i>
-                            <span class="text nav-text">Chat</span>
+                        <a href="statistics">
+                            <i class="fa-solid fa-chart-simple icon "></i>
+                            <span class="text nav-text">Statistic</span>
                         </a>
                     </li>
 

@@ -4,7 +4,7 @@ class AdminDashboard extends Controller{
     private mixed $dashboardModel;
 
     public function __construct(){
-        $this->dashboardModel = $this->model('ModelDashboard');
+        $this->dashboardModel = $this->model('ModelAdminDashboard');
     }
 
     public function dashboard(Request $request){

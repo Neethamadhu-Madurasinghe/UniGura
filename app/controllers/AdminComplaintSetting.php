@@ -6,7 +6,7 @@ class AdminComplaintSetting extends Controller
 
     public function __construct()
     {
-        $this->complaintSettingsModel = $this->model('ModelRequirementComplaints');
+        $this->complaintSettingsModel = $this->model('ModelAdminRequirementComplaints');
     }
 
     public function complaintSetting(Request $request)

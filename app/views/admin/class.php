@@ -15,7 +15,6 @@
         <div class="all-classes" id="all-classes">
 
             <?php foreach ($data['allClasses'] as $x) { ?>
-
                 <div class="one-class">
                     <div class="tutor">
                         <div class="profile-img">
@@ -54,29 +53,16 @@
 
         <div class="filter-selection">
 
-            <div class="search">
+            <!-- <div class="search">
                 <div class="search-bar">
                     <div class="icon">
                         <i class="fas fa-search"></i>
                     </div>
                     <div class="input">
-                        <input type="text" placeholder="Search for Class" id="search-classes">
+                        <input type="text" placeholder="Search by Tutor or Student Name" id="search-classes">
                     </div>
                 </div>
-            </div>
-
-            <div class="filter-functions">
-                <div class="search-btn">
-                    <button><i class="fas fa-search"></i>Find</button>
-                </div>
-                <div class="filter-btn">
-                    <button id="filter"><i class="fas fa-filter"></i>Filter</button>
-                </div>
-                <div class="reset-btn">
-                    <button id="filter-reset-btn"><i class="fas fa-redo"></i>Reset</button>
-                </div>
-            </div>
-
+            </div> -->
 
             <div class="fees-filter">
                 <header>
@@ -171,8 +157,8 @@
                         <label for="online">&nbspOnline</label>
                     </div>
                     <div class="checkbox-button">
-                        <input type="checkbox" id="offline" name="mode" value="offline" class="offline checkbox">
-                        <label for="offline">&nbspOffline</label>
+                        <input type="checkbox" id="physical" name="mode" value="physical" class="physical checkbox">
+                        <label for="physical">&nbspPhysical</label>
                     </div>
                     <div class="checkbox-button">
                         <input type="checkbox" id="both" name="mode" value="both" class="both checkbox">

@@ -4,7 +4,7 @@ class AdminSubjectModule extends Controller {
     private mixed $subjectModel;
 
     public function __construct() {
-        $this->subjectModel = $this->model('ModelSubject');
+        $this->subjectModel = $this->model('ModelAdminSubject');
     }
 
 

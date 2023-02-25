@@ -67,9 +67,6 @@ $router->registerController('/admin/payment', [AdminPayment::class, 'payment']);
 $router->registerController('/admin/selectedTutorDetails', [AdminPayment::class, 'selectedTutorDetails']);
 
 
-$router->registerController('/admin/chat', [AdminChat::class, 'chat']);
-
-
 
 $router->registerController('/admin/notification', [AdminNotification::class, 'notification']);
 $router->registerController('/admin/notification/clearNotification', [AdminNotification::class, 'clearNotification']);
@@ -94,6 +91,19 @@ $router->registerController('/admin/updatePassword', [AdminProfileView::class, '
 
 
 $router->registerController('/admin/filterForStudentPage', [AdminFilter::class, 'filterForStudentPage']);
+$router->registerController('/admin/filterForTutorPage',[AdminFilter::class,'filterForTutorPage']);
+$router->registerController('/admin/filterForClassPage',[AdminFilter::class,'filterForClassPage']);
+
+$router->registerController('/admin/hideTutor',[AdminHideShowBlockUnblock::class,'hideTutor']);
+$router->registerController('/admin/showTutor',[AdminHideShowBlockUnblock::class,'showTutor']);
+$router->registerController('/admin/blockTutor',[AdminHideShowBlockUnblock::class,'blockTutor']);
+$router->registerController('/admin/unblockTutor',[AdminHideShowBlockUnblock::class,'unblockTutor']);
+
+$router->registerController('/admin/blockStudent',[AdminHideShowBlockUnblock::class,'blockStudent']);
+$router->registerController('/admin/unblockStudent',[AdminHideShowBlockUnblock::class,'unblockStudent']);
+
+$router->registerController('/admin/statistics',[AdminStatistics::class,'statistics']);
+
 
 
 

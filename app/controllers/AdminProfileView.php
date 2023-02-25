@@ -5,7 +5,7 @@ class AdminProfileView extends Controller{
     private mixed $adminProfileModel;
 
     public function __construct(){
-        $this->adminProfileModel = $this->model('AdminProfileModel');
+        $this->adminProfileModel = $this->model('ModelAdminProfile');
     }
 
     public function profileView(Request $request){
