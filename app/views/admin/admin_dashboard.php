@@ -11,6 +11,7 @@
     <p></p>
     <p></p>
 
+
     <div class="parent">
         <div class="left_sidebar">
             <div class="tutor-student-class-subject">
@@ -23,27 +24,79 @@
                         <div class="tutors-info">
                             <div class="total">
                                 <h3>Total :</h3>
-                                <span>20</span>
+                                <span>0<?php
+                                        $totalTutors = 0;
+                                        foreach ($data['allTutors'] as $tutor) {
+                                            $totalTutors++;
+                                        }
+                                        echo $totalTutors;
+                                        ?>
+                                </span>
                             </div>
                             <div class="hide">
                                 <h3>Hide :</h3>
-                                <span>20</span>
+                                <span>0<?php
+                                        $hideTutors = 0;
+                                        foreach ($data['allTutors'] as $tutor) {
+                                            if ($tutor->is_hidden == 1) {
+                                                $hideTutors++;
+                                            }
+                                        }
+                                        echo $hideTutors;
+                                        ?>
+                                </span>
                             </div>
                             <div class="block">
                                 <h3>Block :</h3>
-                                <span>20</span>
+                                <span>0<?php
+                                        $blockTutors = 0;
+                                        foreach ($data['allTutors'] as $tutor) {
+                                            if ($tutor->tutorDetails->is_banned == 1) {
+                                                $blockTutors++;
+                                            }
+                                        }
+                                        echo $blockTutors;
+                                        ?>
+                                </span>
                             </div>
                             <div class="online">
                                 <h3>Online :</h3>
-                                <span>20</span>
+                                <span>0<?php
+                                        $onlineTutors = 0;
+                                        foreach ($data['allTutors'] as $tutor) {
+                                            if ($tutor->tutorDetails->mode == 'online') {
+                                                $onlineTutors++;
+                                            }
+                                        }
+                                        echo $onlineTutors;
+                                        ?>
+                                </span>
                             </div>
                             <div class="physical">
                                 <h3>Physical :</h3>
-                                <span>20</span>
+                                <span>0<?php
+                                        $physicalTutors = 0;
+                                        foreach ($data['allTutors'] as $tutor) {
+                                            if ($tutor->tutorDetails->mode == 'physical') {
+                                                $physicalTutors++;
+                                            }
+                                        }
+                                        echo $physicalTutors;
+                                        ?>
+                                </span>
                             </div>
                             <div class="both">
                                 <h3>Both :</h3>
-                                <span>20</span>
+                                <span>0<?php
+                                        $bothTutors = 0;
+                                        foreach ($data['allTutors'] as $tutor) {
+                                            if ($tutor->tutorDetails->mode == 'both') {
+                                                $bothTutors++;
+                                            }
+                                        }
+                                        echo $bothTutors;
+                                        ?>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -57,19 +110,55 @@
                         <div class="subject-module-info">
                             <div class="Subject">
                                 <h3>Subject :</h3>
-                                <span>20</span>
+                                <span>
+                                    0<?php
+                                        $totalSubjects = 0;
+                                        foreach ($data['allSubjects'] as $subject) {
+                                            $totalSubjects++;
+                                        }
+                                        echo $totalSubjects;
+                                        ?>
+                                </span>
                             </div>
                             <div class="module">
                                 <h3>Modules :</h3>
-                                <span>20</span>
+                                <span>
+                                    0<?php
+                                        $totalModules = 0;
+                                        foreach ($data['allModules'] as $module) {
+                                            $totalModules++;
+                                        }
+                                        echo $totalModules;
+                                        ?>
+                                </span>
                             </div>
                             <div class="hide-subject">
                                 <h3>Hide Subject :</h3>
-                                <span>20</span>
+                                <span>
+                                    0<?php
+                                        $hideSubject = 0;
+                                        foreach ($data['allSubjects'] as $subject) {
+                                            if ($subject->is_hidden == 1) {
+                                                $hideSubject++;
+                                            }
+                                        }
+                                        echo $hideSubject;
+                                        ?>
+                                </span>
                             </div>
-                            <div class="show-subject">
-                                <h3>Show Subject :</h3>
-                                <span>20</span>
+                            <div class="hide-module">
+                                <h3>Hide Module :</h3>
+                                <span>
+                                    0<?php
+                                        $hideModule = 0;
+                                        foreach ($data['allModules'] as $module) {
+                                            if ($module->is_hidden == 1) {
+                                                $hideModule++;
+                                            }
+                                        }
+                                        echo $hideModule;
+                                        ?>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -83,23 +172,71 @@
                         <div class="students-info">
                             <div class="total">
                                 <h3>Total :</h3>
-                                <span>20</span>
+                                <span>
+                                    0<?php
+                                        $totalStudents = 0;
+                                        foreach ($data['allStudents'] as $student) {
+                                            $totalStudents++;
+                                        }
+                                        echo $totalStudents;
+                                        ?>
+                                </span>
                             </div>
                             <div class="block">
                                 <h3>Block :</h3>
-                                <span>20</span>
+                                <span>
+                                    0<?php
+                                        $blockStudent = 0;
+                                        foreach ($data['allStudents'] as $student) {
+                                            if ($student->studentDetails->is_banned == 0) {
+                                                $blockStudent++;
+                                            }
+                                        }
+                                        echo $blockStudent;
+                                        ?>
+                                </span>
                             </div>
                             <div class="online">
                                 <h3>Online :</h3>
-                                <span>20</span>
+                                <span>
+                                    0<?php
+                                        $onlineStudent = 0;
+                                        foreach ($data['allStudents'] as $student) {
+                                            if ($student->studentDetails->mode == 'online') {
+                                                $onlineStudent++;
+                                            }
+                                        }
+                                        echo $onlineStudent;
+                                        ?>
+                                </span>
                             </div>
                             <div class="physical">
                                 <h3>Physical :</h3>
-                                <span>20</span>
+                                <span>
+                                    0<?php
+                                        $physicalStudent = 0;
+                                        foreach ($data['allStudents'] as $student) {
+                                            if ($student->studentDetails->mode == 'physical') {
+                                                $physicalStudent++;
+                                            }
+                                        }
+                                        echo $physicalStudent;
+                                        ?>
+                                </span>
                             </div>
                             <div class="both">
                                 <h3>Both :</h3>
-                                <span>20</span>
+                                <span>
+                                    0<?php
+                                        $bothStudent = 0;
+                                        foreach ($data['allStudents'] as $student) {
+                                            if ($student->studentDetails->mode == 'both') {
+                                                $bothStudent++;
+                                            }
+                                        }
+                                        echo $bothStudent;
+                                        ?>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -113,27 +250,85 @@
                         <div class="classes-info">
                             <div class="total">
                                 <h3>Total :</h3>
-                                <span>20</span>
+                                <span>
+                                    0<?php
+                                        $totalClasses = 0;
+                                        foreach ($data['allTutorialClasses'] as $class) {
+                                            $totalClasses++;
+                                        }
+                                        echo $totalClasses;
+                                        ?>
+                                </span>
                             </div>
                             <div class="online">
                                 <h3>Online :</h3>
-                                <span>20</span>
+                                <span>
+                                    0<?php
+                                        $onlineClasses = 0;
+                                        foreach ($data['allTutorialClasses'] as $class) {
+                                            if ($class->mode == 'online') {
+                                                $onlineClasses++;
+                                            }
+                                        }
+                                        echo $onlineClasses;
+                                        ?>
+                                </span>
                             </div>
                             <div class="physical">
                                 <h3>Physical :</h3>
-                                <span>20</span>
+                                <span>
+                                    0<?php
+                                        $physicalClasses = 0;
+                                        foreach ($data['allTutorialClasses'] as $class) {
+                                            if ($class->mode == 'physical') {
+                                                $physicalClasses++;
+                                            }
+                                        }
+                                        echo $physicalClasses;
+                                        ?>
+                                </span>
                             </div>
                             <div class="both">
                                 <h3>Both :</h3>
-                                <span>20</span>
+                                <span>
+                                    0<?php
+                                        $bothClasses = 0;
+                                        foreach ($data['allTutorialClasses'] as $class) {
+                                            if ($class->mode == 'both') {
+                                                $bothClasses++;
+                                            }
+                                        }
+                                        echo $bothClasses;
+                                        ?>
+                                </span>
                             </div>
                             <div class="active-class">
                                 <h3>Active :</h3>
-                                <span>20</span>
+                                <span>
+                                    0<?php
+                                        $activeClasses = 0;
+                                        foreach ($data['allTutorialClasses'] as $class) {
+                                            if ($class->completion_status == '0') {
+                                                $activeClasses++;
+                                            }
+                                        }
+                                        echo $activeClasses;
+                                        ?>
+                                </span>
                             </div>
                             <div class="completed-class">
                                 <h3>Completed :</h3>
-                                <span>20</span>
+                                <span>
+                                    0<?php
+                                        $activeClasses = 0;
+                                        foreach ($data['allTutorialClasses'] as $class) {
+                                            if ($class->completion_status == '1') {
+                                                $activeClasses++;
+                                            }
+                                        }
+                                        echo $activeClasses;
+                                        ?>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -188,62 +383,19 @@
                                                     <span>Looks like you haven't tutor request yet</span>
                                                 </div> -->
 
+                        <?php foreach ($data['allTutors'] as $requestTutor) : ?>
+                            <?php if ($requestTutor->is_approved == '0') : ?>
+                                <div class="available-request">
+                                    <div class="profile-img">
+                                        <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                                    </div>
+                                    <div class="request-details">
+                                        <h3><?php echo $requestTutor->tutorDetails->first_name . ' ' . $requestTutor->tutorDetails->last_name ?></h3>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
 
-                        <div class="available-request">
-                            <div class="profile-img">
-                                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
-                            </div>
-                            <div class="request-details">
-                                <h3>Viraj Sandakelum</h3>
-                                <span>Complaint about the tutor</span>
-                            </div>
-                        </div>
-
-
-                        <div class="available-request">
-                            <div class="profile-img">
-                                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
-                            </div>
-                            <div class="request-details">
-                                <h3>Viraj Sandakelum</h3>
-                                <span>Complaint about the tutor</span>
-                            </div>
-                        </div>
-
-
-
-                        <div class="available-request">
-                            <div class="profile-img">
-                                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
-                            </div>
-                            <div class="request-details">
-                                <h3>Viraj Sandakelum</h3>
-                                <span>Complaint about the tutor</span>
-                            </div>
-                        </div>
-
-
-
-                        <div class="available-request">
-                            <div class="profile-img">
-                                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
-                            </div>
-                            <div class="request-details">
-                                <h3>Viraj Sandakelum</h3>
-                                <span>Complaint about the tutor</span>
-                            </div>
-                        </div>
-
-
-                        <div class="available-request">
-                            <div class="profile-img">
-                                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
-                            </div>
-                            <div class="request-details">
-                                <h3>Viraj Sandakelum</h3>
-                                <span>Complaint about the tutor</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -258,59 +410,35 @@
                                 <span>Looks like you haven't complaints yet</span>
                             </div> -->
 
-                        <div class="available-complaints">
-                            <div class="profile-img">
-                                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
-                            </div>
-                            <div class="complaint-details">
-                                <h3>Viraj Sandakelum</h3>
-                                <span>Complaint about the tutor</span>
-                            </div>
-                        </div>
+                        <?php foreach ($data['allTutorReports'] as $complaint) : ?>
+                            <?php if ($complaint->is_inquired == '0') : ?>
+                                <div class="available-complaints">
+                                    <div class="profile-img">
+                                        <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                                    </div>
+                                    <div class="complaint-details">
+                                        <h3><?php echo $complaint->tutorDetails->first_name . ' ' . $complaint->tutorDetails->last_name ?></h3>
+                                        <span><?php echo $complaint->description ?></span>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
 
 
-                        <div class="available-complaints">
-                            <div class="profile-img">
-                                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
-                            </div>
-                            <div class="complaint-details">
-                                <h3>Viraj Sandakelum</h3>
-                                <span>Complaint about the tutor</span>
-                            </div>
-                        </div>
+                        <?php foreach ($data['allStudentReports'] as $complaint) : ?>
+                            <?php if ($complaint->is_inquired == '0') : ?>
+                                <div class="available-complaints">
+                                    <div class="profile-img">
+                                        <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                                    </div>
+                                    <div class="complaint-details">
+                                        <h3><?php echo $complaint->studentDetails->first_name . ' ' . $complaint->studentDetails->last_name ?></h3>
+                                        <span><?php echo $complaint->description ?></span>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
 
-
-                        <div class="available-complaints">
-                            <div class="profile-img">
-                                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
-                            </div>
-                            <div class="complaint-details">
-                                <h3>Viraj Sandakelum</h3>
-                                <span>Complaint about the tutor</span>
-                            </div>
-                        </div>
-
-
-
-                        <div class="available-complaints">
-                            <div class="profile-img">
-                                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
-                            </div>
-                            <div class="complaint-details">
-                                <h3>Viraj Sandakelum</h3>
-                                <span>Complaint about the tutor</span>
-                            </div>
-                        </div>
-
-                        <div class="available-complaints">
-                            <div class="profile-img">
-                                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
-                            </div>
-                            <div class="complaint-details">
-                                <h3>Viraj Sandakelum</h3>
-                                <span>Complaint about the tutor</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
