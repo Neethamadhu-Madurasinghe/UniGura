@@ -21,6 +21,7 @@
 
 
 .statistic-page{
-    height: 100vh;
-    overflow: scroll;
+    height: 94vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }

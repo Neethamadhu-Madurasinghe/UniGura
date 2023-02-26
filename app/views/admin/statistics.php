@@ -23,11 +23,11 @@
         </div>
 
 
-        <div style="width: 1230px; text-align: center;" class="myChart3">
+        <div style="width: 1200px; text-align: center;" class="myChart3">
             <canvas id="myChart3"></canvas>
         </div>
 
-        <div style="width: 1230px; text-align: center;" class="myChart4">
+        <div style="width: 1220px; text-align: center;" class="myChart4">
             <canvas id="myChart4"></canvas>
         </div>
 
