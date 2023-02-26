@@ -37,6 +37,7 @@
 
     <script>
         const ctx4 = document.getElementById('myChart4');
+        
 
         const moneyTransaction = [
             { month: 'January', amount: { studentPayment: <?php echo $data['studentJanuaryPaymentsAmount'] ?>, tutorWithdrawal: <?php echo $data['tutorJanuaryWithdrawalAmount'] ?>, profit: <?php echo $data['systemJanuaryProfit'] ?> } },
