@@ -634,7 +634,7 @@ border-radius: 92px;
   padding-right: 0px;
   margin-bottom: 0px;
   margin-top: 0px;
-  height: 211.5px;
+  height: 100%;
 }
 
 #mycourses .msg_box .headbox{
@@ -727,8 +727,13 @@ border-radius: 92px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 5px;
-  margin-top: 25px;
+  margin-top: 15px;
+  padding-left: 18px;
 }
+
+
+
+
 
 #mycourses h4{
   margin-top: 3%;
@@ -747,9 +752,20 @@ border-radius: 92px;
   bottom: 0;
   margin-top: 15px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 0.6fr 1fr 1fr;
   gap: 0px;
   width: 100%;
+}
+
+#mycourses .msg_box .Active-students{
+  margin-top: 22px;
+  padding-left: 15px;
+  
+}
+
+.subject{
+  font-size: 17px;
+  margin-bottom: 0px;
 }
 /* end my courses */
 

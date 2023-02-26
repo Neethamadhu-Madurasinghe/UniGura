@@ -15,7 +15,7 @@ Header::render(
     'Tutor Dashboard',
     [
         URLROOT . '/public/css/tutor/base.css?v=2.3',
-        URLROOT . '/public/css/tutor/dashboard.css?v=2.5'
+        URLROOT . '/public/css/tutor/dashboard.css?v=2.7'
     ]
 );
 
@@ -277,21 +277,21 @@ MainNavbar::render($request);
                             <div class='msg_box'> 
                                 <div class='headbox'>
                                     <div>
-                                        <h2>$subject</h2>
+                                        <h2 class='subject'>$subject</h2>
                                         <p>$module</p>
                                         <h3 style = 'display:none;'>$c_id</h3>
                                     </div>
                                 </div>
                                 <div class='text_box3'>
-                                    <p><i class='fa-solid fa-microphone'></i>$mode</p>
-                                    <p><i class='fa-brands fa-chromecast'></i>$medium </p>
+                                    <p><i class='fa-solid fa-microphone'></i> $mode</p>
+                                    <p><i class='fa-brands fa-chromecast'></i> $medium </p>
                                 </div>
-                                <p style='margin-top:25px'><i class='fa-solid fa-users'></i> 25 Active Students</p>
+                                    <p class='Active-students' ><i class='fa-solid fa-users'></i> 25 Active Students</p>
                                 
                                 <div class='button_box'>
-                                    <button class='star'><i class='fa-solid fa-star'></i>4.3</button>
+                                    <button class='star'><i class='fa-solid fa-star'></i> 4.3</button>
+                                    <div></div>
                                     <button class='closestart'><i class='fa-solid fa-pen'></i></button>
-                                    <button class='close'><i class='fa-solid fa-eye-slash'></i></button>
                                     <button class='closeend'><i class='fa-solid fa-trash'></i></button>
                                 </div>                      
                             </div>";

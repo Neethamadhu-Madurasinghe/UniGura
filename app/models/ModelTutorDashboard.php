@@ -71,13 +71,11 @@ class ModelTutorDashboard
         $this->db->query(' SELECT tutor_id
         FROM tutoring_class_template
         WHERE tutor_id = :id AND subject_id = :subject_id AND module_id = :module_id AND class_type = :class_type AND medium = :medium;');
-
         $this->db->bind('id', $data['id'], PDO::PARAM_INT);
         $this->db->bind('subject_id', $data['subject_id'], PDO::PARAM_INT);
         $this->db->bind('module_id', $data['module_id'], PDO::PARAM_INT);
         $this->db->bind('class_type', $data['class_type'], PDO::PARAM_STR);
         $this->db->bind('medium', $data['medium'], PDO::PARAM_STR);
-
         return count($this->db->resultAll());
     }
 

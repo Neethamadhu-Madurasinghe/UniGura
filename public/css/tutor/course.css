@@ -1,54 +1,242 @@
-.header{
-    background: linear-gradient(180deg, #F5F3FB 0%, #FDFBFD 100%); 
-    display: flex;
-    flex-direction: column;
-    display: flex;
-    flex-wrap: column;
-    align-items: center;
-    border-radius: 10px;
+body{
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background-image: url("img\tutor\class\images\bg.png");
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #000000;
+    text-align: left;
+    padding: 5%;
+    height: fit-content;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+  }
+
+h1, h2, h3, h4, h5, h6 {
+ margin-top: 0;
+ margin-bottom: 0.5rem;
 }
 
-.header .subhead{
+h2{
+    font-weight: 400;
+}
+h4{
+    font-weight: 600;
+}
+
+p {
+ margin-top: 0;
+ margin-bottom: 1rem;
+ font-size: 15px;
+}
+
+.textbox_one{
+    margin-top: 10px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    gap: 0px;
+    height: fit-content;
+    grid-template-columns: 1fr 10fr;
 }
 
-.class-template {
-    padding-top: 10px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 20px;
-}
-
-.class-card{
-    background: linear-gradient(180deg, #F5F3FB 0%, #FDFBFD 100%);
-    border-radius: 10px;
-}
-
-
-.class-card .header{
-    border-radius: 10px 10px 0px 0px;
-}
-
-.class-card  .body {
-    padding: 10px;
-}
-
-.class-card  .body .content{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 40px;
-    margin-bottom: 2px;
+.textbox_one .img01{
+    border-radius: 0%;
+    margin: 0;
+    margin-top: 6px;
+    width: 90%;
     
 }
 
-.class-card  .body .content p{
-    font-size: 20px;
+.textbox_one .img02{
+    margin: 0;
+    border-radius: 0%;
+    margin-top: 8px;
+    width: 70%;
+}
+.Student{
+    background: linear-gradient(180deg, #F5F3FB 0%, #FDFBFD 100%);
+    border-radius: 10px;
+    padding: 40px;
+    width: 94%;
+
+}
+.Student .half{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+}
+.day_box_container{
+    overflow-y: auto;
+    height: 62%;
+    padding-right: 10px;
+    margin-top: 40px;
+    margin-bottom: 0px;
 }
 
-.class-card  .body .content .footer{
-    display: flex;
-    justify-items: flex-end;
-    background-color: #fff;
+.day{
+    background-color: #ffffff;
+    border-radius: 10px;
+    
 }
+
+.day_box{
+    background-color: #ffffff00;
+
+    padding: 5%;  
+    height: fit-content;
+}
+
+.day:hover{
+    box-shadow: 0 5px 35px rgb(0 0 0 / 7%);
+}
+
+.button_box{
+    background-color: #ffffff;
+    border-radius: 0px 0px 20px 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+}
+
+.Student .button_box button  {
+    background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+    border-radius: 60px;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 7px;
+    border: 0px solid #F7711A;
+    width: 100%;
+    height: 40px;
+    margin-left: 0%;
+    cursor: pointer;
+    margin-right:10px ;
+    margin-bottom: 0px;
+    font-weight: 600;
+}
+
+.button-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 15px;
+}
+.button1{
+    background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+    border-radius: 60px;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 10px;
+    border: 0px solid #F7711A;
+    margin-left: 0%;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    width: 20%;
+    margin-left: 75%;    
+}
+
+.button-container a {
+    color: white;
+    text-decoration: none;
+}
+
+.button2{
+    background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+    border-radius: 60px;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 10px;
+    border: 0px solid #F7711A;
+    margin-left: 0%;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    width: 20%;
+    margin-right: 75%; 
+    
+}
+.button1:hover,.button2:hover{
+    background: #ff8f0ea9;
+    color: #ffffff;
+    border: 0px ;   
+}
+
+
+
+.Student .button_box .middle{
+    border-radius: 0px;
+}
+
+.Student .button_box .left{
+    border-radius: 30px 0px 0px 0px;
+}
+
+.Student .button_box .right{
+    border-radius: 0px 0px 10px 0px;
+}
+
+
+.day_box button{
+    background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+    border-radius: 20px;
+    color: #ffffff;
+    font-size: 13px;
+    padding: 7px;
+    border: 0px ;
+    width: 40%;
+    margin-left: 60%;
+    cursor: pointer;
+    margin-top:0px ;
+}
+.day_box button:hover{
+    background: #ff8f0ea9;
+    color: #ffffff;
+    font-size: 13px;
+    padding: 7px;
+    border: 0px ;   
+}
+
+.Student button:hover{
+    background: #ff8f0ea9;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 7px;
+    border: 0px ;   
+}
+
+.Student button{
+    background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+    border-radius: 60px;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 7px;
+    border: 0px solid #F7711A;
+    width: 150px;
+    height: 40px;
+    margin-left: 0%;
+    cursor: pointer;
+    margin-right:10px ;
+    margin-bottom: 40px;
+    font-weight: 600;
+}
+.day_box_container::-webkit-scrollbar-thumb,
+.day_box_container::-webkit-scrollbar-track {
+ border-radius: 92px;
+ 
+
+
+}
+
+.day_box_container::-webkit-scrollbar {
+    width: 7px;
+    background-color: #ffffff;
+    padding-top: 12px;
+    border-radius: 92px;
+    border-right:10px solid white ;
+  }
+  .day_box_container::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+  }
+/* end Active classes */

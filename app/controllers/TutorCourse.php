@@ -25,22 +25,19 @@ class TutorCourse extends Controller
         $module = $this->courseModel->getModuleName($details[0]['module_id']);
 
 
-
-
         if ($request->isGet()) {
             $data = [
                 'id' => $body['id'],
                 'subject' => $subject[0]['subject'],
                 'module' =>  $module[0]['module'],
+                'mode' => $details[0]['mode'],
                 'days' => $days
             ];
         };
 
-
         $days = json_encode($this->courseModel->getTutoringClassTemplateDays($data['id']));
 
         $data['days'] = $days;
-
 
         $this->view('tutor/course', $request, $data);
     }
@@ -68,11 +65,13 @@ class TutorCourse extends Controller
 
         if ($request->isGet()) {
             $body = $request->getBody();
+            $position_count = $this->courseModel->getDayCounts($body['class_template_id']);
+            $position_count = $position_count +1;
             $data = [
                 'id' => $body['class_template_id'],
                 'title' => "",
                 'meeting_link' => "",
-                'position' => "",
+                'position' => $position_count,
                 'errors' => [
                     'title_error'=>"",
                     "position_error"=>""
@@ -84,7 +83,6 @@ class TutorCourse extends Controller
         if ($request->isPost()) {
             $body = $request->getBody();
             $data = [];
-
             $data = [
                 'id' => $body['id'],
                 'title' => $body['title'],
@@ -132,6 +130,28 @@ class TutorCourse extends Controller
         $this->view('tutor/createday', $request, $data);
     }
 
+    public function sendposition(Request $request)
+    {
+        $body = file_get_contents('php://input');
+        $array = json_decode($body, true);
+
+        // Now you can access the elements of the JavaScript array in the PHP script
+        $data = $array['data'];
+
+        // Do something with the data, such as saving it to a database
+        
+        $model_data = $this->courseModel->setDayPosition($data);
+
+        echo json_encode([
+            "message" => "Data saved successfully"
+        ]);
+
+        
+
+        
+    }
+  
+
 
     public function validateTitle(string $name): String {
         if (empty($name) ) {
@@ -155,6 +175,8 @@ class TutorCourse extends Controller
             return '';
         }
     }
+
+
 
    
 }

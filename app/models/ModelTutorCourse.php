@@ -39,6 +39,14 @@ public function setClassTemplateDay($data): bool
         return $this->db->resultAllAssoc();
     }
 
+    public function getDayCounts($id): int
+    {
+        $this->db->query(' SELECT id FROM day_template
+        WHERE class_template_id = :id ');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        return count($this->db->resultAll());
+    }
+
     public function getTutoringClassTemplateDetails($id): array
     {
         $this->db->query('SELECT * FROM tutoring_class_template WHERE id = :id;');
@@ -89,6 +97,21 @@ public function setClassTemplateDay($data): bool
 
 //      Returns whether the row count is greater than 0
         return $this->db->rowCount() > 1;
+    }
+
+    public function setDayPosition($data): bool
+    {
+
+        foreach ($data as $key => $value) {
+            $this->db->query("UPDATE day_template SET position = :position WHERE id = :id");
+            $this->db->bind('position',$value, PDO::PARAM_INT);
+            $this->db->bind('id', $key, PDO::PARAM_STR);
+            $this->db->execute();
+            
+          }
+          
+        
+        return 1;
     }
 
 }
