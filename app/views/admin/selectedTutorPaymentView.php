@@ -21,7 +21,7 @@
             </div>
             <div class="drop-section">
                 <div class="col-1" id="col-1">
-                    <img src="<?php echo URLROOT; ?>/public/img/admin/upload.png" alt=""><br><br>
+                    <img src="<?php echo URLROOT; ?>/public/img/admin/uploadBankSlip.gif" alt=""><br><br>
                     <span>Drag & Drop your files here</span><br><br>
                     <span>OR</span><br><br>
                     <label class="file-selector" for="browseFiles">Browse Files</label><br><br>
