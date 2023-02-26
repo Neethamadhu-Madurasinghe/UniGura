@@ -11,6 +11,7 @@
     <p></p>
     <p></p>
 
+    <div class="statistic-page">
     <div class="div1">
         <div style="width: 800px;" class="myChart">
             <canvas id="myChart"></canvas>
@@ -38,18 +39,18 @@
         const ctx4 = document.getElementById('myChart4');
 
         const moneyTransaction = [
-            { month: 'January', amount: { studentPayment: 5000, tutorWithdrawal: 4600, profit: 400 } },
-            { month: 'February', amount: { studentPayment: 4000, tutorWithdrawal: 3000, profit: 100 } },
-            { month: 'March', amount: { studentPayment: 11000, tutorWithdrawal: 4600, profit: 4500 } },
-            { month: 'April', amount: { studentPayment: 5000, tutorWithdrawal: 4600, profit: 400 } },
-            { month: 'May', amount: { studentPayment: 15000, tutorWithdrawal: 4000, profit: 400 } },
-            { month: 'June', amount: { studentPayment: 5000, tutorWithdrawal: 4600, profit: 400 } },
-            { month: 'July', amount: { studentPayment: 51000, tutorWithdrawal: 46100, profit: 4010 } },
-            { month: 'August', amount: { studentPayment: 35000, tutorWithdrawal: 4600, profit: 400 } },
-            { month: 'September', amount: { studentPayment: 50001, tutorWithdrawal: 46010, profit: 1400 } },
-            { month: 'October', amount: { studentPayment: 5400, tutorWithdrawal: 4600, profit: 400 } },
-            { month: 'November', amount: { studentPayment: 25000, tutorWithdrawal: 4600, profit: 400 } },
-            { month: 'December', amount: { studentPayment: 5000, tutorWithdrawal: 4600, profit: 400 } },
+            { month: 'January', amount: { studentPayment: <?php echo $data['studentJanuaryPaymentsAmount'] ?>, tutorWithdrawal: <?php echo $data['tutorJanuaryWithdrawalAmount'] ?>, profit: <?php echo $data['systemJanuaryProfit'] ?> } },
+            { month: 'February', amount: { studentPayment: <?php echo $data['studentFebruaryPaymentsAmount'] ?>, tutorWithdrawal:<?php echo $data['tutorFebruaryWithdrawalAmount'] ?>, profit: <?php echo $data['systemFebruaryProfit'] ?> } },
+            { month: 'March', amount: { studentPayment: <?php echo $data['studentMarchPaymentsAmount'] ?>, tutorWithdrawal: <?php echo $data['tutorMarchWithdrawalAmount'] ?>, profit: <?php echo $data['systemMarchProfit'] ?> } },
+            { month: 'April', amount: { studentPayment: <?php echo $data['studentAprilPaymentsAmount'] ?>, tutorWithdrawal: <?php echo $data['tutorAprilWithdrawalAmount'] ?>, profit: <?php echo $data['systemAprilProfit'] ?>}},
+            { month: 'May', amount: { studentPayment: <?php echo $data['studentMayPaymentsAmount'] ?>, tutorWithdrawal: <?php echo $data['tutorMayWithdrawalAmount'] ?>, profit: <?php echo $data['systemMayProfit'] ?> } },
+            { month: 'June', amount: { studentPayment: <?php echo $data['studentJunePaymentsAmount'] ?>, tutorWithdrawal: <?php echo $data['tutorJuneWithdrawalAmount'] ?>, profit: <?php echo $data['systemJuneProfit'] ?> } },
+            { month: 'July', amount: { studentPayment: <?php echo $data['studentJulyPaymentsAmount'] ?>, tutorWithdrawal: <?php echo $data['tutorJulyWithdrawalAmount'] ?>, profit: <?php echo $data['systemJulyProfit'] ?> } },
+            { month: 'August', amount: { studentPayment: <?php echo $data['studentAugustPaymentsAmount'] ?>, tutorWithdrawal: <?php echo $data['tutorAugustWithdrawalAmount'] ?>, profit: <?php echo $data['systemAugustProfit'] ?> } },
+            { month: 'September', amount: { studentPayment: <?php echo $data['studentSeptemberPaymentsAmount'] ?>, tutorWithdrawal: <?php echo $data['tutorSeptemberWithdrawalAmount'] ?>, profit: <?php echo $data['systemSeptemberProfit'] ?> } },
+            { month: 'October', amount: { studentPayment: <?php echo $data['studentOctoberPaymentsAmount'] ?>, tutorWithdrawal: <?php echo $data['tutorOctoberWithdrawalAmount'] ?>, profit: <?php echo $data['systemOctoberProfit'] ?> } },
+            { month: 'November', amount: { studentPayment: <?php echo $data['studentNovemberPaymentsAmount'] ?>, tutorWithdrawal: <?php echo $data['tutorNovemberWithdrawalAmount'] ?>, profit: <?php echo $data['systemNovemberProfit'] ?> } },
+            { month: 'December', amount: { studentPayment: <?php echo $data['studentDecemberPaymentsAmount'] ?>, tutorWithdrawal: <?php echo $data['tutorDecemberWithdrawalAmount'] ?>, profit: <?php echo $data['systemDecemberProfit'] ?> } },
         ];
 
         const myChart4 = new Chart(ctx4, {
@@ -87,7 +88,7 @@
                         yAxisKey: 'amount.tutorWithdrawal'
                     }
                 }, {
-                    label: 'Payments',
+                    label: 'Profit',
                     data: moneyTransaction,
                     backgroundColor: [
                         'rgba(255, 159, 64, 0.3)',
@@ -120,10 +121,10 @@
         const myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Tutor', 'Student'],
+                labels: ['Student', 'Tutor'],
                 datasets: [{
-                    label: '# of Total Student/Tutors',
-                    data: [12, 19],
+                    label: '# of Total Students/Tutors',
+                    data: [<?php echo $data['totalStudents'] ?>, <?php echo $data['totalTutors'] ?>],
                     backgroundColor: [
                         'rgba(255, 99, 132)',
                     ],
@@ -131,16 +132,16 @@
                     borderWidth: 1,
                     hoverOffset: 4
                 }, {
-                    label: '# of Banned Student/Tutors',
-                    data: [12, 9],
+                    label: '# of Banned Students/Tutors',
+                    data: [<?php echo $data['bannedStudents'] ?>, <?php echo $data['bannedTutors'] ?>],
                     backgroundColor: [
                         'rgba(54, 16, 235)',
                     ],
                     borderWidth: 1,
                     hoverOffset: 4
                 }, {
-                    label: '# of Hide Student/Tutors',
-                    data: [12, 19],
+                    label: '# of Hide Tutors',
+                    data: [0, <?php echo $data['hiddenTutors'] ?>],
                     backgroundColor: [
                         'rgba(54, 162, 235)',
                     ],
@@ -166,18 +167,26 @@
                 labels: ['Ampare', 'Anuradhapura', 'Badulla', 'Batticaloa', 'Colombo', 'Galle', 'Gampaha', 'Hambantota', 'Jaffna', 'Kalutara', 'Kandy', 'Kegalle', 'Kilinochchi', 'Kurunegala', 'Mannar', 'Matale', 'Matara', 'Monaragala', 'Mullaitivu', 'Nuwara Eliya', 'Polonnaruwa', 'Puttalam', 'Ratnapura', 'Trincomalee', 'Vavuniya'],
                 datasets: [{
                     axis: 'y',
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
+                    label: '# of Students',
+                    data: [<?php echo $data['studentAmpareDistrict']?>,<?php echo $data['studentAnuradhapuraDistrict']?>,<?php echo $data['studentBadullaDistrict']?>,<?php echo $data['studentBatticaloaDistrict']?>,<?php echo $data['studentColomboDistrict']?>,<?php echo $data['studentGalleDistrict']?>,<?php echo $data['studentGampahaDistrict']?>,<?php echo $data['studentHambantotaDistrict']?>,<?php echo $data['studentJaffnaDistrict']?>,<?php echo $data['studentKalutaraDistrict']?>,<?php echo $data['studentKandyDistrict']?>,<?php echo $data['studentKegalleDistrict']?>,<?php echo $data['studentKilinochchiDistrict']?>,<?php echo $data['studentKurunegalaDistrict']?>,<?php echo $data['studentMannarDistrict']?>,<?php echo $data['studentMataleDistrict']?>,<?php echo $data['studentMataraDistrict']?>,<?php echo $data['studentMonaragalaDistrict']?>,<?php echo $data['studentMullaitivuDistrict']?>,<?php echo $data['studentNuwaraEliyaDistrict']?>,<?php echo $data['studentPolonnaruwaDistrict']?>,<?php echo $data['studentPuttalamDistrict']?>,<?php echo $data['studentRatnapuraDistrict']?>,<?php echo $data['studentTrincomaleeDistrict']?>,<?php echo $data['studentVavuniyaDistrict']?>], 
+                    backgroundColor: [
+                        'rgba(54, 162, 235)',
+                    ],
+                    borderWidth: 1,
+                    hoverOffset: 4
+                },{
+                    axis: 'y',
+                    label: '# of Tutors',
+                    data: [<?php echo $data['tutorAmpareDistrict'] ?>, <?php echo $data['tutorAnuradhapuraDistrict'] ?>, <?php echo $data['tutorBadullaDistrict'] ?>, <?php echo $data['tutorBatticaloaDistrict'] ?>, <?php echo $data['tutorColomboDistrict'] ?>, <?php echo $data['tutorGalleDistrict'] ?>, <?php echo $data['tutorGampahaDistrict'] ?>, <?php echo $data['tutorHambantotaDistrict'] ?>, <?php echo $data['tutorJaffnaDistrict'] ?>, <?php echo $data['tutorKalutaraDistrict'] ?>, <?php echo $data['tutorKandyDistrict'] ?>, <?php echo $data['tutorKegalleDistrict'] ?>, <?php echo $data['tutorKilinochchiDistrict'] ?>, <?php echo $data['tutorKurunegalaDistrict'] ?>, <?php echo $data['tutorMannarDistrict'] ?>, <?php echo $data['tutorMataleDistrict'] ?>, <?php echo $data['tutorMataraDistrict'] ?>, <?php echo $data['tutorMonaragalaDistrict'] ?>, <?php echo $data['tutorMullaitivuDistrict'] ?>, <?php echo $data['tutorNuwaraEliyaDistrict'] ?>, <?php echo $data['tutorPolonnaruwaDistrict'] ?>, <?php echo $data['tutorPuttalamDistrict'] ?>, <?php echo $data['tutorRatnapuraDistrict'] ?>, <?php echo $data['tutorTrincomaleeDistrict'] ?>, <?php echo $data['tutorVavuniyaDistrict'] ?>],
                     backgroundColor: [
                         'rgba(255, 99, 132)',
-                        'rgba(54, 162, 235)',
                     ],
                     borderWidth: 1,
                     hoverOffset: 4
                 }]
             },
             options: {
-                indexAxis: 'y',
+                indexAxis: 'x',
             }
 
         });
@@ -193,7 +202,7 @@
                 labels: ['Active Classes', 'Completed Classes'],
                 datasets: [{
                     label: '# of Votes',
-                    data: [12, 19],
+                    data: [<?php echo $data['activeClasses'] ?>, <?php echo $data['completedClasses'] ?>],
                     backgroundColor: [
                         'rgba(255, 99, 132)',
                         'rgba(54, 162, 235)',
@@ -208,6 +217,9 @@
 
         });
     </script>
+    </div>
+
+    
 
 
 

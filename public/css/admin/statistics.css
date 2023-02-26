@@ -18,3 +18,9 @@
 .myChart4{
     margin: 70px 20px;
 }
+
+
+.statistic-page{
+    height: 100vh;
+    overflow: scroll;
+}
