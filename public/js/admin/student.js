@@ -60,16 +60,16 @@ var selectedValues = [];
 searchStudent.addEventListener('keyup', function () {
     let searchStudentName = searchStudent.value.toLowerCase();
 
-    const xhttp = new XMLHttpRequest();
-    xhttp.open('GET', `filterForStudentPage?classConductModeFilterValue=${classConductModeFilterValue}&visibilityFilterValue=${visibilityFilterValue}&searchStudentName=${searchStudentName}`, true);
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `filterForStudentPage?classConductModeFilterValue=${classConductModeFilterValue}&visibilityFilterValue=${visibilityFilterValue}&searchStudentName=${searchStudentName}`, true);
 
-    xhttp.onload = function () {
+    xhr.onload = function () {
         if (this.status === 200) {
             cardSection.innerHTML = this.responseText;
         }
     }
 
-    xhttp.send();
+    xhr.send();
 })
 
 
@@ -93,15 +93,15 @@ for (var i = 0; i < checkboxes.length; i++) {
 
         console.log(classConductModeFilterValue, visibilityFilterValue);
 
-        const xhttp = new XMLHttpRequest();
-        xhttp.open('GET', `filterForStudentPage?classConductModeFilterValue=${classConductModeFilterValue}&visibilityFilterValue=${visibilityFilterValue}&searchStudentName=${searchStudentName}`, true);
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', `filterForStudentPage?classConductModeFilterValue=${classConductModeFilterValue}&visibilityFilterValue=${visibilityFilterValue}&searchStudentName=${searchStudentName}`, true);
 
-        xhttp.onload = function () {
+        xhr.onload = function () {
             if (this.status === 200) {
                 cardSection.innerHTML = this.responseText;
             }
         }
 
-        xhttp.send();
+        xhr.send();
     });
 }

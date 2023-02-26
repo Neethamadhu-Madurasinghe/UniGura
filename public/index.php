@@ -34,6 +34,7 @@ $router->registerController('/tutor/register', [TutorStudentAuth::class, 'tutorS
 
 // Admin routes
 
+
 $router->registerController('/admin/dashboard', [AdminDashboard::class, 'dashboard']);
 $router->registerController('/admin/subjectModule', [AdminSubjectModule::class, 'subjectsAndModules']);
 $router->registerController('/admin/addSubject', [AdminSubjectModule::class, 'addSubject']);

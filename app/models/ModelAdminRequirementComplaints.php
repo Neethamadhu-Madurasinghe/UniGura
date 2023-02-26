@@ -116,7 +116,7 @@ class ModelAdminRequirementComplaints {
     }
 
     public function rejectTutorRequest($tutorID) {
-        $this->db->query("UPDATE `tutor` SET `is_approved` = 0 WHERE user_id = :tutor_id");
+        $this->db->query("DELETE FROM `tutor` WHERE user_id = :tutor_id");
 
         $this->db->bind(':tutor_id', $tutorID);
         return $this->db->execute();

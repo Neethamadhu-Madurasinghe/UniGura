@@ -123,10 +123,10 @@ var selectedValues = [];
 searchTutor.addEventListener('keyup', function () {
     let searchTutorName = searchTutor.value.toLowerCase();
 
-    const xhttp = new XMLHttpRequest();
-    xhttp.open('GET', `filterForTutorPage?classConductModeFilterValue=${classConductModeFilterValue}&visibilityFilterValue=${visibilityFilterValue}&tutorDurationFilterValue=${tutorDurationFilterValue}&searchTutorName=${searchTutorName}`, true);
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `filterForTutorPage?classConductModeFilterValue=${classConductModeFilterValue}&visibilityFilterValue=${visibilityFilterValue}&tutorDurationFilterValue=${tutorDurationFilterValue}&searchTutorName=${searchTutorName}`, true);
 
-    xhttp.onload = function () {
+    xhr.onload = function () {
         if (this.status === 200) {
             cardSection.innerHTML = this.responseText;
         }
@@ -134,7 +134,7 @@ searchTutor.addEventListener('keyup', function () {
         menuSelection();
     }
 
-    xhttp.send();
+    xhr.send();
 })
 
 
@@ -159,10 +159,10 @@ for (var i = 0; i < checkboxes.length; i++) {
 
         console.log(classConductModeFilterValue, visibilityFilterValue, tutorDurationFilterValue);
 
-        const xhttp = new XMLHttpRequest();
-        xhttp.open('GET', `filterForTutorPage?classConductModeFilterValue=${classConductModeFilterValue}&visibilityFilterValue=${visibilityFilterValue}&tutorDurationFilterValue=${tutorDurationFilterValue}&searchTutorName=${searchTutorName}`, true);
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', `filterForTutorPage?classConductModeFilterValue=${classConductModeFilterValue}&visibilityFilterValue=${visibilityFilterValue}&tutorDurationFilterValue=${tutorDurationFilterValue}&searchTutorName=${searchTutorName}`, true);
 
-        xhttp.onload = function () {
+        xhr.onload = function () {
             if (this.status === 200) {
                 cardSection.innerHTML = this.responseText;
             }
@@ -170,7 +170,7 @@ for (var i = 0; i < checkboxes.length; i++) {
             menuSelection();
         }
 
-        xhttp.send();
+        xhr.send();
     });
 }
 

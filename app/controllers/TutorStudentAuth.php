@@ -161,6 +161,8 @@ class TutorStudentAuth extends Controller {
         }
     }
 
+
+
     public function createUserSession($user, $rememberUser = true) {
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_email'] = $user->email;
@@ -235,5 +237,6 @@ class TutorStudentAuth extends Controller {
             return '';
         }
     }
+
 
 }

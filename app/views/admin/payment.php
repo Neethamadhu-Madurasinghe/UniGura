@@ -23,15 +23,17 @@
                 <div class="all-tutor">
 
                     <?php foreach ($data as $tutor) : ?>
-                        <div class="tutor">
-                            <input type="hidden" value="<?php echo $tutor->tutor_id ?>" class="tutorId">
-                            <div class="tutor-img">
-                                <img src="<?php echo URLROOT; ?>/public/img/admin/profile.png" alt="">
+                        <?php if ($tutor->is_withdrawed == 0) : ?>
+                            <div class="tutor">
+                                <input type="hidden" value="<?php echo $tutor->tutor_id ?>" class="tutorId">
+                                <div class="tutor-img">
+                                    <img src="<?php echo URLROOT; ?>/public/img/admin/profile.png" alt="">
+                                </div>
+                                <div class="tutor-name">
+                                    <h3><?php echo $tutor->tutor->first_name ?> <?php echo $tutor->tutor->last_name ?></h3>
+                                </div>
                             </div>
-                            <div class="tutor-name">
-                                <h3><?php echo $tutor->tutor->first_name ?> <?php echo $tutor->tutor->last_name ?></h3>
-                            </div>
-                        </div>
+                        <?php endif; ?>
                     <?php endforeach; ?>
 
                 </div>
@@ -83,7 +85,7 @@
                                         <td>Rs. <?php echo $Withdrawal->amount ?>.00</td>
                                         <td><?php echo explode(" ", $Withdrawal->timestamp)[0] ?></td>
                                         <td><?php echo explode(" ", $Withdrawal->timestamp)[1] ?></td>
-                                        <td><a href="#"><button>View</button></a></td>
+                                        <td><a href="<?php echo URLROOT; ?>/profile_pictures/16774330206500.pdf"><button>View</button></a></td>
                                     </tr>
                                 <?php endif; ?>
                             <?php endforeach; ?>

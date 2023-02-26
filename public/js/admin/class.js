@@ -100,16 +100,16 @@ classFeesInputMax.addEventListener('input', function () {
 
     console.log(classFeesInputMaxValue);
 
-    const xhttp = new XMLHttpRequest();
-    xhttp.open('GET', `filterForClassPage?classFeesInputMaxValue=${classFeesInputMaxValue}&ratingFilterValue=${ratingFilterValue}&classConductModeFilterValue=${classConductModeFilterValue}&subjectFilterValue=${subjectFilterValue}`, true);
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `filterForClassPage?classFeesInputMaxValue=${classFeesInputMaxValue}&ratingFilterValue=${ratingFilterValue}&classConductModeFilterValue=${classConductModeFilterValue}&subjectFilterValue=${subjectFilterValue}`, true);
 
-    xhttp.onload = function () {
+    xhr.onload = function () {
         if (this.status === 200) {
             allClasses.innerHTML = this.responseText;
         }
     }
 
-    xhttp.send();
+    xhr.send();
 });
 
 
@@ -118,16 +118,16 @@ classFeesSliderMax.addEventListener('input', function () {
 
     console.log(classFeesInputMaxValue);
 
-    const xhttp = new XMLHttpRequest();
-    xhttp.open('GET', `filterForClassPage?classFeesInputMaxValue=${classFeesInputMaxValue}&ratingFilterValue=${ratingFilterValue}&classConductModeFilterValue=${classConductModeFilterValue}&subjectFilterValue=${subjectFilterValue}`, true);
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `filterForClassPage?classFeesInputMaxValue=${classFeesInputMaxValue}&ratingFilterValue=${ratingFilterValue}&classConductModeFilterValue=${classConductModeFilterValue}&subjectFilterValue=${subjectFilterValue}`, true);
 
-    xhttp.onload = function () {
+    xhr.onload = function () {
         if (this.status === 200) {
             allClasses.innerHTML = this.responseText;
         }
     }
 
-    xhttp.send();
+    xhr.send();
 });
 
 
@@ -165,16 +165,16 @@ for (var i = 0; i < checkboxes.length; i++) {
 
         console.log(classFeesInputMaxValue, ratingFilterValue, classConductModeFilterValue, subjectFilterValue);
 
-        const xhttp = new XMLHttpRequest();
-        xhttp.open('GET', `filterForClassPage?classFeesInputMaxValue=${classFeesInputMaxValue}&ratingFilterValue=${ratingFilterValue}&classConductModeFilterValue=${classConductModeFilterValue}&subjectFilterValue=${subjectFilterValue}`, true);
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', `filterForClassPage?classFeesInputMaxValue=${classFeesInputMaxValue}&ratingFilterValue=${ratingFilterValue}&classConductModeFilterValue=${classConductModeFilterValue}&subjectFilterValue=${subjectFilterValue}`, true);
 
-        xhttp.onload = function () {
+        xhr.onload = function () {
             if (this.status === 200) {
                 allClasses.innerHTML = this.responseText;
             }
         }
 
-        xhttp.send();
+        xhr.send();
     });
 }
 
