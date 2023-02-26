@@ -106,4 +106,19 @@ class ModelAdminRequirementComplaints {
         $this->db->bind(':description', $description);
         return $this->db->execute();
     }
+
+
+    public function acceptTutorRequest($tutorID) {
+        $this->db->query("UPDATE `tutor` SET `is_approved` = 1 WHERE user_id = :tutor_id");
+
+        $this->db->bind(':tutor_id', $tutorID);
+        return $this->db->execute();
+    }
+
+    public function rejectTutorRequest($tutorID) {
+        $this->db->query("UPDATE `tutor` SET `is_approved` = 0 WHERE user_id = :tutor_id");
+
+        $this->db->bind(':tutor_id', $tutorID);
+        return $this->db->execute();
+    }
 }

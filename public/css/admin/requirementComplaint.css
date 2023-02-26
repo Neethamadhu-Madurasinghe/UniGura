@@ -262,6 +262,16 @@ tbody img{
     margin-left: 10px;
 }
 
+.action-tutor-request .reject a{
+    text-decoration: none;
+    color: white;
+}
+
+.action-tutor-request .accept a{
+    text-decoration: none;
+    color: white;
+}
+
 
 .student-complaint td img{
     width: 30px;

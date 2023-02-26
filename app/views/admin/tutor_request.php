@@ -47,18 +47,21 @@
                 </thead>
                 <tbody id="student-complain" class="student-complaint">
                     <?php foreach ($data['allTutorRequest'] as $x) { ?>
-                        <td><?php echo $x->tutor->first_name . ' ' . $x->tutor->last_name ?></td>
-                        <td><?php echo $x->tutor->phone_number ?></td>
-                        <td><?php echo $x->university ?></td>
-                        <td><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></td>
-                        <td><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></td>
-                        <td><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></td>
-                        <td><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></td>
-                        <td class="action action-tutor-request">
-                            <button class="accept">Accept</button>
-                            <button class="reject">Reject</button>
-                        </td>
-                        </tr>
+                        <?php if ($x->is_approved == 0) : ?>
+                            <td><?php echo $x->tutor->first_name . ' ' . $x->tutor->last_name ?></td>
+                            <td><?php echo $x->tutor->phone_number ?></td>
+                            <td><?php echo $x->university ?></td>
+                            <td><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></td>
+                            <td><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></td>
+                            <td><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></td>
+                            <td><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></td>
+                            <td class="action action-tutor-request">
+                                <button class="accept"><a href="acceptTutorRequest?tutorID=<?php echo $x->tutor->id; ?>">Accept</a></button>
+                                <button class="reject"><a href="rejectTutorRequest?tutorID=<?php echo $x->tutor->id; ?>">Reject</a></button>
+                            </td>
+                            </tr>
+
+                        <?php endif; ?>
                     <?php } ?>
                 </tbody>
             </table>
@@ -66,8 +69,9 @@
         </section>
 
     </section>
+</section>
 
 
-    </body>
+</body>
 
-    </html>
+</html>

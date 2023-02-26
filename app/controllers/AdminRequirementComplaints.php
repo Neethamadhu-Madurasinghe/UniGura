@@ -163,5 +163,31 @@ class AdminRequirementComplaints extends Controller
         }
     }
 
+    public function acceptTutorRequest(Request $request)
+    {
 
+        if ($request->isGet()) {
+            $data = $request->getBody();
+
+            $tutorID = $data['tutorID'];
+
+            $this->requirementComplaintsModel->acceptTutorRequest($tutorID);
+
+            redirect('admin/tutorRequest');
+        }
+    }
+
+    public function rejectTutorRequest(Request $request)
+    {
+
+        if ($request->isGet()) {
+            $data = $request->getBody();
+
+            $tutorID = $data['tutorID'];
+
+            $this->requirementComplaintsModel->rejectTutorRequest($tutorID);
+
+            redirect('admin/tutorRequest');
+        }
+    }
 }

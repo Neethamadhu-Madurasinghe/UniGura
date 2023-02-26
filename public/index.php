@@ -104,6 +104,9 @@ $router->registerController('/admin/unblockStudent',[AdminHideShowBlockUnblock::
 
 $router->registerController('/admin/statistics',[AdminStatistics::class,'statistics']);
 
+$router->registerController('/admin/acceptTutorRequest',[AdminRequirementComplaints::class,'acceptTutorRequest']);
+$router->registerController('/admin/rejectTutorRequest',[AdminRequirementComplaints::class,'rejectTutorRequest']);
+
 
 
 
