@@ -65,6 +65,7 @@ $router->registerController('/admin/updateTutorComplainReason', [AdminRequiremen
 
 $router->registerController('/admin/payment', [AdminPayment::class, 'payment']);
 $router->registerController('/admin/selectedTutorDetails', [AdminPayment::class, 'selectedTutorDetails']);
+$router->registerController('/admin/uploadBankSlip', [AdminPayment::class, 'uploadBankSlip']);
 
 
 
