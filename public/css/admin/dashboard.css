@@ -418,7 +418,7 @@ body.dark .home .text {
     border: 20px solid #FFA620;
     border-right: 40px solid #FFA620;
     border-left: none;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 
@@ -441,7 +441,7 @@ body.dark .home .text {
 
 
 .right_sidebar .new_approval {
-    height: 24vh;
+    height: 30vh;
     border: 2px solid #F7931A;
     border-radius: 5px;
     padding: 10px;
@@ -472,7 +472,7 @@ body.dark .home .text {
 
 
 .right_sidebar .complaints {
-    height: 24vh;
+    height: 29vh;
     border: 2px solid #F7931A;
     border-radius: 5px;
     padding: 10px;
@@ -530,8 +530,16 @@ body.dark .home .text {
     margin-left: 15px;
 }
 
+.no_complaint{
+    text-align: center;
+}
+
+.new_approval{
+    text-align: center;
+}
+
 .no_complaint img {
-    width: 250px;
+    width: 220px;
 }
 
 .available-complaints img {
@@ -558,6 +566,7 @@ body.dark .home .text {
     grid-row-gap: 15px;
 }
 
+
 .requested_list>div {
     display: flex;
     justify-content: left;
@@ -575,6 +584,10 @@ body.dark .home .text {
 
 .available-request img {
     width: 50px;
+}
+
+.no_request img{
+    width: 200px;
 }
 
 .right_sidebar .requested_list {
@@ -597,7 +610,7 @@ body.dark .home .text {
     padding: 5px;
     border-radius: 5px;
     height: 60px;
-    margin-top: 14px;
+    margin-bottom: 14px;
     background: rgba(227, 171, 5, 0.6);
     -webkit-backdrop-filter: blur(50px);
     backdrop-filter: blur(50px);

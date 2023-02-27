@@ -39,6 +39,12 @@ class AdminDashboard extends Controller{
             $studentReport->studentDetails = $this->dashboardModel->studentGetById($studentReport->student_id);
         }
 
+        $allPaymentDetails = $this->dashboardModel->getAllPaymentDetails();
+
+        $numOfStudentReport = $this->dashboardModel->numOfStudentReport();
+        $numOfTutorReport = $this->dashboardModel->numOfTutorReport();
+        $numOfTutorRequest = $this->dashboardModel->numOfTutorRequest();
+
 
         $data = [
             'allTutors' => $allTutors,
@@ -47,7 +53,11 @@ class AdminDashboard extends Controller{
             'allModules' => $allModules,
             'allTutorialClasses' => $allTutorialClasses,
             'allTutorReports' => $allTutorReports,
-            'allStudentReports' => $allStudentReports
+            'allStudentReports' => $allStudentReports,
+            'allPaymentDetails' => $allPaymentDetails,
+            'numOfStudentReport' => $numOfStudentReport,
+            'numOfTutorReport' => $numOfTutorReport,
+            'numOfTutorRequest' => $numOfTutorRequest
         ];
 
         

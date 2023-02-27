@@ -131,4 +131,36 @@ class ModelAdminDashboard {
         }
     }
 
+    public function getAllPaymentDetails(){
+        $this->db->query("SELECT * FROM payment");
+
+        $rows = $this->db->resultAll();
+        
+        if ($this->db->rowCount() >= 0) {
+            return $rows;
+        }else {
+            return false;
+        }
+    }
+
+    public function numOfStudentReport(){
+        $this->db->query('SELECT * FROM student_report');
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function numOfTutorReport(){
+        $this->db->query('SELECT * FROM tutor_report');
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function numOfTutorRequest(){
+        $this->db->query('SELECT * FROM tutor WHERE is_approved = 0');
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
 }

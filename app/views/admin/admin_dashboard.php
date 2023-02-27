@@ -11,7 +11,6 @@
     <p></p>
     <p></p>
 
-
     <div class="parent">
         <div class="left_sidebar">
             <div class="tutor-student-class-subject">
@@ -340,33 +339,54 @@
         <div class="right_sidebar">
 
             <div class="payment-summary">
-                <div class="total-transaction">
-                    <div class="info">
-                        <img src="<?php echo URLROOT ?>/public/img/admin/transaction.png" alt="">
-                        <h2>Total Transaction</h2>
-                    </div>
-                    <span>Rs. 1000</span>
-                </div>
                 <div class="total-student-payment">
                     <div class="info">
                         <img src="<?php echo URLROOT ?>/public/img/admin/dashboard-payment.png" alt="">
                         <h2>Total Student Payment</h2>
                     </div>
-                    <span>Rs. 1000</span>
+                    <span>Rs.
+                        <?php
+                        $totalStudentPayment = 0;
+                        foreach ($data['allPaymentDetails'] as $transaction) {
+                            $totalStudentPayment += $transaction->amount;
+                        }
+                        echo $totalStudentPayment;
+                        ?>
+                    </span>
                 </div>
                 <div class="total-tutor-withdrawal">
                     <div class="info">
                         <img src="<?php echo URLROOT ?>/public/img/admin/withdrawal.png" alt="">
                         <h2>Total Tutor Withdrawal</h2>
                     </div>
-                    <span>Rs. 1000</span>
+                    <span>Rs.
+                        <?php
+                        $totalTutorWithdrawal = 0;
+                        foreach ($data['allPaymentDetails'] as $transaction) {
+                            if ($transaction->is_withdrawed == 1) {
+                                $totalTutorWithdrawal += $transaction->amount;
+                            }
+                        }
+                        echo (90 / 100) * $totalTutorWithdrawal;
+                        ?>
+                    </span>
                 </div>
                 <div class="profit">
                     <div class="info">
                         <img src="<?php echo URLROOT ?>/public/img/admin/profit.png" alt="">
                         <h2>Profit</h2>
                     </div>
-                    <span>Rs. 1000</span>
+                    <span>Rs.
+                        <?php
+                        $totalTutorWithdrawal = 0;
+                        foreach ($data['allPaymentDetails'] as $transaction) {
+                            if ($transaction->is_withdrawed == 1) {
+                                $totalTutorWithdrawal += $transaction->amount;
+                            }
+                        }
+                        echo (10 / 100) * $totalTutorWithdrawal;
+                        ?>
+                    </span>
                 </div>
             </div>
 
@@ -375,13 +395,18 @@
                 <div class="new_approval">
                     <div class="title">
                         <h2>New Approval</h2>
-                        <a href="#">View All</a>
+                        <a href="tutorRequest">View All</a>
                     </div>
+
+                    <?php if ($data['numOfTutorRequest'] == 0) : ?>
+                        <div class="no_request">
+                            <img src="<?php echo URLROOT ?>/public/img/admin/emptyTutorRequest.png" alt=""><br>
+                            <span>Looks like you haven't tutor request yet</span>
+                        </div>
+                    <?php endif; ?>
+
                     <div class="requested_list">
-                        <!-- <div class="no_request">
-                                                    <img src="./emptyTutorRequest.png" alt="">
-                                                    <span>Looks like you haven't tutor request yet</span>
-                                                </div> -->
+
 
                         <?php foreach ($data['allTutors'] as $requestTutor) : ?>
                             <?php if ($requestTutor->is_approved == '0') : ?>
@@ -402,14 +427,19 @@
                 <div class="complaints">
                     <div class="title">
                         <h2>Complaints</h2>
-                        <a href="#">View All</a>
+                        <a href="studentComplaint">View All</a>
                     </div>
-                    <div class="complaints_list">
-                        <!-- <div class="no_complaint">
-                                <img src="./emptyCompliants.png" alt="">
-                                <span>Looks like you haven't complaints yet</span>
-                            </div> -->
 
+                    <?php if ($data['numOfStudentReport'] == 0 && $data['numOfTutorReport'] == 0) : ?>
+                        <div class="no_complaint">
+                            <img src="<?php echo URLROOT ?>/public/img/admin/emptyCompliants.png" alt=""><br>
+                            <span>Looks like you haven't complaints yet</span>
+                        </div>
+                    <?php endif; ?>
+
+
+
+                    <div class="complaints_list">
                         <?php foreach ($data['allTutorReports'] as $complaint) : ?>
                             <?php if ($complaint->is_inquired == '0') : ?>
                                 <div class="available-complaints">
