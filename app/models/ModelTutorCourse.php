@@ -114,4 +114,17 @@ public function setClassTemplateDay($data): bool
         return 1;
     }
 
+    public function updateClassTemplate($data) : bool 
+    {
+
+        $this->db->query('UPDATE tutoring_class_template SET session_rate = :session_rate , mode = :mode , duration = :duration   WHERE id = :id;');
+        $this->db->bind('session_rate', $data['session_rate'], PDO::PARAM_STR);
+        $this->db->bind('mode', $data['mode'], PDO::PARAM_STR);
+        $this->db->bind('duration', $data['duration'], PDO::PARAM_STR);
+        $this->db->bind('id', $data['id'], PDO::PARAM_INT);
+
+//      Returns whether the row count is greater than 0
+        return $this->db->execute();
+    }
+
 }

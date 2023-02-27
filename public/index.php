@@ -121,6 +121,7 @@ $router->registerController('/tutor/dashboard/create-class-template', [TutorDash
 $router->registerController('/tutor/dashboard/api/modules', [TutorDashboard::class, 'getModule']);
 $router->registerController('/tutor/viewcourse', [TutorCourse::class, 'viewcourse']);
 $router->registerController('/tutor/createday', [TutorCourse::class, 'createDay']);
+$router->registerController('/tutor/updateclasstemplate', [TutorCourse::class, 'updateClassTemplate']);
 $router->registerController('/tutor/sendposition', [TutorCourse::class, 'sendposition']);
 
 $router->registerController('/tutor/classes', [TutorClass::class, 'mainpage']);

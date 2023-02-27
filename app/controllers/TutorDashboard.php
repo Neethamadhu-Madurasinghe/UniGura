@@ -144,6 +144,9 @@ class TutorDashboard extends Controller
         $this->view('tutor/createcclasstemplate', $request, $data);
     }
 
+
+
+
     public function getModule(Request $request) {
         //      Cors support
                 cors();
@@ -161,5 +164,9 @@ class TutorDashboard extends Controller
                 echo json_encode($data['modules']);
             }
 
+            
         }
+
+
+    
         

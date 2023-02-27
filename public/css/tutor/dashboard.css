@@ -626,16 +626,6 @@ border-radius: 92px;
   background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
 }
 
-#mycourses .msg_box{
-  background-color: #ffffff;
-  border-radius: 10px 10px 20px 10px;
-  padding: 0px;
-  padding-bottom: 0px;
-  padding-right: 0px;
-  margin-bottom: 0px;
-  margin-top: 0px;
-  height: 100%;
-}
 
 #mycourses .msg_box .headbox{
   padding: 18px;
@@ -671,7 +661,7 @@ border-radius: 92px;
   
 }
 
-#mycourses .msg_box .closeend{
+.closeend{
   font-size: 15px;
   height: 40px;
   width: 100%;
@@ -683,7 +673,7 @@ border-radius: 92px;
   margin-left: 0px;
   
 }
-#mycourses .msg_box .closestart{
+ .closestart{
   font-size: 15px;
   height: 40px;
   width: 100%;
@@ -695,7 +685,7 @@ border-radius: 92px;
   margin-left: 0px;
   
 }
-#mycourses .msg_box .star{
+.star{
   font-size: 15px;
   height: 40px;
   width: 100%;
@@ -706,6 +696,20 @@ border-radius: 92px;
   margin-left: 0px;
   
   
+}
+
+.main_card{
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 10px 10px 20px 10px;
+  padding: 0px;
+  padding-bottom: 0px;
+  padding-right: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  height: 100%;
+
 }
 
 #mycourses .msg_box .close:hover{

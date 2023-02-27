@@ -253,9 +253,10 @@ MainNavbar::render($request);
 
                     </div>
                 </div>
-                
+
             </div>
 
+        
 
 
             <div class="card" id="mycourses" style="height: 568px;">
@@ -264,17 +265,18 @@ MainNavbar::render($request);
                 </div>
                 <div class="all_message">
                     <?php
-                        $classes = json_decode($data['tutoring_class_template']);
-                        foreach ($classes as $class) {
-                            $array = (array) $class;
-                            $subject = (string) $array['subject'];
-                            $module = (string) $array['module'];
-                            $mode = (string) $array['mode'];
-                            $medium = (string) $array['medium'];
-                            $c_id = (string) $array['course_id'];
+                    $classes = json_decode($data['tutoring_class_template']);
+                    foreach ($classes as $class) {
+                        $array = (array) $class;
+                        $subject = (string) $array['subject'];
+                        $module = (string) $array['module'];
+                        $mode = (string) $array['mode'];
+                        $medium = (string) $array['medium'];
+                        $c_id = (string) $array['course_id'];
 
-                            echo "
-                            <div class='msg_box'> 
+                        echo "
+                            <div class = 'main_card'>
+                                <div class='msg_box'> 
                                 <div class='headbox'>
                                     <div>
                                         <h2 class='subject'>$subject</h2>
@@ -286,19 +288,21 @@ MainNavbar::render($request);
                                     <p><i class='fa-solid fa-microphone'></i> $mode</p>
                                     <p><i class='fa-brands fa-chromecast'></i> $medium </p>
                                 </div>
-                                    <p class='Active-students' ><i class='fa-solid fa-users'></i> 25 Active Students</p>
-                                
-                                <div class='button_box'>
-                                    <button class='star'><i class='fa-solid fa-star'></i> 4.3</button>
-                                    <div></div>
-                                    <button class='closestart'><i class='fa-solid fa-pen'></i></button>
-                                    <button class='closeend'><i class='fa-solid fa-trash'></i></button>
-                                </div>                      
-                            </div>";
-                        }
-                ?>
+                                <p class='Active-students' ><i class='fa-solid fa-users'></i> 25 Active Students</p>                       
+                            </div>
+                            <div>
+                                    <div class='button_box'>
+                                        <button class='star'><i class='fa-solid fa-star'></i> 4.3</button>
+                                        <button class='closestart' id = '$c_id'><i class='fa-solid fa-pen'></i></button>
+                                        <button class='closeend'><i class='fa-solid fa-trash'></i></button>
+                                    </div> 
+                            </div>
+                            </div>  
+                           ";
+                    }
+                    ?>
                 </div>
-                
+
             </div>
 
 
@@ -317,9 +321,9 @@ MainNavbar::render($request);
                 </div>
             </div>
 
-        
 
-    </div>
+
+        </div>
 
 </section>
 <script>
@@ -346,12 +350,20 @@ MainNavbar::render($request);
     // Get the modal - Result Model
 
     const cards = document.querySelectorAll(".msg_box");
+
     cards.forEach(card => {
-        console.log(card)
         card.addEventListener("click", function() {
             window.location = "http://localhost/unigura/tutor/viewcourse?subject=" + this.querySelector("h2").textContent + "&module=" + this.querySelector("p").textContent + "&id=" + this.querySelector("h3").textContent;
         });
     });
+
+    const update_btns = document.querySelectorAll(".closestart");
+
+    update_btns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            window.location = "http://localhost/unigura/tutor/updateclasstemplate?id=" + this.id;
+        })
+    })
 
     let working_slots = parseInt(document.getElementById('active').textContent);
     let acting_slots = parseInt(document.getElementById('working').textContent);
