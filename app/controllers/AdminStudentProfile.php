@@ -10,6 +10,10 @@ class AdminStudentProfile extends Controller{
 
     public function viewStudentProfile(Request $request) {
 
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
         if ($request->isGet()){
             $bodyData = $request->getBody();
             $studentId = $bodyData['studentID'];

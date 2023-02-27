@@ -13,6 +13,10 @@ class AdminRequirementComplaints extends Controller
     public function requirementComplaints(Request $request)
     {
 
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
         $allStudentComplaints = $this->requirementComplaintsModel->getStudentComplaints();
         $allTutorComplaints = $this->requirementComplaintsModel->getTutorComplaints();
         $allTutorRequest = $this->requirementComplaintsModel->getTutorRequest();
@@ -78,6 +82,11 @@ class AdminRequirementComplaints extends Controller
 
     public function addStudentComplainReason(Request $request)
     {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
         if ($request->isPost()) {
             $data = $request->getBody();
 
@@ -99,6 +108,12 @@ class AdminRequirementComplaints extends Controller
 
     public function addTutorComplainReason(Request $request)
     {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+
         if ($request->isPost()) {
             $data = $request->getBody();
 
@@ -120,6 +135,11 @@ class AdminRequirementComplaints extends Controller
 
     public function updateStudentComplainReason(Request $request)
     {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
         if ($request->isPost()) {
             $data = $request->getBody();
 
@@ -143,6 +163,12 @@ class AdminRequirementComplaints extends Controller
 
     public function updateTutorComplainReason(Request $request)
     {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+
         if ($request->isPost()) {
             $data = $request->getBody();
 
@@ -166,6 +192,10 @@ class AdminRequirementComplaints extends Controller
     public function acceptTutorRequest(Request $request)
     {
 
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
         if ($request->isGet()) {
             $data = $request->getBody();
 
@@ -180,6 +210,10 @@ class AdminRequirementComplaints extends Controller
     public function rejectTutorRequest(Request $request)
     {
 
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+        
         if ($request->isGet()) {
             $data = $request->getBody();
 

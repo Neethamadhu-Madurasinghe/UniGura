@@ -128,7 +128,7 @@
                     <li class="nav-link" id="logout">
                         <p></p>
                         <p></p>
-                        <a href="#">
+                        <a href="../logout">
                             <i class='bx bx-log-out icon'></i>
                             <span class="text nav-text">logout</span>
                         </a>

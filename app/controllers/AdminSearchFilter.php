@@ -11,6 +11,10 @@ class AdminSearchFilter extends Controller {
 
     public function studentComplainSearchFilter(Request $request) {
 
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
         $allStudentComplaints = $this->ModelAdminSearchFilter->getStudentComplaints();
         $allTutorComplaints = $this->ModelAdminSearchFilter->getTutorComplaints();
         $allTutorRequest = $this->ModelAdminSearchFilter->getTutorRequest();

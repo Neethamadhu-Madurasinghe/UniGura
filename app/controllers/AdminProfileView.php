@@ -9,12 +9,19 @@ class AdminProfileView extends Controller{
     }
 
     public function profileView(Request $request){
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
 
         $this->view('admin/profileView', $request);
     }
 
 
     public function updatePassword(Request $request){
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
 
         if ($request->isPost()) {
             $bodyData = $request->getBody();

@@ -8,6 +8,11 @@ class AdminStudentComplaint extends Controller {
     }
 
     public function studentComplaint(Request $request){
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+        
         $rowsPerPage = 5;
         $totalNumOfStudentComplaints = $this->studentComplaintModel->totalNumOfStudentComplaints();
         $lastPageNum = ceil($totalNumOfStudentComplaints / $rowsPerPage);

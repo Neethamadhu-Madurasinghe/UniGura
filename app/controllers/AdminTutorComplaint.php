@@ -10,6 +10,10 @@ class AdminTutorComplaint extends Controller {
 
     public function tutorComplaint(Request $request) {
 
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
         $allTutorComplaints = $this->tutorComplaintModel->getTutorComplaints();
 
         foreach ($allTutorComplaints as $x) {

@@ -12,6 +12,11 @@ class AdminFilter extends Controller
 
     public function filterForStudentPage(Request $request)
     {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
         $filterResult = [];
 
         $allStudent = $this->filterModel->getAllStudent();
@@ -93,6 +98,12 @@ class AdminFilter extends Controller
 
     public function filterForTutorPage(Request $request)
     {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+
         $filterResult = [];
         $allTutors = $this->filterModel->getAllTutor();
 
@@ -275,6 +286,12 @@ class AdminFilter extends Controller
 
     public function filterForClassPage(Request $request)
     {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        
         $filterResult = [];
 
         $allClasses = $this->filterModel->getAllClasses();

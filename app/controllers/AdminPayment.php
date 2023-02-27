@@ -12,6 +12,10 @@ class AdminPayment extends Controller
     public function payment(Request $request)
     {
 
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
         $allPayment = $this->paymentModel->allPaymentDetails();
 
         foreach ($allPayment as $tutor) {
@@ -30,6 +34,10 @@ class AdminPayment extends Controller
 
     public function selectedTutorDetails(Request $request)
     {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
 
         if ($request->isGet()) {
             $bodyData = $request->getBody();
@@ -64,6 +72,9 @@ class AdminPayment extends Controller
 
     public function uploadBankSlip(Request $request)
     {
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
 
         if ($request->isPost()) {
             handleUpload(array('.png', '.pdf'), '\\public\\profile_pictures\\', 'paymentBankSlip');

@@ -9,6 +9,11 @@ class AdminStudent extends Controller{
 
     public function student(Request $request){
 
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+        
+
         $allStudent = $this->studentModel->getAllStudent();
 
         foreach ($allStudent as $aStudent){

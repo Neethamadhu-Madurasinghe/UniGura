@@ -9,6 +9,11 @@ class AdminTutor extends Controller{
     }
 
     public function tutor(Request $request) {
+        
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
         $allTutors = $this->tutorModel->getAllTutor();
 
         foreach ($allTutors as $tutor){

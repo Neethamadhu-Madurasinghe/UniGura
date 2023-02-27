@@ -12,6 +12,10 @@ class AdminComplaintView extends Controller
     public function viewComplaint(Request $request)
     {
 
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
         if ($request->isGet()) {
             $data = $request->getBody();
 
@@ -58,6 +62,10 @@ class AdminComplaintView extends Controller
 
     public function updateComplainInquire(Request $request)
     {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
 
         if ($request->isGet()) {
             $data = $request->getBody();

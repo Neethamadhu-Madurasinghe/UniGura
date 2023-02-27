@@ -12,6 +12,11 @@ class AdminStatistics extends Controller
     public function statistics(Request $request)
     {
 
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        
         $totalStudent = $this->statisticsModel->totalStudent();
         $totalTutor = $this->statisticsModel->totalTutor();
 

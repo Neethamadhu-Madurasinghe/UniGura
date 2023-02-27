@@ -10,6 +10,10 @@ class AdminTutorProfile extends Controller{
 
     public function viewTutorProfile(Request $request) {
 
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
         if ($request->isGet()){
             $bodyData = $request->getBody();
             $tutorId = $bodyData['tutorID'];

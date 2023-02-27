@@ -10,6 +10,10 @@ class AdminHideShowBlockUnblock extends Controller{
 
     public function hideTutor(Request $request){
 
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
         if($request->isGet()){
             $bodyData = $request->getBody();
             $tutorId = $bodyData['tutorID'];
@@ -20,6 +24,10 @@ class AdminHideShowBlockUnblock extends Controller{
     }
 
     public function showTutor(Request $request){
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
 
         if($request->isGet()){
             $bodyData = $request->getBody();
@@ -32,6 +40,10 @@ class AdminHideShowBlockUnblock extends Controller{
 
     public function blockTutor(Request $request){
 
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
         if($request->isGet()){
             $bodyData = $request->getBody();
             $tutorId = $bodyData['tutorID'];
@@ -42,6 +54,10 @@ class AdminHideShowBlockUnblock extends Controller{
     }
 
     public function unblockTutor(Request $request){
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
 
         if($request->isGet()){
             $bodyData = $request->getBody();
@@ -54,6 +70,10 @@ class AdminHideShowBlockUnblock extends Controller{
 
     public function blockStudent(Request $request){
 
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
         if($request->isGet()){
             $bodyData = $request->getBody();
             $studentId = $bodyData['studentID'];
@@ -64,6 +84,10 @@ class AdminHideShowBlockUnblock extends Controller{
     }
 
     public function unblockStudent(Request $request){
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
 
         if($request->isGet()){
             $bodyData = $request->getBody();

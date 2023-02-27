@@ -10,6 +10,10 @@ class AdminClass extends Controller{
 
     public function class(Request $request){
 
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
         $allClasses = $this->classModel->getAllClasses();
 
         $allSubjects = $this->classModel->getAllSubjects();

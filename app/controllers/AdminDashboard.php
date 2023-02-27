@@ -9,6 +9,11 @@ class AdminDashboard extends Controller{
 
     public function dashboard(Request $request){
 
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+
         $allTutors = $this->dashboardModel->getAllTutors();
         foreach ($allTutors as $tutor) {
             $tutor->tutorDetails = $this->dashboardModel->tutorGetById($tutor->user_id);

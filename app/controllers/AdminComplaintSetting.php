@@ -12,6 +12,11 @@ class AdminComplaintSetting extends Controller
     public function complaintSetting(Request $request)
     {
 
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        
         $studentComplaintReason = $this->complaintSettingsModel->getStudentComplaintReason();
         $tutorComplaintReason = $this->complaintSettingsModel->getTutorComplaintReason();
 
