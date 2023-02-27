@@ -1,9 +1,17 @@
+.nav-bar-container {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+
+}
+
 .student-nav-bar {
     height: 70px;
+    width: 92%;
     display: flex;
     justify-content: space-between;
-    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
-    padding: 0 1% 0 1%;
 }
 
 
@@ -58,13 +66,13 @@
     border-radius: 50%;
     color: #fff;
     vertical-align: top;
-    margin-left: -25px;
-    font-size: 0.8rem;
+    margin-left: -20px;
+    font-size: 0.7rem;
 }
 
 .icon img {
     display: inline-block;
-    width: 40px;
+    width: 28px;
     margin-top: 20px;
 }
 
@@ -94,6 +102,7 @@
     right: 10px;
     border: 2px rgb(255, 140, 0) solid;
     transition: color 0.1s linear;
+    z-index: 1;
 }
 
 .profile-menu-hidden {
@@ -102,7 +111,7 @@
 
 .profile-menu a{
     padding: 5px;
-    margin: 0px;
+    margin: 0;
 }
 
 .profile-menu a:hover{
