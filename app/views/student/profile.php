@@ -242,7 +242,7 @@ MainNavbar::render($request);
         </div>
 
         <div class="request-history">
-            <h1>Pending Tutor Reqeusts</h1>
+            <h1>Pending Tutor Requests</h1>
             <div class="request-history-container">
                 <table class="data-table">
                     <tr>
@@ -255,7 +255,7 @@ MainNavbar::render($request);
                                     <td>' . $request['first_name'] . ' ' . $request['last_name'] . '</td>
                                     <td>' . $request['subject'] . '</td><td>' . $request['module'] . '</td>
                                     <td>' . $request['mode'] . '</td>
-                                    <td><button class="btn req-cancel-btn">Cancel</button></td>
+                                    <td><button class="btn req-cancel-btn" data-id="' . $request['id'] . '">Cancel</button></td>
                             </tr>';
                         }
                     ?>

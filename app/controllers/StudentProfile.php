@@ -155,4 +155,25 @@ class StudentProfile extends Controller {
 
         }
     }
+
+    public function deleteTutorRequest(Request $request) {
+        cors();
+
+//      Sending a tutor request is a POST
+        if ($request->isPost()) {
+//          Unauthorized error code
+            if (!$request->isLoggedIn() || !$request->isStudent()) {
+                header("HTTP/1.0 401 Unauthorized");
+                return;
+            }
+
+            $body = json_decode(file_get_contents('php://input'), true);
+            $body['student_id'] = $request->getUserId();
+
+            header("HTTP/1.0 400 Bad Request");
+//            TODO: Add error message layout to profile page and complete this controller method
+
+        }
+    }
 }
+
