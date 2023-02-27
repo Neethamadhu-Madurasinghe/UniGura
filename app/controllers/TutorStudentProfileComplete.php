@@ -42,6 +42,7 @@ class TutorStudentProfileComplete extends Controller {
                 'preferred_class_mode' => $body['preferred-class-mode'],
                 'longitude' => $body['longitude'],
                 'latitude' => $body['latitude'],
+                'user_role' => 2,
 
                 'errors' => [
                     'first_name_error' => '',
@@ -83,9 +84,7 @@ class TutorStudentProfileComplete extends Controller {
                     $data['latitude'] = NULL;
                 }
 
-                if ($this->tutorStudentModel->setTutorStudentProfileDetails($data) &&
-                    $this->tutorStudentModel->setStudentExamYear($data) &&
-                    $this->tutorStudentModel->setUserRole($request->getUserId(), 2)) {
+                if ($this->tutorStudentModel->setStudentDetails($data)) {
                     $_SESSION['user_role'] = 2;
                     $_SESSION['user_picture'] = $imagePath;
                     redirectBasedOnUserRole($request);
@@ -191,6 +190,7 @@ class TutorStudentProfileComplete extends Controller {
                 'advanced_level_result' => $advancedLevelResultPath,
                 'id_copy'  => $idCopyPath,
                 'university_entrance_letter' => $uniEntranceLetterPath,
+                'user_role' => 1,
 
                 'errors' => [
                     'first_name_error' => '',
@@ -249,10 +249,7 @@ class TutorStudentProfileComplete extends Controller {
                     $data['latitude'] = NULL;
                 }
 
-                if ($this->tutorStudentModel->setTutorStudentProfileDetails($data) &&
-                    $this->tutorStudentModel->setTutorProfileDetails($data) &&
-                    $this->tutorStudentModel->setUserRole($request->getUserId(), 1)) {
-                    $_SESSION['user_role'] = 1;
+                if ($this->tutorStudentModel->setTutorDetails($data)) {
                     $_SESSION['user_picture'] = $imagePath;
                     redirect('tutor/not-approved');
                 }else {
