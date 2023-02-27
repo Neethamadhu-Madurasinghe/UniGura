@@ -54,9 +54,11 @@ class AdminStudentComplaint extends Controller {
             $x->student = $student;
         }
 
+        $totalNumOfStudentComplaints = $this->studentComplaintModel->totalNumOfStudentComplaints();
 
         $data = [
             'allStudentComplaints' => $allStudentComplaints,
+            'totalNumOfStudentComplaints' => $totalNumOfStudentComplaints,
             'lastPageNum' => $lastPageNum,
             'nextPageNum' => $nextPageNum,
             'previousPageNum' => $previousPageNum,

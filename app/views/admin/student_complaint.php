@@ -61,6 +61,10 @@
                 </thead>
                 <tbody id="student-complain">
 
+                <?php if ($data['totalNumOfStudentComplaints'] == 0) : ?>
+                        <td class="noDataDisplay">There are no tutor complaints to display</td>
+                    <?php endif; ?>
+
                     <?php foreach ($data['allStudentComplaints'] as $studentComplaint) { ?>
                         <tr>
                             <td><?php echo $studentComplaint->reportReason->description; ?></td>

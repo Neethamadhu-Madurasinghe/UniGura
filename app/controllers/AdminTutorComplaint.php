@@ -26,8 +26,13 @@ class AdminTutorComplaint extends Controller {
             $x->student = $student;
         }
 
+        $totalNumOfTutorComplaints = $this->tutorComplaintModel->totalNumOfTutorComplaints();
+
+
         $data = [
-            'allTutorComplaints' => $allTutorComplaints
+            'allTutorComplaints' => $allTutorComplaints,
+            'totalNumOfTutorComplaints' => $totalNumOfTutorComplaints
+
         ];
 
         $this->view('admin/tutor_complaints', $request, $data);
