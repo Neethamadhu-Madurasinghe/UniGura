@@ -20,6 +20,8 @@ class AdminTutorProfile extends Controller{
 
             $tutor->allClassDays = $this->tutorModel->getAllClassDays();
 
+            $tutor->allTimeSlots = $this->tutorModel->getAllTimeSlotsByTutorId($tutorId);
+
             foreach ($tutor->allClassDays as $classDay){
                 $classDay->tutorialClass = $this->tutorModel->getAllTutorialClassesByClassId($classDay->class_id);
                 $classDay->classTemplateDetails = $this->tutorModel->getClassTemplateByClassTemplateId($classDay->tutorialClass->class_template_id);

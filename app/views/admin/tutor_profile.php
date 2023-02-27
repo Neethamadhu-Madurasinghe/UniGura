@@ -11,6 +11,7 @@
     <p></p>
 
 
+
     <div class="tutor-profile-page">
         <div class="top-details-box">
             <div class="tutor-details">
@@ -22,8 +23,8 @@
                         <h1>Viraj Sandakelum<span>(Tutor)</span></h1><br>
                     </div>
                     <div class="actions">
-                        
-                        <?php if($data[0]->tutorDetails->is_hidden == 1) : ?>
+
+                        <?php if ($data[0]->tutorDetails->is_hidden == 1) : ?>
                             <div class="button" title="Show">
                                 <a href="showTutor?tutorID=<?php echo $data[0]->id; ?>" title="Show"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/show.png"></a>
                             </div>
@@ -33,17 +34,17 @@
                             </div>
                         <?php endif; ?>
 
-                        <?php if($data[0]->tutorDetails->is_hidden == 0): ?>
+                        <?php if ($data[0]->tutorDetails->is_hidden == 0) : ?>
                             <div class="button">
                                 <a href="hideTutor?tutorID=<?php echo $data[0]->id; ?>" title="Hide"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/hide.png"></a>
                             </div>
-                        <?php else: ?>
+                        <?php else : ?>
                             <div class="button" title="Hide" style="cursor:not-allowed;">
                                 <a href="#" title="Hide"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/hide.png" id="tutor-hide-btn" style="cursor:not-allowed;"></a>
                             </div>
                         <?php endif; ?>
 
-                        <?php if($data[0]->is_banned == 0) : ?>
+                        <?php if ($data[0]->is_banned == 0) : ?>
                             <div class="button">
                                 <a href="blockTutor?tutorID=<?php echo $data[0]->id; ?>" title="Block"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/block.png"></a>
                             </div>
@@ -53,7 +54,7 @@
                             </div>
                         <?php endif; ?>
 
-                        <?php if($data[0]->is_banned == 1) : ?>
+                        <?php if ($data[0]->is_banned == 1) : ?>
                             <div class="button">
                                 <a href="unblockTutor?tutorID=<?php echo $data[0]->id; ?>" title="Unblock"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/unblock.png"></a>
                             </div>
@@ -87,71 +88,601 @@
             <div class="time-table-container">
                 <table id="time-table">
                     <tr class="time-table-titles">
+                        <th id="">Time</th>
                         <th id="">Monday</th>
                         <th id="">Tuesday</th>
-                        <th id="">Time</th>
                         <th id="">Wednesday</th>
                         <th id="">Thursday</th>
                         <th id="">Friday</th>
-                        <th id="">Satday</th>
+                        <th id="">Saturday</th>
                         <th id="">Sunday</th>
                     </tr>
 
                     <tr>
-                        <th>8.00-10.00</th>
-                        <td class="slot slot-used"></td>
-                        <td class="slot slot-used"></td>
-                        <td class="slot slot-free"></td>
-                        <td class="slot slot-free"></td>
-                        <td class="slot slot-used"></td>
-                        <td class="slot slot-used"></td>
-                        <td class="slot slot-used"></td>
+                        <th>08:00-10.00</th>
+
+                        <?php foreach ($data[0]->allTimeSlots as $timeSlot) : ?>
+                            <?php if ($timeSlot->day == 'mon' && $timeSlot->time == '08:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+
+                            <?php elseif ($timeSlot->day == 'tue' && $timeSlot->time == '08:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+
+
+                            <?php elseif ($timeSlot->day == 'wed' && $timeSlot->time == '08:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+
+                            <?php elseif ($timeSlot->day == 'thu' && $timeSlot->time == '08:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+                            <?php elseif ($timeSlot->day == 'fri' && $timeSlot->time == '08:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+                            <?php elseif ($timeSlot->day == 'sat' && $timeSlot->time == '08:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+                            <?php elseif ($timeSlot->day == 'sun' && $timeSlot->time == '08:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     </tr>
 
                     <tr>
-                        <th>8.00-10.00</th>
-                        <td class="slot slot-used"></td>
-                        <td class="slot slot-selected"></td>
-                        <td class="slot slot-free"></td>
-                        <td class="slot slot-free"></td>
-                        <td class="slot slot-used"></td>
-                        <td class="slot slot-used"></td>
-                        <td class="slot slot-used"></td>
+                        <th>10.00-12.00</th>
+
+                        <?php foreach ($data[0]->allTimeSlots as $timeSlot) : ?>
+                            <?php if ($timeSlot->day == 'mon' && $timeSlot->time == '10:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+
+                            <?php elseif ($timeSlot->day == 'tue' && $timeSlot->time == '10:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+
+
+                            <?php elseif ($timeSlot->day == 'wed' && $timeSlot->time == '10:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+
+                            <?php elseif ($timeSlot->day == 'thu' && $timeSlot->time == '10:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+                            <?php elseif ($timeSlot->day == 'fri' && $timeSlot->time == '10:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+                            <?php elseif ($timeSlot->day == 'sat' && $timeSlot->time == '10:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+                            <?php elseif ($timeSlot->day == 'sun' && $timeSlot->time == '10:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+
                     </tr>
 
                     <tr>
-                        <th>8.00-10.00</th>
-                        <td class="slot slot-used"></td>
-                        <td class="slot slot-selected"></td>
-                        <td class="slot slot-free"></td>
-                        <td class="slot slot-free"></td>
-                        <td class="slot slot-used"></td>
-                        <td class="slot slot-used"></td>
-                        <td class="slot slot-used"></td>
+                        <th>12.00-14.00</th>
+                        <?php foreach ($data[0]->allTimeSlots as $timeSlot) : ?>
+                            <?php if ($timeSlot->day == 'mon' && $timeSlot->time == '12:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+
+                            <?php elseif ($timeSlot->day == 'tue' && $timeSlot->time == '12:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+
+
+                            <?php elseif ($timeSlot->day == 'wed' && $timeSlot->time == '12:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+
+                            <?php elseif ($timeSlot->day == 'thu' && $timeSlot->time == '12:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+                            <?php elseif ($timeSlot->day == 'fri' && $timeSlot->time == '12:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+                            <?php elseif ($timeSlot->day == 'sat' && $timeSlot->time == '12:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+                            <?php elseif ($timeSlot->day == 'sun' && $timeSlot->time == '12:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     </tr>
 
                     <tr>
-                        <th>8.00-10.00</th>
-                        <td class="slot slot-used"></td>
-                        <td class="slot slot-selected"></td>
-                        <td class="slot slot-free"></td>
-                        <td class="slot slot-free"></td>
-                        <td class="slot slot-used"></td>
-                        <td class="slot slot-used"></td>
-                        <td class="slot slot-used"></td>
+                        <th>14.00-16.00</th>
+                        <?php foreach ($data[0]->allTimeSlots as $timeSlot) : ?>
+                            <?php if ($timeSlot->day == 'mon' && $timeSlot->time == '14:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+
+                            <?php elseif ($timeSlot->day == 'tue' && $timeSlot->time == '14:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+
+
+                            <?php elseif ($timeSlot->day == 'wed' && $timeSlot->time == '14:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+
+                            <?php elseif ($timeSlot->day == 'thu' && $timeSlot->time == '14:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+                            <?php elseif ($timeSlot->day == 'fri' && $timeSlot->time == '14:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+                            <?php elseif ($timeSlot->day == 'sat' && $timeSlot->time == '14:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+                            <?php elseif ($timeSlot->day == 'sun' && $timeSlot->time == '14:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     </tr>
 
                     <tr>
-                        <th>8.00-10.00</th>
-                        <td class="slot slot-used"></td>
-                        <td class="slot slot-selected"></td>
-                        <td class="slot slot-free"></td>
-                        <td class="slot slot-free"></td>
-                        <td class="slot slot-used"></td>
-                        <td class="slot slot-used"></td>
-                        <td class="slot slot-used"></td>
+                        <th>16.00-18:00</th>
+                        <?php foreach ($data[0]->allTimeSlots as $timeSlot) : ?>
+                            <?php if ($timeSlot->day == 'mon' && $timeSlot->time == '16:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+
+                            <?php elseif ($timeSlot->day == 'tue' && $timeSlot->time == '16:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+
+
+                            <?php elseif ($timeSlot->day == 'wed' && $timeSlot->time == '16:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+
+                            <?php elseif ($timeSlot->day == 'thu' && $timeSlot->time == '16:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+                            <?php elseif ($timeSlot->day == 'fri' && $timeSlot->time == '16:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+                            <?php elseif ($timeSlot->day == 'sat' && $timeSlot->time == '16:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+                            <?php elseif ($timeSlot->day == 'sun' && $timeSlot->time == '16:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     </tr>
 
+                    <tr>
+                        <th>18:00-20.00</th>
+                        <?php foreach ($data[0]->allTimeSlots as $timeSlot) : ?>
+                            <?php if ($timeSlot->day == 'mon' && $timeSlot->time == '18:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+
+                            <?php elseif ($timeSlot->day == 'tue' && $timeSlot->time == '18:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+
+
+                            <?php elseif ($timeSlot->day == 'wed' && $timeSlot->time == '18:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+
+                            <?php elseif ($timeSlot->day == 'thu' && $timeSlot->time == '18:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+                            <?php elseif ($timeSlot->day == 'fri' && $timeSlot->time == '18:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+                            <?php elseif ($timeSlot->day == 'sat' && $timeSlot->time == '18:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+                            <?php elseif ($timeSlot->day == 'sun' && $timeSlot->time == '18:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </tr>
+
+                    <tr>
+                        <th>20.00-22.00</th>
+                        <?php foreach ($data[0]->allTimeSlots as $timeSlot) : ?>
+                            <?php if ($timeSlot->day == 'mon' && $timeSlot->time == '20:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+
+                            <?php elseif ($timeSlot->day == 'tue' && $timeSlot->time == '20:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+
+
+                            <?php elseif ($timeSlot->day == 'wed' && $timeSlot->time == '20:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+
+                            <?php elseif ($timeSlot->day == 'thu' && $timeSlot->time == '20:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+                            <?php elseif ($timeSlot->day == 'fri' && $timeSlot->time == '20:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+                            <?php elseif ($timeSlot->day == 'sat' && $timeSlot->time == '20:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+                            <?php elseif ($timeSlot->day == 'sun' && $timeSlot->time == '20:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </tr>
+
+                    <tr>
+                        <th>22.00-00.00</th>
+                        <?php foreach ($data[0]->allTimeSlots as $timeSlot) : ?>
+                            <?php if ($timeSlot->day == 'mon' && $timeSlot->time == '22:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+
+                            <?php elseif ($timeSlot->day == 'tue' && $timeSlot->time == '22:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+
+
+                            <?php elseif ($timeSlot->day == 'wed' && $timeSlot->time == '22:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+
+                            <?php elseif ($timeSlot->day == 'thu' && $timeSlot->time == '22:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+                            <?php elseif ($timeSlot->day == 'fri' && $timeSlot->time == '22:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+                            <?php elseif ($timeSlot->day == 'sat' && $timeSlot->time == '22:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+
+                            <?php elseif ($timeSlot->day == 'sun' && $timeSlot->time == '22:00:00') : ?>
+                                <?php if ($timeSlot->state == 0) : ?>
+                                    <td class="slot slot-used"></td>
+                                <?php elseif ($timeSlot->state == 1) : ?>
+                                    <td class="slot slot-free"></td>
+                                <?php elseif ($timeSlot->state == 2) : ?>
+                                    <td class="slot slot-selected"></td>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     </tr>
                 </table>
 

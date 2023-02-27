@@ -181,4 +181,18 @@ class ModelAdminTutor{
             return false;
         }
     }
+
+
+    public function getAllTimeSlotsByTutorId($tutorID) {
+        $this->db->query("SELECT * FROM time_slot WHERE tutor_id = :tutorID");
+        $this->db->bind(':tutorID', $tutorID);
+
+        $rows = $this->db->resultAll();
+
+        if ($this->db->rowCount() >= 0) {
+            return $rows;
+        } else {
+            return false;
+        }
+    }
 }

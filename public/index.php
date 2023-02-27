@@ -109,6 +109,8 @@ $router->registerController('/admin/statistics',[AdminStatistics::class,'statist
 $router->registerController('/admin/acceptTutorRequest',[AdminRequirementComplaints::class,'acceptTutorRequest']);
 $router->registerController('/admin/rejectTutorRequest',[AdminRequirementComplaints::class,'rejectTutorRequest']);
 
+$router->registerController('/admin/studentComplainSearchFilter',[AdminSearchFilter::class,'studentComplainSearchFilter']);
+
 
 
 
