@@ -93,10 +93,12 @@ class FindTutor extends Controller {
 //            Check if the user is asking for use his default location
             if ($body['mode'] != 'online' && $body['location'] == 'default') {
                 $userLocation = $this->studentModel->getStudentLocation($request->getUserId());
+                $userMode = $this->studentModel->getStudentMode($request->getUserId());
 
 //                Check if user has not specified a default location
-                if ($userLocation->longitude == 0 || $userLocation->latitude == 0) {
+                if ($userMode->mode == 'online') {
                     header("HTTP/1.0 400 Bad Request");
+                    echo '{"error":"You have not specified a default location"}';
                     return;
                 }
                 $body['longitude'] = $userLocation->longitude;
