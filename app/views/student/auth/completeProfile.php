@@ -188,17 +188,19 @@ Header::render(
                                      no-repeat top center; background-size: contain;' ?>">
 
                         </div>
-                        <input type="number"
-                               id="longitude"
-                               name="longitude"
-                               readonly
-                               value="<?php echo $data['longitude']; ?>">
 
                         <input type="number"
                                id="latitude"
                                name="latitude"
                                readonly
                                value="<?php echo $data['latitude']; ?>">
+
+                        <input type="number"
+                               id="longitude"
+                               name="longitude"
+                               readonly
+                               value="<?php echo $data['longitude']; ?>">
+
                     </div>
 
 
