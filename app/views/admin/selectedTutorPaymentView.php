@@ -31,7 +31,7 @@
                         <div class="drop-here">Drop Here</div>
                     </div>
 
-                    <input type="submit" value="Submit">
+                    <button type="submit">Upload</button>
                 </form>
             </div>
         </div>

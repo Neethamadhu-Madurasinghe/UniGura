@@ -35,7 +35,6 @@
             <div class="search">
                 <i class="fas fa-regular fa-search"></i>
                 <input type="text" placeholder="Search by Student Name..." id="search-student-name">
-                <button class="search-btn" id="search-student-name-btn">Search</button>
             </div>
             <div class="filter">
                 <div class="filter-icon">

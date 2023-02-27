@@ -17,8 +17,11 @@ class AdminTutorRequest extends Controller {
             $x->tutor = $tutor;
         }
 
+        $totalNumOfTutorRequest = $this->tutorRequestModel->totalNumOfTutorRequest();
+
         $data = [
-            'allTutorRequest' => $allTutorRequest
+            'allTutorRequest' => $allTutorRequest,
+            'totalNumOfTutorRequest' => $totalNumOfTutorRequest
         ];
 
         $this->view('admin/tutor_request', $request, $data);

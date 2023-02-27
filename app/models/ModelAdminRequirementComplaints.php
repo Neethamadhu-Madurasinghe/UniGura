@@ -19,6 +19,21 @@ class ModelAdminRequirementComplaints {
         return $this->db->rowCount();
     }
 
+    public function totalNumOfTutorComplaints() {
+        $this->db->query("SELECT * FROM tutor_report");
+        $this->db->resultAll();
+        return $this->db->rowCount();
+    }
+
+
+    public function totalNumOfTutorRequest() {
+        $this->db->query("SELECT * FROM tutor WHERE is_approved = 0 ");
+        $this->db->resultAll();
+        return $this->db->rowCount();
+    }
+
+    
+
     public function studentReportById($reportID) {
         $this->db->query("SELECT * FROM student_report WHERE id = :report_id");
         $this->db->bind(':report_id', $reportID);

@@ -49,12 +49,6 @@ section.table {
 }
 
 
-.table-header .search:hover {
-    width: 45%;
-    background-color: #fff9;
-    box-shadow: 0 .1rem .4rem #0002;
-}
-
 .table-header i{
     font-size: 20px;
     margin: 0 10px;
@@ -575,5 +569,14 @@ tbody img{
     border: none;
     outline: none;
     font-size: 15px;
+    font-weight: bold;
+}
+
+
+.noDataDisplay{
+    position: absolute;
+    left: 30%;
+    top: 45%;    
+    font-size: 25px;
     font-weight: bold;
 }
