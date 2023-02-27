@@ -44,7 +44,7 @@ MainNavbar::render($request);
             <button class="btn btn-utility">Change password</button>
         </div>
 
-        <form action="" id="complete-profile-form">
+        <form action="" method="post" id="complete-profile-form">
             <div class="form-main-area">
 
                 <div class="form-row">
@@ -145,7 +145,6 @@ MainNavbar::render($request);
                         </select>
                     </div>
                 </div>
-
                 <div class="form-row">
                     <div class="form-field">
                         <label for="medium">Medium</label>
@@ -154,8 +153,8 @@ MainNavbar::render($request);
                                 <?php echo $data['medium'] === 'sinhala' ? 'selected' : '' ?>>Sinhala</option>
                             <option value="english"
                                 <?php echo $data['medium'] === 'english' ? 'selected' : '' ?>>English</option>
-                            <option value="both"
-                                <?php echo $data['medium'] === 'both' ? 'selected' : '' ?>>Both</option>
+                            <option value="tamil"
+                                <?php echo $data['medium'] === 'tamil' ? 'selected' : '' ?>>Tamil</option>
                         </select>
                     </div>
 
@@ -270,7 +269,8 @@ MainNavbar::render($request);
 
         'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js',
         URLROOT . '/public/js/student/student-main-nav-bar.js',
-        URLROOT . '/public/js/common/student-tutor-complete-profile.js'
+        URLROOT . '/public/js/common/student-tutor-complete-profile.js',
+        URLROOT . '/public/js/student/profile.js'
     ]
 );
 ?>

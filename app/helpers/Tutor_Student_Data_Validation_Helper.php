@@ -67,14 +67,14 @@ function validateYearOfExam(String $year): String {
     }
 }
 
-function validateTelephoneNumber(String $telephone, ModelTutorStudentCompleteProfile $modelObject): String {
+function validateTelephoneNumber(String $telephone, ModelTutorStudentCompleteProfile $modelObject, bool $isUnique = true): String {
     if (empty($telephone) || !preg_match("/^[0-9]*$/", $telephone)) {
         return 'Please enter a valid telephone no.';
 
     }elseif (strlen($telephone) !== 10) {
         return 'Telephone no. should have  10 characters ';
 
-    }elseif ($modelObject->findUserByTelephoneNumber($telephone)) {
+    }elseif ($isUnique && $modelObject->findUserByTelephoneNumber($telephone)) {
         return 'Telephone no. is already in use';
 
     }else {
