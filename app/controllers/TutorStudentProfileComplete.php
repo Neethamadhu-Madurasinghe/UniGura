@@ -86,7 +86,13 @@ class TutorStudentProfileComplete extends Controller {
 
                 if ($this->tutorStudentModel->setStudentDetails($data)) {
                     $_SESSION['user_role'] = 2;
-                    $_SESSION['user_picture'] = $imagePath;
+
+                    if ($imagePath) {
+                        $_SESSION['user_picture'] = $imagePath;
+                    } else {
+                        $_SESSION['user_picture'] = '/public/img/student/profile.png';
+                    }
+
                     redirectBasedOnUserRole($request);
                 }else {
                     header("HTTP/1.0 500 Internal Server Error");
@@ -250,7 +256,11 @@ class TutorStudentProfileComplete extends Controller {
                 }
 
                 if ($this->tutorStudentModel->setTutorDetails($data)) {
-                    $_SESSION['user_picture'] = $imagePath;
+                    if ($imagePath) {
+                        $_SESSION['user_picture'] = $imagePath;
+                    } else {
+                        $_SESSION['user_picture'] = '/public/img/student/profile.png';
+                    }
                     redirect('tutor/not-approved');
                 }else {
                     header("HTTP/1.0 500 Internal Server Error");
