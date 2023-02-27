@@ -9,8 +9,8 @@
 require_once APPROOT . '/views/common/inc/Header.php';
 require_once APPROOT . '/views/common/inc/Footer.php';
 require_once APPROOT . '/views/common/inc/components/LandingPageNavBar.php';
+require_once APPROOT . '/views/common/inc/components/IntermediateNavBar.php';
 
-$navbar = new LandingPageNavBar($request);
 
 Header::render(
     'Complete Profile',
@@ -18,11 +18,14 @@ Header::render(
         'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css',
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css',
         URLROOT . '/public/css/common/student-base-style.css',
+        URLROOT . '/public/css/components/intermediate-nav-bar.css',
         URLROOT . '/public/css/student/complete-profile.css',
     ]
 );
-?>
 
+IntermediateNavBar::render($request);
+
+?>
     <div class="main-area-container">
         <div class="main-area">
             <h1 class="main-title">Complete Your Profile</h1>
