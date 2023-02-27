@@ -316,12 +316,17 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .card .info {
-    margin: 10px 0;
+    margin-bottom: 30px;
 }
 
 .card .info h5 {
     font-weight: 500;
     font-size: 18px;
+}
+
+.card .view-profile{
+    position: fixed;
+    margin-top: 290px;
 }
 
 
