@@ -46,10 +46,10 @@ class TutorStudentProfileComplete extends Controller {
                 'errors' => [
                     'first_name_error' => '',
                     'last_name_error' => '',
-                    'address_line_1' => '',
-                    'address_line_2' => '',
-                    'city' => '',
-                    'district' => '',
+                    'address_line_1_error' => '',
+                    'address_line_2_error' => '',
+                    'city_error' => '',
+                    'district_error' => '',
                     'year_of_exam_error' => '',
                     'telephone_number_error' => ''
                 ]
@@ -59,10 +59,10 @@ class TutorStudentProfileComplete extends Controller {
 //           Validate all the fields
             $data['errors']['first_name_error'] = validateName($data['first_name']);
             $data['errors']['last_name_error'] = validateName($data['last_name']);
-            $data['errors']['address_line_1'] = validateAddressLines($data['address_line_1'], true);
-            $data['errors']['address_line_2'] = validateAddressLines($data['address_line_2']);
+            $data['errors']['address_line_1_error'] = validateAddressLines($data['address_line_1'], true);
+            $data['errors']['address_line_2_error'] = validateAddressLines($data['address_line_2']);
             $data['errors']['city_error'] = validateCity($data['city']);
-            $data['errors']['district'] = validateDistrict($data['district']);
+            $data['errors']['district_error'] = validateDistrict($data['district']);
             $data['errors']['year_of_exam_error'] = validateYearOfExam($data['year_of_exam']);
             $data['errors']['telephone_number_error'] =
                 validateTelephoneNumber($data['telephone_number'], $this->tutorStudentModel);
@@ -70,10 +70,10 @@ class TutorStudentProfileComplete extends Controller {
             if (
                 $data['errors']['first_name_error'] === '' &&
                 $data['errors']['last_name_error'] === '' &&
-                $data['errors']['address_line_1'] === '' &&
-                $data['errors']['address_line_2'] === '' &&
+                $data['errors']['address_line_1_error'] === '' &&
+                $data['errors']['address_line_2_error'] === '' &&
                 $data['errors']['city_error'] === '' &&
-                $data['errors']['district'] === '' &&
+                $data['errors']['district_error'] === '' &&
                 $data['errors']['year_of_exam_error'] === '' &&
                 $data['errors']['telephone_number_error'] === ''
             ) {
@@ -118,10 +118,10 @@ class TutorStudentProfileComplete extends Controller {
                 'errors' => [
                     'first_name_error' => '',
                     'last_name_error' => '',
-                    'address_line_1' => '',
-                    'address_line_2' => '',
+                    'address_line_1_error' => '',
+                    'address_line_2_error' => '',
                     'city_error' => '',
-                    'district' => '',
+                    'district_error' => '',
                     'year_of_exam_error' => '',
                     'telephone_number_error' => ''
                 ]
@@ -175,9 +175,10 @@ class TutorStudentProfileComplete extends Controller {
                 'profile_picture' => $imagePath,
                 'first_name' => $body['first-name'],
                 'last_name' => $body['last-name'],
-                'letter_box_number' => $body['letter-box-number'],
-                'street' => $body['street'],
+                'address_line_1' => $body['address-line-1'],
+                'address_line_2' => $body['address-line-2'],
                 'city' => $body['city'],
+                'district' => $body['district'],
                 'telephone_number' => $body['telephone-number'],
                 'gender' => $body['gender'],
                 'preferred_class_mode' => $body['preferred-class-mode'],
@@ -193,9 +194,10 @@ class TutorStudentProfileComplete extends Controller {
                 'errors' => [
                     'first_name_error' => '',
                     'last_name_error' => '',
-                    'letter_box_number_error' => '',
-                    'street_error' => '',
+                    'address_line_1_error' => '',
+                    'address_line_2_error' => '',
                     'city_error' => '',
+                    'district_error' => '',
                     'telephone_number_error' => '',
                     'university_error' => '',
                     'description_error' => '',
@@ -209,9 +211,10 @@ class TutorStudentProfileComplete extends Controller {
 //           Validate all the fields
             $data['errors']['first_name_error'] = validateName($data['first_name']);
             $data['errors']['last_name_error'] = validateName($data['last_name']);
-            $data['errors']['letter_box_number_error'] = validateLetterBoxNumber($data['letter_box_number']);
-            $data['errors']['street_error'] = validateStreet($data['street']);
+            $data['errors']['address_line_1_error'] = validateAddressLines($data['address_line_1'], true);
+            $data['errors']['address_line_2_error'] = validateAddressLines($data['address_line_2']);
             $data['errors']['city_error'] = validateCity($data['city']);
+            $data['errors']['district_error'] = validateDistrict($data['district']);
             $data['errors']['telephone_number_error'] =
                 validateTelephoneNumber($data['telephone_number'], $this->tutorStudentModel);
             $data['errors']['description_error'] = validateDescription($data['description']);
@@ -270,9 +273,10 @@ class TutorStudentProfileComplete extends Controller {
             $data = [
                 'first_name' => '',
                 'last_name' => '',
-                'letter_box_number' => '',
-                'street' => '',
+                'address_line_1' => '',
+                'address_line_2' => '',
                 'city' => '',
+                'district' => '',
                 'telephone_number' => '',
                 'gender' => 'not-selected',
                 'medium' => 'sinhala',
@@ -286,9 +290,10 @@ class TutorStudentProfileComplete extends Controller {
                 'errors' => [
                     'first_name_error' => '',
                     'last_name_error' => '',
-                    'letter_box_number_error' => '',
-                    'street_error' => '',
+                    'address_line_1_error' => '',
+                    'address_line_2_error' => '',
                     'city_error' => '',
+                    'district_error' => '',
                     'telephone_number_error' => '',
                     'university_error' => '',
                     'description_error' => '',

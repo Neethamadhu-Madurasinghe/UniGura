@@ -13,7 +13,7 @@ class IntermediateNavBar {
                         <a href="' . URLROOT . '/logout' . '">Logout</a>
                     </div>
                 </div>
-              </div> 
+              </div>
               
               ';
     }

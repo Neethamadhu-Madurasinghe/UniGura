@@ -8,7 +8,6 @@
 <?php
 require_once APPROOT . '/views/common/inc/Header.php';
 require_once APPROOT . '/views/common/inc/Footer.php';
-require_once APPROOT . '/views/common/inc/components/LandingPageNavBar.php';
 require_once APPROOT . '/views/common/inc/components/IntermediateNavBar.php';
 
 
@@ -56,7 +55,7 @@ IntermediateNavBar::render($request);
                     <div class="form-row">
                         <div class="form-field">
                             <label for="address-line-1">Address Line 1 *
-                                <span><?php echo $data['errors']['address_line_1'] ?></span>
+                                <span><?php echo $data['errors']['address_line_1_error'] ?></span>
                             </label>
                             <input type="text"
                                    name="address-line-1"
@@ -65,7 +64,7 @@ IntermediateNavBar::render($request);
                         </div>
                         <div class="form-field">
                             <label for="address_line_2">Address Line 2
-                                <span><?php echo $data['errors']['address_line_2'] ?></span>
+                                <span><?php echo $data['errors']['address_line_2_error'] ?></span>
                             </label>
                             <input type="text"
                                    name="address-line-2"
@@ -80,7 +79,7 @@ IntermediateNavBar::render($request);
                             <input type="text" name="city" id="" value="<?php echo $data['city'] ?>">
                         </div>
                         <div class="form-field">
-                            <label for="district">District * <span><?php echo $data['errors']['district'] ?></span></label>
+                            <label for="district">District * <span><?php echo $data['errors']['district_error'] ?></span></label>
                             <select name="district" id="">
                                 <option value="Ampara"<?php echo $data['district'] === 'Ampara' ? 'selected' : '' ?>>Ampara</option>
                                 <option value="Anuradhapura"<?php echo $data['district'] === 'Anuradhapura' ? 'selected' : '' ?>>Anuradhapura</option>
