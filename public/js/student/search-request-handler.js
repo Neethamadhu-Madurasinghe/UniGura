@@ -253,7 +253,7 @@ async function sendSearchClassRequest() {
         </p>
 
         <div class="tutor-search-card-button-container">
-        <button class="btn btn-sm" id="message-btn">Message Tutor</button>
+        <button class="btn btn-sm" id="message-btn"><a href="http://localhost/Unigura/student/chat" style="text-decoration: none; color:white">Message Tutor</a></button>
         <button class="btn btn-sm send-request-btn"
                 data-tutor=${tutoringClass.tutor_id}
                 data-template=${tutoringClass.id} 

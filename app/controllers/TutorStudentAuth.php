@@ -195,7 +195,10 @@ class TutorStudentAuth extends Controller {
         }elseif ($user->role === 6) {
             redirect('student/complete-profile');
         }elseif ($user->role === 7) {
-            redirect('/tutor/complete-qualifications');
+            redirect('/tutor/pending');
+        }
+        elseif ($user->role === 9) {
+            redirect('/tutor/complete-bank-detials');
         }
 
     }
@@ -215,7 +218,7 @@ class TutorStudentAuth extends Controller {
 
         }elseif ($password !== $confirmPassword) {
             return 'Please confirm the password';
-
+            
         }else {
             return '';
         }

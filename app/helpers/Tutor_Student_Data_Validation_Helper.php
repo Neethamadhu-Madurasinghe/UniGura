@@ -12,13 +12,13 @@ function validateName(string $name): String {
     }
 }
 
-function validateAddressLines(string $addressLine, bool $isMandatory = false): String {
 
-    if ($isMandatory && empty($addressLine)) {
-        return 'Please enter a valid Address Line';
+function validateLetterBoxNumber(string $number): String {
+    if (empty($number) || !preg_match("/^[a-zA-Z0-9-\/\s]*$/", $number)) {
+        return 'Please enter a valid number';
 
-    }elseif (strlen($addressLine) > 255) {
-        return 'Address Line should have less than 255 characters ';
+    }elseif (strlen($number) > 255) {
+        return 'Number should have less than 255 characters ';
 
     }else {
         return '';
@@ -26,24 +26,25 @@ function validateAddressLines(string $addressLine, bool $isMandatory = false): S
 }
 
 
+
+function validateStreet(string $street): String {
+    if (empty($street) || !preg_match("/^[a-zA-Z-\s]*$/", $street)) {
+        return 'Please enter a valid street name';
+
+    }elseif (strlen($street) > 255) {
+        return 'Street name should have less than 255 characters ';
+
+    }else {
+        return '';
+    }
+}
+
 function validateCity(string $city): String {
-    if (empty($city) || !preg_match("/^[a-zA-Z0-9\s]+$/", $city)) {
+    if (empty($city) || !preg_match("/^[a-zA-Z\s]*$/", $city)) {
         return 'Please enter a valid city';
 
     }elseif (strlen($city) > 255) {
         return 'City should have less than 255 characters ';
-
-    }else {
-        return '';
-    }
-}
-
-function validateDistrict(string $district): String {
-    if (empty($district) || !preg_match("/^[a-zA-Z0-9\s]+$/", $district)) {
-        return 'Please enter a valid District';
-
-    }elseif (strlen($district) > 255) {
-        return 'District should have less than 255 characters ';
 
     }else {
         return '';
@@ -111,6 +112,34 @@ function validateUniversity(String $university): String {
         return '';
     }
 }
+
+
+
+
+//created by sachithra
+
+function validateRate(string $number): String {
+    if (filter_var($number, FILTER_VALIDATE_INT)) {
+        $int = intval($number);
+        if ($int >= 500 && $int < 5000) {
+          return "";
+        } else {
+            return "Amount must in a range between LKR (500 - 5000)";
+        }
+      } else {
+         return "Please enter a valid amount";
+      }
+}
+
+
+
+
+
+
+
+
+
+
 
 
 ?>

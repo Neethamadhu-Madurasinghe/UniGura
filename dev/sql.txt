@@ -201,3 +201,6 @@ user.is_banned = 0 AND
 tutor.is_hidden = 0;
 
 SELECT COUNT(id) FROM time_slot WHERE time_slot.tutor_id = 16 AND time_slot.state = 2 GROUP BY time_slot.day HAVING COUNT(id) > 1;
+
+SELECT request.id, request.mode, request.class_template_id, user.first_name, user.last_name FROM request INNER JOIN user ON request.tutor_id = user.id WHERE request.id = 20;
+SELECT subject.name AS subject_name, module.name AS module_name FROM tutoring_class_template INNER JOIN subject ON tutoring_class_template.subject_id = subject.id INNER JOIN module ON tutoring_class_template.module_id = module.id WHERE tutoring_class_template.id = 3;

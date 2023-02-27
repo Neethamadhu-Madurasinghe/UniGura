@@ -186,7 +186,7 @@ Header::render(
 
             <div class="buttons-container">
                 <button class="btn btn-tutor-main" id="tutor-request-send">Send Tutor Request</button>
-                <button class="btn btn-tutor-main ">Message</button>
+                <button class="btn btn-tutor-main "><a href="http://localhost/Unigura/student/chat" style="text-decoration: none; color:white">Message Tutor</a></button>
                 <button class="btn btn-tutor-main" id="report-tutor-button">Report</button>
                 <button class="btn btn-tutor-main" id="other-classes-button">Other Classes</button>
             </div>

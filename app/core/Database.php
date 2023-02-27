@@ -53,7 +53,6 @@ class Database {
                 $this->bind($param[0], $param[1], $param[2]);
             }
         }
-
         return $this->statement->execute();
     }
 
@@ -73,6 +72,12 @@ class Database {
     public function resultOne() {
         $this->execute();
         return $this->statement->fetch(PDO::FETCH_OBJ);
+    }
+
+//    Get single record as the result, but as an associative array
+    public function resultOneAssoc(): array {
+        $this->execute();
+        return $this->statement->fetch(PDO::FETCH_ASSOC);
     }
 
 //    Get the number of rows in the result

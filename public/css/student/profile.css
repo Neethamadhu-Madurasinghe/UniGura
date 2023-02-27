@@ -1,6 +1,7 @@
 .main-area-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     min-height: 100%;
 }
@@ -8,8 +9,9 @@
 .main-area {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     width: 90%;
+    max-width: 1200px;
 }
 
 .main-title {
@@ -20,6 +22,17 @@
 .sub-title {
     margin: 0;
 }
+
+#image-upload-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
 
 #complete-profile-form {
     width: 100%;
@@ -47,11 +60,13 @@
 
 
 #profile-image-upload-btn {
-    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
-    font-size: 0.8rem;
-    color: white;
+    background: linear-gradient(180deg, white 0%, white 100%);
+    font-size: 0.9rem;
+    color: var(--dark-orange);
+    margin: 10px;
     padding: 0.5rem;
     font-family: sans-serif;
+    font-weight: bold;
     border-radius: 0.3rem;
     cursor: pointer;
     margin-top: 1rem;
@@ -59,7 +74,6 @@
     text-align: center;
     transition: transform 0.1s;
 }
-
 
 #profile-image-upload-btn:hover {
     transform: scale(1.05);
@@ -73,28 +87,72 @@
     background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%) !important;
 }
 
+.utility-button-container {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0 20px 0;
+}
 
- .form-main-area {
-    width: 100%;
+@media screen and (max-width: 1024px) {
+    .utility-button-container {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .utility-button-container {
+        width: 100%;
+    }
+}
+
+.form-main-area {
+    width: 60%;
     display: flex;
     flex-direction: column;
-  
+}
+
+
+@media screen and (max-width: 1024px) {
+    .form-main-area {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .form-main-area {
+        width: 100%;
+    }
 }
 
 
 .form-row {
     width: 100%;
-    
     display: flex;
     justify-content: space-between;
     margin: 5px 0;
 }
 
+@media screen and (max-width: 600px) {
+    .form-row {
+        width: 100%;
+        flex-direction: column;
+        margin: 0;
+    }
+}
 
-.form .form-field {
+
+.form-field {
     width: 45%;
     display: flex;
     flex-direction: column;
+}
+
+@media screen and (max-width: 600px) {
+    .form-field {
+        width: 100%;
+        margin: 5px 0;
+    }
 }
 
 .form-field label {
@@ -108,15 +166,7 @@
     justify-content: space-between;
 }
 
-
 .form-field label span {
-    color: red;
-    font-size: 0.7rem;
-    font-weight: normal;
-}
-
-
-.upload-button-error {
     color: red;
     font-size: 0.7rem;
     font-weight: normal;
@@ -171,6 +221,13 @@
     cursor: move;
 }
 
+#submit-btn-container {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    margin: 20px 0;
+}
+
 
 .upload-btn-row {
     justify-content: space-between;
@@ -203,13 +260,89 @@
     background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
 }
 
-
-.btn-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+.payment-history, .request-history {
     width: 100%;
+    margin-bottom: 30px;
 }
+
+.payment-history-container, .request-history-container {
+    width: 100%;
+    overflow-x: scroll;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+}
+
+.data-table tr {
+    border: solid 2px var(--lightest-orrange);
+    height: 2.5rem;
+    border-radius: 10px;
+}
+
+.data-table tr:first-child {
+    border: none;
+    border-radius: 10px;
+}
+
+.data-table tr th {
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    font-size: 1.1rem;
+    height: 3rem;
+    width: 20%;
+    border: 0;
+}
+
+.data-table tr td {
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+@media screen and (max-width: 600px) {
+    .data-table {
+        min-width: 600px;
+    }
+}
+
+
+
+
+/* Layout CSS */
+
+.layout-mode {
+    max-height: 100vh;
+    overflow: hidden;
+}
+
+.layout-background {
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(160, 117, 51, 0.5);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-layout-backgound {
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(160, 117, 51, 0.5);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Invisibility classes */
+.invisible {
+    display: none;
+}
+
 
 
 .btn {
@@ -223,10 +356,6 @@
     cursor: pointer;
     transition: transform 0.1s;
     user-select: none;
-    padding: 10px;
-    text-align: center;
-    margin-top: 15px;
-    margin-left: 15px;
 }
 
 .btn:hover {
@@ -237,38 +366,20 @@
     background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
 }
 
-
-/* multipart form css */
-
-form{
-    position: relative;
-    margin-top: 20px;
-    width: 100%;
-    
+.req-cancel-btn {
+    width: 120px;
+    height: 30px;
+    background: linear-gradient(180deg, red 0%, red 100%);
 }
 
-
- form .form{
-    position: absolute;
-    background-color: #fff;
-    transition: 0.3s ease;
-    width: 80%;
-}
-.second{
-    display: none;
-    pointer-events: none;
-    transform: translateX(100%);
-}
-form.secActive .second{
-    display: block;
-    pointer-events: auto;
-    transform: translateX(0);
-}
-form.secActive .first{
-    display: none;
-    pointer-events: none;
-    transform: translateX(-100%);
+.req-cancel-btn:active {
+    background: linear-gradient(180deg, rgb(126, 2, 2) 0%, rgb(147, 2, 2) 100%);
 }
 
+@media screen and (max-width: 600px) {
+    .btn-utility {
+        width: 140px;
+        font-size: 0.9rem;
+    }
 
-
+}

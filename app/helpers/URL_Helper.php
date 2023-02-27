@@ -14,7 +14,7 @@ function redirectBasedOnUserRole(Request $request): void {
     }elseif ($request->isTutor()) {
         redirect('tutor/dashboard');
     }elseif ($request->isStudent()) {
-        redirect('example/dashboard');
+        redirect('student/dashboard');
     }elseif ($request->isEmailNotValidatedTutor()) {
         redirect('tutor/validate-email');
     }elseif ($request->isEmailNotValidatedStudent()) {
@@ -23,10 +23,23 @@ function redirectBasedOnUserRole(Request $request): void {
         redirect('tutor/complete-profile');
     }elseif ($request->isProfileNotCompletedStudent()) {
         redirect('student/complete-profile');
-    }elseif ($request->isQualificationNotCompletedTutor()) {
-        redirect('/tutor/complete-qualifications');
+    }elseif ($request->isBankDetialsNotCompletedTutor()) {
+        redirect('tutor/complete-bank-detials');
+    }
+    elseif ($request->isTimeSlotNotCompletedTutor()) {
+        redirect('tutor/tutor-time-slot-input');
+    }
+    elseif ($request->isNotApprovedTutor()) {
+        redirect('/tutor/pending');
+    }
+    //new function added by sachithra
+    elseif($request->isApprovedTutor()){
+        redirect('tutor/aproved');
     }
 }
+
+
+
 
 
 

@@ -31,10 +31,9 @@ class TutorStudentProfileComplete extends Controller {
                 'profile_picture' => $imagePath,
                 'first_name' => $body['first-name'],
                 'last_name' => $body['last-name'],
-                'address_line_1' => $body['address-line-1'],
-                'address_line_2' => $body['address-line-2'],
+                'letter_box_number' => $body['letter-box-number'],
+                'street' => $body['street'],
                 'city' => $body['city'],
-                'district' => $body['district'],
                 'year_of_exam' => $body['year-of-exam'],
                 'telephone_number' => $body['telephone-number'],
                 'gender' => $body['gender'],
@@ -46,10 +45,9 @@ class TutorStudentProfileComplete extends Controller {
                 'errors' => [
                     'first_name_error' => '',
                     'last_name_error' => '',
-                    'address_line_1_error' => '',
-                    'address_line_2_error' => '',
+                    'letter_box_number_error' => '',
+                    'street_error' => '',
                     'city_error' => '',
-                    'district_error' => '',
                     'year_of_exam_error' => '',
                     'telephone_number_error' => ''
                 ]
@@ -59,10 +57,9 @@ class TutorStudentProfileComplete extends Controller {
 //           Validate all the fields
             $data['errors']['first_name_error'] = validateName($data['first_name']);
             $data['errors']['last_name_error'] = validateName($data['last_name']);
-            $data['errors']['address_line_1_error'] = validateAddressLines($data['address_line_1'], true);
-            $data['errors']['address_line_2_error'] = validateAddressLines($data['address_line_2']);
+            $data['errors']['letter_box_number_error'] = validateLetterBoxNumber($data['letter_box_number']);
+            $data['errors']['street_error'] = validateStreet($data['street']);
             $data['errors']['city_error'] = validateCity($data['city']);
-            $data['errors']['district_error'] = validateDistrict($data['district']);
             $data['errors']['year_of_exam_error'] = validateYearOfExam($data['year_of_exam']);
             $data['errors']['telephone_number_error'] =
                 validateTelephoneNumber($data['telephone_number'], $this->tutorStudentModel);
@@ -70,10 +67,9 @@ class TutorStudentProfileComplete extends Controller {
             if (
                 $data['errors']['first_name_error'] === '' &&
                 $data['errors']['last_name_error'] === '' &&
-                $data['errors']['address_line_1_error'] === '' &&
-                $data['errors']['address_line_2_error'] === '' &&
+                $data['errors']['letter_box_number_error'] === '' &&
+                $data['errors']['street_error'] === '' &&
                 $data['errors']['city_error'] === '' &&
-                $data['errors']['district_error'] === '' &&
                 $data['errors']['year_of_exam_error'] === '' &&
                 $data['errors']['telephone_number_error'] === ''
             ) {
@@ -87,6 +83,7 @@ class TutorStudentProfileComplete extends Controller {
                     $this->tutorStudentModel->setStudentExamYear($data) &&
                     $this->tutorStudentModel->setUserRole($request->getUserId(), 2)) {
                     $_SESSION['user_role'] = 2;
+                    $_SESSION['user_picture'] = $data['profile_picture'];
                     redirectBasedOnUserRole($request);
                 }else {
                     header("HTTP/1.0 500 Internal Server Error");
@@ -103,11 +100,10 @@ class TutorStudentProfileComplete extends Controller {
             $data = [
                 'first_name' => '',
                 'last_name' => '',
-                'address_line_1' => '',
-                'address_line_2' => '',
+                'letter_box_number' => '',
+                'street' => '',
                 'city' => '',
-                'district' => '',
-                'year_of_exam' => 2024,
+                'year_of_exam' => 0,
                 'telephone_number' => '',
                 'gender' => 'not-selected',
                 'medium' => 'sinhala',
@@ -118,10 +114,9 @@ class TutorStudentProfileComplete extends Controller {
                 'errors' => [
                     'first_name_error' => '',
                     'last_name_error' => '',
-                    'address_line_1_error' => '',
-                    'address_line_2_error' => '',
+                    'letter_box_number_error' => '',
+                    'street_error' => '',
                     'city_error' => '',
-                    'district_error' => '',
                     'year_of_exam_error' => '',
                     'telephone_number_error' => ''
                 ]
@@ -140,7 +135,7 @@ class TutorStudentProfileComplete extends Controller {
         if (!$request->isProfileNotCompletedTutor()) {
             redirectBasedOnUserRole($request);
         }
-
+        
         if ($request->isPost()) {
             $body = $request->getBody();
 
@@ -175,10 +170,9 @@ class TutorStudentProfileComplete extends Controller {
                 'profile_picture' => $imagePath,
                 'first_name' => $body['first-name'],
                 'last_name' => $body['last-name'],
-                'address_line_1' => $body['address-line-1'],
-                'address_line_2' => $body['address-line-2'],
+                'letter_box_number' => $body['letter-box-number'],
+                'street' => $body['street'],
                 'city' => $body['city'],
-                'district' => $body['district'],
                 'telephone_number' => $body['telephone-number'],
                 'gender' => $body['gender'],
                 'preferred_class_mode' => $body['preferred-class-mode'],
@@ -194,10 +188,9 @@ class TutorStudentProfileComplete extends Controller {
                 'errors' => [
                     'first_name_error' => '',
                     'last_name_error' => '',
-                    'address_line_1_error' => '',
-                    'address_line_2_error' => '',
+                    'letter_box_number_error' => '',
+                    'street_error' => '',
                     'city_error' => '',
-                    'district_error' => '',
                     'telephone_number_error' => '',
                     'university_error' => '',
                     'description_error' => '',
@@ -211,10 +204,9 @@ class TutorStudentProfileComplete extends Controller {
 //           Validate all the fields
             $data['errors']['first_name_error'] = validateName($data['first_name']);
             $data['errors']['last_name_error'] = validateName($data['last_name']);
-            $data['errors']['address_line_1_error'] = validateAddressLines($data['address_line_1'], true);
-            $data['errors']['address_line_2_error'] = validateAddressLines($data['address_line_2']);
+            $data['errors']['letter_box_number_error'] = validateLetterBoxNumber($data['letter_box_number']);
+            $data['errors']['street_error'] = validateStreet($data['street']);
             $data['errors']['city_error'] = validateCity($data['city']);
-            $data['errors']['district_error'] = validateDistrict($data['district']);
             $data['errors']['telephone_number_error'] =
                 validateTelephoneNumber($data['telephone_number'], $this->tutorStudentModel);
             $data['errors']['description_error'] = validateDescription($data['description']);
@@ -250,9 +242,10 @@ class TutorStudentProfileComplete extends Controller {
 
                 if ($this->tutorStudentModel->setTutorStudentProfileDetails($data) &&
                     $this->tutorStudentModel->setTutorProfileDetails($data) &&
-                    $this->tutorStudentModel->setUserRole($request->getUserId(), 1)) {
-                    $_SESSION['user_role'] = 1;
-                    redirect('tutor/not-approved');
+                    $this->tutorStudentModel->setUserRole($request->getUserId(), 7)) {
+                    $_SESSION['user_role'] = 7;
+                    $_SESSION['user_picture'] = $data['profile_picture'];
+                    redirect('tutor/pending');
                 }else {
                     header("HTTP/1.0 500 Internal Server Error");
                     die('Something went wrong');
@@ -273,10 +266,9 @@ class TutorStudentProfileComplete extends Controller {
             $data = [
                 'first_name' => '',
                 'last_name' => '',
-                'address_line_1' => '',
-                'address_line_2' => '',
+                'letter_box_number' => '',
+                'street' => '',
                 'city' => '',
-                'district' => '',
                 'telephone_number' => '',
                 'gender' => 'not-selected',
                 'medium' => 'sinhala',
@@ -290,10 +282,9 @@ class TutorStudentProfileComplete extends Controller {
                 'errors' => [
                     'first_name_error' => '',
                     'last_name_error' => '',
-                    'address_line_1_error' => '',
-                    'address_line_2_error' => '',
+                    'letter_box_number_error' => '',
+                    'street_error' => '',
                     'city_error' => '',
-                    'district_error' => '',
                     'telephone_number_error' => '',
                     'university_error' => '',
                     'description_error' => '',
@@ -309,5 +300,7 @@ class TutorStudentProfileComplete extends Controller {
 
         $this->view('tutor/auth/completeProfile', $request, $data);
     }
+
+   
 
 }

@@ -2,9 +2,7 @@
     height: 50px;
     display: flex;
     justify-content: space-between;
-    margin: 5px 15px;
-    padding: 0 1% 0 1%;
-
+    margin: 0 15px;
 }
 
 .logo-container {
