@@ -61,16 +61,13 @@ LandingPageNavBar::render($request)
                         <input type="password" class="form-input" name="password" id="login-password">
                     </div>
                 </div>
-
                 <div class="form-row">
                     <div class="form-field">
                         <label for="confirm-password">Confirm Password</label>
                         <input type="password" class="form-input" name="confirm-password" id="login-password">
                     </div>
                 </div>
-
                 <input type="submit" value="Register" class="btn">
-
             </form>
         </div>
     </div>

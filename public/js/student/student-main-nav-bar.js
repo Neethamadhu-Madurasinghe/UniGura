@@ -1,10 +1,10 @@
 // Profile icon click function
 
-const profilePictureUI = document.querySelector('.profile-picture');
+const dashboardProfilePictureUI = document.querySelector('.profile-picture');
 const profileMenu = document.querySelector('.profile-menu');
 const _bodyUI = document.getElementsByTagName('body')[0];
 
-profilePictureUI.addEventListener('click', function (e) {
+dashboardProfilePictureUI.addEventListener('click', function (e) {
   profileMenu.classList.toggle('profile-menu-hidden');
 })
 

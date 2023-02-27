@@ -3,18 +3,21 @@ const longitudeUI = document.getElementById('longitude');
 const latitudeUI = document.getElementById('latitude');
 const preferredClassModeInputUI = document.getElementById('preferred-class-mode');
 const defaultPosition = [longitudeUI.value, latitudeUI.value];
+const form = document.querySelector("form"),
+    nextBtn = form.querySelector(".nextBtn"),
+    backBtn = form.querySelector(".backBtn");
 
 // Script for include map element into form
 generateMapComponent();
 
 
 // Make map component only visible when preferred class Mode is Both and Physical
-preferredClassModeInputUI.addEventListener('change', function(e) {
-    if(e.target.value !== 'online') {
+preferredClassModeInputUI.addEventListener('change', function (e) {
+    if (e.target.value !== 'online') {
         mapComponentUI.style.display = 'block';
         longitudeUI.style.display = 'inline';
         latitudeUI.style.display = 'inline';
-    }else {
+    } else {
         mapComponentUI.style.display = 'none';
     }
 })
@@ -27,7 +30,7 @@ preferredClassModeInputUI.addEventListener('change', function(e) {
 const actualFileUploadBtnUI = document.getElementById('actual-btn');
 const profilePictureUI = document.getElementById('profile-picture');
 
-actualFileUploadBtnUI.addEventListener('change', function(){
+actualFileUploadBtnUI.addEventListener('change', function () {
     profilePictureUI.src = URL.createObjectURL(actualFileUploadBtnUI.files[0])
 });
 
@@ -61,7 +64,7 @@ function generateMapComponent() {
 
 
     // onclick get the position and display it
-    map.on('click', function(e) {
+    map.on('click', function (e) {
         const point = convertCoordinates(e.coordinate);
         longitudeUI.value = point[0];
         latitudeUI.value = point[1];
@@ -84,7 +87,20 @@ function convertCoordinates(pos) {
     x = (x * 180) / 20037508.34;
     y = (y * 180) / 20037508.34;
     y = (Math.atan(Math.pow(Math.E, y * (Math.PI / 180))) * 360) / Math.PI - 90;
-    return [Math.round((x + Number.EPSILON) * 1000000)/1000000, Math.round((y + Number.EPSILON) * 1000000)/1000000];
+    return [Math.round((x + Number.EPSILON) * 1000000) / 1000000, Math.round((y + Number.EPSILON) * 1000000) / 1000000];
 }
+
+
+
+
+
+
+
+nextBtn.addEventListener("click", () => {
+    form.classList.add('secActive');
+    console.log('ok')
+})
+
+backBtn.addEventListener("click", () => form.classList.remove('secActive'));
 
 

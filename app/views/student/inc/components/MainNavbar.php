@@ -24,7 +24,7 @@ class MainNavbar {
                                 src="' . URLROOT . MainNavbar::getStudentProfilePicture($request) . '"
                                 alt="" class="profile-picture-img">
                                 <div class="profile-menu profile-menu-hidden">
-                                    <a href="#g">Profile</a>
+                                    <a href="' . URLROOT . '/student/profile' . '">Profile</a>
                                     <a href="' . URLROOT . '/logout' . '">Logout</a>
                                 </div>
                             </div>

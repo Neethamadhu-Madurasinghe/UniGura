@@ -9,7 +9,8 @@ class ModelStudent {
 
 //    Given the id of student, returns the geo-location of that student
     public function getStudentLocation($id) {
-        $this->db->query('SELECT ST_X(location) as longitude, ST_Y(location) as latitude FROM user WHERE id=:id');
+//        TODO: Change logitude latitude
+        $this->db->query('SELECT ST_X(location) as latitude, ST_Y(location) as longitude FROM user WHERE id=:id');
         $this->db->bind('id', $id, PDO::PARAM_INT);
 
         return $this->db->resultOne();
@@ -20,6 +21,21 @@ class ModelStudent {
         $this->db->bind('id', $id, PDO::PARAM_INT);
 
         return $this->db->resultOne();
+    }
+
+    public function getAllDetailsById($id) {
+//      Fetch information in the user
+        $this->db->query('SELECT * FROM user INNER JOIN student ON user.id = student.user_id WHERE id=:id');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        $student = $this->db->resultAllAssoc()[0];
+
+//       Fetch location
+        $location = $this->getStudentLocation($id);
+        $student['latitude'] = $location->latitude;
+        $student['longitude'] = $location->longitude;
+
+        return $student;
     }
 
 // TODO: This function should be moved into tutor model
