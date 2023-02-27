@@ -418,7 +418,7 @@ body.dark .home .text {
     border: 20px solid #FFA620;
     border-right: 40px solid #FFA620;
     border-left: none;
-    overflow-y: scroll;
+    overflow: scroll;
 }
 
 

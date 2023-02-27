@@ -23,15 +23,18 @@ class AdminProfileView extends Controller{
             redirect('/login');
         }
 
+
         if ($request->isPost()) {
             $bodyData = $request->getBody();
 
-            echo '<pre>';
-            print_r($bodyData);
-            echo '</pre>';
+            $newPassword = $bodyData['newPassword'];
+
+            $this->adminProfileModel->updatePassword($request->getUserId(),$newPassword);
+
+
+            $this->view('admin/profileView', $request);
         }
 
 
-        // $this->view('admin/profileView', $request);
     }
 }
