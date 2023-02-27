@@ -34,9 +34,10 @@ class StudentProfile extends Controller {
             $errors = [
                 'first_name_error' => '',
                 'last_name_error' => '',
-                'letter_box_number_error' => '',
-                'street_error' => '',
+                'address_line_1_error' => '',
+                'address_line_2_error' => '',
                 'city_error' => '',
+                'district_error' => '',
                 'year_of_exam_error' => '',
                 'telephone_number_error' => ''
             ];
