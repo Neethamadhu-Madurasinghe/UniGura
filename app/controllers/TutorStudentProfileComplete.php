@@ -31,8 +31,8 @@ class TutorStudentProfileComplete extends Controller {
                 'profile_picture' => $imagePath,
                 'first_name' => $body['first-name'],
                 'last_name' => $body['last-name'],
-                'address_line_1' => $body['address_line_1'],
-                'address_line_2' => $body['address_line_2'],
+                'address_line_1' => $body['address-line-1'],
+                'address_line_2' => $body['address-line-2'],
                 'city' => $body['city'],
                 'district' => $body['district'],
                 'year_of_exam' => $body['year-of-exam'],
@@ -59,7 +59,7 @@ class TutorStudentProfileComplete extends Controller {
 //           Validate all the fields
             $data['errors']['first_name_error'] = validateName($data['first_name']);
             $data['errors']['last_name_error'] = validateName($data['last_name']);
-            $data['errors']['address_line_1'] = validateAddressLines($data['address_line_1']);
+            $data['errors']['address_line_1'] = validateAddressLines($data['address_line_1'], true);
             $data['errors']['address_line_2'] = validateAddressLines($data['address_line_2']);
             $data['errors']['city_error'] = validateCity($data['city']);
             $data['errors']['district'] = validateDistrict($data['district']);
@@ -107,7 +107,7 @@ class TutorStudentProfileComplete extends Controller {
                 'address_line_2' => '',
                 'city' => '',
                 'district' => '',
-                'year_of_exam' => 0,
+                'year_of_exam' => 2024,
                 'telephone_number' => '',
                 'gender' => 'not-selected',
                 'medium' => 'sinhala',

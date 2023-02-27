@@ -12,8 +12,9 @@ function validateName(string $name): String {
     }
 }
 
-function validateAddressLines(string $addressLine): String {
-    if (empty($addressLine)) {
+function validateAddressLines(string $addressLine, bool $isMandatory = false): String {
+
+    if ($isMandatory && empty($addressLine)) {
         return 'Please enter a valid Address Line';
 
     }elseif (strlen($addressLine) > 255) {

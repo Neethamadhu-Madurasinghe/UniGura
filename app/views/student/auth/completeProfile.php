@@ -176,7 +176,11 @@ Header::render(
                     </div>
 
                     <div class="map-container" id="map-container">
-                        <p>Select location</p>
+                        <div class="map-container-title">
+                            <p>Select your current location</p>
+                            <span id="help"> ? <span class="tooltiptext">This location will be used when searching tutors</span></span>
+                        </div>
+
                         <div id="map" class="map"></div>
                         <div id="marker"
                              title="Marker"
