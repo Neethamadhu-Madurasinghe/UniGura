@@ -39,7 +39,7 @@ class StudentProfile extends Controller {
                 'phone_number' => $body['telephone-number'],
                 'gender' => $body['gender'],
                 'medium' => $body['medium'],
-                'preferred_class_mode' => $body['preferred-class-mode'],
+                'mode' => $body['preferred-class-mode'],
                 'longitude' => $body['longitude'],
                 'latitude' => $body['latitude'],
 
@@ -80,10 +80,11 @@ class StudentProfile extends Controller {
                 $errors['year_of_exam_error'] === '' &&
                 $errors['telephone_number_error'] === ''
             ) {
+
                 if ($this->studentModel->setStudentProfileDetails($data)) {
-                    echo 'Success';
-                }else {
-                    echo 'fail';
+
+                } else {
+
                 }
 
             }else {

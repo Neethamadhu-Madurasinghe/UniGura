@@ -114,7 +114,7 @@ class ModelStudent {
         $this->db->bind('city', $data['city'], PDO::PARAM_STR);
         $this->db->bind('district', $data['district'], PDO::PARAM_STR);
         $this->db->bind('gender', $data['gender'], PDO::PARAM_STR);
-        $this->db->bind('mode', $data['preferred_class_mode'], PDO::PARAM_STR);
+        $this->db->bind('mode', $data['mode'], PDO::PARAM_STR);
         $this->db->bind('location', $location, PDO::PARAM_STR);
         $this->db->bind('srid', 4326, PDO::PARAM_INT);
         $this->db->bind('id', $data['id'], PDO::PARAM_INT);
