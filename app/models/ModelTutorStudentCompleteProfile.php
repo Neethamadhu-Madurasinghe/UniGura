@@ -14,9 +14,10 @@ class ModelTutorStudentCompleteProfile {
                  first_name = :first_name,
                  last_name = :last_name,
                  phone_number = :phone_number,
-                 letter_box_number = :letter_box_number,
-                 street = :street,
+                 address_line1 = :address_line_one,
+                 address_line2 = :address_line_two,
                  city = :city,
+                 district = :district,
                  gender = :gender,
                  profile_picture = :profile_picture,
                  mode = :mode,
@@ -28,9 +29,10 @@ class ModelTutorStudentCompleteProfile {
         $this->db->bind('first_name', $data['first_name'], PDO::PARAM_STR);
         $this->db->bind('last_name', $data['last_name'], PDO::PARAM_STR);
         $this->db->bind('phone_number', $data['telephone_number'], PDO::PARAM_STR);
-        $this->db->bind('letter_box_number', $data['letter_box_number'], PDO::PARAM_STR);
-        $this->db->bind('street', $data['street'], PDO::PARAM_STR);
+        $this->db->bind('address_line_one', $data['address_line_1'], PDO::PARAM_STR);
+        $this->db->bind('address_line_two', $data['address_line_2'], PDO::PARAM_STR);
         $this->db->bind('city', $data['city'], PDO::PARAM_STR);
+        $this->db->bind('district', $data['district'], PDO::PARAM_STR);
         $this->db->bind('gender', $data['gender'], PDO::PARAM_STR);
         $this->db->bind('profile_picture', $data['profile_picture'], PDO::PARAM_STR);
         $this->db->bind('mode', $data['preferred_class_mode'], PDO::PARAM_STR);

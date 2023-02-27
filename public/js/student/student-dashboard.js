@@ -19,21 +19,36 @@ async function sendClassListRequest() {
     });
 
     const tutoringClasses = (await response.json()).tutoring_classes;
-    classCardContainerUI.innerHTML = '';
 
-    tutoringClasses.forEach(tutoringClass => {
-        tutoringClass.class_type = tutoringClass.class_type.charAt(0).toUpperCase() + tutoringClass.class_type.slice(1);
-        if (!tutoringClass.tutor.profile_picture) {
-            tutoringClass['tutor']['profile_picture'] = '/public/img/common/profile.png';
-        }
+    // Disable filters and show no Classes message if there are no records
+    if (subjectFilterUI.value === 'all' &&
+        completionFilterUI.value === 'all' &&
+        paymentFilterUI.value === 'all' &&
+        tutoringClasses.length === 0) {
+        subjectFilterUI.disabled = true;
+        completionFilterUI.disabled = true;
+        paymentFilterUI.disabled = true;
 
-        if (tutoringClass.day_count > 0) {
-            tutoringClass['completion'] = Math.round(tutoringClass.incomplete_day_count * 100 / tutoringClass.day_count);
-        }else {
-            tutoringClass['completion'] = 0;
-        }
+    } else {
+        subjectFilterUI.disabled = false;
+        completionFilterUI.disabled = false;
+        completionFilterUI.disabled = false;
 
-        classCardContainerUI.innerHTML += `
+        classCardContainerUI.innerHTML = '';
+
+        tutoringClasses.forEach(tutoringClass => {
+            tutoringClass.class_type = tutoringClass.class_type.charAt(0).toUpperCase() + tutoringClass.class_type.slice(1);
+            if (!tutoringClass.tutor.profile_picture) {
+                tutoringClass['tutor']['profile_picture'] = '/public/img/common/profile.png';
+            }
+
+            if (tutoringClass.day_count > 0) {
+                tutoringClass['completion'] = Math.round(tutoringClass.incomplete_day_count * 100 / tutoringClass.day_count);
+            }else {
+                tutoringClass['completion'] = 0;
+            }
+
+            classCardContainerUI.innerHTML += `
             <div class="class-card">
                 <div class="class-card-top-section">
                     <h2>${tutoringClass.module.name} ${tutoringClass.class_type}</h2>
@@ -51,8 +66,8 @@ async function sendClassListRequest() {
                             <img
                                 src="${'http://localhost/unigura//public/img/common/money 1.png'}"
                                 class="${tutoringClass.payment_due_day_count > 0 ?
-                                "payment-due-image" :
-                                "payment-due-image-hidden"}">
+                                        "payment-due-image" :
+                                        "payment-due-image-hidden"}">
                         </div>
                     </div>
 
@@ -66,7 +81,10 @@ async function sendClassListRequest() {
                     <button class="btn btn-enter-class">Enter</button>
                 </div>
             </div>'`;
-    });
+        });
+    }
+
+
 }
 
 window.onload = function() {
