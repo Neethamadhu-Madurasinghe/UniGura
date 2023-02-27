@@ -28,11 +28,14 @@ MainNavbar::render($request);
 
 <div class="main-area-container">
 
-    <form action="" id="image-upload-form">
+    <form action="<?php echo URLROOT . '/student/change-profile-picture' ?>"
+          id="image-upload-form"
+          enctype = "multipart/form-data"
+          method="post">
         <h1 class="main-title">My Profile</h1>
         <div class="upload-picture-container">
             <img src="<?php echo URLROOT . $request->getUserPicture() ?>" alt="" id="profile-picture">
-            <input type="file" id="actual-btn" accept="image/*" hidden/>
+            <input type="file" name="profile-picture" id="actual-btn" accept="image/*" hidden onchange="this.form.submit()" />
             <label for="actual-btn" id="profile-image-upload-btn">Change and Save</label>
         </div>
     </form>

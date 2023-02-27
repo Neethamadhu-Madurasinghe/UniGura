@@ -131,4 +131,12 @@ class ModelStudent {
         return $this->db->commitTransaction();
     }
 
+    public function setStudentProfilePicture(string $imagePath, int $id): bool {
+        $this->db->query('UPDATE user SET profile_picture=:profile_picture WHERE id = :id;');
+        $this->db->bind('profile_picture', $imagePath, PDO::PARAM_STR);
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        return $this->db->execute();
+    }
+
 }

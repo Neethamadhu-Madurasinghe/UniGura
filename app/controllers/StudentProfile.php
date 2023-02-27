@@ -112,10 +112,46 @@ class StudentProfile extends Controller {
 
             $data['errors'] = $errors;
 
-//          Fetch request data
+//          Fetch tutor request data
             $data['requests'] = $this->requestModel->getRequestsByStudentId($request->getUserId());
 
         }
         $this->view('/student/profile', $request, $data);
+    }
+
+    public function changeProfilePicture(Request $request) {
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        if (!$request->isStudent()) {
+            redirectBasedOnUserRole($request);
+        }
+
+//      Post request handler
+        if ($request->isPost()) {
+            $imagePath = handleUpload(
+                array('.png', 'jpeg', 'jpg', 'JPG'),
+                '\\public\\profile_pictures\\',
+                'profile-picture'
+            );
+
+            if ($imagePath) {
+//                Get previous image
+                $previousImage = $request->getUserPicture();
+
+                if ($this->studentModel->setStudentProfilePicture($imagePath, $request->getUserId())) {
+//                    Delete the previous image if is not the default image
+                    if ($previousImage && $previousImage !== '/public/img/student/profile.png') {
+                        unlink(ROOT . $previousImage);
+                    }
+                    $_SESSION['user_picture'] = $imagePath;
+                }
+
+            }
+
+            redirect('/student/profile');
+
+        }
     }
 }
