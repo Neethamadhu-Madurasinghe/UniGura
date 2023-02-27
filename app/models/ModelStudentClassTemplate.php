@@ -20,8 +20,6 @@ class ModelStudentClassTemplate {
             $locationString = ' AND ST_Distance_Sphere(location, ST_PointFromText(:user_location, :srid)) <= :distance ';
         }
 
-
-
         $this->db->query('SELECT 
                                 id,
                                 first_name, 
@@ -54,7 +52,6 @@ class ModelStudentClassTemplate {
                                 . $orderString
                                        );
 
-
         $this->db->bind('subject_id', $data['subject'], PDO::PARAM_INT);
         $this->db->bind('module_id', $data['module'], PDO::PARAM_INT);
         $this->db->bind('class_type', $data['class_type'], PDO::PARAM_STR);
@@ -62,7 +59,6 @@ class ModelStudentClassTemplate {
         $this->db->bind('medium', $data['medium'], PDO::PARAM_INT);
         $this->db->bind('user_location1', $userLocation, PDO::PARAM_STR);
         $this->db->bind('srid1', 4326, PDO::PARAM_INT);
-
 
         if ($data['gender'] == 'male' || $data['gender'] == 'female') {
             $this->db->bind('gender', $data['gender'], PDO::PARAM_STR);
@@ -109,5 +105,55 @@ class ModelStudentClassTemplate {
     public function getMaximumClassPrice() {
         $this->db->query('SELECT MAX(session_rate) AS max_price FROM `tutoring_class_template`');
         return $this->db->resultOne();
+    }
+
+    public function getClassTemplateById($id): object {
+        $this->db->query('SELECT * FROM tutoring_class_tutor WHERE id=:id');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        return $this->db->resultOne();
+    }
+
+    public function doesTemplateExist($id): bool {
+        $this->db->query('SELECT * FROM tutoring_class_tutor WHERE id=:id');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        return $this->db->rowCount() > 0;
+    }
+
+    public function getNumberOfDayOfClass($id) {
+        $this->db->query('SELECT COUNT(id) AS day_count FROM day_template
+                                            WHERE class_template_id=:class_template_id');
+        $this->db->bind('class_template_id', $id, PDO::PARAM_INT);
+
+        return $this->db->resultOne()->day_count;
+    }
+
+    public function getClassTemplateByTutorId($id, $templateId = false): array {
+        $templateString = '';
+        if ($templateId) {
+            $templateString = ' AND id!=:template_id';
+        }
+
+        $this->db->query('SELECT * FROM tutoring_class_tutor WHERE user_id=:tutor_id' . $templateString);
+        $this->db->bind('tutor_id', $id, PDO::PARAM_INT);
+
+        if ($templateId) {
+            $this->db->bind('template_id', $templateId, PDO::PARAM_INT);
+        }
+
+        return $this->db->resultAllAssoc();
+    }
+
+    public function getTutorIdByClassTemplateId($id): mixed {
+        $this->db->query('SELECT user_id FROM tutoring_class_tutor WHERE id=:id');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        $result =  $this->db->resultOne();
+        if ($result) {
+            return $result->user_id;
+        }else {
+            return false;
+        }
     }
 }

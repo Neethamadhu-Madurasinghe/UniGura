@@ -225,7 +225,12 @@ async function sendSearchClassRequest() {
             </div>
             <p>${tutoringClass.uncompleted_class_count} Active students</p>
           </div>
-          <button class="btn btn-sm">See more</button>
+          <button class="btn btn-sm seemore-btn" 
+                  data-template=${tutoringClass.id} 
+                  data-mode=${LastSearch.mode} 
+                  >
+                  See more
+          </button>
         </div>
         <div class="tutor-search-card-price-section">
           <div class="price-box">
@@ -250,7 +255,7 @@ async function sendSearchClassRequest() {
         <div class="tutor-search-card-button-container">
         <button class="btn btn-sm" id="message-btn">Message Tutor</button>
         <button class="btn btn-sm send-request-btn"
-                data-tutor="${tutoringClass.tutor_id}" 
+                data-tutor=${tutoringClass.tutor_id}
                 data-template=${tutoringClass.id} 
                 data-mode=${LastSearch.mode} 
                 data-duration=${tutoringClass.duration}

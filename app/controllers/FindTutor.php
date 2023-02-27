@@ -18,7 +18,6 @@ class FindTutor extends Controller {
 
     public function findTutor(Request $request) {
 //       Redirect user to login page if not logged in
-        cors();
         if (!$request->isLoggedIn()) {
             redirect('/login');
         }
@@ -172,7 +171,7 @@ class FindTutor extends Controller {
         if ($request->isPost()) {
 //          Unauthorized error code
             if (!$request->isLoggedIn() || !$request->isStudent()) {
-                header("HTTP/1.0 401 Forbidden");
+                header("HTTP/1.0 401 Unauthorized");
                 return;
             }
 
@@ -229,7 +228,7 @@ class FindTutor extends Controller {
             header("HTTP/1.0 500 Internal Server Error");
 
         } else {
-//          This route has not get requests
+//          This route has no get requests
             header("HTTP/1.0 404 Not found");
         }
     }
