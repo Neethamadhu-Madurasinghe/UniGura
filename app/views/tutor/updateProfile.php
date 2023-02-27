@@ -136,6 +136,7 @@ MainNavbar::render($request);
                     </div>
 
                 </div>
+            </div>
 
 
 
