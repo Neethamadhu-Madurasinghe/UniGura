@@ -28,11 +28,14 @@ MainNavbar::render($request);
 
 <div class="main-area-container">
 
-    <form action="" id="image-upload-form">
+    <form action="<?php echo URLROOT . '/student/change-profile-picture' ?>"
+          id="image-upload-form"
+          enctype = "multipart/form-data"
+          method="post">
         <h1 class="main-title">My Profile</h1>
         <div class="upload-picture-container">
             <img src="<?php echo URLROOT . $request->getUserPicture() ?>" alt="" id="profile-picture">
-            <input type="file" id="actual-btn" accept="image/*" hidden/>
+            <input type="file" name="profile-picture" id="actual-btn" accept="image/*" hidden onchange="this.form.submit()" />
             <label for="actual-btn" id="profile-image-upload-btn">Change and Save</label>
         </div>
     </form>
@@ -44,7 +47,7 @@ MainNavbar::render($request);
             <button class="btn btn-utility">Change password</button>
         </div>
 
-        <form action="" id="complete-profile-form">
+        <form action="" method="post" id="complete-profile-form">
             <div class="form-main-area">
 
                 <div class="form-row">
@@ -145,7 +148,6 @@ MainNavbar::render($request);
                         </select>
                     </div>
                 </div>
-
                 <div class="form-row">
                     <div class="form-field">
                         <label for="medium">Medium</label>
@@ -154,8 +156,8 @@ MainNavbar::render($request);
                                 <?php echo $data['medium'] === 'sinhala' ? 'selected' : '' ?>>Sinhala</option>
                             <option value="english"
                                 <?php echo $data['medium'] === 'english' ? 'selected' : '' ?>>English</option>
-                            <option value="both"
-                                <?php echo $data['medium'] === 'both' ? 'selected' : '' ?>>Both</option>
+                            <option value="tamil"
+                                <?php echo $data['medium'] === 'tamil' ? 'selected' : '' ?>>Tamil</option>
                         </select>
                     </div>
 
@@ -240,7 +242,7 @@ MainNavbar::render($request);
         </div>
 
         <div class="request-history">
-            <h1>Pending Tutor Reqeusts</h1>
+            <h1>Pending Tutor Requests</h1>
             <div class="request-history-container">
                 <table class="data-table">
                     <tr>
@@ -253,7 +255,7 @@ MainNavbar::render($request);
                                     <td>' . $request['first_name'] . ' ' . $request['last_name'] . '</td>
                                     <td>' . $request['subject'] . '</td><td>' . $request['module'] . '</td>
                                     <td>' . $request['mode'] . '</td>
-                                    <td><button class="btn req-cancel-btn">Cancel</button></td>
+                                    <td><button class="btn req-cancel-btn" data-id="' . $request['id'] . '">Cancel</button></td>
                             </tr>';
                         }
                     ?>
@@ -270,7 +272,8 @@ MainNavbar::render($request);
 
         'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js',
         URLROOT . '/public/js/student/student-main-nav-bar.js',
-        URLROOT . '/public/js/common/student-tutor-complete-profile.js'
+        URLROOT . '/public/js/common/student-tutor-complete-profile.js',
+        URLROOT . '/public/js/student/profile.js'
     ]
 );
 ?>
