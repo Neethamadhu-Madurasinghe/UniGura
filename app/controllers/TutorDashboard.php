@@ -39,8 +39,6 @@ class TutorDashboard extends Controller
 
         $data['tutor_requests'] = json_encode($this->dashboardModel->getStudentRequests($request->getUserId()));
 
-  
-        
         $this->view('tutor/dashboard', $request, $data);
     }
 
@@ -144,6 +142,9 @@ class TutorDashboard extends Controller
         $this->view('tutor/createcclasstemplate', $request, $data);
     }
 
+
+
+
     public function getModule(Request $request) {
         //      Cors support
                 cors();
@@ -161,5 +162,9 @@ class TutorDashboard extends Controller
                 echo json_encode($data['modules']);
             }
 
+            
         }
+
+
+    
         

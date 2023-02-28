@@ -65,9 +65,7 @@
     }
 }
 
-/* FITLER CSS */
-
-
+/* FILTER CSS */
 
 .filter-container form {
     display: flex;
@@ -91,10 +89,10 @@
     margin: 10px 0;
     width: 100%;
     font-weight: bold;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'DM Sans', sans-serif;
 }
 
-/* FIlter CSS END */
+/* Filter CSS END */
 
 .class-container {
     display: flex;
@@ -118,6 +116,26 @@
         justify-content: center;
         margin: 10px 0 0 0;
     }
+}
+
+.no-class-message-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 50px 0;
+}
+
+.no-class-message-container h1 {
+    color: var(--bright-orange);
+    margin: 0;
+    padding: 0;
+}
+
+.no-class-message-container h3 {
+    color: var(--bright-orange);
+    font-weight: normal;
 }
 
 .class-card-container {
@@ -181,8 +199,6 @@
 .btn:active {
     background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
 }
-
-
 
 .btn-enter-class {
     width: 140px;

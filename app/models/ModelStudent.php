@@ -28,7 +28,7 @@ class ModelStudent {
         $this->db->query('SELECT * FROM user INNER JOIN student ON user.id = student.user_id WHERE id=:id');
         $this->db->bind('id', $id, PDO::PARAM_INT);
 
-        $student = $this->db->resultAllAssoc()[0];
+        $student = $this->db->resultOneAssoc();
 
 //       Fetch location
         $location = $this->getStudentLocation($id);
@@ -84,4 +84,59 @@ class ModelStudent {
 
         return $this->db->resultAllAssoc();
     }
+
+    //    Used to set all the profile data of a student
+    public function setStudentProfileDetails($data): bool {
+        $this->db->startTransaction();
+
+        $this->db->query('UPDATE user SET
+                 first_name = :first_name,
+                 last_name = :last_name,
+                 phone_number = :phone_number,
+                 address_line1 = :address_line_one,
+                 address_line2 = :address_line_two,
+                 city = :city,
+                 district = :district,
+                 gender = :gender,
+                 mode = :mode,
+                 location = ST_PointFromText(:location, :srid)
+                 WHERE
+                 id = :id;
+                 ');
+
+        $location = 'POINT(' . floatval($data['latitude']) . " " . floatval($data['longitude']) . ')';
+
+        $this->db->bind('first_name', $data['first_name'], PDO::PARAM_STR);
+        $this->db->bind('last_name', $data['last_name'], PDO::PARAM_STR);
+        $this->db->bind('phone_number', $data['phone_number'], PDO::PARAM_STR);
+        $this->db->bind('address_line_one', $data['address_line1'], PDO::PARAM_STR);
+        $this->db->bind('address_line_two', $data['address_line2'], PDO::PARAM_STR);
+        $this->db->bind('city', $data['city'], PDO::PARAM_STR);
+        $this->db->bind('district', $data['district'], PDO::PARAM_STR);
+        $this->db->bind('gender', $data['gender'], PDO::PARAM_STR);
+        $this->db->bind('mode', $data['mode'], PDO::PARAM_STR);
+        $this->db->bind('location', $location, PDO::PARAM_STR);
+        $this->db->bind('srid', 4326, PDO::PARAM_INT);
+        $this->db->bind('id', $data['id'], PDO::PARAM_INT);
+
+        $this->db->execute();
+
+        $this->db->query('UPDATE student SET year_of_exam=:year_of_exam, medium=:medium WHERE user_id=:id');
+        $this->db->bind('id', $data['id'], PDO::PARAM_INT);
+        $this->db->bind('year_of_exam', $data['year_of_exam'], PDO::PARAM_INT);
+        $this->db->bind('medium', $data['medium'], PDO::PARAM_STR);
+
+        $this->db->execute();
+
+        return $this->db->commitTransaction();
+    }
+
+    public function setStudentProfilePicture(string $imagePath, int $id): bool {
+        $this->db->query('UPDATE user SET profile_picture=:profile_picture WHERE id = :id;');
+        $this->db->bind('profile_picture', $imagePath, PDO::PARAM_STR);
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        return $this->db->execute();
+    }
+
 }

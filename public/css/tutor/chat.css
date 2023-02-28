@@ -241,7 +241,7 @@ h1, h2, h3, h4, h5, h6 {
  
  .chat .chat-history .other-message:after {
      border-bottom-color: #e8f1f3;
-     left: 93%
+     left: 93%;
  }
  
  .chat .chat-message {
@@ -261,7 +261,7 @@ h1, h2, h3, h4, h5, h6 {
  }
  
     .m-b-0::-webkit-scrollbar {
-      width: 8px;
+      width: 7px;
       background-color: #ffffff;
       padding-top: 12px;
       border-radius: 92px;
@@ -280,7 +280,7 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     #list::-webkit-scrollbar {
-         width: 8px;
+         width: 7px;
          background-color: #ffffff;
          padding-top: 12px;
          border-radius: 92px;

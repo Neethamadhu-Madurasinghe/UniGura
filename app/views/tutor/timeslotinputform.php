@@ -141,7 +141,6 @@ Header::render(
     let tableRows = document.querySelectorAll('.slot');
     const submit = document.querySelector('#submit');
 
-
     for (var i = 0; i < tableRows.length; i++) {
         tableRows[i].addEventListener("click", function() {
             this.setAttribute("data-state", 1);

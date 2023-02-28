@@ -71,15 +71,14 @@ class ModelTutorDashboard
         $this->db->query(' SELECT tutor_id
         FROM tutoring_class_template
         WHERE tutor_id = :id AND subject_id = :subject_id AND module_id = :module_id AND class_type = :class_type AND medium = :medium;');
-
         $this->db->bind('id', $data['id'], PDO::PARAM_INT);
         $this->db->bind('subject_id', $data['subject_id'], PDO::PARAM_INT);
         $this->db->bind('module_id', $data['module_id'], PDO::PARAM_INT);
         $this->db->bind('class_type', $data['class_type'], PDO::PARAM_STR);
         $this->db->bind('medium', $data['medium'], PDO::PARAM_STR);
-
         return count($this->db->resultAll());
     }
+
 
     public function setTutorclassTemplate($data): bool
     {
@@ -107,7 +106,9 @@ class ModelTutorDashboard
 
     public function getTutoringClassTemplates($id): array
     {
-        $this->db->query(' SELECT c.mode, c.medium, m.name as module , s.name as subject, c.id as course_id
+
+        $this->db->query(' SELECT c.current_rating, c.mode, c.medium, m.name as module , s.name as subject, c.id as course_id,
+        (SELECT COUNT(*) FROM tutoring_class WHERE class_template_id = c.id) as class_count
         FROM tutoring_class_template AS c
         JOIN subject AS s 
         ON c.subject_id = s.id
