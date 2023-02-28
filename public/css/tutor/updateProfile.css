@@ -4,11 +4,17 @@
     
 }
 
+form{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 0;}
+
 .parent {
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    height: 80%;
 }
 
 .div1 {
@@ -17,35 +23,50 @@
     margin: 20px;
     padding: 20px;
     border-radius: 10px;
+    margin-left: -5%;
+    height: 105%;
+    width: 80%;
+
 }
 
 .div2 {
-    width: 100%;
+    width: 89%;
     background-color: #fff;
-    margin: 20px;
+    margin: 21px;
     padding: 20px;
     border-radius: 10px;
-    height: fit-content;
+    margin-left: -15%;
 }
 
-.div2 .bank-container{
+.div2 .bankdiv{
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-column-gap: 10%;
-    width: 80%;
+    width: 0%;
     margin-left: 5%;
+    height: 65%;
 }
 
-
-
 .div3 {
-    grid-area: 1 / 3 / 2 / 4;
+    grid-area:  1/ 3 / 2/ 4;
     background-color: #fff;
     margin: 20px;
     padding: 20px;
     border-radius: 10px;
-    height: fit-content;
+    height: 90%;
+    margin-left: -22%;
+    width: 89%;
 }
+.div3 .edudiv{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-column-gap: 10%;
+    width: 0%;
+    margin-left: 5%;
+    height: 65%;
+    margin-top: 11%;
+}
+
 
 
 
@@ -57,6 +78,9 @@
     border-radius: 10px;
     height: fit-content;
     margin-top: 40px;
+    width: 91%;
+    height: 105%;
+    margin-left: -7%;
 }
 
 
@@ -102,8 +126,8 @@
 
 .tutor-profile {
     width: 500px;
-    height: 100%;
-    max-width: 500px;
+    height: fit-content;
+    
     margin-top: 40px;
 }
 
@@ -124,6 +148,7 @@
     font-size: 0.9rem;
     font-weight: bold;
     width: 300px;
+    margin-left: 20%;
 }
 
 .form-field label span {
@@ -142,32 +167,102 @@
     height: 35px;
     border-radius: 5px;
     padding-left: 5px;
-    width: 340px;
+    width: 250px;
     margin-top: 6px;
+    margin-left: 20%;
+
 }
-
-
-#submit-btn-container {
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-    margin: 20px 0;
+.form-field2 {
+    margin-bottom: 20px;
+    width: 300px;
 }
-
-.btn {
-    width: 188px;
-    height: 40px;
-    font-size: 20px;
-    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
-    color: white;
+.form-field2 label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    width: 300px;
+    margin-left: -25px;
+    
+}
+.form-field2 input,
+.form-field2 select {
     border: none;
+    background-color: rgb(255, 237, 220);
+    border-bottom: 1px solid var(--bright-orange);
+    font-size: 1rem;
+    height: 35px;
     border-radius: 5px;
+    padding-left: 5px;
+    width: 250px;
+    margin-top: 6px;
+    margin-left: -30px;
+
+}
+.form-field2 label span {
+    color: red;
+    font-size: 0.7rem;
+    font-weight: normal;
+}
+.form-field3 {
+    margin-bottom: 20px;
+    width: 300px;
+}
+.form-field3 label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    width: 300px;
+    margin-left: -25px;
+    
+}
+.form-field3 input,
+.form-field3 select {
+    border: none;
+    background-color: rgb(255, 237, 220);
+    border-bottom: 1px solid var(--bright-orange);
+    font-size: 1rem;
+    height: 35px;
+    border-radius: 5px;
+    padding-left: 5px;
+    width: 250px;
+    margin-top: 6px;
+    margin-left: -30px;
+
+}
+.form-field3 label span {
+    color: red;
+    font-size: 0.7rem;
+    font-weight: normal;
+}
+
+
+
+.submit-btn button{
+    width: 200px;
+    margin: 20px 0;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    padding: 10px;
+    font-size: 20px;
+    margin-top: -20px;
+    border-radius: 5px;
+    margin-left: 90px;
+    color: white;
+    font-family: sans-serif;
     cursor: pointer;
+    text-align: center;
     transition: transform 0.1s;
-    user-select: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    border-color: orange;
+    
+   
+}
+
+.submit-btn button:hover {
+    transform: scale(1.05);
+}
+
+.submit-btn button:active {
+    background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
+
 }
 
 .btn:hover {
@@ -178,7 +273,7 @@
     background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
 }
 
-.tutor-profile .change-password{
+.tutor-profile .submit{
     text-align: center;
     width: 68%;
     margin-top: 50px;
@@ -216,7 +311,6 @@
 }
 
 
-/* ============================================== TIME SLOT OF TUTOR ====================================== */
 
 .color-introduce table tr{
     display: flex;
@@ -238,7 +332,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 5px;
     width: 100%;
+    height: 80%;
 }
 
 .pop-time-table h2 {
@@ -255,30 +351,35 @@
 #time-table {
     width: 100%;
     border-spacing: 15px;
-
 }
 
 #time-table tr th {
     color: var(--bright-orange);
     font-size: 0.75rem;
     width: 80px;
+    text-align: center;
 }
 
 .slot {
-    border-radius: 5px;
+    border-radius: 10px;
     height: 36px;
-    width: 100px;
+    min-width: 100px;
     margin: 10px;
 }
 
 
 .slot-used {
     background-color: #d2d4f5;
-
+    outline: 10% solid #d2d4f5;
 }
 
 .slot-free {
     background-color:#FFCFAC;
+    transition: transform 0.1s;
+    cursor: pointer;
+}
+.slot-free:hover {
+    transform: scale(1.05);
 }
 
 .slot-selected {
