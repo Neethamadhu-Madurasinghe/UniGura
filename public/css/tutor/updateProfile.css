@@ -1,0 +1,387 @@
+*{
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+form{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 0;}
+
+.parent {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    height: 80%;
+}
+
+.div1 {
+    grid-area: 1 / 1 /3 / 2;
+    background-color: #fff;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: -5%;
+    height: 105%;
+    width: 80%;
+
+}
+
+.div2 {
+    width: 89%;
+    background-color: #fff;
+    margin: 21px;
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: -15%;
+}
+
+.div2 .bankdiv{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-column-gap: 10%;
+    width: 0%;
+    margin-left: 5%;
+    height: 65%;
+}
+
+.div3 {
+    grid-area:  1/ 3 / 2/ 4;
+    background-color: #fff;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    height: 90%;
+    margin-left: -22%;
+    width: 89%;
+}
+.div3 .edudiv{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-column-gap: 10%;
+    width: 0%;
+    margin-left: 5%;
+    height: 65%;
+    margin-top: 11%;
+}
+
+
+
+
+.div4 {
+    grid-area: 2 / 2 / 3 / 4;
+    background-color: #fff;
+    margin: 0px 20px;
+    padding: 20px;
+    border-radius: 10px;
+    height: fit-content;
+    margin-top: 40px;
+    width: 91%;
+    height: 105%;
+    margin-left: -7%;
+}
+
+
+.div2 h2{
+    text-align: center;
+}
+
+
+
+.div3 h2{
+    text-align: center;
+}
+
+
+
+.div4 h2{
+    text-align: center;
+}
+
+
+
+:root {
+    --bright-orange: #FF8125;
+    --lightest-orange: #FFCFAC;
+    --dark-orange: #F7711A;
+}
+
+.upload-picture-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.upload-picture-container h1{
+    margin-bottom: 20px;
+}
+
+.upload-picture-container img{
+    width: 170px;
+    margin-bottom: 20px;
+}
+
+.tutor-profile {
+    width: 500px;
+    height: fit-content;
+    
+    margin-top: 40px;
+}
+
+.tutor-profile h3{
+    font-family: 'DM Sans', sans-serif;
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+.form-field {
+    margin-bottom: 20px;
+    width: 300px;
+}
+
+.form-field label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    width: 300px;
+    margin-left: 20%;
+}
+
+.form-field label span {
+    color: red;
+    font-size: 0.7rem;
+    font-weight: normal;
+}
+
+
+.form-field input,
+.form-field select {
+    border: none;
+    background-color: rgb(255, 237, 220);
+    border-bottom: 1px solid var(--bright-orange);
+    font-size: 1rem;
+    height: 35px;
+    border-radius: 5px;
+    padding-left: 5px;
+    width: 250px;
+    margin-top: 6px;
+    margin-left: 20%;
+
+}
+.form-field2 {
+    margin-bottom: 20px;
+    width: 300px;
+}
+.form-field2 label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    width: 300px;
+    margin-left: -25px;
+    
+}
+.form-field2 input,
+.form-field2 select {
+    border: none;
+    background-color: rgb(255, 237, 220);
+    border-bottom: 1px solid var(--bright-orange);
+    font-size: 1rem;
+    height: 35px;
+    border-radius: 5px;
+    padding-left: 5px;
+    width: 250px;
+    margin-top: 6px;
+    margin-left: -30px;
+
+}
+.form-field2 label span {
+    color: red;
+    font-size: 0.7rem;
+    font-weight: normal;
+}
+.form-field3 {
+    margin-bottom: 20px;
+    width: 300px;
+}
+.form-field3 label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    width: 300px;
+    margin-left: -25px;
+    
+}
+.form-field3 input,
+.form-field3 select {
+    border: none;
+    background-color: rgb(255, 237, 220);
+    border-bottom: 1px solid var(--bright-orange);
+    font-size: 1rem;
+    height: 35px;
+    border-radius: 5px;
+    padding-left: 5px;
+    width: 250px;
+    margin-top: 6px;
+    margin-left: -30px;
+
+}
+.form-field3 label span {
+    color: red;
+    font-size: 0.7rem;
+    font-weight: normal;
+}
+
+
+
+.submit-btn button{
+    width: 200px;
+    margin: 20px 0;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    padding: 10px;
+    font-size: 20px;
+    margin-top: -20px;
+    border-radius: 5px;
+    margin-left: 90px;
+    color: white;
+    font-family: sans-serif;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.1s;
+    border-color: orange;
+    
+   
+}
+
+.submit-btn button:hover {
+    transform: scale(1.05);
+}
+
+.submit-btn button:active {
+    background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
+
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn:active {
+    background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
+}
+
+.tutor-profile .submit{
+    text-align: center;
+    width: 68%;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#profile-image-upload-btn {
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    font-size: 17px;
+    color: white;
+    padding: 10px;
+    font-family: sans-serif;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
+    width: 200px;
+    text-align: center;
+    transition: transform 0.1s;
+}
+
+
+#profile-image-upload-btn:hover {
+    transform: scale(1.05);
+}
+
+#profile-image-upload-btn:active {
+    background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
+}
+
+.profile-picture-added {
+    background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%) !important;
+}
+
+
+
+.color-introduce table tr{
+    display: flex;
+    flex-direction: column;
+}
+
+.color-introduce table tr td{
+    width: 110px;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pop-time-table {
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    width: 100%;
+    height: 80%;
+}
+
+.pop-time-table h2 {
+    font-family: 'DM Sans', sans-serif;
+}
+
+.time-table-container {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#time-table {
+    width: 100%;
+    border-spacing: 15px;
+}
+
+#time-table tr th {
+    color: var(--bright-orange);
+    font-size: 0.75rem;
+    width: 80px;
+    text-align: center;
+}
+
+.slot {
+    border-radius: 10px;
+    height: 36px;
+    min-width: 100px;
+    margin: 10px;
+}
+
+
+.slot-used {
+    background-color: #d2d4f5;
+    outline: 10% solid #d2d4f5;
+}
+
+.slot-free {
+    background-color:#FFCFAC;
+    transition: transform 0.1s;
+    cursor: pointer;
+}
+.slot-free:hover {
+    transform: scale(1.05);
+}
+
+.slot-selected {
+    background-image: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+}

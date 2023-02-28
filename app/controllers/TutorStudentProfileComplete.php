@@ -92,7 +92,6 @@ class TutorStudentProfileComplete extends Controller {
                     } else {
                         $_SESSION['user_picture'] = '/public/img/student/profile.png';
                     }
-
                     redirectBasedOnUserRole($request);
                 }else {
                     header("HTTP/1.0 500 Internal Server Error");
@@ -146,7 +145,7 @@ class TutorStudentProfileComplete extends Controller {
         if (!$request->isProfileNotCompletedTutor()) {
             redirectBasedOnUserRole($request);
         }
-
+        
         if ($request->isPost()) {
             $body = $request->getBody();
 
@@ -196,7 +195,7 @@ class TutorStudentProfileComplete extends Controller {
                 'advanced_level_result' => $advancedLevelResultPath,
                 'id_copy'  => $idCopyPath,
                 'university_entrance_letter' => $uniEntranceLetterPath,
-                'user_role' => 1,
+                'user_role' => 7,
 
                 'errors' => [
                     'first_name_error' => '',
@@ -256,12 +255,13 @@ class TutorStudentProfileComplete extends Controller {
                 }
 
                 if ($this->tutorStudentModel->setTutorDetails($data)) {
+                    $_SESSION['user_role'] = 7;
                     if ($imagePath) {
                         $_SESSION['user_picture'] = $imagePath;
                     } else {
                         $_SESSION['user_picture'] = '/public/img/student/profile.png';
                     }
-                    redirect('tutor/not-approved');
+                    redirect('tutor/pending');
                 }else {
                     header("HTTP/1.0 500 Internal Server Error");
                     die('Something went wrong');
@@ -318,5 +318,7 @@ class TutorStudentProfileComplete extends Controller {
 
         $this->view('tutor/auth/completeProfile', $request, $data);
     }
+
+   
 
 }

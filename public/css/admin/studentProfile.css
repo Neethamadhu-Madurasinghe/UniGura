@@ -1,0 +1,283 @@
+.top-details-box{
+    width: 97%;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+.profile-picture img{
+    width: 150px;
+    border-radius: 50%;
+}
+
+.class-summary{
+    width: 40%;
+    margin-right: 50px;
+}
+
+.total-class{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    border: 2px solid #FFA620;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+
+.pending-amount{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    border: 2px solid #FFA620;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.class-summary h1{
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.class-summary h2{
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.name-actions{
+    position: relative;
+
+}
+
+.student-details{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-left: 20px;
+}
+
+.name-actions{
+    margin-left: 30px;
+    margin-bottom: 15px;
+}
+
+.actions .chat button{
+    background: #FFA620;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+.actions .chat i{
+    margin-right: 8px;
+    position: relative;
+    top: 2px;
+
+}
+
+
+
+/* ========================= CLASS CARDS ============================== */
+
+.active-classes{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 40px;
+    width: 96%;
+    margin: 20px auto;
+    height: 54vh;
+    display: none;
+    overflow-y: scroll;
+    padding-right: 20px;
+}
+
+
+.active-classes::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.active-classes::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.active-classes:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
+.finished-classes{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 40px;
+    width: 96%;
+    margin: 20px auto;
+    display: none;
+}
+
+.one-class{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #FFA620;
+}
+
+.tutor-profile img{
+    width: 100px;
+    border-radius: 50%;
+}
+
+.class-details{
+    margin-left: 30px;
+}
+
+.class-details > div{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    line-height: 1.4;
+}
+
+
+.class-details h1{
+    font-size: 18px;
+    font-weight:bold;
+}
+
+.class-details h2{
+    font-size: 18px;
+    font-weight: 400;
+    margin-left: 10px;
+}
+
+
+
+/* ========================= MENU SELECTION AREA ============================== */
+
+
+.filed-selection-btn{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    width: 90%;
+    margin: 20px auto;
+    background-color: #ffa620a3;
+}
+
+.filed-selection-btn button{
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 5px;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    user-select: none;
+}
+
+.filed-selection-btn button:hover {
+    transform: scale(1.05);
+}
+
+.filed-selection-btn button:active {
+    background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
+}
+
+
+
+
+/* ========================= STUDENT INFO ============================== */
+
+.student-info{
+    width: 96%;
+    margin: 20px auto;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* display: none; */
+}
+
+.student-info > div{
+    width: 30%;
+}
+
+.student-info > div > div{
+    border: 2px solid #FC941D;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px 0;
+
+}
+
+.student-info h1{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.student-info h2{
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.section-1 > div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.section-2 > div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+
+/*  ========================= HIDE SHOW / BLOCK UNBLOCK/ CHAT ============================== */
+
+.actions{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.actions .button img{
+    width: 30px;
+    vertical-align: middle;
+}
+
+.actions .button{
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 1px 1px 2px 2px #FC941D;
+    height: 48px;
+    width: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 13px;
+    margin-right: 10px;
+}

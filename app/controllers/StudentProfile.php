@@ -3,6 +3,7 @@
 class StudentProfile extends Controller {
     private ModelStudent $studentModel;
     private ModelStudentRequest $requestModel;
+
 //    This controller is just for telephone number validation
     private ModelTutorStudentCompleteProfile $tutorStudentModel;
 
@@ -93,13 +94,11 @@ class StudentProfile extends Controller {
             }
 
 
-
 //      Otherwise handle GET request
         } else {
 
 //           Fetch student data
             $data = $this->studentModel->getAllDetailsById($request->getUserId());
-
             $errors = [
                 'first_name_error' => '',
                 'last_name_error' => '',
@@ -119,6 +118,7 @@ class StudentProfile extends Controller {
         }
         $this->view('/student/profile', $request, $data);
     }
+
 
     public function changeProfilePicture(Request $request) {
         if (!$request->isLoggedIn()) {
@@ -176,4 +176,3 @@ class StudentProfile extends Controller {
         }
     }
 }
-

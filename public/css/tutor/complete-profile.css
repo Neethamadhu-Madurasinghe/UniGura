@@ -60,6 +60,7 @@
     transition: transform 0.1s;
 }
 
+
 #profile-image-upload-btn:hover {
     transform: scale(1.05);
 }
@@ -72,53 +73,28 @@
     background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%) !important;
 }
 
-.form-main-area {
-    width: 60%;
+
+ .form-main-area {
+    width: 100%;
     display: flex;
     flex-direction: column;
-}
-
-
-@media screen and (max-width: 1024px) {
-    .form-main-area {
-        width: 80%;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .form-main-area {
-        width: 100%;
-    }
+  
 }
 
 
 .form-row {
     width: 100%;
+    
     display: flex;
     justify-content: space-between;
     margin: 5px 0;
 }
 
-@media screen and (max-width: 600px) {
-    .form-row {
-        width: 100%;
-        flex-direction: column;
-        margin: 0;
-    }
-}
 
-
-.form-field {
+.form .form-field {
     width: 45%;
     display: flex;
     flex-direction: column;
-}
-
-@media screen and (max-width: 600px) {
-    .form-field {
-        width: 100%;
-        margin: 5px 0;
-    }
 }
 
 .form-field label {
@@ -132,11 +108,13 @@
     justify-content: space-between;
 }
 
+
 .form-field label span {
     color: red;
     font-size: 0.7rem;
     font-weight: normal;
 }
+
 
 .upload-button-error {
     color: red;
@@ -238,13 +216,6 @@
     cursor: move;
 }
 
-#submit-btn-container {
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-    margin: 20px 0;
-}
-
 
 .upload-btn-row {
     justify-content: space-between;
@@ -278,6 +249,12 @@
 }
 
 
+.btn-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+}
 
 
 .btn {
@@ -291,6 +268,10 @@
     cursor: pointer;
     transition: transform 0.1s;
     user-select: none;
+    padding: 10px;
+    text-align: center;
+    margin-top: 15px;
+    margin-left: 15px;
 }
 
 .btn:hover {
@@ -300,4 +281,39 @@
 .btn:active {
     background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
 }
+
+
+/* multipart form css */
+
+form{
+    position: relative;
+    margin-top: 20px;
+    width: 100%;
+    
+}
+
+
+ form .form{
+    position: absolute;
+    background-color: #fff;
+    transition: 0.3s ease;
+    width: 80%;
+}
+.second{
+    display: none;
+    pointer-events: none;
+    transform: translateX(100%);
+}
+form.secActive .second{
+    display: block;
+    pointer-events: auto;
+    transform: translateX(0);
+}
+form.secActive .first{
+    display: none;
+    pointer-events: none;
+    transform: translateX(-100%);
+}
+
+
 

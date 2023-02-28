@@ -1,0 +1,78 @@
+.container {
+    display: grid;
+    width: 70%;
+    margin-left: 15%;
+    justify-content: center;
+    grid-row-gap: 20px;
+
+
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    font-family: 'Heebo';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 18px;
+    letter-spacing: -0.28px;
+    color: #F7711A;
+    border-bottom: 1px solid rgb(210, 207, 207);
+}
+
+.image{
+    display: flex;
+    justify-content: center;
+    width: 90%;
+}
+
+img {
+    width: 200px;
+    height: auto;
+}
+
+.text {
+    display: flex;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 19px;
+    justify-items: right;
+}
+
+.message{
+    font-family: 'Heebo';
+    color :  rgb(149, 147, 147);
+    font-weight: 700;
+}
+
+.button{
+    display: flex;
+    justify-content: center; 
+ 
+}
+
+.button a {
+  width: 30%;
+  height: 20px;
+  font-size: 1rem;
+  background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px;
+  transition: transform 0.1s;
+  text-align: center;
+  margin-top: 20px;
+  text-decoration: none;
+}
+
+.button a:hover {
+  transform: scale(1.05);
+}
+
+.button a:active {
+  background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
+}
+

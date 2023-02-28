@@ -134,6 +134,8 @@ class TutorStudentAuth extends Controller {
                 $loggedUser = $this->userModel->login($data['email'], $data['password']);
                 if ($loggedUser) {
                     $this->createUserSession($loggedUser);
+
+
                 }else {
                     $data['errors']['password_error'] = 'Password is incorrect';
                     $this->view($this->loginView, $request, $data);

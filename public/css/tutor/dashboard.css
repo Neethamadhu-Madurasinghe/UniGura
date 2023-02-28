@@ -1,0 +1,844 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&display=swap');
+
+body{
+     margin: 0;
+     font-family: 'Poppins', sans-serif;
+     font-size: 1rem;
+     font-weight: 400;
+     line-height: 1.5;
+     color: #000000;
+     text-align: left;
+     padding: 10%;
+     height: 100%;
+     padding-top:20px;
+   }
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+
+}
+
+h2{
+     font-weight: 600;
+     font-family: 'Poppins', sans-serif;
+     margin-top: 0px;
+}
+h4{
+     font-weight: 600;
+     font-family: 'Poppins', sans-serif;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 15px;
+}
+.container {
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 40px;
+    background: #ffff;
+    padding: 20px;
+    width: 90%;
+    left: 8%;
+    right: 0%;
+    height: 100vh;
+    background-color: #99999800;
+}
+
+
+.container .right {
+
+}
+
+.container .left {
+
+}
+
+
+/* user greeting component */
+
+.container .left #usergreeting {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    height: 200px;
+}
+
+h1{
+    padding-top: 25px;
+    font-weight: 500;
+}
+.container .left #usergreeting #details {
+    display: grid;
+    /* Set a fixed width and height if required */
+    height: 180px;
+
+}
+
+.container .left #usergreeting #details #createcoursebtn {
+    display: grid;
+    align-items: end;
+}
+
+.container .right #usergreeting #details #createcoursebtn a {
+    text-decoration: none;
+}
+
+.container .right #usergreeting #details #createcoursebtn button {
+    box-sizing: border-box;
+    width: 170px;
+    height: 50px;
+    border: none;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 14px;
+    background: linear-gradient(180deg, #F7711A 0%, #FFA620 100%);
+    border-radius: 50px;
+    margin-top: 50px;
+    position: absolute;
+}
+.container .right #usergreeting #details #createcoursebtn button:hover {
+    transform: none;
+
+}
+
+.container .card  {
+    padding :  25px;
+    padding-top: 0px;
+    margin-bottom: 40px;
+}
+
+#image{
+    width: 60%;
+    height: auto;
+    margin-left: 35%;
+    margin-top: 0px;
+}
+
+
+.myclasses .content{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 40px;
+}
+
+.myclasses .content .component{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid 0px #F7711A ;
+    border-radius: 20px;
+    height: 150px;
+    width: 100%;
+    margin-top: 15px;
+    background-color: #ffffff;
+}
+
+
+.myclasses .content .component:hover{
+  box-shadow: 0 5px 35px rgb(0 0 0 / 7%);
+}
+
+.myclasses .content .component .count{
+    font-size: 30px;
+    font-weight: 800;
+    color: #000000;
+    padding-top: 15px;
+
+}
+
+.myclasses .content .component .view_all{
+    font-size: 15px;
+    font-weight: 600;
+    color:  rgba(112, 124, 151, 1) ;
+    text-decoration: underline;
+    cursor: pointer;
+
+}
+
+
+.myclasses .content .component .heading{
+  background: linear-gradient(180deg, #F7711A 0%, #FFA620 100%);
+    border-radius: 0px 0px 20px 20px;
+    width: fit-content;
+    text-align: left;
+    padding:20px ;
+    padding-top: 10px;
+    left: 0;
+    height: 40px;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+
+}
+
+/* class template rendering style */
+
+#mycourses #content .class-template{
+    height: 500px; 
+    overflow: scroll;
+    padding: 10px;
+}
+
+#mycourses #content .class-template .class-card{
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
+    height: 200px;
+    border: solid 1px #FFA620 ;
+    margin-bottom: 5px;
+    padding: 10px;
+    background: linear-gradient(180deg, #F5F3FB 0%, #FDFBFD 100%);
+    border-radius: 10px;
+}
+
+#mycourses #content .class-template .class-card .header{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+#mycourses #content .class-template .class-card .footer{ 
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+
+#mycourses #content .class-template .class-card .header .user{
+    margin-top:12px;
+    margin-left:  50px;
+}
+
+
+#balancetime{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+}
+
+#balancetime #content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#piechart {
+    margin: 20px; 
+    width: 300px;
+    height: 300px;
+}
+
+/* pending requests */
+
+.msg_box{
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 5%;
+    margin-top: 20px;
+    height: fit-content;
+}
+.msg_box:hover{
+    box-shadow: 0 5px 35px rgb(0 0 0 / 7%);
+}
+.msg_box header{
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+
+}
+
+.msg_box img{
+    border-radius: 50%;
+    width: 80%;
+
+}
+.msg_box button{
+    background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+    border-radius: 20px;
+    color: #ffffff;
+    font-size: 13px;
+    padding: 7px;
+    border: 0px ;
+    width: 40%;
+    margin-left: 60%;
+    cursor: pointer;
+    margin-top:0px ;
+}
+.msg_box button:hover{
+    background: #ff8f0ea9;
+    color: #ffffff;
+    font-size: 13px;
+    padding: 7px;
+    border: 0px ;   
+}
+
+.cards {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+  }
+  .cardss {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    margin-left: 0px;
+    background-color: #f7721a00;
+    margin-bottom: 20px;
+   
+  }
+
+  .cards::-webkit-scrollbar {
+    height: 7px;
+    background-color: #ffffff;
+    padding-top: 12px;
+    
+
+  }
+  .cards::-webkit-scrollbar-thumb,
+  .cards::-webkit-scrollbar-track {
+    border-radius: 92px;
+    
+
+
+  }
+
+  .cards::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+    
+  }
+  .cards::-webkit-scrollbar-track {
+    background: var(--thumb);
+    
+  }
+  @media (min-width: 500px) {
+    .cardss {
+      flex-basis: calc(100% - 10px);
+    }
+    .cardss:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+  @media (min-width: 700px) {
+    .cardss {
+      flex-basis: calc(calc(50% - 20px));
+    }
+    .cardss:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+  @media (min-width: 1100px) {
+    .cardss {
+      flex-basis: calc(50% -30ප්ං);
+         width: fit-content;
+    }
+
+    .cardss:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+
+/* payments */
+.Payments_box{
+  overflow-y: auto;
+  width: 100%;
+  height: 420px;
+  padding-right: 10px;
+  margin-top: 20px;
+}
+.Payments_box::-webkit-scrollbar-thumb,
+.Payments_box::-webkit-scrollbar-track {
+border-radius: 92px;
+
+
+
+}
+
+.Payments_box::-webkit-scrollbar {
+  width: 7px;
+  background-color: #ffffff;
+  padding-top: 12px;
+  border-radius: 92px;
+  border-right:10px solid white ;
+}
+.Payments_box::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+}
+.Payments{
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 50px;
+  padding-top: 20px;
+  height: 750PX;
+  margin-bottom: 20px;
+
+}
+
+.Payments_header{
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.103);
+
+}
+
+
+
+
+/* Dropdown Button */
+
+
+.dropbtn {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #ff8f0ea9;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  height: 40px;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  border: 0px;
+  background: linear-gradient(180deg, #F5F3FB 0%, #FDFBFD 100%);
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  
+}
+
+td, th {
+  border: 1px solid #dddddd00;
+  text-align: left;
+  padding: 10px;
+  
+}
+
+img{
+  width: 50PX;
+  margin-right: 0%;
+  padding-right: 0px;
+  border-radius: 50%;
+}
+table p{
+  font-size: 14px;
+  color: #9d9eaf;
+}
+tr:nth-child(odd) {
+  background-color: #dddddd42;
+}
+
+
+.table img{
+  border-radius: 50%;
+  width: 80%;
+
+}
+.msg_box_one button{
+  background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+  border-radius: 20px;
+  color: #ffffff;
+  font-size: 13px;
+  padding: 7px;
+  border: 0px ;
+  width: 40%;
+  margin-left: 60%;
+  cursor: pointer;
+  margin-top:0px ;
+}
+.msg_box_one button:hover{
+  background: #ff8f0ea9;
+  color: #ffffff;
+  font-size: 13px;
+  padding: 7px;
+  border: 0px ;   
+}
+
+.view_all{
+  font-size: 15px;
+  font-weight: 600;
+  color: #999998;
+  text-decoration: underline;
+  cursor: pointer;
+  text-align: right;
+
+}
+/* payment end */
+
+/* today classes */
+#todayclasses .all_message{
+  overflow-y: auto;
+  width: 100%;
+  height: 350px;
+  padding-right: 10px;
+  margin-top: 20px;
+}
+#todayclasses .all_message::-webkit-scrollbar-thumb,
+#todayclasses .all_message::-webkit-scrollbar-track {
+border-radius: 92px;
+
+
+
+}
+
+#todayclasses .all_message::-webkit-scrollbar {
+  width: 7px;
+  background-color: #ffffff;
+  padding-top: 12px;
+  border-radius: 92px;
+  border-right:10px solid white ;
+}
+#todayclasses .all_message::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+}
+
+#todayclasses .msg_box{
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 5%;
+  padding-bottom: 0px;
+  margin-bottom: 20px;
+  margin-top: 0px;
+  height: fit-content;
+}
+#todayclasses .msg_box:hover{
+  box-shadow: 0 5px 35px rgb(0 0 0 / 7%);
+}
+#todayclasses .msg_box header{
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+
+}
+
+#todayclasses .msg_box img{
+  border-radius: 50%;
+  width: 80%;
+
+}
+
+
+#todayclasses .msg_box button{
+  background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+  border-radius: 20px;
+  color: #ffffff;
+  font-size: 13px;
+  padding: 7px;
+  border: 0px ;
+  width: 25%;
+  margin-left: 75%;
+  cursor: pointer;
+  margin-top:0px ;
+}
+#todayclasses .msg_box button:hover{
+  background: #ff8f0ea9;
+  color: #ffffff;
+  font-size: 13px;
+  padding: 7px;
+  border: 0px ;   
+}
+
+#todayclasses .text_box{
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 5px;
+}
+
+#todayclasses h4{
+  margin-top: 3%;
+  margin: 0px;
+
+}
+
+#todayclasses p{
+  margin: 0px;
+  color: rgba(112, 124, 151, 1) ; 
+  padding: 0px;
+  font-size: 14px
+}
+
+/* finish today clases */
+
+/* my courses */
+
+#mycourses .all_message{
+  overflow-y: auto;
+  width: 100%;
+  height: 460px;
+  padding-right: 10px;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+#mycourses .all_message::-webkit-scrollbar-thumb,
+#mycourses .all_message::-webkit-scrollbar-track {
+border-radius: 92px;
+
+
+
+}
+
+#mycourses .all_message::-webkit-scrollbar {
+  width: 7px;
+  background-color: #ffffff;
+  padding-top: 12px;
+  border-radius: 92px;
+  border-right:10px solid white ;
+}
+#mycourses .all_message::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+}
+
+
+#mycourses .msg_box .headbox{
+  padding: 18px;
+  padding-right: 10px;
+}
+
+#mycourses .msg_box:hover{
+  box-shadow: 0 5px 35px rgb(0 0 0 / 7%);
+}
+#mycourses .msg_box text{
+
+  margin-top: 50px;
+
+}
+
+#mycourses .msg_box img{
+  border-radius: 50%;
+  width: 80%;
+
+}
+
+
+#mycourses .msg_box .close{
+  font-size: 15px;
+  height: 40px;
+  width: 100%;
+  border-radius: 0px  ;
+  border: none;
+  cursor: pointer;
+  background: #ff8800;
+  color: #ffffff;  
+  margin-left: 0px;
+  
+}
+
+.closeend{
+  font-size: 15px;
+  height: 40px;
+  width: 100%;
+  border-radius: 0px 0px 20px 0px ;
+  border: none;
+  cursor: pointer;
+  background: #ff8800;
+  color: #ffffff;  
+  margin-left: 0px;
+  
+}
+ .closestart{
+  font-size: 15px;
+  height: 40px;
+  width: 100%;
+  border-radius: 20px 0px 0px 0px ;
+  border: none;
+  cursor: pointer;
+  background: #ff8800;
+  color: #ffffff;  
+  margin-left: 0px;
+  
+}
+.star{
+  font-size: 15px;
+  height: 40px;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  background: #ffffff00;
+  color: #ff8800;  
+  margin-left: 0px;
+  
+  
+}
+
+.main_card{
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 10px 10px 20px 10px;
+  padding: 0px;
+  padding-bottom: 0px;
+  padding-right: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  height: 100%;
+
+}
+
+#mycourses .msg_box .close:hover{
+  background: #ff8f0ea9;
+  color: #ffffff;  
+}
+
+#mycourses .msg_box .closeend:hover{
+  background: #ff8f0ea9;
+  color: #ffffff;  
+}
+
+#mycourses .msg_box .closestart:hover{
+  background: #ff8f0ea9;
+  color: #ffffff;  
+}
+
+#mycourses .text_box3{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 5px;
+  margin-top: 15px;
+  padding-left: 18px;
+}
+
+
+
+
+
+#mycourses h4{
+  margin-top: 3%;
+  margin: 0px;
+
+}
+
+#mycourses p{
+  margin: 0px;
+  color: rgba(112, 124, 151, 1) ; 
+  padding: 0px;
+  font-size: 0.92vw
+}
+.button_box{
+  right: 0;
+  bottom: 0;
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: 1fr 0.6fr 1fr 1fr;
+  gap: 0px;
+  width: 100%;
+}
+
+#mycourses .msg_box .Active-students{
+  margin-top: 22px;
+  padding-left: 15px;
+  
+}
+
+.subject{
+  font-size: 17px;
+  margin-bottom: 0px;
+}
+/* end my courses */
+
+
+.cards {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+.cardss {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  margin-left: 0px;
+  background-color: #f7721a00;
+  margin-bottom: 20px;
+ 
+}
+
+.cards::-webkit-scrollbar {
+  height: 7px;
+  background-color: #ffffff;
+  padding-top: 12px;
+  
+
+}
+.cards::-webkit-scrollbar-thumb,
+.cards::-webkit-scrollbar-track {
+  border-radius: 92px;
+  
+
+
+}
+
+.cards::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+  
+}
+.cards::-webkit-scrollbar-track {
+  background: var(--thumb);
+  
+}
+@media (min-width: 500px) {
+  .cardss {
+    flex-basis: calc(100% - 10px);
+  }
+  .cardss:not(:last-child) {
+    margin-right: 20px;
+  }
+}
+@media (min-width: 700px) {
+  .cardss {
+    flex-basis: calc(calc(50% - 20px));
+  }
+  .cardss:not(:last-child) {
+    margin-right: 10px;
+  }
+}
+@media (min-width: 1100px) {
+  .cardss {
+    flex-basis: calc(50% -30ප්ං);
+       width: fit-content;
+  }
+
+  .cardss:not(:last-child) {
+    margin-right: 20px;
+  }
+}
+
+/* end today clasees */

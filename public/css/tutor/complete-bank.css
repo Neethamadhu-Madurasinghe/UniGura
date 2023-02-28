@@ -1,0 +1,86 @@
+.pop-time-table {
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    width: 1000px;
+
+}
+
+.pop-time-table h2 {
+    font-family: 'DM Sans', sans-serif;
+}
+
+.time-table-container {
+    width: 100%;
+}
+
+#time-table {
+    width: 100%;
+    border-spacing: 15px;
+
+}
+
+#time-table tr th {
+    color: var(--bright-orange);
+    font-size: 0.75rem;
+    width: 80px;
+    font-family: 'Montserrat', serif;
+}
+
+.slot {
+    border-radius: 5px;
+    height: 36px;
+    min-width: 100px;
+    margin: 10px;
+}
+
+
+.slot-used {
+    background-color: #d2d4f5;
+
+}
+
+.slot-free {
+    background-color: var(--lightest-orrange);
+    transition: transform 0.1s;
+    cursor: pointer;
+}
+
+.slot-free:hover {
+    transform: scale(1.05);
+}
+
+.slot-selected {
+    background-image: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+}
+
+
+
+.btn {
+    width: 180px;
+    height: 40px;
+    font-size: 1rem;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.1s;
+    user-select: none;
+    padding: 10px;
+    text-align: center;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn:active {
+    background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
+}

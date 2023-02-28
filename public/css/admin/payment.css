@@ -1,0 +1,571 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+}
+
+.payment {
+    display: grid;
+    grid-template-columns: 300px auto;
+    grid-gap: 20px;
+    padding: 20px;
+}
+
+.payment-page{
+    height: 94vh;
+    overflow-y: scroll;
+}
+
+
+.payment-page::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.payment-page::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.payment-page   :hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
+
+.payment-left-side {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    border: 2px solid #F7931A;
+}
+
+.before-selected-payment-right-side .empty-part {
+    /* background-color: #fff; */
+    padding: 20px;
+    border-radius: 5px;
+    border: 2px solid #F7931A;
+    height: 90vh;
+    margin: auto -20px;
+    overflow: hidden;
+    margin-top: 10px;
+    background:
+        radial-gradient(35.36% 35.36% at 100% 25%, #0000 66%, #ffa620 68% 70%, #0000 72%) 19px 19px/calc(2*19px) calc(2*19px),
+        radial-gradient(35.36% 35.36% at 0 75%, #0000 66%, #ffa620 68% 70%, #0000 72%) 19px 19px/calc(2*19px) calc(2*19px),
+        radial-gradient(35.36% 35.36% at 100% 25%, #0000 66%, #ffa620 68% 70%, #0000 72%) 0 0/calc(2*19px) calc(2*19px),
+        radial-gradient(35.36% 35.36% at 0 75%, #0000 66%, #ffa620 68% 70%, #0000 72%) 0 0/calc(2*19px) calc(2*19px),
+        repeating-conic-gradient(#ffffff 0 25%, #0000 0 50%) 0 0/calc(2*19px) calc(2*19px),
+        radial-gradient(#0000 66%, #ffa620 68% 70%, #0000 72%) 0 calc(19px/2)/19px 19px #ffffff;
+}
+
+
+.before-selected-payment-right-side .empty-part .text-part{
+    background-color: #fff;
+    padding: 20px;
+    border: 2px solid #F7931A;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.before-selected-payment-right-side .empty-part .text-part h1{
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.payment-right-side {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    border: 2px solid #F7931A;
+    height: 90vh;
+}
+
+.payment-right-side::-webkit-scrollbar {
+    width: 0;
+}
+
+.payment-left-side img {
+    width: 50px;
+}
+
+.payoff-tutors {
+    border: 2px solid #F7931A;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.payoff-tutors h3 {
+    font-size: 20px;
+}
+
+.tutor {
+    display: flex;
+    align-items: center;
+}
+
+.tutor h3 {
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+.all-tutor {
+    height: 67vh;
+    overflow-y: scroll;
+}
+
+.all-tutor::-webkit-scrollbar {
+    width: 0;
+}
+
+
+.all-tutor .tutor {
+    padding: 5px;
+    border-radius: 5px;
+    height: 60px;
+    background: rgba(227, 171, 5, 0.312);
+    -webkit-backdrop-filter: blur(100px);
+    backdrop-filter: blur(100px);
+    border: 1px solid rgba(161, 93, 137, 0.3);
+    margin-bottom: 12px;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+}
+
+.all-tutor .tutor > div{
+    position: relative;
+    z-index: -1;
+}
+
+
+.total-payoff{
+    border: 2px solid #F7931A;
+    border-radius: 5px;
+    width: fit-content;
+    padding: 10px;
+    background-color: #ffa62044;
+}
+
+
+
+/*  ----------------------------SEARCH BOX---------------------------------- */
+
+.search-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    border: 2px solid #F7931A;
+    border-radius: 5px;
+    height: 30px;
+}
+
+.search-box i {
+    color: #F7931A;
+    font-size: 16px;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    padding: 10px;
+    width: 90%;
+    font-size: 16px;
+    height: 25px;
+}
+
+
+
+
+
+/* ----------------------------TABLE---------------------------------- */
+
+
+section.table {
+    margin: 10px;
+    height: 40vh;
+    /* background-color: #fff5; */
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+}
+
+section.selected-tutor-payment-view {
+    margin: 10px;
+    height: 38vh;
+    /* background-color: #fff5; */
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+}
+
+.table-header {
+    width: 100%;
+    height: 20%;
+    background-color: #fff4;
+    padding: .8rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table-header h1 {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+.table-body {
+    height: 27vh;
+    width: 95%;
+    background-color: #fffb;
+    margin: .8rem auto;
+    border-radius: .6rem;
+    overflow: overlay;
+}
+
+
+.selected-tutor-table-body {
+    height: 27vh;
+    width: 95%;
+    background-color: #fffb;
+    margin: .8rem auto;
+    border-radius: .6rem;
+    overflow: overlay;
+}
+
+.table-body::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.table-body::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.table-body:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
+table {
+    width: 100%;
+}
+
+
+table,
+th,
+td {
+    border-collapse: collapse;
+    padding: 1rem;
+    text-align: center;
+}
+
+thead th {
+    background-color: #ffa620a3;
+    text-transform: capitalize;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #0000000b;
+}
+
+tbody tr:hover {
+    background-color: #ffa62044;
+}
+
+
+tbody button {
+    background-color: #2A8BF2;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 100%;
+}
+
+
+
+
+/*============================ BANK SLIP UPLOADER ================================*/
+
+
+.bank-slip-uploader {
+    border-radius: 10px;
+    padding: 10px 20px;
+    height: 60vh;
+    border: 2px solid #F7931A;
+    width: 500px;
+}
+
+.drop-section img {
+    width: 100px;
+}
+
+.list-section img {
+    width: 30px;
+    margin-left: 10px;
+}
+
+.header-section {
+    text-align: center;
+}
+
+.drop-section {
+    border: 4px dotted #ccc;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    text-align: center;
+    border-radius: 5px;
+    height: 270px;
+}
+
+
+
+.drop-section label {
+    padding: 10px 20px;
+    background-color: rgb(248, 18, 18);
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.drop-section .col-1 {
+    opacity: 1;
+}
+
+.drop-section .col-2 {
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    transition-duration: 0.4s;
+    font-size: 35px;
+    opacity: 0;
+    font-weight: bold;
+    bottom: 150px;
+    color: #a9a8a8;
+}
+
+
+.list {
+    list-style: none;
+}
+
+.list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.list .details {
+    width: 70%;
+}
+
+.list-section li .details .file-name {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 200px;
+    font-size: 15px;
+    /* width: 100%; */
+}
+
+.list-section {
+    display: none;
+}
+
+.list-section li .details .file-size {
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+.file-box .name {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.list-section {
+    margin-top: 10px;
+}
+
+
+.list-section li .file-progress {
+    width: 100%;
+    height: 5px;
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+.list-section li .file-progress span {
+    display: block;
+    height: 100%;
+    background-color: #000;
+    border-radius: 5px;
+    width: 0%;
+    transition-duration: 1s;
+}
+
+
+.list-section .icon {
+    font-size: 25px;
+    color: red;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.list-section .fa-circle-check {
+    color: #10bc10;
+}
+
+.in-prog {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+}
+
+.list {
+    height: 80px;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+}
+
+.list::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+.file-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+    border: 2px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+
+/* ===================================== BANK DETAILS ================================*/
+
+.paymentSlip-bankDetails {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 40px 0;
+
+}
+
+.bank-details {
+    width: 45%;
+    border: 2px solid #F7931A;
+    padding: 10px 20px;
+    border-radius: 5px;
+    height: 60vh;
+    margin-left: 20px;
+}
+
+
+.bank-details-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 30px;
+}
+
+.bank-details-content>div {
+    margin-bottom: 20px;
+}
+
+.bank-details-content-text {
+    border: 2px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    height: 100%;
+    margin-top: 5px;
+    color: rgb(125, 120, 120);
+}
+
+.bank-details-content-text h3 {
+    font-size: 17px;
+    font-weight: normal;
+}
+
+.money-history {
+    padding: 20px;
+}
+
+.money-history h1 {
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+/*  ================================  SELECTED TUTOR DISPLAY NONE  ================================*/
+
+.selected-tutor {
+    display: none;
+    height: 87vh;
+    overflow-y: scroll;
+    padding-right: 10px;
+    padding-bottom: 25px;
+}
+
+
+.selected-tutor::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.selected-tutor::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.selected-tutor:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
+.empty-part {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    position: relative;
+    bottom: 30px;
+}
+
+.empty-part img {
+    width: 600px;
+    margin-bottom: 30px;
+}
+
+.empty-part .text-part {
+    font-size: 20px;
+    text-align: center;
+}
+
+.tutor.selected {
+    color: #fff;
+    border-radius: 5px;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+}

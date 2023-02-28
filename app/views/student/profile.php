@@ -121,7 +121,6 @@ MainNavbar::render($request);
                             <option value="Vavuniya"<?php echo $data['district'] === 'Vavuniya' ? 'selected' : '' ?>>Vavuniya</option>
                         </select>
                     </div>
-
                 </div>
 
                 <div class="form-row">
@@ -255,6 +254,7 @@ MainNavbar::render($request);
                                     <td>' . $request['first_name'] . ' ' . $request['last_name'] . '</td>
                                     <td>' . $request['subject'] . '</td><td>' . $request['module'] . '</td>
                                     <td>' . $request['mode'] . '</td>
+
                                     <td><button class="btn req-cancel-btn" data-id="' . $request['id'] . '">Cancel</button></td>
                             </tr>';
                         }
