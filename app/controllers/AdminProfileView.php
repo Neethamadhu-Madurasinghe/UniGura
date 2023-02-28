@@ -34,7 +34,5 @@ class AdminProfileView extends Controller{
 
             $this->view('admin/profileView', $request);
         }
-
-
     }
 }
