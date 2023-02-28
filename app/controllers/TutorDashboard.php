@@ -39,8 +39,6 @@ class TutorDashboard extends Controller
 
         $data['tutor_requests'] = json_encode($this->dashboardModel->getStudentRequests($request->getUserId()));
 
-  
-        
         $this->view('tutor/dashboard', $request, $data);
     }
 

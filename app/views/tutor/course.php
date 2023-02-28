@@ -77,7 +77,7 @@ Header::render(
                     <div class='button_box'>
                         <div></div>
                         <div></div>
-                        <button class='left'><i class='fa-solid fa-plus'></i></button>
+                        <button class='left add-activity' id=$id><i class='fa-solid fa-plus'></i></button>
                         <button class='middle'><i class='fa-solid fa-pen'></i></button>
                         <button class='right'><i class='fa-solid fa-trash'></i></button>
                     </div>
@@ -164,6 +164,17 @@ Header::render(
                             console.error('Have Error');
                         });
                 }
+
+
+                var addactivitybtns = document.querySelectorAll(".add-activity");
+
+                addactivitybtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        window.location = "http://localhost/unigura/tutor/addactivity?id=" + this.id;
+                    })
+                })
+
+
             </script>
             <?php Footer::render(
                 []

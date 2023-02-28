@@ -122,7 +122,9 @@ $router->registerController('/tutor/dashboard/api/modules', [TutorDashboard::cla
 $router->registerController('/tutor/viewcourse', [TutorCourse::class, 'viewcourse']);
 $router->registerController('/tutor/createday', [TutorCourse::class, 'createDay']);
 $router->registerController('/tutor/updateclasstemplate', [TutorCourse::class, 'updateClassTemplate']);
+$router->registerController('/tutor/deleteclasstemplate', [TutorCourse::class, 'deleteClassTemplate']);
 $router->registerController('/tutor/sendposition', [TutorCourse::class, 'sendposition']);
+$router->registerController('/tutor/addactivity', [TutorCourse::class, 'addActivityTemplate']);
 
 $router->registerController('/tutor/classes', [TutorClass::class, 'mainpage']);
 $router->registerController('/tutor/payments', [TutorPayments::class, 'mainpage']);

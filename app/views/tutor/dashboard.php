@@ -273,6 +273,8 @@ MainNavbar::render($request);
                         $mode = (string) $array['mode'];
                         $medium = (string) $array['medium'];
                         $c_id = (string) $array['course_id'];
+                        $rate = (string) $array['current_rating'];
+                        $count = (string ) $array['class_count'];
 
                         echo "
                             <div class = 'main_card'>
@@ -288,13 +290,13 @@ MainNavbar::render($request);
                                     <p><i class='fa-solid fa-microphone'></i> $mode</p>
                                     <p><i class='fa-brands fa-chromecast'></i> $medium </p>
                                 </div>
-                                <p class='Active-students' ><i class='fa-solid fa-users'></i> 25 Active Students</p>                       
+                                <p class='Active-students' ><i class='fa-solid fa-users'></i> $count Active Students</p>                       
                             </div>
                             <div>
                                     <div class='button_box'>
-                                        <button class='star'><i class='fa-solid fa-star'></i> 4.3</button>
+                                        <button class='star'><i class='fa-solid fa-star'></i>$rate</button>
                                         <button class='closestart' id = '$c_id'><i class='fa-solid fa-pen'></i></button>
-                                        <button class='closeend'><i class='fa-solid fa-trash'></i></button>
+                                        <button class='closeend' id='$c_id'><i class='fa-solid fa-trash'></i></button>
                                     </div> 
                             </div>
                             </div>  
@@ -304,9 +306,6 @@ MainNavbar::render($request);
                 </div>
 
             </div>
-
-
-
             <div class="card" id="balancetime" style="background-color: #ffffff;    padding :  25px;padding-top: 0px;margin-bottom: 40px;border-radius:10px;height:432px">
                 <div id="heading">
                     <h1>
@@ -358,10 +357,18 @@ MainNavbar::render($request);
     });
 
     const update_btns = document.querySelectorAll(".closestart");
+    const delete_btns = document.querySelectorAll('.closeend');
+
 
     update_btns.forEach(btn => {
         btn.addEventListener('click', function() {
             window.location = "http://localhost/unigura/tutor/updateclasstemplate?id=" + this.id;
+        })
+    })
+
+    delete_btns.forEach(btn => {
+        btn.addEventListener('click',function(){
+            window.location = "http://localhost/unigura/tutor/deleteclasstemplate?id=" + this.id;
         })
     })
 

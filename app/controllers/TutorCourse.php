@@ -147,7 +147,6 @@ class TutorCourse extends Controller
     }
 
 
-
     public function validateTitle(string $name): String
     {
         if (empty($name)) {
@@ -231,21 +230,129 @@ class TutorCourse extends Controller
 
 
             if ($data['errors']['session_rate_error'] == '') {
-    
-                    if ($this->courseModel->updateClassTemplate($data)) {
-                        redirect('tutor/dashboard');
-                    } else {
-                        header("HTTP/1.0 500 Internal Server Error");
-                        die('Something went wrong');
-                    }
+
+                if ($this->courseModel->updateClassTemplate($data)) {
+                    redirect('tutor/dashboard');
+                } else {
+                    header("HTTP/1.0 500 Internal Server Error");
+                    die('Something went wrong');
                 }
-                $this->view('tutor/updateclasstemplate', $request, $data); 
             }
-
-            
-
-            //        If the request is a GET request, then serve the page
+            $this->view('tutor/updateclasstemplate', $request, $data);
         }
-        
-}
 
+
+
+        //        If the request is a GET request, then serve the page
+    }
+
+    public function deleteClassTemplate(Request $request)
+    {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        if ($request->isProfileNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isNotApprovedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isBankDetialsNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+
+
+        if ($request->isGet()) {
+            $data = [];
+
+            $body = $request->getBody();
+
+            $data = [
+                'id' => $body['id']
+            ];
+            echo $body['id'];
+            $this->view('tutor/deleteclasstemplate', $request, $data);
+        }
+
+        if ($request->isPost()) {
+                $body = $request->getBody();
+                if ($this->courseModel->deleteClassTemplate($body['id'])) {
+                    redirect('tutor/dashboard');
+                } else {
+                    header("HTTP/1.0 500 Internal Server Error");
+                    die('Something went wrong');
+                }
+            
+            $this->view('tutor/deleteclasstemplate', $request, $data);
+        }
+
+
+
+        //        If the request is a GET request, then serve the page
+    }
+
+    public function addActivityTemplate(Request $request)
+    {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        if ($request->isProfileNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isNotApprovedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isBankDetialsNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+
+
+        if ($request->isGet()) {
+            $data = [];
+
+            $body = $request->getBody();
+
+            $data = [
+                'id' => $body['id']
+            ];
+            echo $body['id'];
+            $this->view('tutor/addactivity', $request, $data);
+        }
+
+        if ($request->isPost()) {
+            $body = $request->getBody();
+
+            $activityPath = handleUpload(
+                array('.png', 'jpeg', 'jpg', 'JPG', 'pdf', 'docx'),
+                '\\tutor_detail_files\\tutor_docs\\',
+                'tutor_docs'
+            );
+
+            $data = [
+                'id' => $body['id'],
+                'activity' => $activityPath,
+                'type'=>1,
+                'description'=>"Tute-1",
+
+            ];
+
+            if ($this->courseModel->setActivityTemplate($data)){
+                $this->view('tutor/dashboard', $request, $data);
+            }
+        }
+
+
+        
+        //        If the request is a GET request, then serve the page
+    }
+}

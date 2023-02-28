@@ -79,6 +79,7 @@ class ModelTutorDashboard
         return count($this->db->resultAll());
     }
 
+
     public function setTutorclassTemplate($data): bool
     {
         $this->db->query('INSERT INTO  tutoring_class_template SET
@@ -105,7 +106,9 @@ class ModelTutorDashboard
 
     public function getTutoringClassTemplates($id): array
     {
-        $this->db->query(' SELECT c.mode, c.medium, m.name as module , s.name as subject, c.id as course_id
+
+        $this->db->query(' SELECT c.current_rating, c.mode, c.medium, m.name as module , s.name as subject, c.id as course_id,
+        (SELECT COUNT(*) FROM tutoring_class WHERE class_template_id = c.id) as class_count
         FROM tutoring_class_template AS c
         JOIN subject AS s 
         ON c.subject_id = s.id

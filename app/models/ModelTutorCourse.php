@@ -127,4 +127,29 @@ public function setClassTemplateDay($data): bool
         return $this->db->execute();
     }
 
+    public function deleteClassTemplate($id) : bool 
+    {
+
+        $this->db->query('DELETE FROM tutoring_class_template WHERE id = :id;');
+        $this->db->bind('id',$id, PDO::PARAM_INT);
+
+//      Returns whether the row count is greater than 0
+        return $this->db->execute();
+    }
+
+    public function setActivityTemplate($data): bool {
+        $this->db->query('INSERT INTO activity_template SET
+                 day_template_id = :id,
+                 link = :link,
+                 type = :type,
+                 description = :description');
+
+        $this->db->bind('id', $data['id'], PDO::PARAM_INT);
+        $this->db->bind('description', $data['description'], PDO::PARAM_STR);
+        $this->db->bind('link', $data['activity'], PDO::PARAM_STR);
+        $this->db->bind('type', $data['type'], PDO::PARAM_STR);
+
+        return $this->db->execute();
+    }
+
 }
