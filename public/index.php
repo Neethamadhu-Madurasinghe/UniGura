@@ -5,13 +5,7 @@ require_once '../app/bootloader.php';
 $request = new Request();
 $router = new Router($request);
 
-// Example routes
-$router->registerController('/example/login', [ExampleAuth::class, 'login']);
-$router->registerController('/example/register', [ExampleAuth::class, 'register']);
-$router->registerController('/example/logout', [ExampleAuth::class, 'logout']);
-$router->registerController('/example/dashboard', [ExampleDashboard::class, 'dashboard']);
 
-$router->registerController('/api/example', [ExampleRestAPI::class, 'testAPI']);
 
 // Common routes
 $router->registerController('/load-file', [FileLoader::class, 'loadFile']);
@@ -168,8 +162,12 @@ $router->registerController('/api/time-table', [FindTutor::class, 'getTutorTimeT
 $router->registerController('/api/request', [FindTutor::class, 'sendTutorRequest']);
 $router->registerController('/student/find-tutor', [FindTutor::class, 'findTutor']);
 $router->registerController('/student/profile', [StudentProfile::class, 'profile']);
+$router->registerController('/student/change-profile-picture', [StudentProfile::class, 'changeProfilePicture']);
+$router->registerController('/api/delete-request', [StudentProfile::class, 'deleteTutorRequest']);
 $router->registerController('/api/report-tutor', [StudentTutorProfile::class, 'reportTutor']);
 $router->registerController('/student/tutor-profile', [StudentTutorProfile::class, 'tutorProfile']);
+$router->registerController('/student/class', [StudentClass::class, 'tutoringClass']);
+$router->registerController('/student/chat', [StudentClass::class, 'chat']);
 
 
 

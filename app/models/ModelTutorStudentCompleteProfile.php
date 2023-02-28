@@ -8,15 +8,17 @@ class ModelTutorStudentCompleteProfile {
     }
 
 //    Used to set all the profile data of a student
-    public function setTutorStudentProfileDetails($data): bool {
+    public function setTutorStudentProfileDetails($data): void {
+
         $this->db->query('INSERT INTO user SET
                  id = :id,
                  first_name = :first_name,
                  last_name = :last_name,
                  phone_number = :phone_number,
-                 letter_box_number = :letter_box_number,
-                 street = :street,
+                 address_line1 = :address_line_one,
+                 address_line2 = :address_line_two,
                  city = :city,
+                 district = :district,
                  gender = :gender,
                  profile_picture = :profile_picture,
                  mode = :mode,
@@ -28,28 +30,50 @@ class ModelTutorStudentCompleteProfile {
         $this->db->bind('first_name', $data['first_name'], PDO::PARAM_STR);
         $this->db->bind('last_name', $data['last_name'], PDO::PARAM_STR);
         $this->db->bind('phone_number', $data['telephone_number'], PDO::PARAM_STR);
-        $this->db->bind('letter_box_number', $data['letter_box_number'], PDO::PARAM_STR);
-        $this->db->bind('street', $data['street'], PDO::PARAM_STR);
+        $this->db->bind('address_line_one', $data['address_line_1'], PDO::PARAM_STR);
+        $this->db->bind('address_line_two', $data['address_line_2'], PDO::PARAM_STR);
         $this->db->bind('city', $data['city'], PDO::PARAM_STR);
+        $this->db->bind('district', $data['district'], PDO::PARAM_STR);
         $this->db->bind('gender', $data['gender'], PDO::PARAM_STR);
         $this->db->bind('profile_picture', $data['profile_picture'], PDO::PARAM_STR);
         $this->db->bind('mode', $data['preferred_class_mode'], PDO::PARAM_STR);
         $this->db->bind('location', $location, PDO::PARAM_STR);
         $this->db->bind('srid', 4326, PDO::PARAM_INT);
 
-        return $this->db->execute();
+        $this->db->execute();
+
     }
 
-    public function setStudentExamYear($data): bool {
-        $this->db->query('INSERT INTO student(user_id, year_of_exam) VALUES (:id, :year_of_exam)');
+    public function setStudentProfileDetails($data): void {
+        $this->db->query('INSERT INTO student(user_id, year_of_exam, medium) VALUES (:id, :year_of_exam, :medium)');
         $this->db->bind('id', $data['id'], PDO::PARAM_INT);
         $this->db->bind('year_of_exam', $data['year_of_exam'], PDO::PARAM_INT);
+        $this->db->bind('medium', $data['medium'], PDO::PARAM_STR);
+        $this->db->execute();
+    }
 
-        return $this->db->execute();
+    public function setStudentDetails($data): bool {
+        $this->db->startTransaction();
+
+        $this->setTutorStudentProfileDetails($data);
+        $this->setStudentProfileDetails($data);
+        $this->setUserRole($data['id'], $data['user_role']);
+
+        return $this->db->commitTransaction();
+    }
+
+    public function setTutorDetails($data): bool {
+        $this->db->startTransaction();
+
+        $this->setTutorStudentProfileDetails($data);
+        $this->setTutorProfileDetails($data);
+        $this->setUserRole($data['id'], $data['user_role']);
+
+        return $this->db->commitTransaction();
     }
 
 //    Sets tutor specific data when completing the profile
-    public function setTutorProfileDetails($data): bool {
+    public function setTutorProfileDetails($data): void {
         $this->db->query('INSERT INTO tutor SET
                  user_id = :id,
                  description = :description,
@@ -67,7 +91,7 @@ class ModelTutorStudentCompleteProfile {
         $this->db->bind('university_entrance_letter', $data['university_entrance_letter'], PDO::PARAM_STR);
         $this->db->bind('advanced_level_result', $data['advanced_level_result'], PDO::PARAM_STR);
 
-        return $this->db->execute();
+        $this->db->execute();
     }
 
 //    Can be used to change the role

@@ -144,6 +144,7 @@
 
 .map-container input {
     font-family: 'DM Sans', sans-serif;
+    position: relative;
     font-size: 0.9rem;
     font-weight: bold;
     margin-bottom: 5px;
@@ -151,6 +152,50 @@
     border: none;
     background-color: white;
     color: black;
+}
+
+.map-container-title {
+    display: flex;
+    align-items: center;
+}
+
+.map-container-title p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    position: relative;
+    width: auto;
+}
+
+#help {
+    background-color: var(--bright-orange);
+    width: 15px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 0.7rem;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+#help .tooltiptext {
+    visibility: hidden;
+    opacity: 0;
+    width: 120px;
+    background-color: var(--bright-orange);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    margin-left: 10px;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    transition: all linear 0.2s;
+}
+
+#help:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }
 
 .map {
@@ -165,7 +210,7 @@
     width: 40px;
     height: 40px;
     border-radius: 10px;
-    background:url(assests/marker-64.ico) no-repeat top center;
+    background: no-repeat top center;
     background-size:100%;
     opacity: 1;
     cursor: move;

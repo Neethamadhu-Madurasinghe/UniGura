@@ -160,8 +160,14 @@ async function sendSearchClassRequest() {
 
   const respond = await fetch('http://localhost/unigura/api/find-tutoring-class?' + new URLSearchParams(filterValues))
   if(respond.status !== 200) {
-    showErrorMessage('Something went wrong. Please try again');
-    console.log(result);
+    const result  = await respond.json();
+    if (result.error) {
+      showErrorMessage(result.error);
+    } else {
+      showErrorMessage('Something went wrong. Please try again');
+    }
+
+    console.log(respond);
     return;
   }
   LastSearch = JSON.parse(JSON.stringify(filterValues));
@@ -253,7 +259,7 @@ async function sendSearchClassRequest() {
         </p>
 
         <div class="tutor-search-card-button-container">
-        <button class="btn btn-sm" id="message-btn">Message Tutor</button>
+        <button class="btn btn-sm" id="message-btn"><a href="http://localhost/Unigura/student/chat" style="text-decoration: none; color:white">Message Tutor</a></button>
         <button class="btn btn-sm send-request-btn"
                 data-tutor=${tutoringClass.tutor_id}
                 data-template=${tutoringClass.id} 

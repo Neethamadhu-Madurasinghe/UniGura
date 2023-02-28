@@ -1,10 +1,9 @@
-.student-nav-bar {
+.intermediate-nav-bar {
     height: 50px;
     display: flex;
     justify-content: space-between;
     margin: 5px 15px;
     padding: 0 1% 0 1%;
-
 }
 
 .logo-container {
@@ -22,7 +21,7 @@
 
 .nav-bar-link-container {
     width: 100%;
-    min-width: 300px;
+    min-width: 100px;
     max-width: 500px;
     display: flex;
     justify-content: space-around;

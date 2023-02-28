@@ -25,7 +25,7 @@ class TutorStudentAuth extends Controller {
 
 //      If the user is logged in, then redirect user into dashboard
         if ($request->isLoggedIn()) {
-//           TODO: Check user role and redirect to relevant dashboard
+           redirectBasedOnUserRole($request);
         }
 
 //      If the request is a post request, then handle incoming data
@@ -108,8 +108,7 @@ class TutorStudentAuth extends Controller {
     public function login(Request $request) {
 //        If user is logged in, then redirect to dashboard page
         if ($request->isLoggedIn()) {
-//            TODO: check user role and send to relevant dashboard
-            redirect('/example/dashboard');
+            redirectBasedOnUserRole($request);
         }
 
 //        If the request is a post request, then handle the incoming data
@@ -196,18 +195,11 @@ class TutorStudentAuth extends Controller {
             redirect('tutor/complete-profile');
         }elseif ($user->role === 6) {
             redirect('student/complete-profile');
-        }
-        elseif ($user->role === 7) {
+        }elseif ($user->role === 7) {
             redirect('/tutor/pending');
-        }
-        elseif ($user->role === 8) {
-            redirect('/tutor/aproved');
         }
         elseif ($user->role === 9) {
             redirect('/tutor/complete-bank-detials');
-        }
-        elseif ($user->role === 10) {
-            redirect('/tutor/tutor-time-slot-input');
         }
 
     }
