@@ -6,14 +6,19 @@ class AdminPayment extends Controller
 
     public function __construct()
     {
-        $this->paymentModel = $this->model('ModelPayment');
+        $this->paymentModel = $this->model('ModelAdminPayment');
     }
 
-    public function payment(Request $request){
+    public function payment(Request $request)
+    {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
 
         $allPayment = $this->paymentModel->allPaymentDetails();
 
-        foreach ($allPayment as $tutor){
+        foreach ($allPayment as $tutor) {
             $tutor->tutor = $this->paymentModel->getTutorById($tutor->tutor_id);
         }
 
@@ -22,21 +27,26 @@ class AdminPayment extends Controller
         // echo '<pre>';
         // print_r($data);
         // echo '</pre>';
-        
+
         $this->view('admin/payment', $request, $data);
     }
 
 
-    public function selectedTutorDetails(Request $request){
-        
-        if ($request->isGet()){
+    public function selectedTutorDetails(Request $request)
+    {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        if ($request->isGet()) {
             $bodyData = $request->getBody();
             $tutorId = $bodyData['selectedTutorId'];
 
             $tutorBankDetails = $this->paymentModel->selectedTutorBankDetails($tutorId);
             $tutorPaymentDetails = $this->paymentModel->paymentDetailsByTutorId($tutorId);
 
-            foreach ($tutorPaymentDetails as $aTutorPaymentDetails){
+            foreach ($tutorPaymentDetails as $aTutorPaymentDetails) {
                 $aTutorPaymentDetails->classDay = $this->paymentModel->classDayByDayId($aTutorPaymentDetails->day_id);
                 $aTutorPaymentDetails->tutorialClass = $this->paymentModel->getTutorialClassByClassId($aTutorPaymentDetails->classDay->class_id);
                 $aTutorPaymentDetails->classTemplate = $this->paymentModel->getClassTemplateByClassTemplateId($aTutorPaymentDetails->tutorialClass->class_template_id);
@@ -58,5 +68,18 @@ class AdminPayment extends Controller
 
             $this->view('admin/selectedTutorPaymentView', $request, $data);
         }
+    }
+
+    public function uploadBankSlip(Request $request)
+    {
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        if ($request->isPost()) {
+            handleUpload(array('.png', '.pdf'), '\\public\\profile_pictures\\', 'paymentBankSlip');
+        }
+
+        
     }
 }

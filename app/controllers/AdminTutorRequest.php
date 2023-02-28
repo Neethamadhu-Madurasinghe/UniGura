@@ -4,10 +4,14 @@ class AdminTutorRequest extends Controller {
     private mixed $tutorRequestModel;
 
     public function __construct() {
-        $this->tutorRequestModel = $this->model('ModelRequirementComplaints');
+        $this->tutorRequestModel = $this->model('ModelAdminRequirementComplaints');
     }
 
     public function tutorRequest(Request $request) {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
 
         $allTutorRequest = $this->tutorRequestModel->getTutorRequest();
 
@@ -17,8 +21,11 @@ class AdminTutorRequest extends Controller {
             $x->tutor = $tutor;
         }
 
+        $totalNumOfTutorRequest = $this->tutorRequestModel->totalNumOfTutorRequest();
+
         $data = [
-            'allTutorRequest' => $allTutorRequest
+            'allTutorRequest' => $allTutorRequest,
+            'totalNumOfTutorRequest' => $totalNumOfTutorRequest
         ];
 
         $this->view('admin/tutor_request', $request, $data);

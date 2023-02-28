@@ -4,11 +4,15 @@ class AdminSubjectModule extends Controller {
     private mixed $subjectModel;
 
     public function __construct() {
-        $this->subjectModel = $this->model('ModelSubject');
+        $this->subjectModel = $this->model('ModelAdminSubject');
     }
 
 
     public function subjectsAndModules(Request $request) {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
 
         $duplicateSubject = [];
         $duplicateModule = [];
@@ -33,6 +37,10 @@ class AdminSubjectModule extends Controller {
 
     public function addSubject(Request $request)
     {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
 
         if ($request->isGet()) {
             $subjectName = $request->getBody('subjectName')['subjectName'];
@@ -66,6 +74,11 @@ class AdminSubjectModule extends Controller {
 
     public function addModule(Request $request)
     {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
         if ($request->isGet()) {
             $moduleName = $request->getBody('moduleName')['moduleName'];
             $subjectId = $request->getBody('subjectId')['subjectId'];
@@ -99,6 +112,10 @@ class AdminSubjectModule extends Controller {
 
     public function updateModule(Request $request)
     {
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
         if ($request->isGet()) {
             $moduleName = $request->getBody('moduleName')['moduleName'];
             $moduleId = $request->getBody('moduleId')['moduleId'];
@@ -110,6 +127,10 @@ class AdminSubjectModule extends Controller {
 
     public function updateModuleHideShow(Request $request)
     {
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+        
         if ($request->isGet()) {
             $moduleId = $request->getBody('moduleId')['moduleId'];
             $isHidden = $request->getBody('is_hidden')['is_hidden'];

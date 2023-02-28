@@ -1,6 +1,6 @@
 <?php
 
-class AdminProfileModel
+class ModelAdminProfile
 {
     private mixed $db;
 

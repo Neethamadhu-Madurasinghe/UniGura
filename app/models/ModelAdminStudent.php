@@ -46,8 +46,8 @@ class ModelAdminStudent {
         }
     }
 
-    public function getActiveTutorialClass($studentID) {
-        $this->db->query("SELECT * FROM tutoring_class WHERE student_id = :studentID AND completion_status = '0'");
+    public function getAllTutorialClassesByStudentId($studentID) {
+        $this->db->query("SELECT * FROM tutoring_class WHERE student_id = :studentID");
         $this->db->bind(':studentID', $studentID);
 
         $rows = $this->db->resultAll();
@@ -59,18 +59,7 @@ class ModelAdminStudent {
         }
     }
 
-    public function getCompletedTutorialClass($studentID) {
-        $this->db->query("SELECT * FROM tutoring_class WHERE student_id = :studentID AND completion_status = '1'");
-        $this->db->bind(':studentID', $studentID);
 
-        $rows = $this->db->resultAll();
-
-        if ($this->db->rowCount() >= 0) {
-            return $rows;
-        } else {
-            return false;
-        }
-    }
 
     public function getTutorById($tutorID) {
         $this->db->query("SELECT * FROM user WHERE id = :tutorID");
@@ -126,6 +115,18 @@ class ModelAdminStudent {
         }
     }
 
+    public function getAllClassDays() {
+        $this->db->query("SELECT * FROM day");
+
+        $rows = $this->db->resultAll();
+
+        if ($this->db->rowCount() >= 0) {
+            return $rows;
+        } else {
+            return false;
+        }
+    }
+
 
     public function getClassDayByTutorialClassId($tutorialClassID) {
         $this->db->query("SELECT * FROM day WHERE class_id = :tutorialClassID");
@@ -139,4 +140,20 @@ class ModelAdminStudent {
             return false;
         }
     }
+
+    public function getAllTutorialClassesByClassId($classID){
+        $this->db->query("SELECT * FROM tutoring_class WHERE id = :classID");
+        $this->db->bind(':classID', $classID);
+
+        return $this->db->resultOne();
+    }
+
+    public function getClassTemplateByClassTemplateId($classTemplateID){
+        $this->db->query("SELECT * FROM tutoring_class_template WHERE id = :classTemplateID");
+        $this->db->bind(':classTemplateID', $classTemplateID);
+
+        return $this->db->resultOne();
+    }
+        
+
 }

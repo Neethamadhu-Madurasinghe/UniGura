@@ -424,7 +424,7 @@ body.dark .home .text {
 
 .parent {
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 4fr 1.5fr;
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
@@ -439,23 +439,18 @@ body.dark .home .text {
     padding: 15px;
 }
 
-.left_sidebar .approval-complaint {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 0 20px;
-}
 
-.left_sidebar .new_approval {
-    height: 24vh;
+.right_sidebar .new_approval {
+    height: 30vh;
     border: 2px solid #F7931A;
     border-radius: 5px;
     padding: 10px;
     width: 100%;
     margin-right: 15px;
+    margin-top: 20px;
 }
 
-.left_sidebar .new_approval .title {
+.right_sidebar .new_approval .title {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -463,28 +458,29 @@ body.dark .home .text {
     text-align: center;
 }
 
-.left_sidebar .new_approval .title a {
+.right_sidebar .new_approval .title a {
     text-decoration: none;
     cursor: pointer;
     font-size: 15px;
 }
 
-.left_sidebar .new_approval .title h2 {
+.right_sidebar .new_approval .title h2 {
     font-size: 18px;
     font-weight: bold;
     text-transform: uppercase;
 }
 
 
-.left_sidebar .complaints {
-    height: 24vh;
+.right_sidebar .complaints {
+    height: 29vh;
     border: 2px solid #F7931A;
     border-radius: 5px;
     padding: 10px;
     width: 100%;
+    margin-top: 20px;
 }
 
-.left_sidebar .complaints .title {
+.right_sidebar .complaints .title {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -492,14 +488,14 @@ body.dark .home .text {
     text-align: center;
 }
 
-.left_sidebar .complaints .title a {
+.right_sidebar .complaints .title a {
     text-decoration: none;
     cursor: pointer;
     font-size: 15px;
 }
 
 
-.left_sidebar .complaints .title h2 {
+.right_sidebar .complaints .title h2 {
     font-size: 18px;
     font-weight: bold;
     text-transform: uppercase;
@@ -534,21 +530,29 @@ body.dark .home .text {
     margin-left: 15px;
 }
 
+.no_complaint{
+    text-align: center;
+}
+
+.new_approval{
+    text-align: center;
+}
+
 .no_complaint img {
-    width: 250px;
+    width: 220px;
 }
 
 .available-complaints img {
     width: 50px;
 }
 
-.left_sidebar .complaints_list {
+.right_sidebar .complaints_list {
     overflow-y: scroll;
     height: 85%;
 
 }
 
-.left_sidebar .complaints_list::-webkit-scrollbar {
+.right_sidebar .complaints_list::-webkit-scrollbar {
     display: none;
 }
 
@@ -561,6 +565,7 @@ body.dark .home .text {
     grid-column-gap: 0px;
     grid-row-gap: 15px;
 }
+
 
 .requested_list>div {
     display: flex;
@@ -581,12 +586,16 @@ body.dark .home .text {
     width: 50px;
 }
 
-.left_sidebar .requested_list {
+.no_request img{
+    width: 200px;
+}
+
+.right_sidebar .requested_list {
     overflow-y: scroll;
     height: 85%;
 }
 
-.left_sidebar .requested_list::-webkit-scrollbar {
+.right_sidebar .requested_list::-webkit-scrollbar {
     display: none;
 }
 
@@ -601,7 +610,7 @@ body.dark .home .text {
     padding: 5px;
     border-radius: 5px;
     height: 60px;
-    margin-top: 8px;
+    margin-bottom: 14px;
     background: rgba(227, 171, 5, 0.6);
     -webkit-backdrop-filter: blur(50px);
     backdrop-filter: blur(50px);
@@ -679,14 +688,49 @@ body.dark .home .text {
 
 /* =============================== TUTOR - STUDENT - CLASS - SUBJECT - MODULE SECTION ======================================= */
 
+
+
 .tutor-student-class-subject {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 10px;
-    width: 100%;
-    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 50px;
+    margin: 80px 0px 50px 20px;
 }
+
+.tutors {
+    grid-area: 1 / 1 / 2 / 2;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.subject-module {
+    grid-area: 1 / 2 / 2 / 3;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.students {
+    grid-area: 2 / 1 / 3 / 2;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.classes {
+    grid-area: 2 / 2 / 3 / 3;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
 
 .tutor-student-class-subject span {
     font-size: 18px;
@@ -694,13 +738,15 @@ body.dark .home .text {
 }
 
 .tutor-student-class-subject img {
-    width: 180px;
+    width: 210px;
 }
 
 .student-image img {
     width: 150px;
     height: 200px;
 }
+
+
 
 .tutors>div,
 .students>div,
@@ -712,35 +758,15 @@ body.dark .home .text {
     margin-top: 10px;
 }
 
-.tutors {
-    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
-    padding: 10px;
-    border-radius: 10px;
-    text-align: center;
+.tutor-subject-module>div {
+    margin-bottom: 70px;
+    width: 450px;
 }
 
-.subject-module {
-    margin-top: 15px;
-    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
-    padding: 10px;
-    border-radius: 10px;
-    text-align: center;
+.class-student>div {
+    margin-bottom: 70px;
 }
 
-.students {
-    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
-    padding: 10px;
-    border-radius: 10px;
-    text-align: center;
-}
-
-.classes {
-    margin-top: 15px;
-    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
-    padding: 10px;
-    border-radius: 10px;
-    text-align: center;
-}
 
 
 .tutors-info,
@@ -762,11 +788,11 @@ body.dark .home .text {
     line-height: 1.2;
 }
 
-.myChart2 {
-    margin-top: 16px;
-    margin-left: 20px;
+
+.subject-module h2{
+    margin-bottom: 30px;
 }
 
-.myChart {
-    margin-top: 10px;
+.classes h2{
+    margin-bottom: 35px;
 }

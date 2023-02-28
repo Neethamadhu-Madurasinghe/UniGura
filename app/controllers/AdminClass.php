@@ -5,10 +5,14 @@ class AdminClass extends Controller{
 
     public function __construct()
     {   
-        $this->classModel = $this->model('ModelClass');
+        $this->classModel = $this->model('ModelAdminClass');
     }
 
     public function class(Request $request){
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
 
         $allClasses = $this->classModel->getAllClasses();
 

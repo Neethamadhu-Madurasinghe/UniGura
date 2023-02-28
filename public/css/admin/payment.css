@@ -337,10 +337,32 @@ tbody button {
 }
 
 
+.drop-section button {
+    font-size: 1rem;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.1s;
+    user-select: none;
+    height: 50px;
+    width: 140px;
+    position: relative;
+}
+
+.drop-section button:hover {
+    transform: scale(1.05);
+}
+
+.drop-section button:active {
+    background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
+}
+
 
 .drop-section label {
     padding: 10px 20px;
-    background-color: rgb(248, 18, 18);
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
     color: #fff;
     border-radius: 5px;
     cursor: pointer;

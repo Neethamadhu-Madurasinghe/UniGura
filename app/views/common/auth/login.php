@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var $data
  * @var $request
@@ -43,11 +44,7 @@ LandingPageNavBar::render($request)
                 <div class="form-row">
                     <div class="form-field">
                         <label for="email">Email <span><?php echo $data['errors']['email_error'] ?></span></label>
-                        <input type="text"
-                               class="form-input"
-                               name="email"
-                               id="login-email"
-                               value="<?php echo $data['email'] ?>">
+                        <input type="text" class="form-input" name="email" id="login-email" value="<?php echo $data['email'] ?>">
                     </div>
                 </div>
 

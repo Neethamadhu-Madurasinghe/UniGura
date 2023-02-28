@@ -256,6 +256,7 @@ class TutorStudentProfileComplete extends Controller {
 
                 if ($this->tutorStudentModel->setTutorDetails($data)) {
                     $_SESSION['user_role'] = 7;
+
                     if ($imagePath) {
                         $_SESSION['user_picture'] = $imagePath;
                     } else {

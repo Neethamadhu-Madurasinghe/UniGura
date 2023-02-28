@@ -1,0 +1,27 @@
+
+.div1{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 50px 20px;
+}
+
+.myChart4{
+    margin: 70px 20px;
+}
+
+
+.myChart3{
+    margin: 70px 20px;
+}
+
+.myChart4{
+    margin: 70px 20px;
+}
+
+
+.statistic-page{
+    height: 94vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}

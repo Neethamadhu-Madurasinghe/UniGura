@@ -99,7 +99,7 @@ class ModelTutorDashboard
         $this->db->bind('class_type', $data['class_type'], PDO::PARAM_STR);
         $this->db->bind('mode', $data['mode'], PDO::PARAM_STR);
         $this->db->bind('duration', $data['duration'], PDO::PARAM_STR);
-        $this->db->bind('medium', $data['medium'], PDO::PARAM_STR);
+        $this->db->bind('medium', $data['medium'], PDO::PARAM_INT);
 
         return $this->db->execute();
     }

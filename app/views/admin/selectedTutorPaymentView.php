@@ -1,3 +1,10 @@
+<?php
+    echo "<pre>";
+    print_r($data);
+    echo "</pre>";
+
+?>
+
 <div class="total-payoff">
     <h2>Total Payoffs: <span>Rs. 5000</span></h2>
 </div>
@@ -12,37 +19,20 @@
                 <p>PDF & Images are allowed</p>
             </div>
             <div class="drop-section">
-                <div class="col-1" id="col-1">
-                    <img src="<?php echo URLROOT; ?>/public/img/admin/upload.png" alt=""><br><br>
-                    <span>Drag & Drop your files here</span><br><br>
-                    <span>OR</span><br><br>
-                    <label class="file-selector" for="browseFiles">Browse Files</label><br><br>
-                    <input type="file" name="browseFiles" class="file-selector-input" id="browseFiles" multiple hidden>
-                </div>
-                <div class="col-2" id="col-2">
-                    <div class="drop-here">Drop Here</div>
-                </div>
-            </div>
-            <div class="list-section" id="list-section">
-                <div class="list">
-                    <!-- <li class="in-prog" id="in-prog">
-                        <div class='file-box'>
-                            <div class='col'><img src='./pdf.png' alt=''></div>
-                            <div class='details'>
-                                <div class='file-name'>
-                                    <div class='name'>file.name</div>
-                                    <span>50%</span>
-                                </div>
-                                <div class='file-progress'><span></span></div>
-                                <div class='file-size'>file.size</div>
-                            </div>
-                            <div class='icon'>
-                                <i class="fa fa-trash"></i>
-                                <i class='fa fa-circle-xmark'></i>
-                            </div>
-                        </div>
-                    </li> -->
-                </div>
+                <form action="uploadBankSlip?tutorID=<?php echo $data['tutorBankDetails']->user_id; ?>" method="POST" enctype="multipart/form-data">
+                    <div class="col-1" id="col-1">
+                        <img src="<?php echo URLROOT; ?>/public/img/admin/uploadBankSlip.gif" alt=""><br><br>
+                        <span>Drag & Drop your files here</span><br><br>
+                        <span>OR</span><br><br>
+                        <label class="file-selector" for="paymentBankSlip">Browse Files</label><br><br>
+                        <input type="file" name="paymentBankSlip" class="file-selector-input" id="paymentBankSlip" multiple hidden>
+                    </div>
+                    <div class="col-2" id="col-2">
+                        <div class="drop-here">Drop Here</div>
+                    </div>
+
+                    <button type="submit">Upload</button>
+                </form>
             </div>
         </div>
     </div>
@@ -120,7 +110,7 @@
                         <td><?php echo $aTutorPaymentDetails->amount ?></td>
                     </tr>
                 <?php endforeach; ?>
-                
+
             </tbody>
         </table>
     </section>

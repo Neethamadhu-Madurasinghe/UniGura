@@ -37,7 +37,6 @@
             <div class="search">
                 <i class="fas fa-regular fa-search"></i>
                 <input type="text" placeholder="Search by Tutor Name..." id="search-tutor-name">
-                <button class="search-btn" id="search-student-name-btn">Search</button>
             </div>
             <div class="filter">
                 <div class="filter-icon">
@@ -63,6 +62,10 @@
                     </tr>
                 </thead>
                 <tbody id="tutor-complain">
+
+                    <?php if ($data['totalNumOfTutorComplaints'] == 0) : ?>
+                        <td class="noDataDisplay">There are no tutor complaints to display</td>
+                    <?php endif; ?>
 
                     <?php foreach ($data['allTutorComplaints'] as $tutorComplaint) { ?>
                         <tr>

@@ -5,10 +5,14 @@ class AdminTutorComplaint extends Controller {
     private mixed $tutorComplaintModel;
 
     public function __construct() {
-        $this->tutorComplaintModel = $this->model('ModelRequirementComplaints');
+        $this->tutorComplaintModel = $this->model('ModelAdminRequirementComplaints');
     }
 
     public function tutorComplaint(Request $request) {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
 
         $allTutorComplaints = $this->tutorComplaintModel->getTutorComplaints();
 
@@ -26,8 +30,13 @@ class AdminTutorComplaint extends Controller {
             $x->student = $student;
         }
 
+        $totalNumOfTutorComplaints = $this->tutorComplaintModel->totalNumOfTutorComplaints();
+
+
         $data = [
-            'allTutorComplaints' => $allTutorComplaints
+            'allTutorComplaints' => $allTutorComplaints,
+            'totalNumOfTutorComplaints' => $totalNumOfTutorComplaints
+
         ];
 
         $this->view('admin/tutor_complaints', $request, $data);

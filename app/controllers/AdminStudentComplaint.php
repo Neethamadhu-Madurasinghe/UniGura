@@ -4,10 +4,15 @@ class AdminStudentComplaint extends Controller {
     private mixed $studentComplaintModel;
 
     public function __construct() {
-        $this->studentComplaintModel = $this->model('ModelRequirementComplaints');
+        $this->studentComplaintModel = $this->model('ModelAdminRequirementComplaints');
     }
 
     public function studentComplaint(Request $request){
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+        
         $rowsPerPage = 5;
         $totalNumOfStudentComplaints = $this->studentComplaintModel->totalNumOfStudentComplaints();
         $lastPageNum = ceil($totalNumOfStudentComplaints / $rowsPerPage);
@@ -54,9 +59,11 @@ class AdminStudentComplaint extends Controller {
             $x->student = $student;
         }
 
+        $totalNumOfStudentComplaints = $this->studentComplaintModel->totalNumOfStudentComplaints();
 
         $data = [
             'allStudentComplaints' => $allStudentComplaints,
+            'totalNumOfStudentComplaints' => $totalNumOfStudentComplaints,
             'lastPageNum' => $lastPageNum,
             'nextPageNum' => $nextPageNum,
             'previousPageNum' => $previousPageNum,

@@ -39,6 +39,7 @@ Header::render(
 );
 ?>
 
+
 <div class="lightbox">
     <div class="box" style="top: 10%;">
         <h2 style="text-align: center;width: 100%;padding-bottom: 10px; font-weight: 400;">Create Course</h2>

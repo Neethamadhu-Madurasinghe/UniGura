@@ -77,12 +77,12 @@
                         </a>
                     </li>
 
-                    <li class="nav-link" id="chat">
+                    <li class="nav-link subjectLink" id="statistic">
                         <p></p>
                         <p></p>
-                        <a href="chat">
-                            <i class="fa fa-envelope icon"></i>
-                            <span class="text nav-text">Chat</span>
+                        <a href="statistics">
+                            <i class="fa-solid fa-chart-simple icon "></i>
+                            <span class="text nav-text">Statistic</span>
                         </a>
                     </li>
 
@@ -128,7 +128,7 @@
                     <li class="nav-link" id="logout">
                         <p></p>
                         <p></p>
-                        <a href="#">
+                        <a href="../logout">
                             <i class='bx bx-log-out icon'></i>
                             <span class="text nav-text">logout</span>
                         </a>

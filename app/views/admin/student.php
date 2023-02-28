@@ -69,19 +69,6 @@
             </div>
 
 
-            <div class="filter-functions">
-                <div class="search-btn">
-                    <button><i class="fas fa-search"></i>Find</button>
-                </div>
-                <div class="filter-btn">
-                    <button id="filter"><i class="fas fa-filter"></i>Filter</button>
-                </div>
-                <div class="reset-btn">
-                    <button id="filter-reset-btn"><i class="fas fa-redo"></i>Reset</button>
-                </div>
-            </div>
-
-
             <div class="mode-filter">
                 <div class="mode">
                     <h1>By Mode</h1>
@@ -109,11 +96,11 @@
                 </div>
                 <div class="visibility-select">
                     <div class="checkbox-button">
-                        <input type="checkbox" id="banned" name="banned" value="1" class="banned checkbox visibility-filter">
+                        <input type="checkbox" id="banned" name="banned" value="1" class="banned checkbox student-visibility-filter">
                         <label for="banned">&nbspBanned</label>
                     </div>
                     <div class="checkbox-button">
-                        <input type="checkbox" id="unbanned" name="unbanned" value="0" class="unbanned checkbox visibility-filter">
+                        <input type="checkbox" id="unbanned" name="unbanned" value="0" class="unbanned checkbox student-visibility-filter">
                         <label for="unbanned">&nbspUnBanned</label>
                     </div>
                 </div>

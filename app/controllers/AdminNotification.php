@@ -11,6 +11,9 @@ class AdminNotification extends Controller
 
     public function notification(Request $request)
     {
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
 
         $allUnseenNotifications = $this->classModel->getAllUnseenNotifications();
 
@@ -28,6 +31,10 @@ class AdminNotification extends Controller
     public function clearNotification(Request $request)
     {
 
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+        
         if ($request->isGet()) {
 
             $bodyData = $request->getBody();
