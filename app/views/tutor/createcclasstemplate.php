@@ -6,21 +6,6 @@
  */
 ?>
 
-<?php
-require_once APPROOT . '/views/common/inc/Header.php';
-require_once APPROOT . '/views/common/inc/Footer.php';
-require_once APPROOT . '/views/tutor/inc/components/MainNavbar.php';
-
-Header::render(
-    'Tutor Dashboard',
-    [
-        URLROOT . '/public/css/tutor/base.css?v=1.0',
-        URLROOT . '/public/css/tutor/dashboard.css?v=1.8'
-    ]
-);
-
-MainNavbar::render($request);
-?>
 
 <?php
 require_once APPROOT . '/views/common/inc/Header.php';
@@ -32,7 +17,6 @@ Header::render(
     [
         'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css',
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css',
-        URLROOT . '/public/css/common/student-base-style.css',
         URLROOT . '/public/css/tutor/forms.css?v=1.1'
     ]
     //    Student base style is used here, because In this part, both student and tutor looks same
@@ -43,6 +27,7 @@ Header::render(
 <div class="lightbox">
     <div class="box" style="top: 10%;">
         <h2 style="text-align: center;width: 100%;padding-bottom: 10px; font-weight: 400;">Create Course</h2>
+        <button class="close"><i class="fa fa-times"></i></button>
         <span class="erorr"><?php echo $data['errors']['class_template_duplipate_error'] ?></span>
         <div class="form_container">
             <form action="" method="POST" enctype='multipart/form-data'>
@@ -132,42 +117,49 @@ Header::render(
             </form>
 
         </div>
-</form>
+        </form>
 
 
-        </div>
-        <script>
-            const subjectUI = document.getElementById('subject');
-            let moduleUI = document.getElementById('module');
+    </div>
+    <script>
+        const subjectUI = document.getElementById('subject');
+        let moduleUI = document.getElementById('module');
 
-            subjectUI.addEventListener('change', async (e) => {
-                const respond = await fetch(`http://localhost/unigura/tutor/dashboard/api/modules?subject_id=${subjectUI.value}`);
+        subjectUI.addEventListener('change', async (e) => {
+            const respond = await fetch(`http://localhost/unigura/tutor/dashboard/api/modules?subject_id=${subjectUI.value}`);
 
-                console.log('done', respond.status);
-                if (respond.status == 200) {
-                    const result = await respond.json();
-                    console.log(result)
-                    if (result) {
-                        console.log('Modules ok')
-                        const optionsUI = moduleUI.getElementsByTagName("option");
-                        while (optionsUI.length > 0) {
-                            moduleUI.removeChild(optionsUI[0]);
-                        }
-                        result.forEach(module => {
-                            const optionUI = document.createElement("option");
-                            optionUI.value = module.id; // set the value of the option
-                            optionUI.text = module.name;
-                            moduleUI.add(optionUI);
-                        });
-
+            console.log('done', respond.status);
+            if (respond.status == 200) {
+                const result = await respond.json();
+                console.log(result)
+                if (result) {
+                    console.log('Modules ok')
+                    const optionsUI = moduleUI.getElementsByTagName("option");
+                    while (optionsUI.length > 0) {
+                        moduleUI.removeChild(optionsUI[0]);
                     }
+                    result.forEach(module => {
+                        const optionUI = document.createElement("option");
+                        optionUI.value = module.id; // set the value of the option
+                        optionUI.text = module.name;
+                        moduleUI.add(optionUI);
+                    });
+
                 }
+            }
 
-            });
-        </script>
+        });
+
+        var closebtn = document.querySelector(".close");
+
+        closebtn.addEventListener('click', function() {
+            window.location = "http://localhost/unigura/tutor/dashboard";
+        })
+
+    </script>
 
 
 
-        <?php Footer::render(
-            []
-        ); ?>
+    <?php Footer::render(
+        []
+    ); ?>

@@ -15,14 +15,12 @@ public function setClassTemplateDay($data): bool
         $this->db->query('INSERT INTO  day_template SET
                  class_template_id = :id,
                  title = :title,
-                 meeting_link = :meeting_link,
                  position = :position'
                  );
-        print_r($data);
+
 
         $this->db->bind('id', $data['id'], PDO::PARAM_INT);
         $this->db->bind('title', $data['title'], PDO::PARAM_STR);
-        $this->db->bind('meeting_link', $data['meeting_link'], PDO::PARAM_STR);
         $this->db->bind('position', $data['position'], PDO::PARAM_STR);
 
         return $this->db->execute();

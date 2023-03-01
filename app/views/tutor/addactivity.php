@@ -74,10 +74,9 @@ Header::render(
 
           <script>
                var closebtn = document.querySelector(".close");
-               console.log('hiiii');
+            
                closebtn.addEventListener('click', function() {
-                    console.log("<?php echo $data['subject'] ?>")
-                    window.location = "http://localhost/unigura/tutor/viewcourse?subject=" + "<?php echo $data['subject'] ?>" + "&module="+ "<?php echo $data['module'] ?>" + "&id=" + "<?php echo $data['id'] ?>";
+                    window.location = "http://localhost/unigura/tutor/viewcourse?subject=" + "<?php echo $data['subject'] ?>" + "&module="+ "<?php echo $data['module'] ?>" + "&id=" + "<?php echo $data['c_id'] ?>";
                })
 
           </script>

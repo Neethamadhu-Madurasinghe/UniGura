@@ -130,12 +130,6 @@ IntermediateNavBar::render($request);
                     </div>
 
                     <div class="form-row">
-                        <div class="form-field">
-                            <label for="university">University *
-                                <span><?php echo $data['errors']['university_error'] ?></span>
-                            </label>
-                            <input type="text" name="university" id="" value="<?php echo $data['university'] ?>">
-                        </div>
 
                         <div class="form-field">
                             <label for="preferred-class-mode">Preferred Class Mode</label>

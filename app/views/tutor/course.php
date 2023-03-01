@@ -173,16 +173,17 @@ Header::render(
                         window.location = "http://localhost/unigura/tutor/addactivity?id=" + this.id + "&subject=" + subject + "&module=" + module + "&course_id=" + <?php echo $data['id'] ?>;
                     })
                 })
+
+
                 var document_containers = document.querySelectorAll(".textbox_one");
                 
+
                 document_containers.forEach(container => {
                     const url = "http://localhost/unigura/tutor/getactivity?id=" + container.dataset.id;
-                    console.log(container.dataset.id);
-                    let myArray = [];
+                    
                     fetch(url)
                         .then(response => response.json())
                         .then(data => {
-                            console.log(data);
                             if (data.length > 0) {
                                 for (let i = 0; i < data.length; i++) {
                                     let code = `<img class='img02' src='http://localhost/UniGura/public/img/tutor/class/icons/file.png'><a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;' href = "http://localhost/unigura/tutor/viewactivitydoc?file=${data[i].link}">${data[i].description}</a>`;
@@ -193,10 +194,7 @@ Header::render(
                         .catch(error => {
                             console.error(error);
                         });
-                        // let htmlString = myArray.map(item => `${item}`).join('');
-                        // console.log(htmlString);
-                        // console.log(myArray);
-                        // container.innerHTML = htmlString;
+            
                 })
             </script>
             <?php Footer::render(

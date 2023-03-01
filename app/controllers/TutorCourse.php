@@ -89,7 +89,6 @@ class TutorCourse extends Controller
             $data = [
                 'id' => $body['class_template_id'],
                 'title' => "",
-                'meeting_link' => "",
                 'position' => $position_count,
                 'errors' => [
                     'title_error' => "",
@@ -105,7 +104,6 @@ class TutorCourse extends Controller
             $data = [
                 'id' => $body['id'],
                 'title' => $body['title'],
-                'meeting_link' => $body['meeting_link'],
                 'position' => $body['position'],
                 'errors' => [
                     'title_error' => "",
@@ -116,7 +114,7 @@ class TutorCourse extends Controller
             $data['errors']['title_error'] = $this->validateTitle($body['title']);
             $data['errors']['position_error'] = $this->validatePosition($body['position'], $body['id']);
 
-            echo $body['position'];
+       
 
 
             $hasErrors = FALSE;
@@ -339,7 +337,8 @@ class TutorCourse extends Controller
             $body = $request->getBody();
 
             $data = [
-                'id' => $body['course_id'],
+                'id' => $body['id'],
+                'c_id' => $body['course_id'],
                 'subject' => $body['subject'],
                 'module' => $body['module']
             ];
@@ -351,7 +350,7 @@ class TutorCourse extends Controller
             $body = $request->getBody();
 
             $activityPath = handleUpload(
-                array('.png', 'jpeg', 'jpg', 'JPG', 'pdf', 'docx'),
+                array( 'pdf'),
                 '\\tutor_detail_files\\tutor_docs\\',
                 'activity-doc'
             );

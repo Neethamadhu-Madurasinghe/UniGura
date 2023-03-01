@@ -38,12 +38,6 @@ Header::render(
                         </div>
                         <input type="text" name="title" value='<?php echo $data['title'] ?>'>
                     </div>
-                    <div class="dropdown">
-                        <div class="dropdown_name">
-                            <label for="Session Fee">Meeting_Link</label>
-                        </div>
-                        <input type="url" name="meeting_link" value='<?php echo $data['meeting_link'] ?>'>
-                    </div>
                 </div>
                 <button type="submit">Create</button>
             </form>
