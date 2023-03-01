@@ -168,14 +168,14 @@ IntermediateNavBar::render($request);
                         <input type="number" id="longitude" name="longitude" readonly value="<?php echo $data['longitude']; ?>">
                     </div>
 
-                    <input type="number" id="latitude" name="latitude" readonly value="<?php echo $data['latitude']; ?>">
+                   
                 </div>
                 <div class="btn-container">
                     <div class="nextBtn btn">Next</div>
                 </div>
             </div>
 
-    </div>
+
     <div class="form second">
         <div class="form-row">
             <div class="form-field">
