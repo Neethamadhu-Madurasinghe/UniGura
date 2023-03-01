@@ -171,21 +171,17 @@ IntermediateNavBar::render($request);
                              title="Marker"
                              style="<?php echo 'background:url(' . URLROOT . '/public/img/student/marker-64.ico)
                                      no-repeat top center; background-size: contain;' ?>">
-
                         </div>
-
                         <input type="number"
                                id="latitude"
                                name="latitude"
                                readonly
                                value="<?php echo $data['latitude']; ?>">
-
                         <input type="number"
                                id="longitude"
                                name="longitude"
                                readonly
                                value="<?php echo $data['longitude']; ?>">
-
                     </div>
 
                         <input type="number" id="latitude" name="latitude" readonly value="<?php echo $data['latitude']; ?>">
