@@ -184,26 +184,34 @@ class TutorStudentAuth extends Controller {
             $_SESSION['LAST_ACTIVITY'] = time();
         }
 
-        if ($user->role === '0') {
+        if ($user->role === 0) {
             redirect('admin/dashboard');
-        }elseif ($user->role === '1') {
+        }elseif ($user->role === 1) {
             redirect('tutor/dashboard');
-        }elseif ($user->role === '2') {
+        }elseif ($user->role === 2) {
             redirect('student/dashboard');
-        }elseif ($user->role === '3') {
+        }elseif ($user->role === 3) {
             redirect('tutor/validate-email');
-        }elseif ($user->role === '4') {
+        }elseif ($user->role === 4) {
             redirect('student/validate-email');
-        }elseif ($user->role === '5') {
+        }elseif ($user->role === 5) {
             redirect('tutor/complete-profile');
-        }elseif ($user->role === '6') {
+        }elseif ($user->role === 6) {
             redirect('student/complete-profile');
-        }elseif ($user->role === '7') {
+        }
+        elseif ($user->role === 7) {
             redirect('/tutor/pending');
         }
-        elseif ($user->role === '9') {
+        elseif ($user->role === 8) {
+            redirect('/tutor/aproved');
+        }
+        elseif ($user->role === 9) {
             redirect('/tutor/complete-bank-detials');
         }
+        elseif ($user->role === 10) {
+            redirect('/tutor/tutor-time-slot-input');
+        }
+
     }
 
     public function logOut() {
