@@ -16,7 +16,7 @@ Header::render(
     [
 
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css',
-        URLROOT . '/public/css/tutor/course.css?v=1.6'
+        URLROOT . '/public/css/tutor/course.css?v=1.7'
     ]
     //    Student base style is used here, because In this part, both student and tutor looks same
 );
