@@ -358,13 +358,14 @@ class TutorCourse extends Controller
             $data = [
                 'id' => $body['id'],
                 'activity' => $activityPath,
+                'c_id' => $body['course_id'],
                 'type' => $body['type'],
                 'description' => $body['description']
 
             ];
 
             if ($this->courseModel->setActivityTemplate($data)) {
-                $this->view('tutor/addactivity', $request, $data);
+                redirect('tutor/viewcourse?id=' . $data['c_id']);
             }
         }
 
@@ -392,5 +393,142 @@ class TutorCourse extends Controller
             echo 'Requested file is not available';
             //TODO: Redirect to a new page
         }
+    }
+
+
+    public function updateDay(Request $request)
+    {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        if ($request->isProfileNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isNotApprovedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isBankDetialsNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        //Fetch all the visible subjects, modules and maximum class price
+
+        if ($request->isGet()) {
+            $body = $request->getBody();
+            $position_count = $this->courseModel->getDayCounts($body['course_id']);
+            $details = $this->courseModel->getDayTemplateDetails($body['id']);
+            $position_count = $position_count + 1;
+            $data = [
+                'id' => $body['id'],
+                'title' =>  $details[0]['title'],
+                'position' => $position_count,
+                'course_id' => $body['course_id'],
+                'errors' => [
+                    'title_error' => "",
+                    "position_error" => ""
+                ]
+            ];
+        };
+
+
+        if ($request->isPost()) {
+            $body = $request->getBody();
+            $data = [];
+            $data = [
+                'id' => $body['id'],
+                'title' => $body['title'],
+                'position' => $body['position'],
+                'course_id' => $body['course_id'],
+                'errors' => [
+                    'title_error' => "",
+                    'position_error' => ""
+                ]
+            ];
+
+            $data['errors']['title_error'] = $this->validateTitle($body['title']);
+            $data['errors']['position_error'] = $this->validatePosition($body['position'], $body['id']);
+
+    
+            $hasErrors = FALSE;
+
+            foreach ($data['errors'] as $errorString) {
+                if ($errorString !== '') {
+                    $hasErrors = TRUE;
+                }
+            }
+
+            if (!$hasErrors) {
+
+                if ($this->courseModel->updateDayTemplate($data)) {
+                    redirect('tutor/viewcourse?id=' . $data['course_id']);
+                } else {
+                    header("HTTP/1.0 500 Internal Server Error");
+                    die('Something went wrong');
+                }
+
+                $this->view('tutor/updateday', $request, $data);
+
+                //If the request is a GET request, then serve the page
+
+            } else {
+                $this->view('tutor/updateday', $request, $data);
+            }
+        }
+
+        $this->view('tutor/updateday', $request, $data);
+    }
+
+    public function deleteDayTemplate(Request $request)
+    {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        if ($request->isProfileNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isNotApprovedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isBankDetialsNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isGet()) {
+            $data = [];
+
+            $body = $request->getBody();
+
+            $data = [
+                'id' => $body['id'],
+                'course_id' => $body['course_id']
+            ];
+
+            $this->view('tutor/deletedaytemplate', $request, $data);
+        }
+
+        if ($request->isPost()) {
+            $body = $request->getBody();
+
+            if ($this->courseModel->deleteDayTemplate($body['id'])) {
+                redirect('tutor/viewcourse?id=' . $body['course_id']);
+            } else {
+                header("HTTP/1.0 500 Internal Server Error");
+                die('Something went wrong');
+            }
+
+            $this->view('tutor/deletedaytemplate', $request, $data);
+        }
+
+
+
+        //        If the request is a GET request, then serve the page
     }
 }
