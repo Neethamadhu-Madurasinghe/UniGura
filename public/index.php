@@ -5,7 +5,13 @@ require_once '../app/bootloader.php';
 $request = new Request();
 $router = new Router($request);
 
+// Example routes
+$router->registerController('/example/login', [ExampleAuth::class, 'login']);
+$router->registerController('/example/register', [ExampleAuth::class, 'register']);
+$router->registerController('/example/logout', [ExampleAuth::class, 'logout']);
+$router->registerController('/example/dashboard', [ExampleDashboard::class, 'dashboard']);
 
+$router->registerController('/api/example', [ExampleRestAPI::class, 'testAPI']);
 
 // Common routes
 $router->registerController('/load-file', [FileLoader::class, 'loadFile']);
@@ -28,10 +34,7 @@ $router->registerController('/tutor/register', [TutorStudentAuth::class, 'tutorS
 
 // Admin routes
 
-
 $router->registerController('/admin/dashboard', [AdminDashboard::class, 'dashboard']);
-
-
 $router->registerController('/admin/subjectModule', [AdminSubjectModule::class, 'subjectsAndModules']);
 $router->registerController('/admin/addSubject', [AdminSubjectModule::class, 'addSubject']);
 $router->registerController('/admin/addModule', [AdminSubjectModule::class, 'addModule']);
@@ -62,7 +65,9 @@ $router->registerController('/admin/updateTutorComplainReason', [AdminRequiremen
 
 $router->registerController('/admin/payment', [AdminPayment::class, 'payment']);
 $router->registerController('/admin/selectedTutorDetails', [AdminPayment::class, 'selectedTutorDetails']);
-$router->registerController('/admin/uploadBankSlip', [AdminPayment::class, 'uploadBankSlip']);
+
+
+$router->registerController('/admin/chat', [AdminChat::class, 'chat']);
 
 
 
@@ -89,24 +94,6 @@ $router->registerController('/admin/updatePassword', [AdminProfileView::class, '
 
 
 $router->registerController('/admin/filterForStudentPage', [AdminFilter::class, 'filterForStudentPage']);
-$router->registerController('/admin/filterForTutorPage',[AdminFilter::class,'filterForTutorPage']);
-$router->registerController('/admin/filterForClassPage',[AdminFilter::class,'filterForClassPage']);
-
-$router->registerController('/admin/hideTutor',[AdminHideShowBlockUnblock::class,'hideTutor']);
-$router->registerController('/admin/showTutor',[AdminHideShowBlockUnblock::class,'showTutor']);
-$router->registerController('/admin/blockTutor',[AdminHideShowBlockUnblock::class,'blockTutor']);
-$router->registerController('/admin/unblockTutor',[AdminHideShowBlockUnblock::class,'unblockTutor']);
-
-$router->registerController('/admin/blockStudent',[AdminHideShowBlockUnblock::class,'blockStudent']);
-$router->registerController('/admin/unblockStudent',[AdminHideShowBlockUnblock::class,'unblockStudent']);
-
-$router->registerController('/admin/statistics',[AdminStatistics::class,'statistics']);
-
-$router->registerController('/admin/acceptTutorRequest',[AdminRequirementComplaints::class,'acceptTutorRequest']);
-$router->registerController('/admin/rejectTutorRequest',[AdminRequirementComplaints::class,'rejectTutorRequest']);
-
-$router->registerController('/admin/studentComplainSearchFilter',[AdminSearchFilter::class,'studentComplainSearchFilter']);
-
 
 
 
@@ -138,6 +125,8 @@ $router->registerController('/tutor/updateclasstemplate', [TutorCourse::class, '
 $router->registerController('/tutor/deleteclasstemplate', [TutorCourse::class, 'deleteClassTemplate']);
 $router->registerController('/tutor/sendposition', [TutorCourse::class, 'sendposition']);
 $router->registerController('/tutor/addactivity', [TutorCourse::class, 'addActivityTemplate']);
+$router->registerController('/tutor/getactivity', [TutorCourse::class, 'getactivity']);
+$router->registerController('/tutor/viewactivitydoc', [TutorCourse::class, 'loadTutorFile']);
 
 $router->registerController('/tutor/classes', [TutorClass::class, 'mainpage']);
 $router->registerController('/tutor/payments', [TutorPayments::class, 'mainpage']);
@@ -181,12 +170,8 @@ $router->registerController('/api/time-table', [FindTutor::class, 'getTutorTimeT
 $router->registerController('/api/request', [FindTutor::class, 'sendTutorRequest']);
 $router->registerController('/student/find-tutor', [FindTutor::class, 'findTutor']);
 $router->registerController('/student/profile', [StudentProfile::class, 'profile']);
-$router->registerController('/student/change-profile-picture', [StudentProfile::class, 'changeProfilePicture']);
-$router->registerController('/api/delete-request', [StudentProfile::class, 'deleteTutorRequest']);
 $router->registerController('/api/report-tutor', [StudentTutorProfile::class, 'reportTutor']);
 $router->registerController('/student/tutor-profile', [StudentTutorProfile::class, 'tutorProfile']);
-$router->registerController('/student/class', [StudentClass::class, 'tutoringClass']);
-$router->registerController('/student/chat', [StudentClass::class, 'chat']);
 
 
 
