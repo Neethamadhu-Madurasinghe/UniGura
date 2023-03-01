@@ -18,7 +18,6 @@ public function setClassTemplateDay($data): bool
                  meeting_link = :meeting_link,
                  position = :position'
                  );
-
         print_r($data);
 
         $this->db->bind('id', $data['id'], PDO::PARAM_INT);
@@ -32,7 +31,16 @@ public function setClassTemplateDay($data): bool
 
     public function getTutoringClassTemplateDays($id): array
     {
-        $this->db->query('SELECT * FROM day_template WHERE class_template_id = :id ORDER BY position ASC;');
+        $this->db->query('SELECT * FROM day_template  WHERE class_template_id = :id ORDER BY position ASC;');
+
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        return $this->db->resultAllAssoc();
+    }
+
+    public function getTutoringActivities($id): array
+    {
+        $this->db->query('SELECT * FROM activity_template  WHERE day_template_id = :id ;');
 
         $this->db->bind('id', $id, PDO::PARAM_INT);
 

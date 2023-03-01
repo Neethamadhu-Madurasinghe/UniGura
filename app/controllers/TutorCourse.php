@@ -15,11 +15,11 @@ class TutorCourse extends Controller
     public function viewcourse(Request $request)
     {
 
-
         $data = [];
 
         $body = $request->getBody();
         $days = json_encode($this->courseModel->getTutoringClassTemplateDays($body['id']));
+
         $details = $this->courseModel->getTutoringClassTemplateDetails($body['id']);
         $subject = $this->courseModel->getSubjectName($details[0]['subject_id']);
         $module = $this->courseModel->getModuleName($details[0]['module_id']);
@@ -40,6 +40,25 @@ class TutorCourse extends Controller
         $data['days'] = $days;
 
         $this->view('tutor/course', $request, $data);
+    }
+
+    public function getactivity(Request $request)
+    {
+
+        $data = [];
+
+        $body = $request->getBody();
+
+
+
+        $activities = json_encode($this->courseModel->getTutoringActivities($body['id']));
+
+        $response = [
+            'activities' => $activities
+          ];
+          
+        header('Content-Type: application/json');
+        echo $activities;
     }
 
     public function createDay(Request $request)
@@ -265,8 +284,6 @@ class TutorCourse extends Controller
             redirectBasedOnUserRole($request);
         }
 
-
-
         if ($request->isGet()) {
             $data = [];
 
@@ -280,14 +297,14 @@ class TutorCourse extends Controller
         }
 
         if ($request->isPost()) {
-                $body = $request->getBody();
-                if ($this->courseModel->deleteClassTemplate($body['id'])) {
-                    redirect('tutor/dashboard');
-                } else {
-                    header("HTTP/1.0 500 Internal Server Error");
-                    die('Something went wrong');
-                }
-            
+            $body = $request->getBody();
+            if ($this->courseModel->deleteClassTemplate($body['id'])) {
+                redirect('tutor/dashboard');
+            } else {
+                header("HTTP/1.0 500 Internal Server Error");
+                die('Something went wrong');
+            }
+
             $this->view('tutor/deleteclasstemplate', $request, $data);
         }
 
@@ -298,7 +315,6 @@ class TutorCourse extends Controller
 
     public function addActivityTemplate(Request $request)
     {
-
         if (!$request->isLoggedIn()) {
             redirect('/login');
         }
@@ -323,9 +339,11 @@ class TutorCourse extends Controller
             $body = $request->getBody();
 
             $data = [
-                'id' => $body['id']
+                'id' => $body['course_id'],
+                'subject' => $body['subject'],
+                'module' => $body['module']
             ];
-            echo $body['id'];
+
             $this->view('tutor/addactivity', $request, $data);
         }
 
@@ -335,24 +353,45 @@ class TutorCourse extends Controller
             $activityPath = handleUpload(
                 array('.png', 'jpeg', 'jpg', 'JPG', 'pdf', 'docx'),
                 '\\tutor_detail_files\\tutor_docs\\',
-                'tutor_docs'
+                'activity-doc'
             );
 
             $data = [
                 'id' => $body['id'],
                 'activity' => $activityPath,
-                'type'=>1,
-                'description'=>"Tute-1",
+                'type' => $body['type'],
+                'description' => $body['description']
 
             ];
 
-            if ($this->courseModel->setActivityTemplate($data)){
-                $this->view('tutor/dashboard', $request, $data);
+            if ($this->courseModel->setActivityTemplate($data)) {
+                $this->view('tutor/addactivity', $request, $data);
             }
         }
 
 
-        
+
         //        If the request is a GET request, then serve the page
+    }
+
+    public function loadTutorFile(Request $request): void {
+        if(!$request->isLoggedIn()) {
+            die('Please log in to download the file');
+        }
+//        if request was ...?file= error message should be displayed
+//        __nofile is a dummy name used for indicate to unavailable file
+        $fileName = $request->getBody()['file'] ?? '';
+        $fileName = $fileName !== '' ? $fileName : '__nofile';
+        $file = ROOT . $fileName;
+
+        if (file_exists($file)) {
+            $type = 'application/pdf';
+            header('Content-Type:'.$type);
+            header('Content-Length: ' . filesize($file));
+            readfile($file);
+        }else {
+            echo 'Requested file is not available';
+            //TODO: Redirect to a new page
+        }
     }
 }
