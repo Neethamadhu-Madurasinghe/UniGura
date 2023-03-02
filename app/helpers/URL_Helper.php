@@ -10,7 +10,7 @@ function redirect($path): void {
 
 function redirectBasedOnUserRole(Request $request): void {
     if (!$request->isVerified()) {
-        redirect('/verify)email');
+        redirect('/verify/email');
     }elseif ($request->isAdmin()) {
         redirect('admin/dashboard');
     }elseif ($request->isTutor()) {
