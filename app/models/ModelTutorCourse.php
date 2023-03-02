@@ -158,4 +158,35 @@ public function setClassTemplateDay($data): bool
         return $this->db->execute();
     }
 
+    public function getDayTemplateDetails($id): array
+    {
+        $this->db->query('SELECT * FROM day_template WHERE id = :id;');
+
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        return $this->db->resultAllAssoc();
+    }
+
+    public function updateDayTemplate($data) : bool 
+    {
+
+        $this->db->query('UPDATE day_template SET title = :title , position = :position   WHERE id = :id;');
+        $this->db->bind('title', $data['title'], PDO::PARAM_STR);
+        $this->db->bind('position', $data['position'], PDO::PARAM_STR);
+        $this->db->bind('id', $data['id'], PDO::PARAM_INT);
+
+//      Returns whether the row count is greater than 0
+        return $this->db->execute();
+    }
+
+    public function deleteDayTemplate($id) : bool 
+    {
+
+        $this->db->query('DELETE FROM day_template WHERE id = :id;');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+//      Returns whether the row count is greater than 0
+        return $this->db->execute();
+    }
+
 }

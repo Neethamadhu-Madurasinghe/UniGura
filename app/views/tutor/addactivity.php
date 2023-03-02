@@ -59,6 +59,7 @@ Header::render(
                               <div Class="Uploadbox">
                                    <div>
                                         <input name="id" value="<?php echo $data['id'] ?>" type="hidden">
+                                        <input name="course_id" value="<?php echo $data['c_id'] ?>" type="hidden">
                                         <input style="width : 100% " name='description' type="text">
                                         <input type="file" id="activity-doc" name="activity-doc" hidden />
                                    </div>
