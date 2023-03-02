@@ -16,13 +16,13 @@
                 <div class="payoff-tutors">
                     <h3>Payoffs Tutors</h3>
                 </div>
-                <div class="search-box">
+                <!-- <div class="search-box">
                     <i class="fa fa-search"></i>
                     <input type="text" placeholder="Search Tutors">
-                </div>
+                </div> -->
                 <div class="all-tutor">
 
-                    <?php foreach ($data as $tutor) : ?>
+                    <?php foreach ($data['allUniquePayoffTutors'] as $tutor) : ?>
                         <?php if ($tutor->is_withdrawed == 0) : ?>
                             <div class="tutor">
                                 <input type="hidden" value="<?php echo $tutor->tutor_id ?>" class="tutorId">
@@ -78,7 +78,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($data as $Withdrawal) : ?>
+                            <?php foreach ($data['allPaymentDetails'] as $Withdrawal) : ?>
                                 <?php if ($Withdrawal->is_withdrawed == 1) : ?>
                                     <tr>
                                         <td><?php echo $Withdrawal->tutor->first_name . " " . $Withdrawal->tutor->first_name ?></td>
@@ -111,7 +111,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($data as $Withdrawal) : ?>
+                            <?php foreach ($data['allPaymentDetails'] as $Withdrawal) : ?>
                                 <?php if ($Withdrawal->is_withdrawed == 0) : ?>
                                     <tr>
                                         <td><?php echo $Withdrawal->tutor->first_name . " " . $Withdrawal->tutor->first_name ?></td>
