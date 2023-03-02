@@ -1,10 +1,3 @@
-<?php
-    echo "<pre>";
-    print_r($data);
-    echo "</pre>";
-
-?>
-
 <div class="total-payoff">
     <h2>Total Payoffs: <span>Rs. 5000</span></h2>
 </div>
