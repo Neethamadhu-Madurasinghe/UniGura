@@ -1,0 +1,178 @@
+.main-area {
+    width: 100%;
+    min-height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    max-width: 1000px;
+    height: 60%;
+}
+
+@media screen and (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+        height: 100%;
+    }
+}
+
+
+
+@media screen and (max-width: 1024px) {
+    .login-area {
+        width: 90%;
+    }
+}
+
+
+
+.login-form-container{
+    width: 55%;
+}
+
+@media screen and (max-width: 480px) {
+    .image-area {
+        display: none;
+    }
+
+    .login-form-container{
+        width: 90%
+    }
+}
+
+
+.login-form-container h1 {
+    width: 100%;
+    text-align: center;
+    font-weight: bolder;
+    margin-bottom: 0;
+}
+
+
+.login-form-container p {
+    transform: translateY(-15px);
+}
+
+.login-form-container p a {
+    font-weight: bolder;
+    text-decoration: none;
+    color: var(--bright-orange)
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+@media screen and (max-width: 768px) {
+    .login-form {
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.form-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .form-row {
+        width: 100%;
+        flex-direction: column;
+        margin: 0;
+    }
+}
+
+
+.form-field {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+    .form-field {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+
+.form-field label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: flex;
+    text-align: center;
+}
+
+.error {
+    color: red;
+    font-size: 0.7rem;
+    font-weight: normal;
+}
+
+
+
+.form-field input {
+    border: none;
+    background-color: rgb(255, 237, 220);
+    border-bottom: 1px solid var(--bright-orange);
+    font-size: 2rem;
+    height: 50px;
+    width: 60%;
+    border-radius: 5px;
+    padding-left: 5px;
+    margin-bottom: 5px;
+}
+
+@media screen and (max-width: 768px) {
+    .form-field input {
+        width: 100%;
+    }
+}
+
+.resend {
+    text-decoration: underline;
+    color: var(--bright-orange);
+    margin-top: 5px;
+}
+
+
+
+.btn {
+    width: 180px;
+    height: 40px;
+    font-size: 1rem;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.1s;
+    user-select: none;
+}
+
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn:active {
+    background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
+}

@@ -35,6 +35,7 @@ class TutorStudentAuth extends Controller {
                 'email' => $body['email'],
                 'password' => $body['password'],
                 'confirm_password' => $body['confirm-password'],
+                'code' => $this->generateCode(),
                 'errors' => [
                     'email_error' => '',
                     'password_error' => ''
@@ -103,6 +104,57 @@ class TutorStudentAuth extends Controller {
         }
     }
 
+    public function verifyEmail(Request $request) {
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        if ($request->isVerified()) {
+            redirectBasedOnUserRole($request);
+        }
+
+
+        if ($request->isPost()) {
+
+            $data = [
+                'error' => ''
+            ];
+
+            $body = $request->getBody();
+            if (strlen($body['code']) != 6) {
+                $data['error'] = 'Please enter the code we sent to your email address';
+            }
+
+            if ($data['error'] == '' && !$this->userModel->isCodeValid($request->getUserId(), $body)) {
+                $data['error'] = 'Code is invalid. Please try again';
+
+            }else {
+                $this->userModel->markVerify($request->getUserId());
+            }
+
+//            IF there is a code, then check whether its valid
+            if ($data['error'] == '') {
+                redirectBasedOnUserRole($request);
+
+            }else {
+                $this->view('common/auth/verifyEmail', $request, $data);
+            }
+
+
+
+
+        }else {
+            $data = [
+                'error' => ''
+            ];
+            $this->view('common/auth/verifyEmail', $request, $data);
+        }
+
+
+
+
+    }
+
 
 //   Handle login process
     public function login(Request $request) {
@@ -169,6 +221,7 @@ class TutorStudentAuth extends Controller {
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_email'] = $user->email;
         $_SESSION['user_role'] = $user->role;
+        $_SESSION['is_verified'] = $user->is_validated;
 
 //        Fetch the user's profile picture if user is student or tutor
         if ( $user->role == 1 || $user->role == 2) {
@@ -184,7 +237,9 @@ class TutorStudentAuth extends Controller {
             $_SESSION['LAST_ACTIVITY'] = time();
         }
 
-        if ($user->role === 0) {
+        if ($_SESSION['is_verified'] == 0) {
+            redirect('/verify-email');
+        }elseif ($user->role === 0) {
             redirect('admin/dashboard');
         }elseif ($user->role === 1) {
             redirect('tutor/dashboard');
@@ -245,6 +300,17 @@ class TutorStudentAuth extends Controller {
         }else {
             return '';
         }
+    }
+
+    private function generateCode(): string {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $string = '';
+
+        for ($i = 0; $i < 6; $i++) {
+            $string .= $characters[mt_rand(0, strlen($characters) - 1)];
+        }
+
+        return $string;
     }
 
 
