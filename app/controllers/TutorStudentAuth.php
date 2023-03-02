@@ -134,10 +134,11 @@ class TutorStudentAuth extends Controller {
             }
 
 //             Is code invalid ?
-            if ($data['error'] == '' && !$this->userModel->isCodeValid($request->getUserId(), $body)) {
+            if ($data['error'] === '' && !$this->userModel->isCodeValid($request->getUserId(), $body)) {
                 $data['error'] = 'Code is invalid or expired. Please try resending the code';
 
-            }else {
+            } elseif($data['error'] === '') {
+
                 $this->userModel->markVerify($request->getUserId());
                 $_SESSION['is_verified'] = 1;
             }
