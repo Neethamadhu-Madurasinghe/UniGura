@@ -16,13 +16,22 @@ class AdminPayment extends Controller
             redirect('/login');
         }
 
-        $allPayment = $this->paymentModel->allPaymentDetails();
+        $allUniquePayoffTutors = $this->paymentModel->allUniquePayoffTutors();
+        $allPaymentDetails = $this->paymentModel->allPaymentDetails();
 
-        foreach ($allPayment as $tutor) {
+
+        foreach ($allUniquePayoffTutors as $tutor) {
             $tutor->tutor = $this->paymentModel->getTutorById($tutor->tutor_id);
         }
 
-        $data = $allPayment;
+        foreach ($allPaymentDetails as $tutor) {
+            $tutor->tutor = $this->paymentModel->getTutorById($tutor->tutor_id);
+        }
+
+        $data = [
+            'allUniquePayoffTutors' => $allUniquePayoffTutors,
+            'allPaymentDetails' => $allPaymentDetails
+        ];
 
         // echo '<pre>';
         // print_r($data);
@@ -76,10 +85,12 @@ class AdminPayment extends Controller
             redirect('/login');
         }
 
+
         if ($request->isPost()) {
-            handleUpload(array('.png', '.pdf'), '\\public\\profile_pictures\\', 'paymentBankSlip');
+            $filePath = handleUpload(array('.png', '.pdf'), '\\public\\profile_pictures\\', 'paymentBankSlip');
+            $this->paymentModel->updateTutorWithdrawalDetails($_GET['tutorID'], $filePath);
         }
 
-        
+        redirect('/admin/payment');
     }
 }
