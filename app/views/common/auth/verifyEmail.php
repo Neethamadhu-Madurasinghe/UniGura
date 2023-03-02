@@ -44,7 +44,7 @@ IntermediateNavBar::render($request);
 
                     <input type="submit" value="Verify" class="btn">
 
-                    <a href="" class="resend">Resend Code</a>
+                    <a href="<?php echo URLROOT . '/verify-email?resend=true'?>" class="resend">Resend Code</a>
                 </form>
             </div>
         </div>
