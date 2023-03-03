@@ -74,8 +74,8 @@ Header::render(
                         <div></div>
                         <div></div>
                         <button class='left add-activity' id=$id ><i class='fa-solid fa-plus'></i></button>
-                        <button class='middle'><i class='fa-solid fa-pen'></i></button>
-                        <button class='right'><i class='fa-solid fa-trash'></i></button>
+                        <button class='middle update-day' id = $id><i class='fa-solid fa-pen'></i></button>
+                        <button class='right delete-day' id = $id><i class='fa-solid fa-trash'></i></button>
                     </div>
                 </div>";
                     }
@@ -166,7 +166,7 @@ Header::render(
                 var subject = document.getElementById('subject').innerText;
                 var module = document.getElementById('module').innerText;
 
-                console.log(subject, module);
+         
 
                 addactivitybtns.forEach(btn => {
                     btn.addEventListener('click', function() {
