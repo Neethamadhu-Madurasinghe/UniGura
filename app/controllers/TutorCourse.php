@@ -508,7 +508,7 @@ class TutorCourse extends Controller
                 'course_id' => $body['course_id']
             ];
 
-            $this->view('tutor/deletedaytemplate', $request, $data);
+            $this->view('tutor/deleteday', $request, $data);
         }
 
         if ($request->isPost()) {
@@ -521,7 +521,7 @@ class TutorCourse extends Controller
                 die('Something went wrong');
             }
 
-            $this->view('tutor/deletedaytemplate', $request, $data);
+            $this->view('tutor/deleteday', $request, $data);
         }
 
 
