@@ -123,8 +123,25 @@ class ModelTutorDashboard
 
     public function getStudentRequests($id): array
     {
-        $this->db->query(' SELECT r.id , r.class_template_id , r.mode , r.tutor_id , r.student_id , s.name as subject , m.name as module , u.first_name , u.last_name FROM request AS r JOIN tutoring_class_template AS c ON r.class_template_id = c.id JOIN subject AS s ON c.subject_id = s.id JOIN module AS m ON c.module_id = m.id JOIN user AS u ON r.student_id = u.id WHERE r.tutor_id = :id;');
+        $this->db->query(' SELECT r.id , r.class_template_id , r.mode , r.tutor_id , r.student_id , s.name as subject , m.name as module , u.first_name , u.last_name , u.profile_picture , u.id as user_id FROM request AS r JOIN tutoring_class_template AS c ON r.class_template_id = c.id JOIN subject AS s ON c.subject_id = s.id JOIN module AS m ON c.module_id = m.id JOIN user AS u ON r.student_id = u.id WHERE r.tutor_id = :id;');
         $this->db->bind('id', $id, PDO::PARAM_INT);
+        return $this->db->resultAllAssoc();
+    }
+
+    public function viewStudentRequests($id): array
+    {
+        $this->db->query(' SELECT r.id as id , r.class_template_id , r.mode , r.tutor_id , r.student_id , s.name as subject , m.name as module , u.first_name , u.last_name , u.profile_picture , u.id as user_id ,c.class_type FROM request AS r JOIN tutoring_class_template AS c ON r.class_template_id = c.id JOIN subject AS s ON c.subject_id = s.id JOIN module AS m ON c.module_id = m.id JOIN user AS u ON r.student_id = u.id WHERE r.id = :id;');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        return $this->db->resultAllAssoc();
+    }
+
+    public function getRequestTimeSlots($id): array
+    {
+        $this->db->query("SELECT r.id , t.time_slot_id , s.day , s.id , s.time FROM request AS r JOIN request_time_slot AS t ON r.id = t.request_id JOIN time_slot as s ON t.time_slot_id = s.id WHERE r.id = :id;");
+
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        $this->db->execute();
+
         return $this->db->resultAllAssoc();
     }
 
@@ -140,5 +157,15 @@ class ModelTutorDashboard
         $this->db->execute();
 
         return $this->db->resultAll();
+    }
+
+
+    public function setStudentAproveRequest($id) : bool
+    {
+        $this->db->query('UPDATE request SET status = 1  WHERE id = :id;');
+        $this->db->bind('id', $id , PDO::PARAM_INT);
+
+//      Returns whether the row count is greater than 0
+        return $this->db->execute();
     }
 }

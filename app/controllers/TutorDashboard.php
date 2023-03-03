@@ -95,25 +95,22 @@ class TutorDashboard extends Controller
 
             //Validate all the fields
             $data['errors']['session_rate_error'] = validateRate($data['session_rate']);
-        
+
 
             if ($data['errors']['session_rate_error'] == '') {
-                
-                if ($this->dashboardModel->getTutoringClassDetails($data) == 0){
+
+                if ($this->dashboardModel->getTutoringClassDetails($data) == 0) {
                     if ($this->dashboardModel->setTutorclassTemplate($data)) {
                         redirect('tutor/dashboard');
                     } else {
                         header("HTTP/1.0 500 Internal Server Error");
                         die('Something went wrong');
                     }
-                }
-                else{
+                } else {
                     $data['errors']['class_template_duplipate_error'] = 'Class Template Already Exists!';
                 }
-
-                
             }
-            
+
             $data['subjects'] = $subjects;
             $data['modules'] = $modules;
 
@@ -145,26 +142,73 @@ class TutorDashboard extends Controller
 
 
 
-    public function getModule(Request $request) {
+    public function getModule(Request $request)
+    {
         //      Cors support
-                cors();
+        cors();
 
-                $body = $request->getBody();
-             
-                $data = [
-                    'modules' => []
-                ];
-        
-                $data['modules'] = $this->dashboardModel->getModulesBySubjectId($body['subject_id']);
-                
+        $body = $request->getBody();
 
-                header('Content-type: application/json');
-                echo json_encode($data['modules']);
-            }
+        $data = [
+            'modules' => []
+        ];
 
-            
+        $data['modules'] = $this->dashboardModel->getModulesBySubjectId($body['subject_id']);
+
+
+        header('Content-type: application/json');
+        echo json_encode($data['modules']);
+    }
+
+    //Student request component
+
+    public function viewrequest(Request $request)
+    {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
         }
 
+        if ($request->isProfileNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isNotApprovedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isBankDetialsNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+        
+        $data = [];
+
+        $body = $request->getBody();
+
+
+        if ($request->isPost()) {
+            $body = $request->getBody();
+
+
+            $data = [
+                'id' => $body['id']
+            ];
 
     
-        
+            if ($this->dashboardModel->setStudentAproveRequest($data['id'])) {
+                    redirect('tutor/dashboard');
+                } 
+            else {
+                    header("HTTP/1.0 500 Internal Server Error");
+                    die('Something went wrong');
+                }
+            $this->view('tutor/dashboard', $request);
+            } 
+
+        $data['tutor_request'] = json_encode($this->dashboardModel->viewStudentRequests($body['id']));
+        $data['time_slots'] = json_encode($this->dashboardModel->getRequestTimeSlots($body['id']));
+
+
+        $this->view('tutor/viewstudentrequest', $request,$data);
+    }
+}

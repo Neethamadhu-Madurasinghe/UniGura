@@ -15,7 +15,7 @@ Header::render(
     'Tutor Dashboard',
     [
         URLROOT . '/public/css/tutor/base.css?v=2.3',
-        URLROOT . '/public/css/tutor/dashboard.css?v=2.7'
+        URLROOT . '/public/css/tutor/dashboard.css?v=3.3'
     ]
 );
 
@@ -68,7 +68,7 @@ MainNavbar::render($request);
                 </div>
             </div>
 
-            <div class="card" id="pendingrequets" style="height: 360px;">
+            <div class="card" id="pendingrequets" style="height: 280px;">
                 <div id="heading">
                     <h1>Pending Requests</h1>
                 </div>
@@ -81,6 +81,7 @@ MainNavbar::render($request);
                         if ($classes) {
                             foreach ($classes as $class) {
                                 $array = (array) $class;
+                                $id = (string) $array['id'];
                                 $student_first_name = (string) $array['first_name'];
                                 $student_last_name = (string) $array['last_name'];
                                 $module = (string) $array['module'];
@@ -90,18 +91,18 @@ MainNavbar::render($request);
 
                                 echo "
                                 <li class='cardss'>
-                                <div class='msg_box' style='margin-top: 0px;'>
-                                    <header>
-                                        <img src= 'http://localhost/UniGura/public/img/tutor/class/images/user.jpg'>
-                                        <h4 style='margin-top: 5%;'>$student_first_name  $student_last_name</h4>
-                                    </header>
-                                    <p style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;'>$subject</p>
-                                    <p style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;'>$module</p>
-                                    <p style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;'>$mode</p>
-                                    <button class='msg_box button'>View Details</button>
-                                    <h3 style = 'display:none;'>$c_id</h3>
-                                </div>
-                            </li>";
+                                    <div class='msg_box' style='margin-top: 0px;'>
+                                        <header>
+                                            <img src= 'http://localhost/UniGura/public/img/tutor/class/images/user.jpg'>
+                                            <div>
+                                                <h4>$student_first_name  $student_last_name</h4>
+                                                <p style='color: rgba(112, 124, 151, 1) ; margin-top:0px;text-align: justify;'> $module | $mode</p>
+                                            </div>
+                                            </header>
+                                        <button class='msg_box button' id = $id>View Details</button>
+                                        <h3 style = 'display:none;'>$c_id</h3>
+                                    </div>
+                                </li>";
                             }
                         } else {
                             echo "No classes";
@@ -256,14 +257,14 @@ MainNavbar::render($request);
 
             </div>
 
-        
 
 
-            <div class="card" id="mycourses" style="height: 568px;">
+
+            <div class="card" id="mycourses" style="height: 530px;">
                 <div id="heading">
                     <h1>My Courses</h1>
                 </div>
-                <div class="all_message">
+                <div class="all_message" id="course_cards">
                     <?php
                     $classes = json_decode($data['tutoring_class_template']);
                     foreach ($classes as $class) {
@@ -274,12 +275,12 @@ MainNavbar::render($request);
                         $medium = (string) $array['medium'];
                         $c_id = (string) $array['course_id'];
                         $rate = (string) $array['current_rating'];
-                        $count = (string ) $array['class_count'];
+                        $count = (string) $array['class_count'];
 
                         echo "
                             <div class = 'main_card'>
-                                <div class='msg_box'> 
-                                <div class='headbox'>
+                                <div class='msg_box' id='content'> 
+                                <div class='headbox' >
                                     <div>
                                         <h2 class='subject'>$subject</h2>
                                         <p>$module</p>
@@ -287,16 +288,17 @@ MainNavbar::render($request);
                                     </div>
                                 </div>
                                 <div class='text_box3'>
-                                    <p><i class='fa-solid fa-microphone'></i> $mode</p>
-                                    <p><i class='fa-brands fa-chromecast'></i> $medium </p>
+                                    <p><i class='fa-solid fa-microphone'></i>  $medium </p>
+                                    <p><i class='fa-brands fa-chromecast'></i> $mode </p>
                                 </div>
                                 <p class='Active-students' ><i class='fa-solid fa-users'></i> $count Active Students</p>                       
                             </div>
                             <div>
                                     <div class='button_box'>
-                                        <button class='star'><i class='fa-solid fa-star'></i>$rate</button>
-                                        <button class='closestart' id = '$c_id'><i class='fa-solid fa-pen'></i></button>
-                                        <button class='closeend' id='$c_id'><i class='fa-solid fa-trash'></i></button>
+                                        <button class='star'><i class='fa-solid fa-star'></i> $rate</button>
+                                        <button title='View' class='closestart view' ><i data-subject =$subject data-module = $module data-id = $c_id  class='fa-solid fa-expand view'></i></button>
+                                        <button title='Edit' class='middle edit' ><i data-id = $c_id  class='fa-solid fa-pen edit'></i></button>
+                                        <button title='Delete' class='closeend delete' ><i data-id = $c_id  class='fa-solid fa-trash delete'></i></button>
                                     </div> 
                             </div>
                             </div>  
@@ -306,7 +308,8 @@ MainNavbar::render($request);
                 </div>
 
             </div>
-            <div class="card" id="balancetime" style="background-color: #ffffff;    padding :  25px;padding-top: 0px;margin-bottom: 40px;border-radius:10px;height:432px">
+
+            <div class="card" id="balancetime" style="background-color: #ffffff;    padding :  25px;padding-top: 0px;margin-bottom: 40px;border-radius:10px;height:390px">
                 <div id="heading">
                     <h1>
                         Balance Time
@@ -314,8 +317,20 @@ MainNavbar::render($request);
                 </div>
                 <div id="content">
                     <div id="piechart">
+                        <div class="circle"></div>
                         <div style="display:none" id="active"><?php print_r(json_decode($data['tutor_time_slots'])[0]->active_count) ?></div>
                         <div style="display:none" id="working"><?php print_r(json_decode($data['tutor_time_slots'])[0]->working_count) ?></div>
+                        <div class="percentage-box">
+                            <div>
+                                <h1>20%</h1>
+                                <span>Working</span>
+                            </div>
+                            <div>
+                                <h1>20%</h1>
+                                <span>Working</span>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -340,37 +355,52 @@ MainNavbar::render($request);
     complete_class_count.innerHTML = class_counts['complete'];
 
 
-
     //Getting Complete class count
-
 
     //Getting block class count
 
     // Get the modal - Result Model
+    
+    const card_container = document.querySelector('#course_cards');
 
-    const cards = document.querySelectorAll(".msg_box");
-
-    cards.forEach(card => {
-        card.addEventListener("click", function() {
-            window.location = "http://localhost/unigura/tutor/viewcourse?subject=" + this.querySelector("h2").textContent + "&module=" + this.querySelector("p").textContent + "&id=" + this.querySelector("h3").textContent;
-        });
+    card_container.addEventListener('click', (event) => {
+        if (event.target.classList.contains('view')) {
+            event.target.addEventListener('click', function() {
+                window.location = "http://localhost/unigura/tutor/viewcourse?subject=" + event.target.dataset.subject + "&module=" + event.target.dataset.module + "&id=" + event.target.dataset.id ;
+        })
+        }
+        if (event.target.classList.contains('edit')) {
+            event.target.addEventListener('click', function() {
+                window.location = "http://localhost/unigura/tutor/updateclasstemplate?id=" + event.target.dataset.id
+        })
+        }
+        if (event.target.classList.contains('delete')) {
+            event.target.addEventListener('click', function() {
+                window.location = "http://localhost/unigura/tutor/deleteclasstemplate?id=" + event.target.dataset.id;
+        })
+        }
     });
 
-    const update_btns = document.querySelectorAll(".closestart");
-    const delete_btns = document.querySelectorAll('.closeend');
 
 
-    update_btns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            window.location = "http://localhost/unigura/tutor/updateclasstemplate?id=" + this.id;
+
+
+
+
+
+    //Student request ridirect button--------------------
+
+    const list = document.querySelector('.cards');
+
+    list.addEventListener('click', (event) => {
+        if (event.target.tagName === 'BUTTON') {
+            event.target.addEventListener('click', function() {
+                window.location = "http://localhost/unigura/tutor/viewstudentrequest?id=" + event.target.id;
         })
-    })
+        }
+    });
 
-    delete_btns.forEach(btn => {
-        btn.addEventListener('click',function(){
-            window.location = "http://localhost/unigura/tutor/deleteclasstemplate?id=" + this.id;
-        })
-    })
+    //--------------
 
     let working_slots = parseInt(document.getElementById('active').textContent);
     let acting_slots = parseInt(document.getElementById('working').textContent);
@@ -425,7 +455,7 @@ MainNavbar::render($request);
 
 <?php Footer::render(
     [
-        URLROOT . '/public/js/tutor/tutor-main.js'
+        URLROOT . '/public/js/tutor/tutor-main.js?v=1.2'
     ]
 );
 ?>

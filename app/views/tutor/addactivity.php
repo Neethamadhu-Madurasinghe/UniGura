@@ -6,21 +6,6 @@
  */
 ?>
 
-<?php
-require_once APPROOT . '/views/common/inc/Header.php';
-require_once APPROOT . '/views/common/inc/Footer.php';
-
-
-Header::render(
-     'Tutor Dashboard',
-     [
-          URLROOT . '/public/css/tutor/base.css?v=1.0',
-
-     ]
-);
-
-
-?>
 
 <?php
 require_once APPROOT . '/views/common/inc/Header.php';
@@ -28,7 +13,7 @@ require_once APPROOT . '/views/common/inc/Footer.php';
 
 
 Header::render(
-     'Create Class',
+     'Add Activity',
      [
           'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css',
           'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css',

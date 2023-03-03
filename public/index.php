@@ -133,6 +133,8 @@ $router->registerController('/tutor/payments', [TutorPayments::class, 'mainpage'
 $router->registerController('/tutor/chat', [TutorChat::class, 'mainpage']);
 $router->registerController('/tutor/notification', [TutorNotification::class, 'mainpage']);
 
+$router->registerController('/tutor/viewstudentrequest', [TutorDashboard::class, 'viewrequest']);
+
 
 
 

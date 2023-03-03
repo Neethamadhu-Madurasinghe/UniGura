@@ -21,10 +21,7 @@ const body = document.querySelector('body'),
         })
 
 
-        searchBtn.addEventListener("click" , () =>{
-            sidebar.classList.remove("close");
-          
-        })
+
 
         
 
