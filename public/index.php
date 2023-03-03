@@ -127,6 +127,8 @@ $router->registerController('/tutor/sendposition', [TutorCourse::class, 'sendpos
 $router->registerController('/tutor/addactivity', [TutorCourse::class, 'addActivityTemplate']);
 $router->registerController('/tutor/getactivity', [TutorCourse::class, 'getactivity']);
 $router->registerController('/tutor/viewactivitydoc', [TutorCourse::class, 'loadTutorFile']);
+$router->registerController('/tutor/updateday', [TutorCourse::class, 'updateDay']);
+$router->registerController('/tutor/deleteday', [TutorCourse::class, 'deleteDayTemplate']);
 
 $router->registerController('/tutor/classes', [TutorClass::class, 'mainpage']);
 $router->registerController('/tutor/payments', [TutorPayments::class, 'mainpage']);
