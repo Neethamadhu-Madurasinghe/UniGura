@@ -360,11 +360,10 @@ class TutorCourse extends Controller
                 'activity' => $activityPath,
                 'type' => $body['type'],
                 'description' => $body['description']
-
             ];
 
             if ($this->courseModel->setActivityTemplate($data)) {
-                $this->view('tutor/addactivity', $request, $data);
+                redirect('tutor/viewcourse?subject='. $body['subject'] . '&module=' . $body['module'] . '&id=' . $body['c_id'] , $request, $data);
             }
         }
 
