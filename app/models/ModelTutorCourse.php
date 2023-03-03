@@ -158,6 +158,16 @@ public function setClassTemplateDay($data): bool
         return $this->db->execute();
     }
 
+    public function getDayTemplateDetails($id): array
+    {
+        $this->db->query('SELECT * FROM day_template WHERE id = :id;');
+
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        return $this->db->resultAllAssoc();
+    }
+
+
     public function updateDayTemplate($data) : bool 
     {
 
