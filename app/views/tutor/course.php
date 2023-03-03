@@ -176,11 +176,11 @@ Header::render(
 
 
                 var document_containers = document.querySelectorAll(".textbox_one");
-                
+
 
                 document_containers.forEach(container => {
                     const url = "http://localhost/unigura/tutor/getactivity?id=" + container.dataset.id;
-                    
+
                     fetch(url)
                         .then(response => response.json())
                         .then(data => {
@@ -189,12 +189,33 @@ Header::render(
                                     let code = `<img class='img02' src='http://localhost/UniGura/public/img/tutor/class/icons/file.png'><a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;' href = "http://localhost/unigura/tutor/viewactivitydoc?file=${data[i].link}">${data[i].description}</a>`;
                                     container.innerHTML += code;
                                 }
-                            } 
+                            }
                         })
                         .catch(error => {
                             console.error(error);
                         });
-            
+
+                })
+
+
+
+                var updatedaybtns = document.querySelectorAll(".update-day");
+
+
+                updatedaybtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        window.location = "http://localhost/unigura/tutor/updateday?id=" + this.id + "&subject=" + subject + "&module=" + module + "&course_id=" + <?php echo $data['id'] ?>;
+                    })
+                })
+
+
+                var deletedaybtns = document.querySelectorAll(".delete-day");
+
+
+                deletedaybtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        window.location = "http://localhost/unigura/tutor/deleteday?id=" + this.id + "&subject=" + subject + "&module=" + module + "&course_id=" + <?php echo $data['id'] ?>;
+                    })
                 })
             </script>
             <?php Footer::render(
