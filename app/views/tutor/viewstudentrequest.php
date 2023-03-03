@@ -76,7 +76,6 @@ Header::render(
                let time_slots = <?php echo $data['time_slots'] ?>;
                let input_id = document.getElementById('id');
           
-               
                let day;
 
                switch (time_slots[0].day) {

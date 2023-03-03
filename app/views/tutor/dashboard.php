@@ -383,11 +383,6 @@ MainNavbar::render($request);
 
 
 
-
-
-
-
-
     //Student request ridirect button--------------------
 
     const list = document.querySelector('.cards');
