@@ -191,4 +191,6 @@ public function setClassTemplateDay($data): bool
         return $this->db->execute();
     }
 
+    
+
 }

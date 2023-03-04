@@ -14,67 +14,67 @@ require_once APPROOT . '/views/tutor/inc/components/MainNavbar.php';
 Header::render(
     'Tutor Classes',
     [
-        URLROOT . '/public/css/tutor/base.css?v=1.8',
-        URLROOT . '/public/css/tutor/style.css?v=1.9'
+        URLROOT . '/public/css/tutor/base.css?v=2.9',
+        URLROOT . '/public/css/tutor/style.css?v=2.0'
     ]
 );
 MainNavbar::render($request);
 ?>
 
 <div class="classes">
-    <div class="notification">
-        <div class="New_Student_Request">
+    <div class="Active-class">
+        <div class="Active-class-container">
             <h2>Active Classes</h2>
-            <div class="msg_container_one">
-                <div class="msg_box_one">
+            <div class="container_one">
+                <div class="box_one">
                     <header>
                         <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg">
                         <h4 style="margin-top: 5%;">Sachithra Kavinda</h4>
                     </header>
                     <div class="textbox_one">
-                    <img src="<?php echo URLROOT ?>/public/img/tutor/class/icons/BookBookmark.png">
-                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Mechanics Theory</p>
-                        <img src="<?php echo URLROOT ?>/public/img/tutor/class/icons/cast.png">
-                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Online</p>
+                    <img style="border-radius: 0%;"  src="<?php echo URLROOT ?>/public/img/tutor/class/icons/BookBookmark.png">
+                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 0px;text-align: justify;margin-bottom: 0px;">Mechanics Theory</p>
+                        <img style="border-radius: 0%;"  src="<?php echo URLROOT ?>/public/img/tutor/class/icons/cast.png">
+                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 0px;text-align: justify;margin-bottom: 0px;">Online</p>
                     </div>
                     <button class="msg_box button">View Details</button>
                 </div>
-                <div class="msg_box_one">
+                <div class="box_one">
                     <header>
                         <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg">
                         <h4 style="margin-top: 5%;">Viraj</h4>
                     </header>
                     <div class="textbox_one">
-                        <img src="<?php echo URLROOT ?>/public/img/tutor/class/icons/BookBookmark.png">
-                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Mechanics Theory</p>
-                        <img src="<?php echo URLROOT ?>/public/img/tutor/class/icons/cast.png">
-                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Online</p>
+                        <img style="border-radius: 0%;"  src="<?php echo URLROOT ?>/public/img/tutor/class/icons/BookBookmark.png">
+                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 0px;text-align: justify;margin-bottom: 0px;">Mechanics Theory</p>
+                        <img style="border-radius: 0%;"  src="<?php echo URLROOT ?>/public/img/tutor/class/icons/cast.png">
+                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 0px;text-align: justify;margin-bottom: 0px;">Online</p>
                     </div>
                     <button class="msg_box button">View Details</button>
                 </div>
-                <div class="msg_box_one">
+                <div class="box_one">
                     <header>
                     <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg">
                         <h4 style="margin-top: 5%;">Sachithra Kavinda</h4>
                     </header>
                     <div class="textbox_one">
-                    <img src="<?php echo URLROOT ?>/public/img/tutor/class/icons/BookBookmark.png">
-                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Mechanics Theory</p>
-                        <img src="<?php echo URLROOT ?>/public/img/tutor/class/icons/cast.png">
-                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Online</p>
+                    <img style="border-radius: 0%;"  src="<?php echo URLROOT ?>/public/img/tutor/class/icons/BookBookmark.png">
+                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 0px;text-align: justify;margin-bottom: 0px;">Mechanics Theory</p>
+                        <img style="border-radius: 0%;"  src="<?php echo URLROOT ?>/public/img/tutor/class/icons/cast.png">
+                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 0px;text-align: justify;margin-bottom: 0px;">Online</p>
                     </div>
                     <button class="msg_box button">View Details</button>
                 </div>
-                <div class="msg_box_one">
+                <div class="box_one">
                     <header>
                     <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg">
                         <h4 style="margin-top: 5%;">Sachithra Kavinda</h4>
                     </header>
                     <div class="textbox_one">
-                    <img src="<?php echo URLROOT ?>/public/img/tutor/class/icons/BookBookmark.png">
-                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Mechanics Theory</p>
-                        <img src="<?php echo URLROOT ?>/public/img/tutor/class/icons/cast.png">
-                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Online</p>
+                    <img style="border-radius: 0%;"  src="<?php echo URLROOT ?>/public/img/tutor/class/icons/BookBookmark.png">
+                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 0px;text-align: justify;margin-bottom: 0px;">Mechanics Theory</p>
+                        <img style="border-radius: 0%;"  src="<?php echo URLROOT ?>/public/img/tutor/class/icons/cast.png">
+                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 0px;text-align: justify;margin-bottom: 0px;">Online</p>
                     </div>
                     <button class="msg_box button">View Details</button>
                 </div>

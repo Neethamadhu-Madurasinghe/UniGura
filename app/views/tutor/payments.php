@@ -14,7 +14,7 @@ require_once APPROOT . '/views/tutor/inc/components/MainNavbar.php';
 Header::render(
     'Tutor Dashboard',
     [
-        URLROOT . '/public/css/tutor/base.css?v=2.1',
+        URLROOT . '/public/css/tutor/base.css?v=2.2',
         URLROOT . '/public/css/tutor/style.css?v=2.3'
     ]
 );
@@ -23,7 +23,7 @@ MainNavbar::render($request);
 ?>
 
 
-<div class="Payments">
+<div class="Payments" style="height: 680px;">
           <div class="Payments_header">
                <h2>Payment History</h2>
                <div class="dropdown">

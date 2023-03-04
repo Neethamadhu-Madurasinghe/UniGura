@@ -14,8 +14,8 @@ require_once APPROOT . '/views/tutor/inc/components/MainNavbar.php';
 Header::render(
     'Tutor Chat',
     [
-        URLROOT . '/public/css/tutor/base.css?v=2.1',
-        URLROOT . '/public/css/tutor/chat.css?v=2.1',
+        URLROOT . '/public/css/tutor/base.css?v=2.2',
+        URLROOT . '/public/css/tutor/chat.css?v=2.2',
 
     ]
 );

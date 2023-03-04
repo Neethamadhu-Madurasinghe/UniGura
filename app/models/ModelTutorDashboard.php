@@ -123,7 +123,7 @@ class ModelTutorDashboard
 
     public function getStudentRequests($id): array
     {
-        $this->db->query(' SELECT r.id , r.class_template_id , r.mode , r.tutor_id , r.student_id , s.name as subject , m.name as module , u.first_name , u.last_name , u.profile_picture , u.id as user_id FROM request AS r JOIN tutoring_class_template AS c ON r.class_template_id = c.id JOIN subject AS s ON c.subject_id = s.id JOIN module AS m ON c.module_id = m.id JOIN user AS u ON r.student_id = u.id WHERE r.tutor_id = :id;');
+        $this->db->query(' SELECT r.id , r.class_template_id , r.mode , r.tutor_id , r.student_id , s.name as subject , m.name as module , u.first_name , u.last_name , u.profile_picture , u.id as user_id FROM request AS r JOIN tutoring_class_template AS c ON r.class_template_id = c.id JOIN subject AS s ON c.subject_id = s.id JOIN module AS m ON c.module_id = m.id JOIN user AS u ON r.student_id = u.id WHERE r.tutor_id = :id AND status = 0;');
         $this->db->bind('id', $id, PDO::PARAM_INT);
         return $this->db->resultAllAssoc();
     }
@@ -166,6 +166,51 @@ class ModelTutorDashboard
         $this->db->bind('id', $id , PDO::PARAM_INT);
 
 //      Returns whether the row count is greater than 0
+        return $this->db->execute();
+    }
+
+    public function setNewClass($data): bool 
+    {
+        $this->db->query('INSERT INTO  tutoring_class SET
+                 class_template_id = :class_template_id,
+                 date = :date,
+                 time = :time,
+                 mode = :mode,
+                 student_id = :student_id,
+                 tutor_id = :tutor_id');
+
+
+        $this->db->bind('class_template_id', $data['c_id'], PDO::PARAM_INT);
+        $this->db->bind('date', $data['date'], PDO::PARAM_STR);
+        $this->db->bind('time', $data['time'], PDO::PARAM_STR);
+        $this->db->bind('mode', $data['mode'], PDO::PARAM_STR);
+        $this->db->bind('student_id', $data['student_id'], PDO::PARAM_STR);
+        $this->db->bind('tutor_id', $data['tutor_id'], PDO::PARAM_STR);
+
+        return $this->db->execute();
+    }
+
+    public function setClass($data): bool {
+        $this->db->startTransaction();
+
+        $this->setNewClass($data);
+        $this->setStudentAproveRequest($data['id']);
+
+        return $this->db->commitTransaction();
+    }
+
+    public function declineStudentAproveRequest($id) : bool
+    {
+        $this->db->query('UPDATE request SET status = 2  WHERE id = :id;');
+        $this->db->bind('id', $id , PDO::PARAM_INT);
+
+//      Returns whether the row count is greater than 0
+        return $this->db->execute();
+    }
+
+    public function paymentUpdate() : bool
+    {
+        $this->db->query('INSERT INTO payment SET day_id =3,student_id = 17, tutor_id = 38, amount = "1100",timestamp = NOW(), status = 1;');
         return $this->db->execute();
     }
 }

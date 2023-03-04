@@ -88,12 +88,13 @@ MainNavbar::render($request);
                                 $subject = (string) $array['subject'];
                                 $mode = (string) $array['mode'];
                                 $c_id = (string) $array['class_template_id'];
+                                $profile_pic = (string) $array['profile_picture'];
 
                                 echo "
                                 <li class='cardss'>
                                     <div class='msg_box' style='margin-top: 0px;'>
                                         <header>
-                                            <img src= 'http://localhost/UniGura/public/img/tutor/class/images/user.jpg'>
+                                            <img  src= http://localhost/UniGura/$profile_pic>
                                             <div>
                                                 <h4>$student_first_name  $student_last_name</h4>
                                                 <p style='color: rgba(112, 124, 151, 1) ; margin-top:0px;text-align: justify;'> $module | $mode</p>
@@ -105,10 +106,18 @@ MainNavbar::render($request);
                                 </li>";
                             }
                         } else {
-                            echo "No classes";
+                            echo "
+                                <li class='cardss'>
+                                    <div class='msg_box' style='margin-top: 0px;'>
+                                        <header>
+                                            <div>
+                                                <h4>No Requests</h4>
+                                            </div>
+                                            </header>
+                                    </div>
+                                </li>";
                         }
                         ?>
-
                     </ul>
                 </div>
             </div>
@@ -296,9 +305,9 @@ MainNavbar::render($request);
                             <div>
                                     <div class='button_box'>
                                         <button class='star'><i class='fa-solid fa-star'></i> $rate</button>
-                                        <button title='View' class='closestart view' ><i data-subject =$subject data-module = $module data-id = $c_id  class='fa-solid fa-expand view'></i></button>
-                                        <button title='Edit' class='middle edit' ><i data-id = $c_id  class='fa-solid fa-pen edit'></i></button>
-                                        <button title='Delete' class='closeend delete' ><i data-id = $c_id  class='fa-solid fa-trash delete'></i></button>
+                                        <button title='View' class='closestart view' data-subject =$subject data-module = $module data-id = $c_id ><i class='fa-solid fa-expand view' data-subject =$subject data-module = $module data-id = $c_id></i></button>
+                                        <button title='Edit' class='middle edit' data-id = $c_id ><i data-id = $c_id  class='fa-solid fa-pen edit'></i></button>
+                                        <button title='Delete' class='closeend delete' data-id = $c_id  ><i data-id = $c_id  class='fa-solid fa-trash delete'></i></button>
                                     </div> 
                             </div>
                             </div>  
@@ -317,20 +326,27 @@ MainNavbar::render($request);
                 </div>
                 <div id="content">
                     <div id="piechart">
-                        <div class="circle"></div>
-                        <div style="display:none" id="active"><?php print_r(json_decode($data['tutor_time_slots'])[0]->active_count) ?></div>
-                        <div style="display:none" id="working"><?php print_r(json_decode($data['tutor_time_slots'])[0]->working_count) ?></div>
-                        <div class="percentage-box">
-                            <div>
+                        <div class="circle">
+                            <!-- <span class="progress-value">90%</span>
+                            <br>
+                            <span class="text">Working</span> -->
+                            <div class="percentage-box">
+                            <div class="Working">
                                 <h1>20%</h1>
-                                <span>Working</span>
+                                <span>Working Time</span>
                             </div>
-                            <div>
-                                <h1>20%</h1>
-                                <span>Working</span>
+                            <div  class="free" >
+                                <h1>10%</h1>
+                                <span>Free Time</span>
                             </div>
 
                         </div>
+                        </div>
+                        
+
+                        <div class="" style="display:none" id="active"><?php print_r(json_decode($data['tutor_time_slots'])[0]->active_count) ?></div>
+                        <div style="display:none" id="working"><?php print_r(json_decode($data['tutor_time_slots'])[0]->working_count) ?></div>
+   
                     </div>
                 </div>
             </div>
@@ -341,6 +357,7 @@ MainNavbar::render($request);
 
 </section>
 <script>
+
     //declaring varibles
 
     let active_class_count = document.querySelector('#active-class-count');
@@ -365,19 +382,13 @@ MainNavbar::render($request);
 
     card_container.addEventListener('click', (event) => {
         if (event.target.classList.contains('view')) {
-            event.target.addEventListener('click', function() {
-                window.location = "http://localhost/unigura/tutor/viewcourse?subject=" + event.target.dataset.subject + "&module=" + event.target.dataset.module + "&id=" + event.target.dataset.id ;
-        })
+            window.location = "http://localhost/unigura/tutor/viewcourse?subject=" + event.target.dataset.subject + "&module=" + event.target.dataset.module + "&id=" + event.target.dataset.id ;
         }
         if (event.target.classList.contains('edit')) {
-            event.target.addEventListener('click', function() {
-                window.location = "http://localhost/unigura/tutor/updateclasstemplate?id=" + event.target.dataset.id
-        })
+            window.location = "http://localhost/unigura/tutor/updateclasstemplate?id=" + event.target.dataset.id;
         }
         if (event.target.classList.contains('delete')) {
-            event.target.addEventListener('click', function() {
                 window.location = "http://localhost/unigura/tutor/deleteclasstemplate?id=" + event.target.dataset.id;
-        })
         }
     });
 
@@ -389,9 +400,7 @@ MainNavbar::render($request);
 
     list.addEventListener('click', (event) => {
         if (event.target.tagName === 'BUTTON') {
-            event.target.addEventListener('click', function() {
-                window.location = "http://localhost/unigura/tutor/viewstudentrequest?id=" + event.target.id;
-        })
+            window.location = "http://localhost/unigura/tutor/viewstudentrequest?id=" + event.target.id;
         }
     });
 
@@ -402,7 +411,7 @@ MainNavbar::render($request);
     let halt_slots = 56 - (working_slots + acting_slots)
 
     var data = [working_slots, acting_slots, 50];
-    var colors = ['#ff8d00', '#ffb75e', '#d2d2d2'];
+    var colors = ['#F7711A', '#FFA620', '#d4d5dbb8'];
 
     var piechart = document.getElementById("piechart");
     var chartWidth = piechart.offsetWidth;
@@ -444,6 +453,8 @@ MainNavbar::render($request);
 
         startAngle = endAngle;
     }
+
+
 </script>
 
 

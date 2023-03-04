@@ -10,8 +10,6 @@ class TutorCourse extends Controller
         $this->courseModel = $this->model('ModelTutorCourse');
     }
 
-
-
     public function viewcourse(Request $request)
     {
 
@@ -60,6 +58,7 @@ class TutorCourse extends Controller
         header('Content-Type: application/json');
         echo $activities;
     }
+
 
     public function createDay(Request $request)
     {
@@ -305,9 +304,6 @@ class TutorCourse extends Controller
 
             $this->view('tutor/deleteclasstemplate', $request, $data);
         }
-
-
-
         //        If the request is a GET request, then serve the page
     }
 
@@ -366,9 +362,7 @@ class TutorCourse extends Controller
                 redirect('tutor/viewcourse?subject='. $body['subject'] . '&module=' . $body['module'] . '&id=' . $body['c_id'] , $request, $data);
             }
         }
-
-
-
+        
         //        If the request is a GET request, then serve the page
     }
 
