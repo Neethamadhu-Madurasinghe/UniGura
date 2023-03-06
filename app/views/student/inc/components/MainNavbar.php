@@ -14,11 +14,40 @@ class MainNavbar {
                     
                     <div class="nav-link-container-container">
                         <div class="nav-bar-link-container">
-                            <a href="#about">
-                                <div class="icon">
+                                <div class="icon notification-dropdown">
                                     <img src="' . URLROOT . '/public/img/student/bell.png' . '" alt=""> <span>17</span>
+                                    <div class="notification-list">
+                                      <ul>
+                                        <li>
+                                            <a href="#">
+                                              <div class="notification-card">
+                                                <h3>Your account has been suspended</h3>
+                                                <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, ab.Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, ab.Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, ab.</p>
+                                                <p class="time">2 hourse ago</p>
+                                              </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                              <div class="notification-card">
+                                                <h3>Your account has been suspended</h3>
+                                                <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, ab.Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, ab.Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, ab.</p>
+                                                <p class="time">2 hourse ago</p>
+                                              </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                              <div class="notification-card">
+                                                <h3>Your account has been suspended</h3>
+                                                <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, ab.Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, ab.Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, ab.</p>
+                                                <p class="time">2 hourse ago</p>
+                                              </div>
+                                            </a>
+                                        </li>
+                                      </ul>
+                                    </div>
                                 </div>
-                            </a>
             
                             <div class="profile-picture">
                                 <img
