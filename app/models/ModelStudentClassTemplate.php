@@ -115,8 +115,9 @@ class ModelStudentClassTemplate {
     }
 
     public function doesTemplateExist($id): bool {
-        $this->db->query('SELECT * FROM tutoring_class_tutor WHERE id=:id');
+        $this->db->query('SELECT * FROM tutoring_class_template WHERE id=:id');
         $this->db->bind('id', $id, PDO::PARAM_INT);
+        $this->db->resultOneAssoc();
 
         return $this->db->rowCount() > 0;
     }

@@ -49,25 +49,32 @@ async function sendTutorRequest(hasNoDefaultValue = false) {
 }
 
 // Event listener for Ok button of class mode selection window
-selectModeOkUI.addEventListener('click', async (e) => {
-  for (let i = 0; i < reportModeRadioButtonsUI.length; i++) {
-    if (reportModeRadioButtonsUI[i].checked) {
-      request.mode = reportModeRadioButtonsUI[i].value;
+if(selectModeOkUI) {
+  selectModeOkUI.addEventListener('click', async (e) => {
+    for (let i = 0; i < reportModeRadioButtonsUI.length; i++) {
+      if (reportModeRadioButtonsUI[i].checked) {
+        request.mode = reportModeRadioButtonsUI[i].value;
+      }
     }
-  }
 
-  selectModeUI.classList.add('invisible');
-  hideLayoutBackground();
-  // Send argument 'true' to indicate there was no default value specified as class mode
-  await sendTutorRequest(true);
-});
+    selectModeUI.classList.add('invisible');
+    hideLayoutBackground();
+    // Send argument 'true' to indicate there was no default value specified as class mode
+    await sendTutorRequest(true);
+  });
+}
+
 
 //
-selectModeCancelUI.addEventListener('click', e => {
-  request.mode = 'none';
-  selectModeUI.classList.add('invisible');
-  hideLayoutBackground();
-});
+
+if(selectModeCancelUI) {
+  selectModeCancelUI.addEventListener('click', e => {
+    request.mode = 'none';
+    selectModeUI.classList.add('invisible');
+    hideLayoutBackground();
+  });
+
+}
 
 
 // Helper function to show messages according to server response code
