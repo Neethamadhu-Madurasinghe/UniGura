@@ -224,6 +224,7 @@
     font-weight: normal;
 }
 
-.notification-dropdown:hover .notification-list {
-    display: block;
+.no-notification-message {
+    padding: 0.5rem;
+    margin: 0;
 }
