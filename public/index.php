@@ -175,6 +175,7 @@ $router->registerController('/student/find-tutor', [FindTutor::class, 'findTutor
 $router->registerController('/student/profile', [StudentProfile::class, 'profile']);
 $router->registerController('/api/report-tutor', [StudentTutorProfile::class, 'reportTutor']);
 $router->registerController('/student/tutor-profile', [StudentTutorProfile::class, 'tutorProfile']);
+$router->registerController('/student/change-profile-picture', [StudentProfile::class, 'changeProfilePicture']);
 
 
 
