@@ -170,6 +170,23 @@
     border-radius: 0.25rem;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: none;
+    max-height: 30rem;
+    overflow: scroll;
+}
+
+.notification-list::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.notification-list::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: var(--dark-orange);
+    visibility: hidden;
+}
+
+.notification-list::-webkit-scrollbar-thumb {
+    visibility: visible;
 }
 
 @media screen and (max-width: 600px) {

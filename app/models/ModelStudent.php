@@ -139,4 +139,16 @@ class ModelStudent {
         return $this->db->execute();
     }
 
+    public function getAllNotificationsByUserId(int $id): array {
+        $this->db->query('SELECT * FROM notification WHERE user_id=:user_id');
+        $this->db->bind('user_id', $id, PDO::PARAM_INT);
+
+        $results = $this->db->resultAllAssoc();
+        if ($results) {
+            return $results;
+        }else {
+            return [];
+        }
+    }
+
 }

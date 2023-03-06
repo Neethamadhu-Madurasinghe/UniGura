@@ -105,6 +105,7 @@ function handleTutorRequestResponse(status) {
         sortedTimeSlots = [];
         request.duration = 0;
         selectedSlots.clear();
+        getNotifications();
       })
       break;
 
