@@ -130,7 +130,7 @@ class ModelTutorDashboard
 
     public function viewStudentRequests($id): array
     {
-        $this->db->query(' SELECT r.id as id , r.class_template_id , r.mode , r.tutor_id , r.student_id , s.name as subject , m.name as module , u.first_name , u.last_name , u.profile_picture , u.id as user_id ,c.class_type FROM request AS r JOIN tutoring_class_template AS c ON r.class_template_id = c.id JOIN subject AS s ON c.subject_id = s.id JOIN module AS m ON c.module_id = m.id JOIN user AS u ON r.student_id = u.id WHERE r.id = :id;');
+        $this->db->query(' SELECT r.id as id , r.class_template_id , r.mode , r.tutor_id , r.student_id , s.name as subject , m.name as module , u.first_name , u.last_name , u.profile_picture , u.id as user_id ,c.class_type , c.session_rate , c.duration FROM request AS r JOIN tutoring_class_template AS c ON r.class_template_id = c.id JOIN subject AS s ON c.subject_id = s.id JOIN module AS m ON c.module_id = m.id JOIN user AS u ON r.student_id = u.id WHERE r.id = :id;');
         $this->db->bind('id', $id, PDO::PARAM_INT);
         return $this->db->resultAllAssoc();
     }
@@ -177,7 +177,9 @@ class ModelTutorDashboard
                  time = :time,
                  mode = :mode,
                  student_id = :student_id,
-                 tutor_id = :tutor_id');
+                 tutor_id = :tutor_id,
+                 rate = :rate,
+                 duration = :duration');
 
 
         $this->db->bind('class_template_id', $data['c_id'], PDO::PARAM_INT);
@@ -186,9 +188,12 @@ class ModelTutorDashboard
         $this->db->bind('mode', $data['mode'], PDO::PARAM_STR);
         $this->db->bind('student_id', $data['student_id'], PDO::PARAM_STR);
         $this->db->bind('tutor_id', $data['tutor_id'], PDO::PARAM_STR);
+        $this->db->bind('duration', $data['duration'], PDO::PARAM_STR);
+        $this->db->bind('rate', $data['rate'] , PDO::PARAM_STR);
 
         return $this->db->execute();
     }
+
 
     public function setClass($data): bool {
         $this->db->startTransaction();
@@ -208,9 +213,10 @@ class ModelTutorDashboard
         return $this->db->execute();
     }
 
-    public function paymentUpdate() : bool
+    public function paymentUpdate($amount) : bool
     {
-        $this->db->query('INSERT INTO payment SET day_id =3,student_id = 17, tutor_id = 38, amount = "1100",timestamp = NOW(), status = 1;');
+        $this->db->query('INSERT INTO payment SET day_id =3,student_id = 17, tutor_id = 38, amount = :amount ,timestamp = NOW(), status = 1;');
+        $this->db->bind('amount', $amount , PDO::PARAM_INT);
         return $this->db->execute();
     }
 }

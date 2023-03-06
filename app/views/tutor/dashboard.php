@@ -14,8 +14,8 @@ require_once APPROOT . '/views/tutor/inc/components/MainNavbar.php';
 Header::render(
     'Tutor Dashboard',
     [
-        URLROOT . '/public/css/tutor/base.css?v=2.3',
-        URLROOT . '/public/css/tutor/dashboard.css?v=3.3'
+        URLROOT . '/public/css/tutor/base.css?v=2.5',
+        URLROOT . '/public/css/tutor/dashboard.css?v=3.4'
     ]
 );
 
@@ -332,11 +332,11 @@ MainNavbar::render($request);
                             <span class="text">Working</span> -->
                             <div class="percentage-box">
                             <div class="Working">
-                                <h1>20%</h1>
+                                <h1 id="working"></h1>
                                 <span>Working Time</span>
                             </div>
                             <div  class="free" >
-                                <h1>10%</h1>
+                                <h1 id="acting"></h1>
                                 <span>Free Time</span>
                             </div>
 
@@ -344,8 +344,7 @@ MainNavbar::render($request);
                         </div>
                         
 
-                        <div class="" style="display:none" id="active"><?php print_r(json_decode($data['tutor_time_slots'])[0]->active_count) ?></div>
-                        <div style="display:none" id="working"><?php print_r(json_decode($data['tutor_time_slots'])[0]->working_count) ?></div>
+
    
                     </div>
                 </div>
@@ -406,12 +405,22 @@ MainNavbar::render($request);
 
     //--------------
 
-    let working_slots = parseInt(document.getElementById('active').textContent);
-    let acting_slots = parseInt(document.getElementById('working').textContent);
-    let halt_slots = 56 - (working_slots + acting_slots)
+    let time_slots = <?php echo $data['tutor_time_slots'] ?>;
+    let working_slots = time_slots[0].working_count;
+    let acting_slots = time_slots[0].active_count;
 
-    var data = [working_slots, acting_slots, 50];
-    var colors = ['#F7711A', '#FFA620', '#d4d5dbb8'];
+
+    let halt_slots = 56 - (working_slots + acting_slots);
+
+    let working_per = working_slots;
+    let acting_per = acting_slots; 
+
+
+    document.getElementById('working').innerHTML = `${Math.floor((working_per/56)*100)}%`;
+    document.getElementById('acting').innerHTML = `${Math.floor((acting_per/56)*100)}%`;
+
+    var data = [working_slots, acting_slots, halt_slots];
+    var colors = ['#FFA620','#F7711A', '#d4d5dbb8'];
 
     var piechart = document.getElementById("piechart");
     var chartWidth = piechart.offsetWidth;

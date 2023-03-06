@@ -57,7 +57,7 @@ Header::render(
         "merchant_id": data.merchant_id,    // Replace your Merchant ID
         "return_url":undefined,     // Important
         "cancel_url": undefined,     // Important
-        "notify_url": 'http://localhost/UniGura/tutor/savepayment',
+        "notify_url": 'https://polite-lies-flow-101-2-180-231.loca.lt/unigura/tutor/savepayment',
         "order_id": data.order_id,
         "items": data.items,
         "amount": data.amount,

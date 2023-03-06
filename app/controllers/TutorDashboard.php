@@ -197,7 +197,9 @@ class TutorDashboard extends Controller
                 'student_id' => $body['student_id'],
                 'tutor_id' => $body['tutor_id'],
                 'date' => $body['date'],
-                'time' => $body['time']
+                'time' => $body['time'],
+                'duration' => $body['duration'],
+                'rate' => $body['rate']
             ];
 
 
@@ -306,7 +308,7 @@ class TutorDashboard extends Controller
         );
 
         if (($local_md5sig === $md5sig) && ($status_code == 2) ){
-            $this->dashboardModel->paymentUpdate();
+            $this->dashboardModel->paymentUpdate($payhere_amount);
     }
     }
 }

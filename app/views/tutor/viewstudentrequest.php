@@ -13,7 +13,7 @@ require_once APPROOT . '/views/common/inc/Footer.php';
 
 
 Header::render(
-     'Add Activity',
+     'Student Request',
      [
           'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css',
           'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css',
@@ -59,6 +59,8 @@ Header::render(
                               <input id="tutor_id" name="tutor_id" value="" type="hidden">
                               <input id="date" name="date" value="" type="hidden">
                               <input id="Itime" name="time" value="" type="hidden">
+                              <input id="duration" name="duration" value="" type="hidden">
+                              <input id="rate" name="rate" value="" type="hidden">
                               <div class="dropdown">
                                    <button type="submit" class="yes" id="approve">Approve</button>
                               </div>
@@ -79,6 +81,7 @@ Header::render(
                let mode = document.getElementById('mode');
                let request = <?php echo $data['tutor_request'] ?>;
                let time_slots = <?php echo $data['time_slots'] ?>;
+               
 
                let input_id = document.getElementById('id');
                let input_c_id = document.getElementById('c_id');
@@ -87,6 +90,8 @@ Header::render(
                let input_tutor_id = document.getElementById('tutor_id');
                let input_date = document.getElementById('date');
                let input_time = document.getElementById('Itime');
+               let input_duration = document.getElementById('duration');
+               let input_rate = document.getElementById('rate');
 
                let decline = document.getElementById('decline_btn');
 
@@ -126,7 +131,7 @@ Header::render(
                mode.innerText = 'Mode : ' + request[0].mode.charAt(0).toUpperCase() + request[0].mode.slice(1);;
                time_slot.innerText = 'Time : ' + day + ' ' + time_slots[0].time.slice(0, 2) + '-' + `${parseInt(time_slots[time_slots.length - 1].time.slice(0,2))+2}`;
                input_id.value = request[0].id;
-
+               
 
 
 
@@ -136,6 +141,10 @@ Header::render(
                input_tutor_id.value = request[0].tutor_id;
                input_time.value = time_slots[0].time;
                input_date.value = day;
+               input_rate.value = request[0].session_rate;
+               input_duration.value = request[0].duration;
+          
+               
 
 
                var closebtn = document.querySelector("#close_btn");
