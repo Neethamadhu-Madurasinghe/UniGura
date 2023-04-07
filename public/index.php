@@ -136,6 +136,10 @@ $router->registerController('/tutor/savepayment', [TutorDashboard::class, 'savep
 
 $router->registerController('/tutor/classes', [TutorClass::class, 'mainpage']);
 $router->registerController('/tutor/payments', [TutorPayments::class, 'mainpage']);
+$router->registerController('/tutor/payments/filterpayments', [TutorPayments::class, 'filter_payments_by_day']);
+$router->registerController('/tutor/payments/getpaymentamounts', [TutorPayments::class, 'monthly_payment_amounts']);
+
+
 $router->registerController('/tutor/chat', [TutorChat::class, 'mainpage']);
 $router->registerController('/tutor/notification', [TutorNotification::class, 'mainpage']);
 

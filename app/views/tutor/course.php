@@ -58,7 +58,6 @@ Header::render(
                         $array = (array) $day;
                         $id = (int) $array['id'];
                         $title = (string) $array['title'];
-                        $meeting_link = (string) $array['meeting_link'];
                         $position = (string) $array['position'];
 
                         echo "

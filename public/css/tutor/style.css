@@ -798,22 +798,59 @@ p {
 /* model end */
 
 /* payments */
-.Payments_box{
+/* payments */
+
+.Payments{
+     display: grid;
+     grid-template-columns: 1.3fr 1fr;
+     background-color: #ffffff00;
+     border-radius: 10px;
+     padding-top: 20px;
+     margin-bottom: 20px;
+     gap: 20px;
+     width: 100%;
+   
+   }
+   
+   .Payments h2{
+     font-size: 24px;
+   }
+   
+   .Payments h3{
+     font-size: 18px;
+     margin-top: 10px;
+     font-weight: 500;
+   
+   }
+   
+   .Payments .history{
+     background-color: white;
+     border-radius: 10px;
+     padding: 10px;
+     height: 680px;
+   
+   }
+   
+   
+   .Payments_box{
      overflow-y: auto;
      width: 100%;
-     height: 500px;
-     padding-right: 10px;
-     margin-top: 20px;
-}
-.Payments_box::-webkit-scrollbar-thumb,
-.Payments_box::-webkit-scrollbar-track {
-  border-radius: 92px;
-  
-
-
-}
-
-.Payments_box::-webkit-scrollbar {
+     height: 600px;
+     padding: 0px;
+     margin-top: 10px;
+     padding-right: 4px;
+     
+     
+   }
+   .Payments_box::-webkit-scrollbar-thumb,
+   .Payments_box::-webkit-scrollbar-track {
+   border-radius: 92px;
+   
+   
+   
+   }
+   
+   .Payments_box::-webkit-scrollbar {
      width: 7px;
      background-color: #ffffff;
      padding-top: 12px;
@@ -823,26 +860,214 @@ p {
    .Payments_box::-webkit-scrollbar-thumb {
      background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
    }
-.Payments{
-     background-color: #ffffff;
-     border-radius: 10px;
-     padding: 50px;
-     padding-top: 20px;
-     height: 750PX;
-     margin-bottom: 20px;
-
-}
-
-.Payments_header{
+   
+   
+   .Payments_header{
      display: grid;
-     grid-template-columns: 5fr 1fr;
+     grid-template-columns: 2fr 1fr;
      padding-bottom: 15px;
+     margin-bottom: 15px;
      border-bottom: 1px solid rgba(0, 0, 0, 0.103);
-
-}
-
-
-
+   
+   }
+   
+   .Payments .history .Payments_header #dropbtn {
+     color: rgb(0, 0, 0);
+     padding: 10px;
+     font-size: 15px;
+     border: 1px solid #e4e4e4;
+     border-radius: px;
+     cursor: pointer;
+     width: 100%;
+     text-align: left;
+     height: 40px;
+     background: white;
+     margin-top: 5px;
+     
+   }
+   
+   
+   .Payments .history .Payments_header #dropbtn:hover{
+     background: #ffffff;
+     border: 1px solid #ff8800;
+     outline: none;
+   
+   }
+   
+   .Payments .history .Payments_header #dropbtn:focus-visible{
+     background: #ffffff;
+     border: 1px solid #ff8800;
+     outline: none;
+   }
+   
+   .Payments .chart-box {
+     width: 100%;
+     background-color: white;
+     padding: 10px;
+     border-radius: 10px;
+     height: 380px;
+     
+   
+   }
+   
+   .Payments #chart {
+     display: table;
+     table-layout: fixed;
+     height: 250px;
+     width: 100%;
+     margin: 0;
+     background-color: white;
+     margin-top: 55px;
+   
+   
+   }
+   
+   .chart-container{
+     width: 100%;
+     background-color: #000000;
+   
+   }
+   
+   .Payments #chart li {
+     position: relative;
+     display: table-cell;
+     vertical-align: bottom;
+     height: 250px;
+     width: 100%
+   }
+   
+   .Payments #chart li span{
+     margin-left: 10%;
+     width: 75%;
+   
+   }
+   .Payments #chart span {
+     margin: 0 1em;
+     display: block;
+     background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+     animation: draw 1s ease-in-out;
+   }
+   
+   .Payments #chart span:hover  {
+     background:#ff88007a;
+   }
+   
+   .Payments #chart span .no {
+     background:#bdbbb87a;
+   }
+   
+   
+   .Payments #chart span:before {
+     position: absolute;
+     left: 0;
+     right: 0;
+     top: 100%;
+     padding: 5px 0em 0;
+     display: block;
+     text-align: center;
+     content: attr(title);
+     width: 100%;
+     color: #6c6d75;
+     font-weight: 500;
+     font-size: 14px;
+   
+   }
+   
+   .Payments #chart .count {
+     left: 0;
+     right: 0;
+     top: 100%;
+     display: block;
+     text-align: center;
+     content: attr(title);
+     width: 100%;
+     color: #5d5e66;
+     font-weight: 600;
+     font-size: 13px;
+   
+   }
+   
+   ul {
+     padding-inline-start: 0px;
+     width: 100%;
+   }
+   
+   @keyframes draw {
+     0% {
+       height: 0;
+     }
+   }
+   
+   .right_section{
+     display: grid;
+     grid-template-columns: 1fr;
+     gap: 20px;
+   }
+   
+   .piechart{
+     background-color: #ffffff;
+     width: 100%;
+     border-radius: 10px;
+     padding: 10px;
+   }
+   
+   .piechart .container {
+     width: 100%;
+     height: fit-content;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+   }
+   
+   .piechart .container  .circle{
+     position: absolute;
+     height: 100px;
+     width: 100px;
+     background-color: #ffffff;
+     border-radius: 50%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     font-size: 27px;
+     font-weight: 600;
+     color: #ffa600;
+   }
+   
+   .piechart .grid{
+     display: grid;
+     grid-template-columns: 1fr 2fr;
+   }
+   
+   .piechart .grid .part01{
+     position: absolute;
+     margin-top: 120px;
+     padding-left: 10px;
+   
+   
+   }
+   
+   .piechart .grid .part01 .Rec{
+     margin-top: 10px;
+     font-size: 17px;
+     font-weight: 600;
+     border-left: 20px solid #ffa600;
+     padding-left: 5px;
+     border-radius: 50px;
+     color: #2e2e31dc;
+   
+   }
+   .piechart .grid .part01 .pen{
+     margin-top: 10px;
+     font-size: 17px;
+     font-weight: 600;
+     border-left: 20px solid #bdbbb84d;
+     padding-left: 5px;
+     border-radius: 50px;
+     color: #2e2e31dc;
+   
+   }
+   
+   
 
 /* Dropdown Button */
 
@@ -874,7 +1099,7 @@ p {
    
    /* Dropdown Content (Hidden by Default) */
    .dropdown-content {
-     display: none;
+     display: block;
      position: absolute;
      background-color: #f1f1f1;
      min-width: 160px;
@@ -883,7 +1108,7 @@ p {
    }
    
    /* Links inside the dropdown */
-   .dropdown-content a {
+   .dropdown-content option {
      color: black;
      padding: 12px 16px;
      text-decoration: none;
@@ -891,10 +1116,34 @@ p {
    }
    
    /* Change color of dropdown links on hover */
-   .dropdown-content a:hover {background-color: #ddd;}
+   .dropdown-content option:hover {background-color: #ddd;}
    
    /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
    .show {display:block;}
+
+   .p_status{
+   
+    border-radius: 20px;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 14PX;
+   }
+
+   .pending{
+    border: 1px solid #7c7c8f9c;
+    color: #7c7c8f9c
+   }
+   
+   .recived{
+    border: 1px solid #08ad029c;
+     color: #08ad029c;
+   }
+
+   .paid-off{
+    border: 1px solid #ff8f0e;
+    color: #ff8f0e
+   }
 
 table {
      border-collapse: collapse;
@@ -929,6 +1178,9 @@ table {
      width: 80%;
 
 }
+
+
+
 .msg_box_one button{
      background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
      border-radius: 20px;
