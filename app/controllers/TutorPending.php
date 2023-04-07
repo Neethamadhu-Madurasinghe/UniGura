@@ -220,9 +220,5 @@ class TutorPending extends Controller
         echo json_encode([
             "message" => "Data saved successfully"
         ]);
-
-        
-
-        
     }
 }

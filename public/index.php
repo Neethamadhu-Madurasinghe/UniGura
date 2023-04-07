@@ -146,7 +146,7 @@ $router->registerController('/tutor/notification', [TutorNotification::class, 'm
 $router->registerController('/tutor/viewstudentrequest', [TutorDashboard::class, 'viewrequest']);
 
 
-
+$router->registerController('/tutor/getclassdetails', [TutorClass::class, 'getclassdetails']);
 
 
 

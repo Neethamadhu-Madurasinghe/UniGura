@@ -179,7 +179,6 @@ Header::render(
 
                 document_containers.forEach(container => {
                     const url = "http://localhost/unigura/tutor/getactivity?id=" + container.dataset.id;
-
                     fetch(url)
                         .then(response => response.json())
                         .then(data => {
@@ -193,7 +192,6 @@ Header::render(
                         .catch(error => {
                             console.error(error);
                         });
-
                 })
 
 
