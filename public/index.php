@@ -177,6 +177,7 @@ $router->registerController('/api/report-tutor', [StudentTutorProfile::class, 'r
 $router->registerController('/student/tutor-profile', [StudentTutorProfile::class, 'tutorProfile']);
 $router->registerController('/student/change-profile-picture', [StudentProfile::class, 'changeProfilePicture']);
 $router->registerController('/api/student/notification', [StudentNotification::class, 'getNotification']);
+$router->registerController('/api/student/mark-seen', [StudentNotification::class, 'markNotificationAsSeen']);
 
 
 $router->resolve();

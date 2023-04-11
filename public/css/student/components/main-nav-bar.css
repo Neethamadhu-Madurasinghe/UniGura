@@ -70,6 +70,10 @@
     font-size: 0.7rem;
 }
 
+.no-notification {
+    opacity: 0;
+}
+
 .icon img {
     display: inline-block;
     width: 28px;
@@ -222,6 +226,10 @@
     margin: 0;
 }
 
+.notification-read {
+    color: #6b6a6a;
+}
+
 .notification-card h3 {
     line-height: normal;
     margin: 0 0 10px 0;
@@ -239,6 +247,7 @@
     margin: 0;
     font-size: 0.7rem;
     font-weight: normal;
+    height: 30px;
 }
 
 .no-notification-message {

@@ -1,10 +1,10 @@
 <?php
 
 class StudentNotification extends Controller {
-    private ModelStudent $studentModel;
+    private ModelStudentNotification $studentNotification;
 
     public function __construct() {
-        $this->studentModel = $this->model('ModelStudent');
+        $this->studentNotification = $this->model('ModelStudentNotification');
     }
 
     public function getNotification(Request $request) {
@@ -19,7 +19,7 @@ class StudentNotification extends Controller {
 
 
         try {
-            $data['notifications'] = $this->studentModel->getAllNotificationsByUserId($request->getUserId());
+            $data['notifications'] = $this->studentNotification->getAllNotificationsByUserId($request->getUserId());
             header("HTTP/1.0 200 Success");
             header('Content-type: application/json');
             echo json_encode($data);
@@ -27,5 +27,29 @@ class StudentNotification extends Controller {
         } catch (Exception $e) {
             header("HTTP/1.0 500 Internal Server Error");
         }
-}
+    }
+
+    public function markNotificationAsSeen(Request $request) {
+        cors();
+
+        $body = json_decode(file_get_contents('php://input'), true);
+
+        if (!$request->isLoggedIn() || !$request->isStudent()) {
+            header("HTTP/1.0 401 Unauthorized");
+            return;
+        }
+
+        $result = true;
+        foreach ($body['notification_ids'] as $id) {
+            if (!($result && $this->studentNotification->markNotificationAsSeen($id))) $result = false;
+        }
+
+        print_r($body['notification_ids']);
+        if ($result) {
+            header("HTTP/1.0 200 Success");
+        }else {
+            header("HTTP/1.0 500 Internal Server Error");
+        }
+
+    }
 }
