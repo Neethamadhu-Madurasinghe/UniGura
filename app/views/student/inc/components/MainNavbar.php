@@ -14,11 +14,14 @@ class MainNavbar {
                     
                     <div class="nav-link-container-container">
                         <div class="nav-bar-link-container">
-                            <a href="#about">
-                                <div class="icon">
-                                    <img src="' . URLROOT . '/public/img/student/bell.png' . '" alt=""> <span>17</span>
+                                <div class="icon notification-dropdown">
+                                    <img src="' . URLROOT . '/public/img/student/bell.png' . '" alt="" class="notification-bell-icon"> <span class="notification-span no-notification">00</span>
+                                    <div class="notification-list">
+                                      <ul id="notification-card-list">
+                                        
+                                      </ul>
+                                    </div>
                                 </div>
-                            </a>
             
                             <div class="profile-picture">
                                 <img
