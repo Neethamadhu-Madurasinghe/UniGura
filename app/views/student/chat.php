@@ -164,7 +164,6 @@ MainNavbar::render($request);
 
 <?php Footer::render(
     [
-
         URLROOT . '/public/js/student/student-main-nav-bar.js',
     ]
 );
