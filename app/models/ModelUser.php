@@ -22,4 +22,11 @@ class ModelUser {
         $this->db->resultOne();
         return $this->db->rowCount() > 0;
     }
+
+    public function getProfilePicture(int $id) {
+        $this->db->query('SELECT profile_picture FROM user WHERE id=:id');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        return $this->db->resultOneAssoc();
+    }
 }

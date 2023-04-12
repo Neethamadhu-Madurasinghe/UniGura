@@ -12,7 +12,7 @@ require_once APPROOT . '/views/student/inc/components/MainNavbar.php';
 
 
 Header::render(
-    'Dashboard',
+    'Chat',
     [
         URLROOT . '/public/css/student/components/main-nav-bar.css',
         URLROOT . '/public/css/student/chat.css',
@@ -111,41 +111,41 @@ MainNavbar::render($request);
 
                 <div class="message-box-container">
 
-                    <div class="message-i-box">
-                        <div class="message-box-image-container">
-                            <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img">
-                        </div>
-                        <p class="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, molestias.</p>
-                    </div>
-
-                    <div class="message-i-box">
-                        <div class="message-box-image-container">
-                            <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img">
-                        </div>
-                        <p class="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, molestias.</p>
-                    </div>
-
-                    <div class="message-i-box">
-                        <div class="message-box-image-container">
-                            <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img">
-                        </div>
-                        <p class="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, molestias.</p>
-                    </div>
-
-                    <div class="message-box">
-                        <p class="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, molestias.</p>
-                    </div>
-
-                    <div class="message-i-box">
-                        <div class="message-box-image-container">
-                            <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img">
-                        </div>
-                        <p class="message">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi magni blanditiis quas minus aliquam ut quibusdam sit voluptatum dolorum quod temporibus ad laborum deleniti minima, corrupti obcaecati ratione consequatur corporis..</p>
-                    </div>
-
-                    <div class="message-box">
-                        <p class="message">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus nemo ipsam sapiente dignissimos porro magni? Sapiente facilis, quas nemo voluptates dignissimos velit! Laborum ipsa non corrupti quaerat, vero tempore delectus.</p>
-                    </div>
+<!--                    <div class="message-i-box">-->
+<!--                        <div class="message-box-image-container">-->
+<!--                            <img src="--><?php //echo URLROOT . '/public/img/student/profile.png' ?><!--" alt="" class="profile-picture-img">-->
+<!--                        </div>-->
+<!--                        <p class="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, molestias.</p>-->
+<!--                    </div>-->
+<!---->
+<!--                    <div class="message-i-box">-->
+<!--                        <div class="message-box-image-container">-->
+<!--                            <img src="--><?php //echo URLROOT . '/public/img/student/profile.png' ?><!--" alt="" class="profile-picture-img">-->
+<!--                        </div>-->
+<!--                        <p class="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, molestias.</p>-->
+<!--                    </div>-->
+<!---->
+<!--                    <div class="message-i-box">-->
+<!--                        <div class="message-box-image-container">-->
+<!--                            <img src="--><?php //echo URLROOT . '/public/img/student/profile.png' ?><!--" alt="" class="profile-picture-img">-->
+<!--                        </div>-->
+<!--                        <p class="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, molestias.</p>-->
+<!--                    </div>-->
+<!---->
+<!--                    <div class="message-box">-->
+<!--                        <p class="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, molestias.</p>-->
+<!--                    </div>-->
+<!---->
+<!--                    <div class="message-i-box">-->
+<!--                        <div class="message-box-image-container">-->
+<!--                            <img src="--><?php //echo URLROOT . '/public/img/student/profile.png' ?><!--" alt="" class="profile-picture-img">-->
+<!--                        </div>-->
+<!--                        <p class="message">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi magni blanditiis quas minus aliquam ut quibusdam sit voluptatum dolorum quod temporibus ad laborum deleniti minima, corrupti obcaecati ratione consequatur corporis..</p>-->
+<!--                    </div>-->
+<!---->
+<!--                    <div class="message-box">-->
+<!--                        <p class="message">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus nemo ipsam sapiente dignissimos porro magni? Sapiente facilis, quas nemo voluptates dignissimos velit! Laborum ipsa non corrupti quaerat, vero tempore delectus.</p>-->
+<!--                    </div>-->
 
 
 
@@ -165,6 +165,7 @@ MainNavbar::render($request);
 <?php Footer::render(
     [
         URLROOT . '/public/js/student/student-main-nav-bar.js',
+        URLROOT . '/public/js/student/chat.js',
     ]
 );
 ?>

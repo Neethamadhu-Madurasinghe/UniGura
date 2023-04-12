@@ -32,4 +32,14 @@ class ModelStudentChat {
             return [];
         }
     }
+
+    public function getChatRooms(int $id): array {
+        $this->db->query('SELECT * FROM chat_thread WHERE 
+                              user_id_1=:userId_1 OR 
+                              user_id_2=:userId_2');
+        $this->db->bind('userId_1', $id, PDO::PARAM_INT);
+        $this->db->bind('userId_2', $id, PDO::PARAM_INT);
+
+        return $this->db->resultAllAssoc();
+    }
 }
