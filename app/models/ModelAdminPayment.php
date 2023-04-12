@@ -17,6 +17,7 @@ class ModelAdminPayment
 
     public function allPaymentDetails()
     {
+        // $this->db->query("SELECT * FROM `payment` GROUP BY `withdrawal_day`, `withdrawalSlip`");
         $this->db->query("SELECT * FROM `payment`");
         return $this->db->resultAll();
     }

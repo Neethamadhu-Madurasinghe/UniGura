@@ -34,6 +34,11 @@ subjectPage.classList.add('active');
 
 
 
+const blur_filter = document.getElementById('blur-filter');
+blur_filter.style.display = "none";
+
+
+
 
 // *========================================== SUBJECT PAGE ===========================================================
 
@@ -242,10 +247,11 @@ function addSubjectFun (subject) {
         const popup = document.getElementById('popup');
         const closePopupBtn = document.getElementById('closePopup');
         const container = document.getElementById('container');
+        const blur_filter = document.getElementById('blur-filter');
 
         closePopupBtn.addEventListener("click", function () {
             popup.style.display = "none";
-            // container.classList.add('blur');
+            blur_filter.style.display = "none";
         })
     }
 
@@ -371,9 +377,11 @@ function addModuleFun (module, subjectId) {
 
         const popup = document.getElementById('popup');
         const closePopupBtn = document.getElementById('closePopup');
+        const blur_filter = document.getElementById('blur-filter');
 
         closePopupBtn.addEventListener("click", function () {
             popup.style.display = "none";
+            blur_filter.style.display = "none";
         })
     }
 
