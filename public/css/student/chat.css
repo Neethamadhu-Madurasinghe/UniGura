@@ -146,9 +146,9 @@ h1 {
 }
 
 .contact-card-image-container img {
-
     width: 80%;
     max-width: 70px;
+    border-radius: 50%;
     object-fit: cover;
 }
 
@@ -275,6 +275,11 @@ h1 {
     align-items: flex-start;
 }
 
+.profile-picture-img {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 .message-content {
     max-width: 400px;
     margin: 0 0 0 10px;
@@ -291,7 +296,7 @@ h1 {
 }
 
 .message-content span {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
 }
 
 @media screen and (max-width: 1024px) {

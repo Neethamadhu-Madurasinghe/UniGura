@@ -1,12 +1,25 @@
 const messageBoxUI = document.querySelector(".message-box-container");
+const contactListUI = document.querySelector(".contact-list-container");
+const chatTitleUI = document.getElementById("chat-title");
+const chatImageUI = document.getElementById("main-chat-image");
+let chatThreads = [];
 
-async function fetchMessages(userId) {
-    const response = await fetch(`http://localhost/unigura/api/student/get-chat?userid=${userId}`);
+async function fetchMessages(threadId) {
+    messageBoxUI.innerHTML = "";
+    // find other participant's name and profile picture from chatThread array
+    let currentChatThread = chatThreads.filter(chatThread => chatThread.id === Number(threadId))[0];
+    chatTitleUI.textContent = currentChatThread.name;
+    chatImageUI.src = 'http://localhost/unigura/' + currentChatThread.profile_picture;
 
-    const data = await response.json();
+    console.log(currentChatThread.profile_picture)
+
+
+    const response = await fetch(`http://localhost/unigura/api/student/get-chat?chatThreadId=${threadId}`);
+    const data = await response.json()
+
     if (response.status === 200) {
         data.messages.forEach(message => {
-            if(message.receiver === userId) {
+            if(message.receiver !== data.userId) {
                 const element = `
                     <div class="message-box">
                         <div>
@@ -21,7 +34,7 @@ async function fetchMessages(userId) {
                 const element = `
                     <div class="message-i-box">
                         <div class="message-box-image-container">
-                          <img src="assests/profile.png" alt="" class="profile-picture-img">
+                          <img src="${'http://localhost/unigura/' + currentChatThread.profile_picture}" alt="" class="profile-picture-img">
                         </div>
                         <div class="message-content">
                           <p class="message">${message.message}.</p>
@@ -47,9 +60,63 @@ fetchChatThreads()
 
 async function fetchChatThreads() {
     const response = await fetch(`http://localhost/unigura/api/student/get-all-chat-threads`);
-    const output = await response.text();
-    console.log(output);
+
+    if (response.status === 200) {
+        chatThreads = await response.json();
+        console.log(chatThreads)
+        chatThreads = sortByCreatedAtDesc(chatThreads);
+        chatThreads.forEach((chatThread, index) => {
+            const element = `
+            <div class="contact-card ${ index === 0 ? "contact-card-selected" : "" }" data-threadid="${chatThread.id}">
+                <div class="contact-card-image-container">
+                  <img src="${'http://localhost/unigura/' + chatThread.profile_picture}" alt="" class="profile-picture-img">
+                </div>
+                <div class="details-container">
+                  <h3>${chatThread.name}</h3>
+                  <p>${chatThread.last_message}</p>
+                </div>
+             </div>
+            `;
+
+            contactListUI.innerHTML += element;
+
+            if (index === 0) fetchMessages(chatThread.id);
+        })
+    }else if(response.status === 400) {
+        //    TODO:
+    }else if(response.status === 401) {
+
+    }else if(response.status === 404) {
+
+    }else if(response.status === 406) {
+
+    }
 }
+
+
+// Event listener to select chats
+document.getElementsByTagName("body")[0].addEventListener("click", function handleContactCardClick(event) {
+    // Traverse up the DOM tree from the clicked element
+    let currentElement = event.target;
+    while (currentElement) {
+        // Check if the current element has the class name "contact-card"
+        if (currentElement.classList.contains('contact-card')) {
+            // Remove selected class from any other class
+            const otherContactCards = document.querySelectorAll(".contact-card");
+            otherContactCards.forEach(contractCard => {
+                contractCard.classList.remove("contact-card-selected");
+            });
+
+            // Add selected class to the current card
+            currentElement.classList.add("contact-card-selected");
+            fetchMessages(currentElement.dataset.threadid);
+            return;
+        }
+        // If not, move up to the next parent element
+        currentElement = currentElement.parentElement;
+    }
+
+})
 
 
 // Helper function to format date message created time
@@ -85,4 +152,17 @@ function getTimePassed(datetime) {
             minute: "numeric",
         });
     }
+}
+
+// Helper function to sort the array of message threads
+function sortByCreatedAtDesc(arr) {
+    arr.sort(function(a, b) {
+        // Convert timestamp strings to Date objects
+        const dateA = new Date(a.last_message_created_at);
+        const dateB = new Date(b.last_message_created_at);
+
+        // Sort in descending order based on the date values
+        return dateB - dateA;
+    });
+    return arr;
 }

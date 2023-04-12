@@ -25,37 +25,26 @@ class StudentChat extends Controller {
             return;
         }
 
-        if (!isset($body['userid'])) {
+        if (!isset($body['chatThreadId'])) {
             header("HTTP/1.0 400 Bad Request");
             return;
         }
 
-
-//        Check if one user is a student while other one is a tutor
-        if (!(
-                ($this->user->isTutor($body['userid']) && $request->getUserId()) ||
-                ($request->getUserId() && $this->user->isStudent($body['userid']))
-            )
-        ) {
-            header("HTTP/1.0 406 Not Acceptable");
+//        Check if the user has involved in the requested chat thread
+        $chatThread = $this->studentChat->getChatThreadById($body['chatThreadId']);
+        if (!($chatThread['user_id_1'] == $request->getUserId() || $chatThread['user_id_2'] == $request->getUserId())) {
+            header("HTTP/1.0 401 Unauthorized");
             return;
         }
 
-
-//        Fetch the correct chat room id
-        $chatRoomId = $this->studentChat->getChatRoomIdByUser($body['userid'], $request->getUserId());
-        if ($chatRoomId) {
-            $data['chatroom'] = $chatRoomId;
+        $data['chatThread'] = $body['chatThreadId'];
+        $data['userId'] = $request->getUserId();
 
 //            Fetch actual messages
-            $data['messages'] = $this->studentChat->fetchMessagesByChatRoomId($chatRoomId['id']);
-            header("HTTP/1.0 200 Success");
-            header('Content-type: application/json');
-            echo json_encode($data);
-
-        } else {
-            header("HTTP/1.0 404 Not Found");
-        }
+        $data['messages'] = $this->studentChat->fetchMessagesByChatRoomId($body['chatThreadId']);
+        header("HTTP/1.0 200 Success");
+        header('Content-type: application/json');
+        echo json_encode($data);
     }
 
 //    Get all the chats a user is involved in
@@ -69,9 +58,8 @@ class StudentChat extends Controller {
         }
 
 //        Fetch chats
-        $chatData = $this->studentChat->getChatRooms($request->getUserId());
-//        Fetch their profile pictures
-
+        $chatData = $this->studentChat->getChatThreads($request->getUserId());
+//        Fetch their profile pictures, names and last message
         $temp = [];
         foreach ($chatData as $chatThread) {
             $userId = 0;
@@ -81,12 +69,23 @@ class StudentChat extends Controller {
                 $userId = $chatThread['user_id_1'];
             }
 
-            $fetchProfileRecord = $this->user->getProfilePicture($userId);
+            $fetchProfileRecord = $this->user->getProfilePictureAndName($userId);
             if (!$fetchProfileRecord['profile_picture']) {
                 $fetchProfileRecord['profile_picture'] = "./public/img/common/profile.png";
             }
 
-            $chatThread["profile_picture"] = $fetchProfileRecord['profile_picture'];
+            $chatThread['profile_picture'] = $fetchProfileRecord['profile_picture'];
+            $chatThread['name'] = $fetchProfileRecord['first_name'] . " " . $fetchProfileRecord['last_name'];
+            $lastMessage = $this->studentChat->getLastChatMessage($chatThread['id']);
+
+            if (isset($lastMessage['message'])) {
+                $chatThread['last_message'] = $lastMessage['message'];
+                $chatThread['last_message_created_at'] = $lastMessage['created_at'];
+            }else {
+                $chatThread['last_message'] = "";
+                $chatThread['last_message_created_at'] = 0;
+            }
+
             $temp[] = $chatThread;
         }
 

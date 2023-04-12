@@ -22,7 +22,7 @@ class ModelStudentChat {
     }
 
     public function fetchMessagesByChatRoomId(int $id): array {
-        $this->db->query('SELECT * FROM chat WHERE thread_id=:id');
+        $this->db->query('SELECT * FROM chat WHERE thread_id=:id ORDER BY created_at ASC');
         $this->db->bind('id', $id, PDO::PARAM_INT);
 
         $results = $this->db->resultAllAssoc();
@@ -33,7 +33,7 @@ class ModelStudentChat {
         }
     }
 
-    public function getChatRooms(int $id): array {
+    public function getChatThreads(int $id): array {
         $this->db->query('SELECT * FROM chat_thread WHERE 
                               user_id_1=:userId_1 OR 
                               user_id_2=:userId_2');
@@ -41,5 +41,18 @@ class ModelStudentChat {
         $this->db->bind('userId_2', $id, PDO::PARAM_INT);
 
         return $this->db->resultAllAssoc();
+    }
+
+    public function getChatThreadById(int $id) {
+        $this->db->query('SELECT * FROM chat_thread WHERE id=:id');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        return $this->db->resultOneAssoc();
+    }
+
+    public function getLastChatMessage(int $id) {
+        $this->db->query('SELECT * FROM chat WHERE thread_id=:id ORDER BY created_at DESC LIMIT 1');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        return $this->db->resultOneAssoc();
     }
 }

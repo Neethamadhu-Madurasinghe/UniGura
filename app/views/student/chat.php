@@ -27,83 +27,36 @@ MainNavbar::render($request);
         <h1>Chat with Tutors</h1>
         <div class="chat-component-container">
             <div class="contact-list-container">
-                <div class="contact-card contact-card-selected">
-                    <div class="contact-card-image-container">
-                        <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img">
-                    </div>
-                    <div class="details-container">
-                        <h3>Tutor name goes here</h3>
-                        <p>last message goes here</p>
-                    </div>
-                </div>
 
-                <div class="contact-card">
-                    <div class="contact-card-image-container">
-                        <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img">
-                    </div>
-                    <div class="details-container">
-                        <h3>Tutor name goes here</h3>
-                        <p>last message goes here</p>
-                    </div>
-                </div>
+<!--                <div class="contact-card contact-card-selected">-->
+<!--                    <div class="contact-card-image-container">-->
+<!--                        <img src="--><?php //echo URLROOT . '/public/img/student/profile.png' ?><!--" alt="" class="profile-picture-img">-->
+<!--                    </div>-->
+<!--                    <div class="details-container">-->
+<!--                        <h3 id="chat-title">Tutor name goes here</h3>-->
+<!--                        <p>last message goes here</p>-->
+<!--                    </div>-->
+<!--                </div>-->
 
-                <div class="contact-card">
-                    <div class="contact-card-image-container">
-                        <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img">
-                    </div>
-                    <div class="details-container">
-                        <h3>Tutor name goes here</h3>
-                        <p>last message goes here</p>
-                    </div>
-                </div>
+<!--                <div class="contact-card">-->
+<!--                    <div class="contact-card-image-container">-->
+<!--                        <img src="--><?php //echo URLROOT . '/public/img/student/profile.png' ?><!--" alt="" class="profile-picture-img">-->
+<!--                    </div>-->
+<!--                    <div class="details-container">-->
+<!--                        <h3>Tutor name goes here</h3>-->
+<!--                        <p>last message goes here</p>-->
+<!--                    </div>-->
+<!--                </div>-->
 
-                <div class="contact-card">
-                    <div class="contact-card-image-container">
-                        <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img">
-                    </div>
-                    <div class="details-container">
-                        <h3>Tutor name goes here</h3>
-                        <p>last message goes here</p>
-                    </div>
-                </div>
 
-                <div class="contact-card">
-                    <div class="contact-card-image-container">
-                        <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img">
-                    </div>
-                    <div class="details-container">
-                        <h3>Tutor name goes here</h3>
-                        <p>last message goes here</p>
-                    </div>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-card-image-container">
-                        <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img">
-                    </div>
-                    <div class="details-container">
-                        <h3>Tutor name goes here</h3>
-                        <p>last message goes here</p>
-                    </div>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-card-image-container">
-                        <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img">
-                    </div>
-                    <div class="details-container">
-                        <h3>Tutor name goes here</h3>
-                        <p>last message goes here</p>
-                    </div>
-                </div>
             </div>
             <div class="chat-container">
                 <div class="chat-container-title">
                     <div class="chat-container-title-image-container">
-                        <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img">
+                        <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img" id="main-chat-image">
                     </div>
                     <div class="chat-details-container">
-                        <h3>Tutor name goes here</h3>
+                        <h3 id="chat-title">Tutor name goes here</h3>
                         <p>last message goes here</p>
                     </div>
                     <button class="cancel-btn">X</button>
