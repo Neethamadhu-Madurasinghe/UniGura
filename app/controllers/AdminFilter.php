@@ -589,10 +589,6 @@ class AdminFilter extends Controller
             $data = [
                 'allStudentComplaints' => $uniqueFilterResult,
                 'totalNumOfStudentComplaints' => $totalNumOfStudentComplaints,
-                'lastPageNum' => $lastPageNum,
-                'nextPageNum' => $nextPageNum,
-                'previousPageNum' => $previousPageNum,
-                'currentPageNum' => $currentPageNum,
             ];
 
             // echo '<pre>';
