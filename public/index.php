@@ -35,8 +35,11 @@ $router->registerController('/admin/dashboard', [AdminDashboard::class, 'dashboa
 $router->registerController('/admin/subjectModule', [AdminSubjectModule::class, 'subjectsAndModules']);
 $router->registerController('/admin/addSubject', [AdminSubjectModule::class, 'addSubject']);
 $router->registerController('/admin/addModule', [AdminSubjectModule::class, 'addModule']);
+$router->registerController('/admin/updateSubject', [AdminSubjectModule::class, 'updateSubject']);
 $router->registerController('/admin/updateModule', [AdminSubjectModule::class, 'updateModule']);
+$router->registerController('/admin/updateSubjectHideShow', [AdminSubjectModule::class, 'updateSubjectHideShow']);
 $router->registerController('/admin/updateModuleHideShow', [AdminSubjectModule::class, 'updateModuleHideShow']);
+
 
 
 

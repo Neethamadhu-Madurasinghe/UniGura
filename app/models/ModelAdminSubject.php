@@ -43,6 +43,22 @@ class ModelAdminSubject {
         }
     }
 
+
+    public function updateSubject($subject_id,$subjectName){
+        $this->db->query('UPDATE subject SET name = :subjectName WHERE id= :subject_id');
+        $this->db->bind(':subjectName', $subjectName);
+        $this->db->bind(':subject_id',$subject_id);
+        $this->db->execute();
+    }
+
+    public function updateSubjectHideShow($subject_id,$isHidden){
+        $this->db->query('UPDATE subject SET is_hidden = :isHidden WHERE id= :subject_id');
+        $this->db->bind(':isHidden', $isHidden);
+        $this->db->bind(':subject_id',$subject_id);
+        $this->db->execute();   
+    }
+
+
     public function addModule($moduleName, $subjectId) {
 
         try {

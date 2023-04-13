@@ -1,14 +1,17 @@
 <?php
 
-class AdminSubjectModule extends Controller {
+class AdminSubjectModule extends Controller
+{
     private mixed $subjectModel;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->subjectModel = $this->model('ModelAdminSubject');
     }
 
 
-    public function subjectsAndModules(Request $request) {
+    public function subjectsAndModules(Request $request)
+    {
 
         if (!$request->isLoggedIn()) {
             redirect('/login');
@@ -42,7 +45,7 @@ class AdminSubjectModule extends Controller {
             redirect('/login');
         }
 
-        if ($request->isGet()) {
+        if ($request->isPost()) {
             $subjectName = $request->getBody('subjectName')['subjectName'];
 
             $duplicateSubject = [];
@@ -71,6 +74,46 @@ class AdminSubjectModule extends Controller {
             $this->view('admin/newSubject', $request, $data);
         }
     }
+
+
+    public function updateSubject(Request $request)
+    {
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        if($request->isPost()){
+            $bodyData = $request->getBody();
+
+            $subjectId = $bodyData['subject_id'];
+            $subjectName = $bodyData['subject_name'];
+
+            $this->subjectModel->updateSubject($subjectId,$subjectName);
+
+            $this->subjectsAndModules($request);
+        }
+    }
+
+
+    public function updateSubjectHideShow(Request $request)
+    {
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        if($request->isGET()){
+            $bodyData = $request->getBody();
+
+            $subjectId = $bodyData['subject_id'];
+            $subjectIsHidden = $bodyData['is_hidden'];
+
+            $this->subjectModel->updateSubjectHideShow($subjectId,$subjectIsHidden);
+
+            $this->subjectsAndModules($request);
+        }
+    }
+
+
 
     public function addModule(Request $request)
     {
@@ -106,7 +149,6 @@ class AdminSubjectModule extends Controller {
             // echo '</pre>';
 
             $this->view('admin/newSubject', $request, $data);
-
         }
     }
 
@@ -130,7 +172,7 @@ class AdminSubjectModule extends Controller {
         if (!$request->isLoggedIn()) {
             redirect('/login');
         }
-        
+
         if ($request->isGet()) {
             $moduleId = $request->getBody('moduleId')['moduleId'];
             $isHidden = $request->getBody('is_hidden')['is_hidden'];
