@@ -291,7 +291,7 @@ class AdminFilter extends Controller
             redirect('/login');
         }
 
-        
+
         $filterResult = [];
 
         $allClasses = $this->filterModel->getAllClasses();
@@ -467,5 +467,140 @@ class AdminFilter extends Controller
         ];
 
         $this->view('admin/classSearch&FilterOutput', $request, $data);
+    }
+
+
+
+    public function filterForStudentComplaint(Request $request)
+    {
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        $filterResult = [];
+
+
+
+        if ($request->isGet()) {
+            $bodyData = $request->getBody();
+
+            $studentComplaintSearchName = $bodyData['search_student_name_value'];
+            $studentComplaintFilterName = $bodyData['student_complaint_filter_value'];
+            $currentPageNum = $bodyData['currentPageNum'];
+
+            // echo $studentComplaintSearchName;
+            // echo $studentComplaintFilterName;
+            // echo $currentPageNum;
+
+            if ($currentPageNum == 'null') {
+                $currentPageNum = 1;
+            }
+
+
+            $rowsPerPage = 5;
+            $totalNumOfStudentComplaints = $this->filterModel->totalNumOfStudentComplaints();
+            $lastPageNum = ceil($totalNumOfStudentComplaints / $rowsPerPage);
+
+            $start = ($currentPageNum - 1) * $rowsPerPage;
+
+            $allStudentComplaints = $this->filterModel->getStudentComplaints($start, $rowsPerPage);
+
+            // next page
+            if ($currentPageNum < $lastPageNum) {
+                $nextPageNum = $currentPageNum + 1;
+            } else {
+                $nextPageNum = $lastPageNum;
+            }
+
+            // previous page
+            if ($currentPageNum > 1) {
+                $previousPageNum = $currentPageNum - 1;
+            } else {
+                $previousPageNum = 1;
+            }
+
+
+            foreach ($allStudentComplaints as $x) {
+                $reasonID = $x->reason_id;
+                $reportReason = $this->filterModel->reportSeasonById($reasonID);
+                $x->reportReason = $reportReason;
+
+                $tutorID = $x->tutor_id;
+                $tutor = $this->filterModel->userById($tutorID);
+                $x->tutor = $tutor;
+
+                $studentID = $x->student_id;
+                $student = $this->filterModel->userById($studentID);
+                $x->student = $student;
+            }
+
+            
+            $totalNumOfStudentComplaints = $this->filterModel->totalNumOfStudentComplaints();
+
+
+            if (empty($studentComplaintSearchName) && $studentComplaintFilterName == 'all') {
+                $filterResult = $allStudentComplaints;
+            } else if (empty($studentComplaintSearchName) && $studentComplaintFilterName == 'not_choose') {
+                $filterResult = $allStudentComplaints;
+            } else if (empty($studentComplaintSearchName) && $studentComplaintFilterName == 'solved') {
+                foreach ($allStudentComplaints as $aStudentComplaint) {
+                    if ($aStudentComplaint->is_inquired == '1') {
+                        array_push($filterResult, $aStudentComplaint);
+                    }
+                }
+            } else if (empty($studentComplaintSearchName) && $studentComplaintFilterName == 'not_resolve') {
+                foreach ($allStudentComplaints as $aStudentComplaint) {
+                    if ($aStudentComplaint->is_inquired == '0') {
+                        array_push($filterResult, $aStudentComplaint);
+                    }
+                }
+            } else if (!empty($studentComplaintSearchName) && $studentComplaintFilterName == 'not_choose') {
+                foreach ($allStudentComplaints as $aStudentComplaint) {
+                    if (str_contains(strtolower($aStudentComplaint->student->first_name . ' ' . $aStudentComplaint->student->last_name), strtolower($studentComplaintSearchName))) {
+                        array_push($filterResult, $aStudentComplaint);
+                    }
+                }
+            } else if (!empty($studentComplaintSearchName) && $studentComplaintFilterName == 'all') {
+                foreach ($allStudentComplaints as $aStudentComplaint) {
+                    if ($aStudentComplaint->is_inquired == '1' && str_contains(strtolower($aStudentComplaint->student->first_name . ' ' . $aStudentComplaint->student->last_name), strtolower($studentComplaintSearchName))) {
+                        array_push($filterResult, $aStudentComplaint);
+                    }
+                }
+            } else if (!empty($studentComplaintSearchName) && $studentComplaintFilterName == 'solved') {
+                foreach ($allStudentComplaints as $aStudentComplaint) {
+                    if ($aStudentComplaint->is_inquired == '1' && str_contains(strtolower($aStudentComplaint->student->first_name . ' ' . $aStudentComplaint->student->last_name), strtolower($studentComplaintSearchName))) {
+                        array_push($filterResult, $aStudentComplaint);
+                    }
+                }
+            } else if (!empty($studentComplaintSearchName) && $studentComplaintFilterName == 'not_resolve') {
+                foreach ($allStudentComplaints as $aStudentComplaint) {
+                    if ($aStudentComplaint->is_inquired == '0' && str_contains(strtolower($aStudentComplaint->student->first_name . ' ' . $aStudentComplaint->student->last_name), strtolower($studentComplaintSearchName))) {
+                        array_push($filterResult, $aStudentComplaint);
+                    }
+                }
+            } else {
+                $filterResult = $allStudentComplaints;
+            }
+
+
+
+            $uniqueFilterResult = array_unique($filterResult, SORT_REGULAR);
+
+            $data = [
+                'allStudentComplaints' => $uniqueFilterResult,
+                'totalNumOfStudentComplaints' => $totalNumOfStudentComplaints,
+                'lastPageNum' => $lastPageNum,
+                'nextPageNum' => $nextPageNum,
+                'previousPageNum' => $previousPageNum,
+                'currentPageNum' => $currentPageNum,
+            ];
+
+            // echo '<pre>';
+            // print_r($data);
+            // echo '</pre>';
+
+
+            $this->view('admin/studentComplainSearch&FilterResult', $request, $data);
+        }
     }
 }

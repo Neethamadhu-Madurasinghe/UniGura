@@ -91,6 +91,9 @@ $router->registerController('/admin/updatePassword', [AdminProfileView::class, '
 $router->registerController('/admin/filterForStudentPage', [AdminFilter::class, 'filterForStudentPage']);
 $router->registerController('/admin/filterForTutorPage',[AdminFilter::class,'filterForTutorPage']);
 $router->registerController('/admin/filterForClassPage',[AdminFilter::class,'filterForClassPage']);
+$router->registerController('/admin/filterForStudentComplaint',[AdminFilter::class,'filterForStudentComplaint']);
+
+
 
 $router->registerController('/admin/hideTutor',[AdminHideShowBlockUnblock::class,'hideTutor']);
 $router->registerController('/admin/showTutor',[AdminHideShowBlockUnblock::class,'showTutor']);
@@ -106,6 +109,7 @@ $router->registerController('/admin/acceptTutorRequest',[AdminRequirementComplai
 $router->registerController('/admin/rejectTutorRequest',[AdminRequirementComplaints::class,'rejectTutorRequest']);
 
 $router->registerController('/admin/studentComplainSearchFilter',[AdminSearchFilter::class,'studentComplainSearchFilter']);
+
 
 
 
