@@ -57,7 +57,7 @@
     </div>
 
     <div class="tutor-review-section">
-        <h1>Tutor Reviews</h1>
+        <h1>Tutor's Other Reviews</h1>
         <div class="tutor-review">
 
             <?php foreach ($data['otherStudentComplaints'] as $complain) : ?>
