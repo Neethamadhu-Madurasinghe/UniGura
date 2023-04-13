@@ -57,7 +57,7 @@ MainNavbar::render($request);
                     </div>
                     <div class="chat-details-container">
                         <h3 id="chat-title">Tutor name goes here</h3>
-                        <p>last message goes here</p>
+                        <p id="user-state">last message goes here</p>
                     </div>
                     <button class="cancel-btn">X</button>
                 </div>
@@ -106,7 +106,7 @@ MainNavbar::render($request);
                 </div>
 
                 <div class="new-message-container">
-                    <textarea rows="3" placeholder="Send a message"></textarea>
+                    <textarea rows="3" placeholder="Send a message" id="msg-box"></textarea>
                     <button class="btn btn-send">Send</button>
                 </div>
             </div>

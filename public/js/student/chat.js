@@ -2,12 +2,21 @@ const messageBoxUI = document.querySelector(".message-box-container");
 const contactListUI = document.querySelector(".contact-list-container");
 const chatTitleUI = document.getElementById("chat-title");
 const chatImageUI = document.getElementById("main-chat-image");
-let chatThreads = [];
+const userStateUI = document.getElementById("user-state");
+const msgInputUI = document.getElementById("msg-box");
+const sendBtnUI = document.querySelector(".btn-send");
 
+let chatThreads = [];
+let currentChatThread = null;
+let conn = null;
+
+fetchChatThreads()
+
+// Fetch all the messages for a chatThread when a threadId is given
 async function fetchMessages(threadId) {
     messageBoxUI.innerHTML = "";
     // find other participant's name and profile picture from chatThread array
-    let currentChatThread = chatThreads.filter(chatThread => chatThread.id === Number(threadId))[0];
+    currentChatThread = chatThreads.filter(chatThread => chatThread.id === Number(threadId))[0];
     chatTitleUI.textContent = currentChatThread.name;
     chatImageUI.src = 'http://localhost/unigura/' + currentChatThread.profile_picture;
 
@@ -56,8 +65,7 @@ async function fetchMessages(threadId) {
     }
 }
 
-fetchChatThreads()
-
+// Fetch all the chatThreads for this user
 async function fetchChatThreads() {
     const response = await fetch(`http://localhost/unigura/api/student/get-all-chat-threads`);
 
@@ -93,7 +101,6 @@ async function fetchChatThreads() {
     }
 }
 
-
 // Event listener to select chats
 document.getElementsByTagName("body")[0].addEventListener("click", function handleContactCardClick(event) {
     // Traverse up the DOM tree from the clicked element
@@ -117,7 +124,6 @@ document.getElementsByTagName("body")[0].addEventListener("click", function hand
     }
 
 })
-
 
 // Helper function to format date message created time
 function getTimePassed(datetime) {
@@ -166,3 +172,53 @@ function sortByCreatedAtDesc(arr) {
     });
     return arr;
 }
+
+// Connect to the websocket server
+function connectToWebSocketServer() {
+    conn = new WebSocket('ws://localhost:8080');
+    conn.onopen = function (e) {
+        console.log('Connection established!');
+        conn.send(JSON.stringify({
+            'newRoute': 'Personalchat-<?= $roomid ?>'
+        }));
+
+    };
+
+    conn.onmessage = function (e) {
+        let data = JSON.parse(e.data);
+        console.log(data);
+        if (typeof data.msg !== 'undefined') {
+            chatTitleUI.innerHTML += `
+                <div class="message-box">
+                    <div>
+                       <p class="message">${data.msg}</p>
+                       <span>${data.date}</span>
+                    </div>
+                </div>
+            `;
+        }
+        else if (typeof data.typing !== 'undefined') {
+            userStateUI.textContent = "Typing";
+            let timeoutHandle = window.setTimeout(function () {
+                userStateUI.textContent = "";
+                window.clearTimeout(timeoutHandle);
+            }, 2000);
+        }
+    };
+}
+
+function sendTyping(){
+    if (conn) {
+        conn.send(JSON.stringify({
+            'typing': 'y',
+            'name': '<?= $user ?>'
+        }));
+    }
+}
+
+msgInputUI.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        sendBtnUI.click();
+    }
+});

@@ -14,6 +14,7 @@ class StudentChat extends Controller {
         $this->view('/student/chat', $request, $data);
     }
 
+//    Get all the messages of a thread when the threadId is given
     public function getChatMessages(Request $request) {
         cors();
         $body = $request->getBody();
