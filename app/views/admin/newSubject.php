@@ -3,7 +3,7 @@
 <script defer src="<?php echo URLROOT ?>/public/js/admin/subject.js"></script>
 
 
-<div class="blur-filter" id="blur-filter"></div>
+<!-- <div class="blur-filter" id="blur-filter"></div> -->
 
 <section class="home" id="home">
     <p></p>

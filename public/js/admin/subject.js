@@ -40,7 +40,10 @@ blur_filter.style.display = "none";
 
 
 
+
+
 // *========================================== SUBJECT PAGE ===========================================================
+
 
 const addSubject = document.getElementById("addSubject");
 const typeSubject = document.getElementById("typeSubject");
