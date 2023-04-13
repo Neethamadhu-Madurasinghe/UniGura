@@ -10,6 +10,22 @@ class AdminProfileView extends Controller
         $this->adminProfileModel = $this->model('ModelAdminProfile');
     }
 
+
+    private function validatePassword(string $password): String
+    {
+        if (empty($password)) {
+            // 'Please enter a valid password';
+            return 'validPassword';
+        } elseif (strlen($password) < 4) {
+            // 'Password should be minimum 4 characters long';
+            return 'minimum4characters';
+        } else {
+            return '';
+        }
+    }
+
+
+
     public function profileView(Request $request)
     {
         if (!$request->isLoggedIn()) {
@@ -20,10 +36,11 @@ class AdminProfileView extends Controller
         $FormValidationError['incorrectPassword'] = '';
         $FormValidationError['passwordNotMatch'] = '';
         $FormValidationError['passwordChangeSuccessful'] = '';
+        $FormValidationError['passwordValidation'] = '';
 
         $data = $FormValidationError;
 
-        $this->view('admin/profileView', $request,$data);
+        $this->view('admin/profileView', $request, $data);
     }
 
 
@@ -41,6 +58,10 @@ class AdminProfileView extends Controller
             $bodyData = $request->getBody();
 
             $FormValidationError = array();
+            $FormValidationError['incorrectPassword'] = '';
+            $FormValidationError['passwordNotMatch'] = '';
+            $FormValidationError['passwordChangeSuccessful'] = '';
+            $FormValidationError['passwordValidation'] = '';
 
             $dbHashedPassword = $this->adminProfileModel->getAdminCurrentPassword($request->getUserId());
             $CurrentPassword = $bodyData['currentPassword'];
@@ -62,6 +83,9 @@ class AdminProfileView extends Controller
 
                 $this->adminProfileModel->updatePassword($request->getUserId(), $hashedNewPassword);
             }
+
+
+            $FormValidationError['passwordValidation'] = $this->validatePassword($newPassword);
 
             $data = $FormValidationError;
 
