@@ -82,15 +82,32 @@ class AdminSubjectModule extends Controller
             redirect('/login');
         }
 
-        if($request->isPost()){
+        if ($request->isPost()) {
             $bodyData = $request->getBody();
 
             $subjectId = $bodyData['subject_id'];
             $subjectName = $bodyData['subject_name'];
 
-            $this->subjectModel->updateSubject($subjectId,$subjectName);
+            $duplicateSubject = [];
+            $duplicateModule = [];
 
-            $this->subjectsAndModules($request);
+            $subjectName = $this->subjectModel->updateSubject($subjectId, $subjectName);
+
+            if ($subjectName == 'Duplicate entry') {
+                $duplicateSubject = 'Duplicate entry';
+            }
+
+            $allSubjects = $this->subjectModel->getSubjects();
+            $moduleSubject = array();
+            foreach ($allSubjects as $x) {
+                $subjectID = $x->id;
+                $allModules = $this->subjectModel->getModule($subjectID);
+                $moduleSubject[$subjectID] = $allModules;
+            }
+
+            $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule);
+
+            $this->view('admin/newSubject', $request, $data);
         }
     }
 
@@ -101,13 +118,13 @@ class AdminSubjectModule extends Controller
             redirect('/login');
         }
 
-        if($request->isGET()){
+        if ($request->isGET()) {
             $bodyData = $request->getBody();
 
             $subjectId = $bodyData['subject_id'];
             $subjectIsHidden = $bodyData['is_hidden'];
 
-            $this->subjectModel->updateSubjectHideShow($subjectId,$subjectIsHidden);
+            $this->subjectModel->updateSubjectHideShow($subjectId, $subjectIsHidden);
 
             $this->subjectsAndModules($request);
         }
@@ -152,6 +169,7 @@ class AdminSubjectModule extends Controller
         }
     }
 
+
     public function updateModule(Request $request)
     {
         if (!$request->isLoggedIn()) {
@@ -162,8 +180,30 @@ class AdminSubjectModule extends Controller
             $moduleName = $request->getBody()['module_name'];
             $moduleId = $request->getBody()['module_id'];
 
-            $this->subjectModel->updateModule($moduleName, $moduleId);
-            $this->subjectsAndModules($request);
+            $duplicateSubject = [];
+            $duplicateModule = [];
+
+            $moduleName = $this->subjectModel->updateModule($moduleName, $moduleId);
+
+            if ($moduleName == 'Duplicate entry') {
+                $duplicateModule = 'Duplicate entry';
+            }
+
+            $allSubjects = $this->subjectModel->getSubjects();
+            $moduleSubject = array();
+            foreach ($allSubjects as $x) {
+                $subjectID = $x->id;
+                $allModules = $this->subjectModel->getModule($subjectID);
+                $moduleSubject[$subjectID] = $allModules;
+            }
+
+            $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule);
+
+            // echo '<pre>';
+            // print_r($data[0]);
+            // echo '</pre>';
+
+            $this->view('admin/newSubject', $request, $data);
         }
     }
 
