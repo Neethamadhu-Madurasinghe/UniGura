@@ -116,7 +116,7 @@
 }
 
 
-.subject input{
+.subject input {
     font-size: 27px;
     font-weight: bold;
     width: 100%;
@@ -167,7 +167,7 @@
 }
 
 
-.show_module .show_btn button{
+.show_module .show_btn button {
     background-color: #19ca05e0;
     border-radius: 5px;
     cursor: pointer;
@@ -179,7 +179,7 @@
     font-weight: bold;
 }
 
-.show_module .hide_btn button{
+.show_module .hide_btn button {
     background-color: #ff0404d2;
     border-radius: 5px;
     cursor: pointer;
@@ -353,7 +353,7 @@
 }
 
 
-.blur-filter{
+.blur-filter {
     background: #f7941a57;
     z-index: 10000;
     position: relative;
@@ -408,6 +408,10 @@
     display: flex;
 }
 
+.cancel-module {
+    margin-right: 5px;
+}
+
 
 .save-cancel-module a {
     text-decoration: none;
@@ -428,9 +432,15 @@
     margin-right: 5px;
 }
 
-.hide-show{
+.hide-show {
     position: relative;
     margin-bottom: 10px;
     margin-top: -5px;
 }
 
+
+.module_loop form .action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

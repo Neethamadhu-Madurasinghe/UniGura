@@ -122,9 +122,9 @@ class AdminSubjectModule extends Controller
             redirect('/login');
         }
 
-        if ($request->isGet()) {
-            $moduleName = $request->getBody('moduleName')['moduleName'];
-            $subjectId = $request->getBody('subjectId')['subjectId'];
+        if ($request->isPost()) {
+            $moduleName = $request->getBody()['moduleName'];
+            $subjectId = $request->getBody()['subject_id'];
 
             $duplicateSubject = [];
             $duplicateModule = [];
@@ -158,14 +158,15 @@ class AdminSubjectModule extends Controller
             redirect('/login');
         }
 
-        if ($request->isGet()) {
-            $moduleName = $request->getBody('moduleName')['moduleName'];
-            $moduleId = $request->getBody('moduleId')['moduleId'];
+        if ($request->isPost()) {
+            $moduleName = $request->getBody()['module_name'];
+            $moduleId = $request->getBody()['module_id'];
 
             $this->subjectModel->updateModule($moduleName, $moduleId);
             $this->subjectsAndModules($request);
         }
     }
+
 
     public function updateModuleHideShow(Request $request)
     {

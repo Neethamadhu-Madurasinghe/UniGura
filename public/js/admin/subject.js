@@ -77,6 +77,8 @@ for (let i = 0; i < cancel_btn_js.length; i++) {
 }
 
 
+/* ---------------------------------- MODULE update btn ---------------------------- */
+
 const editModule = document.querySelectorAll(".editModule");
 const module_input_filed = document.querySelectorAll(".module_input_filed");
 const save_cancel_module = document.querySelectorAll(".save-cancel-module");
@@ -109,3 +111,14 @@ for (let i = 0; i < cancel_module.length; i++) {
     });
 }
 
+
+/* --------------------------- DUPLICATE ENTRY POPUP ERROR MESSAGE -------------------------------- */
+
+const popup = document.getElementById('popup');
+const closePopupBtn = document.getElementById('closePopup');
+const container = document.getElementById('container');
+
+closePopupBtn.addEventListener("click", function () {
+    popup.style.display = "none";
+    blur_filter.style.display = "none";
+})

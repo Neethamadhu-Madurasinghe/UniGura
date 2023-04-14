@@ -78,44 +78,43 @@
                         <div class='module'>
                             <div class='drop_down_part'>
                                 <div class='insert_module'>
-                                    <form action='../includes/newModuleAdd.inc.php' method='POST'>
+                                    <form action='addModule' method='POST'>
                                         <input type='text' name='moduleName' placeholder='Type the Module Name...' class='typeModule'>
                                         <input type='hidden' name='subject_id' class='subjectId' value="<?php echo $row1->id ?>">
                                         <button type='submit' class='addModule'><i class='fas fa-plus'></i></button>
-                                        <!-- // echo " -->
                                     </form>
                                 </div>
                                 <div class='show_module'>
                                     <!-- // print_r($data[1][$row1->id]); -->
                                     <?php foreach ($data[1][$row1->id] as $row2) : ?>
                                         <div class='module_loop'>
-                                            <div class='module_name'>
-                                                <input type='text' value="<?php echo $row2->name ?>" class='module_input_filed' disabled>
-                                                <input type='hidden' value="<?php echo $row2->id ?>" class='module_ID_filed'>
-                                                <input type='hidden' value="<?php echo $row2->is_hidden ?>" class='is_hidden_filed'>
-                                            </div>
-                                            <div class='actions'>
-                                                <div class='hide_show'>
-                                                    <?php if ($row2->is_hidden == 1) : ?>
-                                                        <div class='show_btn'>
-                                                            <a href='updateModuleHideShow?is_hidden=0&module_id=<?php echo $row2->id ?>'><button class='show'>Show</button></a>
+                                            <form action="updateModule" method="POST">
+                                                <div class='module_name'>
+                                                    <div class="action">
+                                                        <input type='text' value="<?php echo $row2->name ?>" class='module_input_filed' disabled name="module_name">
+                                                        <input type='hidden' value="<?php echo $row2->id ?>" class='module_ID_filed' name='module_id'>
+                                                        <a href='#'><i class='fas fa-edit editModule'></i></a>
+                                                        <div class='save-cancel-module'>
+                                                            <button type='submit'><i class='fa fa-light fa-save'></i></button>
+                                                            <a href='#' class='cancel-module'><i class='fa fa-light fa-times'></i></a>
                                                         </div>
-                                                    <?php endif; ?>
+                                                    </div>
 
-                                                    <?php if ($row2->is_hidden == 0) : ?>
-                                                        <div class='hide_btn'>
-                                                            <a href='updateModuleHideShow?is_hidden=1&module_id=<?php echo $row2->id ?>'><button class='hide'>Hide</button></a>
-                                                        </div>
-                                                    <?php endif; ?>
                                                 </div>
+                                            </form>
 
-                                                <div class='edit'>
-                                                    <a href='#'><i class='fas fa-edit editModule'></i></a>
-                                                </div>
-                                                <div class='save-cancel-module'>
-                                                    <button type='submit'><i class='fa fa-light fa-save'></i></button>
-                                                    <a href='#' class='cancel-module'><i class='fa fa-light fa-times'></i></a>
-                                                </div>
+                                            <div class='hide_show'>
+                                                <?php if ($row2->is_hidden == 1) : ?>
+                                                    <div class='show_btn'>
+                                                        <a href='updateModuleHideShow?is_hidden=0&module_id=<?php echo $row2->id ?>'><button class='show'>Show</button></a>
+                                                    </div>
+                                                <?php endif; ?>
+
+                                                <?php if ($row2->is_hidden == 0) : ?>
+                                                    <div class='hide_btn'>
+                                                        <a href='updateModuleHideShow?is_hidden=1&module_id=<?php echo $row2->id ?>'><button class='hide'>Hide</button></a>
+                                                    </div>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                     <?php endforeach; ?>
