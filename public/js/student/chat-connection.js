@@ -3,6 +3,7 @@ class WebSocketConnection {
     conn = null;
     threadId = 0;
     online_list = Array();
+    isActive = false;
 
     constructor(chatThreadId, UIElements) {
         this.UIElements = UIElements;
@@ -21,6 +22,14 @@ class WebSocketConnection {
         this.conn.onmessage =  (e) => {
             let data = JSON.parse(e.data);
             console.log(data);
+
+            // If other person sends he's online, show it to the user
+            if (typeof data.online_users !== 'undefined') {
+                this.online_list = data.online_users;
+            }
+
+            if(!this.isActive) return;
+
             if (typeof data.msg !== 'undefined') {
                 this.UIElements.messageBoxUI.innerHTML += `
                 <div class="message-i-box">
@@ -46,10 +55,7 @@ class WebSocketConnection {
 
             }
 
-            // If other person sends he's online, show it to the user
-            if (typeof data.online_users !== 'undefined') {
-                this.online_list = data.online_users;
-            }
+
         };
     }
 
@@ -96,5 +102,13 @@ class WebSocketConnection {
 
     getOnlineList() {
         return Object.values(this.online_list);
+    }
+
+    activate() {
+        this.isActive = true;
+    }
+
+    deactivate() {
+        this.isActive = false;
     }
 }

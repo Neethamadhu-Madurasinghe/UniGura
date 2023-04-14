@@ -7,7 +7,7 @@ class ModelStudentChat {
         $this->db = new Database();
     }
 
-    public function getChatRoomIdByUser(int $userId1, int $userId2) {
+    public function getChatThreadIdByUser(int $userId1, int $userId2) {
         $this->db->query('SELECT * FROM chat_thread WHERE 
                               user_id_1=:userId1_1 AND 
                               user_id_2=:userId2_1 OR 
@@ -54,5 +54,24 @@ class ModelStudentChat {
         $this->db->query('SELECT * FROM chat WHERE thread_id=:id ORDER BY created_at DESC LIMIT 1');
         $this->db->bind('id', $id, PDO::PARAM_INT);
         return $this->db->resultOneAssoc();
+    }
+
+    public function saveMessage(int $threadId, string $msg, int $sender, int $receiver): bool {
+        $this->db->query('INSERT INTO chat SET 
+                            thread_id=:thread_id,
+                            message=:message,
+                            sender=:sender,
+                            receiver=:receiver,
+                            is_seen=0
+                 ');
+
+        echo $msg . " " . $threadId . " " . $sender . " " . $receiver;
+
+        $this->db->bind('thread_id', $threadId, PDO::PARAM_INT);
+        $this->db->bind('message', $msg, PDO::PARAM_STR);
+        $this->db->bind('sender', $sender, PDO::PARAM_INT);
+        $this->db->bind('receiver', $receiver, PDO::PARAM_INT);
+
+        return $this->db->execute();
     }
 }

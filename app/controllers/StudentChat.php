@@ -96,4 +96,50 @@ class StudentChat extends Controller {
         header('Content-type: application/json');
         echo json_encode($data);
     }
+
+//    Save a new message
+    public function saveMessage(Request $request) {
+
+        if ($request->isPost()) {
+//          Unauthorized error code
+            if (!$request->isLoggedIn() || !$request->isStudent()) {
+                header("HTTP/1.0 401 Unauthorized");
+                return;
+            }
+
+//          Get the payload
+            $body = json_decode(file_get_contents('php://input'), true);
+            $body['student_id'] = $request->getUserId();
+
+
+            if (!(isset($body['message']) && isset($body['thread_id']))) {
+                header("HTTP/1.0 400 Bad Request");
+            }
+
+//           Find the receiver using threadId
+            $thread = $this->studentChat->getChatThreadById($body['thread_id']);
+            $receiver = 0;
+
+            if ($thread['user_id_1'] === $request->getUserId()) {
+                $receiver = $thread['user_id_2'];
+
+            }else {
+                $receiver = $thread['user_id_1'];
+            }
+
+
+//          If all the checks are passed, then make the request
+            echo $body['thread_id'];
+            if ($this->studentChat->saveMessage($body['thread_id'], $body['message'], $request->getUserId(), $receiver)) {
+                header("HTTP/1.0 200 Success");
+                return;
+            }
+
+            header("HTTP/1.0 500 Internal Server Error");
+
+        } else {
+//          This route has no get requests
+            header("HTTP/1.0 404 Not found");
+        }
+    }
 }

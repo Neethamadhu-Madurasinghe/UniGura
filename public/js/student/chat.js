@@ -17,22 +17,25 @@ fetchChatThreads()
 
 // Periodically update the times on current chat and online status of users
 window.setInterval(() => {
-    console.log("Updating")
     updateOnlineStatus();
     Array.from(document.querySelectorAll(".msg-age")).forEach(msgElement => {
         msgElement.textContent = getTimePassed(msgElement.dataset.time)
-        // console.log(document.querySelector(".msg-age"));
     })
 
 }, 5*1000)
 
 // Fetch all the messages for a chatThread when a threadId is given
 async function fetchMessages(threadId) {
+
     messageBoxUI.innerHTML = "";
     // find other participant's name and profile picture from chatThread array
     currentChatThread = chatThreads.filter(chatThread => chatThread.id === Number(threadId))[0];
     chatTitleUI.textContent = currentChatThread.name;
     chatImageUI.src = 'http://localhost/unigura/' + currentChatThread.profile_picture;
+
+    // Enable UI access to the connection
+    connections.forEach((value) => value.deactivate())
+    connections.get(currentChatThread.id).activate();
 
     console.log(currentChatThread)
 
@@ -89,7 +92,6 @@ async function fetchChatThreads() {
         let data = await response.json();
         chatThreads = sortByCreatedAtDesc(data.threads);
         userId = data.id;
-        console.log(data)
         chatThreads.forEach((chatThread, index) => {
 
             let partnetId = 0;
@@ -130,22 +132,22 @@ async function fetchChatThreads() {
 
 // Update the online states of contacts
 function updateOnlineStatus() {
-
     // Find the userId of currently Active chat thread - to show online status on the top
     let currentPartnerId = 0;
     if(currentChatThread.user_id_1 === userId) currentPartnerId = currentChatThread?.user_id_2;
     else currentPartnerId = currentChatThread?.user_id_1;
 
-    let isCurrentChatOnline = false;
+    // Get the first connection to fetch the list of all online users
+    onlineUserList = connections.entries().next().value[1].getOnlineList();
 
-    onlineUserList = connections.get(currentChatThread.id).getOnlineList();
-    console.log(onlineUserList)
+    let isCurrentChatOnline = false;
     Array.from(document.querySelectorAll(".contact-status")).forEach(element => {
         if(onlineUserList.includes(Number(element.dataset.userid))) {
             element.textContent = "Online";
             element.classList.remove("red");
             element.classList.add("green");
 
+            // If the user of currently active chat is online detect it !
             if(currentPartnerId === Number(element.dataset.userid)) {
                 isCurrentChatOnline = true;
             }
@@ -180,6 +182,7 @@ document.getElementsByTagName("body")[0].addEventListener("click", function hand
             // Add selected class to the current card
             currentElement.classList.add("contact-card-selected");
             fetchMessages(currentElement.dataset.threadid);
+
             return;
         }
         // If not, move up to the next parent element
@@ -232,22 +235,27 @@ function sortByCreatedAtDesc(arr) {
 }
 
 // Send the newest message to the database
-// TODO: Finish this
-function sendMessage(comment, room) {
+async function sendMessage(message, threadId) {
     let data = {
-        'message': comment,
-        'roomId': room
+        'message': message,
+        'thread_id': threadId
     };
-    fetch('http://localhost/Ratchet-with-chatroom/Main/SendPrivate.php', {
+    const result = await fetch('http://localhost/unigura/api/student/save-message', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
+
         },
         body: JSON.stringify(data)
-    }).then(response => response.json())
-        .then(json => {
-            console.log(json);
-        });
+    });
+
+    if(result.status === 400) {
+
+    } else if (result.status === 401) {
+
+    } else {
+
+    }
 }
 
 msgInputUI.addEventListener("keypress", function (e) {
@@ -267,6 +275,7 @@ sendBtnUI.addEventListener("click", function(e) {
         message = (String(message)).trim()
         const currentChatConnection = connections.get(currentChatThread.id);
         if (currentChatConnection.send(message)) {
+            sendMessage(message, currentChatThread.id)
             msgInputUI.value = "";
         }
     }

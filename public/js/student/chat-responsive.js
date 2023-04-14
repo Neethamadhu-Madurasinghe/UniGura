@@ -7,7 +7,6 @@ chatCancelBtnUI.addEventListener("click", e => {
         chatContainerUI.style.display = "none";
         contactListContainerUI.style.display = "block";
     }
-    console.log("fzf")
 });
 
 document.getElementsByTagName("body")[0].addEventListener("click", function handleContactCardClick(event) {
