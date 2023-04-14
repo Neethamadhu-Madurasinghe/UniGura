@@ -35,7 +35,7 @@ subjectPage.classList.add('active');
 
 
 const blur_filter = document.getElementById('blur-filter');
-blur_filter.style.display = "none";
+// blur_filter.style.display = "none";
 
 
 
@@ -82,7 +82,6 @@ for (let i = 0; i < cancel_btn_js.length; i++) {
 const editModule = document.querySelectorAll(".editModule");
 const module_input_filed = document.querySelectorAll(".module_input_filed");
 const save_cancel_module = document.querySelectorAll(".save-cancel-module");
-
 const cancel_module = document.querySelectorAll(".cancel-module");
 
 
