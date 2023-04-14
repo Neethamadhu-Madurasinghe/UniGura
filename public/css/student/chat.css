@@ -448,3 +448,77 @@ h1 {
 .red {
     color: red;
 }
+
+/*  Layout */
+
+.layout-background {
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(160, 117, 51, 0.5);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-layout-background {
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(160, 117, 51, 0.5);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-button-container {
+    margin-top: 30px;
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+    .popup-button-container {
+        width: 100%;
+    }
+}
+
+
+.popup-error-message, .popup-success-message {
+    height: 300px;
+    width: 450px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0 30px 0;
+}
+
+@media screen and (max-width: 768px) {
+    .popup-error-message, .popup-success-message   {
+        width: 90%;
+    }
+}
+
+.popup-error-message img, .popup-success-message img {
+    height: 75px;
+}
+
+.popup-error-message p, .popup-success-message p {
+    font-weight: bold;
+    font-size: 1.2rem;
+    width: 80%;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* Invisibility classes */
+.invisible {
+    display: none;
+}
+

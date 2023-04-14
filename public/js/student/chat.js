@@ -75,13 +75,13 @@ async function fetchMessages(threadId) {
         messageBoxUI.scrollTop = messageBoxUI.scrollHeight;
 
     }else if(response.status === 400) {
-    //    TODO:
+        showErrorMessage("Invalid message format");
     }else if(response.status === 401) {
-
+        
     }else if(response.status === 404) {
-
-    }else if(response.status === 406) {
-
+        showErrorMessage("Route not found. Something went wrong");
+    }else if(response.status !== 200) {
+        showErrorMessage("Internal server error");
     }
 }
 
@@ -120,13 +120,15 @@ async function fetchChatThreads() {
         updateOnlineStatus();
 
     }else if(response.status === 400) {
-        //    TODO:
+        showErrorMessage("Invalid message format");
     }else if(response.status === 401) {
-
+        showErrorMessage("Please login to send message", () => {
+            document.location.href = '../logout';
+        });
     }else if(response.status === 404) {
-
-    }else if(response.status === 406) {
-
+        showErrorMessage("Route not found. Something went wrong");
+    }else if(response.status !== 200) {
+        showErrorMessage("Internal server error");
     }
 }
 
@@ -249,12 +251,18 @@ async function sendMessage(message, threadId) {
         body: JSON.stringify(data)
     });
 
+    const reply = await result.text();
     if(result.status === 400) {
-
+        showErrorMessage("Invalid message format");
+        console.log(reply);
     } else if (result.status === 401) {
-
-    } else {
-
+        showErrorMessage("Please login to send message", () => {
+            document.location.href = '../logout';
+        });
+        console.log(reply);
+    } else if (result.status !== 400) {
+        showErrorMessage("Internal server error");
+        console.log(reply);
     }
 }
 

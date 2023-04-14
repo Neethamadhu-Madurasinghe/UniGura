@@ -22,6 +22,23 @@ Header::render(
 MainNavbar::render($request);
 ?>
 
+<div class="error-layout-background invisible">
+    <div class="popup-error-message">
+        <img src="<?php echo URLROOT . '/public/img/student/cross.png' ?>" alt="" srcset="">
+        <p id="error-message">Request has been Sent Successfully</p>
+        <button class="btn btn-search" id="error-ok">OK</button>
+    </div>
+
+    <div class="popup-success-message invisible">
+        <img src="<?php echo URLROOT . '/public/img/student/success.png' ?>" alt="" srcset="">
+        <p id="success-message">Request has been Sent Successfully</p>
+        <button class="btn btn-search" id="success-ok">OK</button>
+    </div>
+</div>
+
+
+<!-- END OF LAYOUT PART -->
+
 <div class="main-area-container">
     <div class="main-area">
         <h1>Chat with Tutors</h1>
@@ -60,6 +77,8 @@ MainNavbar::render($request);
 <?php Footer::render(
     [
         URLROOT . '/public/js/student/student-main-nav-bar.js',
+//        This JS file for show error messages
+        URLROOT . '/public/js/student/tutor-profile.js',
         URLROOT . '/public/js/student/chat-connection.js',
         URLROOT . '/public/js/student/chat.js',
         URLROOT . '/public/js/student/chat-responsive.js',
