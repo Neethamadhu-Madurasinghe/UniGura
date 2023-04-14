@@ -33,9 +33,11 @@ function adjustMobileDesktopView(e) {
     if(window.innerWidth > 768) {
         chatContainerUI.style.display = "flex";
         contactListContainerUI.style.display = "block";
+        chatCancelBtnUI.style.display = "none";
     }else {
         chatContainerUI.style.display = "flex";
         contactListContainerUI.style.display = "none";
+        chatCancelBtnUI.style.display = "block";
     }
 }
 
