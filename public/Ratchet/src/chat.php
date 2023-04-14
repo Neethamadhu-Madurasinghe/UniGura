@@ -10,10 +10,12 @@ class Chat implements MessageComponentInterface
     protected $clients;
 
     protected $routes;
+    protected $online_users;
 
     public function __construct()
     {
         $this->routes = array();
+        $this->online_users = array();
     }
 
 
@@ -44,6 +46,7 @@ class Chat implements MessageComponentInterface
         $this->routes[$route]['connections']->detach($conn);
         $this->routes[$route]['clients']--;
         echo "Connection {$conn->resourceId} has disconnected from route $route \n";
+
         if ($this->routes[$route]['clients'] == 0) {
 
             unset($this->routes[$route]);
@@ -54,6 +57,20 @@ class Chat implements MessageComponentInterface
         foreach ($this->routes as $key => $value) {
             echo "route: $key \n";
         }
+
+//        Remove user from the online list
+        unset($this->online_users[$conn->resourceId]);
+        print_r($this->online_users);
+
+//        Send everyone online user list
+        foreach ($this->routes as $route) {
+            foreach ($route['connections'] as $client) {
+                $client->send(json_encode([
+                    'online_users' => $this->online_users
+                ]));
+            }
+        }
+
     }
 
 
@@ -74,8 +91,34 @@ class Chat implements MessageComponentInterface
             $from->route = $newRoute;
             $this->routes[$newRoute]['connections']->attach($from);
             $this->routes[$newRoute]['clients']++;
+
+//            Only add the user into online users list if he's not already there
+            $isAdd = false;
+            foreach ($this->online_users as $key => $value) {
+                if ($value === $data->id) {
+                    $isAdd = true;
+                }
+            }
+
+            if (!$isAdd) {
+                $this->online_users[$from->resourceId] = $data->id;
+                echo "User with id " . $data->id . " has been added to the online users list";
+//                Tell everyone who is online right now
+
+                foreach ($this->routes as $route) {
+                    foreach ($route['connections'] as $client) {
+                        $client->send(json_encode([
+                            'online_users' => $this->online_users
+                        ]));
+                    }
+                }
+
+            }
+
+            print_r($this->online_users);
             echo "Connection {$from->resourceId} has connected to route $newRoute \n";
-        } else if (isset($data->typing)) {
+
+        } elseif (isset($data->typing)) {
             $route = $from->route;
             $numRecv = count($this->routes[$route]['connections']) - 1;
             echo sprintf(
@@ -93,6 +136,16 @@ class Chat implements MessageComponentInterface
                     ]));
                 }
             }
+        } elseif (isset($data->request_online_users)) {
+            $route = $from->route;
+            foreach ($this->routes[$route]['connections'] as $client) {
+                if ($from !== $client) {
+                    $client->send(json_encode([
+                        'online_users' => $this->online_users
+                    ]));
+                }
+            }
+
         } else {
             $route = $from->route;
             $numRecv = count($this->routes[$route]['connections']) - 1;

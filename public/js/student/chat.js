@@ -8,9 +8,21 @@ const sendBtnUI = document.querySelector(".btn-send");
 
 let chatThreads = [];
 let currentChatThread = null;
-let conn = null;
+let connections = new Map();
+let userId;
 
 fetchChatThreads()
+
+
+// Educationally update the times on current chat
+window.setInterval(() => {
+    console.log("Updating")
+    Array.from(document.querySelectorAll(".msg-age")).forEach(msgElement => {
+        msgElement.textContent = getTimePassed(msgElement.dataset.time)
+        // console.log(document.querySelector(".msg-age"));
+    })
+
+}, 60*1000)
 
 // Fetch all the messages for a chatThread when a threadId is given
 async function fetchMessages(threadId) {
@@ -20,7 +32,7 @@ async function fetchMessages(threadId) {
     chatTitleUI.textContent = currentChatThread.name;
     chatImageUI.src = 'http://localhost/unigura/' + currentChatThread.profile_picture;
 
-    console.log(currentChatThread.profile_picture)
+    console.log(currentChatThread)
 
 
     const response = await fetch(`http://localhost/unigura/api/student/get-chat?chatThreadId=${threadId}`);
@@ -33,7 +45,7 @@ async function fetchMessages(threadId) {
                     <div class="message-box">
                         <div>
                             <p class="message">${message.message}</p>
-                            <span>${getTimePassed(message.created_at)}</span>
+                            <span class="msg-age" data-time="${message.created_at}">${getTimePassed(message.created_at)}</span>
                         </div>
                     </div>
                 `;
@@ -47,13 +59,14 @@ async function fetchMessages(threadId) {
                         </div>
                         <div class="message-content">
                           <p class="message">${message.message}.</p>
-                          <span>${getTimePassed(message.created_at)}</span>
+                          <span class="msg-age" data-time="${message.created_at}">${getTimePassed(message.created_at)}</span>
                         </div>
                     </div>
                 `;
                 messageBoxUI.innerHTML += element;
             }
-        })
+        });
+
     }else if(response.status === 400) {
     //    TODO:
     }else if(response.status === 401) {
@@ -68,12 +81,16 @@ async function fetchMessages(threadId) {
 // Fetch all the chatThreads for this user
 async function fetchChatThreads() {
     const response = await fetch(`http://localhost/unigura/api/student/get-all-chat-threads`);
-
     if (response.status === 200) {
-        chatThreads = await response.json();
-        console.log(chatThreads)
-        chatThreads = sortByCreatedAtDesc(chatThreads);
+        let data = await response.json();
+        chatThreads = sortByCreatedAtDesc(data.threads);
+        userId = data.id;
+        console.log(data)
         chatThreads.forEach((chatThread, index) => {
+            let partnetId = 0;
+            if(chatThread.user_id_1 === userId) partnetId = chatThread.user_id_2;
+            else partnetId = chatThread.user_id_1;
+
             const element = `
             <div class="contact-card ${ index === 0 ? "contact-card-selected" : "" }" data-threadid="${chatThread.id}">
                 <div class="contact-card-image-container">
@@ -81,12 +98,15 @@ async function fetchChatThreads() {
                 </div>
                 <div class="details-container">
                   <h3>${chatThread.name}</h3>
-                  <p>${chatThread.last_message}</p>
+                  <p data-userid="${partnetId}" class="contact-status">${chatThread.last_message}</p>
                 </div>
              </div>
             `;
 
             contactListUI.innerHTML += element;
+            // Create a connection for each of the chats
+            let conn = new WebSocketConnection(chatThread.id, {messageBoxUI, contactListUI, userStateUI})
+            connections.set(chatThread.id, conn);
 
             if (index === 0) fetchMessages(chatThread.id);
         })
@@ -99,6 +119,14 @@ async function fetchChatThreads() {
     }else if(response.status === 406) {
 
     }
+}
+
+// Update the online states of contacts
+function updateOnlineStatus() {
+    const onlineState = connections.get(currentChatThread.id).getOnlineList();
+    Array.from(document.querySelectorAll(".contact-status")).forEach(element => {
+        if
+    })
 }
 
 // Event listener to select chats
@@ -126,37 +154,27 @@ document.getElementsByTagName("body")[0].addEventListener("click", function hand
 })
 
 // Helper function to format date message created time
-function getTimePassed(datetime) {
+function getTimePassed(dateTimeString) {
+    const dateTime = new Date(dateTimeString);
     const now = new Date();
-    const inputDatetime = new Date(datetime);
+    const diff = (now.getTime() - dateTime.getTime()) / 1000; // difference in seconds
 
-    const diff = Math.round((now - inputDatetime) / 1000 / 60);
-
-    if (diff < 2) {
-        return "Just now";
-    } else if (diff < 60) {
-        return `${diff} minute${diff > 1 ? "s" : ""} ago`;
-    } else if (
-        inputDatetime.getDate() === now.getDate() - 1 &&
-        inputDatetime.getMonth() === now.getMonth()
-    ) {
-        return `Yesterday at ${inputDatetime.toLocaleTimeString([], {
-            hour: "numeric",
-            minute: "numeric",
-        })}`;
-    } else if (inputDatetime.getFullYear() === now.getFullYear()) {
-        return inputDatetime.toLocaleTimeString([], {
-            hour: "numeric",
-            minute: "numeric",
-        });
+    if (diff < 120) {
+        // less than 2 minutes ago
+        if (diff < 60) {
+            return "Just now";
+        } else {
+            const minutesAgo = Math.floor(diff / 60);
+            return `${minutesAgo} minute${minutesAgo > 1 ? 's' : ''} ago`;
+        }
+    } else if (diff < 86400) {
+        // less than 1 day ago
+        const timeString = dateTime.toLocaleTimeString([], { hour: 'numeric', minute: 'numeric' });
+        return `Yesterday ${timeString}`;
     } else {
-        return inputDatetime.toLocaleString([], {
-            year: "numeric",
-            month: "numeric",
-            day: "numeric",
-            hour: "numeric",
-            minute: "numeric",
-        });
+        // older than 1 day
+        const dateString = dateTime.toISOString().slice(0, 16).replace('T', ' ');
+        return dateString;
     }
 }
 
@@ -173,52 +191,43 @@ function sortByCreatedAtDesc(arr) {
     return arr;
 }
 
-// Connect to the websocket server
-function connectToWebSocketServer() {
-    conn = new WebSocket('ws://localhost:8080');
-    conn.onopen = function (e) {
-        console.log('Connection established!');
-        conn.send(JSON.stringify({
-            'newRoute': 'Personalchat-<?= $roomid ?>'
-        }));
-
+// Send the newest message to the database
+// TODO: Finish this
+function sendMessage(comment, room) {
+    let data = {
+        'message': comment,
+        'roomId': room
     };
-
-    conn.onmessage = function (e) {
-        let data = JSON.parse(e.data);
-        console.log(data);
-        if (typeof data.msg !== 'undefined') {
-            chatTitleUI.innerHTML += `
-                <div class="message-box">
-                    <div>
-                       <p class="message">${data.msg}</p>
-                       <span>${data.date}</span>
-                    </div>
-                </div>
-            `;
-        }
-        else if (typeof data.typing !== 'undefined') {
-            userStateUI.textContent = "Typing";
-            let timeoutHandle = window.setTimeout(function () {
-                userStateUI.textContent = "";
-                window.clearTimeout(timeoutHandle);
-            }, 2000);
-        }
-    };
+    fetch('http://localhost/Ratchet-with-chatroom/Main/SendPrivate.php', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    }).then(response => response.json())
+        .then(json => {
+            console.log(json);
+        });
 }
 
-function sendTyping(){
-    if (conn) {
-        conn.send(JSON.stringify({
-            'typing': 'y',
-            'name': '<?= $user ?>'
-        }));
-    }
-}
-
-msgInputUI.addEventListener("keypress", function (event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
+msgInputUI.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+        e.preventDefault();
         sendBtnUI.click();
     }
 });
+
+msgInputUI.addEventListener("keyup", () => {
+    connections.get(currentChatThread.id).sendTyping()
+});
+
+sendBtnUI.addEventListener("click", function(e) {
+    let message = msgInputUI.value;
+    if (message) {
+        message = (String(message)).trim()
+        const currentChatConnection = connections.get(currentChatThread.id);
+        if (currentChatConnection.send(message)) {
+            msgInputUI.value = "";
+        }
+    }
+})

@@ -90,7 +90,8 @@ class StudentChat extends Controller {
             $temp[] = $chatThread;
         }
 
-        $data = $temp;
+        $data['id'] = $request->getUserId();
+        $data['threads'] = $temp;
         header("HTTP/1.0 200 Success");
         header('Content-type: application/json');
         echo json_encode($data);

@@ -278,6 +278,7 @@ h1 {
 .profile-picture-img {
     border-radius: 50%;
     object-fit: cover;
+    aspect-ratio: 1 / 1;
 }
 
 .message-content {
@@ -411,4 +412,12 @@ h1 {
     background-color: red;
     align-items: flex-start;
     justify-self: flex-end;
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
 }

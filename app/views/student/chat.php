@@ -118,6 +118,7 @@ MainNavbar::render($request);
 <?php Footer::render(
     [
         URLROOT . '/public/js/student/student-main-nav-bar.js',
+        URLROOT . '/public/js/student/chat-connection.js',
         URLROOT . '/public/js/student/chat.js',
     ]
 );
