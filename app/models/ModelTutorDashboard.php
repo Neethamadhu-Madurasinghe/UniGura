@@ -169,7 +169,7 @@ class ModelTutorDashboard
         return $this->db->execute();
     }
 
-    public function setNewClass($data): bool 
+    public function setNewClass($data):bool
     {
         $this->db->query('INSERT INTO  tutoring_class SET
                  class_template_id = :class_template_id,
@@ -179,7 +179,8 @@ class ModelTutorDashboard
                  student_id = :student_id,
                  tutor_id = :tutor_id,
                  rate = :rate,
-                 duration = :duration');
+                 duration = :duration;
+                 SELECT MAX(id) from tutoring_class;');
 
 
         $this->db->bind('class_template_id', $data['c_id'], PDO::PARAM_INT);
@@ -194,12 +195,36 @@ class ModelTutorDashboard
         return $this->db->execute();
     }
 
+    public function getNewlyAddedclass()
+    {
+        $this->db->query('SELECT max(id) as id from tutoring_class;');
+
+        return $this->db->resultOneAssoc();
+    }
+
+
+    public function setDaysofClass($class_id,$data):bool{
+        $this->db->query('
+        INSERT INTO day (class_id, day_template_id )
+            SELECT :class_id , id 
+            FROM day_template
+            WHERE class_template_id = :c_id ;
+            ');
+
+        $this->db->bind('c_id', $data['c_id'] , PDO::PARAM_INT);
+        $this->db->bind('class_id', $class_id , PDO::PARAM_INT);
+        
+
+        return $this->db->execute();
+    }
 
     public function setClass($data): bool {
         $this->db->startTransaction();
 
         $this->setNewClass($data);
+        $class_id = $this->getNewlyAddedclass();
         $this->setStudentAproveRequest($data['id']);
+        $this->setDaysofClass(intval($class_id['id']),$data);
 
         return $this->db->commitTransaction();
     }

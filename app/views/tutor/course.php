@@ -41,7 +41,7 @@ Header::render(
             </div>
             <div class="button-container">
                 <div class="button1">
-                    <?php echo '<a  href= /unigura/tutor/createday?class_template_id=' . $data["id"] . '><i class="fa-solid fa-plus"></i> Add Day</a>' ?>
+                    <?php echo '<a  href= /unigura/tutor/createday?class_template_id=' . $data["id"] .  '&subject=' . $data['subject'] . '&module=' . $data['module'] . '><i class="fa-solid fa-plus"></i> Add Day</a>' ?>
                 </div>
                 <div class="button2">
                     <?php echo '<a  href= /unigura/tutor/dashboard><i class="fa-solid fa-home"></i> Home</a>' ?>

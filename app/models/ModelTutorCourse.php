@@ -84,20 +84,21 @@ public function setClassTemplateDay($data): bool
         return $this->db->resultAllAssoc();
     }
 
-    public function findDayByName(String $name): bool {
-        $this->db->query('SELECT * FROM day_template WHERE title=:name');
+    public function findDayByName(String $name,$c_id): bool {
+        $this->db->query('SELECT * FROM day_template WHERE title=:name and class_template_id = :c_id');
         $this->db->bind('name', $name, PDO::PARAM_STR);
+        $this->db->bind('c_id', $c_id, PDO::PARAM_INT);
 
         $this->db->resultOne();
 
 //      Returns whether the row count is greater than 0
-        return $this->db->rowCount() > 1;
+        return $this->db->rowCount() > 0;
     }
 
     public function findDayPosition(String $name, String $cls_temp_id): bool {
         $this->db->query('SELECT * FROM day_template WHERE position=:name AND class_template_id =:id');
         $this->db->bind('name', $name, PDO::PARAM_STR);
-        $this->db->bind('id', $cls_temp_id, PDO::PARAM_STR);
+        $this->db->bind('id', $cls_temp_id, PDO::PARAM_INT);
 
         $this->db->resultOne();
 
@@ -112,11 +113,8 @@ public function setClassTemplateDay($data): bool
             $this->db->query("UPDATE day_template SET position = :position WHERE id = :id");
             $this->db->bind('position',$value, PDO::PARAM_INT);
             $this->db->bind('id', $key, PDO::PARAM_STR);
-            $this->db->execute();
-            
+            $this->db->execute();  
           }
-          
-        
         return 1;
     }
 

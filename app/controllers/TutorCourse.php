@@ -89,6 +89,8 @@ class TutorCourse extends Controller
                 'id' => $body['class_template_id'],
                 'title' => "",
                 'position' => $position_count,
+                'subject' => $body['subject'],
+                'module'=> $body['module'],
                 'errors' => [
                     'title_error' => "",
                     "position_error" => ""
@@ -110,7 +112,7 @@ class TutorCourse extends Controller
                 ]
             ];
 
-            $data['errors']['title_error'] = $this->validateTitle($body['title']);
+            $data['errors']['title_error'] = $this->validateTitle($body['title'],$body['id']);
             $data['errors']['position_error'] = $this->validatePosition($body['position'], $body['id']);
 
        
@@ -163,11 +165,11 @@ class TutorCourse extends Controller
     }
 
 
-    public function validateTitle(string $name): String
+    public function validateTitle(string $name,$c_id): String
     {
         if (empty($name)) {
             return 'Please enter a valid name';
-        } elseif ($this->courseModel->findDayByName($name)) {
+        } elseif ($this->courseModel->findDayByName($name,$c_id)) {
             return 'Title Already Exist';
         } else {
             return '';
@@ -440,7 +442,7 @@ class TutorCourse extends Controller
                 ]
             ];
 
-            $data['errors']['title_error'] = $this->validateTitle($body['title']);
+            $data['errors']['title_error'] = $this->validateTitle($body['title'], $body['id']);
             $data['errors']['position_error'] = $this->validatePosition($body['position'], $body['id']);
 
     
