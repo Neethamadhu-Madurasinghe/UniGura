@@ -356,8 +356,9 @@
 .blur-filter {
     background: #f7941a57;
     z-index: 10000;
+    position: relative;
     height: 100vh;
-    width: initial;
+    width: 100vw;
     backdrop-filter: blur(5px);
     position: absolute;
     top: 50%;

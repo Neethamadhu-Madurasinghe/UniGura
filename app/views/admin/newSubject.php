@@ -2,8 +2,8 @@
 <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/subject.css">
 <script defer src="<?php echo URLROOT ?>/public/js/admin/subject.js"></script>
 
-<div class="blur-filter" id="blur-filter"></div>
 
+<div class="blur-filter" id="blur-filter"></div>
 
 <section class="home" id="home">
     <p></p>
@@ -18,8 +18,6 @@
 
             <?php if (isset($data[2])) : ?>
                 <?php if ($data[2] == 'Duplicate entry') : ?>
-<div class="blur-filter" id="blur-filter"></div>
-
                     <div class="popup" id="popup">
                         <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
                         <h2>Duplicate Entry!</h2>

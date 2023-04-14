@@ -35,7 +35,7 @@ subjectPage.classList.add('active');
 
 
 const blur_filter = document.getElementById('blur-filter');
-// blur_filter.style.display = "none";
+blur_filter.style.display = "none";
 
 
 
@@ -121,3 +121,11 @@ closePopupBtn.addEventListener("click", function () {
     popup.style.display = "none";
     blur_filter.style.display = "none";
 })
+
+
+
+var blurElement = document.querySelector(".popup");
+
+if (blurElement) {
+    blur_filter.style.display = "block";
+}
