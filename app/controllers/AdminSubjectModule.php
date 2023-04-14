@@ -174,8 +174,8 @@ class AdminSubjectModule extends Controller
         }
 
         if ($request->isGet()) {
-            $moduleId = $request->getBody('moduleId')['moduleId'];
-            $isHidden = $request->getBody('is_hidden')['is_hidden'];
+            $moduleId = $request->getBody()['module_id'];
+            $isHidden = $request->getBody()['is_hidden'];
 
             $this->subjectModel->updateModuleHideShow($moduleId, $isHidden);
             $this->subjectsAndModules($request);

@@ -82,7 +82,7 @@
 .subject_module_box {
     border-radius: 5px;
     border: 2px solid #F7931A;
-    height: 39vh;
+    height: 45vh;
     /* padding: 15px; */
     /* width: 26vw; */
     background-color: #f2f2f2;
@@ -103,7 +103,11 @@
     padding: 15px;
 }
 
-
+.subject_module_box .show_module .actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 .show_module .module_loop {
     display: flex;
@@ -126,7 +130,7 @@
     margin-bottom: 10px;
 }
 
-.insert_module {
+.insert_module form {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
@@ -163,7 +167,7 @@
 }
 
 
-.show_btn {
+.show_module .show_btn button{
     background-color: #19ca05e0;
     border-radius: 5px;
     cursor: pointer;
@@ -175,7 +179,32 @@
     font-weight: bold;
 }
 
-.hide_btn  {
+.show_module .hide_btn button{
+    background-color: #ff0404d2;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+    color: #ffffff;
+    outline: none;
+    width: 45px;
+    border: none;
+    font-weight: bold;
+}
+
+.subject .show_btn {
+    background-color: #19ca05e0;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+    color: #000000;
+    outline: none;
+    border: none;
+    width: 45px;
+    font-weight: bold;
+}
+
+
+.subject .hide_btn {
     background-color: #ff0404d2;
     border-radius: 5px;
     cursor: pointer;
@@ -339,17 +368,16 @@
 
 
 
-.save-cancel {
+.save-cancel-subject {
     display: none;
 }
 
-.save-cancel.show {
+.save-cancel-subject.show {
     display: inline-block;
 }
 
 
-
-.save-cancel a {
+.save-cancel-subject a {
     text-decoration: none;
     font-size: 15px;
     font-weight: bold;
@@ -360,7 +388,7 @@
 
 }
 
-.save-cancel button {
+.save-cancel-subject button {
     text-decoration: none;
     font-size: 15px;
     font-weight: bold;
@@ -370,6 +398,35 @@
     margin-top: 15px;
 }
 
+
+
+.save-cancel-module {
+    display: none;
+}
+
+.save-cancel-module.show {
+    display: flex;
+}
+
+
+.save-cancel-module a {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    border: 2px solid #F7931A;
+    padding: 3px;
+    border-radius: 5px;
+}
+
+.save-cancel-module button {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    border: 2px solid #F7931A;
+    padding: 3px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
 
 .hide-show{
     position: relative;

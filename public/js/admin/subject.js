@@ -45,15 +45,15 @@ blur_filter.style.display = "none";
 
 /* ---------------------------------- SUBJECT update btn ---------------------------- */
 
-const edit_icon_js = document.querySelectorAll(".edit_icon_js");
+const editSubject = document.querySelectorAll(".editSubject");
 const subject_name_filed = document.querySelectorAll(".subject_name_filed");
-const save_cancel = document.querySelectorAll(".save-cancel");
+const save_cancel_subject = document.querySelectorAll(".save-cancel-subject");
 const cancel_btn_js = document.querySelectorAll(".cancel_btn_js");
 
 
 
-for (let i = 0; i < edit_icon_js.length; i++) {
-    edit_icon_js[i].addEventListener("click", function () {
+for (let i = 0; i < editSubject.length; i++) {
+    editSubject[i].addEventListener("click", function () {
         subject_name_filed[i].disabled = false;
         subject_name_filed[i].style.borderRadius = "5px";
         subject_name_filed[i].style.border = "1px dotted #000";
@@ -64,23 +64,48 @@ for (let i = 0; i < edit_icon_js.length; i++) {
         subject_name_filed[i].style.width = "100%";
 
 
-        save_cancel[i].classList.add("show");
-        edit_icon_js[i].style.display = "none";
+        save_cancel_subject[i].classList.add("show");
+        editSubject[i].style.display = "none";
     });
 }
 
 for (let i = 0; i < cancel_btn_js.length; i++) {
     cancel_btn_js[i].addEventListener("click", function () {
-        subject_name_filed[i].disabled = true;
-        subject_name_filed[i].style.borderRadius = "0";
-        subject_name_filed[i].style.border = "none";
-        subject_name_filed[i].style.backgroundColor = "#f2f2f2";
-        subject_name_filed[i].style.color = "#000";
-        subject_name_filed[i].style.padding = "0px";
-        subject_name_filed[i].style.width = "100%";
+        location.reload();
 
-        save_cancel[i].classList.remove("show");
-        edit_icon_js[i].style.display = "inline-block";
+    });
+}
+
+
+const editModule = document.querySelectorAll(".editModule");
+const module_input_filed = document.querySelectorAll(".module_input_filed");
+const save_cancel_module = document.querySelectorAll(".save-cancel-module");
+
+const cancel_module = document.querySelectorAll(".cancel-module");
+
+
+
+for (let i = 0; i < editSubject.length; i++) {
+    editModule[i].addEventListener("click", function () {
+        module_input_filed[i].disabled = false;
+        module_input_filed[i].style.borderRadius = "5px";
+        module_input_filed[i].style.border = "1px dotted #000";
+        module_input_filed[i].style.transition = "all 0.5s ease";
+        module_input_filed[i].style.backgroundColor = "#f2f2f2";
+        module_input_filed[i].style.color = "#000";
+        module_input_filed[i].style.padding = "3px";
+        module_input_filed[i].style.width = "100%";
+
+
+        save_cancel_module[i].classList.add("show");
+        editModule[i].style.display = "none";
+    });
+}
+
+for (let i = 0; i < cancel_module.length; i++) {
+    cancel_module[i].addEventListener("click", function () {
+        location.reload();
+
     });
 }
 
