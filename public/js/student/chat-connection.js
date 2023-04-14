@@ -33,7 +33,7 @@ class WebSocketConnection {
                     </div>
                 </div>
             `;
-                console.log('Msg')
+                this.UIElements.messageBoxUI.scrollTop = this.UIElements.messageBoxUI.scrollHeight;
 
             } else if (typeof data.typing !== 'undefined') {
                 userStateUI.textContent = "Typing";
@@ -50,8 +50,6 @@ class WebSocketConnection {
             if (typeof data.online_users !== 'undefined') {
                 this.online_list = data.online_users;
             }
-
-
         };
     }
 
@@ -67,7 +65,6 @@ class WebSocketConnection {
             }));
 
             // sendMessage(msgInputUI.value, currentChatThread.id);
-
             const messageElement = `
                     <div class="message-box">
                         <div>
@@ -78,6 +75,8 @@ class WebSocketConnection {
                 `;
 
             this.UIElements.messageBoxUI.innerHTML += messageElement
+            this.UIElements.messageBoxUI.scrollTop = this.UIElements.messageBoxUI.scrollHeight;
+
             return true;
         } catch(e) {
             console.log("Could not send the message successfully")
@@ -96,6 +95,6 @@ class WebSocketConnection {
     }
 
     getOnlineList() {
-        return Object.value(this.online_list);
+        return Object.values(this.online_list);
     }
 }

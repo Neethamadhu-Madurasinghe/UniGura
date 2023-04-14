@@ -120,6 +120,7 @@ MainNavbar::render($request);
         URLROOT . '/public/js/student/student-main-nav-bar.js',
         URLROOT . '/public/js/student/chat-connection.js',
         URLROOT . '/public/js/student/chat.js',
+        URLROOT . '/public/js/student/chat-responsive.js',
     ]
 );
 ?>

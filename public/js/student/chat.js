@@ -9,20 +9,22 @@ const sendBtnUI = document.querySelector(".btn-send");
 let chatThreads = [];
 let currentChatThread = null;
 let connections = new Map();
+let onlineUserList = Array();
 let userId;
 
 fetchChatThreads()
 
 
-// Educationally update the times on current chat
+// Periodically update the times on current chat and online status of users
 window.setInterval(() => {
     console.log("Updating")
+    updateOnlineStatus();
     Array.from(document.querySelectorAll(".msg-age")).forEach(msgElement => {
         msgElement.textContent = getTimePassed(msgElement.dataset.time)
         // console.log(document.querySelector(".msg-age"));
     })
 
-}, 60*1000)
+}, 5*1000)
 
 // Fetch all the messages for a chatThread when a threadId is given
 async function fetchMessages(threadId) {
@@ -67,6 +69,8 @@ async function fetchMessages(threadId) {
             }
         });
 
+        messageBoxUI.scrollTop = messageBoxUI.scrollHeight;
+
     }else if(response.status === 400) {
     //    TODO:
     }else if(response.status === 401) {
@@ -87,6 +91,7 @@ async function fetchChatThreads() {
         userId = data.id;
         console.log(data)
         chatThreads.forEach((chatThread, index) => {
+
             let partnetId = 0;
             if(chatThread.user_id_1 === userId) partnetId = chatThread.user_id_2;
             else partnetId = chatThread.user_id_1;
@@ -98,7 +103,7 @@ async function fetchChatThreads() {
                 </div>
                 <div class="details-container">
                   <h3>${chatThread.name}</h3>
-                  <p data-userid="${partnetId}" class="contact-status">${chatThread.last_message}</p>
+                  <p data-userid="${partnetId}" class="contact-status"></p>
                 </div>
              </div>
             `;
@@ -109,7 +114,9 @@ async function fetchChatThreads() {
             connections.set(chatThread.id, conn);
 
             if (index === 0) fetchMessages(chatThread.id);
-        })
+        });
+        updateOnlineStatus();
+
     }else if(response.status === 400) {
         //    TODO:
     }else if(response.status === 401) {
@@ -123,10 +130,38 @@ async function fetchChatThreads() {
 
 // Update the online states of contacts
 function updateOnlineStatus() {
-    const onlineState = connections.get(currentChatThread.id).getOnlineList();
+
+    // Find the userId of currently Active chat thread - to show online status on the top
+    let currentPartnerId = 0;
+    if(currentChatThread.user_id_1 === userId) currentPartnerId = currentChatThread?.user_id_2;
+    else currentPartnerId = currentChatThread?.user_id_1;
+
+    let isCurrentChatOnline = false;
+
+    onlineUserList = connections.get(currentChatThread.id).getOnlineList();
+    console.log(onlineUserList)
     Array.from(document.querySelectorAll(".contact-status")).forEach(element => {
-        if
-    })
+        if(onlineUserList.includes(Number(element.dataset.userid))) {
+            element.textContent = "Online";
+            element.classList.remove("red");
+            element.classList.add("green");
+
+            if(currentPartnerId === Number(element.dataset.userid)) {
+                isCurrentChatOnline = true;
+            }
+
+        }else {
+            element.textContent = "Offline";
+            element.classList.remove("green");
+            element.classList.add("red");
+        }
+    });
+
+    if(isCurrentChatOnline) {
+        userStateUI.textContent = "Online";
+    }else {
+        userStateUI.textContent = "Offline";
+    }
 }
 
 // Event listener to select chats
@@ -151,7 +186,7 @@ document.getElementsByTagName("body")[0].addEventListener("click", function hand
         currentElement = currentElement.parentElement;
     }
 
-})
+});
 
 // Helper function to format date message created time
 function getTimePassed(dateTimeString) {
@@ -168,6 +203,11 @@ function getTimePassed(dateTimeString) {
             return `${minutesAgo} minute${minutesAgo > 1 ? 's' : ''} ago`;
         }
     } else if (diff < 86400) {
+        // less than 1 day ago
+        const timeString = dateTime.toLocaleTimeString([], { hour: 'numeric', minute: 'numeric' });
+        return `Today ${timeString}`;
+
+    } else if (diff < 172800) {
         // less than 1 day ago
         const timeString = dateTime.toLocaleTimeString([], { hour: 'numeric', minute: 'numeric' });
         return `Yesterday ${timeString}`;
