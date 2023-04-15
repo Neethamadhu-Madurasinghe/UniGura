@@ -97,4 +97,16 @@ class ModelStudentChat {
         $this->db->bind('receiver_id', $userId, PDO::PARAM_INT);
         return $this->db->execute();
     }
+
+//    Create a new chat thread
+    public function createNewChatThread(int $userId1, int $userId2): bool {
+        $this->db->query('INSERT INTO chat_thread SET 
+                            user_id_1=:user_id_1,
+                            user_id_2=:user_id_2
+                 ');
+
+        $this->db->bind('user_id_1', $userId1, PDO::PARAM_INT);
+        $this->db->bind('user_id_2', $userId2, PDO::PARAM_INT);
+        return $this->db->execute();
+    }
 }

@@ -106,7 +106,7 @@ class StudentChat extends Controller {
 
         if ($request->isPost()) {
 //          Unauthorized error code
-            if (!$request->isLoggedIn() || !$request->isStudent()) {
+            if (!$request->isLoggedIn() || !($request->isStudent() || $request->isTutor())) {
                 header("HTTP/1.0 401 Unauthorized");
                 return;
             }
@@ -162,5 +162,54 @@ class StudentChat extends Controller {
         header("HTTP/1.0 200 Success");
         header('Content-type: application/json');
         echo json_encode($data);
+    }
+
+//    Send a single message to user - this will create a new chat thread is it does not exist
+    public function sendSingleMessage(Request $request) {
+        cors();
+
+        if ($request->isPost()) {
+//          Unauthorized error code
+            if (!$request->isLoggedIn() || !($request->isStudent() || $request->isTutor())) {
+                header("HTTP/1.0 401 Unauthorized");
+                return;
+            }
+
+//          Get the payload
+            $body = json_decode(file_get_contents('php://input'), true);
+            $body['sender'] = $request->getUserId();
+
+
+            if (!(isset($body['message']) && isset($body['sender'])) && strlen($body["message"]) > 0) {
+                header("HTTP/1.0 400 Bad Request");
+            }
+
+//            Check if a chat thread already exists
+            $chatThread = $this->studentChat->getChatThreadIdByUser($body['sender'], $body['receiver']);
+
+            $status = false;
+            if (isset($chatThread['id'])) {
+//                Add new message to the thread
+                $status = $this->studentChat->saveMessage($chatThread['id'], $body['message'], $body['sender'], $body['receiver']);
+
+            }else {
+//                Create a new chat thread and save the message
+                $this->studentChat->createNewChatThread($body['sender'], $body['receiver']);
+                $chatThread = $this->studentChat->getChatThreadIdByUser($body['sender'], $body['receiver']);
+                $status = $this->studentChat->saveMessage($chatThread['id'], $body['message'], $body['sender'], $body['receiver']);
+            }
+
+
+            if ($status) {
+                header("HTTP/1.0 200 Success");
+                return;
+            }
+
+            header("HTTP/1.0 500 Internal Server Error");
+
+        } else {
+//          This route has no get requests
+            header("HTTP/1.0 404 Not found");
+        }
     }
 }

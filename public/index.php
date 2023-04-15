@@ -183,5 +183,6 @@ $router->registerController('api/student/get-chat', [StudentChat::class, 'getCha
 $router->registerController('api/student/get-all-chat-threads', [StudentChat::class, 'getAllChatThreads']);
 $router->registerController('api/student/save-message', [StudentChat::class, 'saveMessage']);
 $router->registerController('api/student/unseen-messages', [StudentChat::class, 'getUnseenMessages']);
+$router->registerController('api/student/send-single-message', [StudentChat::class, 'sendSingleMessage']);
 
 $router->resolve();

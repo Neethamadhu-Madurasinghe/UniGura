@@ -19,9 +19,9 @@ Header::render(
         URLROOT . '/public/css/student/components/error-success-popup.css',
         URLROOT . '/public/css/common/student-base-style.css',
         URLROOT . '/public/css/student/components/main-nav-bar.css',
+        URLROOT . '/public/css/student/components/timetable.css',
         URLROOT . '/public/css/student/find-tutor.css',
         URLROOT . '/public/css/student/components/tutor-search-card.css',
-        URLROOT . '/public/css/student/components/timetable.css'
     ]
 );
 
@@ -60,6 +60,15 @@ Header::render(
             <button class="btn btn-search" id="tutor-request-send">Send Request</button>
         </div>
 
+    </div>
+
+    <div class="popup-send-message invisible">
+        <p id="success-message">Send a message</p>
+        <textarea id="msg-input"></textarea>
+        <div class="send-msg-btn-container">
+            <button class="btn btn-msg" id="msg-cancel">Cancel</button>
+            <button class="btn btn-msg" id="msg-send">OK</button>
+        </div>
     </div>
 </div>
 
@@ -250,7 +259,8 @@ Header::render(
         URLROOT . '/public/js/student/search-request-handler.js',
         URLROOT . '/public/js/student/timetable-handler.js',
         URLROOT . '/public/js/student/tutor-request-handler.js',
-        URLROOT . '/public/js/student/tutor-seemore-handler.js'
+        URLROOT . '/public/js/student/tutor-seemore-handler.js',
+        URLROOT . '/public/js/student/send-quick-message.js'
     ]
 );
 ?>
