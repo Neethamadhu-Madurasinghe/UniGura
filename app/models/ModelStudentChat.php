@@ -83,9 +83,18 @@ class ModelStudentChat {
             $this->db->query('SELECT * FROM chat WHERE thread_id=:thread_id AND receiver=:receiver_id AND is_seen=0');
             $this->db->bind('thread_id', $threadId, PDO::PARAM_INT);
         }
-        $this->db->bind('receiver_id', $userId, PDO::PARAM_STR);
+        $this->db->bind('receiver_id', $userId, PDO::PARAM_INT);
 
         $this->db->execute();
         return $this->db->rowCount();
+    }
+
+//    Mark a set of messages as seen
+    public function markThreadAsSeen(int $userId, int $threadId): bool {
+        $this->db->query('UPDATE chat SET is_seen=1 WHERE thread_id=:thread_id AND receiver=:receiver_id');
+
+        $this->db->bind('thread_id', $threadId, PDO::PARAM_INT);
+        $this->db->bind('receiver_id', $userId, PDO::PARAM_INT);
+        return $this->db->execute();
     }
 }

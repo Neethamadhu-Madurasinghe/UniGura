@@ -41,6 +41,9 @@ class StudentChat extends Controller {
         $data['chatThread'] = $body['chatThreadId'];
         $data['userId'] = $request->getUserId();
 
+//        Mark all the messages of that thread as seen
+        $this->studentChat->markThreadAsSeen($request->getUserId(), $body['chatThreadId']);
+
 //            Fetch actual messages
         $data['messages'] = $this->studentChat->fetchMessagesByChatRoomId($body['chatThreadId']);
         header("HTTP/1.0 200 Success");

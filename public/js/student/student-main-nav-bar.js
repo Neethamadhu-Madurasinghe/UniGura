@@ -118,11 +118,15 @@ async function getUnseenMessageCount() {
 
         unSeenMessageCountUI.classList.remove('no-notification');
         if(result.unseen_messages === 0) {
+            unSeenMessageCountUI.textContent = "00"
             unSeenMessageCountUI.classList.add('no-notification');
-        }else {
+        }else if(result.unseen_messages < 10) {
+            unSeenMessageCountUI.textContent = `0${result.unseen_messages}`;
+        }else if(result.unseen_messages < 100) {
             unSeenMessageCountUI.textContent = `${result.unseen_messages}`;
+        }else {
+            unSeenMessageCountUI.textContent = "99+";
         }
-
 
     }else if(respond.state === 401) {
         window.location('/login');
