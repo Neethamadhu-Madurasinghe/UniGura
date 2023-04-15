@@ -19,12 +19,8 @@ toggle.addEventListener("click", () => {
 })
 
 
-
-
 const subjectPage = document.getElementById('subject');
 const nav_link = document.querySelectorAll(".nav-link");
-
-
 
 nav_link.forEach((link) => {
     link.classList.remove('active');
@@ -55,15 +51,9 @@ const cancel_btn_js = document.querySelectorAll(".cancel_btn_js");
 for (let i = 0; i < editSubject.length; i++) {
     editSubject[i].addEventListener("click", function () {
         subject_name_filed[i].disabled = false;
-        subject_name_filed[i].style.borderRadius = "5px";
-        subject_name_filed[i].style.border = "1px dotted #000";
-        subject_name_filed[i].style.transition = "all 0.5s ease";
-        subject_name_filed[i].style.backgroundColor = "#f2f2f2";
-        subject_name_filed[i].style.color = "#000";
-        subject_name_filed[i].style.padding = "3px";
-        subject_name_filed[i].style.width = "100%";
 
-
+        subject_name_filed[i].classList.add("editSubject");
+        subject_name_filed[i].classList.remove("cancelEditSubject");
         save_cancel_subject[i].classList.add("show");
         editSubject[i].style.display = "none";
     });
@@ -71,10 +61,15 @@ for (let i = 0; i < editSubject.length; i++) {
 
 for (let i = 0; i < cancel_btn_js.length; i++) {
     cancel_btn_js[i].addEventListener("click", function () {
-        location.reload();
+        subject_name_filed[i].disabled = true;
 
+        subject_name_filed[i].classList.add("cancelEditSubject");
+        subject_name_filed[i].classList.remove("editSubject");
+        save_cancel_subject[i].classList.remove("show");
+        editSubject[i].style.display = "block";
     });
 }
+
 
 
 /* ---------------------------------- MODULE update btn ---------------------------- */
@@ -86,18 +81,12 @@ const cancel_module = document.querySelectorAll(".cancel-module");
 
 
 
-for (let i = 0; i < editSubject.length; i++) {
+for (let i = 0; i < editModule.length; i++) {
     editModule[i].addEventListener("click", function () {
         module_input_filed[i].disabled = false;
-        module_input_filed[i].style.borderRadius = "5px";
-        module_input_filed[i].style.border = "1px dotted #000";
-        module_input_filed[i].style.transition = "all 0.5s ease";
-        module_input_filed[i].style.backgroundColor = "#f2f2f2";
-        module_input_filed[i].style.color = "#000";
-        module_input_filed[i].style.padding = "3px";
-        module_input_filed[i].style.width = "100%";
 
-
+        module_input_filed[i].classList.add("editModule");
+        module_input_filed[i].classList.remove("cancelEditModule");
         save_cancel_module[i].classList.add("show");
         editModule[i].style.display = "none";
     });
@@ -105,10 +94,15 @@ for (let i = 0; i < editSubject.length; i++) {
 
 for (let i = 0; i < cancel_module.length; i++) {
     cancel_module[i].addEventListener("click", function () {
-        location.reload();
+        module_input_filed[i].disabled = true;
 
+        module_input_filed[i].classList.add("cancelEditModule");
+        module_input_filed[i].classList.remove("editModule");
+        save_cancel_module[i].classList.remove("show");
+        editModule[i].style.display = "block";
     });
 }
+        
 
 
 /* --------------------------- DUPLICATE ENTRY POPUP ERROR MESSAGE -------------------------------- */
@@ -120,6 +114,7 @@ const container = document.getElementById('container');
 closePopupBtn.addEventListener("click", function () {
     popup.style.display = "none";
     blur_filter.style.display = "none";
+
 })
 
 

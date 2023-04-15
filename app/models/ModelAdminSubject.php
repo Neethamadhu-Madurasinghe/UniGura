@@ -78,8 +78,8 @@ class ModelAdminSubject
 
         try {
             $this->db->query('INSERT INTO `module`(`name`, `subject_id`,`is_hidden`) VALUES (:name,:subject_id,0)');
-            $this->db->bind(':name', $moduleName, PDO::PARAM_STR);
-            $this->db->bind(':subject_id', $subjectId, PDO::PARAM_INT);
+            $this->db->bind(':name', $moduleName);
+            $this->db->bind(':subject_id', $subjectId);
             $this->db->execute();
         } catch (PDOException $e) {
             if (str_contains($e->getMessage(), 'Duplicate entry')) {
@@ -92,9 +92,9 @@ class ModelAdminSubject
     public function updateModule($moduleName, $moduleId)
     {
         try {
-            $this->db->query('UPDATE `module` SET `name`=:name WHERE id=:id');
-            $this->db->bind(':name', $moduleName, PDO::PARAM_STR);
-            $this->db->bind(':id', $moduleId, PDO::PARAM_INT);
+            $this->db->query('UPDATE module SET name=:name WHERE id=:id');
+            $this->db->bind(':name', $moduleName);
+            $this->db->bind(':id', $moduleId);
             return $this->db->execute();
         } catch (PDOException $e) {
             if (str_contains($e->getMessage(), 'Duplicate entry')) {

@@ -11,33 +11,46 @@
     <p></p>
     <p></p>
 
+
     <div class="div2">
 
         <div class="container" id="container">
             <h2>Subjects & Modules</h2><br><br>
 
-            <?php if (isset($data[2])) : ?>
-                <?php if ($data[2] == 'Duplicate entry') : ?>
-                    <div class="popup" id="popup">
-                        <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
-                        <h2>Duplicate Entry!</h2>
-                        <h4>This subject name already exists.</h4>
-                        <button type="button" id="closePopup">OK</button>
-                    </div>
-                <?php endif; ?>
+            <?php if ($data[2] == 'Duplicate entry') : ?>
+                <div class="popup" id="popup">
+                    <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
+                    <h2>Duplicate Entry!</h2>
+                    <h4>This subject name already exists.</h4>
+                    <button type="button" id="closePopup">OK</button>
+                </div>
+            <?php elseif ($data[4] == 'minimum3Character') : ?>
+                <div class="popup" id="popup">
+                    <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
+                    <h2>Invalid Subject Name!</h2>
+                    <h4>Subject name must be at least 3 characters.</h4>
+                    <button type="button" id="closePopup">OK</button>
+                </div>
             <?php endif; ?>
 
 
-            <?php if (isset($data[3])) : ?>
-                <?php if ($data[3] == 'Duplicate entry') : ?>
-                    <div class="popup" id="popup">
-                        <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
-                        <h2>Duplicate Entry!</h2>
-                        <h4>This module name already exists.</h4>
-                        <button type="button" id="closePopup">OK</button>
-                    </div>
-                <?php endif; ?>
+
+            <?php if ($data[3] == 'Duplicate entry') : ?>
+                <div class="popup" id="popup">
+                    <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
+                    <h2>Duplicate Entry!</h2>
+                    <h4>This module name already exists.</h4>
+                    <button type="button" id="closePopup">OK</button>
+                </div>
+            <?php elseif ($data[5] == 'minimum3Character') : ?>
+                <div class="popup" id="popup">
+                    <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
+                    <h2>Invalid Module Name!</h2>
+                    <h4>Module name must be at least 3 characters.</h4>
+                    <button type="button" id="closePopup">OK</button>
+                </div>
             <?php endif; ?>
+
 
 
             <div class="form">
@@ -75,6 +88,7 @@
                             </div>
                         </div>
 
+
                         <div class='module'>
                             <div class='drop_down_part'>
                                 <div class='insert_module'>
@@ -99,7 +113,6 @@
                                                             <a href='#' class='cancel-module'><i class='fa fa-light fa-times'></i></a>
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             </form>
 
@@ -127,12 +140,7 @@
         </div>
     </div>
 
-
-
-
 </section>
-
-
 </body>
 
 </html>
