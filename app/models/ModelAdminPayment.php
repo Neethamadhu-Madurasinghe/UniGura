@@ -114,14 +114,27 @@ class ModelAdminPayment
 
 
 
-
-    public function updateTutorWithdrawalDetails($tutorId, $slipPath)
+    public function insertTutorWithdrawalDetails($slipPath)
     {
-        $this->db->query("UPDATE `payment` SET `is_withdrawed` = :withdrawalStatus , `withdrawal_day` = NOW() , `withdrawalSlip` = :slipPath WHERE `tutor_id` = :tutorId");
-        $this->db->bind(':withdrawalStatus', 1);
+        $this->db->query("INSERT INTO withdrawal (slip,time) VALUES (:slipPath,NOW())");
         $this->db->bind(':slipPath', $slipPath);
-        $this->db->bind(':tutorId', $tutorId);
+        $this->db->execute();
+    }
 
-        return $this->db->execute();
+
+    public function getTutorWithdrawalDetailID($slipPath)
+    {
+        $this->db->query("SELECT * FROM withdrawal WHERE slip = :slipPath");
+        $this->db->bind(':slipPath', $slipPath);
+        return $this->db->resultOne();
+    }
+
+    public function updateTutorWithdrawalDetails($tutorId, $withdrawalSlipID)
+    {
+        $this->db->query("UPDATE payment SET is_withdrawed = :withdrawalStatus , withdrawal_day = NOW() , withdrawal_slip = :withdrawalSlipID WHERE tutor_id = :tutorId AND is_withdrawed = 0");
+        $this->db->bind(':withdrawalStatus', 1);
+        $this->db->bind(':withdrawalSlipID', $withdrawalSlipID);
+        $this->db->bind(':tutorId', $tutorId);
+        $this->db->execute();
     }
 }

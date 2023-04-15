@@ -1,5 +1,15 @@
 <div class="total-payoff">
-    <h2>Total Payoffs: <span>Rs. 5000</span></h2>
+    <h2>Total Payoffs: <span>Rs.
+            <?php
+            $totalAmount = 0;
+            foreach ($data['tutorPaymentDetails'] as $tutorPaymentDetail) {
+                if($tutorPaymentDetail->is_withdrawed == 0){
+                    $totalAmount += $tutorPaymentDetail->amount;
+                }
+            }
+            echo $totalAmount*(90/100);
+            ?>
+        </span></h2>
 </div>
 
 
@@ -18,12 +28,11 @@
                         <span>Drag & Drop your files here</span><br><br>
                         <span>OR</span><br><br>
                         <label class="file-selector" for="paymentBankSlip">Browse Files</label><br><br>
-                        <input type="file" name="paymentBankSlip" class="file-selector-input" id="paymentBankSlip" multiple hidden>
+                        <input type="file" name="paymentBankSlip" class="file-selector-input" id="paymentBankSlip" multiple hidden value="<?php echo $data['paymentBankSlip'] ?>">
                     </div>
                     <div class="col-2" id="col-2">
                         <div class="drop-here">Drop Here</div>
                     </div>
-
                     <button type="submit">Upload</button>
                 </form>
             </div>
@@ -94,14 +103,16 @@
             </thead>
             <tbody>
                 <?php foreach ($data['tutorPaymentDetails'] as $aTutorPaymentDetails) : ?>
-                    <tr>
-                        <td><?php echo $aTutorPaymentDetails->student->first_name . ' ' . $aTutorPaymentDetails->student->last_name ?></td>
-                        <td><?php echo $aTutorPaymentDetails->subject->name ?></td>
-                        <td><?php echo $aTutorPaymentDetails->module->name ?></td>
-                        <td>ssssssssssssss</td>
-                        <td><?php echo $aTutorPaymentDetails->tutorialClass->mode ?></td>
-                        <td><?php echo $aTutorPaymentDetails->amount ?></td>
-                    </tr>
+                    <?php if ($aTutorPaymentDetails->is_withdrawed == 0) : ?>
+                        <tr>
+                            <td><?php echo $aTutorPaymentDetails->student->first_name . ' ' . $aTutorPaymentDetails->student->last_name ?></td>
+                            <td><?php echo $aTutorPaymentDetails->subject->name ?></td>
+                            <td><?php echo $aTutorPaymentDetails->module->name ?></td>
+                            <td>ssssssssssssss</td>
+                            <td><?php echo $aTutorPaymentDetails->tutorialClass->mode ?></td>
+                            <td><?php echo $aTutorPaymentDetails->amount ?></td>
+                        </tr>
+                    <?php endif; ?>
                 <?php endforeach; ?>
 
             </tbody>

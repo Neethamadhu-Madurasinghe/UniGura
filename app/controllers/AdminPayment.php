@@ -30,7 +30,8 @@ class AdminPayment extends Controller
 
         $data = [
             'allUniquePayoffTutors' => $allUniquePayoffTutors,
-            'allPaymentDetails' => $allPaymentDetails
+            'allPaymentDetails' => $allPaymentDetails,
+            'paymentBankSlip' => ''
         ];
 
         // echo '<pre>';
@@ -68,7 +69,8 @@ class AdminPayment extends Controller
 
             $data = [
                 'tutorBankDetails' => $tutorBankDetails,
-                'tutorPaymentDetails' => $tutorPaymentDetails
+                'tutorPaymentDetails' => $tutorPaymentDetails,
+                'paymentBankSlip' => ''
             ];
 
             // echo '<pre>';
@@ -87,8 +89,33 @@ class AdminPayment extends Controller
 
 
         if ($request->isPost()) {
-            $filePath = handleUpload(array('.png', '.pdf'), '\\public\\profile_pictures\\', 'paymentBankSlip');
-            $this->paymentModel->updateTutorWithdrawalDetails($_GET['tutorID'], $filePath);
+
+            $fileName = $_FILES["paymentBankSlip"]["name"];
+
+            if (empty($fileName)) {
+                $allUniquePayoffTutors = $this->paymentModel->allUniquePayoffTutors();
+                $allPaymentDetails = $this->paymentModel->allPaymentDetails();
+
+                foreach ($allUniquePayoffTutors as $tutor) {
+                    $tutor->tutor = $this->paymentModel->getTutorById($tutor->tutor_id);
+                }
+
+                foreach ($allPaymentDetails as $tutor) {
+                    $tutor->tutor = $this->paymentModel->getTutorById($tutor->tutor_id);
+                }
+
+                $data = [
+                    'allUniquePayoffTutors' => $allUniquePayoffTutors,
+                    'allPaymentDetails' => $allPaymentDetails,
+                    'paymentBankSlip' => 'notUploadBankSlip'
+                ];
+                $this->view('admin/payment', $request, $data);
+            } else {
+                $filePath = handleUpload(array('.png', '.pdf'), '\\public\\profile_pictures\\', 'paymentBankSlip');
+                $this->paymentModel->insertTutorWithdrawalDetails($filePath);
+                $withdrawalSlipID = $this->paymentModel->getTutorWithdrawalDetailID($filePath);
+                $this->paymentModel->updateTutorWithdrawalDetails($_GET['tutorID'], $withdrawalSlipID->id);
+            }
         }
 
         redirect('/admin/payment');
