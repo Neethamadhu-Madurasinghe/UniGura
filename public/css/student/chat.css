@@ -160,15 +160,39 @@ h1 {
     justify-content: center;
 }
 
+.details-container div {
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+}
+
 .details-container h3 {
     margin: 0;
 }
-
 
 .details-container p {
     margin: 0;
     margin-top: 2px;
     font-size: 0.8rem;
+}
+
+.msg-count {
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    width: 20px;
+    min-width: 20px;
+    height: 20px;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: bolder;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hide-msg-count {
+    display: none;
 }
 
 

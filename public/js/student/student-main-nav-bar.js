@@ -7,6 +7,8 @@ const notificationIconUI = document.querySelector('.notification-dropdown');
 const notificationListUI = document.querySelector('.notification-list');
 const notificationCardListUI = document.getElementById('notification-card-list');
 const notificationCountUI = document.querySelector('.notification-span');
+const unSeenMessageCountUI = document.querySelector('.message-span');
+
 let fetchedNotifications = []
 
 dashboardProfilePictureUI.addEventListener('click', function (e) {
@@ -106,8 +108,30 @@ async function markNotificationsAsSeen() {
     console.log(put)
 }
 
+// Get the number of unseen messages
+async function getUnseenMessageCount() {
+    unSeenMessageCountUI.textContent = '';
+    const respond = await fetch('http://localhost/unigura/api/student/unseen-messages')
+    const result = await respond.json();
+
+    if(respond.status === 200) {
+
+        unSeenMessageCountUI.classList.remove('no-notification');
+        if(result.unseen_messages === 0) {
+            unSeenMessageCountUI.classList.add('no-notification');
+        }else {
+            unSeenMessageCountUI.textContent = `${result.unseen_messages}`;
+        }
+
+
+    }else if(respond.state === 401) {
+        window.location('/login');
+    }
+}
+
 
 getNotifications();
+getUnseenMessageCount();
 
 // Helper function to calculate the age of the notification
 function getAgeOfTimeString(timeString) {

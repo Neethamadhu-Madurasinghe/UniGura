@@ -104,7 +104,10 @@ async function fetchChatThreads() {
                   <img src="${'http://localhost/unigura/' + chatThread.profile_picture}" alt="" class="profile-picture-img">
                 </div>
                 <div class="details-container">
-                  <h3>${chatThread.name}</h3>
+                  <div>
+                    <h3>${chatThread.name}</h3>
+                    <span class="msg-count ${chatThread.unseen_messages === 0 || index === 0 ? "hide-msg-count" : "" } ">${chatThread.unseen_messages}</span>
+                  </div>
                   <p data-userid="${partnetId}" class="contact-status"></p>
                 </div>
              </div>
@@ -180,6 +183,10 @@ document.getElementsByTagName("body")[0].addEventListener("click", function hand
             otherContactCards.forEach(contractCard => {
                 contractCard.classList.remove("contact-card-selected");
             });
+
+            const spanUI = currentElement.querySelector('.msg-count');
+            spanUI.textContent = "";
+            spanUI.classList.add('hide-msg-count');
 
             // Add selected class to the current card
             currentElement.classList.add("contact-card-selected");

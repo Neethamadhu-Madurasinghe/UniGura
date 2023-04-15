@@ -74,4 +74,18 @@ class ModelStudentChat {
 
         return $this->db->execute();
     }
+
+//    Returns the number of unseen messages when the chatThreadId and userId is given
+    public function getNumberOfUnseenMessages(int $userId, int $threadId = 0): int {
+        if ($threadId === 0) {
+            $this->db->query('SELECT * FROM chat WHERE receiver=:receiver_id AND is_seen=0');
+        }else {
+            $this->db->query('SELECT * FROM chat WHERE thread_id=:thread_id AND receiver=:receiver_id AND is_seen=0');
+            $this->db->bind('thread_id', $threadId, PDO::PARAM_INT);
+        }
+        $this->db->bind('receiver_id', $userId, PDO::PARAM_STR);
+
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
 }

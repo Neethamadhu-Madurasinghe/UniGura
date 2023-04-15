@@ -182,5 +182,6 @@ $router->registerController('/student/chat', [StudentChat::class, 'chatView']);
 $router->registerController('api/student/get-chat', [StudentChat::class, 'getChatMessages']);
 $router->registerController('api/student/get-all-chat-threads', [StudentChat::class, 'getAllChatThreads']);
 $router->registerController('api/student/save-message', [StudentChat::class, 'saveMessage']);
+$router->registerController('api/student/unseen-messages', [StudentChat::class, 'getUnseenMessages']);
 
 $router->resolve();

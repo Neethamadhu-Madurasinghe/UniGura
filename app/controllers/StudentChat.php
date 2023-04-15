@@ -77,6 +77,7 @@ class StudentChat extends Controller {
 
             $chatThread['profile_picture'] = $fetchProfileRecord['profile_picture'];
             $chatThread['name'] = $fetchProfileRecord['first_name'] . " " . $fetchProfileRecord['last_name'];
+            $chatThread['unseen_messages'] = $this->studentChat->getNumberOfUnseenMessages($request->getUserId(), $chatThread['id']);
             $lastMessage = $this->studentChat->getLastChatMessage($chatThread['id']);
 
             if (isset($lastMessage['message'])) {
@@ -141,5 +142,22 @@ class StudentChat extends Controller {
 //          This route has no get requests
             header("HTTP/1.0 404 Not found");
         }
+    }
+
+//    Get number of all unseen messages for a user
+    public function getUnseenMessages(Request $request) {
+        cors();
+        $data = [];
+
+        if (!$request->isLoggedIn() || !($request->isStudent() || $request->isTutor())) {
+            header("HTTP/1.0 401 Unauthorized");
+            return;
+        }
+
+//        Fetch message count
+        $data['unseen_messages'] = $this->studentChat->getNumberOfUnseenMessages($request->getUserId());
+        header("HTTP/1.0 200 Success");
+        header('Content-type: application/json');
+        echo json_encode($data);
     }
 }
