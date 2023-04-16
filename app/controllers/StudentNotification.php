@@ -12,7 +12,7 @@ class StudentNotification extends Controller {
 
         $data = [];
 
-        if (!$request->isLoggedIn() || !$request->isStudent()) {
+        if (!$request->isLoggedIn()) {
             header("HTTP/1.0 401 Unauthorized");
             return;
         }

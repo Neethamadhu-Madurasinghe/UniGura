@@ -69,10 +69,10 @@ async function getNotifications() {
            result.notifications.forEach(notification => {
                notificationCardListUI.innerHTML += `
                     <li data-id="${notification.id}">
-                       <a href="${notification.link}">
+                       <a href="${notification.link ? notification.link : "#"}">
                          <div class="notification-card ${notification.is_seen === 1 ? 'notification-read' : ''}">
                            <h3>${notification.title}</h3>
-                           <p class="description">${notification.description}</p>
+                           <p class="description">${notification.description ? notification.description : ""}</p>
                            <p class="time">${getAgeOfTimeString(notification.created_at)}</p>
                          </div>
                        </a>
@@ -110,7 +110,7 @@ async function markNotificationsAsSeen() {
 
 // Get the number of unseen messages
 async function getUnseenMessageCount() {
-    unSeenMessageCountUI.textContent = '';
+    unSeenMessageCountUI.textContent = "00"
     const respond = await fetch('http://localhost/unigura/api/student/unseen-messages')
     const result = await respond.json();
 
@@ -136,6 +136,7 @@ async function getUnseenMessageCount() {
 
 getNotifications();
 getUnseenMessageCount();
+
 
 // Helper function to calculate the age of the notification
 function getAgeOfTimeString(timeString) {

@@ -3,13 +3,19 @@
 class StudentChat extends Controller {
     private ModelStudentChat $studentChat;
     private ModelUser $user;
+    private ModelStudentNotification $notification;
 
     public function __construct() {
         $this->studentChat = $this->model('ModelStudentChat');
         $this->user = $this->model('ModelUser');
+        $this->notification = $this->model('ModelStudentNotification');
     }
 
-    public function chatView(Request $request) {
+    public function studentChatView(Request $request) {
+        if (!$request->isLoggedIn() || !$request->isStudent()) {
+            redirectBasedOnUserRole($request);
+            return;
+        }
         $data = [];
         $this->view('/student/chat', $request, $data);
     }
@@ -190,17 +196,40 @@ class StudentChat extends Controller {
             $status = false;
             if (isset($chatThread['id'])) {
 //                Add new message to the thread
-                $status = $this->studentChat->saveMessage($chatThread['id'], $body['message'], $body['sender'], $body['receiver']);
+                $status = $this->studentChat->saveMessage(
+                    $chatThread['id'],
+                    $body['message'],
+                    $body['sender'],
+                    $body['receiver']
+                );
 
             }else {
 //                Create a new chat thread and save the message
                 $this->studentChat->createNewChatThread($body['sender'], $body['receiver']);
                 $chatThread = $this->studentChat->getChatThreadIdByUser($body['sender'], $body['receiver']);
-                $status = $this->studentChat->saveMessage($chatThread['id'], $body['message'], $body['sender'], $body['receiver']);
+                $status = $this->studentChat->saveMessage(
+                    $chatThread['id'],
+                    $body['message'],
+                    $body['sender'],
+                    $body['receiver']
+                );
             }
 
-
+//            Determine the redirect link
+            $redirectLink = "";
+            if($request->isStudent()) {
+                $redirectLink = "/UniGura/student/chat";
+            } else {
+//                TODO: Redirect to tutor's chat
+            }
             if ($status) {
+//                Make a notification on senders side
+                $this->notification->createNotification(
+                    $body['sender'],
+                    "Message has been sent",
+                    $redirectLink,
+                    "Click here to go chat further"
+                );
                 header("HTTP/1.0 200 Success");
                 return;
             }
@@ -211,5 +240,9 @@ class StudentChat extends Controller {
 //          This route has no get requests
             header("HTTP/1.0 404 Not found");
         }
+    }
+
+    public function testRoute($request) {
+
     }
 }

@@ -29,7 +29,9 @@ messageSendBtn.addEventListener("click", async (e) => {
 
         if(status === 200) {
             showSuccessMessage("Message sent successfully", () => {
-                window.refre
+                hideLayoutBackground();
+                messageInputField.value = "";
+                messageSendPopupUI.classList.add('invisible');
             });
         } else if(status === 401) {
             const data = await result.text();
