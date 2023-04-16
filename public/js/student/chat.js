@@ -12,7 +12,7 @@ let connections = new Map();
 let onlineUserList = Array();
 let userId;
 
-fetchChatThreads()
+window.setTimeout(fetchChatThreads, 50);
 
 
 // Periodically update the times on current chat and online status of users
@@ -87,9 +87,10 @@ async function fetchMessages(threadId) {
 
 // Fetch all the chatThreads for this user
 async function fetchChatThreads() {
-    const response = await fetch(`http://localhost/unigura/api/student/get-all-chat-threads`);
+    const response = await fetch('http://localhost/unigura/api/student/get-all-chat-threads');
     if (response.status === 200) {
         let data = await response.json();
+        console.log(data);
         chatThreads = sortByCreatedAtDesc(data.threads);
         userId = data.id;
         chatThreads.forEach((chatThread, index) => {
