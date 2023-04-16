@@ -12,7 +12,7 @@ require_once APPROOT . '/views/student/inc/components/MainNavbar.php';
 
 
 Header::render(
-    'Dashboard',
+    'Chat',
     [
         URLROOT . '/public/css/student/components/main-nav-bar.css',
         URLROOT . '/public/css/student/chat.css',
@@ -22,138 +22,50 @@ Header::render(
 MainNavbar::render($request);
 ?>
 
+<div class="error-layout-background invisible">
+    <div class="popup-error-message">
+        <img src="<?php echo URLROOT . '/public/img/student/cross.png' ?>" alt="" srcset="">
+        <p id="error-message">Request has been Sent Successfully</p>
+        <button class="btn btn-search" id="error-ok">OK</button>
+    </div>
+
+    <div class="popup-success-message invisible">
+        <img src="<?php echo URLROOT . '/public/img/student/success.png' ?>" alt="" srcset="">
+        <p id="success-message">Request has been Sent Successfully</p>
+        <button class="btn btn-search" id="success-ok">OK</button>
+    </div>
+</div>
+
+
+<!-- END OF LAYOUT PART -->
+
 <div class="main-area-container">
     <div class="main-area">
         <h1>Chat with Tutors</h1>
         <div class="chat-component-container">
             <div class="contact-list-container">
-                <div class="contact-card contact-card-selected">
-                    <div class="contact-card-image-container">
-                        <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img">
-                    </div>
-                    <div class="details-container">
-                        <h3>Tutor name goes here</h3>
-                        <p>last message goes here</p>
-                    </div>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-card-image-container">
-                        <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img">
-                    </div>
-                    <div class="details-container">
-                        <h3>Tutor name goes here</h3>
-                        <p>last message goes here</p>
-                    </div>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-card-image-container">
-                        <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img">
-                    </div>
-                    <div class="details-container">
-                        <h3>Tutor name goes here</h3>
-                        <p>last message goes here</p>
-                    </div>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-card-image-container">
-                        <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img">
-                    </div>
-                    <div class="details-container">
-                        <h3>Tutor name goes here</h3>
-                        <p>last message goes here</p>
-                    </div>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-card-image-container">
-                        <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img">
-                    </div>
-                    <div class="details-container">
-                        <h3>Tutor name goes here</h3>
-                        <p>last message goes here</p>
-                    </div>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-card-image-container">
-                        <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img">
-                    </div>
-                    <div class="details-container">
-                        <h3>Tutor name goes here</h3>
-                        <p>last message goes here</p>
-                    </div>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-card-image-container">
-                        <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img">
-                    </div>
-                    <div class="details-container">
-                        <h3>Tutor name goes here</h3>
-                        <p>last message goes here</p>
-                    </div>
-                </div>
+                <!--Contacts go here -->
             </div>
             <div class="chat-container">
                 <div class="chat-container-title">
                     <div class="chat-container-title-image-container">
-                        <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img">
+                        <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img" id="main-chat-image">
                     </div>
                     <div class="chat-details-container">
-                        <h3>Tutor name goes here</h3>
-                        <p>last message goes here</p>
+                        <h3 id="chat-title">Tutor name goes here</h3>
+                        <p id="user-state">last message goes here</p>
                     </div>
-                    <button class="cancel-btn">X</button>
+                    <div class="message-cancel-btn-container">
+                        <button class="cancel-btn">X</button>
+                    </div>
                 </div>
 
                 <div class="message-box-container">
-
-                    <div class="message-i-box">
-                        <div class="message-box-image-container">
-                            <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img">
-                        </div>
-                        <p class="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, molestias.</p>
-                    </div>
-
-                    <div class="message-i-box">
-                        <div class="message-box-image-container">
-                            <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img">
-                        </div>
-                        <p class="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, molestias.</p>
-                    </div>
-
-                    <div class="message-i-box">
-                        <div class="message-box-image-container">
-                            <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img">
-                        </div>
-                        <p class="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, molestias.</p>
-                    </div>
-
-                    <div class="message-box">
-                        <p class="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, molestias.</p>
-                    </div>
-
-                    <div class="message-i-box">
-                        <div class="message-box-image-container">
-                            <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img">
-                        </div>
-                        <p class="message">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi magni blanditiis quas minus aliquam ut quibusdam sit voluptatum dolorum quod temporibus ad laborum deleniti minima, corrupti obcaecati ratione consequatur corporis..</p>
-                    </div>
-
-                    <div class="message-box">
-                        <p class="message">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus nemo ipsam sapiente dignissimos porro magni? Sapiente facilis, quas nemo voluptates dignissimos velit! Laborum ipsa non corrupti quaerat, vero tempore delectus.</p>
-                    </div>
-
-
-
-
+                    <!--All messages go inside this -->
                 </div>
 
                 <div class="new-message-container">
-                    <textarea rows="3" placeholder="Send a message"></textarea>
+                    <textarea rows="3" placeholder="Send a message" id="msg-box"></textarea>
                     <button class="btn btn-send">Send</button>
                 </div>
             </div>
@@ -164,8 +76,12 @@ MainNavbar::render($request);
 
 <?php Footer::render(
     [
-
         URLROOT . '/public/js/student/student-main-nav-bar.js',
+//        This JS file for show error messages
+        URLROOT . '/public/js/student/tutor-profile.js',
+        URLROOT . '/public/js/student/chat-connection.js',
+        URLROOT . '/public/js/student/chat.js',
+        URLROOT . '/public/js/student/chat-responsive.js',
     ]
 );
 ?>

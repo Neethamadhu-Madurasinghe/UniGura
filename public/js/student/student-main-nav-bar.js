@@ -7,6 +7,8 @@ const notificationIconUI = document.querySelector('.notification-dropdown');
 const notificationListUI = document.querySelector('.notification-list');
 const notificationCardListUI = document.getElementById('notification-card-list');
 const notificationCountUI = document.querySelector('.notification-span');
+const unSeenMessageCountUI = document.querySelector('.message-span');
+
 let fetchedNotifications = []
 
 dashboardProfilePictureUI.addEventListener('click', function (e) {
@@ -67,10 +69,10 @@ async function getNotifications() {
            result.notifications.forEach(notification => {
                notificationCardListUI.innerHTML += `
                     <li data-id="${notification.id}">
-                       <a href="${notification.link}">
+                       <a href="${notification.link ? notification.link : "#"}">
                          <div class="notification-card ${notification.is_seen === 1 ? 'notification-read' : ''}">
                            <h3>${notification.title}</h3>
-                           <p class="description">${notification.description}</p>
+                           <p class="description">${notification.description ? notification.description : ""}</p>
                            <p class="time">${getAgeOfTimeString(notification.created_at)}</p>
                          </div>
                        </a>
@@ -106,8 +108,35 @@ async function markNotificationsAsSeen() {
     console.log(put)
 }
 
+// Get the number of unseen messages
+async function getUnseenMessageCount() {
+    unSeenMessageCountUI.textContent = "00"
+    const respond = await fetch('http://localhost/unigura/api/student/unseen-messages')
+    const result = await respond.json();
+
+    if(respond.status === 200) {
+
+        unSeenMessageCountUI.classList.remove('no-notification');
+        if(result.unseen_messages === 0) {
+            unSeenMessageCountUI.textContent = "00"
+            unSeenMessageCountUI.classList.add('no-notification');
+        }else if(result.unseen_messages < 10) {
+            unSeenMessageCountUI.textContent = `0${result.unseen_messages}`;
+        }else if(result.unseen_messages < 100) {
+            unSeenMessageCountUI.textContent = `${result.unseen_messages}`;
+        }else {
+            unSeenMessageCountUI.textContent = "99+";
+        }
+
+    }else if(respond.state === 401) {
+        window.location('/login');
+    }
+}
+
 
 getNotifications();
+getUnseenMessageCount();
+
 
 // Helper function to calculate the age of the notification
 function getAgeOfTimeString(timeString) {

@@ -90,7 +90,7 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 0 10px 10px 10px;
+    padding: 0 0 10px 10px;
 }
 
 @media screen and (max-width: 768px) {
@@ -146,9 +146,9 @@ h1 {
 }
 
 .contact-card-image-container img {
-
     width: 80%;
     max-width: 70px;
+    border-radius: 50%;
     object-fit: cover;
 }
 
@@ -160,6 +160,12 @@ h1 {
     justify-content: center;
 }
 
+.details-container div {
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+}
+
 .details-container h3 {
     margin: 0;
 }
@@ -168,6 +174,25 @@ h1 {
     margin: 0;
     margin-top: 2px;
     font-size: 0.8rem;
+}
+
+.msg-count {
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    width: 20px;
+    min-width: 20px;
+    height: 20px;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: bolder;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hide-msg-count {
+    display: none;
 }
 
 
@@ -220,6 +245,7 @@ h1 {
 .chat-details-container {
     height: 70%;
     display: flex;
+    width: 50%;
     flex-direction: column;
     justify-content: center;
 }
@@ -229,6 +255,12 @@ h1 {
     margin: 3px;
 }
 
+@media screen and (max-width: 768px) {
+    .chat-details-container h3 {
+        font-size: 1rem;
+    }
+}
+
 .chat-details-container p {
     margin: 3px;
 }
@@ -236,8 +268,18 @@ h1 {
 
 .message-box-container {
     width: 100%;
-    /* max-height: 500px; */
+    max-height: 500px;
+    min-height: 70%;
     overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+@media screen and (max-width: 768px) {
+    .message-box-container {
+        width: 100%;
+        min-height: 500px;
+        overflow-y: scroll;
+    }
 }
 
 .message-box-container::-webkit-scrollbar {
@@ -274,14 +316,29 @@ h1 {
     align-items: flex-start;
 }
 
-.message-i-box p {
+.profile-picture-img {
+    border-radius: 50%;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+}
+
+.message-content {
     max-width: 400px;
     margin: 0 0 0 10px;
     padding: 10px;
     background-color: white;
     border-radius: 5px;
-    font-size: 0.9rem;
     user-select: text;
+}
+
+.message-content p {
+    font-size: 0.9rem;
+    margin: 0;
+    padding: 0 0 5px;
+}
+
+.message-content span {
+    font-size: 0.7rem;
 }
 
 @media screen and (max-width: 1024px) {
@@ -302,15 +359,27 @@ h1 {
 }
 
 
-.message-box p {
+.message-box div {
     max-width: 400px;
     margin: 0 20px 0 0;
     padding: 10px;
-    background-color: #FFA114;
+    background-color: #F7931A;
     border-radius: 5px;
     color: white;
-    font-size: 0.9rem;
     user-select: text;
+    height: auto;
+    overflow: auto;
+}
+
+.message-box div p {
+    font-size: 0.9rem;
+    margin: 0;
+    padding: 0 0 5px;
+    height: auto;
+}
+
+.message-box div span {
+    font-size: 0.7rem;
 }
 
 @media screen and (max-width: 1024px) {
@@ -322,7 +391,7 @@ h1 {
 .new-message-container {
     background-color: white;
     width: calc(100% - 20px);
-    height: 80px;
+    min-height: 70px;
     margin: 10px;
     border-radius: 5px;
     display: flex;
@@ -383,8 +452,97 @@ h1 {
     margin: 0 5px 5px 0;
 }
 
+.message-cancel-btn-container {
+    width: 10%;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-end;
+    align-items: flex-end;
+}
+
 .cancel-btn {
     background-color: red;
-    align-items: flex-start;
-    justify-self: flex-end;
 }
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
+
+/*  Layout */
+
+.layout-background {
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(160, 117, 51, 0.5);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-layout-background {
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(160, 117, 51, 0.5);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-button-container {
+    margin-top: 30px;
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+    .popup-button-container {
+        width: 100%;
+    }
+}
+
+
+.popup-error-message, .popup-success-message {
+    height: 300px;
+    width: 450px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0 30px 0;
+}
+
+@media screen and (max-width: 768px) {
+    .popup-error-message, .popup-success-message   {
+        width: 90%;
+    }
+}
+
+.popup-error-message img, .popup-success-message img {
+    height: 75px;
+}
+
+.popup-error-message p, .popup-success-message p {
+    font-weight: bold;
+    font-size: 1.2rem;
+    width: 80%;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* Invisibility classes */
+.invisible {
+    display: none;
+}
+

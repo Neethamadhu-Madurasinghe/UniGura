@@ -178,6 +178,12 @@ $router->registerController('/student/tutor-profile', [StudentTutorProfile::clas
 $router->registerController('/student/change-profile-picture', [StudentProfile::class, 'changeProfilePicture']);
 $router->registerController('/api/student/notification', [StudentNotification::class, 'getNotification']);
 $router->registerController('/api/student/mark-seen', [StudentNotification::class, 'markNotificationAsSeen']);
-
+$router->registerController('/student/chat', [StudentChat::class, 'studentChatView']);
+$router->registerController('api/student/get-chat', [StudentChat::class, 'getChatMessages']);
+$router->registerController('api/student/get-all-chat-threads', [StudentChat::class, 'getAllChatThreads']);
+$router->registerController('api/student/save-message', [StudentChat::class, 'saveMessage']);
+$router->registerController('api/student/unseen-messages', [StudentChat::class, 'getUnseenMessages']);
+$router->registerController('api/student/send-single-message', [StudentChat::class, 'sendSingleMessage']);
+$router->registerController('api/student/test-route', [StudentChat::class, 'testRoute']);
 
 $router->resolve();

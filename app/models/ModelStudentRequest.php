@@ -52,17 +52,6 @@ class ModelStudentRequest {
             $this->db->execute();
         }
 
-//        Then create a notification on student  side
-        $this->db->query('INSERT INTO notification SET
-                 user_id = :user_id,
-                 title = "Tutor request has been sent",
-                 description = "We have sent a tutor request. You can cancel it by clicking here",
-                 link = "/UniGura/student/profile"
-                 ');
-
-        $this->db->bind('user_id', $data['student_id'], PDO::PARAM_INT);
-        $this->db->execute();
-
         return $this->db->commitTransaction();
     }
 
