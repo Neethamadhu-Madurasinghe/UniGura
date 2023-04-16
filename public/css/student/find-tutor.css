@@ -74,15 +74,15 @@
 }
 
 .filter-sm {
-    min-width: 150px
+    min-width: 150px;
 }
 
 .filter-md {
-    min-width: 200px
+    min-width: 33%;
 }
 
 .filter-lg {
-    min-width: 350px
+    min-width: 66%;
 }
 
 @media screen and (max-width: 600px) {
@@ -186,6 +186,7 @@
     align-items: center;
     background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
     margin: 10px;
+    min-height: 100vh;
 }
 
 .search-result-title-container {
@@ -204,7 +205,7 @@
     display: flex;
     align-items: center;
     height: 40px;
-    width: 300px;
+    width: 350px;
     background-color: white;
     border-radius: 5px;
 }

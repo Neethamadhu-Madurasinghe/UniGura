@@ -36,6 +36,7 @@ const isDefaultUI = document.getElementById('is-default');
 const sortByUI = document.getElementById('tutor-search-sort-by');
 const filterFormUI = document.getElementById('filter-form');
 const tutoringClassContainerUI = document.querySelector('.tutor-search-result-container');
+const bottomContainerUI = document.querySelector('.bottom-container');
 const searchResultAreaUI = document.querySelector('.search-result-title-container');
 const searchResultTitleUI = document.getElementById('search-result-title');
 const searchResultFilterUI = document.getElementById('search-result-filter');
@@ -177,6 +178,7 @@ async function sendSearchClassRequest() {
   console.log(result);
 
   searchResultAreaUI.classList.remove('invisible');
+  bottomContainerUI.classList.remove('invisible');
   tutoringClassContainerUI.innerHTML = '';
   
   if(result.length > 0) {
@@ -276,12 +278,31 @@ async function sendSearchClassRequest() {
       tutoringClassCardUI.classList.add('tutor-search-card');
       tutoringClassCardUI.innerHTML = cardString;
       tutoringClassContainerUI.appendChild(tutoringClassCardUI);
-    })
+      scrollToBottomSection()
+    });
+
+  //  Scroll to result area
+
 
   } else {
     searchResultTitleUI.textContent = 'No Search Results';
     searchResultFilterUI.classList.add('invisible')
   }
+}
+
+function scrollToBottomSection() {
+  const topOfBottomContainer = bottomContainerUI.offsetTop;
+  const scrollSpeed = 20; // Change this value to adjust the scrolling speed
+
+  function animateScroll() {
+    const currentPosition = window.pageYOffset;
+    if (currentPosition < topOfBottomContainer) {
+      window.scrollTo(0, currentPosition + scrollSpeed);
+      window.requestAnimationFrame(animateScroll);
+    }
+  }
+
+  animateScroll();
 }
 
 
