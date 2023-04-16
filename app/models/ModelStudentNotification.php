@@ -25,4 +25,24 @@ class ModelStudentNotification {
 
         return $this->db->execute();
     }
+
+    public function createNotification(int $userId, string $title, string $link = "", string $description = ""): bool {
+
+
+        $this->db->query('INSERT INTO notification SET
+                 user_id = :user_id,
+                 title = :title ' .
+                ($description ? ',description=:description' : '') .
+                ($link ? ',link =:link' : '')
+            );
+
+        $this->db->bind('user_id', $userId, PDO::PARAM_INT);
+        $this->db->bind('title', $title, PDO::PARAM_STR);
+
+        if (strlen($link) > 0) { $this->db->bind('link', $link, PDO::PARAM_STR); }
+        if (strlen($link) > 0) { $this->db->bind('description', $userId, PDO::PARAM_STR); }
+
+        return $this->db->execute();
+
+    }
 }

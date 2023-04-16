@@ -29,7 +29,7 @@ messageSendBtn.addEventListener("click", async (e) => {
 
         if(status === 200) {
             showSuccessMessage("Message sent successfully", () => {
-
+                window.refre
             });
         } else if(status === 401) {
             const data = await result.text();
