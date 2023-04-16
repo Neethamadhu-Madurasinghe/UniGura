@@ -246,7 +246,7 @@ Header::render(
         <div class="tutor-search-result-container">
 
         </div>
-
+        <div id="pagination"></div>
     </div>
 
 </div>

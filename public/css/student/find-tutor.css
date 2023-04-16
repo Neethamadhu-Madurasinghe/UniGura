@@ -411,6 +411,30 @@
 
 /* Popup send message end */
 
+/* Pagination */
+
+#data-container {
+    margin-bottom: 20px;
+}
+
+#pagination {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.pagination-button {
+    padding: 8px 16px;
+    margin: 0 4px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pagination-button.active {
+    background-color: var(--lightest-orrange);
+}
+
 /* Invisibility classes */
 .invisible {
     display: none;
