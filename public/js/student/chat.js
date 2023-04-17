@@ -260,7 +260,9 @@ async function sendMessage(message, threadId) {
     });
 
     const reply = await result.text();
-    if(result.status === 400) {
+    if(result.status === 200) {
+    // Do nothing on 200 LOL
+    } else if(result.status === 400) {
         showErrorMessage("Invalid message format");
         console.log(reply);
     } else if (result.status === 401) {
@@ -268,7 +270,7 @@ async function sendMessage(message, threadId) {
             document.location.href = '../logout';
         });
         console.log(reply);
-    } else if (result.status !== 400) {
+    } else {
         showErrorMessage("Internal server error");
         console.log(reply);
     }
