@@ -143,6 +143,17 @@ $router->registerController('/tutor/notification', [TutorNotification::class, 'm
 
 $router->registerController('/tutor/notifications', [TutorNotification::class, 'notification']);
 
+// Chat routes
+$router->registerController('api/chat/get-chat', [Chat::class, 'getChatMessages']);
+$router->registerController('api/chat/get-all-chat-threads', [Chat::class, 'getAllChatThreads']);
+$router->registerController('api/chat/save-message', [Chat::class, 'saveMessage']);
+$router->registerController('api/chat/unseen-messages', [Chat::class, 'getUnseenMessages']);
+$router->registerController('api/chat/send-single-message', [Chat::class, 'sendSingleMessage']);
+$router->registerController('api/chat/test-route', [Chat::class, 'testRoute']);
+
+
+
+
 
 
 //payment checkout
@@ -178,12 +189,7 @@ $router->registerController('/student/tutor-profile', [StudentTutorProfile::clas
 $router->registerController('/student/change-profile-picture', [StudentProfile::class, 'changeProfilePicture']);
 $router->registerController('/api/student/notification', [StudentNotification::class, 'getNotification']);
 $router->registerController('/api/student/mark-seen', [StudentNotification::class, 'markNotificationAsSeen']);
-$router->registerController('/student/chat', [StudentChat::class, 'studentChatView']);
-$router->registerController('api/student/get-chat', [StudentChat::class, 'getChatMessages']);
-$router->registerController('api/student/get-all-chat-threads', [StudentChat::class, 'getAllChatThreads']);
-$router->registerController('api/student/save-message', [StudentChat::class, 'saveMessage']);
-$router->registerController('api/student/unseen-messages', [StudentChat::class, 'getUnseenMessages']);
-$router->registerController('api/student/send-single-message', [StudentChat::class, 'sendSingleMessage']);
-$router->registerController('api/student/test-route', [StudentChat::class, 'testRoute']);
+$router->registerController('/student/chat', [Chat::class, 'studentChatView']);
+
 
 $router->resolve();

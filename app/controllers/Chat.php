@@ -1,12 +1,12 @@
 <?php
 
-class StudentChat extends Controller {
-    private ModelStudentChat $studentChat;
+class Chat extends Controller {
+    private ModelChat $chat;
     private ModelUser $user;
     private ModelStudentNotification $notification;
 
     public function __construct() {
-        $this->studentChat = $this->model('ModelStudentChat');
+        $this->chat = $this->model('ModelChat');
         $this->user = $this->model('ModelUser');
         $this->notification = $this->model('ModelStudentNotification');
     }
@@ -38,7 +38,7 @@ class StudentChat extends Controller {
         }
 
 //        Check if the user has involved in the requested chat thread
-        $chatThread = $this->studentChat->getChatThreadById($body['chatThreadId']);
+        $chatThread = $this->chat->getChatThreadById($body['chatThreadId']);
         if (!($chatThread['user_id_1'] == $request->getUserId() || $chatThread['user_id_2'] == $request->getUserId())) {
             header("HTTP/1.0 401 Unauthorized");
             return;
@@ -48,10 +48,10 @@ class StudentChat extends Controller {
         $data['userId'] = $request->getUserId();
 
 //        Mark all the messages of that thread as seen
-        $this->studentChat->markThreadAsSeen($request->getUserId(), $body['chatThreadId']);
+        $this->chat->markThreadAsSeen($request->getUserId(), $body['chatThreadId']);
 
 //            Fetch actual messages
-        $data['messages'] = $this->studentChat->fetchMessagesByChatRoomId($body['chatThreadId']);
+        $data['messages'] = $this->chat->fetchMessagesByChatRoomId($body['chatThreadId']);
         header("HTTP/1.0 200 Success");
         header('Content-type: application/json');
         echo json_encode($data);
@@ -68,7 +68,7 @@ class StudentChat extends Controller {
         }
 
 //        Fetch chats
-        $chatData = $this->studentChat->getChatThreads($request->getUserId());
+        $chatData = $this->chat->getChatThreads($request->getUserId());
 //        Fetch their profile pictures, names and last message
         $temp = [];
         foreach ($chatData as $chatThread) {
@@ -86,8 +86,8 @@ class StudentChat extends Controller {
 
             $chatThread['profile_picture'] = $fetchProfileRecord['profile_picture'];
             $chatThread['name'] = $fetchProfileRecord['first_name'] . " " . $fetchProfileRecord['last_name'];
-            $chatThread['unseen_messages'] = $this->studentChat->getNumberOfUnseenMessages($request->getUserId(), $chatThread['id']);
-            $lastMessage = $this->studentChat->getLastChatMessage($chatThread['id']);
+            $chatThread['unseen_messages'] = $this->chat->getNumberOfUnseenMessages($request->getUserId(), $chatThread['id']);
+            $lastMessage = $this->chat->getLastChatMessage($chatThread['id']);
 
             if (isset($lastMessage['message'])) {
                 $chatThread['last_message'] = $lastMessage['message'];
@@ -127,7 +127,7 @@ class StudentChat extends Controller {
             }
 
 //           Find the receiver using threadId
-            $thread = $this->studentChat->getChatThreadById($body['thread_id']);
+            $thread = $this->chat->getChatThreadById($body['thread_id']);
             $receiver = 0;
 
             if ($thread['user_id_1'] === $request->getUserId()) {
@@ -140,7 +140,7 @@ class StudentChat extends Controller {
 
 //          If all the checks are passed, then make the request
             echo $body['thread_id'];
-            if ($this->studentChat->saveMessage($body['thread_id'], $body['message'], $request->getUserId(), $receiver)) {
+            if ($this->chat->saveMessage($body['thread_id'], $body['message'], $request->getUserId(), $receiver)) {
                 header("HTTP/1.0 200 Success");
                 return;
             }
@@ -164,7 +164,7 @@ class StudentChat extends Controller {
         }
 
 //        Fetch message count
-        $data['unseen_messages'] = $this->studentChat->getNumberOfUnseenMessages($request->getUserId());
+        $data['unseen_messages'] = $this->chat->getNumberOfUnseenMessages($request->getUserId());
         header("HTTP/1.0 200 Success");
         header('Content-type: application/json');
         echo json_encode($data);
@@ -191,12 +191,12 @@ class StudentChat extends Controller {
             }
 
 //            Check if a chat thread already exists
-            $chatThread = $this->studentChat->getChatThreadIdByUser($body['sender'], $body['receiver']);
+            $chatThread = $this->chat->getChatThreadIdByUser($body['sender'], $body['receiver']);
 
             $status = false;
             if (isset($chatThread['id'])) {
 //                Add new message to the thread
-                $status = $this->studentChat->saveMessage(
+                $status = $this->chat->saveMessage(
                     $chatThread['id'],
                     $body['message'],
                     $body['sender'],
@@ -205,9 +205,9 @@ class StudentChat extends Controller {
 
             }else {
 //                Create a new chat thread and save the message
-                $this->studentChat->createNewChatThread($body['sender'], $body['receiver']);
-                $chatThread = $this->studentChat->getChatThreadIdByUser($body['sender'], $body['receiver']);
-                $status = $this->studentChat->saveMessage(
+                $this->chat->createNewChatThread($body['sender'], $body['receiver']);
+                $chatThread = $this->chat->getChatThreadIdByUser($body['sender'], $body['receiver']);
+                $status = $this->chat->saveMessage(
                     $chatThread['id'],
                     $body['message'],
                     $body['sender'],

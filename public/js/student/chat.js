@@ -40,7 +40,7 @@ async function fetchMessages(threadId) {
     console.log(currentChatThread)
 
 
-    const response = await fetch(`http://localhost/unigura/api/student/get-chat?chatThreadId=${threadId}`);
+    const response = await fetch(`http://localhost/unigura/api/chat/get-chat?chatThreadId=${threadId}`);
     const data = await response.json()
 
     if (response.status === 200) {
@@ -87,7 +87,7 @@ async function fetchMessages(threadId) {
 
 // Fetch all the chatThreads for this user
 async function fetchChatThreads() {
-    const response = await fetch('http://localhost/unigura/api/student/get-all-chat-threads');
+    const response = await fetch('http://localhost/unigura/api/chat/get-all-chat-threads');
     if (response.status === 200) {
         let data = await response.json();
         console.log(data);
@@ -250,7 +250,7 @@ async function sendMessage(message, threadId) {
         'message': message,
         'thread_id': threadId
     };
-    const result = await fetch('http://localhost/unigura/api/student/save-message', {
+    const result = await fetch('http://localhost/unigura/api/chat/save-message', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
