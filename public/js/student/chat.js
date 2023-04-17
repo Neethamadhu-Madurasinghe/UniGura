@@ -12,7 +12,7 @@ let connections = new Map();
 let onlineUserList = Array();
 let userId;
 
-fetchChatThreads()
+window.setTimeout(fetchChatThreads, 50);
 
 
 // Periodically update the times on current chat and online status of users
@@ -22,74 +22,14 @@ window.setInterval(() => {
         msgElement.textContent = getTimePassed(msgElement.dataset.time)
     })
 
-}, 5*1000)
-
-// Fetch all the messages for a chatThread when a threadId is given
-async function fetchMessages(threadId) {
-
-    messageBoxUI.innerHTML = "";
-    // find other participant's name and profile picture from chatThread array
-    currentChatThread = chatThreads.filter(chatThread => chatThread.id === Number(threadId))[0];
-    chatTitleUI.textContent = currentChatThread.name;
-    chatImageUI.src = 'http://localhost/unigura/' + currentChatThread.profile_picture;
-
-    // Enable UI access to the connection
-    connections.forEach((value) => value.deactivate())
-    connections.get(currentChatThread.id).activate();
-
-    console.log(currentChatThread)
-
-
-    const response = await fetch(`http://localhost/unigura/api/student/get-chat?chatThreadId=${threadId}`);
-    const data = await response.json()
-
-    if (response.status === 200) {
-        data.messages.forEach(message => {
-            if(message.receiver !== data.userId) {
-                const element = `
-                    <div class="message-box">
-                        <div>
-                            <p class="message">${message.message}</p>
-                            <span class="msg-age" data-time="${message.created_at}">${getTimePassed(message.created_at)}</span>
-                        </div>
-                    </div>
-                `;
-
-                messageBoxUI.innerHTML += element;
-            }else {
-                const element = `
-                    <div class="message-i-box">
-                        <div class="message-box-image-container">
-                          <img src="${'http://localhost/unigura/' + currentChatThread.profile_picture}" alt="" class="profile-picture-img">
-                        </div>
-                        <div class="message-content">
-                          <p class="message">${message.message}.</p>
-                          <span class="msg-age" data-time="${message.created_at}">${getTimePassed(message.created_at)}</span>
-                        </div>
-                    </div>
-                `;
-                messageBoxUI.innerHTML += element;
-            }
-        });
-
-        messageBoxUI.scrollTop = messageBoxUI.scrollHeight;
-
-    }else if(response.status === 400) {
-        showErrorMessage("Invalid message format");
-    }else if(response.status === 401) {
-        
-    }else if(response.status === 404) {
-        showErrorMessage("Route not found. Something went wrong");
-    }else if(response.status !== 200) {
-        showErrorMessage("Internal server error");
-    }
-}
+}, 5*1000);
 
 // Fetch all the chatThreads for this user
 async function fetchChatThreads() {
-    const response = await fetch(`http://localhost/unigura/api/student/get-all-chat-threads`);
+    const response = await fetch('http://localhost/unigura/api/chat/get-all-chat-threads');
     if (response.status === 200) {
         let data = await response.json();
+        console.log(data);
         chatThreads = sortByCreatedAtDesc(data.threads);
         userId = data.id;
         chatThreads.forEach((chatThread, index) => {
@@ -135,7 +75,68 @@ async function fetchChatThreads() {
     }
 }
 
-// Update the online states of contacts
+// Fetch all the messages for a chatThread when a threadId is given
+async function fetchMessages(threadId) {
+
+    messageBoxUI.innerHTML = "";
+    // find other participant's name and profile picture from chatThread array
+    currentChatThread = chatThreads.filter(chatThread => chatThread.id === Number(threadId))[0];
+    chatTitleUI.textContent = currentChatThread.name;
+    chatImageUI.src = 'http://localhost/unigura/' + currentChatThread.profile_picture;
+
+    // Enable UI access to the connection
+    connections.forEach((value) => value.deactivate())
+    connections.get(currentChatThread.id).activate();
+
+    console.log(currentChatThread)
+
+
+    const response = await fetch(`http://localhost/unigura/api/chat/get-chat?chatThreadId=${threadId}`);
+    const data = await response.json()
+
+    if (response.status === 200) {
+        data.messages.forEach(message => {
+            if(message.receiver !== data.userId) {
+                const element = `
+                    <div class="message-box">
+                        <div>
+                            <p class="message">${message.message}</p>
+                            <span class="msg-age" data-time="${message.created_at}">${getTimePassed(message.created_at)}</span>
+                        </div>
+                    </div>
+                `;
+
+                messageBoxUI.innerHTML += element;
+            }else {
+                const element = `
+                    <div class="message-i-box">
+                        <div class="message-box-image-container">
+                          <img src="${'http://localhost/unigura/' + currentChatThread.profile_picture}" alt="" class="profile-picture-img">
+                        </div>
+                        <div class="message-content">
+                          <p class="message">${message.message}.</p>
+                          <span class="msg-age" data-time="${message.created_at}">${getTimePassed(message.created_at)}</span>
+                        </div>
+                    </div>
+                `;
+                messageBoxUI.innerHTML += element;
+            }
+        });
+
+        messageBoxUI.scrollTop = messageBoxUI.scrollHeight;
+
+    }else if(response.status === 400) {
+        showErrorMessage("Invalid message format");
+    }else if(response.status === 401) {
+        
+    }else if(response.status === 404) {
+        showErrorMessage("Route not found. Something went wrong");
+    }else if(response.status !== 200) {
+        showErrorMessage("Internal server error");
+    }
+}
+
+// Update the online states of contacts - get the list of online user list from the first connection in the connections Map
 function updateOnlineStatus() {
     // Find the userId of currently Active chat thread - to show online status on the top
     let currentPartnerId = 0;
@@ -230,7 +231,7 @@ function getTimePassed(dateTimeString) {
     }
 }
 
-// Helper function to sort the array of message threads
+// Helper function to sort the array of message threads based on the latest message
 function sortByCreatedAtDesc(arr) {
     arr.sort(function(a, b) {
         // Convert timestamp strings to Date objects
@@ -249,7 +250,7 @@ async function sendMessage(message, threadId) {
         'message': message,
         'thread_id': threadId
     };
-    const result = await fetch('http://localhost/unigura/api/student/save-message', {
+    const result = await fetch('http://localhost/unigura/api/chat/save-message', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -259,7 +260,9 @@ async function sendMessage(message, threadId) {
     });
 
     const reply = await result.text();
-    if(result.status === 400) {
+    if(result.status === 200) {
+    // Do nothing on 200 LOL
+    } else if(result.status === 400) {
         showErrorMessage("Invalid message format");
         console.log(reply);
     } else if (result.status === 401) {
@@ -267,7 +270,7 @@ async function sendMessage(message, threadId) {
             document.location.href = '../logout';
         });
         console.log(reply);
-    } else if (result.status !== 400) {
+    } else {
         showErrorMessage("Internal server error");
         console.log(reply);
     }

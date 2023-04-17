@@ -111,7 +111,7 @@ async function markNotificationsAsSeen() {
 // Get the number of unseen messages
 async function getUnseenMessageCount() {
     unSeenMessageCountUI.textContent = "00"
-    const respond = await fetch('http://localhost/unigura/api/student/unseen-messages')
+    const respond = await fetch('http://localhost/unigura/api/chat/unseen-messages')
     const result = await respond.json();
 
     if(respond.status === 200) {
