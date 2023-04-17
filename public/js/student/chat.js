@@ -22,7 +22,58 @@ window.setInterval(() => {
         msgElement.textContent = getTimePassed(msgElement.dataset.time)
     })
 
-}, 5*1000)
+}, 5*1000);
+
+// Fetch all the chatThreads for this user
+async function fetchChatThreads() {
+    const response = await fetch('http://localhost/unigura/api/chat/get-all-chat-threads');
+    if (response.status === 200) {
+        let data = await response.json();
+        console.log(data);
+        chatThreads = sortByCreatedAtDesc(data.threads);
+        userId = data.id;
+        chatThreads.forEach((chatThread, index) => {
+
+            let partnetId = 0;
+            if(chatThread.user_id_1 === userId) partnetId = chatThread.user_id_2;
+            else partnetId = chatThread.user_id_1;
+
+            const element = `
+            <div class="contact-card ${ index === 0 ? "contact-card-selected" : "" }" data-threadid="${chatThread.id}">
+                <div class="contact-card-image-container">
+                  <img src="${'http://localhost/unigura/' + chatThread.profile_picture}" alt="" class="profile-picture-img">
+                </div>
+                <div class="details-container">
+                  <div>
+                    <h3>${chatThread.name}</h3>
+                    <span class="msg-count ${chatThread.unseen_messages === 0 || index === 0 ? "hide-msg-count" : "" } ">${chatThread.unseen_messages}</span>
+                  </div>
+                  <p data-userid="${partnetId}" class="contact-status"></p>
+                </div>
+             </div>
+            `;
+
+            contactListUI.innerHTML += element;
+            // Create a connection for each of the chats
+            let conn = new WebSocketConnection(chatThread.id, {messageBoxUI, contactListUI, userStateUI})
+            connections.set(chatThread.id, conn);
+
+            if (index === 0) fetchMessages(chatThread.id);
+        });
+        updateOnlineStatus();
+
+    }else if(response.status === 400) {
+        showErrorMessage("Invalid message format");
+    }else if(response.status === 401) {
+        showErrorMessage("Please login to send message", () => {
+            document.location.href = '../logout';
+        });
+    }else if(response.status === 404) {
+        showErrorMessage("Route not found. Something went wrong");
+    }else if(response.status !== 200) {
+        showErrorMessage("Internal server error");
+    }
+}
 
 // Fetch all the messages for a chatThread when a threadId is given
 async function fetchMessages(threadId) {
@@ -85,58 +136,7 @@ async function fetchMessages(threadId) {
     }
 }
 
-// Fetch all the chatThreads for this user
-async function fetchChatThreads() {
-    const response = await fetch('http://localhost/unigura/api/chat/get-all-chat-threads');
-    if (response.status === 200) {
-        let data = await response.json();
-        console.log(data);
-        chatThreads = sortByCreatedAtDesc(data.threads);
-        userId = data.id;
-        chatThreads.forEach((chatThread, index) => {
-
-            let partnetId = 0;
-            if(chatThread.user_id_1 === userId) partnetId = chatThread.user_id_2;
-            else partnetId = chatThread.user_id_1;
-
-            const element = `
-            <div class="contact-card ${ index === 0 ? "contact-card-selected" : "" }" data-threadid="${chatThread.id}">
-                <div class="contact-card-image-container">
-                  <img src="${'http://localhost/unigura/' + chatThread.profile_picture}" alt="" class="profile-picture-img">
-                </div>
-                <div class="details-container">
-                  <div>
-                    <h3>${chatThread.name}</h3>
-                    <span class="msg-count ${chatThread.unseen_messages === 0 || index === 0 ? "hide-msg-count" : "" } ">${chatThread.unseen_messages}</span>
-                  </div>
-                  <p data-userid="${partnetId}" class="contact-status"></p>
-                </div>
-             </div>
-            `;
-
-            contactListUI.innerHTML += element;
-            // Create a connection for each of the chats
-            let conn = new WebSocketConnection(chatThread.id, {messageBoxUI, contactListUI, userStateUI})
-            connections.set(chatThread.id, conn);
-
-            if (index === 0) fetchMessages(chatThread.id);
-        });
-        updateOnlineStatus();
-
-    }else if(response.status === 400) {
-        showErrorMessage("Invalid message format");
-    }else if(response.status === 401) {
-        showErrorMessage("Please login to send message", () => {
-            document.location.href = '../logout';
-        });
-    }else if(response.status === 404) {
-        showErrorMessage("Route not found. Something went wrong");
-    }else if(response.status !== 200) {
-        showErrorMessage("Internal server error");
-    }
-}
-
-// Update the online states of contacts
+// Update the online states of contacts - get the list of online user list from the first connection in the connections Map
 function updateOnlineStatus() {
     // Find the userId of currently Active chat thread - to show online status on the top
     let currentPartnerId = 0;
@@ -231,7 +231,7 @@ function getTimePassed(dateTimeString) {
     }
 }
 
-// Helper function to sort the array of message threads
+// Helper function to sort the array of message threads based on the latest message
 function sortByCreatedAtDesc(arr) {
     arr.sort(function(a, b) {
         // Convert timestamp strings to Date objects

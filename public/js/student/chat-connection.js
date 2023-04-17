@@ -10,8 +10,10 @@ class WebSocketConnection {
         this.threadId = chatThreadId;
         this.conn = new WebSocket('ws://localhost:8080');
 
+        // What to do when the connection is started
         this.conn.onopen = (e) => {
             console.log('Connection established!');
+            // Send the userId, and threadID to introduce to WS server
             this.conn.send(JSON.stringify({
                 'newRoute': `Personalchat-${chatThreadId}?>`,
                 'id': userId
@@ -19,6 +21,7 @@ class WebSocketConnection {
 
         };
 
+        // What to do in a message is received
         this.conn.onmessage =  (e) => {
             let data = JSON.parse(e.data);
             console.log(data);
@@ -28,8 +31,10 @@ class WebSocketConnection {
                 this.online_list = data.online_users;
             }
 
+            // If the current connection does not belong to the active chat thread, do now show messages on screen
             if(!this.isActive) return;
 
+            // Show the messages on screen
             if (typeof data.msg !== 'undefined') {
                 this.UIElements.messageBoxUI.innerHTML += `
                 <div class="message-i-box">
@@ -59,6 +64,7 @@ class WebSocketConnection {
         };
     }
 
+    // Send a given message into the WS server returns true on success, false on fail
     send(messageText) {
         let currentDate = new Date();
         currentDate = currentDate.getFullYear() + "-" + (currentDate.getMonth()+1) + "-" + currentDate.getDate() +
@@ -91,6 +97,7 @@ class WebSocketConnection {
 
     }
 
+    // Tell the ws server that user is typing
     sendTyping(){
         if (this.conn) {
             this.conn.send(JSON.stringify({
