@@ -47,20 +47,20 @@ MainNavbar::render($request);
                                     <input type="text" name="last_name" id="" value="<?php echo $data['last_name'] ?>">
                             </div>
                             <div class="form-field">
-                                <label for="letter-box-number">Letter Box Number<br>
-                                    <span><?php echo $data['errors']['letter_box_number_error'] ?></span>
-
-                                    <input type="text" name="letter_box_number" id="" value="<?php echo $data['letter_box_number'] ?>">
-                            </div>
-                            <div class="form-field">
                                 <label for="phone-number">Phone Number<br>
                                     <span><?php echo $data['errors']['phone_number_error'] ?></span>
                                     <input type="text" name="phone_number" id="" value="<?php echo $data['phone_number'] ?>">
                             </div>
+
                             <div class="form-field">
-                                <label for="street">Street<br>
-                                    <span><?php echo $data['errors']['street_error'] ?></span>
-                                    <input type="text" name="street" id="" value="<?php echo $data['street'] ?>">
+                                <label for="address_line1">Address Line 1<br>
+                                    <span><?php echo $data['errors']['address_line1_error'] ?></span>
+                                    <input type="text" name="address_line1" id="" value="<?php echo $data['address_line_1'] ?>">
+                            </div>
+                            <div class="form-field">
+                                <label for="address_line2">Address Line 2<br>
+                                    <span><?php echo $data['errors']['address_line2_error'] ?></span>
+                                    <input type="text" name="address_line2" id="" value="<?php echo $data['address_line_2'] ?>">
                             </div>
                             <div class="form-field">
                                 <label for="city">City<br>
@@ -68,11 +68,50 @@ MainNavbar::render($request);
                                     <input type="text" name="city" id="" value="<?php echo $data['city'] ?>">
                             </div>
                             <div class="form-field">
-                                <label for="description">Description<br>
-                                    <span><?php echo $data['errors']['description_error'] ?></span>
-                                    <input type="text" name="description" id="" value="<?php echo $data['description'] ?>">
-                            </div>
+                                <label for="district">District<br>
+                                    <select>
+                                        <?php
+                                        $district_array = array(
+                                            "colombo",
+                                            "gampaha",
+                                            "kalutara",
+                                            "kandy",
+                                            "matale",
+                                            "nuwaraeliya",
+                                            "galle",
+                                            "matara",
+                                            "hambantota",
+                                            "jaffna",
+                                            "kilinochchi",
+                                            "mannar",
+                                            "vavuniya",
+                                            "mulativu",
+                                            "batticaloa",
+                                            "ampara",
+                                            "trincomalee",
+                                            "kurunegala",
+                                            "puttalam",
+                                            "anuradhapura",
+                                            "polonnaruwa",
+                                            "badulla",
+                                            "monaragala",
+                                            "ratnapura",
+                                            "kegalle"
+                                        );
+                                        $selected_district = $data['district'];
 
+                                        echo "<option value=$selected_district>$selected_district </option>";
+                                        for ($i = 0; $i < count($district_array); ++$i) {
+                                            if ($district_array[$i] !== $selected_district) {
+                                                echo "<option value = '$district_array[$i]'>$district_array[$i]</option>";
+                                            }
+                                        }
+
+                                        ?>
+
+                                    </select>
+
+                            </div>
                         </div>
 
                 </div>
@@ -142,121 +181,121 @@ MainNavbar::render($request);
 
 
 
-                <div class="div4">
-                    <h2>Update Your Available Time Slots</h2><br>
+            <div class="div4">
+                <h2>Update Your Available Time Slots</h2><br>
 
-                    <div class="pop-time-table">
-                        <div class="time-table-container">
-                            <table id="time-table">
-                                <tr class="time-table-titles">
-                                    <th id="">Time</th>
-                                    <th id="">Monday</th>
-                                    <th id="">Tuesday</th>
-                                    <th id="">Wednesday</th>
-                                    <th id="">Thursday</th>
-                                    <th id="">Friday</th>
-                                    <th id="">Saturday</th>
-                                    <th id="">Sunday</th>
-                                </tr>
+                <div class="pop-time-table">
+                    <div class="time-table-container">
+                        <table id="time-table">
+                            <tr class="time-table-titles">
+                                <th id="">Time</th>
+                                <th id="">Monday</th>
+                                <th id="">Tuesday</th>
+                                <th id="">Wednesday</th>
+                                <th id="">Thursday</th>
+                                <th id="">Friday</th>
+                                <th id="">Saturday</th>
+                                <th id="">Sunday</th>
+                            </tr>
 
-                                <tr>
-                                    <th>8.00-10.00</th>
-                                    <td class="slot slot-free " data-day="mon" data-time="10:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="tue" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="wed" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="thu" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="fri" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="sat" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="sun" data-time="08:00:00" data-state=0></td>
-                                </tr>
+                            <tr>
+                                <th>8.00-10.00</th>
+                                <td class="slot slot-free " data-day="mon" data-time="10:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="tue" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="wed" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="thu" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="fri" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="sat" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="sun" data-time="08:00:00" data-state=0></td>
+                            </tr>
 
-                                <tr>
-                                    <th>10.00-12.00</th>
-                                    <td class="slot slot-free " data-day="mon" data-time="10:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="tue" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="wed" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="thu" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="fri" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="sat" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="sun" data-time="08:00:00" data-state=0></td>
-                                </tr>
+                            <tr>
+                                <th>10.00-12.00</th>
+                                <td class="slot slot-free " data-day="mon" data-time="10:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="tue" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="wed" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="thu" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="fri" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="sat" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="sun" data-time="08:00:00" data-state=0></td>
+                            </tr>
 
-                                <tr>
-                                    <th>12.00-14.00</th>
-                                    <td class="slot slot-free " data-day="mon" data-time="10:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="tue" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="wed" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="thu" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="fri" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="sat" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="sun" data-time="08:00:00" data-state=0></td>
-                                </tr>
+                            <tr>
+                                <th>12.00-14.00</th>
+                                <td class="slot slot-free " data-day="mon" data-time="10:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="tue" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="wed" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="thu" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="fri" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="sat" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="sun" data-time="08:00:00" data-state=0></td>
+                            </tr>
 
-                                <tr>
-                                    <th>14.00-16.00</th>
-                                    <td class="slot slot-free " data-day="mon" data-time="10:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="tue" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="wed" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="thu" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="fri" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="sat" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="sun" data-time="08:00:00" data-state=0></td>
-                                </tr>
+                            <tr>
+                                <th>14.00-16.00</th>
+                                <td class="slot slot-free " data-day="mon" data-time="10:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="tue" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="wed" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="thu" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="fri" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="sat" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="sun" data-time="08:00:00" data-state=0></td>
+                            </tr>
 
-                                <tr>
-                                    <th>16.00-18.00</th>
-                                    <td class="slot slot-free " data-day="mon" data-time="10:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="tue" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="wed" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="thu" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="fri" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="sat" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="sun" data-time="08:00:00" data-state=0></td>
-                                </tr>
+                            <tr>
+                                <th>16.00-18.00</th>
+                                <td class="slot slot-free " data-day="mon" data-time="10:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="tue" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="wed" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="thu" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="fri" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="sat" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="sun" data-time="08:00:00" data-state=0></td>
+                            </tr>
 
-                                <tr>
-                                    <th>18.00-20.00</th>
-                                    <td class="slot slot-free " data-day="mon" data-time="10:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="tue" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="wed" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="thu" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="fri" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="sat" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="sun" data-time="08:00:00" data-state=0></td>
-                                </tr>
+                            <tr>
+                                <th>18.00-20.00</th>
+                                <td class="slot slot-free " data-day="mon" data-time="10:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="tue" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="wed" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="thu" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="fri" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="sat" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="sun" data-time="08:00:00" data-state=0></td>
+                            </tr>
 
-                                <tr>
-                                    <th>20.00-22.00</th>
-                                    <td class="slot slot-free " data-day="mon" data-time="10:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="tue" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="wed" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="thu" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="fri" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="sat" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="sun" data-time="08:00:00" data-state=0></td>
-                                </tr>
+                            <tr>
+                                <th>20.00-22.00</th>
+                                <td class="slot slot-free " data-day="mon" data-time="10:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="tue" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="wed" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="thu" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="fri" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="sat" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="sun" data-time="08:00:00" data-state=0></td>
+                            </tr>
 
-                                <tr>
-                                    <th>22.00-00.00</th>
-                                    <td class="slot slot-free " data-day="mon" data-time="10:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="tue" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="wed" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="thu" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="fri" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="sat" data-time="08:00:00" data-state=0></td>
-                                    <td class="slot slot-free " data-day="sun" data-time="08:00:00" data-state=0></td>
-                                </tr>
-                            </table>
-                        </div>
+                            <tr>
+                                <th>22.00-00.00</th>
+                                <td class="slot slot-free " data-day="mon" data-time="10:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="tue" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="wed" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="thu" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="fri" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="sat" data-time="08:00:00" data-state=0></td>
+                                <td class="slot slot-free " data-day="sun" data-time="08:00:00" data-state=0></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
-                <div class="submit-btn">
-                    <button type="submit">Save Changes</button>
-                </div>
-                
-           
-        </form>
+    </div>
+    <div class="submit-btn">
+        <button type="submit">Save Changes</button>
+    </div>
+
+
+    </form>
     </div>
 
 </section>
