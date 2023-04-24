@@ -25,6 +25,7 @@ Header::render(
 );
 ?>
 
+
 <div class="main-area-container">
     <div class="main-area">
         <h1 class="main-title">Complete Your Profile</h1>
