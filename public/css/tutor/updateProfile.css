@@ -256,7 +256,6 @@ form {
     font-weight: normal;
 }
 
-/*
 
 .submit-btn button {
     width: 200px;
@@ -264,7 +263,7 @@ form {
     background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
     padding: 10px;
     font-size: 20px;
-    margin-top: -20px;
+    margin-top: -68px;
     border-radius: 5px;
     margin-left: 90px;
     color: white;
@@ -293,6 +292,9 @@ form {
 .btn:active {
     background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
 }
+
+
+/*
 
 .tutor-profile .submit {
     text-align: center;
