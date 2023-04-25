@@ -62,7 +62,7 @@ class ModelTutorUpdateProfile
         $this->db->query('select * from time_slot where tutor_id = :tutorID');
         $this->db->bind(':tutorID', $tutorID);
 
-        return $this->db->resultOne();
+        return $this->db->resultAll();
     }
 
 }

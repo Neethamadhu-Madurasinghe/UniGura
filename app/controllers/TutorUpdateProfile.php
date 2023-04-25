@@ -104,6 +104,7 @@ class TutorUpdateProfile extends Controller{
 
         $tutorProfileDetails = $this->updateProfile->getTutorUserInfo($request->getUserId());
         $tutorBankDetails = $this->updateProfile->getTutorBankDetails($request->getUserId());
+        $tutorTimeSlots = $this->updateProfile->getTimeSlots($request->getUserId());
 
         $data = [
             'id' => $request->getUserId(),
@@ -121,6 +122,7 @@ class TutorUpdateProfile extends Controller{
             'bank_branch'=> $tutorBankDetails[0]['bank_branch'],
             'education_qualification' => $tutorBankDetails[0]['education_qualification'],
             'university' => $tutorBankDetails[0]['university'],
+            'tutorTimeSlots' => $tutorTimeSlots,
             
             'errors' => [
                 'first_name_error' => '',

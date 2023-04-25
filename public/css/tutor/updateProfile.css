@@ -152,8 +152,8 @@ form {
     font-family: 'DM Sans', sans-serif;
     font-size: 0.9rem;
     font-weight: bold;
+    margin-left: 11%;
     width: 300px;
-    margin-left: 20%;
 }
 
 .form-field label span {
@@ -174,7 +174,7 @@ form {
     padding-left: 5px;
     width: 250px;
     margin-top: 6px;
-    margin-left: 20%;
+    margin-left: 11%;
 
 }
 
@@ -192,7 +192,7 @@ form {
     font-size: 0.9rem;
     font-weight: bold;
     width: 300px;
-    margin-left: -25px;
+    margin-left: 107px;
 
 }
 
@@ -205,9 +205,9 @@ form {
     height: 35px;
     border-radius: 5px;
     padding-left: 5px;
-    width: 250px;
+    width: 290px;
     margin-top: 6px;
-    margin-left: -30px;
+    margin-left: 107px;
 
 }
 
@@ -265,7 +265,7 @@ form {
     font-size: 20px;
     margin-top: -68px;
     border-radius: 5px;
-    margin-left: 90px;
+    margin-left: 73px;
     color: white;
     font-family: sans-serif;
     cursor: pointer;
@@ -293,8 +293,6 @@ form {
     background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
 }
 
-
-/*
 
 .tutor-profile .submit {
     text-align: center;
@@ -333,7 +331,6 @@ form {
     background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%) !important;
 }
 
-*/
 
 
 
@@ -358,7 +355,7 @@ form {
     justify-content: center;
     align-items: center;
     padding: 5px;
-    /* width: 100%; */
+    width: 100%;
     height: 80%;
 }
 
