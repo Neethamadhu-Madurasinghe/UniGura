@@ -106,6 +106,7 @@ class TutorUpdateProfile extends Controller{
         $tutorBankDetails = $this->updateProfile->getTutorBankDetails($request->getUserId());
         $tutorTimeSlots = $this->updateProfile->getTimeSlots($request->getUserId());
 
+
         $data = [
             'id' => $request->getUserId(),
             'first_name' => $tutorProfileDetails[0]['first_name'],

@@ -785,20 +785,68 @@ MainNavbar::render($request);
                 </div>
             </div>
             <div class="submit-btn">
-                <button type="submit">Save Changes</button>
+                <button type="submit" id="submit">Save Changes</button>
             </div>
         </form>
     </div>
 
 </section>
 
+
 <script>
     let tableRows = document.querySelectorAll('.slot');
+    const submit = document.querySelector('#submit');
 
     for (var i = 0; i < tableRows.length; i++) {
         tableRows[i].addEventListener("click", function() {
+            this.setAttribute("data-state", 1);
+            this.classList.remove("slot-free");
             this.classList.add("slot-selected");
         });
+    }
+
+
+    submit.addEventListener('click', convertdata);
+
+    function convertdata() {
+        let time_slots = [];
+        for (let i = 0; i < tableRows.length; i++) {
+            let row = tableRows[i];
+            let day = row.dataset.day;
+            let time = row.dataset.time;
+            let state = row.dataset.state;
+            time_slots.push({
+                id: i,
+                day: day,
+                time: time,
+                state: state
+            });
+        }
+        console.log(myArray);
+
+        //convert the json object to a string and store it in a hidden input field
+
+        fetch('http://localhost/unigura/tutor/tutor-time-slot-inputs', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    data: time_slots
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                window.location.href = 'http://localhost/unigura/tutor/dashboard';
+            })
+            .catch((error) => {
+                console.error('Have Error');
+            });
+
+
+
+
     }
 </script>
 
