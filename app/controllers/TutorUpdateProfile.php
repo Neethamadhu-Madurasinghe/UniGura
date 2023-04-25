@@ -41,7 +41,6 @@ class TutorUpdateProfile extends Controller{
                 'address_line2' =>$body['address_line2'],
                 'city' => $body['city'],
                 'district' => $body['district'],
-                'gender' => $body['gender'],
                 'bank_account_owner'=> $body['bank_account_owner'],
                 'bank_account_number'=> $body['bank_account_number'],
                 'bank_name'=> $body['bank_name'],
@@ -68,8 +67,8 @@ class TutorUpdateProfile extends Controller{
             $data['errors']['first_name_error'] = validateName($data['first_name']);
             $data['errors']['last_name_error'] = validateName($data['last_name']);
             $data['errors']['phone_number_error'] = validateTelephoneNumber($data['phone_number'], $this->tutorStudentModel, false);
-            $data['errors']['address_line1_error'] = validateAddressLines($data['address_line_1'],false);
-            $data['errors']['address_line2_error'] = validateAddressLines($data['address_line_2']);
+            $data['errors']['address_line1_error'] = validateAddressLines($data['address_line1'],false);
+            $data['errors']['address_line2_error'] = validateAddressLines($data['address_line2'],false);
             $data['errors']['city_error'] = validateCity($data['city']);
             $data['errors']['account_name_error'] = "";
             $data['errors']['account_number_error'] = "";
