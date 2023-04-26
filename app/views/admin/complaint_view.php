@@ -19,18 +19,20 @@
     <div class="complain-check">
         <form action="updateComplainInquire" method="POST">
             <input type="hidden" name="complainStatus" id="complainStatus" value="<?php echo $data['oneStudentComplaint']->is_inquired ?>">
-            <input type="hidden" name="complainID" value="<?php echo $data['oneStudentComplaint']->id ?>">
+            <input type="hidden" name="studentComplaintId" value="<?php echo $data['oneStudentComplaint']->id ?>">
+
+            <h4>Complaint Status (Solved or not):&nbsp;&nbsp; </h4>
 
             <label for="checking">
-                <?php if ($data['oneStudentComplaint']->is_inquired == 0) { ?>
+                <?php if ($data['oneStudentComplaint']->is_inquired == 1) { ?>
                     <input type="checkbox" name="complainStatus" checked>
                 <?php } else { ?>
                     <input type="checkbox" name="complainStatus">
                 <?php } ?>
             </label>
-
+            
             <div class="submit-status-btn">
-                <button type="submit" name="submit-status-btn" id="submit-status-btn">Submit Complaint Status</button>
+                <button type="submit" name="submit-status-btn" id="submit-status-btn">Submit</button>
             </div>
         </form>
     </div>
@@ -57,7 +59,7 @@
     </div>
 
     <div class="tutor-review-section">
-        <h1>Tutor Reviews</h1>
+        <h1>Tutor's Other Reviews</h1>
         <div class="tutor-review">
 
             <?php foreach ($data['otherStudentComplaints'] as $complain) : ?>

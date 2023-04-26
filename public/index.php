@@ -39,8 +39,11 @@ $router->registerController('/admin/dashboard', [AdminDashboard::class, 'dashboa
 $router->registerController('/admin/subjectModule', [AdminSubjectModule::class, 'subjectsAndModules']);
 $router->registerController('/admin/addSubject', [AdminSubjectModule::class, 'addSubject']);
 $router->registerController('/admin/addModule', [AdminSubjectModule::class, 'addModule']);
+$router->registerController('/admin/updateSubject', [AdminSubjectModule::class, 'updateSubject']);
 $router->registerController('/admin/updateModule', [AdminSubjectModule::class, 'updateModule']);
+$router->registerController('/admin/updateSubjectHideShow', [AdminSubjectModule::class, 'updateSubjectHideShow']);
 $router->registerController('/admin/updateModuleHideShow', [AdminSubjectModule::class, 'updateModuleHideShow']);
+
 
 
 
@@ -95,6 +98,29 @@ $router->registerController('/admin/updatePassword', [AdminProfileView::class, '
 
 
 $router->registerController('/admin/filterForStudentPage', [AdminFilter::class, 'filterForStudentPage']);
+$router->registerController('/admin/filterForTutorPage',[AdminFilter::class,'filterForTutorPage']);
+$router->registerController('/admin/filterForClassPage',[AdminFilter::class,'filterForClassPage']);
+$router->registerController('/admin/filterForStudentComplaint',[AdminFilter::class,'filterForStudentComplaint']);
+
+
+
+$router->registerController('/admin/hideTutor',[AdminHideShowBlockUnblock::class,'hideTutor']);
+$router->registerController('/admin/showTutor',[AdminHideShowBlockUnblock::class,'showTutor']);
+$router->registerController('/admin/blockTutor',[AdminHideShowBlockUnblock::class,'blockTutor']);
+$router->registerController('/admin/unblockTutor',[AdminHideShowBlockUnblock::class,'unblockTutor']);
+
+$router->registerController('/admin/blockStudent',[AdminHideShowBlockUnblock::class,'blockStudent']);
+$router->registerController('/admin/unblockStudent',[AdminHideShowBlockUnblock::class,'unblockStudent']);
+
+$router->registerController('/admin/statistics',[AdminStatistics::class,'statistics']);
+
+$router->registerController('/admin/acceptTutorRequest',[AdminRequirementComplaints::class,'acceptTutorRequest']);
+$router->registerController('/admin/rejectTutorRequest',[AdminRequirementComplaints::class,'rejectTutorRequest']);
+
+$router->registerController('/admin/studentComplainSearchFilter',[AdminSearchFilter::class,'studentComplainSearchFilter']);
+
+
+
 
 
 

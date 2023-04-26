@@ -1,14 +1,17 @@
 <?php
 
-class AdminSubjectModule extends Controller {
+class AdminSubjectModule extends Controller
+{
     private mixed $subjectModel;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->subjectModel = $this->model('ModelAdminSubject');
     }
 
 
-    public function subjectsAndModules(Request $request) {
+    public function subjectsAndModules(Request $request)
+    {
 
         if (!$request->isLoggedIn()) {
             redirect('/login');
@@ -16,6 +19,9 @@ class AdminSubjectModule extends Controller {
 
         $duplicateSubject = [];
         $duplicateModule = [];
+
+        $invalidSubjectName = [];
+        $invalidModuleName = [];
 
         $allSubjects = $this->subjectModel->getSubjects();
         $moduleSubject = array();
@@ -25,7 +31,7 @@ class AdminSubjectModule extends Controller {
             $moduleSubject[$subjectID] = $allModules;
         }
 
-        $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule);
+        $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule, $invalidSubjectName, $invalidModuleName);
 
         // echo '<pre>';
         // print_r($data[0]);
@@ -42,35 +48,129 @@ class AdminSubjectModule extends Controller {
             redirect('/login');
         }
 
-        if ($request->isGet()) {
-            $subjectName = $request->getBody('subjectName')['subjectName'];
+        if ($request->isPost()) {
+            $subjectName = $request->getBody()['subjectName'];
 
             $duplicateSubject = [];
             $duplicateModule = [];
 
+            $invalidSubjectName = [];
+            $invalidModuleName = [];
 
-            $subjectName =  $this->subjectModel->addSubject($subjectName);
-            if ($subjectName == 'Duplicate entry') {
-                $duplicateSubject = 'Duplicate entry';
+            if (strlen($subjectName) < 3) {
+                $invalidSubjectName = 'minimum3Character';
+
+                $allSubjects = $this->subjectModel->getSubjects();
+                $moduleSubject = array();
+                foreach ($allSubjects as $x) {
+                    $subjectID = $x->id;
+                    $allModules = $this->subjectModel->getModule($subjectID);
+                    $moduleSubject[$subjectID] = $allModules;
+                }
+
+                $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule, $invalidSubjectName, $invalidModuleName);
+                $this->view('admin/newSubject', $request, $data);
+            } else {
+                $subjectName =  $this->subjectModel->addSubject($subjectName);
+
+                if ($subjectName == 'Duplicate entry') {
+                    $duplicateSubject = 'Duplicate entry';
+                }
+
+                if (strlen($subjectName) >= 3 && $subjectName != 'Duplicate entry') {
+                    $subjectName =  $this->subjectModel->addSubject($subjectName);
+                }
+
+                $allSubjects = $this->subjectModel->getSubjects();
+                $moduleSubject = array();
+                foreach ($allSubjects as $x) {
+                    $subjectID = $x->id;
+                    $allModules = $this->subjectModel->getModule($subjectID);
+                    $moduleSubject[$subjectID] = $allModules;
+                }
+
+                $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule, $invalidSubjectName, $invalidModuleName);
+                $this->view('admin/newSubject', $request, $data);
             }
-
-            $allSubjects = $this->subjectModel->getSubjects();
-            $moduleSubject = array();
-            foreach ($allSubjects as $x) {
-                $subjectID = $x->id;
-                $allModules = $this->subjectModel->getModule($subjectID);
-                $moduleSubject[$subjectID] = $allModules;
-            }
-
-            $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule);
-
-            // echo '<pre>';
-            // print_r($data[0]);
-            // echo '</pre>';
-
-            $this->view('admin/newSubject', $request, $data);
         }
     }
+
+
+
+    public function updateSubject(Request $request)
+    {
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        if ($request->isPost()) {
+            $bodyData = $request->getBody();
+
+            $subjectId = $bodyData['subject_id'];
+            $subjectName = $bodyData['subject_name'];
+
+            $duplicateSubject = [];
+            $duplicateModule = [];
+
+            $invalidSubjectName = [];
+            $invalidModuleName = [];
+
+
+            if (strlen($subjectName) < 3) {
+                $invalidSubjectName = 'minimum3Character';
+
+                $allSubjects = $this->subjectModel->getSubjects();
+                $moduleSubject = array();
+                foreach ($allSubjects as $x) {
+                    $subjectID = $x->id;
+                    $allModules = $this->subjectModel->getModule($subjectID);
+                    $moduleSubject[$subjectID] = $allModules;
+                }
+
+                $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule, $invalidSubjectName, $invalidModuleName);
+                $this->view('admin/newSubject', $request, $data);
+            } else {
+                $subjectName = $this->subjectModel->updateSubject($subjectId, $subjectName);
+
+
+                if ($subjectName === 'Duplicate entry') {
+                    $duplicateSubject = 'Duplicate entry';
+                }
+
+                $allSubjects = $this->subjectModel->getSubjects();
+                $moduleSubject = array();
+                foreach ($allSubjects as $x) {
+                    $subjectID = $x->id;
+                    $allModules = $this->subjectModel->getModule($subjectID);
+                    $moduleSubject[$subjectID] = $allModules;
+                }
+
+                $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule, $invalidSubjectName, $invalidModuleName);
+                $this->view('admin/newSubject', $request, $data);
+            }
+        }
+    }
+
+
+    public function updateSubjectHideShow(Request $request)
+    {
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        if ($request->isGET()) {
+            $bodyData = $request->getBody();
+
+            $subjectId = $bodyData['subject_id'];
+            $subjectIsHidden = $bodyData['is_hidden'];
+
+            $this->subjectModel->updateSubjectHideShow($subjectId, $subjectIsHidden);
+
+            $this->subjectsAndModules($request);
+        }
+    }
+
+
 
     public function addModule(Request $request)
     {
@@ -79,36 +179,55 @@ class AdminSubjectModule extends Controller {
             redirect('/login');
         }
 
-        if ($request->isGet()) {
-            $moduleName = $request->getBody('moduleName')['moduleName'];
-            $subjectId = $request->getBody('subjectId')['subjectId'];
+        if ($request->isPost()) {
+            $moduleName = $request->getBody()['moduleName'];
+            $subjectId = $request->getBody()['subject_id'];
 
             $duplicateSubject = [];
             $duplicateModule = [];
 
-            $moduleName = $this->subjectModel->addModule($moduleName, $subjectId);
-            if ($moduleName == 'Duplicate entry') {
-                $duplicateModule = 'Duplicate entry';
+            $invalidSubjectName = [];
+            $invalidModuleName = [];
+
+
+            if (strlen($moduleName) < 3) {
+                $invalidModuleName = 'minimum3Character';
+
+                $allSubjects = $this->subjectModel->getSubjects();
+                $moduleSubject = array();
+                foreach ($allSubjects as $x) {
+                    $subjectID = $x->id;
+                    $allModules = $this->subjectModel->getModule($subjectID);
+                    $moduleSubject[$subjectID] = $allModules;
+                }
+
+                $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule, $invalidSubjectName, $invalidModuleName);
+                $this->view('admin/newSubject', $request, $data);
+            } else {
+                $moduleName = $this->subjectModel->addModule($moduleName, $subjectId);
+
+                if ($moduleName === 'Duplicate entry') {
+                    $duplicateModule = 'Duplicate entry';
+                }
+
+                if (strlen($moduleName) >= 3 && $moduleName != 'Duplicate entry') {
+                    $moduleName =  $this->subjectModel->addModule($moduleName, $subjectId);
+                }
+
+                $allSubjects = $this->subjectModel->getSubjects();
+                $moduleSubject = array();
+                foreach ($allSubjects as $x) {
+                    $subjectID = $x->id;
+                    $allModules = $this->subjectModel->getModule($subjectID);
+                    $moduleSubject[$subjectID] = $allModules;
+                }
+
+                $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule, $invalidSubjectName, $invalidModuleName);
+                $this->view('admin/newSubject', $request, $data);
             }
-
-            $allSubjects = $this->subjectModel->getSubjects();
-            $moduleSubject = array();
-            foreach ($allSubjects as $x) {
-                $subjectID = $x->id;
-                $allModules = $this->subjectModel->getModule($subjectID);
-                $moduleSubject[$subjectID] = $allModules;
-            }
-
-            $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule);
-
-            // echo '<pre>';
-            // print_r($data[0]);
-            // echo '</pre>';
-
-            $this->view('admin/newSubject', $request, $data);
-
         }
     }
+
 
     public function updateModule(Request $request)
     {
@@ -116,24 +235,61 @@ class AdminSubjectModule extends Controller {
             redirect('/login');
         }
 
-        if ($request->isGet()) {
-            $moduleName = $request->getBody('moduleName')['moduleName'];
-            $moduleId = $request->getBody('moduleId')['moduleId'];
+        if ($request->isPost()) {
+            $moduleName = $request->getBody()['module_name'];
+            $moduleId = $request->getBody()['module_id'];
 
-            $this->subjectModel->updateModule($moduleName, $moduleId);
-            $this->subjectsAndModules($request);
+            $duplicateSubject = [];
+            $duplicateModule = [];
+
+            $invalidSubjectName = [];
+            $invalidModuleName = [];
+
+
+            if (strlen($moduleName) < 3) {
+                $invalidModuleName = 'minimum3Character';
+
+                $allSubjects = $this->subjectModel->getSubjects();
+                $moduleSubject = array();
+                foreach ($allSubjects as $x) {
+                    $subjectID = $x->id;
+                    $allModules = $this->subjectModel->getModule($subjectID);
+                    $moduleSubject[$subjectID] = $allModules;
+                }
+
+                $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule, $invalidSubjectName, $invalidModuleName);
+                $this->view('admin/newSubject', $request, $data);
+            } else {
+                $moduleName = $this->subjectModel->updateModule($moduleName, $moduleId);
+
+                if ($moduleName === 'Duplicate entry') {
+                    $duplicateModule = 'Duplicate entry';
+                }
+
+                $allSubjects = $this->subjectModel->getSubjects();
+                $moduleSubject = array();
+                foreach ($allSubjects as $x) {
+                    $subjectID = $x->id;
+                    $allModules = $this->subjectModel->getModule($subjectID);
+                    $moduleSubject[$subjectID] = $allModules;
+                }
+
+                $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule, $invalidSubjectName, $invalidModuleName);
+                $this->view('admin/newSubject', $request, $data);
+            }
         }
     }
+
 
     public function updateModuleHideShow(Request $request)
     {
         if (!$request->isLoggedIn()) {
             redirect('/login');
         }
-        
+
         if ($request->isGet()) {
-            $moduleId = $request->getBody('moduleId')['moduleId'];
-            $isHidden = $request->getBody('is_hidden')['is_hidden'];
+            $moduleId = $request->getBody()['module_id'];
+            $isHidden = $request->getBody()['is_hidden'];
 
             $this->subjectModel->updateModuleHideShow($moduleId, $isHidden);
             $this->subjectsAndModules($request);

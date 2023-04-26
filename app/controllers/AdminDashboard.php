@@ -65,9 +65,6 @@ class AdminDashboard extends Controller{
             'numOfTutorRequest' => $numOfTutorRequest
         ];
 
-        
-
-
         $this->view('admin/admin_dashboard', $request,$data);
 
     }
