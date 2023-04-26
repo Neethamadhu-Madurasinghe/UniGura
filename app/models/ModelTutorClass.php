@@ -45,4 +45,22 @@ class ModelTutorClass
 
         return $this->db->resultAllAssoc();
     }
+
+
+    public function getTutoringClassDays($id): array
+    {
+        $this->db->query('SELECT position,title, d.id as dayid , dt.id as day_template_id , is_hidden FROM day AS d JOIN day_template AS dt ON dt.id = d.day_temp_id  WHERE class_id = :id ORDER BY dt.position ASC;');
+
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        return $this->db->resultAllAssoc();
+    }
+
+    public function setIshidden($id) : bool
+    {
+        $this->db->query('UPDATE day SET is_hidden = 1  WHERE id = :id;');
+        $this->db->bind('id', $id , PDO::PARAM_INT);
+
+        return $this->db->execute();
+    }
 }

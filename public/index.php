@@ -154,6 +154,9 @@ $router->registerController('/tutor/notifications', [TutorNotification::class, '
 
 $router->registerController('/tutor/change-profile-picture', [TutorUpdateProfile::class, 'changeProfilePicture']);
 
+$router->registerController('/tutor/dayunhide', [TutorClass::class, 'day_unhide']);
+
+
 
 
 //payment checkout
