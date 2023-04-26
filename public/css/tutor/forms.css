@@ -204,6 +204,24 @@ p {
   
 }
 
+.lightbox .form_container .upload_label{
+    background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+    border-radius: 0px 5px 5px 0px;
+    color: #ffffff;
+    width: 100%;
+    border: none;
+    height: 37px;
+    margin-top: 0px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 0%;
+    border: 1px solid #ff8800;
+    padding-top: 7px ;
+    padding-left: 10px;
+  
+}
+
 .lightbox .form_container .upload_btn:hover{
     background: #ff8f0ea9;
     color: #ffffff; 

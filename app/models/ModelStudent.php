@@ -138,5 +138,4 @@ class ModelStudent {
 
         return $this->db->execute();
     }
-
 }

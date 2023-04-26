@@ -304,6 +304,7 @@ form{
     pointer-events: none;
     transform: translateX(100%);
 }
+
 form.secActive .second{
     display: block;
     pointer-events: auto;

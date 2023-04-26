@@ -27,6 +27,7 @@ class StudentTutorProfile extends Controller {
         $body = $request->getBody();
         if (!(isset($body['template_id']) && $this->classTemplateModel->doesTemplateExist($body['template_id']))) {
 //            TODO: Handle
+            redirect('/not-found');
         }
 
         if (!isset($body['mode'])) {

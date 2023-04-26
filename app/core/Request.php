@@ -74,6 +74,12 @@ class Request {
         }
     }
 
+//    Check if user has a verified email
+    public function isVerified() {
+        return $this->isLoggedIn() && $_SESSION['is_verified'] == 1;
+
+    }
+
     //  Get profile picture
     public function getUserPicture() {
         if ($this->isJustLoggedIn() && ($this->isStudent() || $this->isTutor())) {

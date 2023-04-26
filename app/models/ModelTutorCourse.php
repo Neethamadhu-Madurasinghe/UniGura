@@ -15,15 +15,12 @@ public function setClassTemplateDay($data): bool
         $this->db->query('INSERT INTO  day_template SET
                  class_template_id = :id,
                  title = :title,
-                 meeting_link = :meeting_link,
                  position = :position'
                  );
 
-        print_r($data);
 
         $this->db->bind('id', $data['id'], PDO::PARAM_INT);
         $this->db->bind('title', $data['title'], PDO::PARAM_STR);
-        $this->db->bind('meeting_link', $data['meeting_link'], PDO::PARAM_STR);
         $this->db->bind('position', $data['position'], PDO::PARAM_STR);
 
         return $this->db->execute();
@@ -32,7 +29,16 @@ public function setClassTemplateDay($data): bool
 
     public function getTutoringClassTemplateDays($id): array
     {
-        $this->db->query('SELECT * FROM day_template WHERE class_template_id = :id ORDER BY position ASC;');
+        $this->db->query('SELECT * FROM day_template  WHERE class_template_id = :id ORDER BY position ASC;');
+
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        return $this->db->resultAllAssoc();
+    }
+
+    public function getTutoringActivities($id): array
+    {
+        $this->db->query('SELECT * FROM activity_template  WHERE day_template_id = :id ;');
 
         $this->db->bind('id', $id, PDO::PARAM_INT);
 
@@ -149,6 +155,37 @@ public function setClassTemplateDay($data): bool
         $this->db->bind('link', $data['activity'], PDO::PARAM_STR);
         $this->db->bind('type', $data['type'], PDO::PARAM_STR);
 
+        return $this->db->execute();
+    }
+
+    public function getDayTemplateDetails($id): array
+    {
+        $this->db->query('SELECT * FROM day_template WHERE id = :id;');
+
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        return $this->db->resultAllAssoc();
+    }
+
+    public function updateDayTemplate($data) : bool 
+    {
+
+        $this->db->query('UPDATE day_template SET title = :title , position = :position   WHERE id = :id;');
+        $this->db->bind('title', $data['title'], PDO::PARAM_STR);
+        $this->db->bind('position', $data['position'], PDO::PARAM_STR);
+        $this->db->bind('id', $data['id'], PDO::PARAM_INT);
+
+//      Returns whether the row count is greater than 0
+        return $this->db->execute();
+    }
+
+    public function deleteDayTemplate($id) : bool 
+    {
+
+        $this->db->query('DELETE FROM day_template WHERE id = :id;');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+//      Returns whether the row count is greater than 0
         return $this->db->execute();
     }
 

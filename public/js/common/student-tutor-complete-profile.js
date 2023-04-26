@@ -98,7 +98,7 @@ function convertCoordinates(pos) {
 
 nextBtn.addEventListener("click", () => {
     form.classList.add('secActive');
-    console.log('ok')
+    
 })
 
 backBtn.addEventListener("click", () => form.classList.remove('secActive'));

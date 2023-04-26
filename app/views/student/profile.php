@@ -240,7 +240,7 @@ MainNavbar::render($request);
             </div>
         </div>
 
-        <div class="request-history">
+        <div class="request-history" id="requests">
             <h1>Pending Tutor Requests</h1>
             <div class="request-history-container">
                 <table class="data-table">
