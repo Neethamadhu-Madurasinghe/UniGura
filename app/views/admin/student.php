@@ -92,7 +92,7 @@
 
             <div class="visibility-filter">
                 <div class="duration">
-                    <h1>By Visibility(Perm)</h1>
+                    <h1>By Visibility</h1>
                 </div>
                 <div class="visibility-select">
                     <div class="checkbox-button">
