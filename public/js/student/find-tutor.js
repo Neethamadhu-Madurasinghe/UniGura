@@ -17,6 +17,8 @@ const _modeUI = document.getElementById('mode');
 // But open layers follows Longitude first and Latitude
 const defaultPosition = [_longitudeUI.value, _latitudeUI.value];
 
+let radius = +(_distanceUI.value.split("K")[0]);
+
 // Script for include map element into form
 generateMapComponent();
 
@@ -56,21 +58,89 @@ _locationUI.addEventListener('change', function(e) {
 
 
 function generateMapComponent() {
+  let diameter = radius * 1000;
+  let circle = new ol.geom.Circle(ol.proj.fromLonLat(defaultPosition), diameter);
+
+  let feature = new ol.Feature(circle);
+
+  let vectorLayer = new ol.layer.Vector({
+    source: new ol.source.Vector({
+      features: [feature],
+    }),
+  });
+
   let map = new ol.Map({
     target: 'map',
     layers: [
       new ol.layer.Tile({
         source: new ol.source.OSM()
-      })
+      }),
+      vectorLayer
     ],
     view: new ol.View({
       center: ol.proj.fromLonLat(defaultPosition),
       zoom: 15
     })
   });
-  
+
+  // Set styling for the circle
+  feature.setStyle(
+      new ol.style.Style({
+        fill: new ol.style.Fill({
+          color: 'rgba(255, 204, 51, 0.2)',
+        }),
+        stroke: new ol.style.Stroke({
+          color: 'rgba(255, 204, 51, 1)',
+          width: 2,
+        }),
+        image: new ol.style.Circle({
+          radius: 7,
+          fill: new ol.style.Fill({
+            color: '#ffcc33',
+          }),
+        }),
+      })
+  );
+
+  // Inner function that updates the circle
+  function updateDistanceCircle() {
+    vectorLayer.getSource().removeFeature(feature);
+
+    radius = +(_distanceUI.value.split("K")[0]);
+    radius = +(_distanceUI.value.split("K")[0]);
+    diameter = radius * 1000;
+
+    circle = new ol.geom.Circle(ol.proj.fromLonLat([_longitudeUI.value, _latitudeUI.value]), diameter);
+    feature = new ol.Feature(circle);
+    vectorLayer.getSource().addFeature(feature);
+
+    feature.setStyle(
+        new ol.style.Style({
+          fill: new ol.style.Fill({
+            color: 'rgba(255, 204, 51, 0.2)',
+          }),
+          stroke: new ol.style.Stroke({
+            color: 'rgba(255, 204, 51, 1)',
+            width: 2,
+          }),
+          image: new ol.style.Circle({
+            radius: 7,
+            fill: new ol.style.Fill({
+              color: '#ffcc33',
+            }),
+          }),
+        })
+    );
+  }
+
+
+  // Change the circle size when user is selecting different distances
+  _distanceUI.addEventListener('change', updateDistanceCircle);
+
+
+  // Market element on map
   let marker_el = document.getElementById('marker');
-  
+
   // Making a marker overlay
   let marker = new ol.Overlay({
     position: ol.proj.fromLonLat(defaultPosition),
@@ -79,21 +149,22 @@ function generateMapComponent() {
     stopEvent: false,
     dragging: false
   });
-  
+
   map.addOverlay(marker);
-  
-  
+
+
   _longitudeUI.value = defaultPosition[0];
   _latitudeUI.value = defaultPosition[1];
-  
-  
+
+
   // onclick get the position and display it
   map.on('click', function(e) {
     const point = convertCoodinates(e.coordinate);
     _longitudeUI.value = point[0];
     _latitudeUI.value = point[1];
     marker.setPosition(e.coordinate);
-  });  
+    updateDistanceCircle();
+  });
 
   // Hide the map by defualt
   mapComponentUI.style.display = 'none';
