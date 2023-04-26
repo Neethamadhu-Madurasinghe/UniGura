@@ -152,6 +152,8 @@ $router->registerController('/tutor/getclassdetails', [TutorClass::class, 'getcl
 
 $router->registerController('/tutor/notifications', [TutorNotification::class, 'notification']);
 
+$router->registerController('/tutor/change-profile-picture', [TutorUpdateProfile::class, 'changeProfilePicture']);
+
 
 
 //payment checkout

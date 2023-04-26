@@ -47,12 +47,21 @@ form {
     border-radius: 10px;
     /* height: 90%; */
     width: 100%;
-
-margin-right: 50px;
+    margin-right: 50px;
 }
 
+.div5 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-right: 35%;
+    margin-bottom: 20px;
 
-
+}
 
 .div4 {
     grid-area: 2 / 2 / 3 / 4;
@@ -64,6 +73,7 @@ margin-right: 50px;
     /* margin-top: 40px; */
     /* height: 105%; */
 }
+
 
 
 .div2 h2 {
@@ -86,6 +96,7 @@ margin-right: 50px;
     margin-bottom: 30px;
 }
 
+
 :root {
     --bright-orange: #FF8125;
     --lightest-orange: #FFCFAC;
@@ -94,7 +105,6 @@ margin-right: 50px;
 
 .upload-picture-container {
     display: flex;
-    justify-content: center;
     flex-direction: column;
     align-items: center;
 }
@@ -105,8 +115,10 @@ margin-right: 50px;
 }
 
 .upload-picture-container img {
-    width: 170px;
+    width: 180px;
+   height: 180px;
     margin-bottom: 20px;
+    border-radius: 100%;
 }
 
 

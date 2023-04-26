@@ -17,7 +17,7 @@ Header::render(
     [
         URLROOT . '/public/css/tutor/base.css?v=1.8',
         URLROOT . '/public/css/tutor/style.css?v=1.9',
-        URLROOT . '/public/css/tutor/updateProfile.css?v=1.5'
+        URLROOT . '/public/css/tutor/updateProfile.css?v=1.8'
     ]
 );
 MainNavbar::render($request);
@@ -26,15 +26,21 @@ MainNavbar::render($request);
 <section>
     <div class="main-area-container">
 
+
+
+    <div class='div5'>
+        <form action="<?php echo URLROOT . '/tutor/change-profile-picture' ?>" id="image-upload-form" enctype="multipart/form-data" method="post">
+            <h1 class="main-title">My Profile</h1>
+            <div class="upload-picture-container">
+                <img src="<?php echo URLROOT . $request->getUserPicture() ?>" alt="" id="profile-picture">
+                <input type="file" name="profile-picture" id="actual-btn" accept="image/*" hidden onchange="this.form.submit()" />
+                <label for="actual-btn" id="profile-image-upload-btn">Change and Save</label>
+            </div>
+        </form>
+    </div>
         <form action="update-profile" method="POST">
             <div class="parent">
                 <div class="div1">
-                    <div class="upload-picture-container">
-                        <h1 class="main-title">My Profile</h1>
-                        <img src="<?php echo URLROOT; ?>/public/img/tutor/profile.png" alt="" id="profile-picture">
-                        <input type="file" id="actual-btn" name="profile-picture" accept="image/*" hidden />
-                        <label for="actual-btn" id="profile-image-upload-btn">Upload Profile Picture</label>
-                    </div>
                     <div class="tutor-profile">
                         <div class="form-field">
                             <label for="first-name">First Name<br>

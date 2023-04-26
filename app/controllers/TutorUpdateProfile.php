@@ -28,6 +28,12 @@ class TutorUpdateProfile extends Controller{
             redirectBasedOnUserRole($request);
         }
 
+        $imagePath = handleUpload(
+            array('.png', 'jpeg', 'jpg', 'JPG'),
+            '\\public\\profile_pictures\\',
+            'profile-picture'
+        );
+
 
         if ($request->isPost()) {
             $body = $request->getBody();
@@ -141,6 +147,42 @@ class TutorUpdateProfile extends Controller{
             ]];
 
         $this->view('tutor/updateProfile', $request, $data);
+    }
+
+    public function changeProfilePicture(Request $request) {
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        if (!$request->isTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+//      Post request handler
+        if ($request->isPost()) {
+            $imagePath = handleUpload(
+                array('.png', 'jpeg', 'jpg', 'JPG'),
+                '\\public\\profile_pictures\\',
+                'profile-picture'
+            );
+
+            if ($imagePath) {
+//                Get previous image
+                $previousImage = $request->getUserPicture();
+
+                if ($this->updateProfile->setTutorProfilePicture($imagePath, $request->getUserId())) {
+//                    Delete the previous image if is not the default image
+                    if ($previousImage && $previousImage !== '/public/img/student/profile.png') {
+                        unlink(ROOT . $previousImage);
+                    }
+                    $_SESSION['user_picture'] = $imagePath;
+                }
+
+            }
+
+            redirect('/tutor/update-profile');
+
+        }
     }
 
 }
