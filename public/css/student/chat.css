@@ -226,7 +226,6 @@ h1 {
     background-color: #FFA114;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
-    cursor: pointer;
 }
 
 .chat-container-title-image-container {
@@ -462,6 +461,19 @@ h1 {
 
 .cancel-btn {
     background-color: red;
+    color: white;
+    font-weight: bold;
+    border-radius: 50%;
+    border: none;
+    font-size: 1.2rem;
+    height: 36px;
+    width: 36px;
+    transition: all 100ms;
+    cursor: pointer;
+}
+
+.cancel-btn:hover {
+    transform: scale(1.1);
 }
 
 .green {
