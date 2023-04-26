@@ -43,7 +43,7 @@ _modeUI.addEventListener('change', function(e) {
 })
 
 
-// Make map component only visisble when preferd class Mode is Both and Physical
+// Make map component only visible when preferred class Mode is Both and Physical
 _locationUI.addEventListener('change', function(e) {
   if(e.target.value !== 'default') {
     mapComponentUI.style.display = 'block';
@@ -103,7 +103,7 @@ function generateMapComponent() {
 
 
 
-// Helper function to convert coodinates from EPSG:3857 to EPSG:4326
+// Helper function to convert coordinates from EPSG:3857 to EPSG:4326
 function convertCoodinates(pos) {
   let x = pos[0];
   let y = pos[1];
