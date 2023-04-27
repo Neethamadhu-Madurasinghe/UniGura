@@ -113,6 +113,8 @@ $router->registerController('/tutor/aproved', [TutorPending::class, 'tutorAprove
 $router->registerController('tutor/complete-bank-detials', [TutorPending::class, 'tutorCompleteBankDetials']);
 $router->registerController('tutor/tutor-time-slot-input', [TutorPending::class, 'tutorTimeSlotInput']);
 $router->registerController('tutor/tutor-time-slot-inputs', [TutorPending::class, 'help']);
+$router->registerController('tutor/update-time-slots', [TutorPending::class, 'updateTimeSlots']);
+
 
 
 

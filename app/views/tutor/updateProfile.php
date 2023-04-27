@@ -28,16 +28,16 @@ MainNavbar::render($request);
 
 
 
-    <div class='div5'>
-        <form action="<?php echo URLROOT . '/tutor/change-profile-picture' ?>" id="image-upload-form" enctype="multipart/form-data" method="post">
-            <h1 class="main-title">My Profile</h1>
-            <div class="upload-picture-container">
-                <img src="<?php echo URLROOT . $request->getUserPicture() ?>" alt="" id="profile-picture">
-                <input type="file" name="profile-picture" id="actual-btn" accept="image/*" hidden onchange="this.form.submit()" />
-                <label for="actual-btn" id="profile-image-upload-btn">Change and Save</label>
-            </div>
-        </form>
-    </div>
+        <div class='div5'>
+            <form action="<?php echo URLROOT . '/tutor/change-profile-picture' ?>" id="image-upload-form" enctype="multipart/form-data" method="post">
+                <h1 class="main-title">My Profile</h1>
+                <div class="upload-picture-container">
+                    <img src="<?php echo URLROOT . $request->getUserPicture() ?>" alt="" id="profile-picture">
+                    <input type="file" name="profile-picture" id="actual-btn" accept="image/*" hidden onchange="this.form.submit()" />
+                    <label for="actual-btn" id="profile-image-upload-btn">Change and Save</label>
+                </div>
+            </form>
+        </div>
         <form action="update-profile" method="POST">
             <div class="parent">
                 <div class="div1">
@@ -786,12 +786,13 @@ MainNavbar::render($request);
                                     <?php endforeach; ?>
                                 </tr>
                             </table>
+                            <!-- <button type="submit" id="submits">Save Changes</button> -->
                         </div>
                     </div>
                 </div>
             </div>
             <div class="submit-btn">
-                <button type="submit" id="submit">Save Changes</button>
+                <button type="submit">Save Changes</button>
             </div>
         </form>
     </div>
@@ -803,12 +804,28 @@ MainNavbar::render($request);
     let tableRows = document.querySelectorAll('.slot');
     const submit = document.querySelector('#submit');
 
+
     for (var i = 0; i < tableRows.length; i++) {
         tableRows[i].addEventListener("click", function() {
-            this.setAttribute("data-state", 1);
-            this.classList.remove("slot-free");
-            this.classList.add("slot-selected");
+            // console.log(this.className);
+            if (this.className == "slot slot-free") {
+                this.setAttribute("data-state", 1);
+                this.classList.remove("slot-free");
+                this.classList.add("slot-used");
+            } else if (this.className == "slot slot-used") {
+                this.setAttribute("data-state", 0);
+                this.classList.remove("slot-used");
+                this.classList.add("slot-free");
+            }
         });
+    }
+
+    for (var i = 0; i < tableRows.length; i++) {
+        if (tableRows[i].className == "slot slot-free") {
+            tableRows[i].setAttribute("data-state", 0);
+        } else if (tableRows[i].className == "slot slot-used") {
+            tableRows[i].setAttribute("data-state", 1);
+        }
     }
 
 
@@ -822,17 +839,17 @@ MainNavbar::render($request);
             let time = row.dataset.time;
             let state = row.dataset.state;
             time_slots.push({
-                id: i,
-                day: day,
-                time: time,
+                // id: i,
+                // day: day,
+                // time: time,
                 state: state
             });
         }
-        console.log(myArray);
+        console.log(time_slots);
 
         //convert the json object to a string and store it in a hidden input field
 
-        fetch('http://localhost/unigura/tutor/tutor-time-slot-inputs', {
+        fetch('http://localhost/unigura/tutor/update-time-slots', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -847,7 +864,7 @@ MainNavbar::render($request);
                 window.location.href = 'http://localhost/unigura/tutor/dashboard';
             })
             .catch((error) => {
-                console.error('Have Error');
+                console.log('Have Error');
             });
 
 
