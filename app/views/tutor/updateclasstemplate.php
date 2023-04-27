@@ -22,6 +22,7 @@ Header::render(
 );
 ?>
 
+
 <div class="lightbox">
     <div class="box" style="top: 10%;">
         <h2 style="text-align: center;width: 100%;padding-bottom: 10px; font-weight: 400;">Update Course</h2>
@@ -41,7 +42,6 @@ Header::render(
                         <div class="dropdown_name">
                             <label for="Duration">Duration per Session</label>
                         </div>
-
                         <select name="duration" id="duration">
                             <?php
                             $duration_array = array(2, 4, 6);

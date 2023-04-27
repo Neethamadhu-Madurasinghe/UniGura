@@ -36,7 +36,7 @@ class TutorPayments extends Controller
         $data['monthlyearns'] = json_encode($this->paymentModel->getPaymentsByMonth($request->getUserId()));
         
 
-
+        echo $request->getUserId();
         $this->view('tutor/payments', $request, $data);
     }
 
