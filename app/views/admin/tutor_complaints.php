@@ -55,8 +55,8 @@
                 <thead>
                     <tr>
                         <th>Complaint's Title</th>
-                        <th>Student</th>
                         <th>Tutor</th>
+                        <th>Student</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>

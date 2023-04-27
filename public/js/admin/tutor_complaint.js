@@ -49,7 +49,6 @@ search_tutor_name.addEventListener('keyup', () => {
     console.log(tutor_complaint_filter_value);
     console.log(currentPageNum);
 
-
     const xhr = new XMLHttpRequest();
 
     xhr.open("GET", `filterForTutorComplaint?search_tutor_name_value=${searchTutorName}&tutor_complaint_filter_value=${tutor_complaint_filter_value}&currentPageNum=${currentPageNum}`, true);
@@ -75,6 +74,7 @@ tutor_complaint_filter.addEventListener('change', () => {
 
     console.log(searchTutorName);
     console.log(tutor_complaint_filter_value);
+    console.log(currentPageNum);
 
     const xhr = new XMLHttpRequest();
 
