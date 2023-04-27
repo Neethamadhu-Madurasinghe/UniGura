@@ -51,7 +51,7 @@ MainNavbar::render($request);
                                 <div class="status"> <i class="fa fa-circle online"></i> online </div>
                             </div>
                         </li>
-                        <li class="clearfix">
+                        <li class="clearfix active">
                             <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
                             <div class="about">
                                 <div class="name">Mike Thomas</div>
@@ -122,11 +122,11 @@ MainNavbar::render($request);
                         <div class="row">
                             <div class="col-lg-6">
                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar" id="main-chat-image">
                                 </a>
                                 <div class="chat-about">
                                     <h6 class="m-b-0">Aiden Chavez</h6>
-                                    <small>Last seen: 2 hours ago</small>
+                                    <small id="user-state">Last seen: 2 hours ago</small>
                                 </div>
                             </div>
                             <div class="col-lg-6 hidden-sm text-right">
@@ -142,18 +142,19 @@ MainNavbar::render($request);
                             <li class="clearfix">
                                 <div class="message-data text-right">
                                     <span class="message-data-time">10:10 AM, Today</span>
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
                                 </div>
                                 <div class="message other-messages float-right"> Hi Aiden, how are you? How is the project coming along? </div>
                             </li>
                             <li class="clearfix">
                                 <div class="message-data">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
                                     <span class="message-data-time">10:12 AM, Today</span>
                                 </div>
                                 <div class="message my-message">Are we meeting today?</div>                                    
                             </li>                               
                             <li class="clearfix">
                                 <div class="message-data">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
                                     <span class="message-data-time">10:15 AM, Today</span>
                                 </div>
                                 <div class="message my-message">Project has been already finished and I have results to show you.</div>
@@ -161,27 +162,25 @@ MainNavbar::render($request);
                             <li class="clearfix">
                                 <div class="message-data text-right">
                                     <span class="message-data-time">10:10 AM, Today</span>
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
                                 </div>
                                 <div class="message other-messages float-right"> Hi Aiden, how are you? How is the project coming along? </div>
                             </li>
                             <li class="clearfix">
                                 <div class="message-data text-right">
                                     <span class="message-data-time">10:10 AM, Today</span>
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
                                 </div>
                                 <div class="message other-messages float-right"> Hi Aiden, how are you? How is the project coming along? </div>
                             </li>
                             <li class="clearfix">
                                 <div class="message-data">
-                                    <span class="message-data-time">10:12 AM, Today</span>
+                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
+                                <span class="message-data-time">10:12 AM, Today</span>
                                 </div>
                                 <div class="message my-message">Are we meeting today?</div>                                    
                             </li> 
                             <li class="clearfix">
                                 <div class="message-data text-right">
                                     <span class="message-data-time">10:10 AM, Today</span>
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
                                 </div>
                                 <div class="message other-messages float-right"> Hi Aiden, how are you? How is the project coming along? </div>
                             </li>
@@ -190,8 +189,8 @@ MainNavbar::render($request);
                     <div class="chat-message clearfix">
                         <div class="input-group mb-0" id="type">
                             
-                            <input type="text" class="form-control" style="border:0Px ;border-top: 1px solid rgba(134, 134, 136, 0.158);border-radius: 0px;font-size:16px;" placeholder="Enter text here..." >                                    
-                            <div class="input-group-prepend" style="border-top: 1px solid rgba(134, 134, 136, 0.158)">
+                            <input id="msg-box" type="text" class="form-control" style="border:0Px ;border-top: 1px solid rgba(134, 134, 136, 0.158);border-radius: 0px;font-size:16px;" placeholder="Enter text here..." >                                    
+                            <div id="btn-send" class="input-group-prepend" style="border-top: 1px solid rgba(134, 134, 136, 0.158)">
                                 <span class="input-group-text" style="background-color: rgb(255, 255, 255);border:0Px;border-radius: 0px; width:100%"><i class="fa fa-send" style="color: white;     background: linear-gradient(180deg, #F7711A 0%, #FFA620 100%);padding: 8px;border-radius: 50%;cursor:pointer;margin:7px"></i></span>
                             </div>
                         </div>
@@ -208,7 +207,9 @@ MainNavbar::render($request);
 
 <?php Footer::render(
     [
-     URLROOT . '/public/js/tutor/tutor-main.js?v=1.2'
+     URLROOT . '/public/js/tutor/tutor-main.js?v=1.2',
+     URLROOT . '/public/js/tutor/chat.js',
+     URLROOT . '/public/js/tutor/chat-connection.js'
     ]
 );
 ?>
