@@ -26,7 +26,7 @@ Header::render(
 <div class="lightbox">
     <div class="box" style="top: 10%;">
         <h2 style="text-align: center;width: 100%;padding-bottom: 10px; font-weight: 400;">Update Course</h2>
-        <button class="close close_x" ><i class="fa fa-times "></i></button>
+        <button class="close close_x"><i class="fa fa-times "></i></button>
         <div class="form_container">
             <form action="" method="POST" enctype='multipart/form-data'>
                 <div class="grid">
@@ -84,13 +84,11 @@ Header::render(
     <script>
         const close = document.querySelector('.close_x');
 
-        document.addEventListener('DOMContentLoaded', (event) => {
-            if(close){
-                event.target.addEventListener('click', function() {
-                    window.location = "http://localhost/unigura/tutor/dashboard";
-                })
-            }
-        });
+        if (close) {
+            close.addEventListener('click', function() {
+                window.location = "http://localhost/unigura/tutor/dashboard";
+            });
+        }
     </script>
     <?php Footer::render(
         []

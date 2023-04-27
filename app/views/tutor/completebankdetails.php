@@ -37,7 +37,16 @@ Header::render(
                             <label for="bank-name">Bank Name
                                 <span><?php echo $data['errors']['bank_error'] ?></span>
                             </label>
-                            <input type="text" name="bank" id="" value="<?php echo $data['bank'] ?>">
+                            <select id="bank" name="bank">
+                                <option value="">--Please select--</option>
+                                <option value="Commercial Bank" <?php echo $data['bank'] === 'Commercial Bank' ? 'selected' : '' ?>>Commercial Bank</option>
+                                <option value="Hatton National Bank" <?php echo $data['bank'] === 'Hatton National Bank' ? 'selected' : '' ?>>Hatton National Bank</option>
+                                <option value="National Savings Bank" <?php echo $data['bank'] === 'National Savings Bank' ? 'selected' : '' ?>>National Savings Bank</option>
+                                <option value="Pan Asia Banking Corporation" <?php echo $data['bank'] === 'Pan Asia Banking Corporation' ? 'selected' : '' ?>>Pan Asia Banking Corporation</option>
+                                <option value="People's Bank" <?php echo $data['bank'] === "People's Bank" ? 'selected' : '' ?>>People's Bank</option>
+                                <option value="Sampath Bank" <?php echo $data['bank'] === 'Sampath Bank' ? 'selected' : '' ?>>Sampath Bank</option>
+                                <option value="Seylan Bank" <?php echo $data['bank'] === 'Seylan Bank' ? 'selected' : '' ?>>Seylan Bank</option>
+                            </select>
                         </div>
                         <div class="form-field">
                             <label for="account-number">Account Number
@@ -57,7 +66,16 @@ Header::render(
                             <label for="branch"> Branch
                                 <span><?php echo $data['errors']['branch_error'] ?></span>
                             </label>
-                            <input type="text" name="branch" id="" value="<?php echo $data['branch'] ?>">
+                            <select id="branch" name="branch">
+                                <option value="">--Please select--</option>
+                                <option value="Colombo" <?php echo $data['branch'] === 'Colombo' ? 'selected' : '' ?>>Colombo</option>
+                                <option value="Kandy" <?php echo $data['branch'] === 'Kandy' ? 'selected' : '' ?>>Kandy</option>
+                                <option value="Galle" <?php echo $data['branch'] === 'Galle' ? 'selected' : '' ?>>Galle</option>
+                                <option value="Jaffna" <?php echo $data['branch'] === 'Jaffna' ? 'selected' : '' ?>>Jaffna</option>
+                                <option value="Matara" <?php echo $data['branch'] === 'Matara' ? 'selected' : '' ?>>Matara</option>
+                                <option value="Negombo" <?php echo $data['branch'] === 'Negombo' ? 'selected' : '' ?>>Negombo</option>
+                                <option value="Trincomalee" <?php echo $data['branch'] === 'Trincomalee' ? 'selected' : '' ?>>Trincomalee</option>
+                            </select>
                         </div>
                     </div>
 

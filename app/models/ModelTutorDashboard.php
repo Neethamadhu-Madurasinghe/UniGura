@@ -195,7 +195,7 @@ class ModelTutorDashboard
         return $this->db->execute();
     }
 
-    public function getNewlyAddedclass()gi
+    public function getNewlyAddedclass()
     {
         $this->db->query('SELECT max(id) as id from tutoring_class;');
 

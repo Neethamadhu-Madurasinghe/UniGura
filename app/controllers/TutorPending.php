@@ -127,9 +127,26 @@ class TutorPending extends Controller
                 ]
             ];
 
+            $hasErrors = FALSE;
+
             //           Validate all the fields -- must implement
 
-            $hasErrors = FALSE;
+           
+            if($data['bank'] == ''){
+                $hasErrors = TRUE;
+                $data['errors']['account_name_error'] = 'Bank is Not Selected';
+            }
+
+            if($data['branch'] == ''){
+                $hasErrors = TRUE;
+                $data['errors']['account_name_error'] = 'Bank is Not Selected';
+            }
+
+            $data['errors']['account_name_error'] = validateAccountName($data['account_name']);
+            $data['errors']['account_number_error'] = validateAccountNumber($data['account_number'],$data['bank'],$this->tutorPendingModel);
+
+
+          
 
             foreach ($data['errors'] as $errorString) {
                 if ($errorString !== '') {
@@ -190,7 +207,6 @@ class TutorPending extends Controller
             redirectBasedOnUserRole($request);
         }
 
-        echo $_SESSION['user_role'];
 
         $this->view('tutor/timeslotinputform', $request);
     }

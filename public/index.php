@@ -151,6 +151,8 @@ $router->registerController('/tutor/getclassdetails', [TutorClass::class, 'getcl
 
 
 $router->registerController('/tutor/notifications', [TutorNotification::class, 'notification']);
+$router->registerController('/tutor/notifications/markasseen', [TutorNotification::class, 'mark_as_seen']);
+$router->registerController('/tutor/notifications/markasdelete', [TutorNotification::class, 'mark_as_delete']);
 
 $router->registerController('/tutor/change-profile-picture', [TutorUpdateProfile::class, 'changeProfilePicture']);
 

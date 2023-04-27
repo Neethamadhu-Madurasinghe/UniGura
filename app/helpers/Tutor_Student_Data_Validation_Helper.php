@@ -12,6 +12,34 @@ function validateName(string $name): String {
     }
 }
 
+function validateAccountName(string $name): String {
+    if (empty($name) || !preg_match("/^[a-zA-Z]*$/", $name)) {
+        return 'Please enter a valid name';
+
+    }elseif (strlen($name) > 50 && strlen($name) >0) {
+        return 'Account Name should have less than 50 characters and more than 2 characters ';
+
+    }else {
+        return '';
+    }
+}
+
+
+function validateAccountNumber(String $number, String $bank, ModelTutorPending $modelObject, bool $isUnique = true): String {
+    if (empty($number) || !preg_match("/^[0-9]*$/", $number)) {
+        return 'Please enter a valid Account Number';
+
+    }elseif (!(strlen($number) > 6) && !(strlen($number) < 14)) {
+        return 'Please enter a valid account number ' ;
+
+    }elseif ($isUnique && $modelObject->findUserByAccountNumber($number,$bank)) {
+        return 'Account no. is already Entered';
+
+    }else {
+        return '';
+    }
+}
+
 function validateAddressLines(string $addressLine, bool $isMandatory = false): String {
 
     if ($isMandatory && empty($addressLine)) {

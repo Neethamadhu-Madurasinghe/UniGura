@@ -18,8 +18,7 @@ class ModelTutorPayment
         JOIN tutoring_class_template AS ct ON ct.id = c.class_template_id 
         JOIN module AS m ON ct.module_id = m.id 
         JOIN day AS d ON d.class_id = c.id 
-        JOIN payment As p ON p.tutor_id = c.tutor_id
-        WHERE c.tutor_id = :tutorId AND d.is_completed = 1 ORDER BY p.timestamp ASC');
+        WHERE c.tutor_id = :tutorId AND d.is_completed = 1 ORDER BY d.timestamp ASC');
 
 
         $this->db->bind('tutorId', $tutorId, PDO::PARAM_INT);
