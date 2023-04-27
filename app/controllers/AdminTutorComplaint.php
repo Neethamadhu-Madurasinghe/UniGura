@@ -36,7 +36,6 @@ class AdminTutorComplaint extends Controller {
         $data = [
             'allTutorComplaints' => $allTutorComplaints,
             'totalNumOfTutorComplaints' => $totalNumOfTutorComplaints
-
         ];
 
         $this->view('admin/tutor_complaints', $request, $data);

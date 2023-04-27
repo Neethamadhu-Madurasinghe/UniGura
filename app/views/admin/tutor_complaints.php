@@ -100,7 +100,7 @@
 
         <div class="pagination">
             <div class="first">
-                <button><a href="studentComplaint?currentPageNum=1"><i class="fas fa-regular fa-backward-fast"></i> First</a></button>
+                <button><a href="tutorComplaint?currentPageNum=1"><i class="fas fa-regular fa-backward-fast"></i> First</a></button>
             </div>
             <div class="previous">
                 <button><a href="tutorComplaint?currentPageNum=<?php echo $data['previousPageNum']; ?>"><i class="fas fa-regular fa-backward-step"></i> Previous</a></button>
@@ -109,10 +109,10 @@
                 <h3>Page <?php echo $data['currentPageNum']; ?> of <?php echo $data['lastPageNum']; ?></h3>
             </div>
             <div class="next">
-                <button><a href="studentComplaint?currentPageNum=<?php echo $data['nextPageNum']; ?>">Next <i class="fas fa-regular fa-forward-step"></i></a></button>
+                <button><a href="tutorComplaint?currentPageNum=<?php echo $data['nextPageNum']; ?>">Next <i class="fas fa-regular fa-forward-step"></i></a></button>
             </div>
             <div class="last">
-                <button><a href="studentComplaint?currentPageNum=<?php echo $data['lastPageNum']; ?>">Last <i class="fas fa-regular fa-forward-fast"></i></a></button>
+                <button><a href="tutorComplaint?currentPageNum=<?php echo $data['lastPageNum']; ?>">Last <i class="fas fa-regular fa-forward-fast"></i></a></button>
             </div>
         </div>
     </section>
