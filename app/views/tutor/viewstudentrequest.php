@@ -138,22 +138,7 @@ Header::render(
                let decline = document.getElementById('decline_btn');
 
 
-               
-
-
-              
-
-
-
-
-               input_c_id.value = request[0].class_template_id;
-               input_mode.value = request[0].mode;
-               input_student_id.value = request[0].user_id;
-               input_tutor_id.value = request[0].tutor_id;
-               input_time.value = time_slots[0].time;
-               input_date.value = day;
-               input_rate.value = request[0].session_rate;
-               input_duration.value = request[0].duration;
+     
 
 
 
