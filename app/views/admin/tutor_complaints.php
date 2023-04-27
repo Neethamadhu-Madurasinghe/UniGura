@@ -29,7 +29,7 @@
     </div>
 
 
-
+    
 
     <section class="table">
         <section class="table-header">
@@ -61,7 +61,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody id="tutor-complain">
+                <tbody id="tutor-complaint">
 
                     <?php if ($data['totalNumOfTutorComplaints'] == 0) : ?>
                         <td class="noDataDisplay">There are no tutor complaints to display</td>

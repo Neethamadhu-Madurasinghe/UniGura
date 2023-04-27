@@ -471,19 +471,14 @@ class AdminFilter extends Controller
 
 
 
-
-
-
-    //*******************************  filter & search for tutor complaint *********************************
-
-
-    public function filterForTutorComplaint(Request $request)
+    public function filterForStudentComplaint(Request $request)
     {
         if (!$request->isLoggedIn()) {
             redirect('/login');
         }
 
         $filterResult = [];
+
 
 
         if ($request->isGet()) {
@@ -594,6 +589,135 @@ class AdminFilter extends Controller
             $data = [
                 'allStudentComplaints' => $uniqueFilterResult,
                 'totalNumOfStudentComplaints' => $totalNumOfStudentComplaints,
+            ];
+
+            // echo '<pre>';
+            // print_r($data);
+            // echo '</pre>';
+
+
+            $this->view('admin/studentComplainSearch&FilterResult', $request, $data);
+        }
+    }
+
+
+
+
+    public function filterForTutorComplaint(Request $request)
+    {
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        $filterResult = [];
+
+
+        if ($request->isGet()) {
+            $bodyData = $request->getBody();
+
+            $tutorComplaintSearchName = $bodyData['search_tutor_name_value'];
+            $tutorComplaintFilterName = $bodyData['tutor_complaint_filter_value'];
+            $currentPageNum = $bodyData['currentPageNum'];
+
+            // echo $studentComplaintSearchName;
+            // echo $studentComplaintFilterName;
+            // echo $currentPageNum;
+
+            if ($currentPageNum == 'null') {
+                $currentPageNum = 1;
+            }
+
+
+            $rowsPerPage = 5;
+            $totalNumOfTutorComplaints = $this->filterModel->totalNumOfTutorComplaints();
+            $lastPageNum = ceil($totalNumOfTutorComplaints / $rowsPerPage);
+
+            $start = ($currentPageNum - 1) * $rowsPerPage;
+
+            $allTutorComplaints = $this->filterModel->getTutorComplaints($start, $rowsPerPage);
+
+            // next page
+            if ($currentPageNum < $lastPageNum) {
+                $nextPageNum = $currentPageNum + 1;
+            } else {
+                $nextPageNum = $lastPageNum;
+            }
+
+            // previous page
+            if ($currentPageNum > 1) {
+                $previousPageNum = $currentPageNum - 1;
+            } else {
+                $previousPageNum = 1;
+            }
+
+
+            foreach ($allTutorComplaints as $x) {
+                $reasonID = $x->reason_id;
+                $reportReason = $this->filterModel->reportReasonById($reasonID);
+                $x->reportReason = $reportReason;
+
+                $tutorID = $x->tutor_id;
+                $tutor = $this->filterModel->userById($tutorID);
+                $x->tutor = $tutor;
+
+                $studentID = $x->student_id;
+                $student = $this->filterModel->userById($studentID);
+                $x->student = $student;
+            }
+
+            $totalNumOfTutorComplaints = $this->filterModel->totalNumOfTutorComplaints();
+
+
+            if (empty($tutorComplaintSearchName) && $tutorComplaintFilterName == 'all') {
+                $filterResult = $allTutorComplaints;
+            } else if (empty($tutorComplaintSearchName) && $tutorComplaintFilterName == 'not_choose') {
+                $filterResult = $allTutorComplaints;
+            } else if (empty($tutorComplaintSearchName) && $tutorComplaintFilterName == 'solved') {
+                foreach ($allTutorComplaints as $aTutorComplaint) {
+                    if ($aTutorComplaint->is_inquired == '1') {
+                        array_push($filterResult, $aTutorComplaint);
+                    }
+                }
+            } else if (empty($tutorComplaintSearchName) && $tutorComplaintFilterName == 'not_resolve') {
+                foreach ($allTutorComplaints as $aTutorComplaint) {
+                    if ($aTutorComplaint->is_inquired == '0') {
+                        array_push($filterResult, $aTutorComplaint);
+                    }
+                }
+            } else if (!empty($tutorComplaintSearchName) && $tutorComplaintFilterName == 'not_choose') {
+                foreach ($allTutorComplaints as $aTutorComplaint) {
+                    if (str_contains(strtolower($aTutorComplaint->tutor->first_name . ' ' . $aTutorComplaint->tutor->last_name), strtolower($tutorComplaintSearchName))) {
+                        array_push($filterResult, $aTutorComplaint);
+                    }
+                }
+            } else if (!empty($tutorComplaintSearchName) && $tutorComplaintFilterName == 'all') {
+                foreach ($allTutorComplaints as $aTutorComplaint) {
+                    if ($aTutorComplaint->is_inquired == '1' && str_contains(strtolower($aTutorComplaint->tutor->first_name . ' ' . $aTutorComplaint->tutor->last_name), strtolower($tutorComplaintSearchName))) {
+                        array_push($filterResult, $aTutorComplaint);
+                    }
+                }
+            } else if (!empty($tutorComplaintSearchName) && $tutorComplaintFilterName == 'solved') {
+                foreach ($allTutorComplaints as $aTutorComplaint) {
+                    if ($aTutorComplaint->is_inquired == '1' && str_contains(strtolower($aTutorComplaint->tutor->first_name . ' ' . $aTutorComplaint->tutor->last_name), strtolower($tutorComplaintSearchName))) {
+                        array_push($filterResult, $aTutorComplaint);
+                    }
+                }
+            } else if (!empty($tutorComplaintSearchName) && $tutorComplaintFilterName == 'not_resolve') {
+                foreach ($allTutorComplaints as $aTutorComplaint) {
+                    if ($aTutorComplaint->is_inquired == '0' && str_contains(strtolower($aTutorComplaint->tutor->first_name . ' ' . $aTutorComplaint->tutor->last_name), strtolower($tutorComplaintSearchName))) {
+                        array_push($filterResult, $aTutorComplaint);
+                    }
+                }
+            } else {
+                $filterResult = $allTutorComplaints;
+            }
+
+
+            $uniqueFilterResult = array_unique($filterResult, SORT_REGULAR);
+
+            $data = [
+                'allStudentComplaints' => $uniqueFilterResult,
+                'totalNumOfStudentComplaints' => $totalNumOfTutorComplaints,
             ];
 
             // echo '<pre>';
