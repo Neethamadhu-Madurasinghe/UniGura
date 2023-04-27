@@ -1,14 +1,17 @@
 <?php
 
 
-class AdminTutorComplaint extends Controller {
+class AdminTutorComplaint extends Controller
+{
     private mixed $tutorComplaintModel;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->tutorComplaintModel = $this->model('ModelAdminRequirementComplaints');
     }
 
-    public function tutorComplaint(Request $request) {
+    public function tutorComplaint(Request $request)
+    {
 
         if (!$request->isLoggedIn()) {
             redirect('/login');
@@ -16,7 +19,7 @@ class AdminTutorComplaint extends Controller {
 
 
         $rowsPerPage = 5;
-        $totalNumOfStudentComplaints = $this->tutorComplaintModel->totalNumOfStudentComplaints();
+        $totalNumOfStudentComplaints = $this->tutorComplaintModel->totalNumOfTutorComplaints();
         $lastPageNum = ceil($totalNumOfStudentComplaints / $rowsPerPage);
 
         if (isset($_GET['currentPageNum'])) {
