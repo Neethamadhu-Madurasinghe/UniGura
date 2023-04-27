@@ -55,10 +55,11 @@ class ModelAdminRequirementComplaints {
 
 
 
-    public function getTutorComplaints() {
-        $this->db->query("SELECT * FROM tutor_report");
+    public function getTutorComplaints($start, $rowsPerPage) {
+        $this->db->query("SELECT * FROM tutor_report LIMIT $start, $rowsPerPage");
         return $this->db->resultAll();
     }
+
 
     public function tutorReportById($reportID) {
         $this->db->query("SELECT * FROM tutor_report WHERE id = :report_id");

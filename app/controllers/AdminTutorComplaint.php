@@ -27,7 +27,7 @@ class AdminTutorComplaint extends Controller {
 
         $start = ($currentPageNum - 1) * $rowsPerPage;
 
-        $allTutorComplaints = $this->tutorComplaintModel->getTutorComplaints();
+        $allTutorComplaints = $this->tutorComplaintModel->getTutorComplaints($start, $rowsPerPage);
 
         // next page
         if ($currentPageNum < $lastPageNum) {
