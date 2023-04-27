@@ -716,8 +716,8 @@ class AdminFilter extends Controller
             $uniqueFilterResult = array_unique($filterResult, SORT_REGULAR);
 
             $data = [
-                'allStudentComplaints' => $uniqueFilterResult,
-                'totalNumOfStudentComplaints' => $totalNumOfTutorComplaints,
+                'allTutorComplaints' => $uniqueFilterResult,
+                'totalNumOfTutorComplaints' => $totalNumOfTutorComplaints,
             ];
 
             // echo '<pre>';
@@ -725,7 +725,7 @@ class AdminFilter extends Controller
             // echo '</pre>';
 
 
-            $this->view('admin/studentComplainSearch&FilterResult', $request, $data);
+            $this->view('admin/tutorComplainSearch&FilterResult', $request, $data);
         }
     }
 }
