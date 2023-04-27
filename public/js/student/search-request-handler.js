@@ -36,6 +36,7 @@ const isDefaultUI = document.getElementById('is-default');
 const sortByUI = document.getElementById('tutor-search-sort-by');
 const filterFormUI = document.getElementById('filter-form');
 const tutoringClassContainerUI = document.querySelector('.tutor-search-result-container');
+const bottomContainerUI = document.querySelector('.bottom-container');
 const searchResultAreaUI = document.querySelector('.search-result-title-container');
 const searchResultTitleUI = document.getElementById('search-result-title');
 const searchResultFilterUI = document.getElementById('search-result-filter');
@@ -57,9 +58,14 @@ filterValues.latitude = latitudeUI.value;
 filterValues.longitude = longitudeUI.value;
 filterValues.sort_by = sortByUI.value;
 
+let data;
+const itemsPerPage = 9;
+let currentPage = 1;
 
 
-// Event listners to required fields
+
+
+// Event listeners to required fields
 
 // When subject is changed, fetch the Modules under it and show them in Modules select element
 subjectUI.addEventListener('change', async (e) => {
@@ -172,49 +178,71 @@ async function sendSearchClassRequest() {
   }
   LastSearch = JSON.parse(JSON.stringify(filterValues));
 
-  const result = await respond.json()
+  data = await respond.json()
   console.log(filterValues);
-  console.log(result);
+  console.log(data);
 
   searchResultAreaUI.classList.remove('invisible');
+  bottomContainerUI.classList.remove('invisible');
   tutoringClassContainerUI.innerHTML = '';
   
-  if(result.length > 0) {
+  if(data.length > 0) {
     searchResultTitleUI.textContent = 'Search Results';
     searchResultFilterUI.classList.remove('invisible');
 
-    result.forEach((tutoringClass) => {
-      // Format values
-      tutoringClass.first_name = tutoringClass.first_name.charAt(0).toUpperCase() + tutoringClass.first_name.slice(1); 
-      tutoringClass.last_name = tutoringClass.last_name.charAt(0).toUpperCase() + tutoringClass.last_name.slice(1);
-      tutoringClass.class_type = tutoringClass.class_type.charAt(0).toUpperCase() + tutoringClass.class_type.slice(1);
 
-      switch (tutoringClass.medium) {
-        case 0:
-          tutoringClass.medium = 'Sinhala';
-          break;
+    // Display the first dataset
+    const upperLimit = data.length >= itemsPerPage ? itemsPerPage : data.length;
+    displayData(data, 0, upperLimit);
+    // Use pagination to show the rest of the records
+    displayPagination(data, itemsPerPage);
 
-        case 1:
-          tutoringClass.medium = 'English';
-          break;
-      } 
-
-      switch (tutoringClass.education_qualification) {
-        case 'advanced-level' :
-          tutoringClass.education_qualification = 'Advanced Level';
-          break;
-
-        case 'bachelor-degree' :
-          tutoringClass.education_qualification = 'Bachelor Degree';
-          break;
-
-        case 'masters-degree' :
-          tutoringClass.education_qualification = 'Masters Degree';
-      }
+  //  Scroll to result area
 
 
+  } else {
+    searchResultTitleUI.textContent = 'No Search Results';
+    searchResultFilterUI.classList.add('invisible')
+  }
+}
 
-      const cardString = `
+
+function displayData(data, startIndex, endIndex) {
+  const container = document.getElementById("data-container");
+  tutoringClassContainerUI.innerHTML = "";
+  for (let i = startIndex; i < endIndex; i++) {
+    const tutoringClass = data[i];
+    // Format values
+    tutoringClass.first_name = tutoringClass.first_name.charAt(0).toUpperCase() + tutoringClass.first_name.slice(1);
+    tutoringClass.last_name = tutoringClass.last_name.charAt(0).toUpperCase() + tutoringClass.last_name.slice(1);
+    tutoringClass.class_type = tutoringClass.class_type.charAt(0).toUpperCase() + tutoringClass.class_type.slice(1);
+
+    switch (tutoringClass.medium) {
+      case 0:
+        tutoringClass.medium = 'Sinhala';
+        break;
+
+      case 1:
+        tutoringClass.medium = 'English';
+        break;
+    }
+
+    switch (tutoringClass.education_qualification) {
+      case 'advanced-level' :
+        tutoringClass.education_qualification = 'Advanced Level';
+        break;
+
+      case 'bachelor-degree' :
+        tutoringClass.education_qualification = 'Bachelor Degree';
+        break;
+
+      case 'masters-degree' :
+        tutoringClass.education_qualification = 'Masters Degree';
+    }
+
+
+
+    const cardString = `
       <div class="tutor-search-card-top-section">
         <div class="tutor-search-card-image-container">
           <img src="${'http://localhost/unigura/' + tutoringClass.profile_picture}" alt="" srcset="">
@@ -259,7 +287,7 @@ async function sendSearchClassRequest() {
         </p>
 
         <div class="tutor-search-card-button-container">
-        <button class="btn btn-sm" id="message-btn"><a href="http://localhost/Unigura/student/chat" style="text-decoration: none; color:white">Message Tutor</a></button>
+        <button class="btn btn-sm quick-message-btn" id="message-btn" data-tutor=${tutoringClass.tutor_id}>Message Tutor</button>
         <button class="btn btn-sm send-request-btn"
                 data-tutor=${tutoringClass.tutor_id}
                 data-template=${tutoringClass.id} 
@@ -272,16 +300,49 @@ async function sendSearchClassRequest() {
       </div>
       `;
 
-      const tutoringClassCardUI = document.createElement('div');
-      tutoringClassCardUI.classList.add('tutor-search-card');
-      tutoringClassCardUI.innerHTML = cardString;
-      tutoringClassContainerUI.appendChild(tutoringClassCardUI);
-    })
-
-  } else {
-    searchResultTitleUI.textContent = 'No Search Results';
-    searchResultFilterUI.classList.add('invisible')
+    const tutoringClassCardUI = document.createElement('div');
+    tutoringClassCardUI.classList.add('tutor-search-card');
+    tutoringClassCardUI.innerHTML = cardString;
+    tutoringClassContainerUI.appendChild(tutoringClassCardUI);
+    scrollToBottomSection()
   }
+}
+
+function displayPagination(data, itemsPerPage) {
+  const numPages = Math.ceil(data.length / itemsPerPage);
+  const pagination = document.getElementById("pagination");
+  pagination.innerHTML = "";
+  for (let i = 1; i <= numPages; i++) {
+    const button = document.createElement("button");
+    button.textContent = i;
+    button.classList.add("pagination-button");
+    if (i === currentPage) {
+      button.classList.add("active");
+    }
+    button.addEventListener("click", () => {
+      currentPage = i;
+      let upperBound = i * itemsPerPage > data.length ? data.length : i * itemsPerPage;
+      displayData(data, (i - 1) * itemsPerPage, upperBound);
+      displayPagination(data, itemsPerPage);
+    });
+    pagination.appendChild(button);
+  }
+}
+
+// Scroll down to the result section
+function scrollToBottomSection() {
+  const topOfBottomContainer = bottomContainerUI.offsetTop;
+  const scrollSpeed = 10; // Change this value to adjust the scrolling speed
+
+  function animateScroll() {
+    const currentPosition = window.pageYOffset;
+    if (currentPosition < topOfBottomContainer) {
+      window.scrollTo(0, currentPosition + scrollSpeed);
+      window.requestAnimationFrame(animateScroll);
+    }
+  }
+
+  animateScroll();
 }
 
 

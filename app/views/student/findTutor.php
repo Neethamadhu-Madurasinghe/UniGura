@@ -19,9 +19,9 @@ Header::render(
         URLROOT . '/public/css/student/components/error-success-popup.css',
         URLROOT . '/public/css/common/student-base-style.css',
         URLROOT . '/public/css/student/components/main-nav-bar.css',
+        URLROOT . '/public/css/student/components/timetable.css',
         URLROOT . '/public/css/student/find-tutor.css',
         URLROOT . '/public/css/student/components/tutor-search-card.css',
-        URLROOT . '/public/css/student/components/timetable.css'
     ]
 );
 
@@ -61,6 +61,15 @@ Header::render(
         </div>
 
     </div>
+
+    <div class="popup-send-message invisible">
+        <p id="success-message">Send a message</p>
+        <textarea id="msg-input"></textarea>
+        <div class="send-msg-btn-container">
+            <button class="btn btn-msg" id="msg-cancel">Cancel</button>
+            <button class="btn btn-msg" id="msg-send">OK</button>
+        </div>
+    </div>
 </div>
 
 <?php MainNavbar::render($request); ?>
@@ -75,7 +84,7 @@ Header::render(
                 <form action="" class="filter-form" method="GET" id="filter-form">
                     <div class="form-filter-container">
 
-                        <select name="subject" class="tutor-filter filter-sm" id="subject">
+                        <select name="subject" class="tutor-filter filter-md" id="subject">
                             <?php
                             foreach ($data['subjects'] as $subject) {
                                 echo '<option value="' . $subject['id'] . '">' . $subject['name'] . '</option>';
@@ -92,7 +101,7 @@ Header::render(
                             ?>
                         </select>
 
-                        <select name="day" class="tutor-filter filter-sm" id="day">
+                        <select name="day" class="tutor-filter filter-md" id="day">
                             <option value="all">Any day</option>
                             <option value="sun">Sunday</option>
                             <option value="mon">Monday</option>
@@ -103,7 +112,7 @@ Header::render(
                             <option value="sat">Saturday</option>
                         </select>
 
-                        <select name="time" class="tutor-filter filter-sm" id="time">
+                        <select name="time" class="tutor-filter filter-md" id="time">
                             <option value="all">Any time</option>
                             <option value="8">8 AM</option>
                             <option value="10">10 AM</option>
@@ -115,18 +124,18 @@ Header::render(
                             <option value="22">10 PM</option>
                         </select>
 
-                        <select name="class-type" class="tutor-filter filter-sm" id="class-type">
+                        <select name="class-type" class="tutor-filter filter-md" id="class-type">
                             <option value="theory">Theory</option>
                             <option value="revision">Revision</option>
                             <option value="paper">Paper</option>
                         </select>
 
-                        <select name="medium" class="tutor-filter filter-sm" id="medium">
+                        <select name="medium" class="tutor-filter filter-md" id="medium">
                             <option value="0">Sinhala</option>
                             <option value="1">English</option>
                         </select>
 
-                        <select name="gender" class="tutor-filter filter-sm" id="gender">
+                        <select name="gender" class="tutor-filter filter-md" id="gender">
                             <option value="all">Any Gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
@@ -146,7 +155,7 @@ Header::render(
                                     name="max-price">
                         </div>
 
-                        <select name="mode" class="tutor-filter filter-sm" id="mode">
+                        <select name="mode" class="tutor-filter filter-md" id="mode">
                             <option value="online"
                                 <?php echo $data['preferred_class_mode'] === 'online' ? 'selected' : '' ?>>
                                 Online
@@ -157,12 +166,12 @@ Header::render(
                             </option>
                         </select>
 
-                        <select name="location" id="location" class="tutor-filter filter-sm">
+                        <select name="location" id="location" class="tutor-filter filter-md">
                             <option value="default" selected>Default Location</option>
                             <option value="custom">Custom Location</option>
                         </select>
 
-                        <select name="distance" id="distance" class="tutor-filter filter-sm">
+                        <select name="distance" id="distance" class="tutor-filter filter-md">
                             <option value="1" selected>1KM</option>
                             <option value="2">2KM</option>
                             <option value="5">5KM</option>
@@ -215,7 +224,7 @@ Header::render(
 
     </div>
 
-    <div class="bottom-container">
+    <div class="bottom-container invisible">
 
         <div class="search-result-title-container invisible">
             <h1 id="search-result-title">Search Results</h1>
@@ -237,7 +246,7 @@ Header::render(
         <div class="tutor-search-result-container">
 
         </div>
-
+        <div id="pagination"></div>
     </div>
 
 </div>
@@ -250,7 +259,8 @@ Header::render(
         URLROOT . '/public/js/student/search-request-handler.js',
         URLROOT . '/public/js/student/timetable-handler.js',
         URLROOT . '/public/js/student/tutor-request-handler.js',
-        URLROOT . '/public/js/student/tutor-seemore-handler.js'
+        URLROOT . '/public/js/student/tutor-seemore-handler.js',
+        URLROOT . '/public/js/student/send-quick-message.js'
     ]
 );
 ?>

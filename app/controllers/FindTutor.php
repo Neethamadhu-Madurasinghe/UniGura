@@ -6,6 +6,7 @@ class FindTutor extends Controller {
     private ModelStudentSubject $subjectModel;
     private ModelStudentRequest $requestModel;
     private ModelStudentTimeSlot $timeSlotModel;
+    private ModelStudentNotification $notification;
 
     public function __construct() {
         $this->moduleModel = $this->model('ModelStudentModule');
@@ -14,6 +15,7 @@ class FindTutor extends Controller {
         $this->subjectModel = $this->model('ModelStudentSubject');
         $this->requestModel = $this->model('ModelStudentRequest');
         $this->timeSlotModel = $this->model('ModelStudentTimeSlot');
+        $this->notification = $this->model('ModelStudentNotification');
     }
 
     public function findTutor(Request $request) {
@@ -223,6 +225,13 @@ class FindTutor extends Controller {
 
 //          If all the checks are passed, then make the request
             if ($this->requestModel->makeRequest($body)) {
+//                Create a notification
+                $this->notification->createNotification(
+                            $body['student_id'],
+                        "Tutor request has been sent",
+                        "You have sent a tutor request. You can cancel it by clicking here",
+                    "/UniGura/student/profile"
+                );
                 header("HTTP/1.0 200 Success");
                 return;
             }

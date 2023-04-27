@@ -14,7 +14,6 @@ class TutorPending extends Controller
     public function tutorPending(Request $request)
     {
 
-
         if (!$request->isLoggedIn()) {
             redirect('/login');
         }
@@ -192,8 +191,6 @@ class TutorPending extends Controller
         if ($request->isTutor()) {
             redirectBasedOnUserRole($request);
         }
-
-        echo $_SESSION['user_role'];
 
         $this->view('tutor/timeslotinputform', $request);
     }
