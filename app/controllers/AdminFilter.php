@@ -472,10 +472,12 @@ class AdminFilter extends Controller
 
 
 
-//*******************************  filter & search for student complaint *********************************
 
 
-    public function filterForStudentComplaint(Request $request)
+    //*******************************  filter & search for tutor complaint *********************************
+
+
+    public function filterForTutorComplaint(Request $request)
     {
         if (!$request->isLoggedIn()) {
             redirect('/login');
@@ -537,7 +539,7 @@ class AdminFilter extends Controller
                 $x->student = $student;
             }
 
-            
+
             $totalNumOfStudentComplaints = $this->filterModel->totalNumOfStudentComplaints();
 
 
