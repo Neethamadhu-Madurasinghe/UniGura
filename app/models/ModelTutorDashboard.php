@@ -137,7 +137,7 @@ class ModelTutorDashboard
 
     public function getRequestTimeSlots($id): array
     {
-        $this->db->query("SELECT r.id , t.time_slot_id , s.day , s.id , s.time FROM request AS r JOIN request_time_slot AS t ON r.id = t.request_id JOIN time_slot as s ON t.time_slot_id = s.id WHERE r.id = :id;");
+        $this->db->query("SELECT r.id, r.request_id , r.time_slot_id , t.day  , t.time FROM request_time_slot AS r JOIN time_slot AS t ON r.time_slot_id = t.id WHERE r.request_id = :id;");
 
         $this->db->bind('id', $id, PDO::PARAM_INT);
         $this->db->execute();
@@ -163,6 +163,15 @@ class ModelTutorDashboard
     public function setStudentAproveRequest($id) : bool
     {
         $this->db->query('UPDATE request SET status = 1  WHERE id = :id;');
+        $this->db->bind('id', $id , PDO::PARAM_INT);
+
+//      Returns whether the row count is greater than 0
+        return $this->db->execute();
+    }
+
+    public function UpdateTutorTimeSlotWithRequest($id) : bool
+    {
+        $this->db->query('UPDATE time_slot SET state = 2  WHERE id = :id;');
         $this->db->bind('id', $id , PDO::PARAM_INT);
 
 //      Returns whether the row count is greater than 0
@@ -205,7 +214,7 @@ class ModelTutorDashboard
 
     public function setDaysofClass($class_id,$data):bool{
         $this->db->query('
-        INSERT INTO day (class_id, day_temp_id )
+        INSERT INTO day (class_id, day_template_id )
             SELECT :class_id , id 
             FROM day_template
             WHERE class_template_id = :c_id ;
@@ -225,6 +234,7 @@ class ModelTutorDashboard
         $class_id = $this->getNewlyAddedclass();
         $this->setStudentAproveRequest($data['id']);
         $this->setDaysofClass(intval($class_id['id']),$data);
+        $this->UpdateTutorTimeSlotWithRequest($data['time_slot_id']);
 
         return $this->db->commitTransaction();
     }

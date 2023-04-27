@@ -49,6 +49,8 @@ class TutorNotification extends Controller
 
         $id = $_POST['id'];
         $data['message'] = $this->notificationModel->mark_as_delete($id);
+        header('Content-type: application/json');
+        echo json_encode($data['message']);
 
     }
    

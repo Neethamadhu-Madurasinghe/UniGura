@@ -69,25 +69,29 @@ MainNavbar::render($request);
 
                fetch(`${root}/tutor/notifications/markasdelete`, {
                          method: 'POST',
-                         headers: {
-                              'Content-Type': 'application/json'
-                         },
-                         body: JSON.stringify({
+                         body: new URLSearchParams({
                               id: id
                          })
                     })
-                    .then(response => {
-                         if (response.ok) {
-                              console.log('Table updated successfully!');
-                         } else {
-                              console.log('Error updating table!');
+                    .then(function(response) {
+                         if (!response.ok) {
+                              throw new Error('Network response was not ok');
                          }
+                         return response.text();
                     })
-                    .catch(error => {
-                         console.error('Error:', error);
+                    .then(function(responseText) {
+                         // display results in data container
+                         console.log(JSON.parse(responseText));
+                     
+                    })
+                    .catch(function(error) {
+                         console.error('Error retrieving data:', error);
+
                     });
                //Give the fetch request to database to not show again
           }
+
+          
      });
 
      fetch(`${root}/tutor/notifications/markasseen`, {
