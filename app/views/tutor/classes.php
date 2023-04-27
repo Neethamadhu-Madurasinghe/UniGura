@@ -111,7 +111,7 @@ MainNavbar::render($request);
                          day_container.innerHTML = '';
 
 
-                         student_name.innerHTML = list.first_name + list.last_name;
+                         student_name.innerHTML = list.first_name +" "+ list.last_name;
                          module_name.innerHTML = list.name + list.class_type;
                          mode.innerHTML = list.mode;
 

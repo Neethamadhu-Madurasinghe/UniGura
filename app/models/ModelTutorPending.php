@@ -65,6 +65,24 @@ class ModelTutorPending
         }
     }
 
+    public function updateTutorTimeSlots($data, $id){
+        $count = 0;
+
+        foreach ($data as $row) {
+            $this->db->query("UPDATE time_slot SET state =: state WHERE tutor_id =: tutor_id ");
+            $this->db->bind('tutor_id', $id, PDO::PARAM_INT);
+            $this->db->bind('state', $row['state'], PDO::PARAM_STR);
+            $this->db->execute();
+            $count +=1;
+        }
+        if ($count == 56){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+
     public function setUserRole($id, $role): bool
     {
         $this->db->query('UPDATE auth SET role=:role WHERE id=:id');

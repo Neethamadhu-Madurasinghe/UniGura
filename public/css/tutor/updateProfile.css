@@ -410,3 +410,10 @@ table {
 .slot-selected {
     background-image: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
 }
+
+
+  
+  .double-clicked {
+    background-color: blue;
+  }
+  
