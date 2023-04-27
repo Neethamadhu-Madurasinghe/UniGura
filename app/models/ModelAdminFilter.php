@@ -249,13 +249,6 @@ class ModelAdminFilter{
         return $this->db->rowCount();
     }
 
-    public function totalNumOfTutorComplaints() {
-        $this->db->query("SELECT * FROM tutor_report");
-        $this->db->resultAll();
-        return $this->db->rowCount();
-    }
-
-
     public function studentReportById($reportID) {
         $this->db->query("SELECT * FROM student_report WHERE id = :report_id");
         $this->db->bind(':report_id', $reportID);
@@ -273,4 +266,36 @@ class ModelAdminFilter{
         $this->db->bind(':user_id', $userID);
         return $this->db->resultOne();
     }
+
+
+    // For Tutor Complaint Search & Filter
+
+    public function getTutorComplaints($start, $rowsPerPage) {
+        $this->db->query("SELECT * FROM tutor_report LIMIT $start, $rowsPerPage");
+        return $this->db->resultAll();
+    }
+
+    public function totalNumOfTutorComplaints() {
+        $this->db->query("SELECT * FROM tutor_report");
+        $this->db->resultAll();
+        return $this->db->rowCount();
+    }
+
+    public function tutorReportById($reportID) {
+        $this->db->query("SELECT * FROM tutor_report WHERE id = :report_id");
+        $this->db->bind(':report_id', $reportID);
+        return $this->db->resultOne();
+    }
+
+    public function reportReasonById($reasonID) {
+        $this->db->query("SELECT * FROM report_reason WHERE id = :reason_id");
+        $this->db->bind(':reason_id', $reasonID);
+        return $this->db->resultOne();
+    }
+
+    public function getTutorRequest() {
+        $this->db->query("SELECT * FROM tutor");
+        return $this->db->resultAll();
+    }
+
 }

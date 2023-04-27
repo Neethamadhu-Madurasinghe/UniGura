@@ -60,7 +60,6 @@ class ModelAdminRequirementComplaints {
         return $this->db->resultAll();
     }
 
-
     public function tutorReportById($reportID) {
         $this->db->query("SELECT * FROM tutor_report WHERE id = :report_id");
         $this->db->bind(':report_id', $reportID);
@@ -72,7 +71,6 @@ class ModelAdminRequirementComplaints {
         $this->db->bind(':reason_id', $reasonID);
         return $this->db->resultOne();
     }
-
 
     public function getTutorRequest() {
         $this->db->query("SELECT * FROM tutor");
