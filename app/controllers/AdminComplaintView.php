@@ -9,7 +9,7 @@ class AdminComplaintView extends Controller
         $this->viewComplaintModel = $this->model('ModelAdminComplaintView');
     }
 
-    public function viewComplaint(Request $request)
+    public function viewStudentComplaint(Request $request)
     {
 
         if (!$request->isLoggedIn()) {
@@ -56,7 +56,7 @@ class AdminComplaintView extends Controller
         // print_r($data);
         // echo '</pre>';
 
-        $this->view('admin/complaint_view', $request, $data);
+        $this->view('admin/student_complaint_view', $request, $data);
     }
 
 

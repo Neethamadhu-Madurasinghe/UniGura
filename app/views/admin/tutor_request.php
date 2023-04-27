@@ -19,7 +19,7 @@
                 <a href="tutorRequest"><button>Tutor Request</button></a>
             </div>
             <div class="student-complaint-btn" id="student-complaint-btn">
-                <a href="studentComplaint"><button>Student Complaint</button></a>
+                <a href="viewStudentComplaint"><button>Student Complaint</button></a>
             </div>
             <div class="tutor-complaint-btn" id="tutor-complaint-btn">
                 <a href="tutorComplaint"><button>Tutor Complaint</button></a>
