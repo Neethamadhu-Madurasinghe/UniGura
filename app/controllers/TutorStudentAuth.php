@@ -1,8 +1,5 @@
 <?php
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
 require_once ROOT . '/lib/phpmailer/src/Exception.php';
 require_once ROOT . '/lib/phpmailer/src/PHPMailer.php';
 require_once ROOT . '/lib/phpmailer/src/SMTP.php';
@@ -162,7 +159,7 @@ class TutorStudentAuth extends Controller {
 //            Check if this is the first time user is accessing the page
             if ($this->userModel->isVerificationNull($request->getUserId())) {
                 $code = generateCode();
-                if (generateCodeAndSend($request, $code)) {
+                if (sendCodeAsEmail($request, $code)) {
                     $this->userModel->setVerificationCode($request->getUserId(), $code);
                 }
 
@@ -171,7 +168,7 @@ class TutorStudentAuth extends Controller {
 //            Check if user has click the Resend code
             if (isset($body['resend']) && $body['resend'] == true) {
                 $code = generateCode();
-                if (generateCodeAndSend($request, $code)) {
+                if (sendCodeAsEmail($request, $code)) {
                     $this->userModel->setVerificationCode($request->getUserId(), $code);
                 }
 

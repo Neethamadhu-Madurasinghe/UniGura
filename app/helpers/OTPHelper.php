@@ -2,6 +2,8 @@
 
 
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 // Function to generate a random code
 function generateCode(): string {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -14,7 +16,7 @@ function generateCode(): string {
     return $string;
 }
 
-function generateCodeAndSend(Request $request, String $code) {
+function sendCodeAsEmail(Request $request, String $code) {
     $email = $request->getUserEmail();
 
     $mail = new PHPMailer(true);
@@ -39,7 +41,6 @@ function generateCodeAndSend(Request $request, String $code) {
         //Recipients
         $mail->setFrom(EMAIL, 'Unigura');
         $mail->addAddress($email);               //Name is optional
-
 
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
