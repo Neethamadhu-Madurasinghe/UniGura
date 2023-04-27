@@ -97,10 +97,13 @@ $router->registerController('/admin/updatePassword', [AdminProfileView::class, '
 
 
 
+// ****************************** ADMIN FILTER SECTION FILTERS AND SEARCH  *********************************
+
 $router->registerController('/admin/filterForStudentPage', [AdminFilter::class, 'filterForStudentPage']);
 $router->registerController('/admin/filterForTutorPage',[AdminFilter::class,'filterForTutorPage']);
 $router->registerController('/admin/filterForClassPage',[AdminFilter::class,'filterForClassPage']);
 $router->registerController('/admin/filterForStudentComplaint',[AdminFilter::class,'filterForStudentComplaint']);
+$router->registerController('/admin/filterForTutorComplaint',[AdminFilter::class,'filterForTutorComplaint']);
 
 
 

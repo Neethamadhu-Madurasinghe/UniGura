@@ -32,7 +32,7 @@ request_complaint.classList.add('active');
 /* ---------------------------------- search and filer student complaint ---------------------------- */
 
 const search_student_name = document.getElementById("search-student-name");
-const student_complain = document.getElementById("student-complain");
+// const student_complain = document.getElementById("student-complain");
 const student_complaint_filter = document.getElementById("student-complaint-filter");
 
 
