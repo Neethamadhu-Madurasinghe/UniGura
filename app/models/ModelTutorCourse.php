@@ -18,7 +18,6 @@ public function setClassTemplateDay($data): bool
                  position = :position'
                  );
 
-
         $this->db->bind('id', $data['id'], PDO::PARAM_INT);
         $this->db->bind('title', $data['title'], PDO::PARAM_STR);
         $this->db->bind('position', $data['position'], PDO::PARAM_STR);

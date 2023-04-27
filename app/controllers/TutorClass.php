@@ -38,17 +38,35 @@ class TutorClass extends Controller
     {
         $body = $request->getBody();
 
-        $data = [];
-
+        
 
         $data = $this->classModel->getsingleclassdetails(intval($body['id']));
-  
+        $days = $this->classModel->getTutoringClassDays(intval($body['id']));
+
+
         header('Content-Type: application/json');
         echo json_encode([
-            "data" => $data
+            "data" => $data,
+            "days" => $days
+
         ]);
 
         
+    }
+
+    public function day_unhide(Request $request)
+    {
+        $body = $request->getBody();
+
+        if ($this->classModel->setIshidden($body['id'])) {
+            echo json_encode([
+                "message" => "Day Unhideded"
+            ]);
+        } else {
+            echo json_encode([
+                "message" => "Day Hided"
+            ]);
+        };
     }
    
 }

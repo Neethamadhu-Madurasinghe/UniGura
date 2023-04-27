@@ -15,7 +15,9 @@ Header::render(
      'Tutor Classes',
      [
           URLROOT . '/public/css/tutor/base.css?v=2.9',
-          URLROOT . '/public/css/tutor/style.css?v=2.0'
+          URLROOT . '/public/css/tutor/style.css?v=2.0',
+          
+          
      ]
 );
 MainNavbar::render($request);
@@ -81,103 +83,6 @@ MainNavbar::render($request);
                     <div class="day_box_container">
                          <div class="half">
 
-                              <div class="day_box" style="margin-top: 0px;">
-                                   <div style="display: grid;grid-template-columns: 10fr 1fr;border-bottom:2px solid rgba(112, 124, 151, 0.151);padding-bottom: 5px;">
-                                        <h4>Day 01 - Newton Law</h4>
-                                        <label class="container">
-                                             <input type="checkbox" checked="checked">
-                                             <span class="checkmark"></span>
-                                        </label>
-
-                                   </div>
-                                   <div class="textbox_one">
-                                        <img class="img02" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/file.png">
-                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Tute</p>
-                                        <img class="img02" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/file.png">
-                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Question</p>
-                                        <img class="img02" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/file.png">
-                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Upload answers</p>
-                                        <img class="img02" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/share-arrow.png">
-                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Try to Answer all the Question</p>
-                                   </div>
-                                   <p style="text-align: right;font-size: 17px;font-weight: 600;color:#f7721adc; margin-top: 5px;">Paid</p>
-                              </div>
-                              <div class="day_box" style="margin-top: 0px;">
-                                   <div style="display: grid;grid-template-columns: 10fr 1fr;border-bottom:2px solid  rgba(112, 124, 151, 0.151) ;padding-bottom: 5px;">
-                                        <h4>Day 02 - Newton Law</h4>
-                                        <label class="container">
-                                             <input type="checkbox" checked="checked">
-                                             <span class="checkmark"></span>
-                                        </label>
-
-                                   </div>
-                                   <div class="textbox_one">
-                                        <img class="img02" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/file.png">
-                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Tute</p>
-                                        <img class="img02" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/file.png">
-                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Question</p>
-                                        <img class="img02" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/share-arrow.png">
-                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Upload answers</p>
-                                        <img class="img02">
-                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Try to Answer all the Question</p>
-                                   </div>
-                                   <p style="text-align: right;font-size: 17px;font-weight: 600;color:#f7721adc; margin-top: 5px;">Payment Due</p>
-                              </div>
-                              <div class="day_box" style="margin-top: 0px;">
-                                   <div style="display: grid;grid-template-columns: 10fr 1fr;border-bottom:2px solid  rgba(112, 124, 151, 0.151) ;padding-bottom: 5px;">
-                                        <h4>Day 03 - Newton Law</h4>
-                                        <i class="fa fa-eye-slash" style="font-size:19px;color: rgba(112, 124, 151, 0.678);" title="Hide"></i>
-
-                                   </div>
-                                   <div class="textbox_one">
-                                        <img class="img02" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/file.png">
-                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Tute</p>
-                                        <img class="img02" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/file.png">
-                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Question</p>
-                                        <img class="img02" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/share-arrow.png">
-                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Upload answers</p>
-                                        <img class="img02">
-                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Try to Answer all the Question</p>
-                                   </div>
-                                   <p style="text-align: right;font-size: 17px;font-weight: 600;color:#f7721adc; margin-top: 5px;"></p>
-                              </div>
-                              <div class="day_box" style="margin-top: 0px;">
-                                   <div style="display: grid;grid-template-columns: 10fr 1fr;border-bottom:2px solid  rgba(112, 124, 151, 0.151) ;padding-bottom: 5px;">
-                                        <h4>Day 04 - Newton Law</h4>
-                                        <i class="fa fa-eye-slash" style="font-size:19px;color: rgba(112, 124, 151, 0.678);" title="Hide"></i>
-
-                                   </div>
-                                   <div class="textbox_one">
-                                        <img class="img02" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/file.png">
-                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Tute</p>
-                                        <img class="img02" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/file.png">
-                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Question</p>
-                                        <img class="img02" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/share-arrow.png">
-                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Upload answers</p>
-                                        <img class="img02">
-                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Try to Answer all the Question</p>
-                                   </div>
-                                   <p style="text-align: right;font-size: 17px;font-weight: 600;color:#f7721adc; margin-top: 5px;"></p>
-                              </div>
-                              <div class="day_box" style="margin-top: 0px;">
-                                   <div style="display: grid;grid-template-columns: 10fr 1fr;border-bottom:2px solid  rgba(112, 124, 151, 0.151) ;padding-bottom: 5px;">
-                                        <h4>Day 05 - Newton Law</h4>
-                                        <i class="fa fa-eye-slash" style="font-size:19px;color: rgba(112, 124, 151, 0.678);" title="Hide"></i>
-
-
-                                   </div>
-                                   <div class="textbox_one">
-                                        <img class="img02" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/file.png">
-                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Tute</p>
-                                        <img class="img02" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/file.png">
-                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Question</p>
-                                        <img class="img02" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/share-arrow.png">
-                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Upload answers</p>
-                                        <img class="img02">
-                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Try to Answer all the Question</p>
-                                   </div>
-                                   <p style="text-align: right;font-size: 17px;font-weight: 600;color:#f7721adc; margin-top: 5px;"></p>
-                              </div>
 
                          </div>
                     </div>
@@ -186,6 +91,8 @@ MainNavbar::render($request);
      </div>
 </div>
 <script>
+
+
      let viewbtns = document.querySelectorAll('.msg_box');
      viewbtns.forEach(btn => {
           btn.addEventListener('click', function() {
@@ -199,12 +106,61 @@ MainNavbar::render($request);
                          let student_name = document.getElementById('student_name');
                          let module_name = document.getElementById('module_name');
                          let mode = document.getElementById('mode');
+                         let day_container = document.querySelector('.half');
+
+                         day_container.innerHTML = '';
 
 
                          student_name.innerHTML = list.first_name + list.last_name;
                          module_name.innerHTML = list.name + list.class_type;
                          mode.innerHTML = list.mode;
 
+                         let days = data['days'];
+
+                         console.log(data['days']);
+                         
+                         for (let i = 0 ; i < days.length ; i++){
+                              let day = days[i];
+
+                              let status = `<i class="fa fa-eye-slash" style="font-size:19px;color: rgba(112, 124, 151, 0.678);" title="Hide"></i>`;
+
+                              if(day.is_hidden == 0){
+
+                                   status = `<i class="fa fa-eye-slash" style="font-size:19px;color: rgba(112, 124, 151, 0.678);" title="Hide"></i>`; 
+                              }
+                              else if(day.is_hidden = 1){
+                                   status = ` <input  type="checkbox" checked="checked"><span class="checkmark"></span>`
+                              }else{
+                                   console.log('Error')
+                              }
+
+                              let code = ` <div class="day_box" style="margin-top: 0px;">
+                                   <div style="display: grid;grid-template-columns: 10fr 1fr;border-bottom:2px solid  rgba(112, 124, 151, 0.151) ;padding-bottom: 5px;">
+                                        <h4>Day ${day.position} - ${day.title}</h4>
+                                        <label class="container">
+                                             ${status}
+                                        </label>
+                                        
+                                   </div>
+                                   <div class="textbox_one">
+                                        <img class="img02" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/file.png">
+                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Tute</p>
+
+                                        <img class="img02" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/file.png">
+                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Tute</p>
+
+                                        <img class="img02" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/share-arrow.png">
+                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Tute</p>
+
+                                        <img class="img02">
+                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Tute</p>
+
+                                   </div>
+                                   <p  class = "Payment"; style="text-align: right;font-size: 17px;font-weight: 600;color:#f7721adc; margin-top: 5px;">Payment Due</p>
+                              </div>`
+
+                              day_container.innerHTML += code;
+                         }
                
                     })
                     .catch(error => {
