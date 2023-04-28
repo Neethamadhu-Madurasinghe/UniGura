@@ -2,6 +2,8 @@
 
 
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 // Function to generate a random code
 function generateCode(): string {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -14,7 +16,7 @@ function generateCode(): string {
     return $string;
 }
 
-function generateCodeAndSend(Request $request, String $code) {
+function sendCodeAsEmail(Request $request, String $code) {
     $email = $request->getUserEmail();
 
     $mail = new PHPMailer(true);
@@ -40,11 +42,10 @@ function generateCodeAndSend(Request $request, String $code) {
         $mail->setFrom(EMAIL, 'Unigura');
         $mail->addAddress($email);               //Name is optional
 
-
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Unigura: Verify your email';
-        $mail->Body    = '<h1>This is your code for Unigura: ' . $code . '</h1><br>This Code will be expired in 1 hour';
+        $mail->Body    = '<h1 style="color: #00dd00">This is your code for Unigura: ' . $code . '</h1><br>This Code will be expired in 1 hour';
         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         $mail->send();

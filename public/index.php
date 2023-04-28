@@ -217,5 +217,11 @@ $router->registerController('/api/student/notification', [StudentNotification::c
 $router->registerController('/api/student/mark-seen', [StudentNotification::class, 'markNotificationAsSeen']);
 $router->registerController('/student/chat', [Chat::class, 'studentChatView']);
 
+$router->registerController(
+    '/api/user/initiate-reset-password',
+    [StudentTutorProfile::class, 'changePasswordInitiate']
+);
+$router->registerController('/api/user/validate-otp', [StudentTutorProfile::class, 'changePasswordValidation']);
+$router->registerController('/api/user/change-password', [StudentTutorProfile::class, 'changePassword']);
 
 $router->resolve();

@@ -1,8 +1,5 @@
 <?php
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
 require_once ROOT . '/lib/phpmailer/src/Exception.php';
 require_once ROOT . '/lib/phpmailer/src/PHPMailer.php';
 require_once ROOT . '/lib/phpmailer/src/SMTP.php';
@@ -51,7 +48,7 @@ class TutorStudentAuth extends Controller {
 
 //            Validate data
             $data['errors']['email_error'] = $this->validateEmail($data['email'], TRUE);
-            $data['errors']['password_error'] = $this->validatePassword($data['password'], $data['confirm_password']);
+            $data['errors']['password_error'] = validatePassword($data['password'], $data['confirm_password']);
 
 //            Check whether there is any error - if not, save data into database and redirect user into login screen
             if (empty($data['errors']['email_error']) && empty($data['errors']['password_error'])) {
@@ -162,7 +159,7 @@ class TutorStudentAuth extends Controller {
 //            Check if this is the first time user is accessing the page
             if ($this->userModel->isVerificationNull($request->getUserId())) {
                 $code = generateCode();
-                if (generateCodeAndSend($request, $code)) {
+                if (sendCodeAsEmail($request, $code)) {
                     $this->userModel->setVerificationCode($request->getUserId(), $code);
                 }
 
@@ -171,7 +168,7 @@ class TutorStudentAuth extends Controller {
 //            Check if user has click the Resend code
             if (isset($body['resend']) && $body['resend'] == true) {
                 $code = generateCode();
-                if (generateCodeAndSend($request, $code)) {
+                if (sendCodeAsEmail($request, $code)) {
                     $this->userModel->setVerificationCode($request->getUserId(), $code);
                 }
 
@@ -209,7 +206,7 @@ class TutorStudentAuth extends Controller {
 
 //           Validate data
             $data['errors']['email_error'] = $this->validateEmail($data['email'], FALSE);
-            $data['errors']['password_error'] = $this->validatePassword($data['password'], $data['password']);
+            $data['errors']['password_error'] = validatePassword($data['password'], $data['password']);
 
 //            If data is valid, then check is the password matches with email
             if (empty($data['errors']['email_error']) && empty($data['errors']['password_error'])) {
@@ -302,21 +299,6 @@ class TutorStudentAuth extends Controller {
         session_unset();
         session_destroy();
         redirect('/login');
-    }
-
-    private function validatePassword(string $password, string $confirmPassword): String {
-        if (empty($password)) {
-            return 'Please enter a valid password';
-
-        }elseif (strlen($password) < 4) {
-            return 'Password should be minimum 4 characters long';
-
-        }elseif ($password !== $confirmPassword) {
-            return 'Please confirm the password';
-            
-        }else {
-            return '';
-        }
     }
 
     private function validateEmail(string $email, bool $isRegister): String {

@@ -327,7 +327,7 @@
     justify-content: center;
 }
 
-.error-layout-backgound {
+.error-layout-background {
     z-index: 2;
     height: 100%;
     width: 100%;
@@ -336,11 +336,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-/* Invisibility classes */
-.invisible {
-    display: none;
 }
 
 
@@ -382,4 +377,128 @@
         font-size: 0.9rem;
     }
 
+}
+
+
+/* Popup send message */
+.popup-send-message, .popup-change-password {
+    height: 300px;
+    width: 450px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+    .popup-send-message {
+        width: 90%;
+    }
+}
+
+#popup-heading {
+    font-weight: bold;
+    font-size: 1.4rem;
+    width: 80%;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+
+#popup-subheading {
+    font-size: 0.8rem;
+    width: 80%;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    margin: 0 0 30px 0;
+    padding: 0;
+    color: #5e5f6d;
+}
+
+#popup-resend {
+    font-size: 1rem;
+    width: auto;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+#popup-resend:hover {
+    color: var(--bright-orange);
+}
+
+#popup-resend:active {
+    color: black;
+}
+
+.popup-send-message #otp-input {
+    margin: 3px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    width: 40%;
+    height: 36px;
+    resize: none;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.password-confirm-input {
+    margin: 5px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    width: 50%;
+    resize: none;
+    text-align: center;
+    height: 36px
+}
+
+#new-password-input {
+    margin-top: 25px;
+}
+
+#new-password-confirm-input {
+    margin-bottom: 25px;
+}
+
+#respond-error, #otp-respond-error {
+    color: red;
+    margin-bottom: 10px;
+    font-size: 0.6rem;
+}
+
+.btn-msg {
+    width: 150px;
+    height: 40px;
+    margin: 3px 10px;
+}
+
+/* Popup send message end */
+
+/* Loader */
+
+.loader {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 10px solid var(--bright-orange);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    to { -webkit-transform: rotate(360deg); }
+}
+
+
+/* Invisibility classes */
+.invisible {
+    display: none;
 }
