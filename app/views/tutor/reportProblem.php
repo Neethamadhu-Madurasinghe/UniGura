@@ -22,6 +22,7 @@ Header::render(
     ]
 
 );
+
 ?>
 
 
@@ -43,9 +44,17 @@ Header::render(
 
     </form>
 
-<?php Footer::render(
+    <script>
+        submit.addEventListener('click',function(){
+
+        })
+    </script>
+
+
+ <?php Footer::render(
     [
         'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js',
-        URLROOT . '/public/js/common/student-tutor-complete-profile.js'
+        URLROOT . '/public/js/tutor/tutor-main.js?v=1.2'
+        
     ]
 ); ?>
