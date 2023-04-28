@@ -5,10 +5,6 @@
  * @var $request
  */
 
-echo '<pre>';
-echo print_r($data);
-echo '</pre>';
-
 ?>
 
 <?php
@@ -44,7 +40,7 @@ MainNavbar::render($request);
                          $module = (string) $array['name'];
                          $class_type = (string) $array['class_type'];
                          $profile_picture = (string) $array['profile_picture'];
-
+                         $root = URLROOT;
                          $studentID = $array['student_id'];
 
 
@@ -55,9 +51,9 @@ MainNavbar::render($request);
                         <h4 style='margin-top: 5%;'>$first_name $last_name</h4>
                     </header>
                     <div class='textbox_one'>
-                    <img style='border-radius: 0%;'  src='<?php echo URLROOT ?>/public/img/tutor/class/icons/BookBookmark.png'>
+                    <img style='border-radius: 0%;'  src='$root/public/img/tutor/class/icons/BookBookmark.png'>
                         <p style='color: rgba(112, 124, 151, 1) ; margin-top: 0px;text-align: justify;margin-bottom: 0px;'>$module $class_type</p>
-                        <img style='border-radius: 0%;'  src='<?php echo URLROOT ?>/public/img/tutor/class/icons/cast.png'>
+                        <img style='border-radius: 0%;'  src='$root/public/img/tutor/class/icons/cast.png'>
                         <p style='color: rgba(112, 124, 151, 1) ; margin-top: 0px;text-align: justify;margin-bottom: 0px;'>$mode</p>
                     </div>
                     <button class='msg_box button' data-id = $id >View Details</button>
