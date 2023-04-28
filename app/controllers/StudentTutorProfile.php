@@ -198,4 +198,43 @@ class StudentTutorProfile extends Controller {
 
         header("HTTP/1.0 200 Success");
     }
+
+//    change the password - check OTP code should be embedded into the request
+    public function changePassword(Request $request) {
+        cors();
+
+        if (!$request->isLoggedIn() || !($request->isStudent() || $request->isTutor())) {
+            header("HTTP/1.0 401 Unauthorized");
+            return;
+        }
+
+        $body = json_decode(file_get_contents('php://input'), true);
+
+        if (!isset($body['code'])) {
+
+            header("HTTP/1.0 400 Bad Request");
+            return;
+        }
+
+        if (!$this->userModel->isCodeValid($request->getUserId(), $body)) {
+            header("HTTP/1.0 403 Forbidden");
+            return;
+        }
+        $isValid = validatePassword($body['password'], $body['confirm_password']);
+
+        if ($isValid) {
+            header("HTTP/1.0 400 Bad Request");
+            return;
+        }
+
+        $data['password'] = password_hash($body['password'], PASSWORD_DEFAULT);
+        $result = $this->userModel->changePassword($data['password'], $request->getUserId());
+
+        if(!$result) {
+            header("HTTP/1.0 500 Internal Server Error");
+            return;
+        }
+
+        header("HTTP/1.0 200 Success");
+    }
 }

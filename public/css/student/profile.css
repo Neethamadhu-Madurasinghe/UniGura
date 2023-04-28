@@ -388,7 +388,6 @@
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
 }
 
@@ -446,14 +445,22 @@
     margin-bottom: 30px;
 }
 
-#new-password-input {
-    margin: 3px;
+.password-confirm-input {
+    margin: 5px;
     border-radius: 5px;
     font-size: 1.2rem;
     width: 50%;
     resize: none;
     text-align: center;
-    margin-bottom: 30px;
+    height: 36px
+}
+
+#new-password-input {
+    margin-top: 25px;
+}
+
+#new-password-confirm-input {
+    margin-bottom: 25px;
 }
 
 #respond-error, #otp-respond-error {

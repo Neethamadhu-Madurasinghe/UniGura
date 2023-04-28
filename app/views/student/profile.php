@@ -56,7 +56,8 @@ Header::render(
 
     <div class="popup-change-password invisible">
         <p id="popup-heading">Enter new password</p>
-        <input type="text" id="new-password-input">
+        <input type="password" id="new-password-input" class="password-confirm-input" placeholder="New Password">
+        <input type="password" id="new-password-confirm-input" class="password-confirm-input" placeholder="Confirm Password">
         <div class="send-msg-btn-container">
             <button class="btn btn-msg" id="change-cancel">Cancel</button>
             <button class="btn btn-msg" id="change-send">OK</button>

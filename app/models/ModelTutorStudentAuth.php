@@ -111,4 +111,13 @@ class ModelTutorStudentAuth {
         $row = $this->db->resultOne();
         return $row->code == null;
     }
+
+//    Change the password of the user
+    public function changePassword(String $password, int $id): bool {
+        $this->db->query('UPDATE auth SET password=:password WHERE id=:id');
+        $this->db->bind('password', $password, PDO::PARAM_STR);
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        return $this->db->execute();
+    }
 }

@@ -40,7 +40,7 @@ class WebSocketConnection {
                 <div class="message-i-box">
                     <div class="message-box-image-container">
                          <img src="${'http://localhost/unigura/' + currentChatThread.profile_picture}" alt="" class="profile-picture-img">
-                    </div>
+                    </div> 
                     <div class="message-content">
                          <p class="message">${data.msg}.</p>
                          <span class="msg-age" data-time="${data.date}">${getTimePassed(data.date)}</span>

@@ -222,5 +222,6 @@ $router->registerController(
     [StudentTutorProfile::class, 'changePasswordInitiate']
 );
 $router->registerController('/api/user/validate-otp', [StudentTutorProfile::class, 'changePasswordValidation']);
+$router->registerController('/api/user/change-password', [StudentTutorProfile::class, 'changePassword']);
 
 $router->resolve();

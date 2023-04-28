@@ -17,7 +17,11 @@ const otpInputFieldUI = document.getElementById('otp-input');
 
 const changePasswordPopupUI = document.querySelector('.popup-change-password');
 const changePasswordCancelBtnUI = document.getElementById('change-cancel');
-const changePasswordOkBtnUI = document.getElementById('change-cancel');
+const changePasswordOkBtnUI = document.getElementById('change-send');
+const newPasswordInputFieldUI = document.getElementById('new-password-input')
+const newPasswordConfirmInputFieldUI = document.getElementById('new-password-confirm-input')
+
+let code = "";
 
 // Cancel request handler
 bodyUI.addEventListener('click', async (e) => {
@@ -77,10 +81,11 @@ changePasswordOTPCancelBtnUI.addEventListener('click', () => {
     layoutBackgroundUI.classList.add('invisible');
     changePasswordOTPPopupUI.classList.add('invisible');
     bodyUI.classList.remove('layout-mode');
+    otpInputFieldUI.value = "";
 });
 
 changePasswordOTPOkBtnUI.addEventListener('click', async () => {
-    const code = otpInputFieldUI.value.trim();
+    code = otpInputFieldUI.value.trim();
     if(code.length < 1) {
         showErrorMessage( "Invalid OTP code")
         return;
@@ -97,14 +102,71 @@ changePasswordOTPOkBtnUI.addEventListener('click', async () => {
     }else if(statusCode === 403) {
         showErrorMessage("Invalid OTP code");
     }else {
+
         changePasswordOTPPopupUI.classList.add('invisible');
         changePasswordPopupUI.classList.remove('invisible');
     }
+    otpInputFieldUI.value = "";
 
 })
 
-resendButtonUI.addEventListener('click', initiatePasswordReset)
+resendButtonUI.addEventListener('click', initiatePasswordReset);
 
+changePasswordCancelBtnUI.addEventListener('click', () => {
+    layoutBackgroundUI.classList.add('invisible');
+    changePasswordPopupUI.classList.add('invisible');
+    bodyUI.classList.remove('layout-mode');
+    newPasswordInputFieldUI.value = "";
+    newPasswordConfirmInputFieldUI.value = "";
+});
+
+changePasswordOkBtnUI.addEventListener('click',  async () => {
+    const newPassword = newPasswordInputFieldUI.value.trim();
+    const newPasswordConfirm = newPasswordConfirmInputFieldUI.value.trim();
+    newPasswordInputFieldUI.value = "";
+    newPasswordConfirmInputFieldUI.value = "";
+
+    if (!newPassword || !newPasswordConfirm) {
+        showErrorMessage("Please enter a valid password");
+        return;
+    } else if (newPassword.length < 4) {
+        showErrorMessage("Password should be minimum 4 characters long");
+        return;
+    } else if (newPassword !== newPasswordConfirm) {
+        showErrorMessage("Please confirm the password");
+        return;
+    }
+
+    const respond = await fetch('http://localhost/unigura/api/user/change-password', {
+        method: "POST",
+        credentials: "include",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            code,
+            password: newPassword,
+            confirm_password: newPasswordConfirm
+        })
+    });
+    const statusCode = respond.status;
+
+    if(statusCode === 401) {
+        //    TODO: LOGOUT
+        showErrorMessage( "Please sign in before changing the password")
+    }else if(statusCode === 400) {
+        showErrorMessage("Please enter a valid password");
+    }else if(statusCode === 403) {
+        showErrorMessage("OTP code expired");
+    }else {
+        showSuccessMessage("Password changed successfully", () => {
+            layoutBackgroundUI.classList.add('invisible');
+            changePasswordPopupUI.classList.add('invisible');
+            bodyUI.classList.remove('layout-mode');
+        });
+    }
+
+});
 
 async function initiatePasswordReset() {
     otpInputFieldUI.value = "";
@@ -166,7 +228,6 @@ function showLayoutBackground() {
     bodyUI.classList.add('layout-mode');
     layoutBackgroundUI.classList.remove('invisible');
 }
-
 
 // Hide layout background
 function hideLayoutBackground() {
