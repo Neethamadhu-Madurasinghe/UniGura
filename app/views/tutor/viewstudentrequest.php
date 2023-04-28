@@ -66,10 +66,7 @@ Header::render(
                               </div>
                          </form>
                     </div>
-
                </div>
-
-
           </div>
 
           <script>

@@ -84,7 +84,7 @@ MainNavbar::render($request);
                          <p id='mode' style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Online</p>
                     </div>
                     <div>
-                         <button class="msg_box button"><a href="#" class="reportBtn">Report</a></button>
+                         <button class="msg_box button" id='report'>Report</button>
                          <button class="msg_box button">Chat</button>
                     </div>
 
@@ -100,6 +100,8 @@ MainNavbar::render($request);
 </div>
 <script>
      let viewbtns = document.querySelectorAll('.msg_box');
+
+
 
 
      viewbtns.forEach(btn => {
@@ -124,7 +126,11 @@ MainNavbar::render($request);
                          module_name.innerHTML = list.name + list.class_type;
                          mode.innerHTML = list.mode;
 
-                         reportBtn.setAttribute('href', "http://localhost/UniGura/tutor/view-report?studentID="+list.student_id);
+                         console.log(list);
+
+                         document.getElementById('report').addEventListener('click', () => {
+                              window.location = `http://localhost/unigura/tutor/view-report?student_id=${list.student_id}`;
+                         })
 
                          let days = data['days'];
 
