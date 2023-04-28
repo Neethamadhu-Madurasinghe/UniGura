@@ -9,7 +9,7 @@ class ModelTutorReportProblem{
 
 
     public function tutorReportProblem($data){
-        $this->db->query('INSERT INTO tutor_report SET
+        $this->db->query('INSERT INTO student_report SET
             class_template_id = :id,
             description = :description'
             

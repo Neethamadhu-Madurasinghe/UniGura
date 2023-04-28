@@ -20,16 +20,17 @@ class TutorReportProblem extends Controller{
             echo print_r($body);
             echo '</pre>';
         }
+        $data = [];
 
-        $data = [
-            'id' =>$request->getUserId(),
-            'description'=>$body['description']
-        ];
+        // $data = [
+        //     'id' =>$request->getUserId(),
+        //     'description'=>$body['description']
+        // ];
 
-        if($this->reportProblem->tutorReportProblem($data)){
-            redirect('/tutor/classes');
+        // if($this->reportProblem->tutorReportProblem($data)){
+        //     redirect('/tutor/classes');
 
-        }
+        // }
 
        
 
