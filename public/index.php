@@ -104,6 +104,9 @@ $router->registerController('/tutor/create-course', [TutorCreateCourse::class, '
 $router->registerController('/tutor/storeData', [TutorCreateCourse::class, 'storeData']);
 $router->registerController('/tutor/update-profile', [TutorUpdateProfile::class, 'tutorupdateProfile']);
 $router->registerController('/tutor/report-problem', [TutorReportProblem::class, 'tutorreportProblem']);
+
+$router->registerController('/tutor/view-report', [TutorReportProblem::class, 'viewReport']);
+
 $router->registerController('tutor/update-time-slots', [TutorUpdateProfile::class, 'updateTimeSlots']);
 
 

@@ -38,4 +38,18 @@ class TutorReportProblem extends Controller{
     }
 
 
+    public function viewReport(Request $request){
+
+        $tutorID = $request->getUserId();
+
+
+        $reportReason = $this->reportProblem->getTutorReportReason();
+
+        $data['input'] = json_encode($reportReason);
+
+
+        $this->view('tutor/reportProblem',$request,$data);
+    }
+
+
 }

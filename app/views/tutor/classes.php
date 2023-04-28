@@ -45,6 +45,9 @@ MainNavbar::render($request);
                          $class_type = (string) $array['class_type'];
                          $profile_picture = (string) $array['profile_picture'];
 
+                         $studentID = $array['student_id'];
+
+
                          echo "
                         <div class='box_one'>
                     <header>
@@ -99,9 +102,6 @@ MainNavbar::render($request);
      let viewbtns = document.querySelectorAll('.msg_box');
 
 
-
-
-
      viewbtns.forEach(btn => {
           btn.addEventListener('click', function() {
                const url = "http://localhost/unigura/tutor/getclassdetails?id=" + btn.dataset.id;
@@ -124,7 +124,7 @@ MainNavbar::render($request);
                          module_name.innerHTML = list.name + list.class_type;
                          mode.innerHTML = list.mode;
 
-                         reportBtn.setAttribute('href', 'http://localhost/UniGura/tutor/report-problem');
+                         reportBtn.setAttribute('href', "http://localhost/UniGura/tutor/view-report?studentID="+list.student_id);
 
                          let days = data['days'];
 
