@@ -185,4 +185,26 @@ class TutorUpdateProfile extends Controller{
         }
     }
 
+
+    public function updateTimeSlots(Request $request)
+    {
+        $body = file_get_contents('php://input');
+        $array = json_decode($body, true);
+
+        // Now you can access the elements of the JavaScript array in the PHP script
+        $data = $array['data'];
+
+
+        print_r($data);
+        // Do something with the data, such as saving it to a database
+
+        $tutor_id = $request->getUserId();
+
+        $this->updateProfile->updateTutorTimeSlots($data, $tutor_id);
+
+        echo json_encode([
+            "message" => "Data saved successfully"
+        ]);
+    }
+
 }
