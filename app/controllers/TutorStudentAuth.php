@@ -340,8 +340,10 @@ class TutorStudentAuth extends Controller {
                     }
 
 //                    Store then given user email in the session
-                    $_SESSION['user_email'] = $data['email'];
+                    $_SESSION['email'] = $data['email'];
                     redirect('/reset-password/verify');
+
+                }else {
                     $this->view('common/auth/resetPasswordInitiate', $request, $data);
                 }
 
@@ -361,12 +363,50 @@ class TutorStudentAuth extends Controller {
 
 //        If the route is entering code page
         if ($request->getPath() == 'reset-password/verify') {
+//            Check the session for see if the email is set
+            if (!isset($_SESSION['email'])) {
+                redirect('reset-password/initiate');
+            }
+
 //            Post request
             if ($request->isPost()) {
-                $data = [];
+                $body = $request->getBody();
+
+                $data = [
+                    'code' => '',
+                    'errors' => [
+                        'code_error' => ''
+                    ]
+                ];
+
+//               Validate OTP code
+                if (strlen($body['code']) != 6) {
+                    $data['errors']['code_error'] = "Please enter a valid OTP";
+                }
+
+                if (empty($data['errors']['code_error']) && !$this->userModel->isCodeValidByEmail($_SESSION['email'], $body['code'])) {
+                    $data['errors']['code_error'] = "Incorrect OTP";
+                }
+
+                if (empty($data['errors']['code_error'])) {
+                    $_SESSION['is_verified'] = true;
+                    redirect('/reset-password/reset');
+
+                }else {
+                    $this->view('common/auth/resetPasswordVerify', $request, $data);
+                }
+
+
 //            Get request
             } else {
-                $data = [];
+                $data = [
+                    'code' => '',
+                    'errors' => [
+                        'code_error' => ''
+                    ]
+                ];
+
+                $this->view('common/auth/resetPasswordVerify', $request, $data);
             }
         }
 
