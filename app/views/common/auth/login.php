@@ -63,7 +63,7 @@ LandingPageNavBar::render($request)
                         <label for="login-remember-me">Remember me</label>
                     </div>
                     <div class="reset-password-field">
-                        <a href="" id="reset-password">Reset password</a>
+                        <a href="<?php echo URLROOT . '/reset-password/initiate' ?>" id="reset-password">Reset password</a>
                     </div>
                 </div>
 

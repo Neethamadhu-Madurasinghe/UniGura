@@ -76,15 +76,6 @@ class ModelTutorStudentAuth {
         $this->db->execute();
     }
 
-//    Set an email verification code for a given user id - also set timestamp to current time (BY EMAIL)
-    public function setVerificationCodeByEmail(string $email, string $code) {
-        $this->db->query('UPDATE auth set code=:code, time=NOW() WHERE email=:email');
-        $this->db->bind('email', $email, PDO::PARAM_STR);
-        $this->db->bind('code', $code, PDO::PARAM_STR);
-
-        $this->db->execute();
-    }
-
 //    Tells whether the given code is a valid code for a given id
     public function isCodeValid($id, $data): bool {
         $this->db->query('SELECT * FROM auth WHERE 
