@@ -314,5 +314,73 @@ class TutorStudentAuth extends Controller {
     }
 
 
+    public function resetPassword(Request $request) {
+        if ($request->isLoggedIn()) {
+            redirectBasedOnUserRole($request);
+        }
+
+//      if the route is entering email page
+        if ($request->getPath() == 'reset-password/initiate') {
+//            Post request
+            if ($request->isPost()) {
+                $body = $request->getBody();
+
+                $data = [
+                    'email' => $body['email'],
+                    'errors' => [
+                        'email_error' => $this->validateEmail($body['email'], false)
+                    ]
+                ];
+
+                if (empty($data['errors']['email_error'])) {
+//                  If no errors present, then send OTP
+                    $code = generateCode();
+                    if (sendCodeAsEmail($request, $code, $data['email'])) {
+                        $this->userModel->setVerificationCodeByEmail($data['email'], $code);
+                    }
+
+//                    Store then given user email in the session
+                    $_SESSION['user_email'] = $data['email'];
+                    redirect('/reset-password/verify');
+                    $this->view('common/auth/resetPasswordInitiate', $request, $data);
+                }
+
+
+//            Get request
+            } else {
+                $data = [
+                    'email' => '',
+                    'errors' => [
+                        'email_error' => ''
+                    ]
+                ];
+
+                $this->view('common/auth/resetPasswordInitiate', $request, $data);
+            }
+        }
+
+//        If the route is entering code page
+        if ($request->getPath() == 'reset-password/verify') {
+//            Post request
+            if ($request->isPost()) {
+                $data = [];
+//            Get request
+            } else {
+                $data = [];
+            }
+        }
+
+//        IF the route is entering new password page
+        if ($request->getPath() == 'reset-password/reset') {
+//            Post request
+            if ($request->isPost()) {
+
+
+//            Get request
+            } else {
+                $data = [];
+            }
+        }
+    }
 
 }

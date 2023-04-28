@@ -16,8 +16,10 @@ function generateCode(): string {
     return $string;
 }
 
-function sendCodeAsEmail(Request $request, String $code) {
-    $email = $request->getUserEmail();
+function sendCodeAsEmail(Request $request, String $code, String $email = "") {
+    if ($email == "") {
+        $email = $request->getUserEmail();
+    }
 
     $mail = new PHPMailer(true);
 
