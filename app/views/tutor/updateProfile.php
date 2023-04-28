@@ -786,7 +786,7 @@ MainNavbar::render($request);
                                     <?php endforeach; ?>
                                 </tr>
                             </table>
-                            <!-- <button type="submit" id="submits">Save Changes</button> -->
+                            <a href="#" id="submits">ss</a>
                         </div>
                     </div>
                 </div>
@@ -802,7 +802,7 @@ MainNavbar::render($request);
 
 <script>
     let tableRows = document.querySelectorAll('.slot');
-    const submit = document.querySelector('#submit');
+    const submit = document.querySelector('#submits');
 
 
     for (var i = 0; i < tableRows.length; i++) {
@@ -861,11 +861,13 @@ MainNavbar::render($request);
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
-                window.location.href = 'http://localhost/unigura/tutor/dashboard';
             })
             .catch((error) => {
-                console.log('Have Error');
+                console.error('Error:', error);
             });
+
+
+
 
 
 
