@@ -82,7 +82,7 @@ class Request {
 
     //  Get profile picture
     public function getUserPicture() {
-        if ($this->isJustLoggedIn() && ($this->isStudent() || $this->isTutor())) {
+        if ($this->isLoggedIn() && ($this->isStudent() || $this->isTutor())) {
             return $_SESSION['user_picture'];
         }else {
             return false;
@@ -95,37 +95,40 @@ class Request {
 
     public function isLoggedIn(): bool {
         if (isset($_SESSION['user_id'])) {
-            if (isset($_SESSION['LAST_ACTIVITY'])) {
-                if (time() - $_SESSION['LAST_ACTIVITY'] < 3600) {
-                    session_regenerate_id(true);
-                    $_SESSION['LAST_ACTIVITY'] = time();
-                    return true;
+            return true;
 
-                }else {
-                    session_unset();
-                    session_destroy();
+        } else {
+//            Check if the remember-me cookie (auth) is set
+            if (isset($_COOKIE['auth'])) {
+                $authModel = new ModelTutorStudentAuth();
+                $user = $authModel->getUserByAuth($_COOKIE['auth']);
+                print_r($user);
+                if ($user) {
+                    $_SESSION['user_id'] = $user->id;
+                    $_SESSION['user_email'] = $user->email;
+                    $_SESSION['user_role'] = $user->role;
+                    $_SESSION['is_verified'] = $user->is_validated;
+                    //        Fetch the user's profile picture if user is student or tutor
+                    if ($user->role == 1 || $user->role == 2) {
+                        $profilePicture = $authModel->getUserProfilePicture($user->id);
+                        if (!$profilePicture) {
+                            $profilePicture = '/public/img/common/profile.png';
+                        }
+                        $_SESSION['user_picture'] = $profilePicture;
+                    }
+                    return true;
+                } else {
                     return false;
                 }
-            }else {
-                return true;
+            } else {
+//                session_unset();
+//                session_destroy();
+                return false;
             }
-        }else {
-            return false;
+
         }
     }
 
-//    Function to just check whether user is logged in without changing anything
-    private function isJustLoggedIn(): bool {
-        if (isset($_SESSION['user_id'])) {
-            if (isset($_SESSION['LAST_ACTIVITY'])) {
-                return time() - $_SESSION['LAST_ACTIVITY'] < 3600;
-            }else {
-                return true;
-            }
-        }else {
-            return false;
-        }
-    }
 
 //    Methods to identify user role
 
