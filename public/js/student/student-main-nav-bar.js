@@ -25,7 +25,8 @@ _bodyUI.addEventListener('click', function (e) {
   if(!(
     targetClassList.includes('profile-menu') || 
     targetClassList.includes('profile-picture') || 
-    targetClassList.includes('profile-picture-img')) ) {
+    targetClassList.includes('profile-picture-img')) )
+  {
     profileMenu.classList.add('profile-menu-hidden');
   }
 
