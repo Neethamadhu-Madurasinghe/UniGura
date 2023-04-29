@@ -188,10 +188,8 @@ class TutorStudentAuth extends Controller {
     public function login(Request $request) {
 //        If user is logged in, then redirect to dashboard page
         if ($request->isLoggedIn()) {
-
             redirectBasedOnUserRole($request);
         }
-
 //        If the request is a post request, then handle the incoming data
         if ($request->isPost()) {
 
@@ -206,6 +204,12 @@ class TutorStudentAuth extends Controller {
                 ]
             ];
 
+            if (isset($body['remember-me'])) {
+                $data['remember_me'] = true;
+            }else {
+                $data['remember_me'] = false;
+            }
+
 //           Validate data
             $data['errors']['email_error'] = $this->validateEmail($data['email'], FALSE);
             $data['errors']['password_error'] = validatePassword($data['password'], $data['password']);
@@ -214,7 +218,7 @@ class TutorStudentAuth extends Controller {
             if (empty($data['errors']['email_error']) && empty($data['errors']['password_error'])) {
                 $loggedUser = $this->tutorStudentAuthModel->login($data['email'], $data['password']);
                 if ($loggedUser) {
-                    $this->createUserSession($loggedUser);
+                    $this->createUserSession($loggedUser, $data['remember_me']);
 
 
                 }else {
@@ -245,14 +249,14 @@ class TutorStudentAuth extends Controller {
 
 
 
-    public function createUserSession($user, $rememberUser = true) {
+    public function createUserSession($user, $rememberUser = false) {
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_email'] = $user->email;
         $_SESSION['user_role'] = $user->role;
         $_SESSION['is_verified'] = $user->is_validated;
 
 //        Fetch the user's profile picture if user is student or tutor
-        if ( $user->role == 1 || $user->role == 2) {
+        if ($user->role == 1 || $user->role == 2) {
             $profilePicture = $this->tutorStudentAuthModel->getUserProfilePicture($user->id);
             if (!$profilePicture) {
                 $profilePicture = '/public/img/common/profile.png';
@@ -260,9 +264,12 @@ class TutorStudentAuth extends Controller {
             $_SESSION['user_picture'] = $profilePicture;
         }
 
-
+// If remember is set  to true, make a token and store it as a cookie
         if ($rememberUser) {
-            $_SESSION['LAST_ACTIVITY'] = time();
+            $token = hash('sha256', time() . $user->id);
+            setcookie('auth', $token, time() + 3600 * 24 * 7);
+//            Save that token in the database
+            $this->tutorStudentAuthModel->setAuthToken($token, $user->id);
         }
 
         if ($_SESSION['is_verified'] == 0) {
@@ -300,6 +307,7 @@ class TutorStudentAuth extends Controller {
     public function logOut() {
         session_unset();
         session_destroy();
+        setcookie('auth', "", time() - 1000);
         redirect('/login');
     }
 

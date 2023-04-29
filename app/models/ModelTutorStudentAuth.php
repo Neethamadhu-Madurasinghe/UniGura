@@ -139,4 +139,25 @@ class ModelTutorStudentAuth {
 
         return $this->db->execute();
     }
+
+//  Set the auth token of a user
+    public function setAuthToken(String $token, int $id): bool {
+        $this->db->query('UPDATE auth SET token=:token WHERE id=:id');
+        $this->db->bind('token', $token, PDO::PARAM_STR);
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        return $this->db->execute();
+    }
+
+
+//    Get user details by auth token
+    public function getUserByAuth(String $token): mixed {
+        $this->db->query('SELECT * FROM auth WHERE token=:token');
+        $this->db->bind('token', $token, PDO::PARAM_STR);
+
+        $row = $this->db->resultOne();
+        if (!$row) { return false; }
+
+        return $row;
+    }
 }
