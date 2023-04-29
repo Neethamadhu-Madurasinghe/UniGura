@@ -24,7 +24,10 @@ $router->registerController('/login', [TutorStudentAuth::class, 'login']);
 $router->registerController('/student/register', [TutorStudentAuth::class, 'tutorStudentRegister']);
 $router->registerController('/tutor/register', [TutorStudentAuth::class, 'tutorStudentRegister']);
 $router->registerController('/verify-email', [TutorStudentAuth::class, 'verifyEmail']);
-
+// Don't change these routes
+$router->registerController('/reset-password/initiate', [TutorStudentAuth::class, 'resetPassword']);
+$router->registerController('/reset-password/verify', [TutorStudentAuth::class, 'resetPassword']);
+$router->registerController('/reset-password/reset', [TutorStudentAuth::class, 'resetPassword']);
 
 
 

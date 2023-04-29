@@ -95,6 +95,25 @@ class ModelTutorStudentAuth {
 
     }
 
+    //    Tells whether the given code is a valid code for a given id
+    public function isCodeValidByEmail(string $email, string $code): bool {
+        $this->db->query('SELECT * FROM auth WHERE 
+                       email=:email AND 
+                       code=:code AND 
+                       time>=DATE_SUB(NOW(), INTERVAL 1 HOUR)');
+
+        $this->db->bind('email', $email, PDO::PARAM_STR);
+        $this->db->bind('code', $code, PDO::PARAM_STR);
+
+        $row = $this->db->resultOne();
+
+//       If there is no record for given email then return false
+        if (!$row) {
+            return false;
+        } else { return true; }
+
+    }
+
 //    Mark a user as a email verfied user
     public function markVerify($id) {
         $this->db->query('UPDATE auth SET is_validated=1 WHERE id=:id');
