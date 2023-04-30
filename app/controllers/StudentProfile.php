@@ -83,7 +83,7 @@ class StudentProfile extends Controller {
             ) {
 
                 if ($this->studentModel->setStudentProfileDetails($data)) {
-//                     Success full profile update
+//                     Successful profile update
                 } else {
 //                    Failed because of a duplication entry - there is a try catch block in the model
                     $errors['telephone_number_error'] = 'Telephone no. is already in use';
@@ -118,6 +118,7 @@ class StudentProfile extends Controller {
         }
         //          Fetch tutor request data
         $data['requests'] = $this->requestModel->getRequestsByStudentId($request->getUserId());
+//        Load the view for both post and get requests
         $this->view('/student/profile', $request, $data);
     }
 
