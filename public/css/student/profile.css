@@ -275,6 +275,28 @@
     }
 }
 
+.no-data-table-msg {
+    color: white;
+    background: linear-gradient(270deg, #FFA620 0%, #F7711A 100%);
+    width: 50%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+@media screen and (max-width: 768px) {
+    .no-data-table-msg {
+        width: 80vw;
+    }
+}
+
+.no-data-table-msg h4 {
+    font-weight: normal;
+}
+
 .data-table {
     width: 100%;
     border-collapse: collapse;

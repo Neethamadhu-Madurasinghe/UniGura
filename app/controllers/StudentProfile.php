@@ -112,10 +112,9 @@ class StudentProfile extends Controller {
 
             $data['errors'] = $errors;
 
-//          Fetch tutor request data
-            $data['requests'] = $this->requestModel->getRequestsByStudentId($request->getUserId());
-
         }
+        //          Fetch tutor request data
+        $data['requests'] = $this->requestModel->getRequestsByStudentId($request->getUserId());
         $this->view('/student/profile', $request, $data);
     }
 
