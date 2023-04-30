@@ -83,10 +83,13 @@ class StudentProfile extends Controller {
             ) {
 
                 if ($this->studentModel->setStudentProfileDetails($data)) {
-
+//                     Success full profile update
                 } else {
-
+//                    Failed because of a duplication entry - there is a try catch block in the model
+                    $errors['telephone_number_error'] = 'Telephone no. is already in use';
+                    $data['errors'] = $errors;
                 }
+
 
             }else {
                 $data = $this->studentModel->getAllDetailsById($request->getUserId());
