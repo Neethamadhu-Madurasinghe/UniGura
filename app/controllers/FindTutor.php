@@ -197,6 +197,18 @@ class FindTutor extends Controller {
                 $isError = true;
             }
 
+//            Get the location of the student if he has set it to default
+//            (default means custom location = [] and mode = "physical"
+            if ($body['mode'] == 'physical' && empty($body['custom_location'])) {
+                $userLocation = $this->studentModel->getStudentLocation($request->getUserId());
+                if (isset($userLocation->latitude) && $userLocation->longitude) {
+                    $body['custom_location'] = [$userLocation->latitude, $userLocation->longitude];
+
+                }else {
+                    $isError = true;
+                }
+            }
+
 //           Check the validity of timeslots
 //           Check whether each slot is a free slot
             foreach ($body['time_slots'] as $timeSlotId) {
@@ -229,8 +241,9 @@ class FindTutor extends Controller {
                 $this->notification->createNotification(
                             $body['student_id'],
                         "Tutor request has been sent",
-                        "You have sent a tutor request. You can cancel it by clicking here",
-                    "/UniGura/student/profile"
+                    "/UniGura/student/profile#requests",
+                        "You have sent a tutor request. You can cancel it by clicking here"
+
                 );
                 header("HTTP/1.0 200 Success");
                 return;

@@ -27,17 +27,37 @@ class ModelStudentRequest {
 //        Since there are two Writes, a transaction will be executed
         $this->db->startTransaction();
 
-        $this->db->query('INSERT INTO request SET
+        if($data['mode'] != 'online') {
+            $this->db->query('INSERT INTO request SET
+                 class_template_id = :template_id,
+                 mode = :mode,
+                 tutor_id = :tutor_id,
+                 student_id = :student_id,
+                 location = ST_PointFromText(:location, :srid)   
+                 ');
+
+            $location = 'POINT(' . floatval($data['custom_location'][0]) . " " . floatval($data['custom_location'][1]) . ')';
+
+            $this->db->bind('tutor_id', $data['tutor_id'], PDO::PARAM_INT);
+            $this->db->bind('student_id', $data['student_id'], PDO::PARAM_INT);
+            $this->db->bind('template_id', $data['template_id'], PDO::PARAM_INT);
+            $this->db->bind('mode', $data['mode'], PDO::PARAM_STR);
+            $this->db->bind('location', $location, PDO::PARAM_STR);
+            $this->db->bind('srid', 4326, PDO::PARAM_INT);
+
+        } else {
+            $this->db->query('INSERT INTO request SET
                  class_template_id = :template_id,
                  mode = :mode,
                  tutor_id = :tutor_id,
                  student_id = :student_id
                  ');
 
-        $this->db->bind('tutor_id', $data['tutor_id'], PDO::PARAM_INT);
-        $this->db->bind('student_id', $data['student_id'], PDO::PARAM_INT);
-        $this->db->bind('template_id', $data['template_id'], PDO::PARAM_INT);
-        $this->db->bind('mode', $data['mode'], PDO::PARAM_STR);
+            $this->db->bind('tutor_id', $data['tutor_id'], PDO::PARAM_INT);
+            $this->db->bind('student_id', $data['student_id'], PDO::PARAM_INT);
+            $this->db->bind('template_id', $data['template_id'], PDO::PARAM_INT);
+            $this->db->bind('mode', $data['mode'], PDO::PARAM_STR);
+        }
 
         $this->db->execute();
 //       Get the Id of the newly added request
