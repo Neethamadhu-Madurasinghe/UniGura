@@ -267,7 +267,7 @@ MainNavbar::render($request);
             <h1>Payment History</h1>
             <div class="payment-history-container">
                 <table class="data-table">
-                    <tr>
+                    <tr class="top-table-row">
                         <th>Tutor</th><th>Subject</th><th>Module</th><th>Amount</th><th>Date</th>
                     </tr>
                     <tr>
@@ -290,7 +290,7 @@ MainNavbar::render($request);
             <h1>Pending Tutor Requests</h1>
             <div class="request-history-container">
                 <table class="data-table">
-                    <tr>
+                    <tr class="top-table-row">
                         <th>Tutor</th><th>Subject</th><th>Module</th><th>Mode</th><th></th>
                     </tr>
 

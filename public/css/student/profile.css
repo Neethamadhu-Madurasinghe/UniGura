@@ -267,7 +267,12 @@
 
 .payment-history-container, .request-history-container {
     width: 100%;
-    overflow-x: scroll;
+}
+
+@media screen and (max-width: 768px) {
+    .payment-history-container, .request-history-container {
+        overflow-x: scroll;
+    }
 }
 
 .data-table {
