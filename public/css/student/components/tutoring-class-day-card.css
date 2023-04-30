@@ -60,7 +60,7 @@
     margin-right: 10px;
     border: 1px solid #000;
     border-radius: 5px;
-    background-color: #fff;
+    background-color: var(--lightest-orrange);
 }
 
 .checkmark:after {
@@ -68,10 +68,24 @@
     display: none;
     width: 6px;
     height: 12px;
-    border: solid orange;
+    border: solid black;
     border-width: 0 3px 3px 0;
     transform: translateY(-2px) rotate(45deg);
 
+}
+
+.disabled-check-box {
+    cursor: not-allowed;
+}
+
+.disabled {
+    border: 1px solid gray;
+    cursor: not-allowed;
+}
+
+.disabled:after {
+    border: solid gray;
+    border-width: 0 3px 3px 0;
 }
 
 .custom-checkbox input:checked ~ .checkmark:after {
@@ -79,8 +93,7 @@
 }
 
 .custom-checkbox input:checked ~ .checkmark {
-    background-color: #fff;
-    border-color: #000;
+    background-color: var(--lightest-orrange);
 }
 
 /* check box end */
@@ -103,10 +116,32 @@
     padding: 0 8px;
 }
 
+.file-upload-form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
 .activity-row .activity-component {
     font-family: 'DM Sans', sans-serif;
     font-weight: ligher;
     margin: 3px;
     /*text-decoration: none;*/
     color: black;
+}
+
+
+/* File upload component */
+
+.file-upload-label {
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    color: #333;
+    cursor: pointer;
+}
+
+.file-upload-input {
+    display: none;
 }

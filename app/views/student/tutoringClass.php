@@ -139,14 +139,14 @@ Header::render(
 
 <div class="main-area-container">
     <div class="main-area">
-        <h1 class="main-title">Mechanics Theory</h1>
-        <h2 class="sub-title">Physics</h2>
-        <h3 class="tutor-name">John Joe</h3>
+        <h1 class="main-title"><?php echo $data['module_name'] . ' - ' . ucwords($data['class_type']) ?></h1>
+        <h2 class="sub-title"><?php echo $data['subject_name'] ?></h2>
+        <h3 class="tutor-name"><?php echo $data['tutor_name'] ?></h3>
 
         <div class="progress-bar-container">
             <h2>Progress</h2>
             <div class="progress-bar-outer">
-                <div class="progress-bar-inner"></div>
+                <div class="progress-bar-inner" style="width: <?php echo ($data['day_count'] !== 0 ? $data['incomplete_day_count'] * 100/$data['day_count'] : 0) . '%' ?>"></div>
             </div>
         </div>
 
@@ -162,8 +162,8 @@ Header::render(
                 <div class="class-card-top-section">
                     <h2>Day <?php echo $day['position'] . ' - ' . $day['title'] ?></h2>
                     <label class="custom-checkbox">
-                        <input type="checkbox" name="" id=""  <?php echo $day['is_completed'] == 1 ? 'checked' : ''?> disabled >
-                        <span class="checkmark"></span>
+                        <input type="checkbox" name="" class="disabled-check-box"  <?php echo $day['is_completed'] == 1 ? 'checked' : ''?> disabled >
+                        <span class="checkmark disabled"></span>
                     </label>
                 </div>
 
@@ -171,23 +171,33 @@ Header::render(
                     <?php foreach($day['activities'] as $activity): ?>
                         <div class="activity-row">
 <!--                            Just text-->
-                            <?php if ($activity['type'] == 0): ?>
+                            <?php if ($activity['type'] == 2): ?>
                                 <p class="activity-component"><?php echo $activity['description'] ?></p>
 
-<!--                               File download-->
+<!--                               File upload - this is a dynamically created form -->
                             <?php elseif ($activity['type'] == 1): ?>
-                                <a href="" class="activity-component"><?php echo $activity['description'] ?></a>
+                                <form class="file-upload-form" action="<?php echo URLROOT . '/student-upload-assignment' ?>" id="assignment-submit-form-<?php echo $activity['id']?>" method="POST" enctype = "multipart/form-data">
+                                    <label for="file-upload-<?php echo $activity['id']?>" class="file-upload-label activity-component">
+                                        <?php echo $activity['description'] ?>
+                                    </label>
+                                    <input id="file-upload-<?php echo $activity['id']?>" class="file-upload-input" type="file" name="assignment-file" />
+
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" name="" class="disabled-check-box"  <?php echo $activity['is_completed'] == 1 ? "checked" : ""?> disabled>
+                                        <span class="checkmark disabled"></span>
+                                    </label>
+
+<!--                                    Hidden input filed for give the activity id-->
+                                    <input type="hidden" value="<?php echo $activity['id'] ?>">
+                                </form>
+
+<!--                               File download-->
+                            <?php elseif ($activity['type'] == 0) : ?>
+                                <a href="<?php echo URLROOT . '/load-file?file=' . $activity['link']  ?>" class="activity-component"><?php echo $activity['description'] ?></a>
                                 <label class="custom-checkbox">
-                                    <input type="checkbox" name="" id="" <?php echo $day['is_completed'] == 1 ? "checked" : ""?> >
+                                    <input type="checkbox" name="" id="" <?php echo $activity['is_completed'] == 1 ? "checked" : ""?> >
                                     <span class="checkmark"></span>
                                 </label>
-
-
-<!--                               File upload-->
-                            <?php else: ?>
-                                <a href="" class="activity-component"><?php echo $activity['description'] ?></a>
-                                <input type="checkbox" name="" id="" <?php echo $day['is_completed'] == 1 ? "checked" : ""?> >
-                                <span class="checkmark"></span>
 
                             <?php endif; ?>
                         </div>

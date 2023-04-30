@@ -27,8 +27,6 @@ class StudentClass extends Controller {
             die;
         }
 
-
-
 //        Check if the student has access to the requested tutoring class
         function mapTutoringClassToID($tutoringClass) {
             return $tutoringClass['id'];

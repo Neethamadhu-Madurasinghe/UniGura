@@ -48,7 +48,7 @@ class ModelStudentTutoringClass {
 //           Fetch all the days
             $this->db->query('
                 SELECT COUNT(day.id) as day_count FROM tutoring_class JOIN day ON
-                tutoring_class.id= day.class_id WHERE tutoring_class.id=:id'
+                tutoring_class.id= day.class_id WHERE tutoring_class.id=:id AND day.is_hidden = 0'
             );
 
             $this->db->bind('id', $value['id'], PDO::PARAM_INT);
@@ -58,7 +58,7 @@ class ModelStudentTutoringClass {
 //           Fetch all the incomplete days
             $this->db->query('
                 SELECT COUNT(day.id) as incomplete_day_count FROM tutoring_class JOIN day ON
-                tutoring_class.id= day.class_id WHERE tutoring_class.id=:id AND day.is_completed = 1'
+                tutoring_class.id= day.class_id WHERE tutoring_class.id=:id AND day.is_completed = 1 AND day.is_hidden = 0'
             );
 
             $this->db->bind('id', $value['id'], PDO::PARAM_INT);
@@ -105,6 +105,24 @@ class ModelStudentTutoringClass {
         $tutoring_class['subject_name'] = $tutoring_class_tutor['subject_name'];
         $tutoring_class['module_name'] = $tutoring_class_tutor['module_name'];
 
+        //        Get the number of complete and incomplete day counts
+        $this->db->query('
+                SELECT COUNT(day.id) as day_count FROM tutoring_class JOIN day ON
+                tutoring_class.id= day.class_id WHERE tutoring_class.id=:id AND day.is_hidden = 0'
+        );
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        $dayCount = $this->db->resultOneAssoc();
+        $tutoring_class['day_count'] = $dayCount['day_count'];
+
+        $this->db->query('
+                SELECT COUNT(day.id) as incomplete_day_count FROM tutoring_class JOIN day ON
+                tutoring_class.id= day.class_id WHERE tutoring_class.id=:id AND day.is_completed = 1 AND day.is_hidden = 0'
+        );
+
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        $incompleteDayCount = $this->db->resultOneAssoc();
+        $tutoring_class['incomplete_day_count'] = $incompleteDayCount['incomplete_day_count'];
+
 //        Get days
         $this->db->query('SELECT * FROM day WHERE class_id=:id AND is_hidden=0 ORDER BY position asc');
         $this->db->bind('id', $id, PDO::PARAM_INT);
@@ -117,6 +135,15 @@ class ModelStudentTutoringClass {
             $this->db->query('SELECT * FROM activity WHERE day_id=:day_id AND is_hidden=0 ORDER BY position asc');
             $this->db->bind('day_id', $day['id'], PDO::PARAM_INT);
             $activities = $this->db->resultAllAssoc();
+
+//            Format file download link
+            foreach ($activities as $actKey => $actValue) {
+                if ($actValue['type'] != 2) {
+                    $explodedFileName = explode('/', $actValue['link']);
+                    $activities[$actKey]['link'] = end($explodedFileName);
+                }
+
+            }
 
             $tutoring_class['days'][$key]['activities'] = $activities;
         }
