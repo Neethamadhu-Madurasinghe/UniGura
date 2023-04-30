@@ -36,5 +36,13 @@ class ModelTutorNotification
         return $this->db->execute();
     }
 
+    public function get_count($id)
+    {
+        $this->db->query('SELECT COUNT(*) AS count FROM notification WHERE is_seen = 0 AND user_id = :id;');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        return $this->db->resultOne();
+    }
+
   
 }

@@ -14,7 +14,7 @@ require_once APPROOT . '/views/tutor/inc/components/MainNavbar.php';
 Header::render(
     'Tutor Dashboard',
     [
-        URLROOT . '/public/css/tutor/base.css?v=2.5',
+        URLROOT . '/public/css/tutor/base.css?v=2.8',
         URLROOT . '/public/css/tutor/dashboard.css?v=3.4'
     ]
 );
@@ -331,32 +331,24 @@ MainNavbar::render($request);
                             <br>
                             <span class="text">Working</span> -->
                             <div class="percentage-box">
-                            <div class="Working">
-                                <h1 id="working"></h1>
-                                <span>Working Time</span>
+                                <div class="Working">
+                                    <h1 id="working"></h1>
+                                    <span>Working Time</span>
+                                </div>
+                                <div class="free">
+                                    <h1 id="acting"></h1>
+                                    <span>Free Time</span>
+                                </div>
+
                             </div>
-                            <div  class="free" >
-                                <h1 id="acting"></h1>
-                                <span>Free Time</span>
-                            </div>
-
                         </div>
-                        </div>
-                        
-
-
-   
                     </div>
                 </div>
             </div>
-
-
-
         </div>
 
 </section>
 <script>
-
     //declaring varibles
 
     let active_class_count = document.querySelector('#active-class-count');
@@ -376,18 +368,18 @@ MainNavbar::render($request);
     //Getting block class count
 
     // Get the modal - Result Model
-    
+
     const card_container = document.querySelector('#course_cards');
 
     card_container.addEventListener('click', (event) => {
         if (event.target.classList.contains('view')) {
-            window.location = "http://localhost/unigura/tutor/viewcourse?subject=" + event.target.dataset.subject + "&module=" + event.target.dataset.module + "&id=" + event.target.dataset.id ;
+            window.location = "http://localhost/unigura/tutor/viewcourse?subject=" + event.target.dataset.subject + "&module=" + event.target.dataset.module + "&id=" + event.target.dataset.id;
         }
         if (event.target.classList.contains('edit')) {
             window.location = "http://localhost/unigura/tutor/updateclasstemplate?id=" + event.target.dataset.id;
         }
         if (event.target.classList.contains('delete')) {
-                window.location = "http://localhost/unigura/tutor/deleteclasstemplate?id=" + event.target.dataset.id;
+            window.location = "http://localhost/unigura/tutor/deleteclasstemplate?id=" + event.target.dataset.id;
         }
     });
 
@@ -413,14 +405,14 @@ MainNavbar::render($request);
     let halt_slots = 56 - (working_slots + acting_slots);
 
     let working_per = working_slots;
-    let acting_per = acting_slots; 
+    let acting_per = acting_slots;
 
 
     document.getElementById('working').innerHTML = `${Math.floor((working_per/56)*100)}%`;
     document.getElementById('acting').innerHTML = `${Math.floor((acting_per/56)*100)}%`;
 
     var data = [working_slots, acting_slots, halt_slots];
-    var colors = ['#FFA620','#F7711A', '#d4d5dbb8'];
+    var colors = ['#FFA620', '#F7711A', '#d4d5dbb8'];
 
     var piechart = document.getElementById("piechart");
     var chartWidth = piechart.offsetWidth;
@@ -464,13 +456,17 @@ MainNavbar::render($request);
     }
 
 
+   
+
+
 </script>
 
 
 
 <?php Footer::render(
     [
-        URLROOT . '/public/js/tutor/tutor-main.js?v=1.2'
+        URLROOT . '/public/js/tutor/tutor-main.js?v=1.2',
+        URLROOT . '/public/js/tutor/check-notification-count.js'
     ]
 );
 ?>

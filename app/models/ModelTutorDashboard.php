@@ -248,10 +248,17 @@ class ModelTutorDashboard
         return $this->db->execute();
     }
 
-    public function paymentUpdate($amount) : bool
+    public function paymentUpdate($data) : bool
     {
-        $this->db->query('INSERT INTO payment SET day_id =3,student_id = 17, tutor_id = 38, amount = :amount ,timestamp = NOW(), status = 1;');
-        $this->db->bind('amount', $amount , PDO::PARAM_INT);
+
+        $this->db->query('INSERT INTO payment SET day_id =:day_id,student_id = :student_id, tutor_id = :tutor_id , amount = :amount ,timestamp = NOW(), status = 1;');
+        $this->db->bind('amount', $data['amount'], PDO::PARAM_INT);
+        $this->db->bind('day_id', $data['day_id'], PDO::PARAM_INT);
+        $this->db->bind('student_id', $data['student_id'], PDO::PARAM_INT);
+        $this->db->bind('tutor_id', $data['tutor_id'], PDO::PARAM_INT);
+
         return $this->db->execute();
     }
 }
+
+

@@ -9,4 +9,5 @@ define('DB_NAME', 'unigura');
 define('APPROOT', dirname(dirname(__FILE__)));
 define('ROOT', dirname(dirname(dirname(__FILE__))));
 define('URLROOT', 'http://localhost/UniGura');
+define('tunnel_link','https://solid-chicken-invent-192-248-22-102.loca.lt/');
 

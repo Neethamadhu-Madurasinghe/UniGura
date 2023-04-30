@@ -53,5 +53,12 @@ class TutorNotification extends Controller
         echo json_encode($data['message']);
 
     }
-   
+
+
+    public function get_count(Request $request)
+    {
+        $data = $this->notificationModel->get_count($request->getUserId());
+        header('Content-type: application/json');
+        echo json_encode($data);
+    }
 }

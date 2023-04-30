@@ -242,17 +242,23 @@ class TutorDashboard extends Controller
     {
 
         $merchant_id = '1222629';
-        $order_id = '123';
-        $amount = 200;
+        $order_id = 3;
+        $amount = 900;
         $currency = 'LKR';
+        $student_id = 17;
+        $tutor_id = 38;
         $merchant_secret = 'MzI5Mjg5NDU5OTM4MTgyMzMwMTYyODM1MjUyODE0MzI2MjYzNTE1Nw==';
-        $items = 'Mechanics-Day-3';
+
+
+
+        $items = 'Occilation_Waves';
         $first_name = 'Sachithra';
         $last_name = 'Kavinda';
-        $email = 'email@gmail.com';
+        $email = 'test@gmail.com';
         $phone = '0765443312';
         $address = '143/43, Flower Road , Colombo';
-        $city = 'colombo';
+        $city = 'Kandy';
+      
 
 
         $hash = strtoupper(
@@ -280,9 +286,10 @@ class TutorDashboard extends Controller
             'phone' =>  $phone,
             'address' => $phone,
             'city' => $city,
-            'address' => $address
+            'address' => $address,
+            'student_id' => $student_id,
+            'tutor_id' => $tutor_id
         ];
-
 
         $this->view('tutor/payment', $request, $data);
     }
@@ -308,8 +315,14 @@ class TutorDashboard extends Controller
             )
         );
 
+        $data['day_id'] = $order_id;
+        $data['student_id'] = $_POST['custom_1'];
+        $data['tutor_id'] = $_POST['custom_2'];
+        $data['amount'] =  $payhere_amount;
+
+
         if (($local_md5sig === $md5sig) && ($status_code == 2) ){
-            $this->dashboardModel->paymentUpdate($payhere_amount);
+            $this->dashboardModel->paymentUpdate($data);
     }
     }
 }
