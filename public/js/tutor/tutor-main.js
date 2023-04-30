@@ -40,7 +40,7 @@ modeSwitch.addEventListener("click", () => {
 // Script to customize file upload button and
 // Show Uploaded images in profile picture component
 
-const actualFileUploadBtnUI = document.getElementById('actual-btn');
+const actualFileUploadBtnUI = document.getElementById('actual-btn'); 
 const profilePictureUI = document.getElementById('profile-picture');
 
 actualFileUploadBtnUI.addEventListener('change', function () {

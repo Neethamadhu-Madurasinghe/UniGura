@@ -105,6 +105,10 @@ $router->registerController('/tutor/storeData', [TutorCreateCourse::class, 'stor
 $router->registerController('/tutor/update-profile', [TutorUpdateProfile::class, 'tutorupdateProfile']);
 $router->registerController('/tutor/report-problem', [TutorReportProblem::class, 'tutorreportProblem']);
 
+$router->registerController('/tutor/view-report', [TutorReportProblem::class, 'viewReport']);
+
+$router->registerController('tutor/update-time-slots', [TutorUpdateProfile::class, 'updateTimeSlots']);
+
 
 
 $router->registerController('/tutor/pending', [TutorPending::class, 'tutorPending']);
@@ -113,7 +117,6 @@ $router->registerController('/tutor/aproved', [TutorPending::class, 'tutorAprove
 $router->registerController('tutor/complete-bank-detials', [TutorPending::class, 'tutorCompleteBankDetials']);
 $router->registerController('tutor/tutor-time-slot-input', [TutorPending::class, 'tutorTimeSlotInput']);
 $router->registerController('tutor/tutor-time-slot-inputs', [TutorPending::class, 'help']);
-$router->registerController('tutor/update-time-slots', [TutorPending::class, 'updateTimeSlots']);
 
 
 

@@ -8,26 +8,48 @@ class TutorReportProblem extends Controller{
     }
     
     public function tutorreportProblem(Request $request){
+       
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }    
 
         if ($request->isPost()){
-            $bodyData = $request->getBody();
+            $body = $request->getBody();
 
             echo '<pre>';
-            echo print_r($bodyData);
+            echo print_r($body);
             echo '</pre>';
-
-
         }
-
         $data = [];
+
+        // $data = [
+        //     'id' =>$request->getUserId(),
+        //     'description'=>$body['description']
+        // ];
+
+        // if($this->reportProblem->tutorReportProblem($data)){
+        //     redirect('/tutor/classes');
+
+        // }
+
+       
 
         $this->view('tutor/reportProblem', $request,$data);
     }
 
 
+    public function viewReport(Request $request){
+
+        $tutorID = $request->getUserId();
+
+
+        $reportReason = $this->reportProblem->getTutorReportReason();
+
+        $data['input'] = json_encode($reportReason);
+
+
+        $this->view('tutor/reportProblem',$request,$data);
+    }
+
+
 }
-
-
-
-
-?>

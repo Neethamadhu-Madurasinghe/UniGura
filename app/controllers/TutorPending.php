@@ -237,30 +237,4 @@ class TutorPending extends Controller
             "message" => "Data saved successfully"
         ]);
     }
-
-
-    public function updateTimeSlots(Request $request)
-    {
-        $body = file_get_contents('php://input');
-        $array = json_decode($body, true);
-
-        // Now you can access the elements of the JavaScript array in the PHP script
-        $data = $array['data'];
-
-
-        print_r($data);
-        // Do something with the data, such as saving it to a database
-
-        $tutor_id = $request->getUserId();
-
-
-        $model_data = $this->tutorPendingModel->updateTutorTimeSlots($data, $tutor_id);
-        // $model_user = $this->tutorPendingModel->setUserRole($tutor_id, 1);
-        // $_SESSION['user_role'] = 1;
-        
-
-        echo json_encode([
-            "message" => "Data saved successfully"
-        ]);
-    }
 }

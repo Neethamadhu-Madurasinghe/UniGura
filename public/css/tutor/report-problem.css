@@ -52,7 +52,7 @@ input[type="radio"] {
     
 }
 
-.create-btn input{
+.create-btn button{
     border-radius: 5px;
     padding: 8px 20px;
     margin-right: 50px;

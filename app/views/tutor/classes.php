@@ -4,6 +4,11 @@
  * @var $data
  * @var $request
  */
+
+echo '<pre>';
+echo print_r($data);
+echo '</pre>';
+
 ?>
 
 <?php
@@ -16,8 +21,8 @@ Header::render(
      [
           URLROOT . '/public/css/tutor/base.css?v=2.9',
           URLROOT . '/public/css/tutor/style.css?v=2.0',
-          
-          
+
+
      ]
 );
 MainNavbar::render($request);
@@ -39,6 +44,9 @@ MainNavbar::render($request);
                          $module = (string) $array['name'];
                          $class_type = (string) $array['class_type'];
                          $profile_picture = (string) $array['profile_picture'];
+
+                         $studentID = $array['student_id'];
+
 
                          echo "
                         <div class='box_one'>
@@ -76,7 +84,7 @@ MainNavbar::render($request);
                          <p id='mode' style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Online</p>
                     </div>
                     <div>
-                         <button class="msg_box button">report</button>
+                         <button class="msg_box button"><a href="#" class="reportBtn">Report</a></button>
                          <button class="msg_box button">Chat</button>
                     </div>
 
@@ -91,9 +99,9 @@ MainNavbar::render($request);
      </div>
 </div>
 <script>
-
-
      let viewbtns = document.querySelectorAll('.msg_box');
+
+
      viewbtns.forEach(btn => {
           btn.addEventListener('click', function() {
                const url = "http://localhost/unigura/tutor/getclassdetails?id=" + btn.dataset.id;
@@ -107,30 +115,32 @@ MainNavbar::render($request);
                          let module_name = document.getElementById('module_name');
                          let mode = document.getElementById('mode');
                          let day_container = document.querySelector('.half');
+                         let reportBtn = document.querySelector('.reportBtn');
 
                          day_container.innerHTML = '';
 
 
-                         student_name.innerHTML = list.first_name +" "+ list.last_name;
+                         student_name.innerHTML = list.first_name + " " + list.last_name;
                          module_name.innerHTML = list.name + list.class_type;
                          mode.innerHTML = list.mode;
+
+                         reportBtn.setAttribute('href', "http://localhost/UniGura/tutor/view-report?studentID="+list.student_id);
 
                          let days = data['days'];
 
                          console.log(data['days']);
-                         
-                         for (let i = 0 ; i < days.length ; i++){
+
+                         for (let i = 0; i < days.length; i++) {
                               let day = days[i];
 
                               let status = `<i class="fa fa-eye-slash" style="font-size:19px;color: rgba(112, 124, 151, 0.678);" title="Hide"></i>`;
 
-                              if(day.is_hidden == 0){
+                              if (day.is_hidden == 0) {
 
-                                   status = `<i class="fa fa-eye-slash" style="font-size:19px;color: rgba(112, 124, 151, 0.678);" title="Hide"></i>`; 
-                              }
-                              else if(day.is_hidden = 1){
+                                   status = `<i class="fa fa-eye-slash" style="font-size:19px;color: rgba(112, 124, 151, 0.678);" title="Hide"></i>`;
+                              } else if (day.is_hidden = 1) {
                                    status = ` <input  type="checkbox" checked="checked"><span class="checkmark"></span>`
-                              }else{
+                              } else {
                                    console.log('Error')
                               }
 
@@ -161,7 +171,7 @@ MainNavbar::render($request);
 
                               day_container.innerHTML += code;
                          }
-               
+
                     })
                     .catch(error => {
                          console.error(error);
