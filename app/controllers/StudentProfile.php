@@ -4,7 +4,7 @@ class StudentProfile extends Controller {
     private ModelStudent $studentModel;
     private ModelStudentRequest $requestModel;
 
-//    This controller is just for telephone number validation
+//    This Model is just for telephone number validation
     private ModelTutorStudentCompleteProfile $tutorStudentModel;
 
     public function __construct() {

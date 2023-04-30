@@ -16,8 +16,7 @@ Header::render(
     'Class DashBoard',
     [
         URLROOT . '/public/css/student/components/main-nav-bar.css',
-        URLROOT . '/public/css/student/tutoring-class.css',
-        URLROOT . '/public/css/student/components/tutoring-class-day-card.css'
+        URLROOT . '/public/css/student/tutoring-class.css'
     ]
 );
 
@@ -156,45 +155,107 @@ Header::render(
 
 
         <div class="class-card-container">
-<!--TODO: Handle no data-->
-            <?php foreach($data['days'] as $day): ?>
-                <div class="class-card">
+
+            <div class="class-card">
                 <div class="class-card-top-section">
-                    <h2>Day <?php echo $day['position'] . ' - ' . $day['title'] ?></h2>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" name="" id=""  <?php echo $day['is_completed'] == 1 ? 'checked' : ''?> disabled >
-                        <span class="checkmark"></span>
-                    </label>
+                    <h2>Day 1 - Newton Laws</h2>
+                    <input type="checkbox" name="" id="">
                 </div>
 
                 <div class="class-card-bottom-section">
-                    <?php foreach($day['activities'] as $activity): ?>
-                        <div class="activity-row">
-<!--                            Just text-->
-                            <?php if ($activity['type'] == 0): ?>
-                                <p class="activity-component"><?php echo $activity['description'] ?></p>
-
-<!--                               File download-->
-                            <?php elseif ($activity['type'] == 1): ?>
-                                <a href="" class="activity-component"><?php echo $activity['description'] ?></a>
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="" id="" <?php echo $day['is_completed'] == 1 ? "checked" : ""?> >
-                                    <span class="checkmark"></span>
-                                </label>
-
-
-<!--                               File upload-->
-                            <?php else: ?>
-                                <a href="" class="activity-component"><?php echo $activity['description'] ?></a>
-                                <input type="checkbox" name="" id="" <?php echo $day['is_completed'] == 1 ? "checked" : ""?> >
-                                <span class="checkmark"></span>
-
-                            <?php endif; ?>
-                        </div>
-                    <?php endforeach; ?>
+                    <div class="activity-row">
+                        <p>Newton Laws Tutor</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="activity-row">
+                        <p>Newton Laws Questionsr</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="activity-row">
+                        <p>Newton Laws Tutor</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
                 </div>
             </div>
-            <?php endforeach; ?>
+
+            <div class="class-card">
+                <div class="class-card-top-section">
+                    <h2>Day 1 - Newton Laws</h2>
+                    <input type="checkbox" name="" id="">
+                </div>
+
+                <div class="class-card-bottom-section">
+                    <div class="activity-row">
+                        <p>Newton Laws Tutor</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="activity-row">
+                        <p>Newton Laws Questionsr</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="activity-row">
+                        <p>Newton Laws Tutor</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="class-card">
+                <div class="class-card-top-section">
+                    <h2>Day 1 - Newton Laws</h2>
+                    <input type="checkbox" name="" id="">
+                </div>
+
+                <div class="class-card-bottom-section">
+                    <div class="activity-row">
+                        <p>Newton Laws Tutor</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="activity-row">
+                        <p>Newton Laws Questionsr</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="activity-row">
+                        <p>Newton Laws Tutor</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="activity-row">
+                        <p>Newton Laws Tutor</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="activity-row">
+                        <p>Newton Laws Questionsr</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="activity-row">
+                        <p>Newton Laws Tutor</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="class-card">
+                <div class="class-card-top-section">
+                    <h2>Day 1 - Newton Laws</h2>
+                    <input type="checkbox" name="" id="">
+                </div>
+
+                <div class="class-card-bottom-section">
+                    <div class="activity-row">
+                        <p>Newton Laws Tutor</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="activity-row">
+                        <p>Newton Laws Questionsr</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="activity-row">
+                        <p>Newton Laws Tutor</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                </div>
+            </div>
 
         </div>
 
