@@ -260,10 +260,8 @@ MainNavbar::render($request);
                                 <button class="msg_box button">View</button>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
             </div>
 
 
