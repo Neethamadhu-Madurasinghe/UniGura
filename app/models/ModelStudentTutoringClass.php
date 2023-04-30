@@ -1,5 +1,5 @@
 <?php
-class ModelStudentDashboard {
+class ModelStudentTutoringClass {
     private Database $db;
 
     public function __construct() {
@@ -78,5 +78,49 @@ class ModelStudentDashboard {
 
         }
         return $rows;
+    }
+
+//    Returns all the details related to a tutoring class (Not a course) when the id is given
+    public function getFullTutoringClassDetails(int $id): array {
+
+//        Get the all the data from tutoring class table
+        $this->db->query('SELECT * FROM tutoring_class WHERE id=:id AND is_suspended=0');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        $tutoring_class = $this->db->resultOneAssoc();
+
+        if (!isset($tutoring_class['id'])) {
+            return [];
+        }
+
+//        Get relevant template and tutor data
+        $this->db->query('SELECT * FROM tutoring_class_tutor WHERE id=:id');
+        $this->db->bind('id', $tutoring_class['class_template_id'], PDO::PARAM_INT);
+        $tutoring_class_tutor = $this->db->resultOneAssoc();
+
+        if (!isset($tutoring_class_tutor['id'])) {
+            return [];
+        }
+
+        $tutoring_class['tutor_name'] = $tutoring_class_tutor['first_name'] . ' ' . $tutoring_class_tutor['last_name'];
+        $tutoring_class['subject_name'] = $tutoring_class_tutor['subject_name'];
+        $tutoring_class['module_name'] = $tutoring_class_tutor['module_name'];
+
+//        Get days
+        $this->db->query('SELECT * FROM day WHERE class_id=:id AND is_hidden=0 ORDER BY position asc');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        $days = $this->db->resultAllAssoc();
+
+        $tutoring_class['days'] = $days;
+
+//        Get activities for each day
+        foreach ($tutoring_class['days'] as $key => $day) {
+            $this->db->query('SELECT * FROM activity WHERE day_id=:day_id AND is_hidden=0 ORDER BY position asc');
+            $this->db->bind('day_id', $day['id'], PDO::PARAM_INT);
+            $activities = $this->db->resultAllAssoc();
+
+            $tutoring_class['days'][$key]['activities'] = $activities;
+        }
+
+        return $tutoring_class;
     }
 }
