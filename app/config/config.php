@@ -11,5 +11,5 @@ define('PASSWORD', 'kpbhkzmkjkjksepw');
 
 define('APPROOT', dirname(dirname(__FILE__)));
 define('ROOT', dirname(dirname(dirname(__FILE__))));
-define('URLROOT', 'http://localhost:8080/UniGura');
+define('URLROOT', 'http://localhost/UniGura');
 
