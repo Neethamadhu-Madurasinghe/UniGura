@@ -164,7 +164,7 @@ async function sendSearchClassRequest() {
     return;
   }
 
-
+  console.log(filterValues);
   const respond = await fetch('http://localhost/unigura/api/find-tutoring-class?' + new URLSearchParams(filterValues))
   if(respond.status !== 200) {
     const result  = await respond.json();
