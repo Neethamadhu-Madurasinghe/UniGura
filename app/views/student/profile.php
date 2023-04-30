@@ -64,6 +64,14 @@ Header::render(
         </div>
     </div>
 
+    <div class="popup-delete-request invisible">
+        <p id="popup-delete-heading">Are you sure you want to delete this request ?</p>
+        <div class="confirm-btn-container">
+            <button class="btn btn-msg" id="cancel-request-deletion">Cancel</button>
+            <button class="btn btn-msg" id="confirm-request-confirm">Delete</button>
+        </div>
+    </div>
+
     <div class="loader invisible"></div>
 </div>
 

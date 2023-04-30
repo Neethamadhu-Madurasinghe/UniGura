@@ -75,9 +75,6 @@ class ModelStudentRequest {
         return $this->db->commitTransaction();
     }
 
-
-
-
     public function getRequestsByStudentId($id): array {
         $this->db->query('SELECT id FROM request WHERE student_id=:id');
         $this->db->bind('id', $id, PDO::PARAM_INT);
@@ -114,5 +111,19 @@ class ModelStudentRequest {
         }
 
         return $requests;
+    }
+
+    public function getRequestById(int $id): array {
+        $this->db->query('SELECT * FROM request WHERE id=:id');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        return $this->db->resultOneAssoc();
+    }
+
+    public function deleteRequest(int $id): bool {
+        $this->db->query('DELETE FROM request WHERE id=:id');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        return $this->db->execute();
     }
 }

@@ -170,9 +170,30 @@ class StudentProfile extends Controller {
             $body = json_decode(file_get_contents('php://input'), true);
             $body['student_id'] = $request->getUserId();
 
-            header("HTTP/1.0 400 Bad Request");
-//            TODO: Add error message layout to profile page and complete this controller method
+//            Validate request
+            if (!isset($body['id'])) {
+                header("HTTP/1.0 400 Bad Request");
+                return;
+            }
 
+//            check if this user has access to this request id
+            $request = $this->requestModel->getRequestById($body['id']);
+            if (!isset($request['student_id'])) {
+                header("HTTP/1.0 400 Bad Request");
+                return;
+            }
+
+            if ($request['student_id'] == $body['id']) {
+                header("HTTP/1.0 401 Unauthorized");
+                return;
+            }
+
+//            Delete the request
+            if ($this->requestModel->deleteRequest($body['id'])) {
+                header("HTTP/1.0 200 Success");
+            }else {
+                header("HTTP/1.0 500 Internal Server Error");
+            }
         }
     }
 }
