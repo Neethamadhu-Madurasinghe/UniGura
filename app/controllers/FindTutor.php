@@ -40,7 +40,9 @@ class FindTutor extends Controller {
         $data['max_price'] = $data['max_price'] ?: 0;
 
 //       Fetch user specific default filter values
-        $data['preferred_class_mode'] = $this->studentModel->getStudentMode($request->getUserId())->mode;
+        $studentData = $this->studentModel->getAllDetailsById($request->getUserId());
+        $data['preferred_class_mode'] = $studentData['mode'];
+        $data['medium'] = $studentData['medium'];
         $location = $this->studentModel->getStudentLocation($request->getUserId());
         $data['latitude'] = $data['preferred_class_mode'] == 'online' ? '7.1224323' : $location->latitude;
         $data['longitude'] = $data['preferred_class_mode'] == 'online' ? '81.12345' : $location->longitude;
