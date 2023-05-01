@@ -25,7 +25,7 @@
                     <div class="actions">
 
                         <?php if ($data[0]->tutorDetails->is_hidden == 1) : ?>
-                            <div class="button" title="Show">
+                            <div class="button" title="Show" style="background-color: #ff8a0544;">
                                 <a href="showTutor?tutorID=<?php echo $data[0]->id; ?>" title="Show"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/show.png"></a>
                             </div>
                         <?php else : ?>
@@ -35,7 +35,7 @@
                         <?php endif; ?>
 
                         <?php if ($data[0]->tutorDetails->is_hidden == 0) : ?>
-                            <div class="button">
+                            <div class="button" style="background-color: #ff8a0544;">
                                 <a href="hideTutor?tutorID=<?php echo $data[0]->id; ?>" title="Hide"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/hide.png"></a>
                             </div>
                         <?php else : ?>
@@ -45,7 +45,7 @@
                         <?php endif; ?>
 
                         <?php if ($data[0]->is_banned == 0) : ?>
-                            <div class="button">
+                            <div class="button" style="background-color: #ff8a0544;">
                                 <a href="blockTutor?tutorID=<?php echo $data[0]->id; ?>" title="Block"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/block.png"></a>
                             </div>
                         <?php else : ?>
@@ -55,7 +55,7 @@
                         <?php endif; ?>
 
                         <?php if ($data[0]->is_banned == 1) : ?>
-                            <div class="button">
+                            <div class="button" style="background-color: #ff8a0544;">
                                 <a href="unblockTutor?tutorID=<?php echo $data[0]->id; ?>" title="Unblock"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/unblock.png"></a>
                             </div>
                         <?php else : ?>
@@ -685,16 +685,6 @@
                         <?php endforeach; ?>
                     </tr>
                 </table>
-
-                <div class="color-introduce">
-                    <table id="time-table">
-                        <tr>
-                            <td class="slot slot-used">Not Available</td>
-                            <td class="slot slot-free">Available</td>
-                            <td class="slot slot-selected">In Work</td>
-                        </tr>
-                    </table>
-                </div>
             </div>
         </div>
 
@@ -721,9 +711,9 @@
                     <h1>First Name: </h1>
                     <h2><?php echo $data[0]->first_name; ?></h2>
                 </div>
-                <div class="letter-box-number">
-                    <h1>Letter Box Number: </h1>
-                    <h2><?php echo $data[0]->letter_box_number; ?></h2>
+                <div class="address-line-1">
+                    <h1>Address Line 1: </h1>
+                    <h2><?php echo $data[0]->address_line1 ?></h2>
                 </div>
                 <div class="city">
                     <h1>City: </h1>
@@ -733,10 +723,6 @@
                     <h1>Tel Number: </h1>
                     <h2><?php echo $data[0]->phone_number; ?></h2>
                 </div>
-                <div class="medium">
-                    <h1>Medium: </h1>
-                    <h2><?php echo $data[0]->medium; ?></h2>
-                </div>
             </div>
 
             <div class="section-2">
@@ -744,13 +730,9 @@
                     <h1>Last Name: </h1>
                     <h2><?php echo $data[0]->last_name; ?></h2>
                 </div>
-                <div class="street">
-                    <h1>Street: </h1>
-                    <h2><?php echo $data[0]->street; ?></h2>
-                </div>
-                <div class="year-of-exam">
-                    <h1>Year of Exam: </h1>
-                    <h2><?php echo $data[0]->year_of_exam; ?></h2>
+                <div class="address-line-2">
+                    <h1>Address Line 2: </h1>
+                    <h2><?php echo $data[0]->address_line2 ?></h2>
                 </div>
                 <div class="gender">
                     <h1>Gender : </h1>

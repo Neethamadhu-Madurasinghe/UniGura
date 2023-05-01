@@ -22,14 +22,35 @@
             </div>
         </div>
 
+        <div class="div1">
+            <div style="width: 320px;" class="rating-summary">
+                <h1>3.8</h1><br>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <br><br><br>
+                <h2>67 Total</h2>
+            </div>
+
+            <div style="width: 800px;" class="myChart5">
+                <canvas id="myChart5"></canvas>
+            </div>
+
+        </div>
+
+
+
+        <div style="width: 1220px; text-align: center;" class="myChart4">
+            <canvas id="myChart4"></canvas>
+        </div>
 
         <div style="width: 1200px; text-align: center;" class="myChart3">
             <canvas id="myChart3"></canvas>
         </div>
 
-        <div style="width: 1220px; text-align: center;" class="myChart4">
-            <canvas id="myChart4"></canvas>
-        </div>
+
 
 
 
@@ -254,6 +275,8 @@
             });
         </script>
 
+
+
         <script>
             const ctx3 = document.getElementById('myChart3');
 
@@ -283,6 +306,46 @@
                 },
                 options: {
                     indexAxis: 'x',
+                }
+
+            });
+        </script>
+
+
+        <script>
+            const ctx5 = document.getElementById('myChart5');
+
+            const myChart5 = new Chart(ctx5, {
+                type: 'bar',
+                data: {
+                    labels: ['5\u0020\u0020\u2605', '4\u0020\u0020\u2605', '3\u0020\u0020\u2605', '2\u0020\u0020\u2605', '1\u0020\u0020\u2605'],
+                    datasets: [{
+                        axis: 'y',
+                        label: '# of Rating',
+                        data: [10, 20, 30, 40, 50],
+                        backgroundColor: [
+                            '#4CAF50',
+                            '#8BC34A',
+                            '#FFC107',
+                            '#FF9800',
+                            '#F44336'
+                        ],
+                        borderWidth: 1,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    barThickness: 30, // set the width of the bars
                 }
 
             });
