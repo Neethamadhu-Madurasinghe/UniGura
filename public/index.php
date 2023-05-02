@@ -76,9 +76,6 @@ $router->registerController('/admin/uploadBankSlip', [AdminPayment::class, 'uplo
 
 
 
-$router->registerController('/admin/chat', [AdminChat::class, 'chat']);
-
-
 
 $router->registerController('/admin/notification', [AdminNotification::class, 'notification']);
 $router->registerController('/admin/notification/clearNotification', [AdminNotification::class, 'clearNotification']);

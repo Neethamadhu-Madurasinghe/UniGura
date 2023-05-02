@@ -12,6 +12,7 @@
     <p></p>
     <p></p>
 
+
     <div class="tutor-page">
 
         <div class="card-section" id="card-section">
@@ -87,10 +88,10 @@
                         </div>
 
                         <div class='info-2' id='info-2'>
-                            <small><i class="fa-solid fa-download"></i> - Education Qualification</small><br>
-                            <small><i class="fa-solid fa-download"></i> - National Identity Card Copy</small><br>
-                            <small><i class="fa-solid fa-download"></i> - University Entrance Letter</small><br>
-                            <small><i class="fa-solid fa-download"></i> - Advanced Level Result</small>
+                            <small><i class="fa-solid fa-graduation-cap"></i> <?php echo $aTutor->education_qualification; ?></small><br>
+                            <small><i class="fa-solid fa-file-lines"></i> National Identity Card Copy</small><br>
+                            <small><i class="fa-solid fa-file-lines"></i> University Entrance Letter</small><br>
+                            <small><i class="fa-solid fa-file-lines"></i> Advanced Level Result</small>
                         </div>
 
                         <div class='info-3' id='info-3'>
