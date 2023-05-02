@@ -4,6 +4,9 @@
     box-sizing: border-box;
 }
 
+body{
+    height: 200vh;
+}
 
 form {
     display: grid;
@@ -30,7 +33,7 @@ form {
 }
 
 .div2 {
-    width: 95%;
+    /* width: 95%; */
     background-color: #fff;
     /* margin: 21px; */
     padding: 20px;
@@ -74,6 +77,9 @@ form {
     /* height: 105%; */
 }
 
+.div1 h2 {
+    text-align: center;
+}
 
 
 .div2 h2 {
@@ -86,11 +92,19 @@ form {
     text-align: center;
 }
 
-
-
 .div4 h2 {
     text-align: center;
+    margin-top: 20px;
 }
+
+
+.div5 h2 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+
 
 .edudiv .form-field3 {
     margin-bottom: 30px;
@@ -116,7 +130,7 @@ form {
 
 .upload-picture-container img {
     width: 180px;
-   height: 180px;
+    height: 180px;
     margin-bottom: 20px;
     border-radius: 100%;
 }
@@ -125,7 +139,7 @@ form {
 .tutor-profile {
     /* width: 500px; */
     height: fit-content;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 
@@ -150,14 +164,16 @@ form {
     font-weight: bold;
     width: 300px;
     margin-left: 11%;
-
 }
 
 .form-field label span {
     color: red;
-    font-size: 0.7rem;
-    font-weight: normal;
+    font-size: 0.8rem;
+    margin-left: 11%;
+    font-weight: normal;  
+    display: inline-block;
 }
+
 
 
 .form-field input,
@@ -176,12 +192,11 @@ form {
 }
 
 
-
-/* .form-field2 {
+.form-field2 {
     margin-bottom: 20px;
+    margin-left: 11%;
     width: 300px;
-} */
-
+}
 
 
 .form-field2 label {
@@ -189,7 +204,7 @@ form {
     font-size: 0.9rem;
     font-weight: bold;
     width: 300px;
-    margin-left: 37px;
+    /* margin-left: 11%; */
 
 }
 
@@ -203,32 +218,31 @@ form {
     border-radius: 5px;
     padding-left: 5px;
     width: 290px;
+    display: inline-block;
     margin-top: 6px;
-    margin-left: 37px;
-
+    /* margin-left: 11%; */
 }
 
 
 .form-field2 label span {
     color: red;
-    font-size: 0.7rem;
-    font-weight: normal;
+    font-size: 0.8rem;
+    font-weight: normal;  
 }
 
 
-/* .form-field3 {
+.form-field3 {
     margin-bottom: 20px;
-    width: 300px;
-} */
+    margin-left: 11%;
+    width: 380px;
+}
 
 
 .form-field3 label {
     font-family: 'DM Sans', sans-serif;
     font-size: 0.9rem;
     font-weight: bold;
-    /* width: 300px; */
-    margin-left: 40px;
-
+    width: 300px;
 }
 
 
@@ -241,15 +255,14 @@ form {
     height: 35px;
     border-radius: 5px;
     padding-left: 5px;
-    width: 300px;
+    width: 290px;
+    display: inline-block;
     margin-top: 6px;
-    margin-left: 40px;
-
 }
 
 .form-field3 label span {
     color: red;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-weight: normal;
 }
 
@@ -394,6 +407,8 @@ table {
 
 .slot-used {
     background-color: #d2d4f5;
+    transition: transform 0.1s;
+    cursor: pointer;
     outline: 10% solid #d2d4f5;
 }
 
@@ -410,10 +425,3 @@ table {
 .slot-selected {
     background-image: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
 }
-
-
-  
-  .double-clicked {
-    background-color: blue;
-  }
-  

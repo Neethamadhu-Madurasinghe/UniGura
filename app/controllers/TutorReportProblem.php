@@ -7,45 +7,49 @@ class TutorReportProblem extends Controller{
         $this->reportProblem = $this->model('ModelTutorReportProblem');
     }
     
-    public function tutorreportProblem(Request $request){
-       
-        if (!$request->isLoggedIn()) {
-            redirect('/login');
-        }    
-
-        if ($request->isPost()){
-            $body = $request->getBody();
-
-            echo '<pre>';
-            echo print_r($body);
-            echo '</pre>';
-        }
-        $data = [];
-
-        // $data = [
-        //     'id' =>$request->getUserId(),
-        //     'description'=>$body['description']
-        // ];
-
-        // if($this->reportProblem->tutorReportProblem($data)){
-        //     redirect('/tutor/classes');
-
-        // }
-
-       
-
-        $this->view('tutor/reportProblem', $request,$data);
-    }
+   
 
 
     public function viewReport(Request $request){
 
-        $tutorID = $request->getUserId();
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
 
+        if ($request->isProfileNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isNotApprovedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isBankDetialsNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+        $body = $request->getBody();
+
+        if ($request->isPost()) {
+        
+            $data = [
+                'tutor_id' => $request->getUserId(),
+                'report_reason' => $body['report_reason'],
+                'student_id' => $body['student_id'],
+                'description' => $body['description']
+            
+            ];
+
+        if ($this->reportProblem->setStudentreport($data) == 0) {
+                    redirect('tutor/class');
+            }  
+
+        }
+
+        $data['student_id'] = $body['student_id'];
 
         $reportReason = $this->reportProblem->getTutorReportReason();
 
-        $data['input'] = json_encode($reportReason);
+        $data['report_resons'] = json_encode($reportReason);
 
 
         $this->view('tutor/reportProblem',$request,$data);

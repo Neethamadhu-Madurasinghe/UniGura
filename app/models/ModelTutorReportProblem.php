@@ -10,15 +10,14 @@ class ModelTutorReportProblem
     }
 
 
-    public function tutorReportProblem($data)
+    public function setStudentreport($data):bool
     {
-        $this->db->query('INSERT INTO student_report VALUES (description = :description, is_inquired =: inquire,student_id =: studentID, tutor_id =: tutorID, reason_id =: reasonID)');
+        $this->db->query('INSERT INTO student_report (description, is_inquired, student_id, tutor_id, reason_id) VALUES (:description, 0, :student_id, :tutor_id, :reason_id);');
 
         $this->db->bind('description', $data['description'], PDO::PARAM_STR);
-        $this->db->bind('is_inquired', 0, PDO::PARAM_INT);
-        $this->db->bind('student_id', $data['studentID'], PDO::PARAM_INT);
-        $this->db->bind('tutor_id', $data['tutorID'], PDO::PARAM_INT);
-        $this->db->bind('reason_id', $data['reasonID'], PDO::PARAM_INT);
+        $this->db->bind('student_id', $data['student_id'], PDO::PARAM_INT);
+        $this->db->bind('tutor_id', $data['tutor_id'], PDO::PARAM_INT);
+        $this->db->bind('reason_id', $data['report_reason'], PDO::PARAM_INT);
 
         return $this->db->execute();
     }

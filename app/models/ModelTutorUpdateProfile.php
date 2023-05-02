@@ -11,7 +11,7 @@ class ModelTutorUpdateProfile
 
     public function update($data)
     {
-
+        
         $this->db->query('UPDATE user JOIN  tutor on user.id = tutor.user_id SET first_name = :first_name, last_name = :last_name,  phone_number = :phone_number ,address_line1 = :address_line1, address_line2 = :address_line2, city = :city , district = :district,  bank_account_owner = :bank_account_owner , bank_account_number = :bank_account_number , bank_name = :bank_name , bank_branch = :bank_branch , education_qualification = :education_qualification , university= :university  WHERE id = :id');
 
         $this->db->bind(':first_name', $data['first_name']);
@@ -58,39 +58,30 @@ class ModelTutorUpdateProfile
         return $this->db->resultOne();
     }
 
-    public function getTimeSlots($tutorID){
+    public function getTimeSlots($tutorID)
+    {
         $this->db->query('select * from time_slot where tutor_id = :tutorID');
         $this->db->bind(':tutorID', $tutorID);
 
         return $this->db->resultAll();
     }
 
-    public function setTutorProfilePicture(string $imagePath, int $id): bool {
+    public function setTutorProfilePicture(string $imagePath, int $id): bool
+    {
         $this->db->query('UPDATE user SET profile_picture=:profile_picture WHERE id = :id;');
         $this->db->bind('profile_picture', $imagePath, PDO::PARAM_STR);
         $this->db->bind('id', $id, PDO::PARAM_INT);
 
         return $this->db->execute();
     }
-    
 
-    public function updateTutorTimeSlots($data, $id){
-        $count = 0;
 
-        foreach ($data as $row) {
-            $this->db->query("UPDATE time_slot SET state =: state WHERE tutor_id =: tutor_id ");
-            $this->db->bind('tutor_id', $id, PDO::PARAM_INT);
-            $this->db->bind('state', $row['state'], PDO::PARAM_STR);
-            $this->db->execute();
-            $count +=1;
-        }
-        if ($count == 56){
-            return 1;
-        }
-        else{
-            return 0;
-        }
+    public function updateTutorTimeSlots($state, $tutor_id, $id)
+    {
+        $this->db->query("UPDATE time_slot SET state = :state WHERE tutor_id = :tutor_id AND id = :id");
+        $this->db->bind(':state', $state);
+        $this->db->bind(':tutor_id', $tutor_id);
+        $this->db->bind(':id', $id);
+        return $this->db->execute();
     }
-
-
 }

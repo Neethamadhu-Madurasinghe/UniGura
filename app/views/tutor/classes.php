@@ -41,7 +41,7 @@ MainNavbar::render($request);
                          $module = (string) $array['name'];
                          $class_type = (string) $array['class_type'];
                          $profile_picture = (string) $array['profile_picture'];
-
+                         $root = URLROOT;
                          $studentID = $array['student_id'];
 
 
@@ -52,9 +52,9 @@ MainNavbar::render($request);
                         <h4 style='margin-top: 5%;'>$first_name $last_name</h4>
                     </header>
                     <div class='textbox_one'>
-                    <img style='border-radius: 0%;'  src='<?php echo URLROOT ?>/public/img/tutor/class/icons/BookBookmark.png'>
+                    <img style='border-radius: 0%;'  src='$root/public/img/tutor/class/icons/BookBookmark.png'>
                         <p style='color: rgba(112, 124, 151, 1) ; margin-top: 0px;text-align: justify;margin-bottom: 0px;'>$module $class_type</p>
-                        <img style='border-radius: 0%;'  src='<?php echo URLROOT ?>/public/img/tutor/class/icons/cast.png'>
+                        <img style='border-radius: 0%;'  src='$root/public/img/tutor/class/icons/cast.png'>
                         <p style='color: rgba(112, 124, 151, 1) ; margin-top: 0px;text-align: justify;margin-bottom: 0px;'>$mode</p>
                     </div>
                     <button class='msg_box button' data-id = $id >View Details</button>
@@ -81,7 +81,7 @@ MainNavbar::render($request);
                          <p id='mode' style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Online</p>
                     </div>
                     <div>
-                         <button class="msg_box button"><a href="#" class="reportBtn">Report</a></button>
+                         <button class="msg_box button" id='report'>Report</button>
                          <button class="msg_box button">Chat</button>
                     </div>
 
@@ -97,6 +97,8 @@ MainNavbar::render($request);
 </div>
 <script>
      let viewbtns = document.querySelectorAll('.msg_box');
+
+
 
 
      viewbtns.forEach(btn => {
@@ -121,7 +123,11 @@ MainNavbar::render($request);
                          module_name.innerHTML = list.name + list.class_type;
                          mode.innerHTML = list.mode;
 
-                         reportBtn.setAttribute('href', "http://localhost/UniGura/tutor/view-report?studentID="+list.student_id);
+                         console.log(list);
+
+                         document.getElementById('report').addEventListener('click', () => {
+                              window.location = `http://localhost/unigura/tutor/view-report?student_id=${list.student_id}`;
+                         })
 
                          let days = data['days'];
 

@@ -103,7 +103,7 @@ $router->registerController('/tutor/complete-profile', [TutorStudentProfileCompl
 $router->registerController('/tutor/create-course', [TutorCreateCourse::class, 'tutorcreatecourse']);
 $router->registerController('/tutor/storeData', [TutorCreateCourse::class, 'storeData']);
 $router->registerController('/tutor/update-profile', [TutorUpdateProfile::class, 'tutorupdateProfile']);
-$router->registerController('/tutor/report-problem', [TutorReportProblem::class, 'tutorreportProblem']);
+
 
 $router->registerController('/tutor/view-report', [TutorReportProblem::class, 'viewReport']);
 

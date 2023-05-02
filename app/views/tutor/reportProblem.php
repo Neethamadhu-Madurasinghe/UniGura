@@ -28,16 +28,18 @@ Header::render(
 ?>
 
 
-    <form action="report-problem" method="POST">
+    <form action="view-report" method="POST">
         <h1>Report a Problem</h1>
-        <div class="form-container"></div>
+        <div class="form-container"> </div>
+
+        <input name = 'student_id' type='hidden' id='student_id'>
 
         <label for="description">Leave a Comment(Optional): </label><br><br>
         <textarea id="description" name="description" rows="5" cols="30"></textarea><br><br>
 
         <div class="create-btn">
-            <button type="submit" id="cancel"><a href="#">Cancel</a></button>
-            <button type="submit" id="submit"><a href="#">Submit</a></button>
+            <button id="cancel">Cancel</button>
+            <button type="submit" id="submit">Submit</button>
         </div>
 
     </form>
@@ -47,16 +49,23 @@ Header::render(
 
             let form_container = document.querySelector('.form-container');
 
-            let object = <?php echo $data['input'] ?>;
+            let student_id = <?php echo $data['student_id'] ?>;
+            let object = <?php echo $data['report_resons'] ?>;
+
+            document.getElementById('student_id').value = student_id;
 
             for ( key in object){
                 let element = object[key];
 
-                let code = ` <input type="radio" id = "report${key}" name="report${key}" value="${element.id}"><label for = "report${key}" > ${element.description}</lable><br>`
+                let code = ` <input  name='report_reason' type="radio" id ="report${key}" name="report${key}" value="${element.id}"><label for = "report${key}" > ${element.description}</input><br>`
                 form_container.innerHTML += code;
             }
 
             console.log(object);
+
+            document.getElementById('cancel').addEventListener('click', () => {
+                window.location = `http://localhost/unigura/tutor/classes`;
+            });
 
 
     </script>
