@@ -97,6 +97,22 @@ h1, h2, h3 {
     }
 }
 
+.no-days-message-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 45vh;
+}
+
+.no-days-message-container h2 {
+    margin-top: 50px;
+}
+
+.no-days-message-container a {
+    color: var(--bright-orange);
+}
+
+
 .class-card-container {
     width: 100%;
     display: flex;
