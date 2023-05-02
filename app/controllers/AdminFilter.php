@@ -42,6 +42,42 @@ class AdminFilter extends Controller
 
             // print_r($arrayModes); // Array ( [0] => online [1] => physical )
 
+            // print_r($arrayVisibility);
+
+            if (array_key_exists("0", $arrayVisibility)) {
+                if ($arrayVisibility[0] == 'block') {
+                    $arrayVisibility[0] = 1;
+                } else {
+                    $arrayVisibility[0] = 0;
+                }
+            }
+
+            if (array_key_exists("1", $arrayVisibility)) {
+                if ($arrayVisibility[1] == 'unblock') {
+                    $arrayVisibility[1] = 0;
+                } else {
+                    $arrayVisibility[1] = 1;
+                }
+            }
+
+            // print_r($arrayVisibility);
+
+            // Array ( [0] => block [1] => unblock ) 
+            // Array ( [0] => 1 [1] => 0 )
+
+
+            if (array_key_exists("0", $arrayModes) && array_key_exists("1", $arrayModes)) {
+                if ($arrayModes[0] == 'online' && $arrayModes[1] == 'physical') {
+                    unset($arrayModes[1]);
+                    $arrayModes[0] = 'both';
+                } else if ($arrayModes[0] == 'physical' && $arrayModes[1] == 'online') {
+                    unset($arrayModes[1]);
+                    $arrayModes[0] = 'both';
+                }
+            }
+
+            // print_r($arrayModes);
+
 
             if (empty($searchStudentName) && empty($classConductModeValue) && empty($visibilityFilterValue)) {
                 $filterResult = $allStudent;
@@ -534,7 +570,7 @@ class AdminFilter extends Controller
                 $x->student = $student;
             }
 
-            
+
             $totalNumOfStudentComplaints = $this->filterModel->totalNumOfStudentComplaints();
 
 

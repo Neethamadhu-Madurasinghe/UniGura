@@ -82,10 +82,10 @@
                         <input type="checkbox" id="physical" name="mode" value="physical" class="physical checkbox class-conduct-mode">
                         <label for="physical">&nbspPhysical</label>
                     </div>
-                    <div class="checkbox-button">
+                    <!-- <div class="checkbox-button">
                         <input type="checkbox" id="both" name="mode" value="both" class="both checkbox class-conduct-mode">
                         <label for="both">&nbspBoth</label>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -96,12 +96,12 @@
                 </div>
                 <div class="visibility-select">
                     <div class="checkbox-button">
-                        <input type="checkbox" id="banned" name="banned" value="1" class="banned checkbox student-visibility-filter">
-                        <label for="banned">&nbspBanned</label>
+                        <input type="checkbox" id="banned" name="banned" value="block" class="block checkbox student-visibility-filter">
+                        <label for="banned">&nbspBlock</label>
                     </div>
                     <div class="checkbox-button">
-                        <input type="checkbox" id="unbanned" name="unbanned" value="0" class="unbanned checkbox student-visibility-filter">
-                        <label for="unbanned">&nbspUnBanned</label>
+                        <input type="checkbox" id="unbanned" name="unbanned" value="unblock" class="unblock checkbox student-visibility-filter">
+                        <label for="unbanned">&nbspUnblock</label>
                     </div>
                 </div>
             </div>
