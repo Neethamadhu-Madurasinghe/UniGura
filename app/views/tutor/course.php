@@ -41,7 +41,7 @@ Header::render(
             </div>
             <div class="button-container">
                 <div class="button1">
-                    <?php echo '<a  href= /unigura/tutor/createday?class_template_id=' . $data["id"] .  '&subject=' . $data['subject'] . '&module=' . $data['module'] . '><i class="fa-solid fa-plus"></i> Add Day</a>' ?>
+                    <a id='add_day'><i class="fa-solid fa-plus"></i> Add Day</a>
                 </div>
                 <div class="button2">
                     <?php echo '<a  href= /unigura/tutor/dashboard><i class="fa-solid fa-home"></i> Home</a>' ?>
@@ -213,6 +213,15 @@ Header::render(
                     btn.addEventListener('click', function() {
                         window.location = "http://localhost/unigura/tutor/deleteday?id=" + this.id + "&subject=" + subject + "&module=" + module + "&course_id=" + <?php echo $data['id'] ?>;
                     })
+                })
+
+                let cid = '<?php echo $data['id'] ?>';
+                let subject_name = '<?php echo $data['subject'] ?>';
+                let module_name =  '<?php echo $data['module'] ?>'
+
+
+                document.querySelector('.button1').addEventListener('click',function(){
+                    window.location = `http://localhost/unigura/tutor/createday?class_template_id=${cid}&subject=${subject_name}&module=${module_name}?>`
                 })
             </script>
             <?php Footer::render(

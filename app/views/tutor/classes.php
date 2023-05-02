@@ -5,6 +5,7 @@
  * @var $request
  */
 
+
 ?>
 
 <?php
@@ -96,9 +97,6 @@ MainNavbar::render($request);
 </div>
 <script>
      let viewbtns = document.querySelectorAll('.msg_box');
-
-
-
 
      viewbtns.forEach(btn => {
           btn.addEventListener('click', function() {

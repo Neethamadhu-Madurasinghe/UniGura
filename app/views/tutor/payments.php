@@ -165,9 +165,6 @@ toggle between hiding and showing the dropdown content */
      document.getElementById('earing_percentage').innerHTML = `${earings_percentage}%`
 
 
-
-
-
      function list_payment(payments) {
           let table = document.createElement('table');
           for (const element of payments) {
@@ -180,12 +177,12 @@ toggle between hiding and showing the dropdown content */
                     payment_status = "PAID-OFF";
                }
 
-               console.log(element);
+               console.log(element.date);
                
-               let year = element.Date.slice(0,4);
-               console.log(element.Date)
-               let month = element.Date.toString().slice(5, 7);
-               let day = element.Date.toString().slice(8, 10);
+               let year = element.date.slice(0,4);
+               console.log(element.date)
+               let month = element.date.toString().slice(5, 7);
+               let day = element.date.toString().slice(8, 10);
                let month_text = new Date(Date.UTC(2023, parseInt(month) - 1, 1)).toLocaleString('default', {
                     month: 'short'
                });
@@ -202,7 +199,7 @@ toggle between hiding and showing the dropdown content */
                cell2.innerHTML = `${element.first_name} ${element.last_name}</span>
                          <p>${element.module}</p>
                     `;
-               cell3.innerHTML = `${element.rate}`;
+               cell3.innerHTML = `${element.session_rate}`;
                cell4.innerHTML = `<span   class='p_status ${payment_status.toLowerCase()}' >${payment_status}</span>`;
                cell5.innerHTML = `<i style="color:#7c7c8f9c ;font-size: 18px;" class="fas fa-calendar-alt"></i><span> ${month_text} ${day} ${year}</span>`;
 
