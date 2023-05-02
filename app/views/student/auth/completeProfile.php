@@ -144,8 +144,8 @@ IntermediateNavBar::render($request);
                                     <?php echo $data['medium'] === 'sinhala' ? 'selected' : '' ?>>Sinhala</option>
                                 <option value="english"
                                     <?php echo $data['medium'] === 'english' ? 'selected' : '' ?>>English</option>
-                                <option value="both"
-                                    <?php echo $data['medium'] === 'both' ? 'selected' : '' ?>>Both</option>
+                                <option value="tamil"
+                                    <?php echo $data['medium'] === 'both' ? 'selected' : '' ?>>Tamil</option>
                             </select>
                         </div>
 

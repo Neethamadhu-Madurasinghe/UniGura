@@ -16,8 +16,7 @@ Header::render(
     'Class DashBoard',
     [
         URLROOT . '/public/css/student/components/main-nav-bar.css',
-        URLROOT . '/public/css/student/tutoring-class.css',
-        URLROOT . '/public/css/student/components/tutoring-class-day-card.css'
+        URLROOT . '/public/css/student/tutoring-class.css'
     ]
 );
 
@@ -27,7 +26,7 @@ Header::render(
 
     <div class="popup-request-send-success hidden">
         <object data="assests/success.svg" type=""></object>
-        <p>Reschedule Request has been Sent Successfully</p>
+        <p>Reshedule Request has been Sent Successfully</p>
         <button class="btn btn-search">OK</button>
     </div>
 
@@ -139,14 +138,14 @@ Header::render(
 
 <div class="main-area-container">
     <div class="main-area">
-        <h1 class="main-title"><?php echo $data['module_name'] . ' - ' . ucwords($data['class_type']) ?></h1>
-        <h2 class="sub-title"><?php echo $data['subject_name'] ?></h2>
-        <h3 class="tutor-name"><?php echo $data['tutor_name'] ?></h3>
+        <h1 class="main-title">Mechanics Theory</h1>
+        <h2 class="sub-title">Physics</h2>
+        <h3 class="tutor-name">John Joe</h3>
 
         <div class="progress-bar-container">
             <h2>Progress</h2>
             <div class="progress-bar-outer">
-                <div class="progress-bar-inner" style="width: <?php echo ($data['day_count'] !== 0 ? $data['incomplete_day_count'] * 100/$data['day_count'] : 0) . '%' ?>"></div>
+                <div class="progress-bar-inner"></div>
             </div>
         </div>
 
@@ -156,56 +155,107 @@ Header::render(
 
 
         <div class="class-card-container">
-<!--TODO: Handle no data-->
-            <?php foreach($data['days'] as $day): ?>
-                <div class="class-card">
+
+            <div class="class-card">
                 <div class="class-card-top-section">
-                    <h2>Day <?php echo $day['position'] . ' - ' . $day['title'] ?></h2>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" name="" class="disabled-check-box"  <?php echo $day['is_completed'] == 1 ? 'checked' : ''?> disabled >
-                        <span class="checkmark disabled"></span>
-                    </label>
+                    <h2>Day 1 - Newton Laws</h2>
+                    <input type="checkbox" name="" id="">
                 </div>
 
                 <div class="class-card-bottom-section">
-                    <?php foreach($day['activities'] as $activity): ?>
-                        <div class="activity-row">
-<!--                            Just text-->
-                            <?php if ($activity['type'] == 2): ?>
-                                <p class="activity-component"><?php echo $activity['description'] ?></p>
-
-<!--                               File upload - this is a dynamically created form -->
-                            <?php elseif ($activity['type'] == 1): ?>
-                                <form class="file-upload-form" action="" id="assignment-submit-form-<?php echo $activity['id']?>" method="POST" enctype = "multipart/form-data">
-                                    <label for="file-upload-<?php echo $activity['id']?>" class="file-upload-label activity-component">
-                                        <?php echo $activity['description'] ?>
-                                    </label>
-                                    <input id="file-upload-<?php echo $activity['id']?>" class="file-upload-input" type="file" name="assignment-file" />
-
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" name="" class="disabled-check-box"  <?php echo $activity['is_completed'] == 1 ? "checked" : ""?> disabled>
-                                        <span class="checkmark disabled"></span>
-                                    </label>
-
-<!--                                    Hidden input filed for give the activity id-->
-                                    <input type="hidden" name="activity-id" value="<?php echo $activity['id'] ?>">
-                                    <input type="hidden" name="id" value="<?php echo $data['id'] ?>">
-                                </form>
-
-<!--                               File download-->
-                            <?php elseif ($activity['type'] == 0) : ?>
-                                <a href="<?php echo URLROOT . '/load-file?file=' . $activity['link']  ?>" class="activity-component"><?php echo $activity['description'] ?></a>
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="" id="" <?php echo $activity['is_completed'] == 1 ? "checked" : ""?> >
-                                    <span class="checkmark"></span>
-                                </label>
-
-                            <?php endif; ?>
-                        </div>
-                    <?php endforeach; ?>
+                    <div class="activity-row">
+                        <p>Newton Laws Tutor</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="activity-row">
+                        <p>Newton Laws Questionsr</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="activity-row">
+                        <p>Newton Laws Tutor</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
                 </div>
             </div>
-            <?php endforeach; ?>
+
+            <div class="class-card">
+                <div class="class-card-top-section">
+                    <h2>Day 1 - Newton Laws</h2>
+                    <input type="checkbox" name="" id="">
+                </div>
+
+                <div class="class-card-bottom-section">
+                    <div class="activity-row">
+                        <p>Newton Laws Tutor</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="activity-row">
+                        <p>Newton Laws Questionsr</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="activity-row">
+                        <p>Newton Laws Tutor</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="class-card">
+                <div class="class-card-top-section">
+                    <h2>Day 1 - Newton Laws</h2>
+                    <input type="checkbox" name="" id="">
+                </div>
+
+                <div class="class-card-bottom-section">
+                    <div class="activity-row">
+                        <p>Newton Laws Tutor</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="activity-row">
+                        <p>Newton Laws Questionsr</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="activity-row">
+                        <p>Newton Laws Tutor</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="activity-row">
+                        <p>Newton Laws Tutor</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="activity-row">
+                        <p>Newton Laws Questionsr</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="activity-row">
+                        <p>Newton Laws Tutor</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="class-card">
+                <div class="class-card-top-section">
+                    <h2>Day 1 - Newton Laws</h2>
+                    <input type="checkbox" name="" id="">
+                </div>
+
+                <div class="class-card-bottom-section">
+                    <div class="activity-row">
+                        <p>Newton Laws Tutor</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="activity-row">
+                        <p>Newton Laws Questionsr</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                    <div class="activity-row">
+                        <p>Newton Laws Tutor</p>
+                        <input type="checkbox" name="" id="">
+                    </div>
+                </div>
+            </div>
 
         </div>
 
@@ -223,7 +273,6 @@ Header::render(
     [
         URLROOT . '/public/js/student/student-main-nav-bar.js',
         URLROOT . '/public/js/student/tutoring-class.js',
-        URLROOT . '/public/js/student/tutoring-class-upload-assignment.js',
     ]
 );
 ?>

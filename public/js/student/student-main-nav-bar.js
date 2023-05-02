@@ -10,6 +10,7 @@ const notificationCountUI = document.querySelector('.notification-span');
 const unSeenMessageCountUI = document.querySelector('.message-span');
 
 let fetchedNotifications = []
+let isNotificationMenuOpen = false;
 
 dashboardProfilePictureUI.addEventListener('click', function (e) {
   profileMenu.classList.toggle('profile-menu-hidden');
@@ -17,6 +18,7 @@ dashboardProfilePictureUI.addEventListener('click', function (e) {
 
 notificationIconUI.addEventListener('click', function (e) {
   notificationListUI.style.display = 'block';
+  isNotificationMenuOpen = true;
   markNotificationsAsSeen();
 })
 
@@ -25,7 +27,8 @@ _bodyUI.addEventListener('click', function (e) {
   if(!(
     targetClassList.includes('profile-menu') || 
     targetClassList.includes('profile-picture') || 
-    targetClassList.includes('profile-picture-img')) ) {
+    targetClassList.includes('profile-picture-img')) )
+  {
     profileMenu.classList.add('profile-menu-hidden');
   }
 
@@ -35,9 +38,13 @@ _bodyUI.addEventListener('click', function (e) {
       targetClassList.includes('notification-span') ||
       targetClassList.includes('notification-dropdown') ||
       targetClassList.includes('notification-bell-icon')
-  )) {
-    notificationListUI.style.display = 'none';
-    getNotifications();
+  ))
+  {
+      if(isNotificationMenuOpen === true) {
+          notificationListUI.style.display = 'none';
+          getNotifications();
+          isNotificationMenuOpen = false;
+      }
   }
 });
 

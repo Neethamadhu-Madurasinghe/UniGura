@@ -238,6 +238,7 @@ $router->registerController('/api/time-table', [FindTutor::class, 'getTutorTimeT
 $router->registerController('/api/request', [FindTutor::class, 'sendTutorRequest']);
 $router->registerController('/student/find-tutor', [FindTutor::class, 'findTutor']);
 $router->registerController('/student/profile', [StudentProfile::class, 'profile']);
+$router->registerController('/api/student/delete-request', [StudentProfile::class, 'deleteTutorRequest']);
 $router->registerController('/api/report-tutor', [StudentTutorProfile::class, 'reportTutor']);
 $router->registerController('/student/tutor-profile', [StudentTutorProfile::class, 'tutorProfile']);
 $router->registerController('/student/change-profile-picture', [StudentProfile::class, 'changeProfilePicture']);
@@ -251,5 +252,7 @@ $router->registerController(
 );
 $router->registerController('/api/user/validate-otp', [StudentTutorProfile::class, 'changePasswordValidation']);
 $router->registerController('/api/user/change-password', [StudentTutorProfile::class, 'changePassword']);
+$router->registerController('/student/tutoringClass', [StudentClass::class, 'tutoringClass']);
+
 
 $router->resolve();
