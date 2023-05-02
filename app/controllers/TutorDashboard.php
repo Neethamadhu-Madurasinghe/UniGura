@@ -200,7 +200,9 @@ class TutorDashboard extends Controller
                 'time' => $body['time'],
                 'duration' => $body['duration'],
                 'rate' => $body['rate'],
-                'time_slot_id'=>$body['time_slot_id']
+                'time_slot_id'=>$body['time_slot_id'],
+                'type' => $body['type'],
+                'medium' => $body['medium']
             ];
 
 

@@ -98,9 +98,6 @@ MainNavbar::render($request);
 <script>
      let viewbtns = document.querySelectorAll('.msg_box');
 
-
-
-
      viewbtns.forEach(btn => {
           btn.addEventListener('click', function() {
                const url = "http://localhost/unigura/tutor/getclassdetails?id=" + btn.dataset.id;

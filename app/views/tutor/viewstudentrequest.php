@@ -41,6 +41,8 @@ Header::render(
                let request = <?php echo $data['tutor_request'] ?>;
                let request_obj = request[0];
 
+               console.log(request_obj);
+
 
                let request_container = document.querySelector('.box');
                let time_slots = <?php echo $data['time_slots'] ?>;
@@ -111,6 +113,8 @@ Header::render(
                               <input id="duration" name="duration" value=${request_obj.duration} type="hidden">
                               <input id="rate" name="rate" value=${request_obj.rate} type="hidden">
                               <input id = "time_slot_id" name = "time_slot_id" value = ${time_slots[0].time_slot_id} type="hidden">
+                              <input id = "type" name = "type" value = ${request_obj.class_type} type="hidden">
+                              <input id = "medium" name = "medium" value = ${request_obj.medium} type="hidden">
                               <div class="dropdown">
                                    <button type="submit" class="yes" id="approve">Approve</button>
                               </div>

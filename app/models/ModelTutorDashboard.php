@@ -130,7 +130,7 @@ class ModelTutorDashboard
 
     public function viewStudentRequests($id): array
     {
-        $this->db->query(' SELECT r.id as id , r.class_template_id , r.mode , r.tutor_id , r.student_id , s.name as subject , m.name as module , u.first_name , u.last_name , u.profile_picture , u.id as user_id ,c.class_type , c.session_rate , c.duration FROM request AS r JOIN tutoring_class_template AS c ON r.class_template_id = c.id JOIN subject AS s ON c.subject_id = s.id JOIN module AS m ON c.module_id = m.id JOIN user AS u ON r.student_id = u.id WHERE r.id = :id;');
+        $this->db->query(' SELECT r.id as id , r.class_template_id , r.mode , r.tutor_id , r.student_id , s.name as subject , m.name as module , u.first_name , u.last_name , u.profile_picture , u.id as user_id ,c.class_type , c.session_rate , c.duration ,c.medium FROM request AS r JOIN tutoring_class_template AS c ON r.class_template_id = c.id JOIN subject AS s ON c.subject_id = s.id JOIN module AS m ON c.module_id = m.id JOIN user AS u ON r.student_id = u.id WHERE r.id = :id;');
         $this->db->bind('id', $id, PDO::PARAM_INT);
         return $this->db->resultAllAssoc();
     }
@@ -187,7 +187,9 @@ class ModelTutorDashboard
                  mode = :mode,
                  student_id = :student_id,
                  tutor_id = :tutor_id,
-                 rate = :rate,
+                 session_rate = :rate,
+                 class_type = :type,
+                 medium = :medium,
                  duration = :duration;
                  SELECT MAX(id) from tutoring_class;');
 
@@ -199,7 +201,9 @@ class ModelTutorDashboard
         $this->db->bind('student_id', $data['student_id'], PDO::PARAM_STR);
         $this->db->bind('tutor_id', $data['tutor_id'], PDO::PARAM_STR);
         $this->db->bind('duration', $data['duration'], PDO::PARAM_STR);
-        $this->db->bind('rate', $data['rate'] , PDO::PARAM_STR);
+        $this->db->bind('rate', $data['rate'] , PDO::PARAM_INT);
+        $this->db->bind('type', $data['type'], PDO::PARAM_STR);
+        $this->db->bind('medium', $data['medium'] , PDO::PARAM_INT);
 
         return $this->db->execute();
     }
@@ -214,7 +218,7 @@ class ModelTutorDashboard
 
     public function setDaysofClass($class_id,$data):bool{
         $this->db->query('
-        INSERT INTO day (class_id, title, position, )
+        INSERT INTO day (class_id, title, position )
             SELECT :class_id , title , position 
             FROM day_template
             WHERE class_template_id = :c_id ;
