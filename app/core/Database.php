@@ -75,7 +75,7 @@ class Database {
     }
 
 //    Get single record as the result, but as an associative array
-    public function resultOneAssoc(): array {
+    public function resultOneAssoc() {
         $this->execute();
         return $this->statement->fetch(PDO::FETCH_ASSOC);
     }

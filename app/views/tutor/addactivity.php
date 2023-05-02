@@ -47,6 +47,7 @@ Header::render(
                                         <input name="subject" value="<?php echo $data['subject'] ?>" type="hidden">
                                         <input name="module" value="<?php echo $data['module'] ?>" type="hidden">
                                         <input name="c_id" value="<?php echo $data['c_id'] ?>" type="hidden">
+
                                         <input style="width : 100% " name='description' type="text">
                                         <input type="file" id="activity-doc" name="activity-doc" hidden />
                                    </div>

@@ -8,6 +8,7 @@ require_once 'helpers/Session_Helper.php';
 require_once 'helpers/File_Upload_Helper.php';
 require_once 'helpers/Tutor_Student_Data_Validation_Helper.php';
 require_once 'helpers/Cors_Helper.php';
+require_once 'helpers/OTPHelper.php';
 
 // Load core
 require_once 'core/Request.php';

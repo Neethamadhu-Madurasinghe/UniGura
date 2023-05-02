@@ -356,12 +356,14 @@ class TutorCourse extends Controller
             $data = [
                 'id' => $body['id'],
                 'activity' => $activityPath,
+                'c_id' => $body['course_id'],
                 'type' => $body['type'],
                 'description' => $body['description']
             ];
 
             if ($this->courseModel->setActivityTemplate($data)) {
                 redirect('tutor/viewcourse?subject='. $body['subject'] . '&module=' . $body['module'] . '&id=' . $body['c_id'] , $request, $data);
+
             }
         }
         
@@ -443,6 +445,7 @@ class TutorCourse extends Controller
             ];
 
             $data['errors']['title_error'] = $this->validateTitle($body['title'], $body['id']);
+
             $data['errors']['position_error'] = $this->validatePosition($body['position'], $body['id']);
 
     
@@ -505,6 +508,7 @@ class TutorCourse extends Controller
             ];
 
             $this->view('tutor/deleteday', $request, $data);
+
         }
 
         if ($request->isPost()) {
@@ -517,7 +521,9 @@ class TutorCourse extends Controller
                 die('Something went wrong');
             }
 
+
             $this->view('tutor/deleteday', $request, $data);
+
         }
 
 

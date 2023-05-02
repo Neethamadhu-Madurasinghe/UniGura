@@ -173,7 +173,7 @@ public function setClassTemplateDay($data): bool
         $this->db->bind('position', $data['position'], PDO::PARAM_STR);
         $this->db->bind('id', $data['id'], PDO::PARAM_INT);
 
-        
+
 //      Returns whether the row count is greater than 0
         return $this->db->execute();
     }
@@ -187,7 +187,5 @@ public function setClassTemplateDay($data): bool
 //      Returns whether the row count is greater than 0
         return $this->db->execute();
     }
-
-    
 
 }

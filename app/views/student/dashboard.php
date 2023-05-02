@@ -60,7 +60,7 @@ MainNavbar::render($request);
                             <option value="all" style="display: none;" selected>Payment Status</option>
                             <option value="all">All</option>
                             <option value="payment-due">Payment Due</option>
-                            <option value="payment-not-due">Payed</option>
+                            <option value="payment-not-due">Paid</option>
                         </select>
 
                     </form>
