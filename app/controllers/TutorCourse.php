@@ -349,7 +349,7 @@ class TutorCourse extends Controller
 
             $activityPath = handleUpload(
                 array( 'pdf'),
-                '\\tutor_detail_files\\tutor_docs\\',
+                '\\user_files\\',
                 'activity-doc'
             );
 

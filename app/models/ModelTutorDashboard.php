@@ -214,8 +214,8 @@ class ModelTutorDashboard
 
     public function setDaysofClass($class_id,$data):bool{
         $this->db->query('
-        INSERT INTO day (class_id, day_template_id )
-            SELECT :class_id , id 
+        INSERT INTO day (class_id, title, position, )
+            SELECT :class_id , title , position 
             FROM day_template
             WHERE class_template_id = :c_id ;
             ');
