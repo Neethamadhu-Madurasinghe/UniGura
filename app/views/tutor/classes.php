@@ -5,9 +5,6 @@
  * @var $request
  */
 
-echo '<pre>';
-echo print_r($data);
-echo '</pre>';
 
 ?>
 
