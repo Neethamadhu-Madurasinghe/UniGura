@@ -40,6 +40,15 @@
                                 <img src="<?php echo URLROOT; ?>/public/img/admin/hide.png" alt="" class="hide">
                             <?php endif; ?>
                         </div>
+
+                        <div class="hide-show">
+                            <?php if ($aTutor->is_hidden == '1') : ?>
+                                <img src="<?php echo URLROOT; ?>/public/img/admin/block.png" alt="" class="block">
+                            <?php endif; ?>
+                            <?php if ($aTutor->is_hidden == '0') : ?>
+                                <img src="<?php echo URLROOT; ?>/public/img/admin/hide.png" alt="" class="hide">
+                            <?php endif; ?>
+                        </div>
                     </div>
 
                     <div class='profile-picture'>

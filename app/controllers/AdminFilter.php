@@ -132,6 +132,8 @@ class AdminFilter extends Controller
     }
 
 
+
+
     public function filterForTutorPage(Request $request)
     {
 
@@ -163,6 +165,59 @@ class AdminFilter extends Controller
             $arrayVisibility =  explode(',', $visibilityFilterValue);
             $arrayDuration =  explode(',', $tutorDurationFilterValue);
 
+
+            // print_r($arrayVisibility);
+
+            if (array_key_exists("0", $arrayVisibility)) {
+                if ($arrayVisibility[0] == 'block') {
+                    $arrayVisibility[0] = 1;
+                } else if ($arrayVisibility[0] == 'unblock') {
+                    $arrayVisibility[0] = 0;
+                }else if ($arrayVisibility[0] == 'show') {
+                    $arrayVisibility[0] = 1;
+                } else if ($arrayVisibility[0] == 'hide') {
+                    $arrayVisibility[0] = 0;
+                }
+            }
+
+
+            if (array_key_exists("1", $arrayVisibility)) {
+                if ($arrayVisibility[1] == 'block') {
+                    $arrayVisibility[1] = 1;
+                } else if ($arrayVisibility[1] == 'unblock') {
+                    $arrayVisibility[1] = 0;
+                }else if ($arrayVisibility[1] == 'show') {
+                    $arrayVisibility[1] = 1;
+                } else if ($arrayVisibility[1] == 'hide') {
+                    $arrayVisibility[1] = 0;
+                }
+            }
+
+            if (array_key_exists("2", $arrayVisibility)) {
+                if ($arrayVisibility[2] == 'block') {
+                    $arrayVisibility[2] = 1;
+                } else if ($arrayVisibility[2] == 'unblock') {
+                    $arrayVisibility[2] = 0;
+                }else if ($arrayVisibility[2] == 'show') {
+                    $arrayVisibility[2] = 1;
+                } else if ($arrayVisibility[2] == 'hide') {
+                    $arrayVisibility[2] = 0;
+                }
+            }
+
+            if (array_key_exists("3", $arrayVisibility)) {
+                if ($arrayVisibility[3] == 'block') {
+                    $arrayVisibility[3] = 1;
+                } else if ($arrayVisibility[3] == 'unblock') {
+                    $arrayVisibility[3] = 0;
+                }else if ($arrayVisibility[3] == 'show') {
+                    $arrayVisibility[3] = 1;
+                } else if ($arrayVisibility[3] == 'hide') {
+                    $arrayVisibility[3] = 0;
+                }
+            }
+
+            // print_r($arrayVisibility);
 
 
             if (empty($searchTutorName) && empty($classConductModeValue) && empty($visibilityFilterValue) && empty($tutorDurationFilterValue)) {
