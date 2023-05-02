@@ -26,48 +26,7 @@ Header::render(
 <div class="lightbox">
      <div class="box">
 
-          <img class="stu_img" id='image' src="user.jpg">
-          <h2 id="first_name" style="text-align: center;width: 100%;padding-bottom: 0px; font-weight: 400;">Sachithra Kavinda</h2>
-          <button class="close" id="close_btn"><i class="fa fa-times"></i></button>
-          <div class="content">
-
-               <div class="new_req_table">
-                    <i class="fa-solid fa-graduation-cap"></i><span id="class" class="text">Class : Physics - Mechanics</span>
-               </div>
-               <div class="new_req_table">
-                    <i class="fa-regular fa-calendar-days"></i><span id="time" class="text">Time : Wendsday 18 - 20 PM</span>
-               </div>
-               <div class="new_req_table">
-                    <i class="fa-solid fa-bookmark"></i><span id="type" class="text">Type : Revision</span>
-               </div>
-               <div class="new_req_table">
-                    <i class="fa-brands fa-chromecast"></i><span id="mode" class="text">Mode : Online</span>
-               </div>
-
-          </div>
-          <div class="form_container">
-               <div>
-                    <div class="grid" style="margin-top: 0px;">
-                         <div class="dropdown">
-                              <button class="no" id="decline_btn" >Decline</button>
-                         </div>
-                         <form action="" method="POST" enctype='multipart/form-data'>
-                              <input id="id" name="id" value="" type="hidden">
-                              <input id="c_id" name="c_id" value="" type="hidden">
-                              <input id="Imode" name="mode" value="" type="hidden">
-                              <input id="student_id" name="student_id" value="" type="hidden">
-                              <input id="tutor_id" name="tutor_id" value="" type="hidden">
-                              <input id="date" name="date" value="" type="hidden">
-                              <input id="Itime" name="time" value="" type="hidden">
-                              <input id="duration" name="duration" value="" type="hidden">
-                              <input id="rate" name="rate" value="" type="hidden">
-                              <div class="dropdown">
-                                   <button type="submit" class="yes" id="approve">Approve</button>
-                              </div>
-                         </form>
-                    </div>
-               </div>
-          </div>
+          
 
           <script>
                let student_name = document.getElementById('first_name');
@@ -76,22 +35,17 @@ Header::render(
                let time_slot = document.getElementById('time');
                let type = document.getElementById('type');
                let mode = document.getElementById('mode');
+
+               let root = '<?php echo URLROOT ?>';
+
                let request = <?php echo $data['tutor_request'] ?>;
+               let request_obj = request[0];
+
+
+               let request_container = document.querySelector('.box');
                let time_slots = <?php echo $data['time_slots'] ?>;
-               
 
-               let input_id = document.getElementById('id');
-               let input_c_id = document.getElementById('c_id');
-               let input_mode = document.getElementById('Imode');
-               let input_student_id = document.getElementById('student_id');
-               let input_tutor_id = document.getElementById('tutor_id');
-               let input_date = document.getElementById('date');
-               let input_time = document.getElementById('Itime');
-               let input_duration = document.getElementById('duration');
-               let input_rate = document.getElementById('rate');
-
-               let decline = document.getElementById('decline_btn');
-
+               console.log(time_slots[0]);
 
                let day;
 
@@ -120,28 +74,73 @@ Header::render(
                          // code to execute if expression doesn't match any of the cases
                }
 
+               let code = `<img class="stu_img" id='image' src='${root}/${request_obj.profile_picture}'>
+          <h2 id="first_name" style="text-align: center;width: 100%;padding-bottom: 0px; font-weight: 400;">${request_obj.first_name} ${request_obj.last_name}</h2>
+          <button class="close" id="close_btn"><i class="fa fa-times"></i></button>
+          <div class="content">
 
-               student_name.innerText = request[0].first_name + ' ' + request[0].last_name;
-               student_image.src = `http://localhost/UniGura/${request[0].profile_picture}`;
-               course.innerText = 'Course : ' + request[0].subject + ' - ' + request[0].module;
-               type.innerText = 'Type : ' + request[0].class_type;
-               mode.innerText = 'Mode : ' + request[0].mode.charAt(0).toUpperCase() + request[0].mode.slice(1);;
-               time_slot.innerText = 'Time : ' + day + ' ' + time_slots[0].time.slice(0, 2) + '-' + `${parseInt(time_slots[time_slots.length - 1].time.slice(0,2))+2}`;
-               input_id.value = request[0].id;
-               
+               <div class="new_req_table">
+                    <i class="fa-solid fa-graduation-cap"></i><span id="class" class="text">Class : ${request_obj.subject} - ${request_obj.module}</span>
+               </div>
+               <div class="new_req_table">
+                    <i class="fa-regular fa-calendar-days"></i><span id="time" class="text">Time : ${day} @ ${time_slots[0].time}</span>
+               </div>
+               <div class="new_req_table">
+                    <i class="fa-solid fa-bookmark"></i><span id="type" class="text">Type : ${request_obj.class_type}</span>
+               </div>
+               <div class="new_req_table">
+                    <i class="fa-brands fa-chromecast"></i><span id="mode" class="text">Mode : ${request_obj.mode}</span>
+               </div>
 
-
-
-               input_c_id.value = request[0].class_template_id;
-               input_mode.value = request[0].mode;
-               input_student_id.value = request[0].user_id;
-               input_tutor_id.value = request[0].tutor_id;
-               input_time.value = time_slots[0].time;
-               input_date.value = day;
-               input_rate.value = request[0].session_rate;
-               input_duration.value = request[0].duration;
+          </div>
           
-               
+          <div class="form_container">
+               <div>
+                    <div class="grid" style="margin-top: 0px;">
+                         <div class="dropdown">
+                              <button class="no" id="decline_btn">Decline</button>
+                         </div>
+                         <form action="" method="POST" enctype='multipart/form-data'>
+                              <input id="id" name="id" value=${request_obj.id} type="hidden">
+                              <input id="c_id" name="c_id" value=${request_obj.class_template_id} type="hidden">
+                              <input id="Imode" name="mode" value=${request_obj.mode} type="hidden">
+                              <input id="student_id" name="student_id" value=${request_obj.student_id} type="hidden">
+                              <input id="tutor_id" name="tutor_id" value=${request_obj.tutor_id} type="hidden">
+                              <input id="date" name="date" value=${time_slots[0].day} type="hidden">
+                              <input id="Itime" name="time" value=${time_slots[0].time} type="hidden">
+                              <input id="duration" name="duration" value=${request_obj.duration} type="hidden">
+                              <input id="rate" name="rate" value=${request_obj.rate} type="hidden">
+                              <input id = "time_slot_id" name = "time_slot_id" value = ${time_slots[0].time_slot_id} type="hidden">
+                              <div class="dropdown">
+                                   <button type="submit" class="yes" id="approve">Approve</button>
+                              </div>
+                         </form>
+                    </div>
+
+               </div>
+
+
+          </div>`
+
+               request_container.innerHTML += code;
+
+
+               let input_id = document.getElementById('id');
+               let input_c_id = document.getElementById('c_id');
+               let input_mode = document.getElementById('Imode');
+               let input_student_id = document.getElementById('student_id');
+               let input_tutor_id = document.getElementById('tutor_id');
+               let input_date = document.getElementById('date');
+               let input_time = document.getElementById('Itime');
+               let input_duration = document.getElementById('duration');
+               let input_rate = document.getElementById('rate');
+
+               let decline = document.getElementById('decline_btn');
+
+
+     
+
+
 
 
                var closebtn = document.querySelector("#close_btn");

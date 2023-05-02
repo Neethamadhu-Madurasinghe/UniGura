@@ -13,8 +13,7 @@ class ModelTutorClass
 
     public function getTutoringClasses($id): array
     {
-
-        $this->db->query(' SELECT c.id as classid , c.mode , c.student_id ,ct.class_type , m.name, u.first_name , u.last_name , u.profile_picture 
+        $this->db->query('SELECT c.id as classid , c.mode , c.student_id ,ct.class_type , m.name, u.first_name , u.last_name , u.profile_picture 
         FROM tutoring_class AS c
         JOIN user AS u 
         ON c.student_id = u.id

@@ -32,6 +32,10 @@ Header::render(
     console.log('hello')
     let data = <?php echo json_encode($data) ?>;
 
+    let tunnel = '<?php echo tunnel_link ?>/UniGura/tutor/savepayment';
+
+    console.log(tunnel);
+
     console.log(data.first_name);
     // Payment completed. It can be a successful failure.
     payhere.onCompleted = function onCompleted(orderId) {
@@ -57,8 +61,8 @@ Header::render(
         "merchant_id": data.merchant_id,    // Replace your Merchant ID
         "return_url":undefined,     // Important
         "cancel_url": undefined,     // Important
-        "notify_url": 'https://polite-lies-flow-101-2-180-231.loca.lt/unigura/tutor/savepayment',
-        "order_id": data.order_id,
+        "notify_url": tunnel,
+        "order_id": data.order_id,//day_id
         "items": data.items,
         "amount": data.amount,
         "currency": data.currency,
@@ -69,15 +73,26 @@ Header::render(
         "phone": data.phone,
         "address": data.address,
         "city": data.city,
-        "country": "Sri Lanka"
+        "country": "Sri Lanka",
+        'custom_1' : data.student_id,
+        'custom_2' : data.tutor_id
     };
+
+
     console.log(payment)
 
     // Show the payhere.js popup, when "PayHere Pay" is clicked
     document.getElementById('payhere-payment').onclick = function (e) {
         payhere.startPayment(payment);
     };
+
+
+//     Visa : 4916217501611292
+// MasterCard : 5307732125531191
+// AMEX : 346781005510225
 </script>
+
+
 
           <?php Footer::render(
                []

@@ -246,6 +246,30 @@ body.dark .sidebar li a:hover .text {
     width: 60px;
 }
 
+.notification-icon {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .notification-count {
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 16px;
+  }
+
+  .noti-color{
+    background-color: red;
+  }
+
 .mode .sun-moon i {
     position: absolute;
 }

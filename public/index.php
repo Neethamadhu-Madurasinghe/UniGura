@@ -141,7 +141,7 @@ $router->registerController('/tutor/savepayment', [TutorDashboard::class, 'savep
 
 $router->registerController('/tutor/classes', [TutorClass::class, 'mainpage']);
 $router->registerController('/tutor/payments', [TutorPayments::class, 'mainpage']);
-$router->registerController('/tutor/', [TutorPayments::class, 'filter_payments_by_day']);
+$router->registerController('/tutor/payments/filterpayments', [TutorPayments::class, 'filter_payments_by_day']);
 $router->registerController('/tutor/payments/getpaymentamounts', [TutorPayments::class, 'monthly_payment_amounts']);
 
 
@@ -156,6 +156,9 @@ $router->registerController('/tutor/getclassdetails', [TutorClass::class, 'getcl
 
 
 $router->registerController('/tutor/notifications', [TutorNotification::class, 'notification']);
+$router->registerController('/tutor/notifications/markasseen', [TutorNotification::class, 'mark_as_seen']);
+$router->registerController('/tutor/notifications/markasdelete', [TutorNotification::class, 'mark_as_delete']);
+$router->registerController('/tutor/notifications/getcount', [TutorNotification::class, 'get_count']);
 
 $router->registerController('/tutor/change-profile-picture', [TutorUpdateProfile::class, 'changeProfilePicture']);
 

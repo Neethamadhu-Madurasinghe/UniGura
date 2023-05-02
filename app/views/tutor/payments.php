@@ -147,11 +147,11 @@ toggle between hiding and showing the dropdown content */
      let payments = <?php echo $data['payments'] ?>;
      let amounts = <?php echo $data['amounts'] ?>;
      let monthly_earns = <?php echo $data['monthlyearns'] ?>;
-     console.log(monthly_earns);
+
+
      let root = '<?php echo URLROOT ?>';
 
      let payment_container = document.querySelector('.Payments_box');
-     
 
 
      list_payment(payments);
@@ -181,6 +181,7 @@ toggle between hiding and showing the dropdown content */
                }
 
                console.log(element);
+               
                let year = element.Date.slice(0,4);
                console.log(element.Date)
                let month = element.Date.toString().slice(5, 7);
@@ -263,7 +264,7 @@ toggle between hiding and showing the dropdown content */
                var selectedOption = dateRangeFilter.value;
                payment_container.innerHTML = ''; //clear previous results
 
-               console.log('Done');
+               console.log(selectedOption);
 
               // make fetch request to PHP backend with selected date range
                fetch(`${root}/tutor/payments/filterpayments`, {
@@ -294,7 +295,7 @@ toggle between hiding and showing the dropdown content */
      //Monthly earnings
      let monthly_payment_obj  = monthly_earns[0];
      let maxVal = Math.max(...Object.values(monthly_payment_obj));
-     console.log(maxVal);
+     console.log(monthly_payment_obj);
 
      document.getElementById('jan').style.height = `${Math.floor(monthly_payment_obj.JAN*100/maxVal)}%`
      document.getElementById('jan_count').innerText = monthly_payment_obj.JAN;
