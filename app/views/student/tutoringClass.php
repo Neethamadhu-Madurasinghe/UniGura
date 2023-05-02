@@ -27,7 +27,7 @@ Header::render(
 
     <div class="popup-request-send-success hidden">
         <object data="assests/success.svg" type=""></object>
-        <p>Reshedule Request has been Sent Successfully</p>
+        <p>Reschedule Request has been Sent Successfully</p>
         <button class="btn btn-search">OK</button>
     </div>
 
@@ -176,7 +176,7 @@ Header::render(
 
 <!--                               File upload - this is a dynamically created form -->
                             <?php elseif ($activity['type'] == 1): ?>
-                                <form class="file-upload-form" action="<?php echo URLROOT . '/student-upload-assignment' ?>" id="assignment-submit-form-<?php echo $activity['id']?>" method="POST" enctype = "multipart/form-data">
+                                <form class="file-upload-form" action="" id="assignment-submit-form-<?php echo $activity['id']?>" method="POST" enctype = "multipart/form-data">
                                     <label for="file-upload-<?php echo $activity['id']?>" class="file-upload-label activity-component">
                                         <?php echo $activity['description'] ?>
                                     </label>
@@ -188,7 +188,8 @@ Header::render(
                                     </label>
 
 <!--                                    Hidden input filed for give the activity id-->
-                                    <input type="hidden" value="<?php echo $activity['id'] ?>">
+                                    <input type="hidden" name="activity-id" value="<?php echo $activity['id'] ?>">
+                                    <input type="hidden" name="id" value="<?php echo $data['id'] ?>">
                                 </form>
 
 <!--                               File download-->
@@ -222,6 +223,7 @@ Header::render(
     [
         URLROOT . '/public/js/student/student-main-nav-bar.js',
         URLROOT . '/public/js/student/tutoring-class.js',
+        URLROOT . '/public/js/student/tutoring-class-upload-assignment.js',
     ]
 );
 ?>
