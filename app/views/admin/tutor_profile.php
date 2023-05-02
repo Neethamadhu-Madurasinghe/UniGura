@@ -20,7 +20,7 @@
                 </div>
                 <div class="name-actions">
                     <div class="name">
-                        <h1>Viraj Sandakelum<span>(Tutor)</span></h1><br>
+                        <h1><?php echo $data[0]->first_name . ' ' . $data[0]->last_name; ?></h1>
                     </div>
                     <div class="actions">
 

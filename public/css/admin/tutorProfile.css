@@ -76,7 +76,10 @@
 
 .name-actions {
     position: relative;
+}
 
+.name-actions .name{
+    margin-bottom: 15px;
 }
 
 .tutor-details {
