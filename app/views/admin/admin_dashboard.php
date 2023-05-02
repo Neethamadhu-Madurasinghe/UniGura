@@ -351,7 +351,7 @@
                             $totalStudentPayment += $transaction->amount;
                         }
                         echo $totalStudentPayment;
-                        ?>
+                        ?>  
                     </span>
                 </div>
                 <div class="total-tutor-withdrawal">

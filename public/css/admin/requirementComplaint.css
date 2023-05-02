@@ -121,9 +121,10 @@ table,
 th,
 td {
     border-collapse: collapse;
-    padding: 1rem;
+    padding: 22px;
     text-align: center;
 }
+
 
 thead th {
     background-color: #ffa620a3;
@@ -421,14 +422,16 @@ tbody img{
 
 .menu-bar-selection-btn{
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     align-items: center;
     padding: 10px;
     border-radius: 5px;
-    width: 90%;
+    width: 95%;
     margin: 20px auto;
-    background-color: #ffa620a3;
+    /* background-color: #ffa620a3; */
 }
+
+
 
 .menu-bar-selection-btn button{
     border: none;
@@ -438,7 +441,10 @@ tbody img{
     font-weight: 500;
     padding: 10px;
     border-radius: 5px;
-    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    margin-right: 10px;
+    /* background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%); */
+    border: 2px solid black;
+    background-color: #fff;
 }
 
 .menu-bar-selection-btn button:hover {

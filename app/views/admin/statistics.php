@@ -163,10 +163,10 @@
                         label: 'Student Payment',
                         data: moneyTransaction,
                         backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
+                            '#ffffff',
                         ],
                         borderColor: [
-                            'rgba(255, 99, 132, 1)',
+                            '#ffb75e',
                         ],
                         borderWidth: 5,
                         tension: 0.4,
@@ -178,10 +178,10 @@
                         label: 'Tutor Withdrawal',
                         data: moneyTransaction,
                         backgroundColor: [
-                            'rgba(153, 102, 255, 0.2)',
+                            '#ffffff',
                         ],
                         borderColor: [
-                            'rgba(153, 102, 255, 1)',
+                            '#d2d2d2',
                         ],
                         borderWidth: 5,
                         tension: 0.4,
@@ -193,10 +193,10 @@
                         label: 'Profit',
                         data: moneyTransaction,
                         backgroundColor: [
-                            'rgba(255, 159, 64, 0.3)',
+                            '#ffffff',
                         ],
                         borderColor: [
-                            'rgba(255, 159, 64, 1)',
+                            '#ff8d00',
                         ],
                         borderWidth: 5,
                         tension: 0.4,
@@ -228,26 +228,23 @@
                         label: '# of Total Students/Tutors',
                         data: [<?php echo $data['totalStudents'] ?>, <?php echo $data['totalTutors'] ?>],
                         backgroundColor: [
-                            'rgba(255, 99, 132)',
+                            '#ff8d00',
                         ],
                         borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1,
                         hoverOffset: 4
                     }, {
                         label: '# of Banned Students/Tutors',
                         data: [<?php echo $data['bannedStudents'] ?>, <?php echo $data['bannedTutors'] ?>],
                         backgroundColor: [
-                            'rgba(54, 16, 235)',
+                            '#ffb75e',
                         ],
-                        borderWidth: 1,
                         hoverOffset: 4
                     }, {
                         label: '# of Hide Tutors',
                         data: [0, <?php echo (int)$data['hiddenTutors'] ?>],
                         backgroundColor: [
-                            'rgba(54, 162, 235)',
+                            '#d2d2d2',
                         ],
-                        borderWidth: 1,
                         hoverOffset: 4
                     }]
                 },
@@ -289,7 +286,7 @@
                         label: '# of Students',
                         data: [<?php echo $data['studentAmpareDistrict'] ?>, <?php echo $data['studentAnuradhapuraDistrict'] ?>, <?php echo $data['studentBadullaDistrict'] ?>, <?php echo $data['studentBatticaloaDistrict'] ?>, <?php echo $data['studentColomboDistrict'] ?>, <?php echo $data['studentGalleDistrict'] ?>, <?php echo $data['studentGampahaDistrict'] ?>, <?php echo $data['studentHambantotaDistrict'] ?>, <?php echo $data['studentJaffnaDistrict'] ?>, <?php echo $data['studentKalutaraDistrict'] ?>, <?php echo $data['studentKandyDistrict'] ?>, <?php echo $data['studentKegalleDistrict'] ?>, <?php echo $data['studentKilinochchiDistrict'] ?>, <?php echo $data['studentKurunegalaDistrict'] ?>, <?php echo $data['studentMannarDistrict'] ?>, <?php echo $data['studentMataleDistrict'] ?>, <?php echo $data['studentMataraDistrict'] ?>, <?php echo $data['studentMonaragalaDistrict'] ?>, <?php echo $data['studentMullaitivuDistrict'] ?>, <?php echo $data['studentNuwaraEliyaDistrict'] ?>, <?php echo $data['studentPolonnaruwaDistrict'] ?>, <?php echo $data['studentPuttalamDistrict'] ?>, <?php echo $data['studentRatnapuraDistrict'] ?>, <?php echo $data['studentTrincomaleeDistrict'] ?>, <?php echo $data['studentVavuniyaDistrict'] ?>],
                         backgroundColor: [
-                            'rgba(54, 162, 235)',
+                            '#ff8d00',
                         ],
                         borderWidth: 1,
                         hoverOffset: 4
@@ -298,7 +295,7 @@
                         label: '# of Tutors',
                         data: [<?php echo $data['tutorAmpareDistrict'] ?>, <?php echo $data['tutorAnuradhapuraDistrict'] ?>, <?php echo $data['tutorBadullaDistrict'] ?>, <?php echo $data['tutorBatticaloaDistrict'] ?>, <?php echo $data['tutorColomboDistrict'] ?>, <?php echo $data['tutorGalleDistrict'] ?>, <?php echo $data['tutorGampahaDistrict'] ?>, <?php echo $data['tutorHambantotaDistrict'] ?>, <?php echo $data['tutorJaffnaDistrict'] ?>, <?php echo $data['tutorKalutaraDistrict'] ?>, <?php echo $data['tutorKandyDistrict'] ?>, <?php echo $data['tutorKegalleDistrict'] ?>, <?php echo $data['tutorKilinochchiDistrict'] ?>, <?php echo $data['tutorKurunegalaDistrict'] ?>, <?php echo $data['tutorMannarDistrict'] ?>, <?php echo $data['tutorMataleDistrict'] ?>, <?php echo $data['tutorMataraDistrict'] ?>, <?php echo $data['tutorMonaragalaDistrict'] ?>, <?php echo $data['tutorMullaitivuDistrict'] ?>, <?php echo $data['tutorNuwaraEliyaDistrict'] ?>, <?php echo $data['tutorPolonnaruwaDistrict'] ?>, <?php echo $data['tutorPuttalamDistrict'] ?>, <?php echo $data['tutorRatnapuraDistrict'] ?>, <?php echo $data['tutorTrincomaleeDistrict'] ?>, <?php echo $data['tutorVavuniyaDistrict'] ?>],
                         backgroundColor: [
-                            'rgba(255, 99, 132)',
+                            '#ffb75e',
                         ],
                         borderWidth: 1,
                         hoverOffset: 4
@@ -360,11 +357,11 @@
                 data: {
                     labels: ['Active Classes', 'Completed Classes'],
                     datasets: [{
-                        label: '# of Votes',
+                        label: '# of Classes',
                         data: [<?php echo $data['activeClasses'] ?>, <?php echo $data['completedClasses'] ?>],
                         backgroundColor: [
-                            'rgba(255, 99, 132)',
-                            'rgba(54, 162, 235)',
+                            '#ff8d00',
+                            '#ffb75e',
                         ],
                         borderWidth: 1,
                         hoverOffset: 4

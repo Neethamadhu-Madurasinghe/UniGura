@@ -13,7 +13,8 @@
     <div class="menu-bar">
         <div class="menu-bar-selection-btn">
             <div class="tutor-request-btn" id="tutor-request-btn">
-                <a href="tutorRequest"><button>Tutor Request</button></a>
+    
+                <a href="tutorRequest"><button style="background-color: #0000;">Tutor Request</button></a>
             </div>
             <div class="student-complaint-btn" id="student-complaint-btn">
                 <a href="studentComplaint"><button>Student Complaint</button></a>
@@ -30,12 +31,12 @@
     <div class="complaint-setting" id="complaint-setting-box">
         <div class="complaint-reason">
             <div class="student-complaint-reason">
-                <h1>Student Reason</h1>
+                <h1>Student Report Reasons</h1>
 
                 <div class="add-complaint">
                     <form action="addStudentComplainReason" method="POST">
                         <input type="text" placeholder="Add the new student report reason" name="inputStudentReason">
-                        <button type="submit" id="add-student-complain-reason"><i class="fa fa-light fa-plus"></i> Complaint</button>
+                        <button type="submit" id="add-student-complain-reason"><i class="fa fa-light fa-plus"></i> Reason</button>
                     </form>
                 </div>
                 <div class="complaints-list">
@@ -56,12 +57,12 @@
             </div>
 
             <div class="tutor-complaint-reason">
-                <h1>Tutor Reason</h1>
+                <h1>Tutor Report Reasons</h1>
 
                 <div class="add-complaint">
                     <form action="addTutorComplainReason" method="POST">
                         <input type="text" placeholder="Add the new tutor report reason" name="inputTutorReason">
-                        <button type="submit" id="add-tutor-complain-reason"><i class="fa fa-light fa-plus"></i> Complaint</button>
+                        <button type="submit" id="add-tutor-complain-reason"><i class="fa fa-light fa-plus"></i> Reason</button>
                     </form>
                 </div>
                 <div class="complaints-list">
