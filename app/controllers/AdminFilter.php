@@ -152,6 +152,11 @@ class AdminFilter extends Controller
         }
 
 
+        // echo '<pre>';
+        // print_r($allTutors);
+        // echo '</pre>';
+
+
         if ($request->isGet()) {
             $bodyData = $request->getBody();
 
@@ -166,14 +171,14 @@ class AdminFilter extends Controller
             $arrayDuration =  explode(',', $tutorDurationFilterValue);
 
 
-            // print_r($arrayVisibility);
+            // print_r($tutorDurationFilterValue);
 
             if (array_key_exists("0", $arrayVisibility)) {
                 if ($arrayVisibility[0] == 'block') {
                     $arrayVisibility[0] = 1;
                 } else if ($arrayVisibility[0] == 'unblock') {
                     $arrayVisibility[0] = 0;
-                }else if ($arrayVisibility[0] == 'show') {
+                } else if ($arrayVisibility[0] == 'show') {
                     $arrayVisibility[0] = 1;
                 } else if ($arrayVisibility[0] == 'hide') {
                     $arrayVisibility[0] = 0;
@@ -186,7 +191,7 @@ class AdminFilter extends Controller
                     $arrayVisibility[1] = 1;
                 } else if ($arrayVisibility[1] == 'unblock') {
                     $arrayVisibility[1] = 0;
-                }else if ($arrayVisibility[1] == 'show') {
+                } else if ($arrayVisibility[1] == 'show') {
                     $arrayVisibility[1] = 1;
                 } else if ($arrayVisibility[1] == 'hide') {
                     $arrayVisibility[1] = 0;
@@ -198,7 +203,7 @@ class AdminFilter extends Controller
                     $arrayVisibility[2] = 1;
                 } else if ($arrayVisibility[2] == 'unblock') {
                     $arrayVisibility[2] = 0;
-                }else if ($arrayVisibility[2] == 'show') {
+                } else if ($arrayVisibility[2] == 'show') {
                     $arrayVisibility[2] = 1;
                 } else if ($arrayVisibility[2] == 'hide') {
                     $arrayVisibility[2] = 0;
@@ -210,7 +215,7 @@ class AdminFilter extends Controller
                     $arrayVisibility[3] = 1;
                 } else if ($arrayVisibility[3] == 'unblock') {
                     $arrayVisibility[3] = 0;
-                }else if ($arrayVisibility[3] == 'show') {
+                } else if ($arrayVisibility[3] == 'show') {
                     $arrayVisibility[3] = 1;
                 } else if ($arrayVisibility[3] == 'hide') {
                     $arrayVisibility[3] = 0;
@@ -225,13 +230,21 @@ class AdminFilter extends Controller
             } elseif (empty($searchTutorName) && empty($classConductModeValue) && empty($visibilityFilterValue) && !empty($tutorDurationFilterValue)) {
                 foreach ($allTutors as $aTutor) {
 
-                    $currentTime = new DateTime();
-                    $joinedDate = new DateTime($aTutor->contactDetails->joined_date);
+                    date_default_timezone_set('UTC');
 
-                    $tutorTimeDuration =  $currentTime->diff($joinedDate)->format("%y");
+                    $current_time = new DateTime();
 
-                    if ($tutorTimeDuration <= $tutorDurationFilterValue) {
-                        array_push($filterResult, $aTutor);
+                    $joinedDate = $aTutor->contactDetails->joined_date;
+                    $specific_time = new DateTime($joinedDate);
+
+                    $time_diff = $current_time->diff($specific_time)->y;
+
+                    // echo $time_diff;
+
+                    foreach($arrayDuration as $duration){
+                        if($time_diff <= $duration){
+                            array_push($filterResult, $aTutor);
+                        }
                     }
                 }
             } elseif (empty($searchTutorName) && empty($classConductModeValue) && !empty($visibilityFilterValue) && empty($tutorDurationFilterValue)) {
@@ -248,7 +261,24 @@ class AdminFilter extends Controller
 
                     $tutorTimeDuration =  $currentTime->diff($joinedDate)->format("%y");
 
-                    if (in_array($aTutor->contactDetails->is_banned, $arrayVisibility) && $tutorTimeDuration <= $tutorDurationFilterValue) {
+                    date_default_timezone_set('UTC');
+
+                    $current_time = new DateTime();
+
+                    $joinedDate = $aTutor->contactDetails->joined_date;
+                    $specific_time = new DateTime($joinedDate);
+
+                    $time_diff = $current_time->diff($specific_time)->y;
+
+                    // echo $time_diff;
+
+                    foreach($arrayDuration as $duration){
+                        if($time_diff <= $duration){
+                            array_push($filterResult, $aTutor);
+                        }
+                    }
+
+                    if (in_array($aTutor->contactDetails->is_banned, $arrayVisibility)) {
                         array_push($filterResult, $aTutor);
                     }
                 }
@@ -261,12 +291,24 @@ class AdminFilter extends Controller
             } elseif (empty($searchTutorName) && !empty($classConductModeValue) && empty($visibilityFilterValue) && !empty($tutorDurationFilterValue)) {
                 foreach ($allTutors as $aTutor) {
 
-                    $currentTime = new DateTime();
-                    $joinedDate = new DateTime($aTutor->contactDetails->joined_date);
+                    date_default_timezone_set('UTC');
 
-                    $tutorTimeDuration =  $currentTime->diff($joinedDate)->format("%y");
+                    $current_time = new DateTime();
 
-                    if (in_array($aTutor->contactDetails->mode, $arrayModes) && $tutorTimeDuration <= $tutorDurationFilterValue) {
+                    $joinedDate = $aTutor->contactDetails->joined_date;
+                    $specific_time = new DateTime($joinedDate);
+
+                    $time_diff = $current_time->diff($specific_time)->y;
+
+                    // echo $time_diff;
+
+                    foreach($arrayDuration as $duration){
+                        if($time_diff <= $duration){
+                            array_push($filterResult, $aTutor);
+                        }
+                    }
+
+                    if (in_array($aTutor->contactDetails->mode, $arrayModes)) {
                         array_push($filterResult, $aTutor);
                     }
                 }
@@ -279,12 +321,25 @@ class AdminFilter extends Controller
             } elseif (empty($searchTutorName) && !empty($classConductModeValue) && !empty($visibilityFilterValue) && !empty($tutorDurationFilterValue)) {
                 foreach ($allTutors as $aTutor) {
 
-                    $currentTime = new DateTime();
-                    $joinedDate = new DateTime($aTutor->contactDetails->joined_date);
+                    date_default_timezone_set('UTC');
 
-                    $tutorTimeDuration =  $currentTime->diff($joinedDate)->format("%y");
+                    $current_time = new DateTime();
 
-                    if (in_array($aTutor->contactDetails->mode, $arrayModes) && in_array($aTutor->contactDetails->is_banned, $arrayVisibility) && $tutorTimeDuration <= $tutorDurationFilterValue) {
+                    $joinedDate = $aTutor->contactDetails->joined_date;
+                    $specific_time = new DateTime($joinedDate);
+
+                    $time_diff = $current_time->diff($specific_time)->y;
+
+                    // echo $time_diff;
+
+                    foreach($arrayDuration as $duration){
+                        if($time_diff <= $duration){
+                            array_push($filterResult, $aTutor);
+                        }
+                    }
+
+
+                    if (in_array($aTutor->contactDetails->mode, $arrayModes) && in_array($aTutor->contactDetails->is_banned, $arrayVisibility)) {
                         array_push($filterResult, $aTutor);
                     }
                 }
@@ -297,12 +352,24 @@ class AdminFilter extends Controller
             } elseif (!empty($searchTutorName) && empty($classConductModeValue) && empty($visibilityFilterValue) && !empty($tutorDurationFilterValue)) {
                 foreach ($allTutors as $aTutor) {
 
-                    $currentTime = new DateTime();
-                    $joinedDate = new DateTime($aTutor->contactDetails->joined_date);
+                    date_default_timezone_set('UTC');
 
-                    $tutorTimeDuration =  $currentTime->diff($joinedDate)->format("%y");
+                    $current_time = new DateTime();
 
-                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && $tutorTimeDuration <= $tutorDurationFilterValue) {
+                    $joinedDate = $aTutor->contactDetails->joined_date;
+                    $specific_time = new DateTime($joinedDate);
+
+                    $time_diff = $current_time->diff($specific_time)->y;
+
+                    // echo $time_diff;
+
+                    foreach($arrayDuration as $duration){
+                        if($time_diff <= $duration){
+                            array_push($filterResult, $aTutor);
+                        }
+                    }
+
+                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) ) {
                         array_push($filterResult, $aTutor);
                     }
                 }
@@ -315,12 +382,24 @@ class AdminFilter extends Controller
             } elseif (!empty($searchTutorName) && empty($classConductModeValue) && !empty($visibilityFilterValue) && !empty($tutorDurationFilterValue)) {
                 foreach ($allTutors as $aTutor) {
 
-                    $currentTime = new DateTime();
-                    $joinedDate = new DateTime($aTutor->contactDetails->joined_date);
+                    date_default_timezone_set('UTC');
 
-                    $tutorTimeDuration =  $currentTime->diff($joinedDate)->format("%y");
+                    $current_time = new DateTime();
 
-                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && in_array($aTutor->contactDetails->is_banned, $arrayVisibility) && $tutorTimeDuration <= $tutorDurationFilterValue) {
+                    $joinedDate = $aTutor->contactDetails->joined_date;
+                    $specific_time = new DateTime($joinedDate);
+
+                    $time_diff = $current_time->diff($specific_time)->y;
+
+                    // echo $time_diff;
+
+                    foreach($arrayDuration as $duration){
+                        if($time_diff <= $duration){
+                            array_push($filterResult, $aTutor);
+                        }
+                    }
+
+                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && in_array($aTutor->contactDetails->is_banned, $arrayVisibility)) {
                         array_push($filterResult, $aTutor);
                     }
                 }
@@ -333,12 +412,24 @@ class AdminFilter extends Controller
             } elseif (!empty($searchTutorName) && !empty($classConductModeValue) && empty($visibilityFilterValue) && !empty($tutorDurationFilterValue)) {
                 foreach ($allTutors as $aTutor) {
 
-                    $currentTime = new DateTime();
-                    $joinedDate = new DateTime($aTutor->contactDetails->joined_date);
+                    date_default_timezone_set('UTC');
 
-                    $tutorTimeDuration =  $currentTime->diff($joinedDate)->format("%y");
+                    $current_time = new DateTime();
 
-                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && in_array($aTutor->contactDetails->mode, $arrayModes) && $tutorTimeDuration <= $tutorDurationFilterValue) {
+                    $joinedDate = $aTutor->contactDetails->joined_date;
+                    $specific_time = new DateTime($joinedDate);
+
+                    $time_diff = $current_time->diff($specific_time)->y;
+
+                    // echo $time_diff;
+
+                    foreach($arrayDuration as $duration){
+                        if($time_diff <= $duration){
+                            array_push($filterResult, $aTutor);
+                        }
+                    }
+
+                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && in_array($aTutor->contactDetails->mode, $arrayModes) ) {
                         array_push($filterResult, $aTutor);
                     }
                 }
@@ -351,12 +442,24 @@ class AdminFilter extends Controller
             } elseif (!empty($searchTutorName) && !empty($classConductModeValue) && !empty($visibilityFilterValue) && !empty($tutorDurationFilterValue)) {
                 foreach ($allTutors as $aTutor) {
 
-                    $currentTime = new DateTime();
-                    $joinedDate = new DateTime($aTutor->contactDetails->joined_date);
+                    date_default_timezone_set('UTC');
 
-                    $tutorTimeDuration =  $currentTime->diff($joinedDate)->format("%y");
+                    $current_time = new DateTime();
 
-                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && in_array($aTutor->contactDetails->mode, $arrayModes) && in_array($aTutor->contactDetails->is_banned, $arrayVisibility) && $tutorTimeDuration <= $tutorDurationFilterValue) {
+                    $joinedDate = $aTutor->contactDetails->joined_date;
+                    $specific_time = new DateTime($joinedDate);
+
+                    $time_diff = $current_time->diff($specific_time)->y;
+
+                    // echo $time_diff;
+
+                    foreach($arrayDuration as $duration){
+                        if($time_diff <= $duration){
+                            array_push($filterResult, $aTutor);
+                        }
+                    }
+
+                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && in_array($aTutor->contactDetails->mode, $arrayModes) && in_array($aTutor->contactDetails->is_banned, $arrayVisibility) ) {
                         array_push($filterResult, $aTutor);
                     }
                 }

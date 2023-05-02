@@ -145,19 +145,19 @@
                 </div>
                 <div class="duration-select">
                     <div class="checkbox-button">
-                        <input type="checkbox" id="1stYear" name="1stYear" value="1stYear" class="1stYear checkbox">
+                        <input type="checkbox" id="1stYear" name="1stYear" value="1" class="1stYear checkbox">
                         <label for="1stYear">1st Year <small> And Below</small></label>
                     </div>
                     <div class="checkbox-button">
-                        <input type="checkbox" id="2ndYear" name="2ndYear" value="2ndYear" class="2ndYear checkbox">
+                        <input type="checkbox" id="2ndYear" name="2ndYear" value="2" class="2ndYear checkbox">
                         <label for="2ndYear">2nd Year <small> And Below</small></label>
                     </div>
                     <div class="checkbox-button">
-                        <input type="checkbox" id="3rdYear" name="3rdYear" value="3rdYear" class="3rdYear checkbox">
+                        <input type="checkbox" id="3rdYear" name="3rdYear" value="3" class="3rdYear checkbox">
                         <label for="3rdYear">3rd Year <small> And Below</small></label>
                     </div>
                     <div class="checkbox-button">
-                        <input type="checkbox" id="4thYear" name="4thYear" value="4thYear" class="4thYear checkbox">
+                        <input type="checkbox" id="4thYear" name="4thYear" value="4" class="4thYear checkbox">
                         <label for="4thYear">4th Year <small> And Below</small></label>
                     </div>
                 </div>
