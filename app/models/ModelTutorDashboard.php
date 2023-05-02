@@ -189,7 +189,7 @@ class ModelTutorDashboard
                  tutor_id = :tutor_id,
                  session_rate = :rate,
                  duration = :duration,
-                 class_type = :class_type,
+                 class_type = :type,
                  medium = :medium
                  SELECT MAX(id) from tutoring_class;');
 
@@ -202,7 +202,7 @@ class ModelTutorDashboard
         $this->db->bind('tutor_id', $data['tutor_id'], PDO::PARAM_STR);
         $this->db->bind('rate', $data['rate'], PDO::PARAM_INT);
         $this->db->bind('duration', $data['duration'], PDO::PARAM_STR);
-        $this->db->bind('class_type', $data['class_type'], PDO::PARAM_INT);
+        $this->db->bind('type', $data['type'], PDO::PARAM_INT);
         $this->db->bind('medium', $data['medium'], PDO::PARAM_INT);
 
 
