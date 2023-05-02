@@ -10,8 +10,6 @@ class TutorCourse extends Controller
         $this->courseModel = $this->model('ModelTutorCourse');
     }
 
-
-
     public function viewcourse(Request $request)
     {
 
@@ -61,6 +59,7 @@ class TutorCourse extends Controller
         echo $activities;
     }
 
+
     public function createDay(Request $request)
     {
 
@@ -90,6 +89,8 @@ class TutorCourse extends Controller
                 'id' => $body['class_template_id'],
                 'title' => "",
                 'position' => $position_count,
+                'subject' => $body['subject'],
+                'module'=> $body['module'],
                 'errors' => [
                     'title_error' => "",
                     "position_error" => ""
@@ -111,7 +112,7 @@ class TutorCourse extends Controller
                 ]
             ];
 
-            $data['errors']['title_error'] = $this->validateTitle($body['title']);
+            $data['errors']['title_error'] = $this->validateTitle($body['title'],$body['id']);
             $data['errors']['position_error'] = $this->validatePosition($body['position'], $body['id']);
 
        
@@ -164,11 +165,11 @@ class TutorCourse extends Controller
     }
 
 
-    public function validateTitle(string $name): String
+    public function validateTitle(string $name,$c_id): String
     {
         if (empty($name)) {
             return 'Please enter a valid name';
-        } elseif ($this->courseModel->findDayByName($name)) {
+        } elseif ($this->courseModel->findDayByName($name,$c_id)) {
             return 'Title Already Exist';
         } else {
             return '';
@@ -305,9 +306,6 @@ class TutorCourse extends Controller
 
             $this->view('tutor/deleteclasstemplate', $request, $data);
         }
-
-
-
         //        If the request is a GET request, then serve the page
     }
 
@@ -351,7 +349,7 @@ class TutorCourse extends Controller
 
             $activityPath = handleUpload(
                 array( 'pdf'),
-                '\\tutor_detail_files\\tutor_docs\\',
+                '\\user_files\\',
                 'activity-doc'
             );
 
@@ -361,16 +359,14 @@ class TutorCourse extends Controller
                 'c_id' => $body['course_id'],
                 'type' => $body['type'],
                 'description' => $body['description']
-
             ];
 
             if ($this->courseModel->setActivityTemplate($data)) {
-                redirect('tutor/viewcourse?id=' . $data['c_id']);
+                redirect('tutor/viewcourse?subject='. $body['subject'] . '&module=' . $body['module'] . '&id=' . $body['c_id'] , $request, $data);
+
             }
         }
-
-
-
+        
         //        If the request is a GET request, then serve the page
     }
 
@@ -394,7 +390,6 @@ class TutorCourse extends Controller
             //TODO: Redirect to a new page
         }
     }
-
 
     public function updateDay(Request $request)
     {
@@ -449,7 +444,8 @@ class TutorCourse extends Controller
                 ]
             ];
 
-            $data['errors']['title_error'] = $this->validateTitle($body['title']);
+            $data['errors']['title_error'] = $this->validateTitle($body['title'], $body['id']);
+
             $data['errors']['position_error'] = $this->validatePosition($body['position'], $body['id']);
 
     
@@ -511,7 +507,8 @@ class TutorCourse extends Controller
                 'course_id' => $body['course_id']
             ];
 
-            $this->view('tutor/deletedaytemplate', $request, $data);
+            $this->view('tutor/deleteday', $request, $data);
+
         }
 
         if ($request->isPost()) {
@@ -524,7 +521,9 @@ class TutorCourse extends Controller
                 die('Something went wrong');
             }
 
-            $this->view('tutor/deletedaytemplate', $request, $data);
+
+            $this->view('tutor/deleteday', $request, $data);
+
         }
 
 

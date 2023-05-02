@@ -30,10 +30,13 @@ class MainNavbar
                         </a>
                     </li>
 
-                    <li title= "Notification" class="nav-link notify">
-                        <a href="' . URLROOT . '/tutor/notifications'  . '">
+                    <li title="Notification" class="nav-link notify">
+                        <a href="' . URLROOT . '/tutor/notifications' . '">
+                        <div class="notification-icon">
                             <i class="fa-regular fa-bell icon"></i>
-                            <span class="text nav-text ">Notifications</span>
+                            <div class="notification-count"></div>
+                        </div>
+                        <span class="text nav-text">Notifications</span>
                         </a>
                     </li>
 

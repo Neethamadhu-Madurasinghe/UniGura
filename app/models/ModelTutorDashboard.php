@@ -123,8 +123,25 @@ class ModelTutorDashboard
 
     public function getStudentRequests($id): array
     {
-        $this->db->query(' SELECT r.id , r.class_template_id , r.mode , r.tutor_id , r.student_id , s.name as subject , m.name as module , u.first_name , u.last_name FROM request AS r JOIN tutoring_class_template AS c ON r.class_template_id = c.id JOIN subject AS s ON c.subject_id = s.id JOIN module AS m ON c.module_id = m.id JOIN user AS u ON r.student_id = u.id WHERE r.tutor_id = :id;');
+        $this->db->query(' SELECT r.id , r.class_template_id , r.mode , r.tutor_id , r.student_id , s.name as subject , m.name as module , u.first_name , u.last_name , u.profile_picture , u.id as user_id FROM request AS r JOIN tutoring_class_template AS c ON r.class_template_id = c.id JOIN subject AS s ON c.subject_id = s.id JOIN module AS m ON c.module_id = m.id JOIN user AS u ON r.student_id = u.id WHERE r.tutor_id = :id AND status = 0;');
         $this->db->bind('id', $id, PDO::PARAM_INT);
+        return $this->db->resultAllAssoc();
+    }
+
+    public function viewStudentRequests($id): array
+    {
+        $this->db->query(' SELECT r.id as id , r.class_template_id , r.mode , r.tutor_id , r.student_id , s.name as subject , m.name as module , u.first_name , u.last_name , u.profile_picture , u.id as user_id ,c.class_type , c.session_rate , c.duration ,c.medium FROM request AS r JOIN tutoring_class_template AS c ON r.class_template_id = c.id JOIN subject AS s ON c.subject_id = s.id JOIN module AS m ON c.module_id = m.id JOIN user AS u ON r.student_id = u.id WHERE r.id = :id;');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        return $this->db->resultAllAssoc();
+    }
+
+    public function getRequestTimeSlots($id): array
+    {
+        $this->db->query("SELECT r.id, r.request_id , r.time_slot_id , t.day  , t.time FROM request_time_slot AS r JOIN time_slot AS t ON r.time_slot_id = t.id WHERE r.request_id = :id;");
+
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        $this->db->execute();
+
         return $this->db->resultAllAssoc();
     }
 
@@ -141,4 +158,111 @@ class ModelTutorDashboard
 
         return $this->db->resultAll();
     }
+
+
+    public function setStudentAproveRequest($id) : bool
+    {
+        $this->db->query('UPDATE request SET status = 1  WHERE id = :id;');
+        $this->db->bind('id', $id , PDO::PARAM_INT);
+
+//      Returns whether the row count is greater than 0
+        return $this->db->execute();
+    }
+
+    public function UpdateTutorTimeSlotWithRequest($id) : bool
+    {
+        $this->db->query('UPDATE time_slot SET state = 2  WHERE id = :id;');
+        $this->db->bind('id', $id , PDO::PARAM_INT);
+
+//      Returns whether the row count is greater than 0
+        return $this->db->execute();
+    }
+
+    public function setNewClass($data):bool
+    {
+        $this->db->query('INSERT INTO  tutoring_class SET
+                 class_template_id = :class_template_id,
+                 date = :date,
+                 time = :time,
+                 mode = :mode,
+                 student_id = :student_id,
+                 tutor_id = :tutor_id,
+                 session_rate = :rate,
+                 class_type = :type,
+                 medium = :medium,
+                 duration = :duration;
+                 SELECT MAX(id) from tutoring_class;');
+
+
+        $this->db->bind('class_template_id', $data['c_id'], PDO::PARAM_INT);
+        $this->db->bind('date', $data['date'], PDO::PARAM_STR);
+        $this->db->bind('time', $data['time'], PDO::PARAM_STR);
+        $this->db->bind('mode', $data['mode'], PDO::PARAM_STR);
+        $this->db->bind('student_id', $data['student_id'], PDO::PARAM_STR);
+        $this->db->bind('tutor_id', $data['tutor_id'], PDO::PARAM_STR);
+        $this->db->bind('duration', $data['duration'], PDO::PARAM_STR);
+        $this->db->bind('rate', $data['rate'] , PDO::PARAM_INT);
+        $this->db->bind('type', $data['type'], PDO::PARAM_STR);
+        $this->db->bind('medium', $data['medium'] , PDO::PARAM_INT);
+
+        return $this->db->execute();
+    }
+
+    public function getNewlyAddedclass()
+    {
+        $this->db->query('SELECT max(id) as id from tutoring_class;');
+
+        return $this->db->resultOneAssoc();
+    }
+
+
+    public function setDaysofClass($class_id,$data):bool{
+        $this->db->query('
+        INSERT INTO day (class_id, title, position )
+            SELECT :class_id , title , position 
+            FROM day_template
+            WHERE class_template_id = :c_id ;
+            ');
+
+        $this->db->bind('c_id', $data['c_id'] , PDO::PARAM_INT);
+        $this->db->bind('class_id', $class_id , PDO::PARAM_INT);
+        
+
+        return $this->db->execute();
+    }
+
+    public function setClass($data): bool {
+        $this->db->startTransaction();
+
+        $this->setNewClass($data);
+        $class_id = $this->getNewlyAddedclass();
+        $this->setStudentAproveRequest($data['id']);
+        $this->setDaysofClass(intval($class_id['id']),$data);
+        $this->UpdateTutorTimeSlotWithRequest($data['time_slot_id']);
+
+        return $this->db->commitTransaction();
+    }
+
+    public function declineStudentAproveRequest($id) : bool
+    {
+        $this->db->query('UPDATE request SET status = 2  WHERE id = :id;');
+        $this->db->bind('id', $id , PDO::PARAM_INT);
+
+//      Returns whether the row count is greater than 0
+        return $this->db->execute();
+    }
+
+    public function paymentUpdate($data) : bool
+    {
+
+        $this->db->query('INSERT INTO payment SET day_id =:day_id,student_id = :student_id, tutor_id = :tutor_id , amount = :amount ,timestamp = NOW(), status = 1;');
+        $this->db->bind('amount', $data['amount'], PDO::PARAM_INT);
+        $this->db->bind('day_id', $data['day_id'], PDO::PARAM_INT);
+        $this->db->bind('student_id', $data['student_id'], PDO::PARAM_INT);
+        $this->db->bind('tutor_id', $data['tutor_id'], PDO::PARAM_INT);
+
+        return $this->db->execute();
+    }
 }
+
+
