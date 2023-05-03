@@ -103,6 +103,7 @@ $router->registerController('/admin/filterForStudentPage', [AdminFilter::class, 
 $router->registerController('/admin/filterForTutorPage',[AdminFilter::class,'filterForTutorPage']);
 $router->registerController('/admin/filterForClassPage',[AdminFilter::class,'filterForClassPage']);
 $router->registerController('/admin/filterForStudentComplaint',[AdminFilter::class,'filterForStudentComplaint']);
+$router->registerController('/admin/filterForTutorComplaint',[AdminFilter::class,'filterForTutorComplaint']);
 
 
 

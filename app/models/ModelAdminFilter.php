@@ -296,6 +296,25 @@ class ModelAdminFilter
         return $this->db->resultOne();
     }
 
+
+    
+    // For Tutor Complaint Search & Filter
+
+    public function getTutorComplaints($start, $rowsPerPage)
+    {
+        $this->db->query("SELECT * FROM tutor_report LIMIT $start, $rowsPerPage");
+        return $this->db->resultAll();
+    }
+
+
+    public function tutorReportById($reportID)
+    {
+        $this->db->query("SELECT * FROM tutor_report WHERE id = :report_id");
+        $this->db->bind(':report_id', $reportID);
+        return $this->db->resultOne();
+    }
+
+
     public function userById($userID)
     {
         $this->db->query("SELECT * FROM user WHERE id = :user_id");

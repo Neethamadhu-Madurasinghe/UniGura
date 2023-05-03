@@ -29,10 +29,12 @@ nav_link.forEach((link) => {
 request_complaint.classList.add('active');
 
 
+
+
 /* ---------------------------------- search and filer student complaint ---------------------------- */
 
 const search_student_name = document.getElementById("search-student-name");
-const student_complain = document.getElementById("student-complain");
+const student_complaint_table_section = document.getElementById("student-complaint-table-section");
 const student_complaint_filter = document.getElementById("student-complaint-filter");
 
 
@@ -54,7 +56,7 @@ search_student_name.addEventListener('keyup', () => {
 
     xhr.onload = function () {
         if (this.status === 200) {
-            student_complain.innerHTML = this.responseText;
+            student_complaint_table_section.innerHTML = this.responseText;
         }
     }
 
@@ -80,7 +82,7 @@ student_complaint_filter.addEventListener('change', () => {
 
     xhr.onload = function () {
         if (this.status === 200) {
-            student_complain.innerHTML = this.responseText;
+            student_complaint_table_section.innerHTML = this.responseText;
         }
     }
 

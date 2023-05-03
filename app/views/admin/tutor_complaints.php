@@ -61,7 +61,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody id="tutor-complain">
+                <tbody id="tutor-complaint-table-section">
 
                     <?php if ($data['totalNumOfTutorComplaints'] == 0) : ?>
                         <td class="noDataDisplay">There are no tutor complaints to display</td>
@@ -72,6 +72,9 @@
                             <td><?php echo $tutorComplaint->reportReason->description; ?></td>
                             <td><?php echo $tutorComplaint->tutor->first_name . " " . $tutorComplaint->tutor->last_name ?></td>
                             <td><?php echo $tutorComplaint->student->first_name . " " . $tutorComplaint->student->last_name ?></td>
+
+                            <input type="hidden" class="complaint-id" value="<?php echo $tutorComplaint->id; ?>">
+
 
                             <?php if ($tutorComplaint->is_inquired == 0) { ?>
                                 <td>
@@ -100,19 +103,19 @@
 
         <div class="pagination">
             <div class="first">
-                <button><a href="#"><i class="fas fa-regular fa-backward-fast"></i> First</a></button>
+                <button><a href="tutorComplaint?currentPageNum=1"><i class="fas fa-regular fa-backward-fast"></i> First</a></button>
             </div>
             <div class="previous">
-                <button><a href="#"><i class="fas fa-regular fa-backward-step"></i> Previous</a></button>
+                <button><a href="tutorComplaint?currentPageNum=<?php echo $data['previousPageNum']; ?>"><i class="fas fa-regular fa-backward-step"></i> Previous</a></button>
             </div>
             <div class="page-count">
-                <h3>1 Page of 10</h3>
+                <h3>Page <?php echo $data['currentPageNum']; ?> of <?php echo $data['lastPageNum']; ?></h3>
             </div>
             <div class="next">
-                <button><a href="#">Next <i class="fas fa-regular fa-forward-step"></i></a></button>
+                <button><a href="tutorComplaint?currentPageNum=<?php echo $data['nextPageNum']; ?>">Next <i class="fas fa-regular fa-forward-step"></i></a></button>
             </div>
             <div class="last">
-                <button><a href="#">Last <i class="fas fa-regular fa-forward-fast"></i></a></button>
+                <button><a href="tutorComplaint?currentPageNum=<?php echo $data['lastPageNum']; ?>">Last <i class="fas fa-regular fa-forward-fast"></i></a></button>
             </div>
         </div>
     </section>
