@@ -1,7 +1,6 @@
+<?php require_once APPROOT . '/views/admin/side_bar.php'; ?>
 <script defer src="<?php echo URLROOT ?>/public/js/admin/class.js"></script>
 <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/class.css">
-<?php require_once APPROOT . '/views/admin/side_bar.php'; ?>
-
 
 
 <section class="home" id="home">

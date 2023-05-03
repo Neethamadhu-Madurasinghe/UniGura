@@ -630,6 +630,10 @@ class AdminFilter extends Controller
                     if (in_array('all', $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
+
+                    if (in_array($aClass->subjectName, $arraySubjects)) {
+                        array_push($filterResult, $aClass);
+                    }
                 }
             } elseif (empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
                 $filterResult = $allClasses;

@@ -8,7 +8,7 @@
 <?php endif; ?>
 
 
-
+    
 <?php foreach ($data['allClasses'] as $x) { ?>
     <div class="one-class">
         <div class="tutor">
