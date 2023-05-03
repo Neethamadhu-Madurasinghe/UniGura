@@ -4,10 +4,12 @@ class AdminRequirementComplaints extends Controller
 {
 
     private mixed $requirementComplaintsModel;
+    private ModelTutorStudentCompleteProfile $tutorStudentModel;
 
     public function __construct()
     {
         $this->requirementComplaintsModel = $this->model('ModelAdminRequirementComplaints');
+        $this->tutorStudentModel = $this->model('ModelTutorStudentCompleteProfile');
     }
 
     public function requirementComplaints(Request $request)
@@ -67,7 +69,11 @@ class AdminRequirementComplaints extends Controller
         $data = [
             'allStudentComplaints' => $allStudentComplaints,
             'allTutorComplaints' => $allTutorComplaints,
-            'allTutorRequest' => $allTutorRequest
+            'allTutorRequest' => $allTutorRequest,
+
+            'errors' => [
+                'student_reason' => '',
+            ]
         ];
 
         // echo '<pre>';
@@ -88,23 +94,43 @@ class AdminRequirementComplaints extends Controller
         }
 
         if ($request->isPost()) {
-            $data = $request->getBody();
-
-            $inputStudentReason = $data['inputStudentReason'];
-
-            $this->requirementComplaintsModel->addStudentComplainReason($inputStudentReason);
+            $body = $request->getBody();
 
             $studentComplaintReason = $this->requirementComplaintsModel->getStudentComplaintReason();
             $tutorComplaintReason = $this->requirementComplaintsModel->getTutorComplaintReason();
 
+
             $data = [
+                'student_reason' => $body['inputStudentReason'],
                 'studentComplaintReason' => $studentComplaintReason,
-                'tutorComplaintReason' => $tutorComplaintReason
+                'tutorComplaintReason' => $tutorComplaintReason,
+
+                'errors' => [
+                    'student_reason' => validateStudentReportReason($body['inputStudentReason'], $this->tutorStudentModel)
+                ]
             ];
 
-            $this->view('admin/complaint_settings', $request, $data);
+            $hasErrors = FALSE; // has not errors 
+
+            foreach ($data['errors'] as $errorString) {
+                if ($errorString !== '') {
+                    $hasErrors = TRUE;
+                }
+            }
+
+            if ($hasErrors) {
+                $this->view('admin/complaint_settings', $request, $data);
+            }
+
+
+            if (!$hasErrors) {
+                $this->requirementComplaintsModel->addStudentComplainReason($data['student_reason']);
+                redirect('admin/complaintSetting');
+            }
         }
     }
+
+
 
     public function addTutorComplainReason(Request $request)
     {
@@ -132,6 +158,8 @@ class AdminRequirementComplaints extends Controller
             $this->view('admin/complaint_settings', $request, $data);
         }
     }
+
+
 
     public function updateStudentComplainReason(Request $request)
     {
@@ -161,6 +189,8 @@ class AdminRequirementComplaints extends Controller
         }
     }
 
+
+
     public function updateTutorComplainReason(Request $request)
     {
 
@@ -189,6 +219,8 @@ class AdminRequirementComplaints extends Controller
         }
     }
 
+
+
     public function acceptTutorRequest(Request $request)
     {
 
@@ -207,13 +239,15 @@ class AdminRequirementComplaints extends Controller
         }
     }
 
+
+
     public function rejectTutorRequest(Request $request)
     {
 
         if (!$request->isLoggedIn()) {
             redirect('/login');
         }
-        
+
         if ($request->isGet()) {
             $data = $request->getBody();
 

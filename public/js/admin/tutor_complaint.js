@@ -28,3 +28,13 @@ nav_link.forEach((link) => {
 })
 
 request_complaint.classList.add('active');
+
+
+
+/* ---------------------------------- active button ---------------------------- */
+
+
+const tutor_complaint_btn = document.getElementById('tutor-complaint');
+
+tutor_complaint_btn.style.background = "linear-gradient(180deg, #FFA620 0%, #FF7A20 100%)";
+

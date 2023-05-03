@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/requirementComplaint.css">
 <script defer src="<?php echo URLROOT ?>/public/js/admin/complaint_setting.js"></script>
 
+<div class="blur-filter" id="blur-filter"></div>
 
 
 <section class="home" id="home">
@@ -10,20 +11,30 @@
     <p></p>
     <p></p>
 
+    <?php if ($data['errors']['student_reason'] != '') : ?>
+        <div class="popup" id="popup">
+            <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
+            <h2>Invalid Reason!</h2>
+            <h4>Please enter a valid student Report Reason.</h4>
+            <button type="button" id="closePopup">OK</button>
+        </div>
+    <?php endif; ?>
+
+
+
     <div class="menu-bar">
         <div class="menu-bar-selection-btn">
             <div class="tutor-request-btn" id="tutor-request-btn">
-    
-                <a href="tutorRequest"><button style="background-color: #0000;">Tutor Request</button></a>
+                <a href="tutorRequest"><button id="tutor-request">Tutor Request</button></a>
             </div>
             <div class="student-complaint-btn" id="student-complaint-btn">
-                <a href="studentComplaint"><button>Student Complaint</button></a>
+                <a href="studentComplaint"><button id="student-complaint">Student Complaint</button></a>
             </div>
             <div class="tutor-complaint-btn" id="tutor-complaint-btn">
-                <a href="tutorComplaint"><button>Tutor Complaint</button></a>
+                <a href="tutorComplaint"><button id="tutor-complaint">Tutor Complaint</button></a>
             </div>
             <div class="complaint-setting-btn" id="complaint-setting-btn">
-                <a href="complaintSetting"><button>Complaint Setting</button></a>
+                <a href="complaintSetting"><button id="complaint-setting">Complaint Setting</button></a>
             </div>
         </div>
     </div>

@@ -1,113 +1,104 @@
 <?php
 
-function validateName(string $name): String {
+function validateName(string $name): String
+{
     if (empty($name) || !preg_match("/^[a-zA-Z]*$/", $name)) {
         return 'Please enter a valid name';
-
-    }elseif (strlen($name) > 255) {
+    } elseif (strlen($name) > 255) {
         return 'Name should have less than 255 characters ';
-
-    }else {
+    } else {
         return '';
     }
 }
 
-function validateAddressLines(string $addressLine, bool $isMandatory = false): String {
+function validateAddressLines(string $addressLine, bool $isMandatory = false): String
+{
 
     if ($isMandatory && empty($addressLine)) {
         return 'Please enter a valid Address Line';
-
-    }elseif (strlen($addressLine) > 255) {
+    } elseif (strlen($addressLine) > 255) {
         return 'Address Line should have less than 255 characters ';
-
-    }else {
+    } else {
         return '';
     }
 }
 
 
-function validateCity(string $city): String {
+function validateCity(string $city): String
+{
     if (empty($city) || !preg_match("/^[a-zA-Z0-9\s]+$/", $city)) {
         return 'Please enter a valid city';
-
-    }elseif (strlen($city) > 255) {
+    } elseif (strlen($city) > 255) {
         return 'City should have less than 255 characters ';
-
-    }else {
+    } else {
         return '';
     }
 }
 
-function validateDistrict(string $district): String {
+function validateDistrict(string $district): String
+{
     if (empty($district) || !preg_match("/^[a-zA-Z0-9\s]+$/", $district)) {
         return 'Please enter a valid District';
-
-    }elseif (strlen($district) > 255) {
+    } elseif (strlen($district) > 255) {
         return 'District should have less than 255 characters ';
-
-    }else {
+    } else {
         return '';
     }
 }
 
-function validateYearOfExam(String $year): String {
+function validateYearOfExam(String $year): String
+{
     $yearNumber = intval($year);
 
     if (empty($year) || $yearNumber == 0) {
         return 'Please enter an exam year';
-
-    }elseif ($yearNumber < 2020) {
+    } elseif ($yearNumber < 2020) {
         return 'Exam year should be after 2020';
-
-    }elseif ($yearNumber > 2030) {
+    } elseif ($yearNumber > 2030) {
         return 'Exam year should be before 2030';
-
-    }else {
+    } else {
         return '';
     }
 }
 
-function validateTelephoneNumber(String $telephone, ModelTutorStudentCompleteProfile $modelObject, bool $isUnique = true): String {
+function validateTelephoneNumber(String $telephone, ModelTutorStudentCompleteProfile $modelObject, bool $isUnique = true): String
+{
     if (empty($telephone) || !preg_match("/^[0-9]*$/", $telephone)) {
         return 'Please enter a valid telephone no.';
-
-    }elseif (strlen($telephone) !== 10) {
+    } elseif (strlen($telephone) !== 10) {
         return 'Telephone no. should have  10 characters ';
-
-    }elseif ($isUnique && $modelObject->findUserByTelephoneNumber($telephone)) {
+    } elseif ($isUnique && $modelObject->findUserByTelephoneNumber($telephone)) {
         return 'Telephone no. is already in use';
-
-    }else {
+    } else {
         return '';
     }
 }
 
-function validateFilePath(String $filePath, String $messageOnError): String {
+function validateFilePath(String $filePath, String $messageOnError): String
+{
     if (empty($filePath)) {
         return $messageOnError;
-
-    }else {
+    } else {
         return '';
     }
 }
 
-function validateDescription(String $description): String {
+function validateDescription(String $description): String
+{
     if (strlen($description) >= 100) {
         return 'Bio should have less than 1000 characters';
-
-    }else {
+    } else {
         return '';
     }
 }
 
-function validateUniversity(String $university): String {
+function validateUniversity(String $university): String
+{
     if (empty($university) || !preg_match("/^[a-zA-Z\s]*$/", $university)) {
         return 'Please enter a valid University';
-
-    }elseif (strlen($university) > 255) {
+    } elseif (strlen($university) > 255) {
         return 'University should have less than 255 characters ';
-
-    }else {
+    } else {
         return '';
     }
 }
@@ -117,42 +108,46 @@ function validateUniversity(String $university): String {
 
 //created by sachithra
 
-function validateRate(string $number): String {
+function validateRate(string $number): String
+{
     if (filter_var($number, FILTER_VALIDATE_INT)) {
         $int = intval($number);
         if ($int >= 500 && $int < 5000) {
-          return "";
+            return "";
         } else {
             return "Amount must in a range between LKR (500 - 5000)";
         }
-      } else {
-         return "Please enter a valid amount";
-      }
+    } else {
+        return "Please enter a valid amount";
+    }
 }
 
-function validatePassword(string $password, string $confirmPassword): String {
+function validatePassword(string $password, string $confirmPassword): String
+{
     if (empty($password)) {
         return 'Please enter a valid password';
-
-    }elseif (strlen($password) < 4) {
+    } elseif (strlen($password) < 4) {
         return 'Password should be minimum 4 characters long';
-
-    }elseif ($password !== $confirmPassword) {
+    } elseif ($password !== $confirmPassword) {
         return 'Please confirm the password';
-
-    }else {
+    } else {
         return '';
     }
 }
 
 
 
+// created by viraj
 
-
-
-
-
-
-
-
-?>
+function validateStudentReportReason(String $reason, ModelTutorStudentCompleteProfile $modelObject,bool $isUnique = true): String
+{
+    if (empty($reason)) {
+        return 'Please enter a valid reason';
+    } elseif ($isUnique && $modelObject->findReasonIdByStudentReportReason($reason)) {
+        return 'Reason is already in use';
+    } else if (strlen($reason) > 40) {
+        return 'Reason should have less than 40 characters';
+    } else {
+        return '';
+    }
+}

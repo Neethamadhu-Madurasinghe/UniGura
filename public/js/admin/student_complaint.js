@@ -89,6 +89,15 @@ student_complaint_filter.addEventListener('change', () => {
 });
 
 
+/* ---------------------------------- active button ---------------------------- */
+
+
+const student_complaint_btn = document.getElementById('student-complaint');
+
+student_complaint_btn.style.background = "linear-gradient(180deg, #FFA620 0%, #FF7A20 100%)";
+
+
+
 
 // student_complaint_filter.addEventListener("change", () => {
 //     let search_student_name_value = search_student_name.value.toLowerCase();
