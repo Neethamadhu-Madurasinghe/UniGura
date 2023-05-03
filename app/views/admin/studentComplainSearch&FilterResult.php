@@ -29,7 +29,7 @@
             <?php } ?>
 
             <td class="action">
-                <a href="viewComplaint?studentComplaintId=<?php echo $studentComplaint->id; ?>"><button class="view-student-complaint">View</button></a>
+                <a href="viewStudentComplaint?studentComplaintId=<?php echo $studentComplaint->id; ?>"><button class="view-student-complaint">View</button></a>
             </td>
         </tr>
     <?php } ?>

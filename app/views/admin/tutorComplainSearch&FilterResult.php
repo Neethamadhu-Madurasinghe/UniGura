@@ -1,5 +1,5 @@
 <tbody id="tutor-complaint">
-    <?php if(empty($data['allTutorComplaints'])) : ?>
+    <?php if (empty($data['allTutorComplaints'])) : ?>
         <td class="noDataDisplay">There are no tutor complaints to display</td>
     <?php endif; ?>
 
@@ -28,7 +28,7 @@
             <?php } ?>
 
             <td class="action">
-                <a href="#"><button class="view-tutor-complaint">View</button></a>
+                <a href="viewTutorComplaint?tutorComplaintId=<?php echo $tutorComplaint->id; ?>"><button class="view-tutor-complaint">View</button></a>
             </td>
         </tr>
     <?php } ?>

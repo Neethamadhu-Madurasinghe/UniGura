@@ -93,7 +93,7 @@
                             <?php } ?>
 
                             <td class="action">
-                                <a href="#"><button class="view-tutor-complaint">View</button></a>
+                                <a href="viewTutorComplaint?tutorComplaintId=<?php echo $tutorComplaint->id; ?>"><button class="view-tutor-complaint">View</button></a>
                             </td>
                         </tr>
                     <?php } ?>

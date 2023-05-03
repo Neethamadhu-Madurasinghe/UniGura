@@ -83,8 +83,10 @@ $router->registerController('/admin/notification/clearNotification', [AdminNotif
 
 
 
-$router->registerController('/admin/viewComplaint', [AdminComplaintView::class, 'viewComplaint']);
-$router->registerController('/admin/updateComplainInquire', [AdminComplaintView::class, 'updateComplainInquire']);
+$router->registerController('/admin/viewStudentComplaint', [AdminComplaintView::class, 'viewStudentComplaint']);
+$router->registerController('/admin/viewTutorComplaint', [AdminComplaintView::class, 'viewTutorComplaint']);
+$router->registerController('/admin/updateStudentComplainInquire', [AdminComplaintView::class, 'updateStudentComplainInquire']);
+$router->registerController('/admin/updateTutorComplainInquire', [AdminComplaintView::class, 'updateTutorComplainInquire']);
 
 
 
