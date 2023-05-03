@@ -5,13 +5,14 @@
 <div class="blur-filter" id="blur-filter"></div>
 
 
+
 <section class="home" id="home">
     <p></p>
     <p></p>
     <p></p>
     <p></p>
 
-    <?php if ($data['errors']['student_reason'] != '') : ?>
+    <?php if ($data['errors']['student_reason'] === 'Please enter a valid reason') : ?>
         <div class="popup" id="popup">
             <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
             <h2>Invalid Reason!</h2>
@@ -20,6 +21,33 @@
         </div>
     <?php endif; ?>
 
+    <?php if ($data['errors']['student_reason'] === 'Reason is already in use') : ?>
+        <div class="popup" id="popup">
+            <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
+            <h2>Duplicate Reason!</h2>
+            <h4>Please enter a different student Report Reason.</h4>
+            <button type="button" id="closePopup">OK</button>
+        </div>
+    <?php endif; ?>
+
+
+    <?php if ($data['errors']['tutor_reason'] === 'Please enter a valid reason') : ?>
+        <div class="popup" id="popup">
+            <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
+            <h2>Invalid Reason!</h2>
+            <h4>Please enter a valid tutor Report Reason.</h4>
+            <button type="button" id="closePopup">OK</button>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($data['errors']['tutor_reason'] === 'Reason is already in use') : ?>
+        <div class="popup" id="popup">
+            <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
+            <h2>Duplicate Reason!</h2>
+            <h4>Please enter a different tutor Report Reason.</h4>
+            <button type="button" id="closePopup">OK</button>
+        </div>
+    <?php endif; ?>
 
 
     <div class="menu-bar">

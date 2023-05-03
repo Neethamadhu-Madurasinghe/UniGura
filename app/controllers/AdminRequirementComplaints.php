@@ -73,6 +73,7 @@ class AdminRequirementComplaints extends Controller
 
             'errors' => [
                 'student_reason' => '',
+                'tutor_reason' => '',
             ]
         ];
 
@@ -106,7 +107,8 @@ class AdminRequirementComplaints extends Controller
                 'tutorComplaintReason' => $tutorComplaintReason,
 
                 'errors' => [
-                    'student_reason' => validateStudentReportReason($body['inputStudentReason'], $this->tutorStudentModel)
+                    'student_reason' => validateStudentReportReason($body['inputStudentReason'], $this->tutorStudentModel),
+                    'tutor_reason' => '',
                 ]
             ];
 
@@ -132,6 +134,56 @@ class AdminRequirementComplaints extends Controller
 
 
 
+    public function updateStudentComplainReason(Request $request)
+    {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        if ($request->isPost()) {
+            $body = $request->getBody();
+
+            $studentComplaintReason = $this->requirementComplaintsModel->getStudentComplaintReason();
+            $tutorComplaintReason = $this->requirementComplaintsModel->getTutorComplaintReason();
+
+
+            $data = [
+                'student_reason' => $body['inputStudentReason'],
+                'student_reason_id' => $body['studentReasonId'],
+                'studentComplaintReason' => $studentComplaintReason,
+                'tutorComplaintReason' => $tutorComplaintReason,
+
+                'errors' => [
+                    'student_reason' => validateStudentReportReason($body['inputStudentReason'], $this->tutorStudentModel),
+                    'tutor_reason' => '',
+
+                ]
+            ];
+
+
+            $hasErrors = FALSE; // has not errors 
+
+            foreach ($data['errors'] as $errorString) {
+                if ($errorString !== '') {
+                    $hasErrors = TRUE;
+                }
+            }
+
+            if ($hasErrors) {
+                $this->view('admin/complaint_settings', $request, $data);
+            }
+
+
+            if (!$hasErrors) {
+                $this->requirementComplaintsModel->updateStudentComplainReason($data['student_reason'], $data['student_reason_id']);
+                redirect('admin/complaintSetting');
+            }
+        }
+    }
+
+
+
     public function addTutorComplainReason(Request $request)
     {
 
@@ -141,51 +193,40 @@ class AdminRequirementComplaints extends Controller
 
 
         if ($request->isPost()) {
-            $data = $request->getBody();
-
-            $inputTutorReason = $data['inputTutorReason'];
-
-            $this->requirementComplaintsModel->addTutorComplainReason($inputTutorReason);
+            $body = $request->getBody();
 
             $studentComplaintReason = $this->requirementComplaintsModel->getStudentComplaintReason();
             $tutorComplaintReason = $this->requirementComplaintsModel->getTutorComplaintReason();
 
-            $data = [
-                'studentComplaintReason' => $studentComplaintReason,
-                'tutorComplaintReason' => $tutorComplaintReason
-            ];
-
-            $this->view('admin/complaint_settings', $request, $data);
-        }
-    }
-
-
-
-    public function updateStudentComplainReason(Request $request)
-    {
-
-        if (!$request->isLoggedIn()) {
-            redirect('/login');
-        }
-
-        if ($request->isPost()) {
-            $data = $request->getBody();
-
-            $inputStudentReason = $data['inputStudentReason'];
-            $studentReasonId = $data['studentReasonId'];
-
-
-            $this->requirementComplaintsModel->updateStudentComplainReason($studentReasonId, $inputStudentReason);
-
-            $studentComplaintReason = $this->requirementComplaintsModel->getStudentComplaintReason();
-            $tutorComplaintReason = $this->requirementComplaintsModel->getTutorComplaintReason();
 
             $data = [
+                'tutor_reason' => $body['inputTutorReason'],
                 'studentComplaintReason' => $studentComplaintReason,
-                'tutorComplaintReason' => $tutorComplaintReason
+                'tutorComplaintReason' => $tutorComplaintReason,
+
+                'errors' => [
+                    'student_reason' => '',
+                    'tutor_reason' => validateTutorReportReason($body['inputTutorReason'], $this->tutorStudentModel),
+                ]
             ];
 
-            $this->view('admin/complaint_settings', $request, $data);
+            $hasErrors = FALSE; // has not errors 
+
+            foreach ($data['errors'] as $errorString) {
+                if ($errorString !== '') {
+                    $hasErrors = TRUE;
+                }
+            }
+
+            if ($hasErrors) {
+                $this->view('admin/complaint_settings', $request, $data);
+            }
+
+
+            if (!$hasErrors) {
+                $this->requirementComplaintsModel->addTutorComplainReason($data['tutor_reason']);
+                redirect('admin/complaintSetting');
+            }
         }
     }
 
@@ -200,22 +241,42 @@ class AdminRequirementComplaints extends Controller
 
 
         if ($request->isPost()) {
-            $data = $request->getBody();
-
-            $inputTutorReason = $data['inputTutorReason'];
-            $tutorReasonId = $data['tutorReasonId'];
-
-            $this->requirementComplaintsModel->updateTutorComplainReason($tutorReasonId, $inputTutorReason);
+            $body = $request->getBody();
 
             $studentComplaintReason = $this->requirementComplaintsModel->getStudentComplaintReason();
             $tutorComplaintReason = $this->requirementComplaintsModel->getTutorComplaintReason();
 
+
             $data = [
+                'tutor_reason' => $body['inputTutorReason'],
+                'tutor_reason_id' => $body['tutorReasonId'],
                 'studentComplaintReason' => $studentComplaintReason,
-                'tutorComplaintReason' => $tutorComplaintReason
+                'tutorComplaintReason' => $tutorComplaintReason,
+
+                'errors' => [
+                    'student_reason' => '',
+                    'tutor_reason' => validateTutorReportReason($body['inputTutorReason'], $this->tutorStudentModel),
+
+                ]
             ];
 
-            $this->view('admin/complaint_settings', $request, $data);
+            $hasErrors = FALSE; // has not errors 
+
+            foreach ($data['errors'] as $errorString) {
+                if ($errorString !== '') {
+                    $hasErrors = TRUE;
+                }
+            }
+
+            if ($hasErrors) {
+                $this->view('admin/complaint_settings', $request, $data);
+            }
+
+
+            if (!$hasErrors) {
+                $this->requirementComplaintsModel->updateTutorComplainReason($data['tutor_reason_id'], $data['tutor_reason']);
+                redirect('admin/complaintSetting');
+            }
         }
     }
 

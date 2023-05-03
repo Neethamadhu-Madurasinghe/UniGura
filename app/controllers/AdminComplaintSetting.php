@@ -26,6 +26,8 @@ class AdminComplaintSetting extends Controller
 
             'errors' => [
                 'student_reason' => '',
+                'tutor_reason' => '',
+
             ]
         ];
 

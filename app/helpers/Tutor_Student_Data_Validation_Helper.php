@@ -139,11 +139,25 @@ function validatePassword(string $password, string $confirmPassword): String
 
 // created by viraj
 
-function validateStudentReportReason(String $reason, ModelTutorStudentCompleteProfile $modelObject,bool $isUnique = true): String
+function validateStudentReportReason(String $reason, ModelTutorStudentCompleteProfile $modelObject): String
 {
     if (empty($reason)) {
         return 'Please enter a valid reason';
-    } elseif ($isUnique && $modelObject->findReasonIdByStudentReportReason($reason)) {
+    } elseif ($modelObject->findReasonIdByStudentReportReason($reason)) {
+        return 'Reason is already in use';
+    } else if (strlen($reason) > 40) {
+        return 'Reason should have less than 40 characters';
+    } else {
+        return '';
+    }
+}
+
+
+function validateTutorReportReason(String $reason, ModelTutorStudentCompleteProfile $modelObject): String
+{
+    if (empty($reason)) {
+        return 'Please enter a valid reason';
+    } elseif ($modelObject->findReasonIdByTutorReportReason($reason)) {
         return 'Reason is already in use';
     } else if (strlen($reason) > 40) {
         return 'Reason should have less than 40 characters';
