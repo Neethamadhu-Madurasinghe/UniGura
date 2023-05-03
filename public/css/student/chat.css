@@ -253,7 +253,7 @@ h1 {
 }
 
 .chat-container-title-image-container img {
-
+    padding: 5px;
     height: 80%;
     object-fit: cover;
 }
@@ -345,6 +345,7 @@ h1 {
     background-color: white;
     border-radius: 5px;
     user-select: text;
+    word-break: break-word
 }
 
 .message-content p {
