@@ -23,7 +23,11 @@ $router->registerController('/logout', [TutorStudentAuth::class, 'logout']);
 $router->registerController('/login', [TutorStudentAuth::class, 'login']);
 $router->registerController('/student/register', [TutorStudentAuth::class, 'tutorStudentRegister']);
 $router->registerController('/tutor/register', [TutorStudentAuth::class, 'tutorStudentRegister']);
-
+$router->registerController('/verify-email', [TutorStudentAuth::class, 'verifyEmail']);
+// Don't change these routes
+$router->registerController('/reset-password/initiate', [TutorStudentAuth::class, 'resetPassword']);
+$router->registerController('/reset-password/verify', [TutorStudentAuth::class, 'resetPassword']);
+$router->registerController('/reset-password/reset', [TutorStudentAuth::class, 'resetPassword']);
 
 
 
@@ -38,8 +42,11 @@ $router->registerController('/admin/dashboard', [AdminDashboard::class, 'dashboa
 $router->registerController('/admin/subjectModule', [AdminSubjectModule::class, 'subjectsAndModules']);
 $router->registerController('/admin/addSubject', [AdminSubjectModule::class, 'addSubject']);
 $router->registerController('/admin/addModule', [AdminSubjectModule::class, 'addModule']);
+$router->registerController('/admin/updateSubject', [AdminSubjectModule::class, 'updateSubject']);
 $router->registerController('/admin/updateModule', [AdminSubjectModule::class, 'updateModule']);
+$router->registerController('/admin/updateSubjectHideShow', [AdminSubjectModule::class, 'updateSubjectHideShow']);
 $router->registerController('/admin/updateModuleHideShow', [AdminSubjectModule::class, 'updateModuleHideShow']);
+
 
 
 
@@ -94,6 +101,29 @@ $router->registerController('/admin/updatePassword', [AdminProfileView::class, '
 
 
 $router->registerController('/admin/filterForStudentPage', [AdminFilter::class, 'filterForStudentPage']);
+$router->registerController('/admin/filterForTutorPage',[AdminFilter::class,'filterForTutorPage']);
+$router->registerController('/admin/filterForClassPage',[AdminFilter::class,'filterForClassPage']);
+$router->registerController('/admin/filterForStudentComplaint',[AdminFilter::class,'filterForStudentComplaint']);
+
+
+
+$router->registerController('/admin/hideTutor',[AdminHideShowBlockUnblock::class,'hideTutor']);
+$router->registerController('/admin/showTutor',[AdminHideShowBlockUnblock::class,'showTutor']);
+$router->registerController('/admin/blockTutor',[AdminHideShowBlockUnblock::class,'blockTutor']);
+$router->registerController('/admin/unblockTutor',[AdminHideShowBlockUnblock::class,'unblockTutor']);
+
+$router->registerController('/admin/blockStudent',[AdminHideShowBlockUnblock::class,'blockStudent']);
+$router->registerController('/admin/unblockStudent',[AdminHideShowBlockUnblock::class,'unblockStudent']);
+
+$router->registerController('/admin/statistics',[AdminStatistics::class,'statistics']);
+
+$router->registerController('/admin/acceptTutorRequest',[AdminRequirementComplaints::class,'acceptTutorRequest']);
+$router->registerController('/admin/rejectTutorRequest',[AdminRequirementComplaints::class,'rejectTutorRequest']);
+
+$router->registerController('/admin/studentComplainSearchFilter',[AdminSearchFilter::class,'studentComplainSearchFilter']);
+
+
+
 
 
 
@@ -134,9 +164,11 @@ $router->registerController('/tutor/getactivity', [TutorCourse::class, 'getactiv
 $router->registerController('/tutor/viewactivitydoc', [TutorCourse::class, 'loadTutorFile']);
 $router->registerController('/tutor/updateday', [TutorCourse::class, 'updateDay']);
 $router->registerController('/tutor/deleteday', [TutorCourse::class, 'deleteDayTemplate']);
+
 $router->registerController('/tutor/requestdecline', [TutorDashboard::class, 'requestDecline']);
 $router->registerController('/tutor/payment', [TutorDashboard::class, 'payment']);
 $router->registerController('/tutor/savepayment', [TutorDashboard::class, 'savepayment']);
+
 
 
 $router->registerController('/tutor/classes', [TutorClass::class, 'mainpage']);
@@ -163,6 +195,17 @@ $router->registerController('/tutor/notifications/getcount', [TutorNotification:
 $router->registerController('/tutor/change-profile-picture', [TutorUpdateProfile::class, 'changeProfilePicture']);
 
 $router->registerController('/tutor/dayunhide', [TutorClass::class, 'day_unhide']);
+
+
+// Chat routes
+$router->registerController('api/chat/get-chat', [Chat::class, 'getChatMessages']);
+$router->registerController('api/chat/get-all-chat-threads', [Chat::class, 'getAllChatThreads']);
+$router->registerController('api/chat/save-message', [Chat::class, 'saveMessage']);
+$router->registerController('api/chat/unseen-messages', [Chat::class, 'getUnseenMessages']);
+$router->registerController('api/chat/send-single-message', [Chat::class, 'sendSingleMessage']);
+$router->registerController('api/chat/test-route', [Chat::class, 'testRoute']);
+
+
 
 
 
@@ -197,7 +240,16 @@ $router->registerController('/student/find-tutor', [FindTutor::class, 'findTutor
 $router->registerController('/student/profile', [StudentProfile::class, 'profile']);
 $router->registerController('/api/report-tutor', [StudentTutorProfile::class, 'reportTutor']);
 $router->registerController('/student/tutor-profile', [StudentTutorProfile::class, 'tutorProfile']);
+$router->registerController('/student/change-profile-picture', [StudentProfile::class, 'changeProfilePicture']);
+$router->registerController('/api/student/notification', [StudentNotification::class, 'getNotification']);
+$router->registerController('/api/student/mark-seen', [StudentNotification::class, 'markNotificationAsSeen']);
+$router->registerController('/student/chat', [Chat::class, 'studentChatView']);
 
-
+$router->registerController(
+    '/api/user/initiate-reset-password',
+    [StudentTutorProfile::class, 'changePasswordInitiate']
+);
+$router->registerController('/api/user/validate-otp', [StudentTutorProfile::class, 'changePasswordValidation']);
+$router->registerController('/api/user/change-password', [StudentTutorProfile::class, 'changePassword']);
 
 $router->resolve();

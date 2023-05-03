@@ -73,8 +73,10 @@ Header::render(
                         <div></div>
                         <div></div>
                         <button class='left add-activity' id=$id ><i class='fa-solid fa-plus'></i></button>
+
                         <button class='middle update-day' id = $id><i class='fa-solid fa-pen'></i></button>
                         <button class='right delete-day' id = $id><i class='fa-solid fa-trash'></i></button>
+
                     </div>
                 </div>";
                     }
@@ -222,6 +224,25 @@ Header::render(
 
                 document.querySelector('.button1').addEventListener('click',function(){
                     window.location = `http://localhost/unigura/tutor/createday?class_template_id=${cid}&subject=${subject_name}&module=${module_name}?>`
+                })
+
+                var updatedaybtns = document.querySelectorAll(".update-day");
+
+
+                updatedaybtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        window.location = "http://localhost/unigura/tutor/updateday?id=" + this.id + "&subject=" + subject + "&module=" + module + "&course_id=" + <?php echo $data['id'] ?>;
+                    })
+                })
+
+
+                var deletedaybtns = document.querySelectorAll(".delete-day");
+
+
+                deletedaybtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        window.location = "http://localhost/unigura/tutor/deleteday?id=" + this.id + "&subject=" + subject + "&module=" + module + "&course_id=" + <?php echo $data['id'] ?>;
+                    })
                 })
             </script>
             <?php Footer::render(

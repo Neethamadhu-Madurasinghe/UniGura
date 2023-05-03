@@ -1,16 +1,22 @@
 <?php
 
+require_once ROOT . '/lib/phpmailer/src/Exception.php';
+require_once ROOT . '/lib/phpmailer/src/PHPMailer.php';
+require_once ROOT . '/lib/phpmailer/src/SMTP.php';
+
 class StudentTutorProfile extends Controller {
     private ModelStudentReport $reportModel;
     private ModelStudentClassTemplate $classTemplateModel;
     private ModelStudentReview $reviewModel;
     private ModelStudentReportReason $reportReasonModel;
+    private ModelTutorStudentAuth $userModel;
 
     public function __construct() {
         $this->reportModel = $this->model('ModelStudentReport');
         $this->classTemplateModel = $this->model('ModelStudentClassTemplate');
         $this->reviewModel = $this->model('ModelStudentReview');
         $this->reportReasonModel = $this->model('ModelStudentReportReason');
+        $this->userModel = $this->model('ModelTutorStudentAuth');
     }
 
     public function tutorProfile(Request $request) {
@@ -27,6 +33,7 @@ class StudentTutorProfile extends Controller {
         $body = $request->getBody();
         if (!(isset($body['template_id']) && $this->classTemplateModel->doesTemplateExist($body['template_id']))) {
 //            TODO: Handle
+            redirect('/not-found');
         }
 
         if (!isset($body['mode'])) {
@@ -147,5 +154,87 @@ class StudentTutorProfile extends Controller {
             header("HTTP/1.0 404 Not found");
         }
 
+    }
+
+//    Initiate change password use case, sends an email to the user's email address
+    public function changePasswordInitiate(Request $request) {
+        cors();
+
+        if (!$request->isLoggedIn() || !($request->isStudent() || $request->isTutor())) {
+            header("HTTP/1.0 401 Unauthorized");
+            return;
+        }
+
+        $code = generateCode();
+        if (sendCodeAsEmail($request, $code)) {
+            $this->userModel->setVerificationCode($request->getUserId(), $code);
+            header("HTTP/1.0 200 Success");
+
+        } else {
+            header("HTTP/1.0 500 Internal Server Error");
+        }
+
+    }
+
+//    confirms whether the user entered OTP code is valid or no
+    public function changePasswordValidation(Request $request) {
+        cors();
+
+        if (!$request->isLoggedIn() || !($request->isStudent() || $request->isTutor())) {
+            header("HTTP/1.0 401 Unauthorized");
+            return;
+        }
+
+        $body = $request->getBody();
+        if (!isset($body['code'])) {
+            header("HTTP/1.0 400 Bad Request");
+            return;
+        }
+
+        if (!$this->userModel->isCodeValid($request->getUserId(), $body)) {
+            header("HTTP/1.0 403 Forbidden");
+            return;
+        }
+
+        header("HTTP/1.0 200 Success");
+    }
+
+//    change the password - check OTP code should be embedded into the request
+    public function changePassword(Request $request) {
+        cors();
+
+        if (!$request->isLoggedIn() || !($request->isStudent() || $request->isTutor())) {
+            header("HTTP/1.0 401 Unauthorized");
+            return;
+        }
+
+        $body = json_decode(file_get_contents('php://input'), true);
+
+        if (!isset($body['code'])) {
+
+            header("HTTP/1.0 400 Bad Request");
+            return;
+        }
+
+        if (!$this->userModel->isCodeValid($request->getUserId(), $body)) {
+            header("HTTP/1.0 403 Forbidden");
+            return;
+        }
+        $isValid = validatePassword($body['password'], $body['confirm_password']);
+
+        if ($isValid) {
+            header("HTTP/1.0 400 Bad Request");
+            return;
+        }
+
+        $data['password'] = password_hash($body['password'], PASSWORD_DEFAULT);
+        $result = $this->userModel->changePassword($data['password'], $request->getUserId());
+
+        if(!$result) {
+            header("HTTP/1.0 500 Internal Server Error");
+            return;
+        }
+
+        header("HTTP/1.0 200 Success");
     }
 }

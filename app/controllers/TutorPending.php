@@ -207,7 +207,6 @@ class TutorPending extends Controller
             redirectBasedOnUserRole($request);
         }
 
-
         $this->view('tutor/timeslotinputform', $request);
     }
 

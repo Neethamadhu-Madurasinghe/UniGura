@@ -33,24 +33,105 @@
 
 
 
-
-
         <script>
             const ctx4 = document.getElementById('myChart4');
 
-            const moneyTransaction = [
-            { month: 'January', amount: { studentPayment: <?php echo $data['studentJanuaryPaymentsAmount'] ?>, tutorWithdrawal: <?php echo $data['tutorJanuaryWithdrawalAmount'] ?>, profit: <?php echo $data['systemJanuaryProfit'] ?> } },
-            { month: 'February', amount: { studentPayment: <?php echo $data['studentFebruaryPaymentsAmount'] ?>, tutorWithdrawal:<?php echo $data['tutorFebruaryWithdrawalAmount'] ?>, profit: <?php echo $data['systemFebruaryProfit'] ?> } },
-            { month: 'March', amount: { studentPayment: <?php echo $data['studentMarchPaymentsAmount'] ?>, tutorWithdrawal: <?php echo $data['tutorMarchWithdrawalAmount'] ?>, profit: <?php echo $data['systemMarchProfit'] ?> } },
-            { month: 'April', amount: { studentPayment: <?php echo $data['studentAprilPaymentsAmount'] ?>, tutorWithdrawal: <?php echo $data['tutorAprilWithdrawalAmount'] ?>, profit: <?php echo $data['systemAprilProfit'] ?>}},
-            { month: 'May', amount: { studentPayment: <?php echo $data['studentMayPaymentsAmount'] ?>, tutorWithdrawal: <?php echo $data['tutorMayWithdrawalAmount'] ?>, profit: <?php echo $data['systemMayProfit'] ?> } },
-            { month: 'June', amount: { studentPayment: <?php echo $data['studentJunePaymentsAmount'] ?>, tutorWithdrawal: <?php echo $data['tutorJuneWithdrawalAmount'] ?>, profit: <?php echo $data['systemJuneProfit'] ?> } },
-            { month: 'July', amount: { studentPayment: <?php echo $data['studentJulyPaymentsAmount'] ?>, tutorWithdrawal: <?php echo $data['tutorJulyWithdrawalAmount'] ?>, profit: <?php echo $data['systemJulyProfit'] ?> } },
-            { month: 'August', amount: { studentPayment: <?php echo $data['studentAugustPaymentsAmount'] ?>, tutorWithdrawal: <?php echo $data['tutorAugustWithdrawalAmount'] ?>, profit: <?php echo $data['systemAugustProfit'] ?> } },
-            { month: 'September', amount: { studentPayment: <?php echo $data['studentSeptemberPaymentsAmount'] ?>, tutorWithdrawal: <?php echo $data['tutorSeptemberWithdrawalAmount'] ?>, profit: <?php echo $data['systemSeptemberProfit'] ?> } },
-            { month: 'October', amount: { studentPayment: <?php echo $data['studentOctoberPaymentsAmount'] ?>, tutorWithdrawal: <?php echo $data['tutorOctoberWithdrawalAmount'] ?>, profit: <?php echo $data['systemOctoberProfit'] ?> } },
-            { month: 'November', amount: { studentPayment: <?php echo $data['studentNovemberPaymentsAmount'] ?>, tutorWithdrawal: <?php echo $data['tutorNovemberWithdrawalAmount'] ?>, profit: <?php echo $data['systemNovemberProfit'] ?> } },
-            { month: 'December', amount: { studentPayment: <?php echo $data['studentDecemberPaymentsAmount'] ?>, tutorWithdrawal: <?php echo $data['tutorDecemberWithdrawalAmount'] ?>, profit: <?php echo $data['systemDecemberProfit'] ?> } },
+            const moneyTransaction = [{
+                    month: 'January',
+                    amount: {
+                        studentPayment: <?php echo $data['studentJanuaryPaymentsAmount'] ?>,
+                        tutorWithdrawal: <?php echo $data['tutorJanuaryWithdrawalAmount'] ?>,
+                        profit: <?php echo $data['systemJanuaryProfit'] ?>
+                    }
+                },
+                {
+                    month: 'February',
+                    amount: {
+                        studentPayment: <?php echo $data['studentFebruaryPaymentsAmount'] ?>,
+                        tutorWithdrawal: <?php echo $data['tutorFebruaryWithdrawalAmount'] ?>,
+                        profit: <?php echo $data['systemFebruaryProfit'] ?>
+                    }
+                },
+                {
+                    month: 'March',
+                    amount: {
+                        studentPayment: <?php echo $data['studentMarchPaymentsAmount'] ?>,
+                        tutorWithdrawal: <?php echo $data['tutorMarchWithdrawalAmount'] ?>,
+                        profit: <?php echo $data['systemMarchProfit'] ?>
+                    }
+                },
+                {
+                    month: 'April',
+                    amount: {
+                        studentPayment: <?php echo $data['studentAprilPaymentsAmount'] ?>,
+                        tutorWithdrawal: <?php echo $data['tutorAprilWithdrawalAmount'] ?>,
+                        profit: <?php echo $data['systemAprilProfit'] ?>
+                    }
+                },
+                {
+                    month: 'May',
+                    amount: {
+                        studentPayment: <?php echo $data['studentMayPaymentsAmount'] ?>,
+                        tutorWithdrawal: <?php echo $data['tutorMayWithdrawalAmount'] ?>,
+                        profit: <?php echo $data['systemMayProfit'] ?>
+                    }
+                },
+                {
+                    month: 'June',
+                    amount: {
+                        studentPayment: <?php echo $data['studentJunePaymentsAmount'] ?>,
+                        tutorWithdrawal: <?php echo $data['tutorJuneWithdrawalAmount'] ?>,
+                        profit: <?php echo $data['systemJuneProfit'] ?>
+                    }
+                },
+                {
+                    month: 'July',
+                    amount: {
+                        studentPayment: <?php echo $data['studentJulyPaymentsAmount'] ?>,
+                        tutorWithdrawal: <?php echo $data['tutorJulyWithdrawalAmount'] ?>,
+                        profit: <?php echo $data['systemJulyProfit'] ?>
+                    }
+                },
+                {
+                    month: 'August',
+                    amount: {
+                        studentPayment: <?php echo $data['studentAugustPaymentsAmount'] ?>,
+                        tutorWithdrawal: <?php echo $data['tutorAugustWithdrawalAmount'] ?>,
+                        profit: <?php echo $data['systemAugustProfit'] ?>
+                    }
+                },
+                {
+                    month: 'September',
+                    amount: {
+                        studentPayment: <?php echo $data['studentSeptemberPaymentsAmount'] ?>,
+                        tutorWithdrawal: <?php echo $data['tutorSeptemberWithdrawalAmount'] ?>,
+                        profit: <?php echo $data['systemSeptemberProfit'] ?>
+                    }
+                },
+                {
+                    month: 'October',
+                    amount: {
+                        studentPayment: <?php echo $data['studentOctoberPaymentsAmount'] ?>,
+                        tutorWithdrawal: <?php echo $data['tutorOctoberWithdrawalAmount'] ?>,
+                        profit: <?php echo $data['systemOctoberProfit'] ?>
+                    }
+                },
+                {
+                    month: 'November',
+                    amount: {
+                        studentPayment: <?php echo $data['studentNovemberPaymentsAmount'] ?>,
+                        tutorWithdrawal: <?php echo $data['tutorNovemberWithdrawalAmount'] ?>,
+                        profit: <?php echo $data['systemNovemberProfit'] ?>
+                    }
+                },
+                {
+                    month: 'December',
+                    amount: {
+                        studentPayment: <?php echo $data['studentDecemberPaymentsAmount'] ?>,
+                        tutorWithdrawal: <?php echo $data['tutorDecemberWithdrawalAmount'] ?>,
+                        profit: <?php echo $data['systemDecemberProfit'] ?>
+                    }
+                },
             ];
 
             const myChart4 = new Chart(ctx4, {
@@ -141,7 +222,7 @@
                         hoverOffset: 4
                     }, {
                         label: '# of Hide Tutors',
-                        data: [0, <?php echo $data['hiddenTutors'] ?>],
+                        data: [0, <?php echo (int)$data['hiddenTutors'] ?>],
                         backgroundColor: [
                             'rgba(54, 162, 235)',
                         ],
@@ -153,6 +234,21 @@
                     indexAxis: 'x',
                     barPercentage: 0.7, // controls the width of the bars
                     categoryPercentage: 0.7 // controls the spacing between bars
+                },
+
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            min: 0,
+                            max: 100,
+                            stepSize: 10,
+                            callback: function(value, index, values) {
+                                return value + '%';
+                            }
+
+                        }
+                    }]
                 }
 
             });
@@ -218,11 +314,6 @@
             });
         </script>
     </div>
-
-
-
-
-
 </section>
 
 

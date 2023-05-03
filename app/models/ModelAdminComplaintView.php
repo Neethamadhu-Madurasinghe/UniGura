@@ -39,10 +39,10 @@ class ModelAdminComplaintView {
 
 
         if ($this->db->execute()) {
-            echo 'Complain status updated';
+            // echo 'Complain status updated';
             return true;
         } else {
-            echo 'Complain status not updated';
+            // echo 'Complain status not updated';
             return false;
         }
     }

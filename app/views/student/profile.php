@@ -19,10 +19,56 @@ Header::render(
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css',
         URLROOT . '/public/css/common/student-base-style.css',
         URLROOT . '/public/css/student/components/main-nav-bar.css',
+        URLROOT . '/public/css/student/components/error-success-popup.css',
         URLROOT . '/public/css/student/profile.css'
     ]
 );
+?>
 
+<div class="error-layout-background invisible">
+
+    <div class="popup-error-message invisible">
+        <img src="<?php echo URLROOT . '/public/img/student/cross.png' ?>" alt="" srcset="">
+        <p id="error-message"></p>
+        <button class="btn btn-search" id="error-ok">OK</button>
+    </div>
+
+    <div class="popup-success-message invisible">
+        <img src="<?php echo URLROOT . '/public/img/student/success.png' ?>" alt="" srcset="">
+        <p id="success-message"></p>
+        <button class="btn btn-search" id="success-ok">OK</button>
+    </div>
+
+</div>
+
+<div class="layout-background invisible">
+
+    <div class="popup-send-message invisible">
+        <p id="popup-heading">Change password</p>
+        <p id="popup-subheading">Enter the code we sent to your email</p>
+        <input type="text" id="otp-input">
+        <div class="send-msg-btn-container">
+            <button class="btn btn-msg" id="reset-cancel">Cancel</button>
+            <button class="btn btn-msg" id="reset-send">OK</button>
+        </div>
+        <p id="popup-resend">Resend the code</p>
+    </div>
+
+    <div class="popup-change-password invisible">
+        <p id="popup-heading">Enter new password</p>
+        <input type="password" id="new-password-input" class="password-confirm-input" placeholder="New Password">
+        <input type="password" id="new-password-confirm-input" class="password-confirm-input" placeholder="Confirm Password">
+        <div class="send-msg-btn-container">
+            <button class="btn btn-msg" id="change-cancel">Cancel</button>
+            <button class="btn btn-msg" id="change-send">OK</button>
+        </div>
+    </div>
+
+    <div class="loader invisible"></div>
+</div>
+
+
+<?php
 MainNavbar::render($request);
 ?>
 
@@ -44,7 +90,7 @@ MainNavbar::render($request);
 
         <div class="utility-button-container">
             <button class="btn btn-utility">Disable Account</button>
-            <button class="btn btn-utility">Change password</button>
+            <button class="btn btn-utility" id="change-password">Change password</button>
         </div>
 
         <form action="" method="post" id="complete-profile-form">
@@ -240,7 +286,7 @@ MainNavbar::render($request);
             </div>
         </div>
 
-        <div class="request-history">
+        <div class="request-history" id="requests">
             <h1>Pending Tutor Requests</h1>
             <div class="request-history-container">
                 <table class="data-table">

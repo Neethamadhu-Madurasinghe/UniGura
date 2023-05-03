@@ -1,5 +1,3 @@
-
-
 // *========================================== PAYMENT PAGE ===========================================================
 
 
@@ -35,6 +33,8 @@ nav_link.forEach((link) => {
 payment.classList.add('active');
 
 
+const blur_filter = document.getElementById('blur-filter');
+blur_filter.style.display = "none";
 
 
 /*  ================================ SHOW SELECTED TUTOR IN RIGHT SIDE DISPLAY  ================================*/
@@ -77,6 +77,34 @@ tutors.forEach((tutor) => {
 
     })
 })
+
+
+
+/* --------------------------- Empty bank slip POPUP ERROR MESSAGE -------------------------------- */
+
+
+const popup = document.getElementById('popup');
+const closePopupBtn = document.getElementById('closePopup');
+const container = document.getElementById('container');
+
+closePopupBtn.addEventListener("click", function () {
+    popup.style.display = "none";
+    blur_filter.style.display = "none";
+
+})
+
+
+
+var blurElement = document.querySelector(".popup");
+
+if (blurElement) {
+    blur_filter.style.display = "block";
+}
+
+
+
+
+
 
 
 

@@ -31,7 +31,7 @@ class ModelStudentDashboard {
                 tutoring_class_template.subject_id = subject.id WHERE tutoring_class_template.id = :template_id
                 ');
 
-            $this->db->bind('template_id', $value['id'], PDO::PARAM_INT);
+            $this->db->bind('template_id', $value['class_template_id'], PDO::PARAM_INT);
             $subject = json_decode(json_encode($this->db->resultOne()), true);
             $rows[$key]['subject'] = $subject;
 
@@ -41,7 +41,7 @@ class ModelStudentDashboard {
                 tutoring_class_template.module_id = module.id WHERE tutoring_class_template.id = :template_id
             ');
 
-            $this->db->bind('template_id', $value['id'], PDO::PARAM_INT);
+            $this->db->bind('template_id', $value['class_template_id'], PDO::PARAM_INT);
             $module = json_decode(json_encode($this->db->resultOne()), true);
             $rows[$key]['module'] = $module;
 

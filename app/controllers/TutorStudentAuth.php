@@ -1,11 +1,18 @@
 <?php
 
+require_once ROOT . '/lib/phpmailer/src/Exception.php';
+require_once ROOT . '/lib/phpmailer/src/PHPMailer.php';
+require_once ROOT . '/lib/phpmailer/src/SMTP.php';
+
+
 class TutorStudentAuth extends Controller {
-    private ModelTutorStudentAuth $userModel;
+    private ModelTutorStudentAuth $tutorStudentAuthModel;
+    private ModelUser $userModel;
     private string $loginView = 'common/auth/login';
 
     public function __construct() {
-        $this->userModel = $this->model('ModelTutorStudentAuth');
+        $this->tutorStudentAuthModel = $this->model('ModelTutorStudentAuth');
+        $this->userModel = $this->model('ModelUser');
     }
 
 //   Handle Student register
@@ -43,7 +50,7 @@ class TutorStudentAuth extends Controller {
 
 //            Validate data
             $data['errors']['email_error'] = $this->validateEmail($data['email'], TRUE);
-            $data['errors']['password_error'] = $this->validatePassword($data['password'], $data['confirm_password']);
+            $data['errors']['password_error'] = validatePassword($data['password'], $data['confirm_password']);
 
 //            Check whether there is any error - if not, save data into database and redirect user into login screen
             if (empty($data['errors']['email_error']) && empty($data['errors']['password_error'])) {
@@ -54,7 +61,7 @@ class TutorStudentAuth extends Controller {
 //                Save data into database
 //                If current request is from student/register then save the data as a student, tutor otherwise
                 if ($request->getPath() == 'student/register') {
-                    if ($this->userModel->registerStudent($data)) {
+                    if ($this->tutorStudentAuthModel->registerStudent($data)) {
                         redirect('/login');
                     }else {
                         header("HTTP/1.0 500 Internal Server Error");
@@ -62,7 +69,7 @@ class TutorStudentAuth extends Controller {
                     }
 
                 }else {
-                    if ($this->userModel->registerTutor($data)) {
+                    if ($this->tutorStudentAuthModel->registerTutor($data)) {
                         redirect('/login');
                     }else {
                         header("HTTP/1.0 500 Internal Server Error");
@@ -103,15 +110,86 @@ class TutorStudentAuth extends Controller {
         }
     }
 
+    public function verifyEmail(Request $request) {
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        if ($request->isVerified()) {
+            redirectBasedOnUserRole($request);
+        }
+
+
+        if ($request->isPost()) {
+
+            $data = [
+                'error' => ''
+
+            ];
+
+            $body = $request->getBody();
+            if (strlen($body['code']) != 6) {
+                $data['error'] = 'Please enter the code we sent to your email address';
+            }
+
+//             Is code invalid ?
+            if ($data['error'] === '' && !$this->tutorStudentAuthModel->isCodeValid($request->getUserId(), $body)) {
+                $data['error'] = 'Code is invalid or expired. Please try resending the code';
+
+            } elseif ($data['error'] === '') {
+
+                $this->tutorStudentAuthModel->markVerify($request->getUserId());
+                $_SESSION['is_verified'] = 1;
+            }
+
+//            IF there is a code, then check whether its valid
+            if ($data['error'] == '') {
+                redirectBasedOnUserRole($request);
+
+            }else {
+                $this->view('common/auth/verifyEmail', $request, $data);
+            }
+
+
+        }else {
+            $data = [
+                'error' => ''
+            ];
+
+            $body = $request->getBody();
+
+//            Check if this is the first time user is accessing the page
+            if ($this->tutorStudentAuthModel->isVerificationNull($request->getUserId())) {
+                $code = generateCode();
+                if (sendCodeAsEmail($request, $code)) {
+                    $this->tutorStudentAuthModel->setVerificationCode($request->getUserId(), $code);
+                }
+
+            }
+
+//            Check if user has click the Resend code
+            if (isset($body['resend']) && $body['resend'] == true) {
+                $code = generateCode();
+                if (sendCodeAsEmail($request, $code)) {
+                    $this->tutorStudentAuthModel->setVerificationCode($request->getUserId(), $code);
+                }
+
+            }
+
+
+
+            $this->view('common/auth/verifyEmail', $request, $data);
+        }
+
+    }
+
 
 //   Handle login process
     public function login(Request $request) {
 //        If user is logged in, then redirect to dashboard page
         if ($request->isLoggedIn()) {
-
             redirectBasedOnUserRole($request);
         }
-
 //        If the request is a post request, then handle the incoming data
         if ($request->isPost()) {
 
@@ -126,15 +204,21 @@ class TutorStudentAuth extends Controller {
                 ]
             ];
 
+            if (isset($body['remember-me'])) {
+                $data['remember_me'] = true;
+            }else {
+                $data['remember_me'] = false;
+            }
+
 //           Validate data
             $data['errors']['email_error'] = $this->validateEmail($data['email'], FALSE);
-            $data['errors']['password_error'] = $this->validatePassword($data['password'], $data['password']);
+            $data['errors']['password_error'] = validatePassword($data['password'], $data['password']);
 
 //            If data is valid, then check is the password matches with email
             if (empty($data['errors']['email_error']) && empty($data['errors']['password_error'])) {
-                $loggedUser = $this->userModel->login($data['email'], $data['password']);
+                $loggedUser = $this->tutorStudentAuthModel->login($data['email'], $data['password']);
                 if ($loggedUser) {
-                    $this->createUserSession($loggedUser);
+                    $this->createUserSession($loggedUser, $data['remember_me']);
 
 
                 }else {
@@ -165,26 +249,32 @@ class TutorStudentAuth extends Controller {
 
 
 
-    public function createUserSession($user, $rememberUser = true) {
+    public function createUserSession($user, $rememberUser = false) {
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_email'] = $user->email;
         $_SESSION['user_role'] = $user->role;
+        $_SESSION['is_verified'] = $user->is_validated;
 
 //        Fetch the user's profile picture if user is student or tutor
-        if ( $user->role == 1 || $user->role == 2) {
-            $profilePicture = $this->userModel->getUserProfilePicture($user->id);
+        if ($user->role == 1 || $user->role == 2) {
+            $profilePicture = $this->tutorStudentAuthModel->getUserProfilePicture($user->id);
             if (!$profilePicture) {
                 $profilePicture = '/public/img/common/profile.png';
             }
             $_SESSION['user_picture'] = $profilePicture;
         }
 
-
+// If remember is set  to true, make a token and store it as a cookie
         if ($rememberUser) {
-            $_SESSION['LAST_ACTIVITY'] = time();
+            $token = hash('sha256', time() . $user->id);
+            setcookie('auth', $token, time() + 3600 * 24 * 7);
+//            Save that token in the database
+            $this->tutorStudentAuthModel->setAuthToken($token, $user->id);
         }
 
-        if ($user->role === 0) {
+        if ($_SESSION['is_verified'] == 0) {
+            redirect('/verify-email');
+        }elseif ($user->role === 0) {
             redirect('admin/dashboard');
         }elseif ($user->role === 1) {
             redirect('tutor/dashboard');
@@ -217,29 +307,15 @@ class TutorStudentAuth extends Controller {
     public function logOut() {
         session_unset();
         session_destroy();
+        setcookie('auth', "", time() - 1000);
         redirect('/login');
-    }
-
-    private function validatePassword(string $password, string $confirmPassword): String {
-        if (empty($password)) {
-            return 'Please enter a valid password';
-
-        }elseif (strlen($password) < 4) {
-            return 'Password should be minimum 4 characters long';
-
-        }elseif ($password !== $confirmPassword) {
-            return 'Please confirm the password';
-            
-        }else {
-            return '';
-        }
     }
 
     private function validateEmail(string $email, bool $isRegister): String {
         if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return 'Please enter a valid email';
 
-        }elseif ($isRegister && $this->userModel->findUserByEmail($email)) {
+        }elseif ($isRegister && $this->tutorStudentAuthModel->findUserByEmail($email)) {
             return 'Email is already registered';
 
         }else {
@@ -247,5 +323,169 @@ class TutorStudentAuth extends Controller {
         }
     }
 
+
+    public function resetPassword(Request $request) {
+        if ($request->isLoggedIn()) {
+            redirectBasedOnUserRole($request);
+            return;
+        }
+
+
+//      if the route is entering email page
+        if ($request->getPath() == 'reset-password/initiate') {
+ //        Delete any session data remaining
+            session_unset();
+            session_destroy();
+            session_start();
+//            Post request
+            if ($request->isPost()) {
+                $body = $request->getBody();
+
+                $data = [
+                    'email' => $body['email'],
+                    'errors' => [
+                        'email_error' => $this->validateEmail($body['email'], false)
+                    ]
+                ];
+
+//                Check if email exists
+                $user = $this->userModel->getUserByEmail($data['email']);
+                if (!isset($user['id'])) {
+                    $data['errors']['email_error'] = "Email does not exist";
+                }
+
+                if (empty($data['errors']['email_error'])) {
+//                  If no errors present, then send OTP
+                    $code = generateCode();
+                    if (sendCodeAsEmail($request, $code, $data['email'])) {
+                        $this->tutorStudentAuthModel->setVerificationCode($user['id'], $code);
+                    }
+
+//                    Store then given user email in the session
+                    $_SESSION['email'] = $data['email'];
+                    $_SESSION['id'] = $user['id'];
+                    redirect('/reset-password/verify');
+
+                }else {
+                    $this->view('common/auth/resetPasswordInitiate', $request, $data);
+                }
+
+
+//            Get request
+            } else {
+                $data = [
+                    'email' => '',
+                    'errors' => [
+                        'email_error' => ''
+                    ]
+                ];
+
+                $this->view('common/auth/resetPasswordInitiate', $request, $data);
+            }
+        }
+
+//        If the route is entering code page
+        if ($request->getPath() == 'reset-password/verify') {
+//            Check the session for see if the email is set
+            if (!isset($_SESSION['email'])) {
+                redirect('/logout');
+            }
+
+//            Post request
+            if ($request->isPost()) {
+                $body = $request->getBody();
+
+                $data = [
+                    'code' => '',
+                    'errors' => [
+                        'code_error' => ''
+                    ]
+                ];
+
+//               Validate OTP code
+                if (strlen($body['code']) != 6) {
+                    $data['errors']['code_error'] = "Please enter a valid OTP";
+                }
+
+                if (empty($data['errors']['code_error']) && !$this->tutorStudentAuthModel->isCodeValidByEmail($_SESSION['email'], $body['code'])) {
+                    $data['errors']['code_error'] = "Incorrect OTP";
+                }
+
+                if (empty($data['errors']['code_error'])) {
+                    $_SESSION['is_verified'] = true;
+                    redirect('/reset-password/reset');
+
+                }else {
+                    $this->view('common/auth/resetPasswordVerify', $request, $data);
+                }
+
+
+//            Get request
+            } else {
+                $data = [
+                    'code' => '',
+                    'errors' => [
+                        'code_error' => ''
+                    ]
+                ];
+
+                $this->view('common/auth/resetPasswordVerify', $request, $data);
+            }
+        }
+
+//        IF the route is entering new password page
+        if ($request->getPath() == 'reset-password/reset') {
+//            Check the session for see if the email is set
+            if (!isset($_SESSION['email']) || !isset($_SESSION['id'])) {
+                redirect('/logout');
+            }
+
+            if (!isset($_SESSION['is_verified'])) {
+                redirect('/logout');
+            }
+
+//            Post request
+            if ($request->isPost()) {
+                $body = $request->getBody();
+
+                $data = [
+                    'password' => $body['password'],
+                    'confirm_password' => $body['confirm-password'],
+
+                    'errors' => [
+                        'password_error' => '',
+                        'confirm_password_error' => ''
+                    ]
+                ];
+
+                $data['errors']['password_error'] = validatePassword($data['password'], $data['confirm_password']);
+
+                if (empty($data['errors']['password_error'])) {
+//                    If there is no error, then save the new password
+                    $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+                    $this->tutorStudentAuthModel->changePassword($data['password'], $_SESSION['id']);
+                    redirect('/login');
+
+                }else {
+                    $this->view('common/auth/resetPasswordReset', $request, $data);
+                }
+
+
+//            Get request
+            } else {
+                $data = [
+                    'password' => '',
+                    'confirm_password' => '',
+
+                    'errors' => [
+                        'password_error' => '',
+                        'confirm_password_error' => ''
+                    ]
+                ];
+
+                $this->view('common/auth/resetPasswordReset', $request, $data);
+            }
+        }
+    }
 
 }

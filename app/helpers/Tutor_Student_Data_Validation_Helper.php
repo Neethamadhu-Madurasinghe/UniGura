@@ -151,6 +151,20 @@ function validateAccountNameForTutor(String $holderName, ModelTutorStudentComple
     }
 }
 
+function validatePassword(string $password, string $confirmPassword): String {
+    if (empty($password)) {
+        return 'Please enter a valid password';
+
+    }elseif (strlen($password) < 4) {
+        return 'Password should be minimum 4 characters long';
+
+    }elseif ($password !== $confirmPassword) {
+        return 'Please confirm the password';
+
+    }else {
+        return '';
+    }
+}
 
 function validateAccountNumberForTutor(String $accountNumber, ModelTutorStudentCompleteProfile $modelObject, int $tutor_id): String
 {

@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/admin/payment.css">
 <script defer src="<?php echo URLROOT ?>/public/js/admin/payment.js"></script>
 
-
+<div class="blur-filter" id="blur-filter"></div>
 
 <section class="home" id="home">
     <p></p>
@@ -10,19 +10,25 @@
     <p></p>
     <p></p>
 
+    <?php if($data['paymentBankSlip'] === 'notUploadBankSlip') : ?>
+        <div class="popup" id="popup">
+        <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
+        <h2>Bank Slip Not Uploaded!</h2>
+        <h4>Please upload the bank slip to confirm the payment.</h4>
+        <button type="button" id="closePopup">OK</button>
+    </div>
+    <?php endif; ?>
+
+
     <div class="payment-page">
         <div class="payment">
             <div class="payment-left-side">
                 <div class="payoff-tutors">
                     <h3>Payoffs Tutors</h3>
                 </div>
-                <div class="search-box">
-                    <i class="fa fa-search"></i>
-                    <input type="text" placeholder="Search Tutors">
-                </div>
                 <div class="all-tutor">
 
-                    <?php foreach ($data as $tutor) : ?>
+                    <?php foreach ($data['allUniquePayoffTutors'] as $tutor) : ?>
                         <?php if ($tutor->is_withdrawed == 0) : ?>
                             <div class="tutor">
                                 <input type="hidden" value="<?php echo $tutor->tutor_id ?>" class="tutorId">
@@ -78,7 +84,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($data as $Withdrawal) : ?>
+                            <?php foreach ($data['allPaymentDetails'] as $Withdrawal) : ?>
                                 <?php if ($Withdrawal->is_withdrawed == 1) : ?>
                                     <tr>
                                         <td><?php echo $Withdrawal->tutor->first_name . " " . $Withdrawal->tutor->first_name ?></td>
@@ -111,7 +117,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($data as $Withdrawal) : ?>
+                            <?php foreach ($data['allPaymentDetails'] as $Withdrawal) : ?>
                                 <?php if ($Withdrawal->is_withdrawed == 0) : ?>
                                     <tr>
                                         <td><?php echo $Withdrawal->tutor->first_name . " " . $Withdrawal->tutor->first_name ?></td>

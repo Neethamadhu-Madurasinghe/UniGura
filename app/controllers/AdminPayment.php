@@ -16,13 +16,23 @@ class AdminPayment extends Controller
             redirect('/login');
         }
 
-        $allPayment = $this->paymentModel->allPaymentDetails();
+        $allUniquePayoffTutors = $this->paymentModel->allUniquePayoffTutors();
+        $allPaymentDetails = $this->paymentModel->allPaymentDetails();
 
-        foreach ($allPayment as $tutor) {
+
+        foreach ($allUniquePayoffTutors as $tutor) {
             $tutor->tutor = $this->paymentModel->getTutorById($tutor->tutor_id);
         }
 
-        $data = $allPayment;
+        foreach ($allPaymentDetails as $tutor) {
+            $tutor->tutor = $this->paymentModel->getTutorById($tutor->tutor_id);
+        }
+
+        $data = [
+            'allUniquePayoffTutors' => $allUniquePayoffTutors,
+            'allPaymentDetails' => $allPaymentDetails,
+            'paymentBankSlip' => ''
+        ];
 
         // echo '<pre>';
         // print_r($data);
@@ -59,7 +69,8 @@ class AdminPayment extends Controller
 
             $data = [
                 'tutorBankDetails' => $tutorBankDetails,
-                'tutorPaymentDetails' => $tutorPaymentDetails
+                'tutorPaymentDetails' => $tutorPaymentDetails,
+                'paymentBankSlip' => ''
             ];
 
             // echo '<pre>';
@@ -76,10 +87,37 @@ class AdminPayment extends Controller
             redirect('/login');
         }
 
+
         if ($request->isPost()) {
-            handleUpload(array('.png', '.pdf'), '\\public\\profile_pictures\\', 'paymentBankSlip');
+
+            $fileName = $_FILES["paymentBankSlip"]["name"];
+
+            if (empty($fileName)) {
+                $allUniquePayoffTutors = $this->paymentModel->allUniquePayoffTutors();
+                $allPaymentDetails = $this->paymentModel->allPaymentDetails();
+
+                foreach ($allUniquePayoffTutors as $tutor) {
+                    $tutor->tutor = $this->paymentModel->getTutorById($tutor->tutor_id);
+                }
+
+                foreach ($allPaymentDetails as $tutor) {
+                    $tutor->tutor = $this->paymentModel->getTutorById($tutor->tutor_id);
+                }
+
+                $data = [
+                    'allUniquePayoffTutors' => $allUniquePayoffTutors,
+                    'allPaymentDetails' => $allPaymentDetails,
+                    'paymentBankSlip' => 'notUploadBankSlip'
+                ];
+                $this->view('admin/payment', $request, $data);
+            } else {
+                $filePath = handleUpload(array('.png', '.pdf'), '\\public\\profile_pictures\\', 'paymentBankSlip');
+                $this->paymentModel->insertTutorWithdrawalDetails($filePath);
+                $withdrawalSlipID = $this->paymentModel->getTutorWithdrawalDetailID($filePath);
+                $this->paymentModel->updateTutorWithdrawalDetails($_GET['tutorID'], $withdrawalSlipID->id);
+            }
         }
 
-        
+        redirect('/admin/payment');
     }
 }
