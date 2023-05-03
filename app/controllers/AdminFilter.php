@@ -880,39 +880,39 @@ class AdminFilter extends Controller
             } else if (empty($tutorComplaintSearchName) && $tutorComplaintFilterName == 'not_choose') {
                 $filterResult = $allTutorComplaints;
             } else if (empty($tutorComplaintSearchName) && $tutorComplaintFilterName == 'solved') {
-                foreach ($allTutorComplaints as $aStudentComplaint) {
-                    if ($aStudentComplaint->is_inquired == '1') {
-                        array_push($filterResult, $aStudentComplaint);
+                foreach ($allTutorComplaints as $aTutorComplaint) {
+                    if ($aTutorComplaint->is_inquired == '1') {
+                        array_push($filterResult, $aTutorComplaint);
                     }
                 }
             } else if (empty($tutorComplaintSearchName) && $tutorComplaintFilterName == 'not_resolve') {
-                foreach ($allTutorComplaints as $aStudentComplaint) {
-                    if ($aStudentComplaint->is_inquired == '0') {
-                        array_push($filterResult, $aStudentComplaint);
+                foreach ($allTutorComplaints as $aTutorComplaint) {
+                    if ($aTutorComplaint->is_inquired == '0') {
+                        array_push($filterResult, $aTutorComplaint);
                     }
                 }
             } else if (!empty($tutorComplaintSearchName) && $tutorComplaintFilterName == 'not_choose') {
-                foreach ($allTutorComplaints as $aStudentComplaint) {
-                    if (str_contains(strtolower($aStudentComplaint->student->first_name . ' ' . $aStudentComplaint->student->last_name), strtolower($tutorComplaintSearchName))) {
-                        array_push($filterResult, $aStudentComplaint);
+                foreach ($allTutorComplaints as $aTutorComplaint) {
+                    if (str_contains(strtolower($aTutorComplaint->tutor->first_name . ' ' . $aTutorComplaint->tutor->last_name), strtolower($tutorComplaintSearchName))) {
+                        array_push($filterResult, $aTutorComplaint);
                     }
                 }
             } else if (!empty($tutorComplaintSearchName) && $tutorComplaintFilterName == 'all') {
-                foreach ($allTutorComplaints as $aStudentComplaint) {
-                    if ($aStudentComplaint->is_inquired == '1' && str_contains(strtolower($aStudentComplaint->student->first_name . ' ' . $aStudentComplaint->student->last_name), strtolower($tutorComplaintSearchName))) {
-                        array_push($filterResult, $aStudentComplaint);
+                foreach ($allTutorComplaints as $aTutorComplaint) {
+                    if ($aTutorComplaint->is_inquired == '1' && str_contains(strtolower($aTutorComplaint->tutor->first_name . ' ' . $aTutorComplaint->tutor->last_name), strtolower($tutorComplaintSearchName))) {
+                        array_push($filterResult, $aTutorComplaint);
                     }
                 }
             } else if (!empty($tutorComplaintSearchName) && $tutorComplaintFilterName == 'solved') {
-                foreach ($allTutorComplaints as $aStudentComplaint) {
-                    if ($aStudentComplaint->is_inquired == '1' && str_contains(strtolower($aStudentComplaint->student->first_name . ' ' . $aStudentComplaint->student->last_name), strtolower($tutorComplaintSearchName))) {
-                        array_push($filterResult, $aStudentComplaint);
+                foreach ($allTutorComplaints as $aTutorComplaint) {
+                    if ($aTutorComplaint->is_inquired == '1' && str_contains(strtolower($aTutorComplaint->tutor->first_name . ' ' . $aTutorComplaint->tutor->last_name), strtolower($tutorComplaintSearchName))) {
+                        array_push($filterResult, $aTutorComplaint);
                     }
                 }
             } else if (!empty($tutorComplaintSearchName) && $tutorComplaintFilterName == 'not_resolve') {
-                foreach ($allTutorComplaints as $aStudentComplaint) {
-                    if ($aStudentComplaint->is_inquired == '0' && str_contains(strtolower($aStudentComplaint->student->first_name . ' ' . $aStudentComplaint->student->last_name), strtolower($tutorComplaintSearchName))) {
-                        array_push($filterResult, $aStudentComplaint);
+                foreach ($allTutorComplaints as $aTutorComplaint) {
+                    if ($aTutorComplaint->is_inquired == '0' && str_contains(strtolower($aTutorComplaint->tutor->first_name . ' ' . $aTutorComplaint->tutor->last_name), strtolower($tutorComplaintSearchName))) {
+                        array_push($filterResult, $aTutorComplaint);
                     }
                 }
             } else {

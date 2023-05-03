@@ -11,14 +11,14 @@
 
             <input type="hidden" class="complaint-id" value="<?php echo $tutorComplaint->id; ?>">
 
-            <?php if ($tutorComplaint->is_inquired == 0) { ?>
+            <?php if ($tutorComplaint->is_inquired == 1) { ?>
                 <td>
                     <div class="complete-status">
                         <img src="<?php echo URLROOT ?>/public/img/admin/green-dot.png" alt="">
                         <h6>Solved</h6>
                     </div>
                 </td>
-            <?php } else if ($tutorComplaint->is_inquired == 1) { ?>
+            <?php } else if ($tutorComplaint->is_inquired == 0) { ?>
                 <td>
                     <div class="Not Resolve-status">
                         <img src="<?php echo URLROOT ?>/public/img/admin/red-dot.png" alt="">
