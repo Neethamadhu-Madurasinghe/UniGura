@@ -512,20 +512,43 @@ class AdminFilter extends Controller
             // $searchClassValue = $bodyData['searchClassValue'];
             $classFeesInputMaxValue = $bodyData['classFeesInputMaxValue'];
             $ratingFilterValue = $bodyData['ratingFilterValue'];
-            $classConductModeFilterValue = $bodyData['classConductModeFilterValue'];
+            $completionStatusFilterValue = $bodyData['completionStatusFilterValue'];
             $subjectFilterValue = $bodyData['subjectFilterValue'];
 
             $arrayRating = explode(',', $ratingFilterValue);
-            $arrayModes = explode(',', $classConductModeFilterValue);
+            $arrayStatus = explode(',', $completionStatusFilterValue);
             $arraySubjects = explode(',', $subjectFilterValue);
 
-            if (!empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
+
+            // print_r($arrayStatus);
+            // echo '<br>';
+
+
+            if (array_key_exists("0", $arrayStatus)) {
+                if ($arrayStatus[0] == 'complete') {
+                    $arrayStatus[0] = 1;
+                } else {
+                    $arrayStatus[0] = 0;
+                }
+            }
+
+            if (array_key_exists("1", $arrayStatus)) {
+                if ($arrayStatus[1] == 'active') {
+                    $arrayStatus[1] = 0;
+                } else {
+                    $arrayStatus[1] = 1;
+                }
+            }
+
+            // print_r($arrayStatus);
+
+            if (!empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($completionStatusFilterValue) && empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
                     if ($aClass->session_rate <= $classFeesInputMaxValue) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (!empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
+            } elseif (!empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($completionStatusFilterValue) && !empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
                     if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->subjectName, $arraySubjects)) {
                         array_push($filterResult, $aClass);
@@ -535,28 +558,28 @@ class AdminFilter extends Controller
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (!empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
+            } elseif (!empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($completionStatusFilterValue) && empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->mode, $arrayModes)) {
+                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->completion_status, $arrayStatus)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (!empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
+            } elseif (!empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($completionStatusFilterValue) && !empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->mode, $arrayModes) && in_array($aClass->subjectName, $arraySubjects)) {
+                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->completion_status, $arrayStatus) && in_array($aClass->subjectName, $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
-                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->mode, $arrayModes) && in_array('all', $arraySubjects)) {
+                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->completion_status, $arrayStatus) && in_array('all', $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (!empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
+            } elseif (!empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($completionStatusFilterValue) && empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
                     if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->current_rating, $arrayRating)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (!empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
+            } elseif (!empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($completionStatusFilterValue) && !empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
                     if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->current_rating, $arrayRating) && in_array($aClass->subjectName, $arraySubjects)) {
                         array_push($filterResult, $aClass);
@@ -565,28 +588,28 @@ class AdminFilter extends Controller
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (!empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
+            } elseif (!empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($completionStatusFilterValue) && empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->current_rating, $arrayRating) && in_array($aClass->mode, $arrayModes)) {
+                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->current_rating, $arrayRating) && in_array($aClass->completion_status, $arrayStatus)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (!empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
+            } elseif (!empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($completionStatusFilterValue) && !empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->current_rating, $arrayRating) && in_array($aClass->mode, $arrayModes) && in_array($aClass->subjectName, $arraySubjects)) {
+                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->current_rating, $arrayRating) && in_array($aClass->completion_status, $arrayStatus) && in_array($aClass->subjectName, $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
-                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->current_rating, $arrayRating) && in_array($aClass->mode, $arrayModes) && in_array('all', $arraySubjects)) {
+                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->current_rating, $arrayRating) && in_array($aClass->completion_status, $arrayStatus) && in_array('all', $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
+            } elseif (empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($completionStatusFilterValue) && empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
                     if (in_array($aClass->current_rating, $arrayRating)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
+            } elseif (empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($completionStatusFilterValue) && !empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
                     if (in_array($aClass->current_rating, $arrayRating) && in_array($aClass->subjectName, $arraySubjects)) {
                         array_push($filterResult, $aClass);
@@ -595,37 +618,37 @@ class AdminFilter extends Controller
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
+            } elseif (empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($completionStatusFilterValue) && empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if (in_array($aClass->current_rating, $arrayRating) && in_array($aClass->mode, $arrayModes)) {
+                    if (in_array($aClass->current_rating, $arrayRating) && in_array($aClass->completion_status, $arrayStatus)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
+            } elseif (empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($completionStatusFilterValue) && !empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if (in_array($aClass->current_rating, $arrayRating) && in_array($aClass->mode, $arrayModes) && in_array($aClass->subjectName, $arraySubjects)) {
+                    if (in_array($aClass->current_rating, $arrayRating) && in_array($aClass->completion_status, $arrayStatus) && in_array($aClass->subjectName, $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
-                    if (in_array($aClass->current_rating, $arrayRating) && in_array($aClass->mode, $arrayModes) && in_array('all', $arraySubjects)) {
+                    if (in_array($aClass->current_rating, $arrayRating) && in_array($aClass->completion_status, $arrayStatus) && in_array('all', $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
+            } elseif (empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($completionStatusFilterValue) && empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if (in_array($aClass->mode, $arrayModes)) {
+                    if (in_array($aClass->completion_status, $arrayStatus)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
+            } elseif (empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($completionStatusFilterValue) && !empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if (in_array($aClass->mode, $arrayModes) && in_array($aClass->subjectName, $arraySubjects)) {
+                    if (in_array($aClass->completion_status, $arrayStatus) && in_array($aClass->subjectName, $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
-                    if (in_array($aClass->mode, $arrayModes) && in_array('all', $arraySubjects)) {
+                    if (in_array($aClass->completion_status, $arrayStatus) && in_array('all', $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
+            } elseif (empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($completionStatusFilterValue) && !empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
                     if (in_array('all', $arraySubjects)) {
                         array_push($filterResult, $aClass);
@@ -635,7 +658,7 @@ class AdminFilter extends Controller
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
+            } elseif (empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($completionStatusFilterValue) && empty($subjectFilterValue)) {
                 $filterResult = $allClasses;
             } else {
                 $filterResult = $allClasses;

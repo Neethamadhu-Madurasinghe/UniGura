@@ -40,7 +40,7 @@
                             <h1>Module: <?php echo $x->moduleName ?></h1>
                         </div>
                         <div class="data">
-                                <h1>Date: <?php echo $x->date ?></h1>
+                            <h1>Date: <?php echo $x->date ?></h1>
                         </div>
                         <div class="time">
                             <h1>Time: <?php echo $x->time ?></h1>
@@ -165,20 +165,16 @@
 
             <div class="mode-filter">
                 <div class="mode">
-                    <h1>By Mode</h1>
+                    <h1>By Completion Status</h1>
                 </div>
                 <div class="mode-select">
                     <div class="checkbox-button">
-                        <input type="checkbox" id="online" name="mode" value="online" class="online checkbox">
-                        <label for="online">&nbspOnline</label>
+                        <input type="checkbox" id="online" name="mode" value="active" class="online checkbox">
+                        <label for="online">&nbspActive Classes</label>
                     </div>
                     <div class="checkbox-button">
-                        <input type="checkbox" id="physical" name="mode" value="physical" class="physical checkbox">
-                        <label for="physical">&nbspPhysical</label>
-                    </div>
-                    <div class="checkbox-button">
-                        <input type="checkbox" id="both" name="mode" value="both" class="both checkbox">
-                        <label for="both">&nbspBoth</label>
+                        <input type="checkbox" id="physical" name="mode" value="complete" class="physical checkbox">
+                        <label for="physical">&nbspComplete Classes</label>
                     </div>
                 </div>
             </div>
