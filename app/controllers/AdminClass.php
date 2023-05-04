@@ -1,41 +1,39 @@
 <?php
 
-class AdminClass extends Controller{
-    private mixed $classModel;
+class AdminComplaintSetting extends Controller
+{
+    private mixed $complaintSettingsModel;
 
     public function __construct()
-    {   
-        $this->classModel = $this->model('ModelAdminClass');
+    {
+        $this->complaintSettingsModel = $this->model('ModelAdminRequirementComplaints');
     }
 
-    public function class(Request $request){
+    public function complaintSetting(Request $request)
+    {
 
         if (!$request->isLoggedIn()) {
             redirect('/login');
         }
 
-        $allClasses = $this->classModel->getAllClasses();
-
-        $allSubjects = $this->classModel->getAllSubjects();
-
-        foreach($allClasses as $x){
-            $tutorId = $x->tutor_id;
-
-            $tutor = $this->classModel->findTutor($tutorId);
-
-            $x->tutor = $tutor;
-        }
+        
+        $studentComplaintReason = $this->complaintSettingsModel->getStudentComplaintReason();
+        $tutorComplaintReason = $this->complaintSettingsModel->getTutorComplaintReason();
 
         $data = [
-            'allClasses' => $allClasses,
-            'allSubjects' => $allSubjects
+            'studentComplaintReason' => $studentComplaintReason,
+            'tutorComplaintReason' => $tutorComplaintReason,
+
+            'errors' => [
+                'student_reason' => '',
+                'tutor_reason' => '',
+
+            ]
         ];
 
-        // echo '<pre>';
-        // print_r($allClasses);
-        // echo '</pre>';
+        $this->view('admin/complaint_settings', $request, $data);
 
-
-        $this->view('admin/class',$request,$data);
     }
+
+
 }
