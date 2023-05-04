@@ -18,4 +18,10 @@ class ModelStudentTimeSlot {
         $this->db->bind('id', $id, PDO::PARAM_INT);
         return $this->db->resultOne()->state == 1;
     }
+
+    public function getTimeSlot($id): array {
+        $this->db->query('SELECT * FROM time_slot WHERE id=:id');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        return $this->db->resultOneAssoc();
+    }
 }
