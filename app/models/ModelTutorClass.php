@@ -48,7 +48,7 @@ class ModelTutorClass
 
     public function getTutoringClassDays($id): array
     {
-        $this->db->query('SELECT position,title, d.id as dayid , dt.id as day_template_id , is_hidden FROM day AS d JOIN day_template AS dt ON dt.id = d.day_temp_id  WHERE class_id = :id ORDER BY dt.position ASC;');
+        $this->db->query('SELECT d.position, d.title, d.id as dayid , dt.id as day_template_id , d.is_hidden FROM day AS d JOIN day_template AS dt ON dt.id = d.id  WHERE class_id = :id ORDER BY dt.position ASC;');
 
         $this->db->bind('id', $id, PDO::PARAM_INT);
 

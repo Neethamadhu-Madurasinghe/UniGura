@@ -631,6 +631,10 @@ p {
   height: 680px;
 }
 
+.studnt-details-container{
+  display: none;
+}
+
 .Student .half {
   display: grid;
   grid-template-columns: 1fr 1fr;

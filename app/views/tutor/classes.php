@@ -17,7 +17,7 @@ Header::render(
      'Tutor Classes',
      [
           URLROOT . '/public/css/tutor/base.css?v=2.9',
-          URLROOT . '/public/css/tutor/style.css?v=2.0',
+          URLROOT . '/public/css/tutor/style.css?v=2.1',
 
 
      ]
@@ -47,18 +47,18 @@ MainNavbar::render($request);
 
                          echo "
                         <div class='box_one'>
-                    <header>
-                        <img src= 'http://localhost/UniGura/$profile_picture'>
-                        <h4 style='margin-top: 5%;'>$first_name $last_name</h4>
-                    </header>
-                    <div class='textbox_one'>
-                    <img style='border-radius: 0%;'  src='$root/public/img/tutor/class/icons/BookBookmark.png'>
-                        <p style='color: rgba(112, 124, 151, 1) ; margin-top: 0px;text-align: justify;margin-bottom: 0px;'>$module $class_type</p>
-                        <img style='border-radius: 0%;'  src='$root/public/img/tutor/class/icons/cast.png'>
-                        <p style='color: rgba(112, 124, 151, 1) ; margin-top: 0px;text-align: justify;margin-bottom: 0px;'>$mode</p>
-                    </div>
-                    <button class='msg_box button' data-id = $id >View Details</button>
-                </div>
+                         <header>
+                              <img src= 'http://localhost/UniGura/$profile_picture'>
+                              <h4 style='margin-top: 5%;'>$first_name $last_name</h4>
+                         </header>
+                         <div class='textbox_one'>
+                              <img style='border-radius: 0%;'  src='$root/public/img/tutor/class/icons/BookBookmark.png'>
+                              <p style='color: rgba(112, 124, 151, 1) ; margin-top: 0px;text-align: justify;margin-bottom: 0px;'>$module $class_type</p>
+                              <img style='border-radius: 0%;'  src='$root/public/img/tutor/class/icons/cast.png'>
+                              <p style='color: rgba(112, 124, 151, 1) ; margin-top: 0px;text-align: justify;margin-bottom: 0px;'>$mode</p>
+                         </div>
+                         <button class='msg_box button' data-id = $id >View Details</button>
+                         </div>
      
                           ";
                     }
@@ -68,7 +68,7 @@ MainNavbar::render($request);
 
           </div>
           <div class="part_two">
-               <div class="Student">
+               <div class="Student studnt-details-container">
                     <div style="display: grid;grid-template-columns: 1fr 1fr;">
                          <h2 id='student_name' style="margin-bottom: 20px;">Sachithra Kavinda</h2>
                          <h3 style="color: rgba(112, 124, 151, 1);text-align: right;margin-top: 13px;font-size: 17px;">Started on 22June 2022</h3>
@@ -105,7 +105,7 @@ MainNavbar::render($request);
                     .then(response => response.json())
                     .then(data => {
                          let list = data['data'][0];
-                         console.log(list);
+               
 
                          let student_name = document.getElementById('student_name');
                          let module_name = document.getElementById('module_name');
@@ -144,13 +144,12 @@ MainNavbar::render($request);
                                    console.log('Error')
                               }
 
-                              let code = ` <div class="day_box" style="margin-top: 0px;">
+                              let code = `<div class="day_box" style="margin-top: 0px;">
                                    <div style="display: grid;grid-template-columns: 10fr 1fr;border-bottom:2px solid  rgba(112, 124, 151, 0.151) ;padding-bottom: 5px;">
                                         <h4>Day ${day.position} - ${day.title}</h4>
                                         <label class="container">
                                              ${status}
                                         </label>
-                                        
                                    </div>
                                    <div class="textbox_one">
                                         <img class="img02" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/file.png">
@@ -170,6 +169,7 @@ MainNavbar::render($request);
                               </div>`
 
                               day_container.innerHTML += code;
+                              document.querySelector('.studnt-details-container').style.display = 'block';
                          }
 
                     })
