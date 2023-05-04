@@ -54,6 +54,11 @@
 
 }
 
+.name-actions .name{
+    margin-bottom: 15px;
+}
+
+
 .student-details{
     display: flex;
     align-items: center;
@@ -91,14 +96,12 @@
 
 .active-classes{
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 40px;
     width: 96%;
-    margin: 20px auto;
-    height: 54vh;
-    display: none;
+    margin: 20px;
     overflow-y: scroll;
-    padding-right: 20px;
+    display: none;
 }
 
 
@@ -119,10 +122,11 @@
 
 .finished-classes{
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 40px;
     width: 96%;
-    margin: 20px auto;
+    overflow-y: scroll;
+    margin: 20px;
     display: none;
 }
 

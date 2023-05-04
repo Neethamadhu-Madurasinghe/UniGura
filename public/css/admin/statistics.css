@@ -6,6 +6,19 @@
     margin: 50px 20px;
 }
 
+.div1 .rating-summary{
+    text-align: center;
+}
+
+.div1 .rating-summary h1{
+    font-size: 60px;
+}
+
+.div1 .rating-summary i{
+    font-size: 25px;
+    color: #FFD700;
+}
+
 .myChart4{
     margin: 70px 20px;
 }
