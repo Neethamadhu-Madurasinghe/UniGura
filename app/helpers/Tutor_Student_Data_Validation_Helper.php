@@ -150,7 +150,8 @@ function validateRate(string $number): String
         }
     } else {
         return "Please enter a valid amount";
-
+    }
+}
 
 function validateAccountNameForTutor(String $holderName, ModelTutorStudentCompleteProfile $modelObject, int $tutor_id): String
 {
@@ -239,6 +240,8 @@ function validateTutorReportReason(String $reason, ModelTutorStudentCompleteProf
         return 'Reason is already in use';
     } else if (strlen($reason) > 40) {
         return 'Reason should have less than 40 characters';
+    }
+}
 
 function validateBranch(String $branch): String
 {
@@ -257,18 +260,4 @@ function validateBranch(String $branch): String
 
 
 //created by sachithra
-
-function validateRate(string $number): String
-{
-    if (filter_var($number, FILTER_VALIDATE_INT)) {
-        $int = intval($number);
-        if ($int >= 500 && $int < 5000) {
-            return "";
-        } else {
-            return "Amount must in a range between LKR (500 - 5000)";
-        }
-    } else {
-        return "Please enter a valid amount";
-    }
-}
 

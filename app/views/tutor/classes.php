@@ -17,7 +17,7 @@ Header::render(
      'Tutor Classes',
      [
           URLROOT . '/public/css/tutor/base.css?v=2.9',
-          URLROOT . '/public/css/tutor/style.css?v=2.1',
+          URLROOT . '/public/css/tutor/style.css?v=2.3',
 
 
      ]
@@ -127,8 +127,9 @@ MainNavbar::render($request);
                          })
 
                          let days = data['days'];
+                         let activities = data['activities'];
 
-                         console.log(data['days']);
+                         console.log(activities);
 
                          for (let i = 0; i < days.length; i++) {
                               let day = days[i];
@@ -144,6 +145,8 @@ MainNavbar::render($request);
                                    console.log('Error')
                               }
 
+                    
+
                               let code = `<div class="day_box" style="margin-top: 0px;">
                                    <div style="display: grid;grid-template-columns: 10fr 1fr;border-bottom:2px solid  rgba(112, 124, 151, 0.151) ;padding-bottom: 5px;">
                                         <h4>Day ${day.position} - ${day.title}</h4>
@@ -151,25 +154,22 @@ MainNavbar::render($request);
                                              ${status}
                                         </label>
                                    </div>
-                                   <div class="textbox_one">
-                                        <img class="img02" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/file.png">
-                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Tute</p>
-
-                                        <img class="img02" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/file.png">
-                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Tute</p>
-
-                                        <img class="img02" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/share-arrow.png">
-                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Tute</p>
-
-                                        <img class="img02">
-                                        <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Tute</p>
-
-                                   </div>
+                                   <div class='textbox-one'></div>
                                    <p  class = "Payment"; style="text-align: right;font-size: 17px;font-weight: 600;color:#f7721adc; margin-top: 5px;">Payment Due</p>
                               </div>`
 
-                              day_container.innerHTML += code;
-                              document.querySelector('.studnt-details-container').style.display = 'block';
+               
+               
+                         day_container.innerHTML += code;
+
+                         for(key in activities){
+                              let element = activities[0];
+                              if(element.day_id == day.dayid){
+                                   
+                                   day_container.querySelector('.textbox-one').innerHTML += `<img class='img02' src='http://localhost/UniGura/public/img/tutor/class/icons/file.png'><a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;' href = "http://localhost/unigura/tutor/viewactivitydoc?file=${element.link}">Tute</a>`
+                              }
+                         }
+                         document.querySelector('.studnt-details-container').style.display = 'block';
                          }
 
                     })

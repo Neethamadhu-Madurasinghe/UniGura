@@ -22,7 +22,6 @@ class TutorCourse extends Controller
         $subject = $this->courseModel->getSubjectName($details[0]['subject_id']);
         $module = $this->courseModel->getModuleName($details[0]['module_id']);
 
-
         if ($request->isGet()) {
             $data = [
                 'id' => $body['id'],
