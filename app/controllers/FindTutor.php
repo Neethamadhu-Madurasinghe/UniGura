@@ -249,8 +249,7 @@ class FindTutor extends Controller {
             }
 
 //          If all the checks are passed, then make the request
-//            $this->requestModel->makeRequest($body)
-            if (true) {
+            if ($this->requestModel->makeRequest($body)) {
 //                Create a notification
                 $this->notification->createNotification(
                             $body['student_id'],
