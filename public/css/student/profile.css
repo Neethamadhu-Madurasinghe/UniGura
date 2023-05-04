@@ -267,7 +267,34 @@
 
 .payment-history-container, .request-history-container {
     width: 100%;
-    overflow-x: scroll;
+}
+
+@media screen and (max-width: 768px) {
+    .payment-history-container, .request-history-container {
+        overflow-x: scroll;
+    }
+}
+
+.no-data-table-msg {
+    color: white;
+    background: linear-gradient(270deg, #FFA620 0%, #F7711A 100%);
+    width: 50%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+@media screen and (max-width: 768px) {
+    .no-data-table-msg {
+        width: 80vw;
+    }
+}
+
+.no-data-table-msg h4 {
+    font-weight: normal;
 }
 
 .data-table {
@@ -467,6 +494,30 @@
     color: red;
     margin-bottom: 10px;
     font-size: 0.6rem;
+}
+
+.popup-delete-request {
+    height: 200px;
+    width: 450px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#popup-delete-heading {
+    font-weight: bold;
+    font-size: 1.4rem;
+    width: 80%;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+
+.confirm-btn-container {
+    margin-top: 30px;
 }
 
 .btn-msg {

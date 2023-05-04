@@ -52,8 +52,8 @@ MainNavbar::render($request);
                         <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>" alt="" class="profile-picture-img" id="main-chat-image">
                     </div>
                     <div class="chat-details-container">
-                        <h3 id="chat-title">Tutor name goes here</h3>
-                        <p id="user-state">last message goes here</p>
+                        <h3 id="chat-title"></h3>
+                        <p id="user-state"></p>
                     </div>
                     <div class="message-cancel-btn-container">
                         <button class="cancel-btn">X</button>

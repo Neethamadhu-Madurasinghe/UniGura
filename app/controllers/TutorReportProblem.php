@@ -7,27 +7,53 @@ class TutorReportProblem extends Controller{
         $this->reportProblem = $this->model('ModelTutorReportProblem');
     }
     
-    public function tutorreportProblem(Request $request){
+   
 
-        if ($request->isPost()){
-            $bodyData = $request->getBody();
 
-            echo '<pre>';
-            echo print_r($bodyData);
-            echo '</pre>';
+    public function viewReport(Request $request){
 
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        if ($request->isProfileNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isNotApprovedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isBankDetialsNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+        $body = $request->getBody();
+
+        if ($request->isPost()) {
+        
+            $data = [
+                'tutor_id' => $request->getUserId(),
+                'report_reason' => $body['report_reason'],
+                'student_id' => $body['student_id'],
+                'description' => $body['description']
+            
+            ];
+
+        if ($this->reportProblem->setStudentreport($data) == 0) {
+                    redirect('tutor/class');
+            }  
 
         }
 
-        $data = [];
+        $data['student_id'] = $body['student_id'];
 
-        $this->view('tutor/reportProblem', $request,$data);
+        $reportReason = $this->reportProblem->getTutorReportReason();
+
+        $data['report_resons'] = json_encode($reportReason);
+
+
+        $this->view('tutor/reportProblem',$request,$data);
     }
 
 
 }
-
-
-
-
-?>

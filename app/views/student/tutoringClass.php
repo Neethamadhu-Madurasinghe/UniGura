@@ -13,25 +13,48 @@ require_once APPROOT . '/views/student/inc/components/TutoringClassCard.php';
 
 
 Header::render(
-    'Find Tutuor',
+    'Class DashBoard',
     [
         URLROOT . '/public/css/student/components/main-nav-bar.css',
-        URLROOT . '/public/css/student/tutoring-class.css'
+        URLROOT . '/public/css/student/components/error-success-popup.css',
+        URLROOT . '/public/css/student/tutoring-class.css',
+        URLROOT . '/public/css/student/components/tutoring-class-day-card.css'
     ]
 );
 
 ?>
 
+<div
+        class="invisible"
+        id="template-data"
+        data-tutor="<?php echo $data['tutor_id'] ?>"></div>
+
+<div class="error-layout-background invisible">
+
+    <div class="popup-error-message invisible">
+        <img src="<?php echo URLROOT . '/public/img/student/cross.png' ?>" alt="" srcset="">
+        <p id="error-message"></p>
+        <button class="btn btn-search" id="error-ok">OK</button>
+    </div>
+
+    <div class="popup-success-message invisible">
+        <img src="<?php echo URLROOT . '/public/img/student/success.png' ?>" alt="" srcset="">
+        <p id="success-message"></p>
+        <button class="btn btn-search" id="success-ok">OK</button>
+    </div>
+
+</div>
+
 <div class="layout-background hidden">
 
     <div class="popup-request-send-success hidden">
         <object data="assests/success.svg" type=""></object>
-        <p>Reshedule Request has been Sent Successfully</p>
+        <p>Reschedule Request has been Sent Successfully</p>
         <button class="btn btn-search">OK</button>
     </div>
 
     <div class="pop-time-table hidden">
-        <h1>Request a Resheduling</h1>
+        <h1>Request a Rescheduling</h1>
 
         <div class="time-table-container">
             <table id="time-table">
@@ -91,32 +114,40 @@ Header::render(
         </div>
     </div>
 
-    <div class="popup-report hidden">
+    <div class="popup-report invisible">
         <h1>Report a Problem</h1>
-        <form action="">
+        <form action="" id="tutor-report-form">
             <div class="report-reason-container">
-                <div class="reason-container">
-                    <input type="checkbox" name="" id=""><p>Tutor does not conduct class anymore</p>
-                </div>
-                <div class="reason-container">
-                    <input type="checkbox" name="" id=""><p>Content is not as good as marketed</p>
-                </div>
-                <div class="reason-container">
-                    <input type="checkbox" name="" id=""><p>Harrestment</p>
-                </div>
-                <div class="reason-container">
-                    <input type="checkbox" name="" id=""><p>Problamatic profile picture</p>
-                </div>
+
+                <?php
+                foreach ($data['report_reasons'] as $report_reason) {
+                    echo '
+                                <div class="reason-container">
+                                    <input
+                                        type="radio"
+                                        name="reason"
+                                        id="' . $report_reason['id'] . '"
+                                        value="' . $report_reason['id'] . '"
+                                        >
+                                        <label for="' . $report_reason['id'] . '">
+                                               ' . $report_reason['description'] . '
+                                        </label>
+                                </div>
+                            ';
+                }
+                ?>
+
             </div>
             <div class="comments-container">
                 <p>Leave a comment (Optional):</p>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
-            </div>
-            <div class="report-submit-btn-container">
-                <button class="btn"  id="report-cancel">Cancel</button>
-                <button class="btn">Submit</button>
+                <textarea name="report-comment" id="" cols="30" rows="10"></textarea>
             </div>
         </form>
+
+        <div class="report-submit-btn-container">
+            <button class="btn" id="popup-report-cancel">Cancel</button>
+            <button class="btn" id="popup-report-submit">Submit</button>
+        </div>
 
     </div>
 
@@ -138,14 +169,14 @@ Header::render(
 
 <div class="main-area-container">
     <div class="main-area">
-        <h1 class="main-title">Mechanics Theory</h1>
-        <h2 class="sub-title">Physics</h2>
-        <h3 class="tutor-name">John Joe</h3>
+        <h1 class="main-title"><?php echo $data['module_name'] . ' - ' . ucwords($data['class_type']) ?></h1>
+        <h2 class="sub-title"><?php echo $data['subject_name'] ?></h2>
+        <h3 class="tutor-name"><?php echo $data['tutor_name'] ?></h3>
 
         <div class="progress-bar-container">
             <h2>Progress</h2>
             <div class="progress-bar-outer">
-                <div class="progress-bar-inner"></div>
+                <div class="progress-bar-inner" style="width: <?php echo ($data['day_count'] !== 0 ? $data['incomplete_day_count'] * 100/$data['day_count'] : 0) . '%' ?>"></div>
             </div>
         </div>
 
@@ -155,107 +186,65 @@ Header::render(
 
 
         <div class="class-card-container">
-
-            <div class="class-card">
+            <?php if (empty($data['days'])): ?>
+                <div class="no-days-message-container">
+                    <h2>Currently you have no days or activities available. <a href="<?php echo ' ' . URLROOT . '/student/chat' ?>"> Please contact you tutor</a></h2>
+                </div>
+            <?php else: ?>
+                <?php foreach ($data['days'] as $day): ?>
+                <div class="class-card">
                 <div class="class-card-top-section">
-                    <h2>Day 1 - Newton Laws</h2>
-                    <input type="checkbox" name="" id="">
+                    <h2>Day <?php echo $day['position'] . ' - ' . $day['title'] ?></h2>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" name="" class="disabled-check-box"  <?php echo $day['is_completed'] == 1 ? 'checked' : ''?> disabled >
+                        <span class="checkmark disabled"></span>
+                    </label>
                 </div>
 
                 <div class="class-card-bottom-section">
-                    <div class="activity-row">
-                        <p>Newton Laws Tutor</p>
-                        <input type="checkbox" name="" id="">
-                    </div>
-                    <div class="activity-row">
-                        <p>Newton Laws Questionsr</p>
-                        <input type="checkbox" name="" id="">
-                    </div>
-                    <div class="activity-row">
-                        <p>Newton Laws Tutor</p>
-                        <input type="checkbox" name="" id="">
-                    </div>
+                    <?php if(empty($day['activities'])): ?>
+                        <p class="activity-component">No visible activities</p>
+                    <?php else:?>
+                        <?php foreach($day['activities'] as $activity): ?>
+                            <div class="activity-row">
+    <!--                            Just text-->
+                                <?php if ($activity['type'] == 2): ?>
+                                    <p class="activity-component"><?php echo $activity['description'] ?></p>
+
+    <!--                               File upload - this is a dynamically created form -->
+                                <?php elseif ($activity['type'] == 1): ?>
+                                    <form class="file-upload-form" action="" id="assignment-submit-form-<?php echo $activity['id']?>" method="POST" enctype = "multipart/form-data">
+                                        <label for="file-upload-<?php echo $activity['id']?>" class="file-upload-label activity-component">
+                                            <?php echo $activity['description'] ?>
+                                        </label>
+                                        <input id="file-upload-<?php echo $activity['id']?>" class="file-upload-input" type="file" name="assignment-file" />
+
+                                        <label class="custom-checkbox">
+                                            <input type="checkbox" name="" class="disabled-check-box"  <?php echo $activity['is_completed'] == 1 ? "checked" : ""?> disabled>
+                                            <span class="checkmark disabled"></span>
+                                        </label>
+
+    <!--                                    Hidden input filed for give the activity id-->
+                                        <input type="hidden" name="activity-id" value="<?php echo $activity['id'] ?>">
+                                        <input type="hidden" name="id" value="<?php echo $data['id'] ?>">
+                                    </form>
+
+    <!--                               File download-->
+                                <?php elseif ($activity['type'] == 0) : ?>
+                                    <a href="<?php echo URLROOT . '/load-file?file=' . $activity['link']  ?>" class="activity-component"><?php echo $activity['description'] ?></a>
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" name="" id="" <?php echo $activity['is_completed'] == 1 ? "checked" : ""?> >
+                                        <span class="checkmark"></span>
+                                    </label>
+
+                                <?php endif; ?>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
             </div>
-
-            <div class="class-card">
-                <div class="class-card-top-section">
-                    <h2>Day 1 - Newton Laws</h2>
-                    <input type="checkbox" name="" id="">
-                </div>
-
-                <div class="class-card-bottom-section">
-                    <div class="activity-row">
-                        <p>Newton Laws Tutor</p>
-                        <input type="checkbox" name="" id="">
-                    </div>
-                    <div class="activity-row">
-                        <p>Newton Laws Questionsr</p>
-                        <input type="checkbox" name="" id="">
-                    </div>
-                    <div class="activity-row">
-                        <p>Newton Laws Tutor</p>
-                        <input type="checkbox" name="" id="">
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="class-card">
-                <div class="class-card-top-section">
-                    <h2>Day 1 - Newton Laws</h2>
-                    <input type="checkbox" name="" id="">
-                </div>
-
-                <div class="class-card-bottom-section">
-                    <div class="activity-row">
-                        <p>Newton Laws Tutor</p>
-                        <input type="checkbox" name="" id="">
-                    </div>
-                    <div class="activity-row">
-                        <p>Newton Laws Questionsr</p>
-                        <input type="checkbox" name="" id="">
-                    </div>
-                    <div class="activity-row">
-                        <p>Newton Laws Tutor</p>
-                        <input type="checkbox" name="" id="">
-                    </div>
-                    <div class="activity-row">
-                        <p>Newton Laws Tutor</p>
-                        <input type="checkbox" name="" id="">
-                    </div>
-                    <div class="activity-row">
-                        <p>Newton Laws Questionsr</p>
-                        <input type="checkbox" name="" id="">
-                    </div>
-                    <div class="activity-row">
-                        <p>Newton Laws Tutor</p>
-                        <input type="checkbox" name="" id="">
-                    </div>
-                </div>
-            </div>
-
-            <div class="class-card">
-                <div class="class-card-top-section">
-                    <h2>Day 1 - Newton Laws</h2>
-                    <input type="checkbox" name="" id="">
-                </div>
-
-                <div class="class-card-bottom-section">
-                    <div class="activity-row">
-                        <p>Newton Laws Tutor</p>
-                        <input type="checkbox" name="" id="">
-                    </div>
-                    <div class="activity-row">
-                        <p>Newton Laws Questionsr</p>
-                        <input type="checkbox" name="" id="">
-                    </div>
-                    <div class="activity-row">
-                        <p>Newton Laws Tutor</p>
-                        <input type="checkbox" name="" id="">
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
+            <?php endif ?>
 
         </div>
 
@@ -263,7 +252,7 @@ Header::render(
         <div class="bottom-button-container">
             <button class="btn" id="reshedule">Request Reschdule</button>
             <button class="btn" id="feeback">Give Feedback</button>
-            <button class="btn" id="report">Report</button>
+            <button class="btn" id="report-tutor-button">Report</button>
         </div>
 
     </div>
@@ -272,7 +261,10 @@ Header::render(
 <?php Footer::render(
     [
         URLROOT . '/public/js/student/student-main-nav-bar.js',
+        URLROOT . '/public/js/student/tutor-profile.js',
         URLROOT . '/public/js/student/tutoring-class.js',
+        URLROOT . '/public/js/student/tutoring-class-upload-assignment.js',
+        URLROOT . '/public/js/student/tutor-report-handler.js'
     ]
 );
 ?>

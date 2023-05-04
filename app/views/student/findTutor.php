@@ -131,8 +131,18 @@ Header::render(
                         </select>
 
                         <select name="medium" class="tutor-filter filter-md" id="medium">
-                            <option value="0">Sinhala</option>
-                            <option value="1">English</option>
+                            <option value="0"
+                                <?php echo $data['medium'] === 'sinhala' ? 'selected' : '' ?>>
+                                Sinhala
+                            </option>
+                            <option value="1"
+                                <?php echo $data['medium'] === 'english' ? 'selected' : '' ?>>
+                                English
+                            </option>
+                            <option value="2"
+                                <?php echo $data['medium'] === 'tamil' ? 'selected' : '' ?>>
+                                Tamil
+                            </option>
                         </select>
 
                         <select name="gender" class="tutor-filter filter-md" id="gender">

@@ -136,11 +136,11 @@ class ModelTutorStudentCompleteProfile
             return false;
         } else {
             return true;
-        }
-    }
-
-
-    public function findReasonIdByTutorReportReason(String $reportReason): int
+            }
+            }
+            
+            
+      public function findReasonIdByTutorReportReason(String $reportReason): int
     {
         $this->db->query('SELECT * FROM report_reason WHERE description=:report_reason AND is_for_tutor = 1');
         $this->db->bind('report_reason', $reportReason, PDO::PARAM_STR);
@@ -153,4 +153,58 @@ class ModelTutorStudentCompleteProfile
             return true;
         }
     }
-}
+
+
+
+
+// *******************  START - created by madusharini (For tutor profile update validation) ********************
+    
+
+    public function findUserByAccountHolderNameForTutor(String $holderName, int $tutor_id): bool
+    {
+        $this->db->query('SELECT * FROM tutor WHERE bank_account_owner=:holderName AND user_id <> :tutor_id');
+        $this->db->bind(':holderName', $holderName);
+        $this->db->bind(':tutor_id', $tutor_id);
+        $this->db->resultAll();
+
+        if ($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function findUserByAccountNumberForTutor(int $accountNumber, int $tutor_id): bool
+    {
+        $this->db->query('SELECT * FROM tutor WHERE bank_account_number=:accountNumber AND user_id <> :tutor_id');
+        $this->db->bind(':accountNumber', $accountNumber);
+        $this->db->bind(':tutor_id', $tutor_id);
+
+        $this->db->resultAll();
+
+        if ($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function findUserByTelephoneNumberForTutor(String $telephoneNumber, int $tutor_id): bool
+    {
+        $this->db->query('SELECT * FROM user WHERE phone_number=:telephone_number AND id <> :tutor_id');
+        $this->db->bind('telephone_number', $telephoneNumber, PDO::PARAM_STR);
+        $this->db->bind(':tutor_id', $tutor_id);
+
+        $this->db->resultAll();
+
+        if ($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+// *******************  END - created by madusharini (For tutor profile update validation) ********************
+

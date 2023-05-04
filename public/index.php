@@ -135,7 +135,11 @@ $router->registerController('/tutor/complete-profile', [TutorStudentProfileCompl
 $router->registerController('/tutor/create-course', [TutorCreateCourse::class, 'tutorcreatecourse']);
 $router->registerController('/tutor/storeData', [TutorCreateCourse::class, 'storeData']);
 $router->registerController('/tutor/update-profile', [TutorUpdateProfile::class, 'tutorupdateProfile']);
-$router->registerController('/tutor/report-problem', [TutorReportProblem::class, 'tutorreportProblem']);
+
+
+$router->registerController('/tutor/view-report', [TutorReportProblem::class, 'viewReport']);
+
+$router->registerController('tutor/update-time-slots', [TutorUpdateProfile::class, 'updateTimeSlots']);
 
 
 
@@ -145,6 +149,7 @@ $router->registerController('/tutor/aproved', [TutorPending::class, 'tutorAprove
 $router->registerController('tutor/complete-bank-detials', [TutorPending::class, 'tutorCompleteBankDetials']);
 $router->registerController('tutor/tutor-time-slot-input', [TutorPending::class, 'tutorTimeSlotInput']);
 $router->registerController('tutor/tutor-time-slot-inputs', [TutorPending::class, 'help']);
+
 
 
 
@@ -162,17 +167,37 @@ $router->registerController('/tutor/viewactivitydoc', [TutorCourse::class, 'load
 $router->registerController('/tutor/updateday', [TutorCourse::class, 'updateDay']);
 $router->registerController('/tutor/deleteday', [TutorCourse::class, 'deleteDayTemplate']);
 
+$router->registerController('/tutor/requestdecline', [TutorDashboard::class, 'requestDecline']);
+$router->registerController('/tutor/payment', [TutorDashboard::class, 'payment']);
+$router->registerController('/tutor/savepayment', [TutorDashboard::class, 'savepayment']);
+
+
+
 $router->registerController('/tutor/classes', [TutorClass::class, 'mainpage']);
 $router->registerController('/tutor/payments', [TutorPayments::class, 'mainpage']);
+$router->registerController('/tutor/payments/filterpayments', [TutorPayments::class, 'filter_payments_by_day']);
+$router->registerController('/tutor/payments/getpaymentamounts', [TutorPayments::class, 'monthly_payment_amounts']);
+
+
 $router->registerController('/tutor/chat', [TutorChat::class, 'mainpage']);
 $router->registerController('/tutor/notification', [TutorNotification::class, 'mainpage']);
 
+$router->registerController('/tutor/viewstudentrequest', [TutorDashboard::class, 'viewrequest']);
 
 
+$router->registerController('/tutor/getclassdetails', [TutorClass::class, 'getclassdetails']);
 
 
 
 $router->registerController('/tutor/notifications', [TutorNotification::class, 'notification']);
+$router->registerController('/tutor/notifications/markasseen', [TutorNotification::class, 'mark_as_seen']);
+$router->registerController('/tutor/notifications/markasdelete', [TutorNotification::class, 'mark_as_delete']);
+$router->registerController('/tutor/notifications/getcount', [TutorNotification::class, 'get_count']);
+
+$router->registerController('/tutor/change-profile-picture', [TutorUpdateProfile::class, 'changeProfilePicture']);
+
+$router->registerController('/tutor/dayunhide', [TutorClass::class, 'day_unhide']);
+
 
 // Chat routes
 $router->registerController('api/chat/get-chat', [Chat::class, 'getChatMessages']);
@@ -215,6 +240,7 @@ $router->registerController('/api/time-table', [FindTutor::class, 'getTutorTimeT
 $router->registerController('/api/request', [FindTutor::class, 'sendTutorRequest']);
 $router->registerController('/student/find-tutor', [FindTutor::class, 'findTutor']);
 $router->registerController('/student/profile', [StudentProfile::class, 'profile']);
+$router->registerController('/api/student/delete-request', [StudentProfile::class, 'deleteTutorRequest']);
 $router->registerController('/api/report-tutor', [StudentTutorProfile::class, 'reportTutor']);
 $router->registerController('/student/tutor-profile', [StudentTutorProfile::class, 'tutorProfile']);
 $router->registerController('/student/change-profile-picture', [StudentProfile::class, 'changeProfilePicture']);
@@ -228,5 +254,7 @@ $router->registerController(
 );
 $router->registerController('/api/user/validate-otp', [StudentTutorProfile::class, 'changePasswordValidation']);
 $router->registerController('/api/user/change-password', [StudentTutorProfile::class, 'changePassword']);
+$router->registerController('/student/tutoring-class', [StudentClass::class, 'tutoringClass']);
+
 
 $router->resolve();

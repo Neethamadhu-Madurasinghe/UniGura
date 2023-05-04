@@ -11,8 +11,12 @@ body{
      padding: 10%;
      height: 100%;
      padding-top:20px;
+     transition: width 2s;
    }
-
+  
+:root{
+  --primary-color: #ff9900;
+}
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 0.5rem;
@@ -28,6 +32,7 @@ h2{
 h4{
      font-weight: 600;
      font-family: 'Poppins', sans-serif;
+     margin-bottom: 0px;
 }
 
 p {
@@ -214,20 +219,92 @@ h1{
     display: flex;
     flex-direction: column;
     height: fit-content;
+
 }
 
 #balancetime #content{
     display: flex;
     align-items: center;
     justify-content: center;
+    
+}
+#balancetime .percentage-box{
+  position: absolute;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0px;
+  text-align: center;
+  width: 90%;
+  height: 100%;
+  margin-top: 70px;
+  margin-left: 5%;
 }
 
+
+
+#balancetime .percentage-box h1{
+  font-size: 40px;
+  font-weight: 800;
+  margin: 0;
+  padding: 0;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+}
+
+#balancetime .percentage-box span{
+  font-size: 13px;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+}
+
+#balancetime .percentage-box .working{
+  color: #F7711A;
+
+}
+
+#balancetime .percentage-box .free{
+  color: #FFA620;
+  
+
+}
 
 #piechart {
     margin: 20px; 
-    width: 300px;
-    height: 300px;
+    width: 270px;
+    height: 270px;
 }
+
+#piechart .circle{
+  position: absolute;
+  height: 230px;
+  width: 230px;
+  background: linear-gradient(180deg, #F5F3FB 0%, #FDFBFD 100%);
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 20px;
+
+}
+
+#balancetime .progress-value{
+  font-size: 40px;
+  font-weight: 600;
+  color: #ff8c00;
+  padding-top: 100px;
+  margin-left: 31%;
+
+
+}
+#balancetime .text{
+  font-size: 17px;
+  font-weight: 500;
+  color: #606060;
+}
+
+
+
 
 /* pending requests */
 
@@ -244,13 +321,23 @@ h1{
 .msg_box header{
     display: grid;
     grid-template-columns: 1fr 5fr;
+    gap:10px
+}
+#pendingrequets .content{
+  margin-top: 20px;
+}
+
+#pendingrequets p{
+  margin-bottom: 0px;
+}
+#pendingrequets img{
+    border-radius: 50%;
+    width: 100%;
 
 }
 
-.msg_box img{
-    border-radius: 50%;
-    width: 80%;
-
+#pendingrequets h4{
+  margin-top: 5px;
 }
 .msg_box button{
     background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
@@ -262,7 +349,7 @@ h1{
     width: 40%;
     margin-left: 60%;
     cursor: pointer;
-    margin-top:0px ;
+    margin-top:20px ;
 }
 .msg_box button:hover{
     background: #ff8f0ea9;
@@ -600,9 +687,9 @@ border-radius: 92px;
 #mycourses .all_message{
   overflow-y: auto;
   width: 100%;
-  height: 460px;
+  height: 430px;
   padding-right: 10px;
-  margin-top: 20px;
+  margin-top: 0px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
@@ -633,7 +720,7 @@ border-radius: 92px;
 }
 
 #mycourses .msg_box:hover{
-  box-shadow: 0 5px 35px rgb(0 0 0 / 7%);
+  box-shadow: none;
 }
 #mycourses .msg_box text{
 
@@ -661,6 +748,12 @@ border-radius: 92px;
   
 }
 
+#mycourse button:hover{
+  background: #ff8f0ea9;
+  color: #ffffff; 
+
+}
+
 .closeend{
   font-size: 15px;
   height: 40px;
@@ -685,6 +778,20 @@ border-radius: 92px;
   margin-left: 0px;
   
 }
+
+.middle{
+  font-size: 15px;
+  height: 40px;
+  width: 100%;
+  border-radius: 0px ;
+  border: none;
+  cursor: pointer;
+  background: #ff8800;
+  color: #ffffff;  
+  margin-left: 0px;
+  
+}
+
 .star{
   font-size: 15px;
   height: 40px;
@@ -699,30 +806,37 @@ border-radius: 92px;
 }
 
 .main_card{
-  display: flex;
-  flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 0%;
+    margin-top: 20px;
+    height: fit-content;
+    padding-bottom: 0%;
+}
+.main_card:hover{
+    box-shadow: 0 5px 35px rgb(0 0 0 / 7%);
+}
+
+.main_card .msg_box{
   background-color: #ffffff;
-  border-radius: 10px 10px 20px 10px;
-  padding: 0px;
-  padding-bottom: 0px;
-  padding-right: 0px;
-  margin-bottom: 0px;
+  border-radius: 15px;
+  padding: 0%;
   margin-top: 0px;
-  height: 100%;
-
+  height: fit-content;
 }
 
-#mycourses .msg_box .close:hover{
+#mycourses .close:hover{
   background: #ff8f0ea9;
   color: #ffffff;  
 }
 
-#mycourses .msg_box .closeend:hover{
+#mycourses .closeend:hover{
   background: #ff8f0ea9;
   color: #ffffff;  
 }
 
-#mycourses .msg_box .closestart:hover{
+#mycourses .closestart:hover,
+#mycourses .middle:hover{
   background: #ff8f0ea9;
   color: #ffffff;  
 }
@@ -756,7 +870,7 @@ border-radius: 92px;
   bottom: 0;
   margin-top: 15px;
   display: grid;
-  grid-template-columns: 1fr 0.6fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 0px;
   width: 100%;
 }
