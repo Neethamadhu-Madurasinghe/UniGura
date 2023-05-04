@@ -2,14 +2,12 @@ const dataElement = document.getElementById('template-data');
 const layoutBackGroundUI = document.querySelector('.layout-background');
 const timeTableUI = document.querySelector('.pop-time-table');
 const feedbackFormUI = document.querySelector('.popup-feedback-form');
-const reportUI = document.querySelector('.popup-report');
-const uploadUI = document.querySelector('.popup-upload-file');
 
 const rescheduleBtnUI = document.getElementById('reshedule');
 const feedbackBtnUI = document.getElementById('feeback');
 
 const rescheduleCancelBtnUI = document.getElementById('timetable-cancel');
-const feedbackCancelBtnUI = document.getElementById('feedback-cancel');
+
 
 rescheduleBtnUI.addEventListener('click', e => {
     showLayoutBackground();
@@ -21,25 +19,17 @@ feedbackBtnUI.addEventListener('click', e => {
     feedbackFormUI.classList.remove('hidden');
 });
 
-
 rescheduleCancelBtnUI.addEventListener('click', e => {
     hideLayoutBackground();
     timeTableUI.classList.add('hidden');
 });
 
-feedbackCancelBtnUI.addEventListener('click', e => {
-    hideLayoutBackground();
-    feedbackFormUI.classList.add('hidden');
-});
-
 function showLayoutBackground() {
     bodyUI.classList.add('layout-mode');
     layoutBackGroundUI.classList.remove('hidden');
-
 }
 
 function hideLayoutBackground() {
     bodyUI.classList.remove('layout-mode');
     layoutBackGroundUI.classList.add('hidden');
-
 }

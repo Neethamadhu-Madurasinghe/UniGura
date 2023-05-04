@@ -4,11 +4,13 @@ class StudentClass extends Controller {
     private ModelStudentTutoringClass $tutoringClassModel;
     private ModelActivity $activityModel;
     private ModelStudentReportReason $reportReasonModel;
+    private ModelFeedback $feedbackModel;
 
     public function __construct() {
         $this->tutoringClassModel = $this->model('ModelStudentTutoringClass');
         $this->activityModel = $this->model('ModelActivity');
         $this->reportReasonModel = $this->model('ModelStudentReportReason');
+        $this->feedbackModel = $this->model('ModelFeedback');
     }
 
     public function tutoringClass(Request $request) {
@@ -106,6 +108,60 @@ class StudentClass extends Controller {
 //        echo '</pre>';
 
         $this->view('/student/tutoringClass', $request, $data);
+    }
+
+    public function createReview(Request $request) {
+        cors();
+
+        $body = json_decode(file_get_contents('php://input'), true);
+
+        if (!$request->isLoggedIn() || !$request->isStudent()) {
+            header("HTTP/1.0 401 Unauthorized");
+            return;
+        }
+
+        if ($request->isPost()) {
+            //        validate
+            $isValid = true;
+            if (
+                !isset($body['tutoring_class_id']) ||
+                !isset($body['rating']) ||
+                !isset($body['description'])
+            ) {
+                $isValid = false;
+            }
+
+            if ($body['rating'] > 5) {
+                $isValid = false;
+            }
+
+
+            $tutoringClass = $this->tutoringClassModel->getFullTutoringClassDetails($body['tutoring_class_id']);
+            if (isset($tutoringClass['template'])) {
+                $isValid = false;
+            }
+
+
+            if ($isValid) {
+                if ($this->feedbackModel->createReview(
+                    $tutoringClass['tutor_id'],
+                    $request->getUserId(),
+                    $tutoringClass['class_template_id'],
+                    $body['rating'],
+                    $body['description']
+                )) {
+                    header("HTTP/1.0 200 Success");
+                } else {
+                    header("HTTP/1.0 500 Internal Server Error");
+                }
+            } else {
+                header("HTTP/1.0 400 Bad Request");
+            }
+        } else {
+            header("HTTP/1.0 404 Not Found");
+        }
+
+
     }
 
 }

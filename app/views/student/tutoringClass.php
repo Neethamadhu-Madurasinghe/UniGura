@@ -27,6 +27,7 @@ Header::render(
 <div
         class="invisible"
         id="template-data"
+        data-classid="<?php echo $data['id'] ?>"
         data-tutor="<?php echo $data['tutor_id'] ?>"></div>
 
 <div class="error-layout-background invisible">
@@ -95,22 +96,22 @@ Header::render(
 
 
     <div class="popup-feedback-form hidden">
-        <h1>Provide Feedback</h1>
+        <h1>Post a review</h1>
         <div class="feedback-star-container">
-            <img src="<?php echo URLROOT . '/public/img/student/big.png' ?>" alt="" srcset="">
-            <img src="<?php echo URLROOT . '/public/img/student/big.png' ?>" alt="" srcset="">
-            <img src="<?php echo URLROOT . '/public/img/student/big.png' ?>" alt="" srcset="">
-            <img src="<?php echo URLROOT . '/public/img/student/big.png' ?>" alt="" srcset="">
-            <img src="<?php echo URLROOT . '/public/img/student/star_inactive.png' ?>" alt="" srcset="">
+            <img id="star-1" class="star" src="<?php echo URLROOT . '/public/img/student/big.png' ?>" alt="" srcset="">
+            <img id="star-2" class="star" src="<?php echo URLROOT . '/public/img/student/star_inactive.png' ?>" alt="" srcset="">
+            <img id="star-3" class="star" src="<?php echo URLROOT . '/public/img/student/star_inactive.png' ?>" alt="" srcset="">
+            <img id="star-4" class="star" src="<?php echo URLROOT . '/public/img/student/star_inactive.png' ?>" alt="" srcset="">
+            <img id="star-5" class="star" src="<?php echo URLROOT . '/public/img/student/star_inactive.png' ?>" alt="" srcset="">
         </div>
         <div class="comments-container">
             <p>Leave a comment (Optional):</p>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
+            <textarea name="" id="feedback-input" cols="30" rows="10"></textarea>
         </div>
 
         <div class="submit-btn-container">
             <button class="btn" id="feedback-cancel">Cancel</button>
-            <button class="btn">Submit</button>
+            <button class="btn" id="feedback-ok">Submit</button>
         </div>
     </div>
 
@@ -252,7 +253,7 @@ Header::render(
         <div class="bottom-button-container">
             <button class="btn" id="reshedule">Request Reschdule</button>
             <button class="btn" id="feeback">Give Feedback</button>
-            <button class="btn" id="report-tutor-button">Report</button>
+            <button class="btn" id="report-tutor-button">Report Tutor</button>
         </div>
 
     </div>
@@ -264,7 +265,8 @@ Header::render(
         URLROOT . '/public/js/student/tutor-profile.js',
         URLROOT . '/public/js/student/tutoring-class.js',
         URLROOT . '/public/js/student/tutoring-class-upload-assignment.js',
-        URLROOT . '/public/js/student/tutor-report-handler.js'
+        URLROOT . '/public/js/student/tutor-report-handler.js',
+        URLROOT . '/public/js/student/tutor-feedback.js'
     ]
 );
 ?>

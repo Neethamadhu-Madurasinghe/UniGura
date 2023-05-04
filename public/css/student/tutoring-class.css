@@ -345,7 +345,9 @@ h1, h2, h3 {
     margin: 0 5px;
 }
 
-
+.star {
+    cursor: pointer;
+}
 
 .comments-container {
     width: 90%;
