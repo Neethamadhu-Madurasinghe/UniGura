@@ -21,30 +21,46 @@ const changePasswordOkBtnUI = document.getElementById('change-send');
 const newPasswordInputFieldUI = document.getElementById('new-password-input')
 const newPasswordConfirmInputFieldUI = document.getElementById('new-password-confirm-input')
 
+const deleteRequestPopupUI = document.querySelector('.popup-delete-request');
+const deleteRequestCancelBtnUI = document.getElementById('cancel-request-deletion')
+const deleteRequestConfirmBtnUI = document.getElementById('confirm-request-confirm')
+let requestId = 0;
+
 let code = "";
+
+
+// Confirmation box button event listeners
+deleteRequestCancelBtnUI.addEventListener('click', () => {
+    deleteRequestPopupUI.classList.remove('invisible')
+    hideLayoutBackground();
+})
+
+deleteRequestConfirmBtnUI.addEventListener('click', async () => {
+    const response = await fetch('http://localhost/unigura/api/student/delete-request', {
+        method: 'POST',
+        credentials: "include",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id: requestId })
+    });
+
+    handleDeleteRequestResponse(response.status)
+})
 
 // Cancel request handler
 bodyUI.addEventListener('click', async (e) => {
     if (e.target.classList.contains('req-cancel-btn')) {
-        const requestId = e.target.dataset.id;
-
-        const response = await fetch('http://localhost/unigura/api/delete-request', {
-            method: 'POST',
-            credentials: "include",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ id: requestId })
-        });
-
-        handleDeleteRequestResponse(response.status)
+        requestId = e.target.dataset.id;
+        showLayoutBackground();
+        deleteRequestPopupUI.classList.remove('invisible');
     }
 });
 
 function handleDeleteRequestResponse(status) {
     switch (status) {
         case 401:
-            showErrorMessage('You have no permission to report this tutor.', () => {
+            showErrorMessage('You have no permission to delete this tutor request.', () => {
                 document.location.href = '../logout';
             });
             break;

@@ -155,7 +155,7 @@ for (var i = 0; i < checkboxes.length; i++) {
 
         classConductModeFilterValue = selectedValues.filter(value => value === 'both' || value === 'online' || value === 'physical');
         visibilityFilterValue = selectedValues.filter(value => value === 'show' || value === 'hide' || value === 'unblock' || value === 'block');
-        tutorDurationFilterValue = selectedValues.filter(value => value === '1stYear' || value === '2ndYear' || value === '3rdYear' || value === '4thYear');
+        tutorDurationFilterValue = selectedValues.filter(value => value === '1' || value === '2' || value === '3' || value === '4');
 
         console.log(classConductModeFilterValue, visibilityFilterValue, tutorDurationFilterValue);
 

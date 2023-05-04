@@ -1,3 +1,4 @@
+const chatComponentUI = document.querySelector('.chat-component-container');
 const messageBoxUI = document.querySelector(".message-box-container");
 const contactListUI = document.querySelector(".contact-list-container");
 const chatTitleUI = document.getElementById("chat-title");
@@ -32,6 +33,16 @@ async function fetchChatThreads() {
         console.log(data);
         chatThreads = sortByCreatedAtDesc(data.threads);
         userId = data.id;
+        // If there is no chat, tell that
+        if (chatThreads.length == 0) {
+            chatComponentUI.innerHTML = `
+                <div class="no-msg-class">
+                    <h2>You have no active chats</h2>
+                    <h4>You can start a new chat using <a href="http://localhost/UniGura/student/dashboard">Class</a> or <a href="http://localhost/UniGura/student/find-tutor">Find a tutor</a></h4>
+                </div>
+                
+            `;
+        }
         chatThreads.forEach((chatThread, index) => {
 
             let partnetId = 0;

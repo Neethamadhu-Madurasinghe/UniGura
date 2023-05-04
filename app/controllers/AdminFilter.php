@@ -42,6 +42,42 @@ class AdminFilter extends Controller
 
             // print_r($arrayModes); // Array ( [0] => online [1] => physical )
 
+            // print_r($arrayVisibility);
+
+            if (array_key_exists("0", $arrayVisibility)) {
+                if ($arrayVisibility[0] == 'block') {
+                    $arrayVisibility[0] = 1;
+                } else {
+                    $arrayVisibility[0] = 0;
+                }
+            }
+
+            if (array_key_exists("1", $arrayVisibility)) {
+                if ($arrayVisibility[1] == 'unblock') {
+                    $arrayVisibility[1] = 0;
+                } else {
+                    $arrayVisibility[1] = 1;
+                }
+            }
+
+            // print_r($arrayVisibility);
+
+            // Array ( [0] => block [1] => unblock ) 
+            // Array ( [0] => 1 [1] => 0 )
+
+
+            if (array_key_exists("0", $arrayModes) && array_key_exists("1", $arrayModes)) {
+                if ($arrayModes[0] == 'online' && $arrayModes[1] == 'physical') {
+                    unset($arrayModes[1]);
+                    $arrayModes[0] = 'both';
+                } else if ($arrayModes[0] == 'physical' && $arrayModes[1] == 'online') {
+                    unset($arrayModes[1]);
+                    $arrayModes[0] = 'both';
+                }
+            }
+
+            // print_r($arrayModes);
+
 
             if (empty($searchStudentName) && empty($classConductModeValue) && empty($visibilityFilterValue)) {
                 $filterResult = $allStudent;
@@ -96,6 +132,8 @@ class AdminFilter extends Controller
     }
 
 
+
+
     public function filterForTutorPage(Request $request)
     {
 
@@ -114,6 +152,11 @@ class AdminFilter extends Controller
         }
 
 
+        // echo '<pre>';
+        // print_r($allTutors);
+        // echo '</pre>';
+
+
         if ($request->isGet()) {
             $bodyData = $request->getBody();
 
@@ -128,19 +171,80 @@ class AdminFilter extends Controller
             $arrayDuration =  explode(',', $tutorDurationFilterValue);
 
 
+            // print_r($tutorDurationFilterValue);
+
+            if (array_key_exists("0", $arrayVisibility)) {
+                if ($arrayVisibility[0] == 'block') {
+                    $arrayVisibility[0] = 1;
+                } else if ($arrayVisibility[0] == 'unblock') {
+                    $arrayVisibility[0] = 0;
+                } else if ($arrayVisibility[0] == 'show') {
+                    $arrayVisibility[0] = 1;
+                } else if ($arrayVisibility[0] == 'hide') {
+                    $arrayVisibility[0] = 0;
+                }
+            }
+
+
+            if (array_key_exists("1", $arrayVisibility)) {
+                if ($arrayVisibility[1] == 'block') {
+                    $arrayVisibility[1] = 1;
+                } else if ($arrayVisibility[1] == 'unblock') {
+                    $arrayVisibility[1] = 0;
+                } else if ($arrayVisibility[1] == 'show') {
+                    $arrayVisibility[1] = 1;
+                } else if ($arrayVisibility[1] == 'hide') {
+                    $arrayVisibility[1] = 0;
+                }
+            }
+
+            if (array_key_exists("2", $arrayVisibility)) {
+                if ($arrayVisibility[2] == 'block') {
+                    $arrayVisibility[2] = 1;
+                } else if ($arrayVisibility[2] == 'unblock') {
+                    $arrayVisibility[2] = 0;
+                } else if ($arrayVisibility[2] == 'show') {
+                    $arrayVisibility[2] = 1;
+                } else if ($arrayVisibility[2] == 'hide') {
+                    $arrayVisibility[2] = 0;
+                }
+            }
+
+            if (array_key_exists("3", $arrayVisibility)) {
+                if ($arrayVisibility[3] == 'block') {
+                    $arrayVisibility[3] = 1;
+                } else if ($arrayVisibility[3] == 'unblock') {
+                    $arrayVisibility[3] = 0;
+                } else if ($arrayVisibility[3] == 'show') {
+                    $arrayVisibility[3] = 1;
+                } else if ($arrayVisibility[3] == 'hide') {
+                    $arrayVisibility[3] = 0;
+                }
+            }
+
+            // print_r($arrayVisibility);
+
 
             if (empty($searchTutorName) && empty($classConductModeValue) && empty($visibilityFilterValue) && empty($tutorDurationFilterValue)) {
                 $filterResult = $allTutors;
             } elseif (empty($searchTutorName) && empty($classConductModeValue) && empty($visibilityFilterValue) && !empty($tutorDurationFilterValue)) {
                 foreach ($allTutors as $aTutor) {
 
-                    $currentTime = new DateTime();
-                    $joinedDate = new DateTime($aTutor->contactDetails->joined_date);
+                    date_default_timezone_set('UTC');
 
-                    $tutorTimeDuration =  $currentTime->diff($joinedDate)->format("%y");
+                    $current_time = new DateTime();
 
-                    if ($tutorTimeDuration <= $tutorDurationFilterValue) {
-                        array_push($filterResult, $aTutor);
+                    $joinedDate = $aTutor->contactDetails->joined_date;
+                    $specific_time = new DateTime($joinedDate);
+
+                    $time_diff = $current_time->diff($specific_time)->y;
+
+                    // echo $time_diff;
+
+                    foreach ($arrayDuration as $duration) {
+                        if ($time_diff <= $duration) {
+                            array_push($filterResult, $aTutor);
+                        }
                     }
                 }
             } elseif (empty($searchTutorName) && empty($classConductModeValue) && !empty($visibilityFilterValue) && empty($tutorDurationFilterValue)) {
@@ -157,7 +261,24 @@ class AdminFilter extends Controller
 
                     $tutorTimeDuration =  $currentTime->diff($joinedDate)->format("%y");
 
-                    if (in_array($aTutor->contactDetails->is_banned, $arrayVisibility) && $tutorTimeDuration <= $tutorDurationFilterValue) {
+                    date_default_timezone_set('UTC');
+
+                    $current_time = new DateTime();
+
+                    $joinedDate = $aTutor->contactDetails->joined_date;
+                    $specific_time = new DateTime($joinedDate);
+
+                    $time_diff = $current_time->diff($specific_time)->y;
+
+                    // echo $time_diff;
+
+                    foreach ($arrayDuration as $duration) {
+                        if ($time_diff <= $duration) {
+                            array_push($filterResult, $aTutor);
+                        }
+                    }
+
+                    if (in_array($aTutor->contactDetails->is_banned, $arrayVisibility)) {
                         array_push($filterResult, $aTutor);
                     }
                 }
@@ -170,12 +291,24 @@ class AdminFilter extends Controller
             } elseif (empty($searchTutorName) && !empty($classConductModeValue) && empty($visibilityFilterValue) && !empty($tutorDurationFilterValue)) {
                 foreach ($allTutors as $aTutor) {
 
-                    $currentTime = new DateTime();
-                    $joinedDate = new DateTime($aTutor->contactDetails->joined_date);
+                    date_default_timezone_set('UTC');
 
-                    $tutorTimeDuration =  $currentTime->diff($joinedDate)->format("%y");
+                    $current_time = new DateTime();
 
-                    if (in_array($aTutor->contactDetails->mode, $arrayModes) && $tutorTimeDuration <= $tutorDurationFilterValue) {
+                    $joinedDate = $aTutor->contactDetails->joined_date;
+                    $specific_time = new DateTime($joinedDate);
+
+                    $time_diff = $current_time->diff($specific_time)->y;
+
+                    // echo $time_diff;
+
+                    foreach ($arrayDuration as $duration) {
+                        if ($time_diff <= $duration) {
+                            array_push($filterResult, $aTutor);
+                        }
+                    }
+
+                    if (in_array($aTutor->contactDetails->mode, $arrayModes)) {
                         array_push($filterResult, $aTutor);
                     }
                 }
@@ -188,12 +321,25 @@ class AdminFilter extends Controller
             } elseif (empty($searchTutorName) && !empty($classConductModeValue) && !empty($visibilityFilterValue) && !empty($tutorDurationFilterValue)) {
                 foreach ($allTutors as $aTutor) {
 
-                    $currentTime = new DateTime();
-                    $joinedDate = new DateTime($aTutor->contactDetails->joined_date);
+                    date_default_timezone_set('UTC');
 
-                    $tutorTimeDuration =  $currentTime->diff($joinedDate)->format("%y");
+                    $current_time = new DateTime();
 
-                    if (in_array($aTutor->contactDetails->mode, $arrayModes) && in_array($aTutor->contactDetails->is_banned, $arrayVisibility) && $tutorTimeDuration <= $tutorDurationFilterValue) {
+                    $joinedDate = $aTutor->contactDetails->joined_date;
+                    $specific_time = new DateTime($joinedDate);
+
+                    $time_diff = $current_time->diff($specific_time)->y;
+
+                    // echo $time_diff;
+
+                    foreach ($arrayDuration as $duration) {
+                        if ($time_diff <= $duration) {
+                            array_push($filterResult, $aTutor);
+                        }
+                    }
+
+
+                    if (in_array($aTutor->contactDetails->mode, $arrayModes) && in_array($aTutor->contactDetails->is_banned, $arrayVisibility)) {
                         array_push($filterResult, $aTutor);
                     }
                 }
@@ -206,12 +352,24 @@ class AdminFilter extends Controller
             } elseif (!empty($searchTutorName) && empty($classConductModeValue) && empty($visibilityFilterValue) && !empty($tutorDurationFilterValue)) {
                 foreach ($allTutors as $aTutor) {
 
-                    $currentTime = new DateTime();
-                    $joinedDate = new DateTime($aTutor->contactDetails->joined_date);
+                    date_default_timezone_set('UTC');
 
-                    $tutorTimeDuration =  $currentTime->diff($joinedDate)->format("%y");
+                    $current_time = new DateTime();
 
-                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && $tutorTimeDuration <= $tutorDurationFilterValue) {
+                    $joinedDate = $aTutor->contactDetails->joined_date;
+                    $specific_time = new DateTime($joinedDate);
+
+                    $time_diff = $current_time->diff($specific_time)->y;
+
+                    // echo $time_diff;
+
+                    foreach ($arrayDuration as $duration) {
+                        if ($time_diff <= $duration) {
+                            array_push($filterResult, $aTutor);
+                        }
+                    }
+
+                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName))) {
                         array_push($filterResult, $aTutor);
                     }
                 }
@@ -224,12 +382,24 @@ class AdminFilter extends Controller
             } elseif (!empty($searchTutorName) && empty($classConductModeValue) && !empty($visibilityFilterValue) && !empty($tutorDurationFilterValue)) {
                 foreach ($allTutors as $aTutor) {
 
-                    $currentTime = new DateTime();
-                    $joinedDate = new DateTime($aTutor->contactDetails->joined_date);
+                    date_default_timezone_set('UTC');
 
-                    $tutorTimeDuration =  $currentTime->diff($joinedDate)->format("%y");
+                    $current_time = new DateTime();
 
-                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && in_array($aTutor->contactDetails->is_banned, $arrayVisibility) && $tutorTimeDuration <= $tutorDurationFilterValue) {
+                    $joinedDate = $aTutor->contactDetails->joined_date;
+                    $specific_time = new DateTime($joinedDate);
+
+                    $time_diff = $current_time->diff($specific_time)->y;
+
+                    // echo $time_diff;
+
+                    foreach ($arrayDuration as $duration) {
+                        if ($time_diff <= $duration) {
+                            array_push($filterResult, $aTutor);
+                        }
+                    }
+
+                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && in_array($aTutor->contactDetails->is_banned, $arrayVisibility)) {
                         array_push($filterResult, $aTutor);
                     }
                 }
@@ -242,12 +412,24 @@ class AdminFilter extends Controller
             } elseif (!empty($searchTutorName) && !empty($classConductModeValue) && empty($visibilityFilterValue) && !empty($tutorDurationFilterValue)) {
                 foreach ($allTutors as $aTutor) {
 
-                    $currentTime = new DateTime();
-                    $joinedDate = new DateTime($aTutor->contactDetails->joined_date);
+                    date_default_timezone_set('UTC');
 
-                    $tutorTimeDuration =  $currentTime->diff($joinedDate)->format("%y");
+                    $current_time = new DateTime();
 
-                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && in_array($aTutor->contactDetails->mode, $arrayModes) && $tutorTimeDuration <= $tutorDurationFilterValue) {
+                    $joinedDate = $aTutor->contactDetails->joined_date;
+                    $specific_time = new DateTime($joinedDate);
+
+                    $time_diff = $current_time->diff($specific_time)->y;
+
+                    // echo $time_diff;
+
+                    foreach ($arrayDuration as $duration) {
+                        if ($time_diff <= $duration) {
+                            array_push($filterResult, $aTutor);
+                        }
+                    }
+
+                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && in_array($aTutor->contactDetails->mode, $arrayModes)) {
                         array_push($filterResult, $aTutor);
                     }
                 }
@@ -260,12 +442,24 @@ class AdminFilter extends Controller
             } elseif (!empty($searchTutorName) && !empty($classConductModeValue) && !empty($visibilityFilterValue) && !empty($tutorDurationFilterValue)) {
                 foreach ($allTutors as $aTutor) {
 
-                    $currentTime = new DateTime();
-                    $joinedDate = new DateTime($aTutor->contactDetails->joined_date);
+                    date_default_timezone_set('UTC');
 
-                    $tutorTimeDuration =  $currentTime->diff($joinedDate)->format("%y");
+                    $current_time = new DateTime();
 
-                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && in_array($aTutor->contactDetails->mode, $arrayModes) && in_array($aTutor->contactDetails->is_banned, $arrayVisibility) && $tutorTimeDuration <= $tutorDurationFilterValue) {
+                    $joinedDate = $aTutor->contactDetails->joined_date;
+                    $specific_time = new DateTime($joinedDate);
+
+                    $time_diff = $current_time->diff($specific_time)->y;
+
+                    // echo $time_diff;
+
+                    foreach ($arrayDuration as $duration) {
+                        if ($time_diff <= $duration) {
+                            array_push($filterResult, $aTutor);
+                        }
+                    }
+
+                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && in_array($aTutor->contactDetails->mode, $arrayModes) && in_array($aTutor->contactDetails->is_banned, $arrayVisibility)) {
                         array_push($filterResult, $aTutor);
                     }
                 }
@@ -299,27 +493,11 @@ class AdminFilter extends Controller
         $allSubjects = $this->filterModel->getAllSubjects();
 
         foreach ($allClasses as $x) {
-            $studentId = $x->student_id;
             $tutorId = $x->tutor_id;
-            $classId = $x->id;
-            $classTemplateId = $x->class_template_id;
 
-            $student = $this->filterModel->findStudent($studentId);
             $tutor = $this->filterModel->findTutor($tutorId);
-            $classDay = $this->filterModel->findClassDay($classId);
-            $classTemplate = $this->filterModel->findTutoringClassTemplate($classTemplateId);
 
-            $x->student = $student;
             $x->tutor = $tutor;
-            $x->classDay = $classDay;
-            $x->classTemplate = $classTemplate;
-
-
-            $module = $this->filterModel->findModule($classTemplate->module_id);
-            $x->module = $module;
-
-            $subject = $this->filterModel->findSubject($classTemplate->subject_id);
-            $x->subject = $subject;
         }
 
         $data = [
@@ -327,132 +505,160 @@ class AdminFilter extends Controller
             'allSubjects' => $allSubjects
         ];
 
+
         if ($request->isGet()) {
             $bodyData = $request->getBody();
 
             // $searchClassValue = $bodyData['searchClassValue'];
             $classFeesInputMaxValue = $bodyData['classFeesInputMaxValue'];
             $ratingFilterValue = $bodyData['ratingFilterValue'];
-            $classConductModeFilterValue = $bodyData['classConductModeFilterValue'];
+            $completionStatusFilterValue = $bodyData['completionStatusFilterValue'];
             $subjectFilterValue = $bodyData['subjectFilterValue'];
 
             $arrayRating = explode(',', $ratingFilterValue);
-            $arrayModes = explode(',', $classConductModeFilterValue);
+            $arrayStatus = explode(',', $completionStatusFilterValue);
             $arraySubjects = explode(',', $subjectFilterValue);
 
-            if (!empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
+
+            // print_r($arrayStatus);
+            // echo '<br>';
+
+
+            if (array_key_exists("0", $arrayStatus)) {
+                if ($arrayStatus[0] == 'complete') {
+                    $arrayStatus[0] = 1;
+                } else {
+                    $arrayStatus[0] = 0;
+                }
+            }
+
+            if (array_key_exists("1", $arrayStatus)) {
+                if ($arrayStatus[1] == 'active') {
+                    $arrayStatus[1] = 0;
+                } else {
+                    $arrayStatus[1] = 1;
+                }
+            }
+
+            // print_r($arrayStatus);
+
+            if (!empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($completionStatusFilterValue) && empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue) {
+                    if ($aClass->session_rate <= $classFeesInputMaxValue) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (!empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
+            } elseif (!empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($completionStatusFilterValue) && !empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->subject->name, $arraySubjects)) {
+                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->subjectName, $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
 
-                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array('all', $arraySubjects)) {
+                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array('all', $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (!empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
+            } elseif (!empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($completionStatusFilterValue) && empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->mode, $arrayModes)) {
+                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->completion_status, $arrayStatus)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (!empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
+            } elseif (!empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($completionStatusFilterValue) && !empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
+                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->completion_status, $arrayStatus) && in_array($aClass->subjectName, $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
-                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->mode, $arrayModes) && in_array('all', $arraySubjects)) {
+                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->completion_status, $arrayStatus) && in_array('all', $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (!empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
+            } elseif (!empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($completionStatusFilterValue) && empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->classTemplate->current_rating, $arrayRating)) {
+                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->current_rating, $arrayRating)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (!empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
+            } elseif (!empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($completionStatusFilterValue) && !empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->classTemplate->current_rating, $arrayRating) && in_array($aClass->subject->name, $arraySubjects)) {
+                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->current_rating, $arrayRating) && in_array($aClass->subjectName, $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
-                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->classTemplate->current_rating, $arrayRating) && in_array('all', $arraySubjects)) {
+                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->current_rating, $arrayRating) && in_array('all', $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (!empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
+            } elseif (!empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($completionStatusFilterValue) && empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->classTemplate->current_rating, $arrayRating) && in_array($aClass->mode, $arrayModes)) {
+                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->current_rating, $arrayRating) && in_array($aClass->completion_status, $arrayStatus)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (!empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
+            } elseif (!empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($completionStatusFilterValue) && !empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->classTemplate->current_rating, $arrayRating) && in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
+                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->current_rating, $arrayRating) && in_array($aClass->completion_status, $arrayStatus) && in_array($aClass->subjectName, $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
-                    if ($aClass->classTemplate->session_rate <= $classFeesInputMaxValue && in_array($aClass->classTemplate->current_rating, $arrayRating) && in_array($aClass->mode, $arrayModes) && in_array('all', $arraySubjects)) {
+                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->current_rating, $arrayRating) && in_array($aClass->completion_status, $arrayStatus) && in_array('all', $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
+            } elseif (empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($completionStatusFilterValue) && empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if (in_array($aClass->classTemplate->current_rating, $arrayRating)) {
+                    if (in_array($aClass->current_rating, $arrayRating)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
+            } elseif (empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($completionStatusFilterValue) && !empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if (in_array($aClass->classTemplate->current_rating, $arrayRating) && in_array($aClass->subject->name, $arraySubjects)) {
+                    if (in_array($aClass->current_rating, $arrayRating) && in_array($aClass->subjectName, $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
-                    if (in_array($aClass->classTemplate->current_rating, $arrayRating) && in_array('all', $arraySubjects)) {
+                    if (in_array($aClass->current_rating, $arrayRating) && in_array('all', $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
+            } elseif (empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($completionStatusFilterValue) && empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if (in_array($aClass->classTemplate->current_rating, $arrayRating) && in_array($aClass->classTemplate->mode, $arrayModes)) {
+                    if (in_array($aClass->current_rating, $arrayRating) && in_array($aClass->completion_status, $arrayStatus)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
+            } elseif (empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($completionStatusFilterValue) && !empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if (in_array($aClass->classTemplate->current_rating, $arrayRating) && in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
+                    if (in_array($aClass->current_rating, $arrayRating) && in_array($aClass->completion_status, $arrayStatus) && in_array($aClass->subjectName, $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
-                    if (in_array($aClass->classTemplate->current_rating, $arrayRating) && in_array($aClass->mode, $arrayModes) && in_array('all', $arraySubjects)) {
+                    if (in_array($aClass->current_rating, $arrayRating) && in_array($aClass->completion_status, $arrayStatus) && in_array('all', $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
+            } elseif (empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($completionStatusFilterValue) && empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if (in_array($aClass->classTemplate->mode, $arrayModes)) {
+                    if (in_array($aClass->completion_status, $arrayStatus)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
+            } elseif (empty($classFeesInputMaxValue) && empty($ratingFilterValue) && !empty($completionStatusFilterValue) && !empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if (in_array($aClass->mode, $arrayModes) && in_array($aClass->subject->name, $arraySubjects)) {
+                    if (in_array($aClass->completion_status, $arrayStatus) && in_array($aClass->subjectName, $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
-                    if (in_array($aClass->mode, $arrayModes) && in_array('all', $arraySubjects)) {
+                    if (in_array($aClass->completion_status, $arrayStatus) && in_array('all', $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
                 }
-            } elseif (empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && !empty($subjectFilterValue)) {
+            } elseif (empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($completionStatusFilterValue) && !empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
                     if (in_array('all', $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
+
+                    if (in_array($aClass->subjectName, $arraySubjects)) {
+                        array_push($filterResult, $aClass);
+                    }
                 }
-            } elseif (empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($classConductModeFilterValue) && empty($subjectFilterValue)) {
+            } elseif (empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($completionStatusFilterValue) && empty($subjectFilterValue)) {
                 $filterResult = $allClasses;
             } else {
                 $filterResult = $allClasses;
@@ -468,6 +674,7 @@ class AdminFilter extends Controller
 
         $this->view('admin/classSearch&FilterOutput', $request, $data);
     }
+
 
 
 
@@ -534,7 +741,7 @@ class AdminFilter extends Controller
                 $x->student = $student;
             }
 
-            
+
             $totalNumOfStudentComplaints = $this->filterModel->totalNumOfStudentComplaints();
 
 
@@ -597,6 +804,136 @@ class AdminFilter extends Controller
 
 
             $this->view('admin/studentComplainSearch&FilterResult', $request, $data);
+        }
+    }
+
+
+
+    public function filterForTutorComplaint(Request $request)
+    {
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        $filterResult = [];
+
+
+        if ($request->isGet()) {
+            $bodyData = $request->getBody();
+
+            $tutorComplaintSearchName = $bodyData['search_tutor_name_value'];
+            $tutorComplaintFilterName = $bodyData['tutor_complaint_filter_value'];
+            $currentPageNum = $bodyData['currentPageNum'];
+
+            // echo $tutorComplaintSearchName;
+            // echo $tutorComplaintFilterName;
+            // echo $currentPageNum;
+
+            if ($currentPageNum == 'null') {
+                $currentPageNum = 1;
+            }
+
+
+            $rowsPerPage = 5;
+            $totalNumOfTutorComplaints = $this->filterModel->totalNumOfTutorComplaints();
+            $lastPageNum = ceil($totalNumOfTutorComplaints / $rowsPerPage);
+
+            $start = ($currentPageNum - 1) * $rowsPerPage;
+
+            $allTutorComplaints = $this->filterModel->getTutorComplaints($start, $rowsPerPage);
+
+            // next page
+            if ($currentPageNum < $lastPageNum) {
+                $nextPageNum = $currentPageNum + 1;
+            } else {
+                $nextPageNum = $lastPageNum;
+            }
+
+            // previous page
+            if ($currentPageNum > 1) {
+                $previousPageNum = $currentPageNum - 1;
+            } else {
+                $previousPageNum = 1;
+            }
+
+
+            foreach ($allTutorComplaints as $x) {
+                $reasonID = $x->reason_id;
+                $reportReason = $this->filterModel->reportSeasonById($reasonID);
+                $x->reportReason = $reportReason;
+
+                $tutorID = $x->tutor_id;
+                $tutor = $this->filterModel->userById($tutorID);
+                $x->tutor = $tutor;
+
+                $studentID = $x->student_id;
+                $student = $this->filterModel->userById($studentID);
+                $x->student = $student;
+            }
+
+
+            $totalNumOfTutorComplaints = $this->filterModel->totalNumOfTutorComplaints();
+
+
+            if (empty($tutorComplaintSearchName) && $tutorComplaintFilterName == 'all') {
+                $filterResult = $allTutorComplaints;
+            } else if (empty($tutorComplaintSearchName) && $tutorComplaintFilterName == 'not_choose') {
+                $filterResult = $allTutorComplaints;
+            } else if (empty($tutorComplaintSearchName) && $tutorComplaintFilterName == 'solved') {
+                foreach ($allTutorComplaints as $aTutorComplaint) {
+                    if ($aTutorComplaint->is_inquired == '1') {
+                        array_push($filterResult, $aTutorComplaint);
+                    }
+                }
+            } else if (empty($tutorComplaintSearchName) && $tutorComplaintFilterName == 'not_resolve') {
+                foreach ($allTutorComplaints as $aTutorComplaint) {
+                    if ($aTutorComplaint->is_inquired == '0') {
+                        array_push($filterResult, $aTutorComplaint);
+                    }
+                }
+            } else if (!empty($tutorComplaintSearchName) && $tutorComplaintFilterName == 'not_choose') {
+                foreach ($allTutorComplaints as $aTutorComplaint) {
+                    if (str_contains(strtolower($aTutorComplaint->tutor->first_name . ' ' . $aTutorComplaint->tutor->last_name), strtolower($tutorComplaintSearchName))) {
+                        array_push($filterResult, $aTutorComplaint);
+                    }
+                }
+            } else if (!empty($tutorComplaintSearchName) && $tutorComplaintFilterName == 'all') {
+                foreach ($allTutorComplaints as $aTutorComplaint) {
+                    if ($aTutorComplaint->is_inquired == '1' && str_contains(strtolower($aTutorComplaint->tutor->first_name . ' ' . $aTutorComplaint->tutor->last_name), strtolower($tutorComplaintSearchName))) {
+                        array_push($filterResult, $aTutorComplaint);
+                    }
+                }
+            } else if (!empty($tutorComplaintSearchName) && $tutorComplaintFilterName == 'solved') {
+                foreach ($allTutorComplaints as $aTutorComplaint) {
+                    if ($aTutorComplaint->is_inquired == '1' && str_contains(strtolower($aTutorComplaint->tutor->first_name . ' ' . $aTutorComplaint->tutor->last_name), strtolower($tutorComplaintSearchName))) {
+                        array_push($filterResult, $aTutorComplaint);
+                    }
+                }
+            } else if (!empty($tutorComplaintSearchName) && $tutorComplaintFilterName == 'not_resolve') {
+                foreach ($allTutorComplaints as $aTutorComplaint) {
+                    if ($aTutorComplaint->is_inquired == '0' && str_contains(strtolower($aTutorComplaint->tutor->first_name . ' ' . $aTutorComplaint->tutor->last_name), strtolower($tutorComplaintSearchName))) {
+                        array_push($filterResult, $aTutorComplaint);
+                    }
+                }
+            } else {
+                $filterResult = $allTutorComplaints;
+            }
+
+
+
+            $uniqueFilterResult = array_unique($filterResult, SORT_REGULAR);
+
+            $data = [
+                'allTutorComplaints' => $uniqueFilterResult,
+                'totalNumOfTutorComplaints' => $totalNumOfTutorComplaints,
+            ];
+
+            // echo '<pre>';
+            // print_r($data);
+            // echo '</pre>';
+
+
+            $this->view('admin/tutorComplainSearch&FilterResult', $request, $data);
         }
     }
 }

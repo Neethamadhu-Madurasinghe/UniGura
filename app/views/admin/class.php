@@ -3,8 +3,6 @@
 <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/class.css">
 
 
-
-
 <section class="home" id="home">
     <p></p>
     <p></p>
@@ -28,7 +26,7 @@
                     <div class="student">
                         <div class="name">
                             <h1>Student Name</h1>
-                            <h1><?php echo $x->student->first_name . ' ' . $x->student->last_name ?></h1>
+                            <h1><?php echo $x->student_first_name . ' ' . $x->student_last_name ?></h1>
                         </div>
                         <div class="profile-img">
                             <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
@@ -36,13 +34,31 @@
                     </div>
                     <div class="class-details">
                         <div class="subject">
-                            <h1>Subject: <?php echo $x->subject->name ?></h1>
+                            <h1>Subject: <?php echo $x->subjectName ?></h1>
                         </div>
                         <div class="module">
-                            <h1>Module: <?php echo $x->module->name ?></h1>
+                            <h1>Module: <?php echo $x->moduleName ?></h1>
                         </div>
-                        <div class="day">
-                            <h1>Day: <?php echo $x->classDay->title ?></h1>
+                        <div class="data">
+                            <h1>Date: <?php echo $x->date ?></h1>
+                        </div>
+                        <div class="time">
+                            <h1>Time: <?php echo $x->time ?></h1>
+                        </div>
+                        <div class="duration">
+                            <h1>Duration: <?php echo $x->duration ?> Hours</h1>
+                        </div>
+                        <div class="class_type">
+                            <h1>Class Type: <?php echo $x->class_type ?></h1>
+                        </div>
+                        <div class="mode">
+                            <h1>Mode: <?php echo $x->mode ?></h1>
+                        </div>
+                        <div class="session_rate">
+                            <h1>Session Rate: <?php echo $x->session_rate ?></h1>
+                        </div>
+                        <div class="completion_status">
+                            <h1>Completion Status: <?php echo $x->completion_status ?></h1>
                         </div>
                     </div>
                 </div>
@@ -149,20 +165,16 @@
 
             <div class="mode-filter">
                 <div class="mode">
-                    <h1>By Mode</h1>
+                    <h1>By Completion Status</h1>
                 </div>
                 <div class="mode-select">
                     <div class="checkbox-button">
-                        <input type="checkbox" id="online" name="mode" value="online" class="online checkbox">
-                        <label for="online">&nbspOnline</label>
+                        <input type="checkbox" id="online" name="mode" value="active" class="online checkbox">
+                        <label for="online">&nbspActive Classes</label>
                     </div>
                     <div class="checkbox-button">
-                        <input type="checkbox" id="physical" name="mode" value="physical" class="physical checkbox">
-                        <label for="physical">&nbspPhysical</label>
-                    </div>
-                    <div class="checkbox-button">
-                        <input type="checkbox" id="both" name="mode" value="both" class="both checkbox">
-                        <label for="both">&nbspBoth</label>
+                        <input type="checkbox" id="physical" name="mode" value="complete" class="physical checkbox">
+                        <label for="physical">&nbspComplete Classes</label>
                     </div>
                 </div>
             </div>

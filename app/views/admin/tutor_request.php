@@ -11,21 +11,19 @@
     <p></p>
 
 
-
-
     <div class="menu-bar">
         <div class="menu-bar-selection-btn">
             <div class="tutor-request-btn" id="tutor-request-btn">
-                <a href="tutorRequest"><button>Tutor Request</button></a>
+                <a href="tutorRequest"><button id="tutor-request">Tutor Request</button></a>
             </div>
             <div class="student-complaint-btn" id="student-complaint-btn">
-                <a href="studentComplaint"><button>Student Complaint</button></a>
+                <a href="studentComplaint"><button id="student-complaint">Student Complaint</button></a>
             </div>
             <div class="tutor-complaint-btn" id="tutor-complaint-btn">
-                <a href="tutorComplaint"><button>Tutor Complaint</button></a>
+                <a href="tutorComplaint"><button id="tutor-complaint">Tutor Complaint</button></a>
             </div>
             <div class="complaint-setting-btn" id="complaint-setting-btn">
-                <a href="complaintSetting"><button>Complaint Setting</button></a>
+                <a href="complaintSetting"><button id="complaint-setting">Complaint Setting</button></a>
             </div>
         </div>
     </div>
@@ -63,7 +61,7 @@
                                 <td><a href="<?php echo URLROOT; ?>/public/profile_pictures/16774330206500.pdf"><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></a></td>
                                 <td><a href="<?php echo URLROOT; ?>/public/profile_pictures/16774330206500.pdf"><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></a></td>
                                 <td><a href="<?php echo URLROOT; ?>/public/profile_pictures/16774330206500.pdf"><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></a></td>
-                                <td><a href="<?php echo URLROOT; ?>/public/profile_pictures/16774330206500.pdf"><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></a></td>
+                                <td><?php echo $x->education_qualification ?></td>
                                 <td class="action action-tutor-request">
                                     <button class="accept"><a href="acceptTutorRequest?tutorID=<?php echo $x->tutor->id; ?>">Accept</a></button>
                                     <button class="reject"><a href="rejectTutorRequest?tutorID=<?php echo $x->tutor->id; ?>">Reject</a></button>

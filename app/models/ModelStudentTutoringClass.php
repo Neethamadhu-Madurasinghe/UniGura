@@ -1,5 +1,5 @@
 <?php
-class ModelStudentDashboard {
+class ModelStudentTutoringClass {
     private Database $db;
 
     public function __construct() {
@@ -48,7 +48,7 @@ class ModelStudentDashboard {
 //           Fetch all the days
             $this->db->query('
                 SELECT COUNT(day.id) as day_count FROM tutoring_class JOIN day ON
-                tutoring_class.id= day.class_id WHERE tutoring_class.id=:id'
+                tutoring_class.id= day.class_id WHERE tutoring_class.id=:id AND day.is_hidden = 0'
             );
 
             $this->db->bind('id', $value['id'], PDO::PARAM_INT);
@@ -58,7 +58,7 @@ class ModelStudentDashboard {
 //           Fetch all the incomplete days
             $this->db->query('
                 SELECT COUNT(day.id) as incomplete_day_count FROM tutoring_class JOIN day ON
-                tutoring_class.id= day.class_id WHERE tutoring_class.id=:id AND day.is_completed = 1'
+                tutoring_class.id= day.class_id WHERE tutoring_class.id=:id AND day.is_completed = 1 AND day.is_hidden = 0'
             );
 
             $this->db->bind('id', $value['id'], PDO::PARAM_INT);
@@ -78,5 +78,76 @@ class ModelStudentDashboard {
 
         }
         return $rows;
+    }
+
+//    Returns all the details related to a tutoring class (Not a course) when the id is given
+    public function getFullTutoringClassDetails(int $id): array {
+
+//        Get the all the data from tutoring class table
+        $this->db->query('SELECT * FROM tutoring_class WHERE id=:id AND is_suspended=0');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        $tutoring_class = $this->db->resultOneAssoc();
+
+        if (!isset($tutoring_class['id'])) {
+            return [];
+        }
+
+//        Get relevant template and tutor data
+        $this->db->query('SELECT * FROM tutoring_class_tutor WHERE id=:id');
+        $this->db->bind('id', $tutoring_class['class_template_id'], PDO::PARAM_INT);
+        $tutoring_class_tutor = $this->db->resultOneAssoc();
+
+        if (!isset($tutoring_class_tutor['id'])) {
+            return [];
+        }
+
+        $tutoring_class['tutor_name'] = $tutoring_class_tutor['first_name'] . ' ' . $tutoring_class_tutor['last_name'];
+        $tutoring_class['subject_name'] = $tutoring_class_tutor['subject_name'];
+        $tutoring_class['module_name'] = $tutoring_class_tutor['module_name'];
+
+        //        Get the number of complete and incomplete day counts
+        $this->db->query('
+                SELECT COUNT(day.id) as day_count FROM tutoring_class JOIN day ON
+                tutoring_class.id= day.class_id WHERE tutoring_class.id=:id AND day.is_hidden = 0'
+        );
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        $dayCount = $this->db->resultOneAssoc();
+        $tutoring_class['day_count'] = $dayCount['day_count'];
+
+        $this->db->query('
+                SELECT COUNT(day.id) as incomplete_day_count FROM tutoring_class JOIN day ON
+                tutoring_class.id= day.class_id WHERE tutoring_class.id=:id AND day.is_completed = 1 AND day.is_hidden = 0'
+        );
+
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        $incompleteDayCount = $this->db->resultOneAssoc();
+        $tutoring_class['incomplete_day_count'] = $incompleteDayCount['incomplete_day_count'];
+
+//        Get days
+        $this->db->query('SELECT * FROM day WHERE class_id=:id AND is_hidden=0 ORDER BY position asc');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        $days = $this->db->resultAllAssoc();
+
+        $tutoring_class['days'] = $days;
+
+//        Get activities for each day
+        foreach ($tutoring_class['days'] as $key => $day) {
+            $this->db->query('SELECT * FROM activity WHERE day_id=:day_id AND is_hidden=0 ORDER BY position asc');
+            $this->db->bind('day_id', $day['id'], PDO::PARAM_INT);
+            $activities = $this->db->resultAllAssoc();
+
+//            Format file download link
+            foreach ($activities as $actKey => $actValue) {
+                if ($actValue['type'] != 2) {
+                    $explodedFileName = explode('/', $actValue['link']);
+                    $activities[$actKey]['link'] = end($explodedFileName);
+                }
+
+            }
+
+            $tutoring_class['days'][$key]['activities'] = $activities;
+        }
+
+        return $tutoring_class;
     }
 }

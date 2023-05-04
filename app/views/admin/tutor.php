@@ -12,6 +12,7 @@
     <p></p>
     <p></p>
 
+
     <div class="tutor-page">
 
         <div class="card-section" id="card-section">
@@ -37,6 +38,15 @@
                                 <img src="<?php echo URLROOT; ?>/public/img/admin/block.png" alt="" class="block">
                             <?php endif; ?>
                             <?php if ($aTutor->contactDetails->is_banned == '0') : ?>
+                                <img src="<?php echo URLROOT; ?>/public/img/admin/hide.png" alt="" class="hide">
+                            <?php endif; ?>
+                        </div>
+
+                        <div class="hide-show">
+                            <?php if ($aTutor->is_hidden == '1') : ?>
+                                <img src="<?php echo URLROOT; ?>/public/img/admin/block.png" alt="" class="block">
+                            <?php endif; ?>
+                            <?php if ($aTutor->is_hidden == '0') : ?>
                                 <img src="<?php echo URLROOT; ?>/public/img/admin/hide.png" alt="" class="hide">
                             <?php endif; ?>
                         </div>
@@ -78,15 +88,15 @@
                         </div>
 
                         <div class='info-2' id='info-2'>
-                            <small><i class="fa-solid fa-download"></i> - Education Qualification</small><br>
-                            <small><i class="fa-solid fa-download"></i> - National Identity Card Copy</small><br>
-                            <small><i class="fa-solid fa-download"></i> - University Entrance Letter</small><br>
-                            <small><i class="fa-solid fa-download"></i> - Advanced Level Result</small>
+                            <small><i class="fa-solid fa-graduation-cap"></i> <?php echo $aTutor->education_qualification; ?></small><br>
+                            <small><i class="fa-solid fa-file-lines"></i> National Identity Card Copy</small><br>
+                            <small><i class="fa-solid fa-file-lines"></i> University Entrance Letter</small><br>
+                            <small><i class="fa-solid fa-file-lines"></i> Advanced Level Result</small>
                         </div>
 
                         <div class='info-3' id='info-3'>
                             <small><i class="fa-solid fa-phone"></i> - <?php echo $aTutor->contactDetails->phone_number; ?></small><br>
-                            <small><i class="fa-solid fa-house"></i> - <?php echo $aTutor->contactDetails->letter_box_number . '/' . $aTutor->contactDetails->street; ?></small><br>
+                            <small><i class="fa-solid fa-house"></i> - <?php echo $aTutor->contactDetails->address_line1 . ' / ' . $aTutor->contactDetails->address_line2; ?></small><br>
                             <small><i class="fa-solid fa-location-dot"></i> - <?php echo $aTutor->contactDetails->city; ?></small><br>
                             <small><i class="fa-solid fa-venus-mars"></i> - <?php echo $aTutor->contactDetails->gender; ?></small>
                         </div>
@@ -136,19 +146,19 @@
                 </div>
                 <div class="duration-select">
                     <div class="checkbox-button">
-                        <input type="checkbox" id="1stYear" name="1stYear" value="1stYear" class="1stYear checkbox">
+                        <input type="checkbox" id="1stYear" name="1stYear" value="1" class="1stYear checkbox">
                         <label for="1stYear">1st Year <small> And Below</small></label>
                     </div>
                     <div class="checkbox-button">
-                        <input type="checkbox" id="2ndYear" name="2ndYear" value="2ndYear" class="2ndYear checkbox">
+                        <input type="checkbox" id="2ndYear" name="2ndYear" value="2" class="2ndYear checkbox">
                         <label for="2ndYear">2nd Year <small> And Below</small></label>
                     </div>
                     <div class="checkbox-button">
-                        <input type="checkbox" id="3rdYear" name="3rdYear" value="3rdYear" class="3rdYear checkbox">
+                        <input type="checkbox" id="3rdYear" name="3rdYear" value="3" class="3rdYear checkbox">
                         <label for="3rdYear">3rd Year <small> And Below</small></label>
                     </div>
                     <div class="checkbox-button">
-                        <input type="checkbox" id="4thYear" name="4thYear" value="4thYear" class="4thYear checkbox">
+                        <input type="checkbox" id="4thYear" name="4thYear" value="4" class="4thYear checkbox">
                         <label for="4thYear">4th Year <small> And Below</small></label>
                     </div>
                 </div>

@@ -28,3 +28,11 @@ nav_link.forEach((link) => {
 })
 
 request_complaint.classList.add('active');
+
+
+
+/* ---------------------------------- active button ---------------------------- */
+
+const tutor_reques_btn = document.getElementById('tutor-request');
+
+tutor_reques_btn.style.background = "linear-gradient(180deg, #FFA620 0%, #FF7A20 100%)";

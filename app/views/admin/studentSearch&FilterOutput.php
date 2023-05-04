@@ -8,6 +8,14 @@
 <?php endif; ?>
 
 
+<?php
+    // echo '<pre>';
+    // print_r($data);
+    // echo '</pre>';
+
+?>
+
+
 <?php foreach ($data as $aStudent) : ?>
     <div class="card">
         <div class="mode-hide-show">

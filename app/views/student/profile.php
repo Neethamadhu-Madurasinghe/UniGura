@@ -64,6 +64,14 @@ Header::render(
         </div>
     </div>
 
+    <div class="popup-delete-request invisible">
+        <p id="popup-delete-heading">Are you sure you want to delete this request ?</p>
+        <div class="confirm-btn-container">
+            <button class="btn btn-msg" id="cancel-request-deletion">Cancel</button>
+            <button class="btn btn-msg" id="confirm-request-confirm">Delete</button>
+        </div>
+    </div>
+
     <div class="loader invisible"></div>
 </div>
 
@@ -139,32 +147,21 @@ MainNavbar::render($request);
                     </div>
                     <div class="form-field">
                         <label for="district">District<span><?php echo $data['errors']['district_error'] ?></span></label>
+
+                        <?php
+                        $districts = array(
+                            'Ampara', 'Anuradhapura', 'Badulla', 'Batticaloa', 'Colombo', 'Galle', 'Gampaha', 'Hambantota',
+                            'Jaffna', 'Kalutara', 'Kandy', 'Kegalle', 'Kilinochchi', 'Kurunegala', 'Mannar', 'Matale', 'Matara',
+                            'Moneragala', 'Mullaitivu', 'Nuwara Eliya', 'Polonnaruwa', 'Puttalam', 'Ratnapura', 'Trincomalee', 'Vavuniya'
+                        );
+                        ?>
+
                         <select name="district" id="">
-                            <option value="Ampara"<?php echo $data['district'] === 'Ampara' ? 'selected' : '' ?>>Ampara</option>
-                            <option value="Anuradhapura"<?php echo $data['district'] === 'Anuradhapura' ? 'selected' : '' ?>>Anuradhapura</option>
-                            <option value="Badulla"<?php echo $data['district'] === 'Badulla' ? 'selected' : '' ?>>Badulla</option>
-                            <option value="Batticaloa"<?php echo $data['district'] === 'Batticaloa' ? 'selected' : '' ?>>Batticaloa</option>
-                            <option value="Colombo"<?php echo $data['district'] === 'Colombo' ? 'selected' : '' ?>>Colombo</option>
-                            <option value="Galle"<?php echo $data['district'] === 'Galle' ? 'selected' : '' ?>>Galle</option>
-                            <option value="Gampaha"<?php echo $data['district'] === 'Gampaha' ? 'selected' : '' ?>>Gampaha</option>
-                            <option value="Hambantota"<?php echo $data['district'] === 'Hambantota' ? 'selected' : '' ?>>Hambantota</option>
-                            <option value="Jaffna"<?php echo $data['district'] === 'Jaffna' ? 'selected' : '' ?>>Jaffna</option>
-                            <option value="Kalutara"<?php echo $data['district'] === 'Kalutara' ? 'selected' : '' ?>>Kalutara</option>
-                            <option value="Kandy"<?php echo $data['district'] === 'Kandy' ? 'selected' : '' ?>>Kandy</option>
-                            <option value="Kegalle"<?php echo $data['district'] === 'Kegalle' ? 'selected' : '' ?>>Kegalle</option>
-                            <option value="Kilinochchi"<?php echo $data['district'] === 'Kilinochchi' ? 'selected' : '' ?>>Kilinochchi</option>
-                            <option value="Kurunegala"<?php echo $data['district'] === 'Kurunegala' ? 'selected' : '' ?>>Kurunegala</option>
-                            <option value="Mannar"<?php echo $data['district'] === 'Mannar' ? 'selected' : '' ?>>Mannar</option>
-                            <option value="Matale"<?php echo $data['district'] === 'Matale' ? 'selected' : '' ?>>Matale</option>
-                            <option value="Matara"<?php echo $data['district'] === 'Matara' ? 'selected' : '' ?>>Matara</option>
-                            <option value="Moneragala"<?php echo $data['district'] === 'Moneragala' ? 'selected' : '' ?>>Moneragala</option>
-                            <option value="Mullaitivu"<?php echo $data['district'] === 'Mullaitivu' ? 'selected' : '' ?>>Mullaitivu</option>
-                            <option value="Nuwara Eliya"<?php echo $data['district'] === 'Nuwara Eliya' ? 'selected' : '' ?>>Nuwara Eliya</option>
-                            <option value="Polonnaruwa"<?php echo $data['district'] === 'Polonnaruwa' ? 'selected' : '' ?>>Polonnaruwa</option>
-                            <option value="Puttalam"<?php echo $data['district'] === 'Puttalam' ? 'selected' : '' ?>>Puttalam</option>
-                            <option value="Ratnapura"<?php echo $data['district'] === 'Ratnapura' ? 'selected' : '' ?>>Ratnapura</option>
-                            <option value="Trincomalee"<?php echo $data['district'] === 'Trincomalee' ? 'selected' : '' ?>>Trincomalee</option>
-                            <option value="Vavuniya"<?php echo $data['district'] === 'Vavuniya' ? 'selected' : '' ?>>Vavuniya</option>
+                            <?php foreach ($districts as $district) : ?>
+                                <option value="<?php echo $district; ?>"<?php echo ($data['district'] === $district) ? 'selected' : ''; ?>>
+                                    <?php echo $district; ?>
+                                </option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                 </div>
@@ -267,7 +264,7 @@ MainNavbar::render($request);
             <h1>Payment History</h1>
             <div class="payment-history-container">
                 <table class="data-table">
-                    <tr>
+                    <tr class="top-table-row">
                         <th>Tutor</th><th>Subject</th><th>Module</th><th>Amount</th><th>Date</th>
                     </tr>
                     <tr>
@@ -289,24 +286,32 @@ MainNavbar::render($request);
         <div class="request-history" id="requests">
             <h1>Pending Tutor Requests</h1>
             <div class="request-history-container">
-                <table class="data-table">
-                    <tr>
-                        <th>Tutor</th><th>Subject</th><th>Module</th><th>Mode</th><th></th>
-                    </tr>
+                <?php if (count($data['requests']) === 0): ?>
+                    <div class="no-data-table-msg">
+                        <h4>There are no pending tutor requests</h4>
+                    </div>
 
-                    <?php
-                    foreach ($data['requests'] as $request) {
-                        echo '<tr>
-                                    <td>' . $request['first_name'] . ' ' . $request['last_name'] . '</td>
-                                    <td>' . $request['subject'] . '</td><td>' . $request['module'] . '</td>
-                                    <td>' . $request['mode'] . '</td>
+                <?php else: ?>
+                    <table class="data-table">
+                        <tr class="top-table-row">
+                            <th>Tutor</th>
+                            <th>Subject</th>
+                            <th>Module</th>
+                            <th>Mode</th>
+                            <th></th>
+                        </tr>
 
-                                    <td><button class="btn req-cancel-btn" data-id="' . $request['id'] . '">Cancel</button></td>
-                            </tr>';
-                        }
-                    ?>
-
-                </table>
+                        <?php foreach ($data['requests'] as $request): ?>
+                            <tr>
+                                <td><?php echo $request['first_name'] . ' ' . $request['last_name']; ?></td>
+                                <td><?php echo $request['subject']; ?></td>
+                                <td><?php echo $request['module']; ?></td>
+                                <td><?php echo $request['mode']; ?></td>
+                                <td><button class="btn req-cancel-btn" data-id="<?php echo $request['id']; ?>">Cancel</button></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </table>
+                <?php endif; ?>
             </div>
         </div>
 

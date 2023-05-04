@@ -1,10 +1,10 @@
 <?php
 class StudentDashboard extends Controller {
-    private ModelStudentDashboard $dashboardModel;
+    private ModelStudentTutoringClass $tutoringClassModel;
     private ModelStudentSubject $subjectModel;
 
     public function __construct() {
-        $this->dashboardModel = $this->model('ModelStudentDashboard');
+        $this->tutoringClassModel = $this->model('ModelStudentTutoringClass');
         $this->subjectModel = $this->model('ModelStudentSubject');
     }
 
@@ -15,7 +15,7 @@ class StudentDashboard extends Controller {
         $data = [];
 
 //        Fetch all the classes of this student
-        $data['tutoring_classes'] = $this->dashboardModel->getTutoringClassByStudentId($request->getUserId());
+        $data['tutoring_classes'] = $this->tutoringClassModel->getTutoringClassByStudentId($request->getUserId());
 
 //        Filter tutoring class list according to the request
         if (!($body['sort-subject'] === '' || $body['sort-subject'] === 'all')) {

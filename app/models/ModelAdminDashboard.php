@@ -144,14 +144,14 @@ class ModelAdminDashboard {
     }
 
     public function numOfStudentReport(){
-        $this->db->query('SELECT * FROM student_report');
+        $this->db->query('SELECT * FROM student_report WHERE is_inquired = 0');
         $this->db->execute();
 
         return $this->db->rowCount();
     }
 
     public function numOfTutorReport(){
-        $this->db->query('SELECT * FROM tutor_report');
+        $this->db->query('SELECT * FROM tutor_report WHERE is_inquired = 0');
         $this->db->execute();
 
         return $this->db->rowCount();
