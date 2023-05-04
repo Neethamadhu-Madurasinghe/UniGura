@@ -169,6 +169,21 @@ h1, h2, h3 {
     justify-content: center;
 }
 
+.error-layout-mode {
+    max-height: 100vh;
+    overflow: hidden;
+}
+.error-layout-background {
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(160, 117, 51, 0.5);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .popup-request-send-success {
     height: 300px;
     width: 450px;
@@ -472,6 +487,10 @@ h1, h2, h3 {
 
 /* Hidden class */
 .hidden {
+    display: none;
+}
+
+.invisible {
     display: none;
 }
 

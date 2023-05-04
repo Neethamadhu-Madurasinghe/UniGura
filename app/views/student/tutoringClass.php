@@ -16,12 +16,34 @@ Header::render(
     'Class DashBoard',
     [
         URLROOT . '/public/css/student/components/main-nav-bar.css',
+        URLROOT . '/public/css/student/components/error-success-popup.css',
         URLROOT . '/public/css/student/tutoring-class.css',
         URLROOT . '/public/css/student/components/tutoring-class-day-card.css'
     ]
 );
 
 ?>
+
+<div
+        class="invisible"
+        id="template-data"
+        data-tutor="<?php echo $data['tutor_id'] ?>"></div>
+
+<div class="error-layout-background invisible">
+
+    <div class="popup-error-message invisible">
+        <img src="<?php echo URLROOT . '/public/img/student/cross.png' ?>" alt="" srcset="">
+        <p id="error-message"></p>
+        <button class="btn btn-search" id="error-ok">OK</button>
+    </div>
+
+    <div class="popup-success-message invisible">
+        <img src="<?php echo URLROOT . '/public/img/student/success.png' ?>" alt="" srcset="">
+        <p id="success-message"></p>
+        <button class="btn btn-search" id="success-ok">OK</button>
+    </div>
+
+</div>
 
 <div class="layout-background hidden">
 
@@ -92,32 +114,40 @@ Header::render(
         </div>
     </div>
 
-    <div class="popup-report hidden">
+    <div class="popup-report invisible">
         <h1>Report a Problem</h1>
-        <form action="">
+        <form action="" id="tutor-report-form">
             <div class="report-reason-container">
-                <div class="reason-container">
-                    <input type="checkbox" name="" id=""><p>Tutor does not conduct class anymore</p>
-                </div>
-                <div class="reason-container">
-                    <input type="checkbox" name="" id=""><p>Content is not as good as marketed</p>
-                </div>
-                <div class="reason-container">
-                    <input type="checkbox" name="" id=""><p>Harrestment</p>
-                </div>
-                <div class="reason-container">
-                    <input type="checkbox" name="" id=""><p>Problamatic profile picture</p>
-                </div>
+
+                <?php
+                foreach ($data['report_reasons'] as $report_reason) {
+                    echo '
+                                <div class="reason-container">
+                                    <input
+                                        type="radio"
+                                        name="reason"
+                                        id="' . $report_reason['id'] . '"
+                                        value="' . $report_reason['id'] . '"
+                                        >
+                                        <label for="' . $report_reason['id'] . '">
+                                               ' . $report_reason['description'] . '
+                                        </label>
+                                </div>
+                            ';
+                }
+                ?>
+
             </div>
             <div class="comments-container">
                 <p>Leave a comment (Optional):</p>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
-            </div>
-            <div class="report-submit-btn-container">
-                <button class="btn"  id="report-cancel">Cancel</button>
-                <button class="btn">Submit</button>
+                <textarea name="report-comment" id="" cols="30" rows="10"></textarea>
             </div>
         </form>
+
+        <div class="report-submit-btn-container">
+            <button class="btn" id="popup-report-cancel">Cancel</button>
+            <button class="btn" id="popup-report-submit">Submit</button>
+        </div>
 
     </div>
 
@@ -222,7 +252,7 @@ Header::render(
         <div class="bottom-button-container">
             <button class="btn" id="reshedule">Request Reschdule</button>
             <button class="btn" id="feeback">Give Feedback</button>
-            <button class="btn" id="report">Report</button>
+            <button class="btn" id="report-tutor-button">Report</button>
         </div>
 
     </div>
@@ -231,8 +261,10 @@ Header::render(
 <?php Footer::render(
     [
         URLROOT . '/public/js/student/student-main-nav-bar.js',
+        URLROOT . '/public/js/student/tutor-profile.js',
         URLROOT . '/public/js/student/tutoring-class.js',
         URLROOT . '/public/js/student/tutoring-class-upload-assignment.js',
+        URLROOT . '/public/js/student/tutor-report-handler.js'
     ]
 );
 ?>

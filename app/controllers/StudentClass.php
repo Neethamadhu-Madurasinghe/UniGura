@@ -3,10 +3,12 @@
 class StudentClass extends Controller {
     private ModelStudentTutoringClass $tutoringClassModel;
     private ModelActivity $activityModel;
+    private ModelStudentReportReason $reportReasonModel;
 
     public function __construct() {
         $this->tutoringClassModel = $this->model('ModelStudentTutoringClass');
         $this->activityModel = $this->model('ModelActivity');
+        $this->reportReasonModel = $this->model('ModelStudentReportReason');
     }
 
     public function tutoringClass(Request $request) {
@@ -97,8 +99,8 @@ class StudentClass extends Controller {
 
         //        Once validation has completed (optionally , POST request is server), get the required data
 
-
         $data = $this->tutoringClassModel->getFullTutoringClassDetails($body['id']);
+        $data['report_reasons'] = $this->reportReasonModel->getStudentReportReason();
 //        echo '<pre>';
 //        print_r($data);
 //        echo '</pre>';

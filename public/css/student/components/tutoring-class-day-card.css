@@ -109,6 +109,21 @@
     overflow-y: scroll;
 }
 
+.class-card-bottom-section::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.class-card-bottom-section::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: var(--dark-orange);
+    visibility: hidden;
+}
+
+.class-card-bottom-section::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
 .activity-row {
     width: 100%;
     display: flex;
