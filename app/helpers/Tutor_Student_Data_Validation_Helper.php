@@ -113,6 +113,7 @@ function validateFilePath(String $filePath, String $messageOnError): String
     }
 }
 
+
 function validateDescription(String $description): String
 {
     if (strlen($description) >= 100) {
