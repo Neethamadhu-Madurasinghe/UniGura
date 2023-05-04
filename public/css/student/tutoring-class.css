@@ -97,6 +97,22 @@ h1, h2, h3 {
     }
 }
 
+.no-days-message-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 45vh;
+}
+
+.no-days-message-container h2 {
+    margin-top: 50px;
+}
+
+.no-days-message-container a {
+    color: var(--bright-orange);
+}
+
+
 .class-card-container {
     width: 100%;
     display: flex;
@@ -144,6 +160,21 @@ h1, h2, h3 {
 
 .layout-background {
     z-index: 1;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(160, 117, 51, 0.5);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-layout-mode {
+    max-height: 100vh;
+    overflow: hidden;
+}
+.error-layout-background {
+    z-index: 2;
     height: 100%;
     width: 100%;
     background-color: rgba(160, 117, 51, 0.5);
@@ -456,6 +487,10 @@ h1, h2, h3 {
 
 /* Hidden class */
 .hidden {
+    display: none;
+}
+
+.invisible {
     display: none;
 }
 

@@ -78,7 +78,7 @@ async function sendClassListRequest() {
                         </div>
                     </div>
                     
-                    <a class="btn btn-enter-class" href="http://localhost/UniGura/student/tutoringClass?id=${tutoringClass.id}">Enter</a>
+                    <a class="btn btn-enter-class" href="http://localhost/UniGura/student/tutoring-class?id=${tutoringClass.id}">Enter</a>
                 </div>
             </div>'`;
         });

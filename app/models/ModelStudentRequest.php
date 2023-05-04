@@ -12,7 +12,8 @@ class ModelStudentRequest {
         $this->db->query('SELECT * FROM request WHERE
                           tutor_id=:tutor_id AND
                           student_id=:student_id AND
-                          class_template_id=:class_template_id');
+                          class_template_id=:class_template_id AND
+                          status=0');
 
         $this->db->bind('tutor_id', $data['tutor_id'], PDO::PARAM_INT);
         $this->db->bind('student_id', $data['student_id'], PDO::PARAM_INT);

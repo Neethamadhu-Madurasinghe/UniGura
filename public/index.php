@@ -252,7 +252,7 @@ $router->registerController(
 );
 $router->registerController('/api/user/validate-otp', [StudentTutorProfile::class, 'changePasswordValidation']);
 $router->registerController('/api/user/change-password', [StudentTutorProfile::class, 'changePassword']);
-$router->registerController('/student/tutoringClass', [StudentClass::class, 'tutoringClass']);
+$router->registerController('/student/tutoring-class', [StudentClass::class, 'tutoringClass']);
 
 
 $router->resolve();
