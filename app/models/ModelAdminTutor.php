@@ -19,6 +19,41 @@ class ModelAdminTutor{
         }
     }
 
+    public function getAllTutorialClassesByTutorId($tutorID)
+    {
+        $this->db->query("SELECT tutoring_class.*, tutoring_class_template.*,subject.name as subjectName,module.name as moduleName,user.first_name as tutor_first_name, user.last_name as tutor_last_name,user.profile_picture as tutor_profile_picture FROM tutoring_class,tutoring_class_template,subject,module,user WHERE tutoring_class.class_template_id = tutoring_class_template.id AND tutoring_class_template.subject_id = subject.id AND tutoring_class_template.module_id = module.id AND tutoring_class.tutor_id = user.id AND user.id = :tutorID");
+        $this->db->bind(':tutorID', $tutorID);
+
+        return $this->db->resultAll();
+    }
+
+
+
+    public function findStudent($studentId)
+    {
+        $this->db->query("SELECT * FROM user WHERE id = :student_id");
+
+        $this->db->bind(':student_id', $studentId);
+
+        return $this->db->resultOne();
+    }
+
+
+
+    public function getTutor($tutorID) {
+        $this->db->query("SELECT tutor.*,user.* FROM tutor,user WHERE tutor.user_id = user.id AND tutor.user_id = :tutorID");
+        $this->db->bind(':tutorID', $tutorID);
+
+        $rows = $this->db->resultOne();
+
+        if ($this->db->rowCount() >= 0) {
+            return $rows;
+        } else {
+            return false;
+        }
+    }
+
+
     public function getTutorContactDetails($tutorID) {
         $this->db->query("SELECT * FROM user WHERE id = :tutor_id");
         $this->db->bind(':tutor_id', $tutorID);
@@ -45,20 +80,6 @@ class ModelAdminTutor{
         }
     }
 
-
-
-    public function getAllTutorialClassesByTutorId($tutorID) {
-        $this->db->query("SELECT * FROM tutoring_class WHERE tutor_id = :tutorID");
-        $this->db->bind(':tutorID', $tutorID);
-
-        $rows = $this->db->resultAll();
-
-        if ($this->db->rowCount() >= 0) {
-            return $rows;
-        } else {
-            return false;
-        }
-    }
 
 
 

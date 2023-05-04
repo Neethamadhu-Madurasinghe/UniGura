@@ -100,6 +100,7 @@
     grid-gap: 40px;
     width: 96%;
     margin: 20px;
+    overflow-y: scroll;
     display: none;
 }
 
@@ -124,6 +125,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 40px;
     width: 96%;
+    overflow-y: scroll;
     margin: 20px;
     display: none;
 }
