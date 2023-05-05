@@ -18,10 +18,10 @@
                 <img src="<?php echo URLROOT ?>/public/img/admin/logo.png" alt="">
             </li>
 
-            
+
             <li class="nav-link active" id="dashboard">
                 <a href="dashboard">
-                    <span class="icon"><i class="fa fa-solid fa-house"></i></span>
+                    <span class="icon"><i class="fa fa-solid fa-house icon"></i></span>
                     <span class="title">Home</span>
                 </a>
             </li>
@@ -51,26 +51,26 @@
             </li>
             <li class="nav-link subjectLink" id="statistic">
                 <a href="statistics">
-                    <span class="icon"><i class="fa fa-solid fa-chart-simple icon "></i></span>
+                    <span class="icon"><i class="fa fa-solid fa-chart-simple icon"></i></span>
                     <span class="title">Statistic</span>
                 </a>
             </li>
             <li class="nav-link" id="request-complaint">
                 <a href="tutorRequest">
-                    <span class="icon"><i class="fa fa-solid fa-user-plus"></i></span>
+                    <span class="icon"><i class="fa fa-solid fa-user-plus icon"></i></span>
                     <span class="title">Request</span>
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <span class="icon"><i class="fa fa-sharp fa-light fa-file-circle-exclamation"></i></span>
+            <li class="nav-link" id="complaint">
+                <a href="studentComplaint">
+                    <span class="icon"><i class="fa fa-sharp fa-light fa-file-circle-exclamation icon"></i></span>
                     <span class="title">Complaint</span>
                 </a>
             </li>
             <li class="nav-link" id="payment">
                 <a href="payment">
                     <!-- <span class="icon"><i class="fa fa-money-bill-wave icon"></i></span> -->
-                    <span class="icon"><i class="fa fa-sharp fa-sack-dollar"></i></span>
+                    <span class="icon"><i class="fa fa-sharp fa-sack-dollar icon"></i></span>
                     <span class="title">Payment</span>
                 </a>
             </li>
@@ -91,7 +91,7 @@
 
             <li class="log-out">
                 <a href="../logout">
-                    <span class="icon"><i class="fa fa-solid fa-right-from-bracket fa-rotate-180"></i></span>
+                    <span class="icon"><i class="fa fa-solid fa-right-from-bracket fa-rotate-180 icon"></i></span>
                     <span class="title">Logout</span>
                 </a>
             </li>

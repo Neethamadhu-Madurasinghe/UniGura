@@ -11,10 +11,6 @@ const body = document.querySelector('body'),
 
 
 
-
-
-
-
 const statistic = document.getElementById("statistic");
 const nav_link = document.querySelectorAll(".nav-link");
 
@@ -23,3 +19,4 @@ nav_link.forEach((link) => {
 })
 
 statistic.classList.add('active');
+

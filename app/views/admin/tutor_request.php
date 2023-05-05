@@ -11,22 +11,13 @@
     <p></p>
 
 
-    <div class="menu-bar">
+    <!-- <div class="menu-bar">
         <div class="menu-bar-selection-btn">
             <div class="tutor-request-btn" id="tutor-request-btn">
                 <a href="tutorRequest"><button id="tutor-request">Tutor Request</button></a>
             </div>
-            <div class="student-complaint-btn" id="student-complaint-btn">
-                <a href="studentComplaint"><button id="student-complaint">Student Complaint</button></a>
-            </div>
-            <div class="tutor-complaint-btn" id="tutor-complaint-btn">
-                <a href="tutorComplaint"><button id="tutor-complaint">Tutor Complaint</button></a>
-            </div>
-            <div class="complaint-setting-btn" id="complaint-setting-btn">
-                <a href="complaintSetting"><button id="complaint-setting">Complaint Setting</button></a>
-            </div>
         </div>
-    </div>
+    </div> -->
 
     <section class="table tutor-request-table" id="tutor-request-table">
         <section class="table-header">

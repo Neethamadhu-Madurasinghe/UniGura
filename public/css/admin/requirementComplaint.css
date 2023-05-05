@@ -9,7 +9,6 @@
 
 /* ----------------------------TABLE---------------------------------- */
 
-
 section.table {
     margin: 20px 50px;
     height: 77vh;
@@ -19,8 +18,12 @@ section.table {
     border-radius: .8rem;
     /* background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%); */
     background-color: #ffb75e;
-
 }
+
+section .tutor-request-table{
+    margin-top: 80px;
+}
+
 
 .table-header {
     width: 100%;

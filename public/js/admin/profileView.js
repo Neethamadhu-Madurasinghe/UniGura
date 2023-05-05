@@ -9,8 +9,6 @@ const body = document.querySelector('body'),
 
 
 
-
-
 const nav_link = document.querySelectorAll(".nav-link");
 const profile = document.getElementById('profile');
 
