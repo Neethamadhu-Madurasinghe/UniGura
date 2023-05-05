@@ -65,7 +65,7 @@
                     </div>
                 </div>
             </div>
-            <div class="class-summary">
+            <!-- <div class="class-summary">
                 <div class="total-class">
                     <h1>Total Classes</h1>
                     <h2>10</h2>
@@ -74,7 +74,7 @@
                     <h1>Pending Amount</h1>
                     <h2>Rs. 1000</h2>
                 </div>
-            </div>
+            </div> -->
         </div>
 
 

@@ -222,9 +222,9 @@
     align-items: center;
     padding: 10px;
     border-radius: 5px;
-    width: 90%;
+    width: 95%;
     margin: 20px auto;
-    background-color: #ffa620a3;
+    background-color: #fff;
 }
 
 .filed-selection-btn button{
@@ -355,7 +355,7 @@
     align-items: center;
     padding: 30px;
     margin: 20px auto;
-    width: 100%;
+    width: 95%;
 }
 
 .pop-time-table h2 {
