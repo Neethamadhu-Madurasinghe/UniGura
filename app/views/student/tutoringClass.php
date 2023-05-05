@@ -28,7 +28,7 @@ Header::render(
         class="invisible"
         id="template-data"
         data-classid="<?php echo $data['id'] ?>"
-        data-tutorid="<?php echo $data['tutor_id'] ?>"
+        data-tutor="<?php echo $data['tutor_id'] ?>"
         data-duration="<?php echo $data['duration'] ?>"
         ></div>
 

@@ -19,7 +19,7 @@ let selectedSlots = new Set();
 
 // If user clicks on request schedule button fetch time slots and show
 rescheduleBtnUI?.addEventListener('click', async (e) => {
-    request.tutor_id = dataElement.dataset.tutorid;
+    request.tutor_id = dataElement.dataset.tutor;
     request.duration = dataElement.dataset.duration;
     request.class_id = dataElement.dataset.classid;
 
