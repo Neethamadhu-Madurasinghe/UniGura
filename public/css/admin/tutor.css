@@ -18,8 +18,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #f2f2f2;
-    border: 2px solid #FC941D;
+    background: #FFFFFF;
+    /* border: 2px solid #FC941D; */
     border-radius: 5px;
     margin-top: 10px;
     margin-bottom: 20px;
@@ -33,7 +33,7 @@
     height: 40px;
     border-radius: 5px;
     padding: 10px;
-    background-color: #f2f2f2;
+    background-color: #FFFFFF;
 }
 
 
@@ -184,10 +184,11 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .subject-filter{
-    border: 2px solid #FC941D;
+    /* border: 2px solid #FC941D; */
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 20px;
+    background-color: #FFFFFF;
 }
 
 .subject-filter h1{
@@ -196,9 +197,10 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .mode-filter{
-    border: 2px solid #FC941D;
+    /* border: 2px solid #FC941D; */
     border-radius: 5px;
     padding: 10px;
+    background-color: #FFFFFF;
     margin-bottom: 20px;
 }
 
@@ -208,9 +210,10 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .duration-filter{
-    border: 2px solid #FC941D;
+    /* border: 2px solid #FC941D; */
     border-radius: 5px;
     padding: 10px;
+    background-color: #FFFFFF;
     margin-bottom: 20px;
 }
 
@@ -221,9 +224,10 @@ input[type="range"]::-moz-range-thumb {
 
 
 .visibility-filter{
-    border: 2px solid #FC941D;
+    /* border: 2px solid #FC941D; */
     border-radius: 5px;
     padding: 10px;
+    background-color: #FFFFFF;
     margin-bottom: 60px;
 }
 
@@ -250,7 +254,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .class-rating{
-    border: 2px solid #FC941D;
+    /* border: 2px solid #FC941D; */
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 20px;
@@ -290,12 +294,12 @@ input[type="range"]::-moz-range-thumb {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #fbc36e;
+    background-color: #FFFFFF;
     /* width: 350px; */
     width: 96%;
     height: 370px;
-    border-radius: 5px;
-    border: 3px solid #FC941D;
+    border-radius: 10px;
+    /* border: 3px solid #FC941D; */
     margin-bottom: 50px;
     position: relative;
 }

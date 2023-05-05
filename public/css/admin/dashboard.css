@@ -119,7 +119,7 @@ body{
 
 .navigation ul li a .title{
     position: absolute;
-    left: 70px;
+    left: 45px;
     display: block;
     background-color: #fff;
     width: auto;
@@ -130,6 +130,7 @@ body{
     visibility: hidden;
     opacity: 0;
     transition: 0.5s;
+    z-index: 100;
 }
 
 

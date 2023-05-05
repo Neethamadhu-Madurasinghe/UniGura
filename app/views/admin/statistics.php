@@ -13,17 +13,17 @@
 
     <div class="statistic-page">
         <div class="div1">
-            <div style="width: 800px;" class="myChart">
+            <div style="width: 810px;" class="myChart">
                 <canvas id="myChart"></canvas>
             </div>
 
-            <div style="width: 320px;" class="myChart2">
+            <div style="width: 450px;" class="myChart2">
                 <canvas id="myChart2"></canvas>
             </div>
         </div>
 
-        <div class="div1">
-            <div style="width: 320px;" class="rating-summary">
+        <div class="div2">
+            <div style="width: 380px;" class="rating-summary">
                 <h1>3.8</h1><br>
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
@@ -34,7 +34,7 @@
                 <h2>67 Total</h2>
             </div>
 
-            <div style="width: 800px;" class="myChart5">
+            <div style="width: 880px;" class="myChart5">
                 <canvas id="myChart5"></canvas>
             </div>
 
@@ -42,11 +42,11 @@
 
 
 
-        <div style="width: 1220px; text-align: center;" class="myChart4">
+        <div style="width: 1310px; text-align: center;" class="myChart4">
             <canvas id="myChart4"></canvas>
         </div>
 
-        <div style="width: 1200px; text-align: center;" class="myChart3">
+        <div style="width: 1310px; text-align: center;" class="myChart3">
             <canvas id="myChart3"></canvas>
         </div>
 

@@ -12,8 +12,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #f2f2f2;
-    border: 2px solid #FC941D;
+    background: #FFFFFF;
+    /* border: 2px solid #FC941D; */
     border-radius: 5px;
     margin-top: 10px;
     margin-bottom: 20px;
@@ -27,7 +27,7 @@
     height: 40px;
     border-radius: 5px;
     padding: 10px;
-    background-color: #f2f2f2;
+    background-color: #FFFFFF;
 }
 
 
@@ -75,11 +75,12 @@
     justify-content: center;
     align-items: center;
     padding: 10px 0;
-    border: 2px solid #FC941D;
+    /* border: 2px solid #FC941D; */
     /* width: 340px; */
     width: 96%;
     border-radius: 10px;
     height: 450px;
+    background-color: #FFFFFF;
     margin-bottom: 25px;
 }
 
@@ -94,7 +95,7 @@
     justify-content: space-around;
     align-items: center;
     width: 96%;
-    border: 2px solid #FC941D;
+    /* border: 2px solid #FC941D; */
     border-radius: 5px;
     padding: 0 5px;
     margin-bottom: 10px;
@@ -105,7 +106,7 @@
     justify-content: left;
     align-items: center;
     width: 96%;
-    border: 2px solid #FC941D;
+    /* border: 2px solid #FC941D; */
     border-radius: 5px;
     padding: 0 5px;
     margin-bottom: 10px;
@@ -272,10 +273,11 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .subject-filter {
-    border: 2px solid #FC941D;
+    /* border: 2px solid #FC941D; */
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 50px;
+    background-color: #FFFFFF;
 }
 
 .subject-filter h1 {
@@ -284,9 +286,10 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .mode-filter {
-    border: 2px solid #FC941D;
+    /* border: 2px solid #FC941D; */
     border-radius: 5px;
     padding: 10px;
+    background-color: #FFFFFF;
     margin-bottom: 20px;
 }
 
@@ -296,10 +299,11 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .fees-filter {
-    border: 2px solid #FC941D;
+    /* border: 2px solid #FC941D; */
     border-radius: 5px;
     padding: 10px;
     height: 240px;
+    background-color: #FFFFFF;
     margin: 20px 0;
 }
 
@@ -317,9 +321,10 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .class-rating {
-    border: 2px solid #FC941D;
+    /* border: 2px solid #FC941D; */
     border-radius: 5px;
     padding: 10px;
+    background-color: #FFFFFF;
     margin-bottom: 20px;
 }
 

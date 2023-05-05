@@ -17,7 +17,8 @@ section.table {
     backdrop-filter: blur(7px);
     box-shadow: 0 .4rem .8rem #0005;
     border-radius: .8rem;
-    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    /* background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%); */
+    background-color: #ffb75e;
 
 }
 
@@ -531,7 +532,7 @@ tbody img{
     color: #333;
     visibility: visible;
     z-index: 1;
-    background-color: #ffa620a3;
+    background-color: #FFFFFF;
     margin-top: 30px;
 }
 

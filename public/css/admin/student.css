@@ -12,11 +12,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #f2f2f2;
-    border: 2px solid #FC941D;
-    border-radius: 5px;
+    /* border: 2px solid #FC941D; */
+    border-radius: 8px;
     margin-top: 10px;
     margin-bottom: 20px;
+    background-color: #f2f2f2;
+
 }
 
 .search-bar {
@@ -25,9 +26,9 @@
     align-items: center;
     width: 100%;
     height: 40px;
-    border-radius: 5px;
+    border-radius: 8px;
     padding: 10px;
-    background-color: #f2f2f2;
+    background-color: #ffffff;
 }
 
 
@@ -206,10 +207,11 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .mode-filter {
-    border: 2px solid #FC941D;
-    border-radius: 5px;
+    /* border: 2px solid #FC941D; */
+    border-radius: 8px;
     padding: 10px;
     margin-bottom: 20px;
+    background-color: #ffffff;
 }
 
 .mode-filter h1 {
@@ -219,9 +221,10 @@ input[type="range"]::-moz-range-thumb {
 
 
 .visibility-filter {
-    border: 2px solid #FC941D;
-    border-radius: 5px;
+    /* border: 2px solid #FC941D; */
+    border-radius: 8px;
     padding: 10px;
+    background-color: #ffffff;
     margin-bottom: 40px;
 }
 
@@ -289,6 +292,8 @@ input[type="range"]::-moz-range-thumb {
     height: 330px;
     background-color: #fbc36e;
     text-align: center;
+    background-color: #ffffff;
+
 }
 
 .card-section .card .profile-picture {

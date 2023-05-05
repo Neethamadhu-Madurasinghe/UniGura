@@ -19,17 +19,61 @@
     color: #FFD700;
 }
 
-.myChart4{
-    margin: 70px 20px;
+
+
+.div2{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 50px 20px;
+}
+
+.div2 .rating-summary{
+    text-align: center;
+}
+
+.div2 .rating-summary h1{
+    font-size: 60px;
+}
+
+.div2 .rating-summary i{
+    font-size: 25px;
+    color: #FFD700;
+}
+
+
+.myChart{
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 10px;
+}
+
+.myChart2{
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 10px;
 }
 
 
 .myChart3{
-    margin: 70px 20px;
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 10px;
+    margin: 70px auto;
 }
 
+
 .myChart4{
-    margin: 70px 20px;
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 10px;
+    margin: 70px auto;
+}
+
+.myChart5{
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 10px;
 }
 
 
