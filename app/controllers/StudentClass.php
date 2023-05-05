@@ -109,6 +109,7 @@ class StudentClass extends Controller {
         $data['date'] = $this->convertShortDayToFullDay($data['date']);
         $data['time'] = $this->convertTimeTo12HourFormat($data['time']);
         $data['report_reasons'] = $this->reportReasonModel->getStudentReportReason();
+        $data['does_reschedule_exit'] = $this->rescheduleModel->doesRequestExist($body['id']);
 //        echo '<pre>';
 //        print_r($data);
 //        echo '</pre>';
@@ -216,6 +217,47 @@ class StudentClass extends Controller {
             }
         } else {
             header("HTTP/1.0 404 Not Found");
+        }
+    }
+
+    public function cancelReschedule(Request $request) {
+        cors();
+
+//      Sending a tutor request is a POST
+        if ($request->isPost()) {
+//          Unauthorized error code
+            if (!$request->isLoggedIn() || !$request->isStudent()) {
+                header("HTTP/1.0 401 Unauthorized");
+                return;
+            }
+
+            $body = json_decode(file_get_contents('php://input'), true);
+            $body['student_id'] = $request->getUserId();
+
+//            Validate request
+            if (!isset($body['class_id'])) {
+                header("HTTP/1.0 400 Bad Request");
+                return;
+            }
+
+//        Check if the student has access to the corresponding rescheduling request
+            function mapTutoringClassToID($tutoringClass) {
+                return $tutoringClass['id'];
+            }
+            $allTutoringClasses = $this->tutoringClassModel->getTutoringClassByStudentId($request->getUserId());
+            $allTutoringClassesId = array_map('mapTutoringClassToID', $allTutoringClasses);
+
+            if (!in_array($body['class_id'], $allTutoringClassesId)) {
+                header("HTTP/1.0 400 Bad Request");
+                return;
+            }
+
+//            Delete the request
+            if ($this->rescheduleModel->deleteRequestByClassId($body['class_id'])) {
+                header("HTTP/1.0 200 Success");
+            }else {
+                header("HTTP/1.0 500 Internal Server Error");
+            }
         }
     }
 

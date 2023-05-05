@@ -3,6 +3,7 @@ const popupTimeTableCancelButtonUI = document.getElementById('time-table-cancel'
 const rescheduleBtnUI = document.getElementById('reschedule');
 const timeTableUI = document.getElementById('time-table');
 const rescheduleSendBtnUI = document.getElementById('reschedule-send');
+const cancelRescheduleBtnUI = document.getElementById('cancel-reschedule');
 
 let unsortedTimeSlots = [];
 let sortedTimeSlots
@@ -17,7 +18,7 @@ let request = {
 let selectedSlots = new Set();
 
 // If user clicks on request schedule button fetch time slots and show
-rescheduleBtnUI.addEventListener('click', async (e) => {
+rescheduleBtnUI?.addEventListener('click', async (e) => {
     request.tutor_id = dataElement.dataset.tutorid;
     request.duration = dataElement.dataset.duration;
     request.class_id = dataElement.dataset.classid;
@@ -142,6 +143,7 @@ rescheduleSendBtnUI.addEventListener('click', async () => {
                     request.duration = 0;
                     selectedSlots.clear();
                     getNotifications();
+                    location.reload();
                 })
                 break;
 
@@ -156,6 +158,48 @@ rescheduleSendBtnUI.addEventListener('click', async () => {
         showErrorMessage('Please select at least one time slot');
     }
 });
+
+// Cancel a rescheduling that is already been sent
+cancelRescheduleBtnUI?.addEventListener('click', async() => {
+    const response = await fetch('http://localhost/unigura/api/student/delete-rescheduling', {
+        method: 'POST',
+        credentials: "include",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            class_id: dataElement.dataset.classid
+        })
+    });
+
+    const status = response.status;
+
+    switch (status) {
+        case 401:
+            showErrorMessage('You have no permission to send this request.', () => {
+                document.location.href = '../logout';
+            });
+            break;
+
+        case 400:
+            showErrorMessage('Request is not in correct format. Please try again');
+            break;
+
+        case 500:
+            showErrorMessage('Internal server error. Please try again');
+            break;
+
+        case 200:
+            showSuccessMessage('Rescheduling request cancelled', () => {
+                hideTimeTable()
+                location.reload();
+            })
+            break;
+
+        default:
+            showErrorMessage('An error occurred. Please try again')
+    }
+})
 
 // function to hide timetable
 function hideTimeTable() {

@@ -232,7 +232,11 @@ Header::render(
 
 
         <div class="bottom-button-container">
+            <?php if($data['does_reschedule_exit']): ?>
+            <button class="btn" id="cancel-reschedule">Cancel Reschedule</button>
+            <?php else:?>
             <button class="btn" id="reschedule">Request Reschedule</button>
+            <?php endif; ?>
             <button class="btn" id="feedback">Give Feedback</button>
             <button class="btn" id="report-tutor-button">Report Tutor</button>
         </div>

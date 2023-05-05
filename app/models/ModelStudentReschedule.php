@@ -32,4 +32,11 @@ class ModelStudentReschedule {
 
         return $this->db->commitTransaction();
     }
+
+    public function deleteRequestByClassId(int $id): bool {
+        $this->db->query('DELETE FROM reschedule WHERE tutoring_class_id=:id');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        return $this->db->execute();
+    }
 }

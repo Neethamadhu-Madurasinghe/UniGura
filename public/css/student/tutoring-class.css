@@ -491,6 +491,10 @@ h1, h2, h3 {
     background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
 }
 
+#cancel-reschedule {
+    background: red;
+}
+
 /* Hidden class */
 .hidden {
     display: none;
