@@ -36,6 +36,15 @@ async function sendClassListRequest() {
 
         classCardContainerUI.innerHTML = '';
 
+        if (tutoringClasses.length === 0) {
+            classCardContainerUI.innerHTML = `
+                <div class="no-class-message-container">
+                     <h1>You have no matching results</h1>
+                     <h3>Add a class by clicking below button</h3>
+                </div>
+            `
+
+        }
         tutoringClasses.forEach(tutoringClass => {
             tutoringClass.class_type = tutoringClass.class_type.charAt(0).toUpperCase() + tutoringClass.class_type.slice(1);
             if (!tutoringClass.tutor.profile_picture) {

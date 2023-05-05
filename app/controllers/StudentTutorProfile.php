@@ -53,7 +53,7 @@ class StudentTutorProfile extends Controller {
         $data['module_name']  = $classTemplateData->module_name? : 'Not Available';
         $data['class_type']  = ucfirst($classTemplateData->class_type)? : 'Not Available';
         $data['name'] = $classTemplateData->first_name . " " . $classTemplateData->last_name;
-            $data['tutor_id'] = $classTemplateData->user_id;
+        $data['tutor_id'] = $classTemplateData->user_id;
 
         switch ($classTemplateData->education_qualification) {
             case 'advanced-level':

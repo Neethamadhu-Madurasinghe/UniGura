@@ -63,7 +63,7 @@ feedbackOkBtnUI.addEventListener('click', async (e) => {
             feedbackFormUI.classList.add('hidden');
             optionalCommentUI.value = '';
         });
-        
+
     } else {
         showErrorMessage("Something went wrong, please try again")
         const data = await response.text();
