@@ -228,7 +228,8 @@ $router->registerController(
 $router->registerController('/api/user/validate-otp', [StudentTutorProfile::class, 'changePasswordValidation']);
 $router->registerController('/api/user/change-password', [StudentTutorProfile::class, 'changePassword']);
 $router->registerController('/student/tutoring-class', [StudentClass::class, 'tutoringClass']);
-$router->registerController('api/create-review', [StudentClass::class, 'createReview']);
+$router->registerController('/api/create-review', [StudentClass::class, 'createReview']);
+$router->registerController('/api/reschedule', [StudentClass::class, 'requestReschedule']);
 
 
 $router->resolve();

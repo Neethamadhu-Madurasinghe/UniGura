@@ -28,7 +28,9 @@ Header::render(
         class="invisible"
         id="template-data"
         data-classid="<?php echo $data['id'] ?>"
-        data-tutor="<?php echo $data['tutor_id'] ?>"></div>
+        data-tutorid="<?php echo $data['tutor_id'] ?>"
+        data-duration="<?php echo $data['duration'] ?>"
+        ></div>
 
 <div class="error-layout-background invisible">
 
@@ -59,37 +61,15 @@ Header::render(
 
         <div class="time-table-container">
             <table id="time-table">
-                <tr class="time-table-titles">
-                    <th>Time</th> <th>Monday</th> <th>Tuesday</th> <th>Wednesday</th> <th>Thursday</th> <th>Friday</th> <th>Satday</th> <th>Sunday</th>
-                </tr>
-
-                <tr>
-                    <th>8.00-10.00</th> <td class="slot slot-used"></td> <td class="slot slot-used"></td> <td class="slot slot-free"></td> <td class="slot slot-free"></td> <td class="slot slot-used"></td> <td class="slot slot-used"></td> <td class="slot slot-used"></td>
-                </tr>
-
-                <tr>
-                    <th>8.00-10.00</th> <td class="slot slot-used"></td> <td class="slot slot-selected"></td> <td class="slot slot-free"></td> <td class="slot slot-free"></td> <td class="slot slot-used"></td> <td class="slot slot-used"></td> <td class="slot slot-used"></td>
-                </tr>
-
-                <tr>
-                    <th>8.00-10.00</th> <td class="slot slot-used"></td> <td class="slot slot-selected"></td> <td class="slot slot-free"></td> <td class="slot slot-free"></td> <td class="slot slot-used"></td> <td class="slot slot-used"></td> <td class="slot slot-used"></td>
-                </tr>
-
-                <tr>
-                    <th>8.00-10.00</th> <td class="slot slot-used"></td> <td class="slot slot-selected"></td> <td class="slot slot-free"></td> <td class="slot slot-free"></td> <td class="slot slot-used"></td> <td class="slot slot-used"></td> <td class="slot slot-used"></td>
-                </tr>
-
-                <tr>
-                    <th>8.00-10.00</th> <td class="slot slot-used"></td> <td class="slot slot-selected"></td> <td class="slot slot-free"></td> <td class="slot slot-free"></td> <td class="slot slot-used"></td> <td class="slot slot-used"></td> <td class="slot slot-used"></td>
-                </tr>
-
-                </tr>
+                <caption class="invisible"></caption>
+                <th></th>
+                <!-- Time slot data goes here -->
             </table>
         </div>
 
         <div class="popup-button-container">
-            <button class="btn btn-search" id="timetable-cancel">Cancel</button>
-            <button class="btn btn-search">Request</button>
+            <button class="btn btn-search" id="time-table-cancel">Cancel</button>
+            <button class="btn btn-search" id="reschedule-send">Request</button>
         </div>
 
     </div>
@@ -173,6 +153,7 @@ Header::render(
         <h1 class="main-title"><?php echo $data['module_name'] . ' - ' . ucwords($data['class_type']) ?></h1>
         <h2 class="sub-title"><?php echo $data['subject_name'] ?></h2>
         <h3 class="tutor-name"><?php echo $data['tutor_name'] ?></h3>
+        <h2 class="date-time"><?php echo $data['date'] . ' @ ' . $data['time'] ?></h2>
 
         <div class="progress-bar-container">
             <h2>Progress</h2>
@@ -251,8 +232,8 @@ Header::render(
 
 
         <div class="bottom-button-container">
-            <button class="btn" id="reshedule">Request Reschdule</button>
-            <button class="btn" id="feeback">Give Feedback</button>
+            <button class="btn" id="reschedule">Request Reschedule</button>
+            <button class="btn" id="feedback">Give Feedback</button>
             <button class="btn" id="report-tutor-button">Report Tutor</button>
         </div>
 
@@ -266,7 +247,8 @@ Header::render(
         URLROOT . '/public/js/student/tutoring-class.js',
         URLROOT . '/public/js/student/tutoring-class-upload-assignment.js',
         URLROOT . '/public/js/student/tutor-report-handler.js',
-        URLROOT . '/public/js/student/tutor-feedback.js'
+        URLROOT . '/public/js/student/tutor-feedback.js',
+        URLROOT . '/public/js/student/reschedule-handler.js'
     ]
 );
 ?>

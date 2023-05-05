@@ -54,6 +54,10 @@ h1, h2, h3 {
 
 .tutor-name {
     color: #8F8989;
+    margin: 0;
+}
+
+.date-time {
     margin: 10px 0;
 }
 
