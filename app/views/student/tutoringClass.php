@@ -9,7 +9,7 @@
 require_once APPROOT . '/views/common/inc/Header.php';
 require_once APPROOT . '/views/common/inc/Footer.php';
 require_once APPROOT . '/views/student/inc/components/MainNavbar.php';
-require_once APPROOT . '/views/student/inc/components/TutoringClassCard.php';
+require_once APPROOT . '/views/student/inc/components/TutoringClassDay.php';
 
 
 Header::render(
@@ -173,59 +173,11 @@ Header::render(
                     <h2>Currently you have no days or activities available. <a href="<?php echo ' ' . URLROOT . '/student/chat' ?>"> Please contact you tutor</a></h2>
                 </div>
             <?php else: ?>
-                <?php foreach ($data['days'] as $day): ?>
-                <div class="class-card">
-                <div class="class-card-top-section">
-                    <h2>Day <?php echo $day['position'] . ' - ' . $day['title'] ?></h2>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" name="" class="disabled-check-box"  <?php echo $day['is_completed'] == 1 ? 'checked' : ''?> disabled >
-                        <span class="checkmark disabled"></span>
-                    </label>
-                </div>
-
-                <div class="class-card-bottom-section">
-                    <?php if(empty($day['activities'])): ?>
-                        <p class="activity-component">No visible activities</p>
-                    <?php else:?>
-                        <?php foreach($day['activities'] as $activity): ?>
-                            <div class="activity-row">
-    <!--                            Just text-->
-                                <?php if ($activity['type'] == 2): ?>
-                                    <p class="activity-component"><?php echo $activity['description'] ?></p>
-
-    <!--                               File upload - this is a dynamically created form -->
-                                <?php elseif ($activity['type'] == 1): ?>
-                                    <form class="file-upload-form" action="" id="assignment-submit-form-<?php echo $activity['id']?>" method="POST" enctype = "multipart/form-data">
-                                        <label for="file-upload-<?php echo $activity['id']?>" class="file-upload-label activity-component">
-                                            <?php echo $activity['description'] ?>
-                                        </label>
-                                        <input id="file-upload-<?php echo $activity['id']?>" class="file-upload-input" type="file" name="assignment-file" />
-
-                                        <label class="custom-checkbox">
-                                            <input type="checkbox" name="" class="disabled-check-box"  <?php echo $activity['is_completed'] == 1 ? "checked" : ""?> disabled>
-                                            <span class="checkmark disabled"></span>
-                                        </label>
-
-    <!--                                    Hidden input filed for give the activity id-->
-                                        <input type="hidden" name="activity-id" value="<?php echo $activity['id'] ?>">
-                                        <input type="hidden" name="id" value="<?php echo $data['id'] ?>">
-                                    </form>
-
-    <!--                               File download-->
-                                <?php elseif ($activity['type'] == 0) : ?>
-                                    <a href="<?php echo URLROOT . '/load-file?file=' . $activity['link']  ?>" class="activity-component"><?php echo $activity['description'] ?></a>
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" name="" id="" <?php echo $activity['is_completed'] == 1 ? "checked" : ""?> >
-                                        <span class="checkmark"></span>
-                                    </label>
-
-                                <?php endif; ?>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-                </div>
-            </div>
-            <?php endforeach; ?>
+                <?php
+                    foreach ($data['days'] as $day) {
+                        TutoringClassDay::render($day, $data);
+                    }
+                ?>
             <?php endif ?>
 
         </div>
@@ -246,13 +198,15 @@ Header::render(
 
 <?php Footer::render(
     [
+//        'https://www.payhere.lk/lib/payhere.js',
         URLROOT . '/public/js/student/student-main-nav-bar.js',
         URLROOT . '/public/js/student/tutor-profile.js',
         URLROOT . '/public/js/student/tutoring-class.js',
         URLROOT . '/public/js/student/tutoring-class-upload-assignment.js',
         URLROOT . '/public/js/student/tutor-report-handler.js',
         URLROOT . '/public/js/student/tutor-feedback.js',
-        URLROOT . '/public/js/student/reschedule-handler.js'
+        URLROOT . '/public/js/student/reschedule-handler.js',
+        URLROOT . '/public/js/student/payment.js'
     ]
 );
 ?>

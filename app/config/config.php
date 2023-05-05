@@ -14,3 +14,6 @@ define('ROOT', dirname(dirname(dirname(__FILE__))));
 define('URLROOT', 'http://localhost/UniGura');
 define('tunnel_link','https://solid-chicken-invent-192-248-22-102.loca.lt/');
 
+define('MERCHANT_ID', '1222629');
+define('MERCHANT_SECRET', 'MzI5Mjg5NDU5OTM4MTgyMzMwMTYyODM1MjUyODE0MzI2MjYzNTE1Nw==');
+
