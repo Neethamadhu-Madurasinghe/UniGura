@@ -50,11 +50,11 @@ async function sendClassListRequest() {
             if (!tutoringClass.tutor.profile_picture) {
                 tutoringClass['tutor']['profile_picture'] = '/public/img/common/profile.png';
             }
-
+            console.log(tutoringClass)
             if (tutoringClass.day_count > 0) {
-                tutoringClass['completion'] = Math.round(tutoringClass.incomplete_day_count * 100 / tutoringClass.day_count);
+                tutoringClass['completion'] = Math.round((tutoringClass.day_count - tutoringClass.incomplete_day_count) * 100 / tutoringClass.day_count);
             }else {
-                tutoringClass['completion'] = 0;
+                tutoringClass['completion'] = 100;
             }
 
             classCardContainerUI.innerHTML += `

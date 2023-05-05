@@ -58,7 +58,7 @@ class ModelStudentTutoringClass {
 //           Fetch all the incomplete days
             $this->db->query('
                 SELECT COUNT(day.id) as incomplete_day_count FROM tutoring_class JOIN day ON
-                tutoring_class.id= day.class_id WHERE tutoring_class.id=:id AND day.is_completed = 1 AND day.is_hidden = 0'
+                tutoring_class.id= day.class_id WHERE tutoring_class.id=:id AND day.is_completed = 0 AND day.is_hidden = 0'
             );
 
             $this->db->bind('id', $value['id'], PDO::PARAM_INT);
@@ -68,7 +68,7 @@ class ModelStudentTutoringClass {
 //           Payment due
             $this->db->query('
                 SELECT COUNT(day.id) as payment_due_day_count FROM tutoring_class JOIN day ON
-                tutoring_class.id= day.class_id WHERE tutoring_class.id=:id AND day.payment_status = 1'
+                tutoring_class.id= day.class_id WHERE tutoring_class.id=:id AND day.payment_status = 0 AND day.is_completed = 1'
             );
 
             $this->db->bind('id', $value['id'], PDO::PARAM_INT);
