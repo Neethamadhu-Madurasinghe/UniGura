@@ -20,7 +20,7 @@ class ModelStudentReview {
                                 ON review.student_id = user.id WHERE
                                 user.is_banned=:is_banned AND
                                 review.class_template_id=:template_id AND
-                                review.description!=:description');
+                                review.description!=:description ORDER BY review.id DESC');
 
         $this->db->bind('is_banned', 0, PDO::PARAM_INT);
         $this->db->bind('template_id', $id, PDO::PARAM_INT);

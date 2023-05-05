@@ -204,3 +204,6 @@ SELECT COUNT(id) FROM time_slot WHERE time_slot.tutor_id = 16 AND time_slot.stat
 
 SELECT request.id, request.mode, request.class_template_id, user.first_name, user.last_name FROM request INNER JOIN user ON request.tutor_id = user.id WHERE request.id = 20;
 SELECT subject.name AS subject_name, module.name AS module_name FROM tutoring_class_template INNER JOIN subject ON tutoring_class_template.subject_id = subject.id INNER JOIN module ON tutoring_class_template.module_id = module.id WHERE tutoring_class_template.id = 3;
+
+
+CREATE TRIGGER `class_rating` AFTER INSERT ON `review` FOR EACH ROW UPDATE tutoring_class_template SET current_rating = ROUND(((current_rating * rating_count) + NEW.rating) / (rating_count + 1), 1), rating_count = rating_count + 1 WHERE id = NEW.class_template_id;

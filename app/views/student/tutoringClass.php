@@ -27,7 +27,10 @@ Header::render(
 <div
         class="invisible"
         id="template-data"
-        data-tutor="<?php echo $data['tutor_id'] ?>"></div>
+        data-classid="<?php echo $data['id'] ?>"
+        data-tutor="<?php echo $data['tutor_id'] ?>"
+        data-duration="<?php echo $data['duration'] ?>"
+        ></div>
 
 <div class="error-layout-background invisible">
 
@@ -58,59 +61,37 @@ Header::render(
 
         <div class="time-table-container">
             <table id="time-table">
-                <tr class="time-table-titles">
-                    <th>Time</th> <th>Monday</th> <th>Tuesday</th> <th>Wednesday</th> <th>Thursday</th> <th>Friday</th> <th>Satday</th> <th>Sunday</th>
-                </tr>
-
-                <tr>
-                    <th>8.00-10.00</th> <td class="slot slot-used"></td> <td class="slot slot-used"></td> <td class="slot slot-free"></td> <td class="slot slot-free"></td> <td class="slot slot-used"></td> <td class="slot slot-used"></td> <td class="slot slot-used"></td>
-                </tr>
-
-                <tr>
-                    <th>8.00-10.00</th> <td class="slot slot-used"></td> <td class="slot slot-selected"></td> <td class="slot slot-free"></td> <td class="slot slot-free"></td> <td class="slot slot-used"></td> <td class="slot slot-used"></td> <td class="slot slot-used"></td>
-                </tr>
-
-                <tr>
-                    <th>8.00-10.00</th> <td class="slot slot-used"></td> <td class="slot slot-selected"></td> <td class="slot slot-free"></td> <td class="slot slot-free"></td> <td class="slot slot-used"></td> <td class="slot slot-used"></td> <td class="slot slot-used"></td>
-                </tr>
-
-                <tr>
-                    <th>8.00-10.00</th> <td class="slot slot-used"></td> <td class="slot slot-selected"></td> <td class="slot slot-free"></td> <td class="slot slot-free"></td> <td class="slot slot-used"></td> <td class="slot slot-used"></td> <td class="slot slot-used"></td>
-                </tr>
-
-                <tr>
-                    <th>8.00-10.00</th> <td class="slot slot-used"></td> <td class="slot slot-selected"></td> <td class="slot slot-free"></td> <td class="slot slot-free"></td> <td class="slot slot-used"></td> <td class="slot slot-used"></td> <td class="slot slot-used"></td>
-                </tr>
-
-                </tr>
+                <caption class="invisible"></caption>
+                <th></th>
+                <!-- Time slot data goes here -->
             </table>
         </div>
 
         <div class="popup-button-container">
-            <button class="btn btn-search" id="timetable-cancel">Cancel</button>
-            <button class="btn btn-search">Request</button>
+            <button class="btn btn-search" id="time-table-cancel">Cancel</button>
+            <button class="btn btn-search" id="reschedule-send">Request</button>
         </div>
 
     </div>
 
 
     <div class="popup-feedback-form hidden">
-        <h1>Provide Feedback</h1>
+        <h1>Post a review</h1>
         <div class="feedback-star-container">
-            <img src="<?php echo URLROOT . '/public/img/student/big.png' ?>" alt="" srcset="">
-            <img src="<?php echo URLROOT . '/public/img/student/big.png' ?>" alt="" srcset="">
-            <img src="<?php echo URLROOT . '/public/img/student/big.png' ?>" alt="" srcset="">
-            <img src="<?php echo URLROOT . '/public/img/student/big.png' ?>" alt="" srcset="">
-            <img src="<?php echo URLROOT . '/public/img/student/star_inactive.png' ?>" alt="" srcset="">
+            <img id="star-1" class="star" src="<?php echo URLROOT . '/public/img/student/big.png' ?>" alt="" srcset="">
+            <img id="star-2" class="star" src="<?php echo URLROOT . '/public/img/student/star_inactive.png' ?>" alt="" srcset="">
+            <img id="star-3" class="star" src="<?php echo URLROOT . '/public/img/student/star_inactive.png' ?>" alt="" srcset="">
+            <img id="star-4" class="star" src="<?php echo URLROOT . '/public/img/student/star_inactive.png' ?>" alt="" srcset="">
+            <img id="star-5" class="star" src="<?php echo URLROOT . '/public/img/student/star_inactive.png' ?>" alt="" srcset="">
         </div>
         <div class="comments-container">
             <p>Leave a comment (Optional):</p>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
+            <textarea name="" id="feedback-input" cols="30" rows="10"></textarea>
         </div>
 
         <div class="submit-btn-container">
             <button class="btn" id="feedback-cancel">Cancel</button>
-            <button class="btn">Submit</button>
+            <button class="btn" id="feedback-ok">Submit</button>
         </div>
     </div>
 
@@ -172,6 +153,7 @@ Header::render(
         <h1 class="main-title"><?php echo $data['module_name'] . ' - ' . ucwords($data['class_type']) ?></h1>
         <h2 class="sub-title"><?php echo $data['subject_name'] ?></h2>
         <h3 class="tutor-name"><?php echo $data['tutor_name'] ?></h3>
+        <h2 class="date-time"><?php echo $data['date'] . ' @ ' . $data['time'] ?></h2>
 
         <div class="progress-bar-container">
             <h2>Progress</h2>
@@ -250,9 +232,13 @@ Header::render(
 
 
         <div class="bottom-button-container">
-            <button class="btn" id="reshedule">Request Reschdule</button>
-            <button class="btn" id="feeback">Give Feedback</button>
-            <button class="btn" id="report-tutor-button">Report</button>
+            <?php if($data['does_reschedule_exit']): ?>
+            <button class="btn" id="cancel-reschedule">Cancel Reschedule</button>
+            <?php else:?>
+            <button class="btn" id="reschedule">Request Reschedule</button>
+            <?php endif; ?>
+            <button class="btn" id="feedback">Give Feedback</button>
+            <button class="btn" id="report-tutor-button">Report Tutor</button>
         </div>
 
     </div>
@@ -264,7 +250,9 @@ Header::render(
         URLROOT . '/public/js/student/tutor-profile.js',
         URLROOT . '/public/js/student/tutoring-class.js',
         URLROOT . '/public/js/student/tutoring-class-upload-assignment.js',
-        URLROOT . '/public/js/student/tutor-report-handler.js'
+        URLROOT . '/public/js/student/tutor-report-handler.js',
+        URLROOT . '/public/js/student/tutor-feedback.js',
+        URLROOT . '/public/js/student/reschedule-handler.js'
     ]
 );
 ?>

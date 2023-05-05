@@ -54,6 +54,10 @@ h1, h2, h3 {
 
 .tutor-name {
     color: #8F8989;
+    margin: 0;
+}
+
+.date-time {
     margin: 10px 0;
 }
 
@@ -345,7 +349,9 @@ h1, h2, h3 {
     margin: 0 5px;
 }
 
-
+.star {
+    cursor: pointer;
+}
 
 .comments-container {
     width: 90%;
@@ -483,6 +489,10 @@ h1, h2, h3 {
 
 .btn:active {
     background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
+}
+
+#cancel-reschedule {
+    background: red;
 }
 
 /* Hidden class */
