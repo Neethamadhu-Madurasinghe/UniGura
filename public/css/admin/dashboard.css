@@ -53,6 +53,11 @@ body{
 
 }
 
+.navigation ul li.active {
+    background-color: #FFA620;
+}
+
+
 .navigation ul .logo:hover{
     background-color: #fff;
 
@@ -546,3 +551,5 @@ body{
     border-bottom-right-radius: 60px;
     border-bottom-left-radius: 60px;
 }
+
+
