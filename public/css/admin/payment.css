@@ -48,7 +48,7 @@ body {
 .before-selected-payment-right-side .empty-part {
     /* background-color: #fff; */
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 2px solid #F7931A;
     height: 90vh;
     margin: auto -20px;
@@ -67,7 +67,7 @@ body {
 .before-selected-payment-right-side .empty-part .text-part{
     background-color: #fff;
     padding: 20px;
-    border: 2px solid #F7931A;
+    /* border: 2px solid #F7931A; */
     border-radius: 10px;
     margin-bottom: 30px;
 }
@@ -82,7 +82,7 @@ body {
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
-    border: 2px solid #F7931A;
+    /* border: 2px solid #F7931A; */
     height: 90vh;
 }
 
@@ -95,7 +95,7 @@ body {
 }
 
 .payoff-tutors {
-    border: 2px solid #F7931A;
+    /* border: 2px solid #F7931A; */
     padding: 10px;
     border-radius: 5px;
     text-align: center;
@@ -150,7 +150,7 @@ body {
 
 
 .total-payoff{
-    border: 2px solid #F7931A;
+    /* border: 2px solid #F7931A; */
     border-radius: 5px;
     width: fit-content;
     padding: 10px;
@@ -166,7 +166,7 @@ body {
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
-    border: 2px solid #F7931A;
+    /* border: 2px solid #F7931A; */
     border-radius: 5px;
     height: 30px;
 }
@@ -309,7 +309,7 @@ tbody button {
     border-radius: 10px;
     padding: 10px 20px;
     height: 60vh;
-    border: 2px solid #F7931A;
+    /* border: 2px solid #F7931A; */
     width: 500px;
 }
 
@@ -499,7 +499,7 @@ tbody button {
 
 .bank-details {
     width: 45%;
-    border: 2px solid #F7931A;
+    /* border: 2px solid #F7931A; */
     padding: 10px 20px;
     border-radius: 5px;
     height: 60vh;
