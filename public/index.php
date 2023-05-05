@@ -256,6 +256,7 @@ $router->registerController('/student/tutoring-class', [StudentClass::class, 'tu
 $router->registerController('/api/create-review', [StudentClass::class, 'createReview']);
 $router->registerController('/api/reschedule', [StudentClass::class, 'requestReschedule']);
 $router->registerController('/api/student/delete-rescheduling', [StudentClass::class, 'cancelReschedule']);
+$router->registerController('/api/student/toggle-activity-completion', [StudentClass::class, 'toggleActivityComplete']);
 
 
 $router->resolve();

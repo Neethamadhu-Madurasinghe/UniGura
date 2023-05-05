@@ -304,6 +304,53 @@ class StudentClass extends Controller {
         }
     }
 
+    public function toggleActivityComplete(Request $request) {
+        cors();
+
+        $body = json_decode(file_get_contents('php://input'), true);
+
+        if (!$request->isLoggedIn() || !$request->isStudent()) {
+            header("HTTP/1.0 401 Unauthorized");
+            return;
+        }
+
+
+        if ($request->isPost()) {
+            //        validate
+            $isValid = true;
+            if (
+                !isset($body['activity_id']) ||
+                !isset($body['is_select'])
+            ) {
+                $isValid = false;
+            }
+
+//            Check if the user has access to this activity
+            function mapActivityToID($activity) {
+                return $activity['id'];
+            }
+//            Get all the activities user is related to and map them to their id and check a requested id is in it
+            $activities = $this->activityModel->getAllActivitiesByUser($request->getUserId());
+            $activityIds = array_map('mapActivityToID', $activities);
+
+            if (isset($body['activity_id']) && !in_array($body['activity_id'], $activityIds)) {
+                $isValid = false;
+            }
+
+            if ($isValid) {
+                if ($this->activityModel->setActivityCompletion($body['activity_id'], $body['is_select'])) {
+                    header("HTTP/1.0 200 Success");
+                } else {
+                    header("HTTP/1.0 500 Internal Server Error");
+                }
+            } else {
+                header("HTTP/1.0 400 Bad Request");
+            }
+        } else {
+            header("HTTP/1.0 404 Not Found");
+        }
+    }
+
 //    Helper function for format dates
     private function convertShortDayToFullDay(string $shortDay): string {
         switch(strtolower($shortDay)) {
