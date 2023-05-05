@@ -187,9 +187,6 @@ Header::render(
                 console.error('Have Error');
             });
 
-
-
-
     }
 </script>
 </div>

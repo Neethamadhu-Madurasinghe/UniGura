@@ -65,6 +65,7 @@ class ModelTutorPending
         }
     }
 
+
     public function setUserRole($id, $role): bool
     {
         $this->db->query('UPDATE auth SET role=:role WHERE id=:id');
@@ -89,4 +90,17 @@ class ModelTutorPending
 
         return $row->is_approved;
     }
+
+    public function findUserByAccountNumber(String $account_number,String $bank): bool {
+        $this->db->query('SELECT * FROM tutor WHERE bank_name=:bank AND bank_name = :account_number ');
+        $this->db->bind('account_number', $account_number, PDO::PARAM_STR);
+        $this->db->bind('bank', $bank, PDO::PARAM_STR);
+
+
+        $this->db->resultOne();
+
+//      Returns whether the row count is greater than 0
+        return $this->db->rowCount() > 0;
+    }
+
 }

@@ -1,14 +1,17 @@
 <?php
 
-class ModelTutorStudentCompleteProfile {
+class ModelTutorStudentCompleteProfile
+{
     private Database $db;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->db = new Database();
     }
 
-//    Used to set all the profile data of a student
-    public function setTutorStudentProfileDetails($data): void {
+    //    Used to set all the profile data of a student
+    public function setTutorStudentProfileDetails($data): void
+    {
 
         $this->db->query('INSERT INTO user SET
                  id = :id,
@@ -41,10 +44,10 @@ class ModelTutorStudentCompleteProfile {
         $this->db->bind('srid', 4326, PDO::PARAM_INT);
 
         $this->db->execute();
-
     }
 
-    public function setStudentProfileDetails($data): void {
+    public function setStudentProfileDetails($data): void
+    {
         $this->db->query('INSERT INTO student(user_id, year_of_exam, medium) VALUES (:id, :year_of_exam, :medium)');
         $this->db->bind('id', $data['id'], PDO::PARAM_INT);
         $this->db->bind('year_of_exam', $data['year_of_exam'], PDO::PARAM_INT);
@@ -52,7 +55,8 @@ class ModelTutorStudentCompleteProfile {
         $this->db->execute();
     }
 
-    public function setStudentDetails($data): bool {
+    public function setStudentDetails($data): bool
+    {
         $this->db->startTransaction();
 
         $this->setTutorStudentProfileDetails($data);
@@ -62,7 +66,8 @@ class ModelTutorStudentCompleteProfile {
         return $this->db->commitTransaction();
     }
 
-    public function setTutorDetails($data): bool {
+    public function setTutorDetails($data): bool
+    {
         $this->db->startTransaction();
 
         $this->setTutorStudentProfileDetails($data);
@@ -72,8 +77,9 @@ class ModelTutorStudentCompleteProfile {
         return $this->db->commitTransaction();
     }
 
-//    Sets tutor specific data when completing the profile
-    public function setTutorProfileDetails($data): void {
+    //    Sets tutor specific data when completing the profile
+    public function setTutorProfileDetails($data): void
+    {
         $this->db->query('INSERT INTO tutor SET
                  user_id = :id,
                  description = :description,
@@ -94,8 +100,9 @@ class ModelTutorStudentCompleteProfile {
         $this->db->execute();
     }
 
-//    Can be used to change the role
-    public function setUserRole($id, $role): bool {
+    //    Can be used to change the role
+    public function setUserRole($id, $role): bool
+    {
         $this->db->query('UPDATE auth SET role=:role WHERE id=:id');
         $this->db->bind('role', $role, PDO::PARAM_INT);
         $this->db->bind('id', $id, PDO::PARAM_INT);
@@ -103,15 +110,68 @@ class ModelTutorStudentCompleteProfile {
         return $this->db->execute();
     }
 
-    public function findUserByTelephoneNumber(String $telephoneNumber): bool {
+    public function findUserByTelephoneNumber(String $telephoneNumber): bool
+    {
         $this->db->query('SELECT * FROM user WHERE phone_number=:telephone_number');
         $this->db->bind('telephone_number', $telephoneNumber, PDO::PARAM_STR);
 
         $this->db->resultOne();
 
-//      Returns whether the row count is greater than 0
+        //      Returns whether the row count is greater than 0
         return $this->db->rowCount() > 0;
     }
 
+
+
+// *******************  START - created by madusharini (For tutor profile update validation) ********************
+    
+
+    public function findUserByAccountHolderNameForTutor(String $holderName, int $tutor_id): bool
+    {
+        $this->db->query('SELECT * FROM tutor WHERE bank_account_owner=:holderName AND user_id <> :tutor_id');
+        $this->db->bind(':holderName', $holderName);
+        $this->db->bind(':tutor_id', $tutor_id);
+        $this->db->resultAll();
+
+        if ($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function findUserByAccountNumberForTutor(int $accountNumber, int $tutor_id): bool
+    {
+        $this->db->query('SELECT * FROM tutor WHERE bank_account_number=:accountNumber AND user_id <> :tutor_id');
+        $this->db->bind(':accountNumber', $accountNumber);
+        $this->db->bind(':tutor_id', $tutor_id);
+
+        $this->db->resultAll();
+
+        if ($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function findUserByTelephoneNumberForTutor(String $telephoneNumber, int $tutor_id): bool
+    {
+        $this->db->query('SELECT * FROM user WHERE phone_number=:telephone_number AND id <> :tutor_id');
+        $this->db->bind('telephone_number', $telephoneNumber, PDO::PARAM_STR);
+        $this->db->bind(':tutor_id', $tutor_id);
+
+        $this->db->resultAll();
+
+        if ($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+// *******************  END - created by madusharini (For tutor profile update validation) ********************
 
 }

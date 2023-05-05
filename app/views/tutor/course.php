@@ -41,7 +41,7 @@ Header::render(
             </div>
             <div class="button-container">
                 <div class="button1">
-                    <?php echo '<a  href= /unigura/tutor/createday?class_template_id=' . $data["id"] . '><i class="fa-solid fa-plus"></i> Add Day</a>' ?>
+                    <a id='add_day'><i class="fa-solid fa-plus"></i> Add Day</a>
                 </div>
                 <div class="button2">
                     <?php echo '<a  href= /unigura/tutor/dashboard><i class="fa-solid fa-home"></i> Home</a>' ?>
@@ -58,7 +58,6 @@ Header::render(
                         $array = (array) $day;
                         $id = (int) $array['id'];
                         $title = (string) $array['title'];
-                        $meeting_link = (string) $array['meeting_link'];
                         $position = (string) $array['position'];
 
                         echo "
@@ -74,8 +73,10 @@ Header::render(
                         <div></div>
                         <div></div>
                         <button class='left add-activity' id=$id ><i class='fa-solid fa-plus'></i></button>
-                        <button class='middle update-day' id=$id ><i class='fa-solid fa-pen'></i></button>
-                        <button class='right delete-day' id=$id><i class='fa-solid fa-trash'></i></button>
+
+                        <button class='middle update-day' id = $id><i class='fa-solid fa-pen'></i></button>
+                        <button class='right delete-day' id = $id><i class='fa-solid fa-trash'></i></button>
+
                     </div>
                 </div>";
                     }
@@ -166,7 +167,7 @@ Header::render(
                 var subject = document.getElementById('subject').innerText;
                 var module = document.getElementById('module').innerText;
 
-                console.log(subject, module);
+         
 
                 addactivitybtns.forEach(btn => {
                     btn.addEventListener('click', function() {
@@ -176,11 +177,10 @@ Header::render(
 
 
                 var document_containers = document.querySelectorAll(".textbox_one");
-                
+
 
                 document_containers.forEach(container => {
                     const url = "http://localhost/unigura/tutor/getactivity?id=" + container.dataset.id;
-                    
                     fetch(url)
                         .then(response => response.json())
                         .then(data => {
@@ -189,12 +189,41 @@ Header::render(
                                     let code = `<img class='img02' src='http://localhost/UniGura/public/img/tutor/class/icons/file.png'><a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;' href = "http://localhost/unigura/tutor/viewactivitydoc?file=${data[i].link}">${data[i].description}</a>`;
                                     container.innerHTML += code;
                                 }
-                            } 
+                            }
                         })
                         .catch(error => {
                             console.error(error);
                         });
-            
+                })
+
+
+
+                var updatedaybtns = document.querySelectorAll(".update-day");
+
+
+                updatedaybtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        window.location = "http://localhost/unigura/tutor/updateday?id=" + this.id + "&subject=" + subject + "&module=" + module + "&course_id=" + <?php echo $data['id'] ?>;
+                    })
+                })
+
+
+                var deletedaybtns = document.querySelectorAll(".delete-day");
+
+
+                deletedaybtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        window.location = "http://localhost/unigura/tutor/deleteday?id=" + this.id + "&subject=" + subject + "&module=" + module + "&course_id=" + <?php echo $data['id'] ?>;
+                    })
+                })
+
+                let cid = '<?php echo $data['id'] ?>';
+                let subject_name = '<?php echo $data['subject'] ?>';
+                let module_name =  '<?php echo $data['module'] ?>'
+
+
+                document.querySelector('.button1').addEventListener('click',function(){
+                    window.location = `http://localhost/unigura/tutor/createday?class_template_id=${cid}&subject=${subject_name}&module=${module_name}?>`
                 })
 
                 var updatedaybtns = document.querySelectorAll(".update-day");

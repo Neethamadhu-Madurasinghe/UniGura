@@ -6,21 +6,6 @@
  */
 ?>
 
-<?php
-require_once APPROOT . '/views/common/inc/Header.php';
-require_once APPROOT . '/views/common/inc/Footer.php';
-
-
-Header::render(
-     'Tutor Dashboard',
-     [
-          URLROOT . '/public/css/tutor/base.css?v=1.0',
-
-     ]
-);
-
-
-?>
 
 <?php
 require_once APPROOT . '/views/common/inc/Header.php';
@@ -28,11 +13,11 @@ require_once APPROOT . '/views/common/inc/Footer.php';
 
 
 Header::render(
-     'Create Class',
+     'Add Activity',
      [
           'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css',
           'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css',
-          URLROOT . '/public/css/tutor/forms.css?v=1.2'
+          URLROOT . '/public/css/tutor/forms.css?v=1.5'
      ]
      //    Student base style is used here, because In this part, both student and tutor looks same
 );
@@ -59,7 +44,10 @@ Header::render(
                               <div Class="Uploadbox">
                                    <div>
                                         <input name="id" value="<?php echo $data['id'] ?>" type="hidden">
-                                        <input name="course_id" value="<?php echo $data['c_id'] ?>" type="hidden">
+                                        <input name="subject" value="<?php echo $data['subject'] ?>" type="hidden">
+                                        <input name="module" value="<?php echo $data['module'] ?>" type="hidden">
+                                        <input name="c_id" value="<?php echo $data['c_id'] ?>" type="hidden">
+
                                         <input style="width : 100% " name='description' type="text">
                                         <input type="file" id="activity-doc" name="activity-doc" hidden />
                                    </div>

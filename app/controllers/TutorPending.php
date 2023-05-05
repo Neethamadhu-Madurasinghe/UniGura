@@ -13,7 +13,6 @@ class TutorPending extends Controller
 
     public function tutorPending(Request $request)
     {
-
         if (!$request->isLoggedIn()) {
             redirect('/login');
         }
@@ -27,7 +26,6 @@ class TutorPending extends Controller
         if ($request->isProfileNotCompletedTutor()) {
             redirectBasedOnUserRole($request);
         }
-
 
         if ($request->isBankDetialsNotCompletedTutor()) {
             redirectBasedOnUserRole($request);
@@ -129,9 +127,26 @@ class TutorPending extends Controller
                 ]
             ];
 
+            $hasErrors = FALSE;
+
             //           Validate all the fields -- must implement
 
-            $hasErrors = FALSE;
+           
+            if($data['bank'] == ''){
+                $hasErrors = TRUE;
+                $data['errors']['account_name_error'] = 'Bank is Not Selected';
+            }
+
+            if($data['branch'] == ''){
+                $hasErrors = TRUE;
+                $data['errors']['account_name_error'] = 'Bank is Not Selected';
+            }
+
+            $data['errors']['account_name_error'] = validateAccountName($data['account_name']);
+            $data['errors']['account_number_error'] = validateAccountNumber($data['account_number'],$data['bank'],$this->tutorPendingModel);
+
+
+          
 
             foreach ($data['errors'] as $errorString) {
                 if ($errorString !== '') {
@@ -142,7 +157,7 @@ class TutorPending extends Controller
                 //              Not storing user's location if he selected online mode
                 $tutor_id = $request->getUserId();
                 if ($this->tutorPendingModel->setTutorBankDetails($data, $tutor_id) && $this->tutorPendingModel->setUserRole($tutor_id, 10)) {
-                    $_SESSION['user_role'] = 1;
+                    $_SESSION['user_role'] = 10;
                     redirect('tutor/tutor-time-slot-input');
                 } else {
                     header("HTTP/1.0 500 Internal Server Error");
@@ -220,9 +235,5 @@ class TutorPending extends Controller
         echo json_encode([
             "message" => "Data saved successfully"
         ]);
-
-        
-
-        
     }
 }

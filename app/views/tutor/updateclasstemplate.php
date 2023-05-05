@@ -9,22 +9,6 @@
 <?php
 require_once APPROOT . '/views/common/inc/Header.php';
 require_once APPROOT . '/views/common/inc/Footer.php';
-require_once APPROOT . '/views/tutor/inc/components/MainNavbar.php';
-
-Header::render(
-    'Tutor Dashboard',
-    [
-        URLROOT . '/public/css/tutor/base.css?v=1.0',
-        URLROOT . '/public/css/tutor/dashboard.css?v=1.8'
-    ]
-);
-
-MainNavbar::render($request);
-?>
-
-<?php
-require_once APPROOT . '/views/common/inc/Header.php';
-require_once APPROOT . '/views/common/inc/Footer.php';
 
 
 Header::render(
@@ -32,20 +16,21 @@ Header::render(
     [
         'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css',
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css',
-        URLROOT . '/public/css/common/student-base-style.css',
         URLROOT . '/public/css/tutor/forms.css?v=1.1'
     ]
     //    Student base style is used here, because In this part, both student and tutor looks same
 );
 ?>
 
+
 <div class="lightbox">
     <div class="box" style="top: 10%;">
         <h2 style="text-align: center;width: 100%;padding-bottom: 10px; font-weight: 400;">Update Course</h2>
+        <button class="close close_x"><i class="fa fa-times "></i></button>
         <div class="form_container">
             <form action="" method="POST" enctype='multipart/form-data'>
                 <div class="grid">
-                <input type="hidden"  name="id" id="" value="<?php echo $data['id'] ?>">
+                    <input type="hidden" name="id" id="" value="<?php echo $data['id'] ?>">
                     <div class="dropdown">
                         <div class="dropdown_name">
                             <label for="Session Fee">Session Fee</label><br>
@@ -57,11 +42,10 @@ Header::render(
                         <div class="dropdown_name">
                             <label for="Duration">Duration per Session</label>
                         </div>
-
                         <select name="duration" id="duration">
                             <?php
                             $duration_array = array(2, 4, 6);
-                            $selected_duration= $data['duration'];
+                            $selected_duration = $data['duration'];
 
                             echo "<option value=$selected_duration>$selected_duration Hours</option>";
                             for ($i = 0; $i < count($duration_array); $i++) {
@@ -76,10 +60,10 @@ Header::render(
                         <div class="dropdown_name">
                             <label for="Mode">Mode</label>
                         </div>
-                        <select  name="mode" id="mode">
+                        <select name="mode" id="mode">
                             <?php
                             $mode_array = array("Physical", "Online", "Both");
-                            $selected_mode= $data['mode'];
+                            $selected_mode = $data['mode'];
 
                             echo "<option value=$selected_mode>$selected_mode</option>";
                             for ($i = 0; $i < count($mode_array); $i++) {
@@ -97,6 +81,15 @@ Header::render(
         </form>
     </div>
 
+    <script>
+        const close = document.querySelector('.close_x');
+
+        if (close) {
+            close.addEventListener('click', function() {
+                window.location = "http://localhost/unigura/tutor/dashboard";
+            });
+        }
+    </script>
     <?php Footer::render(
         []
     ); ?>

@@ -11,7 +11,7 @@
 
     --body-color: #fdf2ea;
     --sidebar-color: #FFFFFF;
-    --primary-color: #FFA620;
+    --primary-color: #ff8800;
     --primary-color-light: #fdf2ea;
     --toggle-color: rgb(221, 221, 221);
     --text-color: #707070;
@@ -57,6 +57,11 @@ body.dark {
 
 .sidebar.close {
     width: 88px;
+}
+
+.sidebar.close:hover {
+    width: 88px;
+    background-color: #fff;
 }
 
 
@@ -206,6 +211,7 @@ body.dark .sidebar header .toggle {
     background-color: var(--primary-color);
 }
 
+
 .sidebar li a:hover .icon,
 .sidebar li a:hover .text {
     color: var(--sidebar-color);
@@ -239,6 +245,30 @@ body.dark .sidebar li a:hover .text {
     height: 50px;
     width: 60px;
 }
+
+.notification-icon {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .notification-count {
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 16px;
+  }
+
+  .noti-color{
+    background-color: red;
+  }
 
 .mode .sun-moon i {
     position: absolute;
@@ -290,6 +320,8 @@ body.dark .mode .sun-moon i.moon {
     transition: var(--tran-04);
 }
 
+
+
 body.dark .switch::before {
     left: 20px;
 }
@@ -323,21 +355,20 @@ body.dark .switch::before {
     background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
     transition: transform 0.1s;
     user-select: none;
     padding: 10px;
     text-align: center;
     margin-top: 10px;
+    font-weight: 600;
 }
 
 .btn:hover {
-    transform: scale(1.05);
+   background-color:  #f7721a8a;
+    
 }
 
-.btn:active {
-    background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
-}
 
 

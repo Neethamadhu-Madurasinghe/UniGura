@@ -45,6 +45,20 @@
     border-radius: 10px;
 }
 
+.classes.textbox_activity{
+    color: rgba(112, 124, 151, 1) ;
+     margin-top: 8px;
+     text-align: justify;
+     margin-bottom: 0px
+}
+.classes.payment{
+    text-align: right;
+    font-size: 17px;
+    font-weight: 600;
+    color:#f7721adc;
+    margin-top: 5px;
+}
+
 
 
 
