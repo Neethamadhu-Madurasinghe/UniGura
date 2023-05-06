@@ -16,7 +16,7 @@
         <button id="student-complaint-back-btn"><i class="fa-regular fa-circle-left"></i> <span>Back</span></button>
     </div> -->
 
-    <div class="complain-check">
+    <div class="complaint-check">
         <form action="updateStudentComplainInquire" method="POST">
             <input type="hidden" name="complainStatus" id="complainStatus" value="<?php echo $data['oneStudentComplaint']->is_inquired ?>">
             <input type="hidden" name="studentComplaintId" value="<?php echo $data['oneStudentComplaint']->id ?>">

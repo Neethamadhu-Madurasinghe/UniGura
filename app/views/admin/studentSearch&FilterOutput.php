@@ -9,9 +9,9 @@
 
 
 <?php
-    // echo '<pre>';
-    // print_r($data);
-    // echo '</pre>';
+// echo '<pre>';
+// print_r($data);
+// echo '</pre>';
 
 ?>
 
@@ -19,27 +19,22 @@
 <?php foreach ($data as $aStudent) : ?>
     <div class="card">
         <div class="mode-hide-show">
-            <div class="online-physical-both">
-                <?php if ($aStudent->student->mode == 'online') : ?>
-                    <img src="<?php echo URLROOT; ?>/public/img/admin/online.png" alt="" class="online">
-                <?php endif; ?>
-                <?php if ($aStudent->student->mode == 'physical') : ?>
-                    <img src="<?php echo URLROOT; ?>/public/img/admin/physical.png" alt="" class="physical">
-                <?php endif; ?>
-                <?php if ($aStudent->student->mode == 'both') : ?>
-                    <img src="<?php echo URLROOT; ?>/public/img/admin/online.png" alt="" class="online">
-                    <img src="<?php echo URLROOT; ?>/public/img/admin/physical.png" alt="" class="physical">
-                <?php endif; ?>
-
-            </div>
-            <div class="hide-show">
-                <?php if ($aStudent->student->is_banned == '1') : ?>
-                    <img src="<?php echo URLROOT; ?>/public/img/admin/block.png" alt="" class="block">
-                <?php endif; ?>
-                <?php if ($aStudent->student->is_banned == '0') : ?>
-                    <img src="<?php echo URLROOT; ?>/public/img/admin/hide.png" alt="" class="hide">
-                <?php endif; ?>
-            </div>
+            <?php if ($aStudent->student->mode == 'online') : ?>
+                <i class="fa-solid fa-wifi"></i>
+            <?php endif; ?>
+            <?php if ($aStudent->student->mode == 'physical') : ?>
+                <i class="fa fa-solid fa-location-arrow"></i>
+            <?php endif; ?>
+            <?php if ($aStudent->student->mode == 'both') : ?>
+                <i class="fa-solid fa-wifi"></i>
+                <i class="fa fa-solid fa-location-arrow"></i>
+            <?php endif; ?>
+            <?php if ($aStudent->student->is_banned == '1') : ?>
+                <i class="fa-solid fa-lock"></i>
+            <?php endif; ?>
+            <?php if ($aStudent->student->is_banned == '0') : ?>
+                <i class="fa-solid fa-lock-open"></i>
+            <?php endif; ?>
         </div>
         <div class="profile-picture">
             <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="student profile picture">

@@ -11,7 +11,13 @@ body{
 
 .notification{
     /* width: 70%; */
-    margin: 20px 50px;
+    margin: 23px 50px;
+    overflow-y: scroll;
+    height: 92vh;
+}
+
+.notification::-webkit-scrollbar {
+    display: none;
 }
 
 .one-notification{
@@ -26,8 +32,8 @@ body{
     padding: 0px 10px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-
 }
+
 
 .profile-img img{
     width: 60px;

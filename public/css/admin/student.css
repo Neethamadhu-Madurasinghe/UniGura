@@ -432,11 +432,20 @@ input[type="range"]::-moz-range-thumb {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: column;
     width: 95%;
     position: relative;
-    top: 30px;
+    /* top: 10px; */
     padding: 10px;
     height: 20px;
+    left: 127px;
+    /* background: #000; */
+}
+
+
+.mode-hide-show i{
+    margin-bottom: 10px;
+    font-size: 18px;
 }
 
 
@@ -448,7 +457,7 @@ input[type="range"]::-moz-range-thumb {
     margin-bottom: 20px;
 }
 
-.card-section .hide-show img{
+.card-section .mode-hide-show img{
     width: 32px;
     margin-top: 10px;
 }

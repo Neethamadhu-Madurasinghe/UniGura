@@ -11,8 +11,6 @@ const body = document.querySelector('body'),
 
 
 
-
-
 const tutor = document.getElementById("tutor");
 const nav_link = document.querySelectorAll(".nav-link");
 
@@ -54,8 +52,8 @@ function menuSelection () {
             info_2[i].style.display = 'none';
             info_3[i].style.display = 'none';
             menu_1[i].style.backgroundColor = 'white';
-            menu_2[i].style.backgroundColor = '#fbc36e';
-            menu_3[i].style.backgroundColor = '#fbc36e';
+            menu_2[i].style.backgroundColor = '#ffb75e';
+            menu_3[i].style.backgroundColor = '#ffb75e';
 
         });
     }
@@ -66,9 +64,9 @@ function menuSelection () {
             info_1[i].style.display = 'none';
             info_2[i].style.display = 'block';
             info_3[i].style.display = 'none';
-            menu_1[i].style.backgroundColor = '#fbc36e';
+            menu_1[i].style.backgroundColor = '#ffb75e';
             menu_2[i].style.backgroundColor = 'white';
-            menu_3[i].style.backgroundColor = '#fbc36e';
+            menu_3[i].style.backgroundColor = '#ffb75e';
         });
     }
 
@@ -78,8 +76,8 @@ function menuSelection () {
             info_1[i].style.display = 'none';
             info_2[i].style.display = 'none';
             info_3[i].style.display = 'block';
-            menu_1[i].style.backgroundColor = '#fbc36e';
-            menu_2[i].style.backgroundColor = '#fbc36e';
+            menu_1[i].style.backgroundColor = '#ffb75e';
+            menu_2[i].style.backgroundColor = '#ffb75e';
             menu_3[i].style.backgroundColor = 'white';
         });
     }
@@ -183,7 +181,7 @@ function showProfileBtn () {
         card[i].addEventListener('mouseenter', function () {
             cardBlurEffect[i].style.height = '70%';
             viewProfileBtn[i].style.zIndex = '10';
-            card[i].style.backgroundColor = '#fbc36e';
+            card[i].style.backgroundColor = '#ffb75e';
         });
     }
 
@@ -191,7 +189,7 @@ function showProfileBtn () {
         card[i].addEventListener('mouseleave', function () {
             cardBlurEffect[i].style.height = '0%';
             viewProfileBtn[i].style.zIndex = '-1';
-            card[i].style.backgroundColor = '#fbc36e';
+            card[i].style.backgroundColor = '#ffb75e';
 
         });
     }

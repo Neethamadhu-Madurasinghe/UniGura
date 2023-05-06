@@ -20,36 +20,30 @@
             <?php foreach ($data as $aTutor) : ?>
                 <div class='card'>
                     <div class="mode-hide-show">
-                        <div class="online-physical-both">
-                            <?php if ($aTutor->contactDetails->mode == 'online') : ?>
-                                <img src="<?php echo URLROOT; ?>/public/img/admin/online.png" alt="" class="online">
-                            <?php endif; ?>
-                            <?php if ($aTutor->contactDetails->mode == 'physical') : ?>
-                                <img src="<?php echo URLROOT; ?>/public/img/admin/physical.png" alt="" class="physical">
-                            <?php endif; ?>
-                            <?php if ($aTutor->contactDetails->mode == 'both') : ?>
-                                <img src="<?php echo URLROOT; ?>/public/img/admin/online.png" alt="" class="online">
-                                <img src="<?php echo URLROOT; ?>/public/img/admin/physical.png" alt="" class="physical">
-                            <?php endif; ?>
+                        <?php if ($aTutor->contactDetails->mode == 'online') : ?>
+                            <i class="fa-solid fa-wifi"></i>
+                        <?php endif; ?>
+                        <?php if ($aTutor->contactDetails->mode == 'physical') : ?>
+                            <i class="fa fa-solid fa-location-arrow"></i>
+                        <?php endif; ?>
+                        <?php if ($aTutor->contactDetails->mode == 'both') : ?>
+                            <i class="fa-solid fa-wifi"></i>
+                            <i class="fa fa-solid fa-location-arrow"></i>
+                        <?php endif; ?>
 
-                        </div>
-                        <div class="hide-show">
-                            <?php if ($aTutor->contactDetails->is_banned == '1') : ?>
-                                <img src="<?php echo URLROOT; ?>/public/img/admin/block.png" alt="" class="block">
-                            <?php endif; ?>
-                            <?php if ($aTutor->contactDetails->is_banned == '0') : ?>
-                                <img src="<?php echo URLROOT; ?>/public/img/admin/hide.png" alt="" class="hide">
-                            <?php endif; ?>
-                        </div>
+                        <?php if ($aTutor->contactDetails->is_banned == '1') : ?>
+                            <i class="fa-solid fa-lock"></i>
+                        <?php endif; ?>
+                        <?php if ($aTutor->contactDetails->is_banned == '0') : ?>
+                            <i class="fa-solid fa-lock-open"></i>
+                        <?php endif; ?>
 
-                        <div class="hide-show">
-                            <?php if ($aTutor->is_hidden == '1') : ?>
-                                <img src="<?php echo URLROOT; ?>/public/img/admin/block.png" alt="" class="block">
-                            <?php endif; ?>
-                            <?php if ($aTutor->is_hidden == '0') : ?>
-                                <img src="<?php echo URLROOT; ?>/public/img/admin/hide.png" alt="" class="hide">
-                            <?php endif; ?>
-                        </div>
+                        <?php if ($aTutor->is_hidden == '1') : ?>
+                            <i class="fa-solid fa-eye-slash"></i>
+                        <?php endif; ?>
+                        <?php if ($aTutor->is_hidden == '0') : ?>
+                            <i class="fa-solid fa-eye"></i>
+                        <?php endif; ?>
                     </div>
 
                     <div class='profile-picture'>
