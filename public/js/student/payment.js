@@ -3,7 +3,6 @@ const paymentBtnsUI = Array.from(document.querySelectorAll('.btn-payment'));
 paymentBtnsUI.forEach(paymentBtnUI => {
     paymentBtnUI.addEventListener('click', (e) => {
         const dataElementUI = e.target.nextElementSibling;
-        console.log(dataElementUI);
         const paymentData = {
             "sandbox": true,
             "merchant_id": dataElementUI.dataset.merchant_id,    // Replace your Merchant ID
@@ -27,24 +26,26 @@ paymentBtnsUI.forEach(paymentBtnUI => {
         };
 
         console.log(paymentData);
+        payhere.onCompleted = function onCompleted(orderId) {
+            console.log("Payment completed. OrderID:" + orderId);
+            // Note: validate the payment and show success or failure page to the customer
+        };
+
+        // Payment window closed
+        payhere.onDismissed = function onDismissed() {
+            // Note: Prompt user to pay again or show an error page
+            console.log("Payment dismissed");
+        };
+
+        // Error occurred
+        payhere.onError = function onError(error) {
+            // Note: show an error page
+            console.log("Error:"  + error);
+        };
+
+        payhere.startPayment(paymentData);
+
     });
 
-    payhere.onCompleted = function onCompleted(orderId) {
-        console.log("Payment completed. OrderID:" + orderId);
-        // Note: validate the payment and show success or failure page to the customer
-    };
 
-    // Payment window closed
-    payhere.onDismissed = function onDismissed() {
-        // Note: Prompt user to pay again or show an error page
-        console.log("Payment dismissed");
-    };
-
-    // Error occurred
-    payhere.onError = function onError(error) {
-        // Note: show an error page
-        console.log("Error:"  + error);
-    };
-
-    payhere.startPayment(payment);
 })

@@ -198,7 +198,7 @@ Header::render(
 
 <?php Footer::render(
     [
-//        'https://www.payhere.lk/lib/payhere.js',
+        'https://www.payhere.lk/lib/payhere.js',
         URLROOT . '/public/js/student/student-main-nav-bar.js',
         URLROOT . '/public/js/student/tutor-profile.js',
         URLROOT . '/public/js/student/tutoring-class.js',

@@ -153,9 +153,9 @@ class StudentClass extends Controller {
         ];
 
 
-        echo '<pre>';
-        print_r($data);
-        echo '</pre>';
+//        echo '<pre>';
+//        print_r($data);
+//        echo '</pre>';
 
         $this->view('/student/tutoringClass', $request, $data);
     }
