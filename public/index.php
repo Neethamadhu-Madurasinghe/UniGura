@@ -82,6 +82,8 @@ $router->registerController('/admin/uploadBankSlip', [AdminPayment::class, 'uplo
 $router->registerController('/admin/notification', [AdminNotification::class, 'notification']);
 $router->registerController('/admin/notification/clearNotification', [AdminNotification::class, 'clearNotification']);
 $router->registerController('/admin/notificationCount', [AdminNotification::class, 'notificationCount']);
+$router->registerController('/admin/deleteNotification', [AdminNotification::class, 'deleteNotification']);
+
 
 
 

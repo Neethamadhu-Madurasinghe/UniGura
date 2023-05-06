@@ -16,23 +16,23 @@
 
             <div class="one-notification">
                 <div class="notification-header">
-                    <div class="notification-info">
-                        <div class="profile-img">
-                        <img src="<?php echo URLROOT ?><?php echo $notification->user->profile_picture ?>" alt="user profile picture">
+                    <a href="<?php echo $notification->link ?>">
+                        <div class="notification-info">
+                            <div class="notification-title">
+                                <h3><?php echo $notification->title ?></h3>
+                                <h5><?php echo explode(' ', $notification->created_at)[0] ?> | <?php echo explode(' ', $notification->created_at)[1] ?>&nbsp&nbsp(6 hours ago)</h5>
+                            </div>
                         </div>
-
-                        <div class="notification-title">
-                            <h3><?php echo $notification->user->first_name . ' ' . $notification->user->last_name ?> | <?php echo $notification->title ?></h3>
-                            <h5><?php echo explode(' ', $notification->created_at)[0] ?> | <?php echo explode(' ', $notification->created_at)[1] ?></h5>
-                        </div>
-                    </div>
+                    </a>
                     <div class="notification-close">
                         <i class="fa-solid fa-circle-xmark notification-close-btn" notificationID="<?php echo $notification->id ?>"></i>
                     </div>
                 </div>
-                <div class="notification-description">
-                    <p><?php echo $notification->description ?></p>
-                </div>
+                <a href="<?php echo $notification->link ?>">
+                    <div class="notification-description">
+                        <p><?php echo $notification->description ?></p>
+                    </div>
+                </a>
             </div>
 
         <?php endforeach; ?>

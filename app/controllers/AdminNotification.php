@@ -15,7 +15,9 @@ class AdminNotification extends Controller
             redirect('/login');
         }
 
-        $allUnseenNotifications = $this->notificationModel->getAllUnseenNotifications();
+        $adminID = $request->getUserId();
+
+        $allUnseenNotifications = $this->notificationModel->getAllUnseenNotifications($adminID);
 
         foreach ($allUnseenNotifications as $notification) {
             $user = $this->notificationModel->getUserById($notification->user_id);
@@ -50,15 +52,19 @@ class AdminNotification extends Controller
             redirect('/login');
         }
 
-        if ($request->isGet()) {
+        // if ($request->isGet()) {
 
-            $bodyData = $request->getBody();
+            // $bodyData = $request->getBody();
 
-            $notificationID = $bodyData['notificationID'];
+            // $notificationID = $bodyData['notificationID'];
 
-            $result = $this->notificationModel->clearNotification($notificationID);
-        }
+            $this->notificationModel->clearNotification();
+        // }
 
-        $this->notification($request);
+        echo json_encode([
+            "notificationCount" => "successfully"
+        ]);
+
+        // $this->notification($request);
     }
 }

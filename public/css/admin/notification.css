@@ -17,6 +17,11 @@ body{
     margin-bottom: 60px;
 }
 
+.notification a{
+    text-decoration: none;
+    color: black;
+}
+
 .notification::-webkit-scrollbar {
     display: none;
 }
@@ -31,7 +36,7 @@ body{
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
-    padding: 0px 10px;
+    padding: 10px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
