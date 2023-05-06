@@ -1,4 +1,3 @@
-const bellIconSelect = false;
 
 const data = {};
 
@@ -14,8 +13,6 @@ fetch('http://localhost/Unigura/admin/notificationCount', {
         console.log(data);
 
         if (document.getElementById("notificationCount") !== null) {
-            // icon_button_badge.textContent = 0;
-            // bellIconSelect = true;
 
             const clearData = {};
 

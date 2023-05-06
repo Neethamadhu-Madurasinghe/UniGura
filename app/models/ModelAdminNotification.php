@@ -11,7 +11,7 @@ class ModelAdminNotification
 
     public function getAllUnseenNotifications($adminID)
     {
-        $this->db->query('SELECT * FROM notification WHERE user_id = :adminID');
+        $this->db->query('SELECT * FROM notification WHERE user_id = :adminID ORDER BY created_at DESC');
         $this->db->bind(':adminID',$adminID);
         return $this->db->resultAll();
     }
@@ -35,6 +35,13 @@ class ModelAdminNotification
         $this->db->resultAll();
 
         return $this->db->rowCount();
+    }
 
+    public function deleteNotification($notificationID){
+        $this->db->query('DELETE FROM notification WHERE id = :notificationID');
+        $this->db->bind(':notificationID', $notificationID);
+        $this->db->resultAll();
+
+        return $this->db->rowCount();
     }
 }

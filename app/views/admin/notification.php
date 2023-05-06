@@ -20,12 +20,12 @@
                         <div class="notification-info">
                             <div class="notification-title">
                                 <h3><?php echo $notification->title ?></h3>
-                                <h5><?php echo explode(' ', $notification->created_at)[0] ?> | <?php echo explode(' ', $notification->created_at)[1] ?>&nbsp&nbsp(6 hours ago)</h5>
+                                <h5><?php echo explode(' ', $notification->created_at)[0] ?> | <?php echo explode(' ', $notification->created_at)[1] ?></h5>
                             </div>
                         </div>
                     </a>
                     <div class="notification-close">
-                        <i class="fa-solid fa-circle-xmark notification-close-btn" notificationID="<?php echo $notification->id ?>"></i>
+                        <a href="deleteNotification?notificationID=<?php echo $notification->id ?>"><i class="fa-solid fa-circle-xmark notification-close-btn"></i></a>
                     </div>
                 </div>
                 <a href="<?php echo $notification->link ?>">

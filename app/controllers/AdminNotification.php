@@ -54,11 +54,11 @@ class AdminNotification extends Controller
 
         // if ($request->isGet()) {
 
-            // $bodyData = $request->getBody();
+        // $bodyData = $request->getBody();
 
-            // $notificationID = $bodyData['notificationID'];
+        // $notificationID = $bodyData['notificationID'];
 
-            $this->notificationModel->clearNotification();
+        $this->notificationModel->clearNotification();
         // }
 
         echo json_encode([
@@ -66,5 +66,28 @@ class AdminNotification extends Controller
         ]);
 
         // $this->notification($request);
+    }
+
+    public function deleteNotification(Request $request)
+    {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        if ($request->isGet()) {
+
+            $bodyData = $request->getBody();
+
+            $notificationID = $bodyData['notificationID'];
+
+            $this->notificationModel->deleteNotification($notificationID);
+        }
+
+        // echo json_encode([
+        //     "message" => "notificationDelete"
+        // ]);
+
+        $this->notification($request);
     }
 }
