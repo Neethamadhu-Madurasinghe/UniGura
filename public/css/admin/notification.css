@@ -14,6 +14,7 @@ body{
     margin: 23px 50px;
     overflow-y: scroll;
     height: 92vh;
+    margin-bottom: 60px;
 }
 
 .notification::-webkit-scrollbar {
@@ -21,7 +22,8 @@ body{
 }
 
 .one-notification{
-    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-top: 10px;
 }
 
 .notification-header{

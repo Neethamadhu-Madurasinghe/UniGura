@@ -3,7 +3,6 @@
 <script defer src="<?php echo URLROOT ?>/public/js/admin/notification.js"></script>
 
 
-
 <section class="home" id="home">
     <p></p>
     <p></p>
@@ -18,7 +17,7 @@
                 <div class="notification-header">
                     <div class="notification-info">
                         <div class="profile-img">
-                            <img src="<?php echo URLROOT; ?>/public/img/admin/profile.png" alt="">
+                        <img src="<?php echo URLROOT ?><?php echo $notification->user->profile_picture ?>" alt="user profile picture">
                         </div>
 
                         <div class="notification-title">
