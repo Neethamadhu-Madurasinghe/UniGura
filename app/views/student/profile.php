@@ -109,13 +109,13 @@ MainNavbar::render($request);
                         <label for="first-name">First Name
                             <span><?php echo $data['errors']['first_name_error'] ?></span>
                         </label>
-                        <input type="text" name="first-name" id="" value="<?php echo $data['first_name'] ?>">
+                        <input type="text" name="first-name" value="<?php echo $data['first_name'] ?>">
                     </div>
                     <div class="form-field">
                         <label for="last-name">Last Name
                             <span><?php echo $data['errors']['last_name_error'] ?></span>
                         </label>
-                        <input type="text" name="last-name" id="" value="<?php echo $data['last_name'] ?>">
+                        <input type="text" name="last-name" value="<?php echo $data['last_name'] ?>">
                     </div>
                 </div>
 
@@ -126,7 +126,6 @@ MainNavbar::render($request);
                         </label>
                         <input type="text"
                                name="address-line-1"
-                               id=""
                                value="<?php echo $data['address_line1'] ?>">
                     </div>
                     <div class="form-field">
@@ -135,7 +134,6 @@ MainNavbar::render($request);
                         </label>
                         <input type="text"
                                name="address-line-2"
-                               id=""
                                value="<?php echo $data['address_line2'] ?>">
                     </div>
                 </div>
@@ -143,7 +141,7 @@ MainNavbar::render($request);
                 <div class="form-row">
                     <div class="form-field">
                         <label for="city">City <span><?php echo $data['errors']['city_error'] ?></span></label>
-                        <input type="text" name="city" id="" value="<?php echo $data['city'] ?>">
+                        <input type="text" name="city" value="<?php echo $data['city'] ?>">
                     </div>
                     <div class="form-field">
                         <label for="district">District<span><?php echo $data['errors']['district_error'] ?></span></label>
@@ -156,7 +154,7 @@ MainNavbar::render($request);
                         );
                         ?>
 
-                        <select name="district" id="">
+                        <select name="district">
                             <?php foreach ($districts as $district) : ?>
                                 <option value="<?php echo $district; ?>"<?php echo ($data['district'] === $district) ? 'selected' : ''; ?>>
                                     <?php echo $district; ?>
@@ -173,12 +171,11 @@ MainNavbar::render($request);
                         </label>
                         <input type="text"
                                name="telephone-number"
-                               id=""
                                value="<?php echo $data['phone_number'] ?>">
                     </div>
                     <div class="form-field">
                         <label for="gender">Gender</label>
-                        <select name="gender" id="">
+                        <select name="gender">
                             <option value="not-selected"
                                 <?php echo $data['gender'] === 'not-selected' ? 'selected' : '' ?>>
                                 Not Selected
@@ -193,7 +190,7 @@ MainNavbar::render($request);
                 <div class="form-row">
                     <div class="form-field">
                         <label for="medium">Medium</label>
-                        <select name="medium" id="">
+                        <select name="medium" >
                             <option value="sinhala"
                                 <?php echo $data['medium'] === 'sinhala' ? 'selected' : '' ?>>Sinhala</option>
                             <option value="english"
@@ -207,7 +204,7 @@ MainNavbar::render($request);
                         <label for="year-of-exam">Year of Exam
                             <span><?php echo $data['errors']['year_of_exam_error'] ?></span>
                         </label>
-                        <input type="number" name="year-of-exam" id="" value="<?php echo $data['year_of_exam'] ?>">
+                        <input type="number" name="year-of-exam" value="<?php echo $data['year_of_exam'] ?>">
                     </div>
                 </div>
 
@@ -263,24 +260,28 @@ MainNavbar::render($request);
         <div class="payment-history">
             <h1>Payment History</h1>
             <div class="payment-history-container">
-                <table class="data-table">
-                    <tr class="top-table-row">
-                        <th>Tutor</th><th>Subject</th><th>Module</th><th>Amount</th><th>Date</th>
-                    </tr>
-                    <tr>
-                        <td>Viraj Sandakelum</td><td>Combined Maths</td><td>Trigonometry</td><td>LKR 1500</td><td>2022-01-02</td>
-                    </tr>
-                    <tr>
-                        <td>Viraj Sandakelum</td><td>Combined Maths</td><td>Trigonometry</td><td>LKR 1500</td><td>2022-01-02</td>
-                    </tr>
-                    <tr>
-                        <td>Viraj Sandakelum</td><td>Combined Maths</td><td>Trigonometry</td><td>LKR 1500</td><td>2022-01-02</td>
-                    </tr>
-                    <tr>
-                        <td>Viraj Sandakelum</td><td>Combined Maths</td><td>Trigonometry</td><td>LKR 1500</td><td>2022-01-02</td>
-                    </tr>
-                </table>
+                <?php if (count($data['payments']) == 0): ?>
+                    <div class="no-data-table-msg">
+                        <h4>You have not made any payments yet</h4>
+                    </div>
+
+                <?php else: ?>
+                    <table class="data-table" id="payment-table">
+                        <script>
+                            const payments = <?php echo json_encode($data['payments']); ?>
+                        </script>
+                    </table>
+                    <div id="pagination"></div>
+                <?php endif; ?>
             </div>
+
+            <?php if (count($data['payments']) != 0): ?>
+            <div class="chart-section">
+                <div class="chart-container">
+                    <canvas id="payment-chart"></canvas>
+                </div>
+            </div>
+            <?php endif; ?>
         </div>
 
         <div class="request-history" id="requests">
@@ -322,9 +323,11 @@ MainNavbar::render($request);
     [
 
         'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js',
+        'https://cdn.jsdelivr.net/npm/chart.js',
         URLROOT . '/public/js/student/student-main-nav-bar.js',
         URLROOT . '/public/js/common/student-tutor-complete-profile.js',
-        URLROOT . '/public/js/student/profile.js'
+        URLROOT . '/public/js/student/profile.js',
+        URLROOT . '/public/js/student/student-profile-payment-table.js'
     ]
 );
 ?>
