@@ -28,6 +28,7 @@ paymentBtnsUI.forEach(paymentBtnUI => {
         console.log(paymentData);
         payhere.onCompleted = function onCompleted(orderId) {
             console.log("Payment completed. OrderID:" + orderId);
+            location.reload();
             // Note: validate the payment and show success or failure page to the customer
         };
 

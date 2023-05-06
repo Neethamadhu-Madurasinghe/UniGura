@@ -80,7 +80,7 @@ function displayData(data, startIndex, endIndex) {
             <td>${payment.tutor_name}</td>
             <td>${payment.subject_name}</td>
             <td>${payment.module_name}</td>
-            <td>${payment.amount}</td>
+            <td>${payment.amount} LKR</td>
             <td>${payment.timestamp}</td>
         `;
         paymentTableUI.appendChild(tableRow);
