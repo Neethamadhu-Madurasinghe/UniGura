@@ -147,8 +147,7 @@ class StudentTutorProfile extends Controller {
             if ($this->reportModel->saveStudnetReport($body)) {
 //              Send the notification to the admin
                 $this->notificationModel->createAdminNotification(
-                    "A Student has reported a tutor",
-                    "This is something you might have to handle"
+                    "A Student has reported a tutor"
                 );
                 header("HTTP/1.0 200 Success");
                 return;
