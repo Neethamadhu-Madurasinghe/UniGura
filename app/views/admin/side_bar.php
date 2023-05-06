@@ -75,8 +75,9 @@
                 </a>
             </li>
             <li class="nav-link" id="notification">
-                <a href="notification">
-                    <span class="icon"><i class="fa fa-bell icon"></i></span>
+                <a href="notification" class="notification-icon">
+                    <span class="icon"><i class="fa-solid fa-bell"></i></span>
+                    <span class="icon-button-badge">2</span>
                     <span class="title">Notification</span>
                 </a>
             </li>

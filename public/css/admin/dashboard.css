@@ -554,3 +554,29 @@ body{
 }
 
 
+/* =============================== NOTIFICATION ICON ======================================= */
+
+.notification-icon{
+    position: relative;
+}
+
+.notification-icon i{
+    font-size: 27px;
+}
+
+
+.notification-icon .icon-button-badge{
+    position: absolute;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    left: 33px;
+    bottom: 27px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+}
