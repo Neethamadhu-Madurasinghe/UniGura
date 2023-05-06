@@ -79,6 +79,8 @@ function handleDeleteRequestResponse(status) {
 
         case 200:
             showSuccessMessage('Tutor request deleted successfully', () => {
+                deleteRequestPopupUI.classList.remove('invisible')
+                hideLayoutBackground();
                 location.reload();
             })
             break;

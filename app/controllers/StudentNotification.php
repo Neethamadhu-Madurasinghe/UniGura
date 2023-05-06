@@ -62,20 +62,27 @@ class StudentNotification extends Controller {
             return;
         }
 
-        $isValid = true;
+        if ($request->isPost()) {
+            $isValid = true;
 
-        if (isset($body['id'])) {
-            $isValid = false;
-        }
+            if (!isset($body['id'])) {
+                $isValid = false;
+            }
 
-        if ($isValid) {
-            if ($this->notificationModel->deleteNotification($body['id'])) {
-                header("HTTP/1.0 200 Success");
+            if ($isValid) {
+                if ($this->notificationModel->deleteNotification($body['id'])) {
+                    header("HTTP/1.0 200 Success");
+                }else {
+                    header("HTTP/1.0 500 Internal Server Error");
+                }
             }else {
-                header("HTTP/1.0 500 Internal Server Error");
+                header("HTTP/1.0 400 Bad Request");
             }
         }else {
-            header("HTTP/1.0 400 Bad Request");
+            header("HTTP/1.0 404 Not Found");
         }
+
+
+
     }
 }

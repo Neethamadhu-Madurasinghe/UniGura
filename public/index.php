@@ -259,5 +259,6 @@ $router->registerController('/api/student/delete-rescheduling', [StudentClass::c
 $router->registerController('/api/student/toggle-activity-completion', [StudentClass::class, 'toggleActivityComplete']);
 
 $router->registerController('/student/payment', [StudentPayment::class, 'savePayment']);
+$router->registerController('/api/delete-notification', [StudentNotification::class, 'deleteNotification']);
 
 $router->resolve();
