@@ -44,7 +44,7 @@ Header::render(
 <div class="layout-background invisible">
 
     <div class="popup-send-message invisible">
-        <p id="popup-heading">Change password</p>
+        <p id="popup-heading">Complete 2FA First</p>
         <p id="popup-subheading">Enter the code we sent to your email</p>
         <input type="text" id="otp-input">
         <div class="send-msg-btn-container">
@@ -69,6 +69,14 @@ Header::render(
         <div class="confirm-btn-container">
             <button class="btn btn-msg" id="cancel-request-deletion">Cancel</button>
             <button class="btn btn-msg" id="confirm-request-confirm">Delete</button>
+        </div>
+    </div>
+
+    <div class="popup-disable-profile invisible">
+        <p id="popup-delete-heading">Are you sure you want to disable your account ?</p>
+        <div class="confirm-btn-container">
+            <button class="btn btn-msg" id="cancel-profile-disable">Cancel</button>
+            <button class="btn btn-msg" id="confirm-profile-disable">Disable</button>
         </div>
     </div>
 
@@ -97,7 +105,7 @@ MainNavbar::render($request);
     <div class="main-area">
 
         <div class="utility-button-container">
-            <button class="btn btn-utility">Disable Account</button>
+            <button class="btn btn-utility" id="disable-profile">Disable Account</button>
             <button class="btn btn-utility" id="change-password">Change password</button>
         </div>
 
@@ -327,7 +335,8 @@ MainNavbar::render($request);
         URLROOT . '/public/js/student/student-main-nav-bar.js',
         URLROOT . '/public/js/common/student-tutor-complete-profile.js',
         URLROOT . '/public/js/student/profile.js',
-        URLROOT . '/public/js/student/student-profile-payment-table.js'
+        URLROOT . '/public/js/student/student-profile-payment-table.js',
+        URLROOT . '/public/js/student/disable-profile.js'
     ]
 );
 ?>

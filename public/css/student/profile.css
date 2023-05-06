@@ -535,7 +535,7 @@
     font-size: 0.6rem;
 }
 
-.popup-delete-request {
+.popup-delete-request, .popup-disable-profile {
     height: 200px;
     width: 450px;
     background-color: white;
@@ -545,7 +545,7 @@
     align-items: center;
 }
 
-#popup-delete-heading {
+#popup-delete-heading, #popup-delete-heading  {
     font-weight: bold;
     font-size: 1.4rem;
     width: 80%;
