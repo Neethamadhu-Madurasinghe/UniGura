@@ -152,7 +152,6 @@ class StudentClass extends Controller {
             'tutor_id' => $data['tutor_id']
         ];
 
-
 //        echo '<pre>';
 //        print_r($data);
 //        echo '</pre>';

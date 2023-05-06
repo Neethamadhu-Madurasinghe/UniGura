@@ -88,10 +88,10 @@ for (var i = 0; i < checkboxes.length; i++) {
         let searchStudentName = searchStudent.value.toLowerCase();
 
 
-        classConductModeFilterValue = selectedValues.filter(values => values.length > 1);
-        visibilityFilterValue = selectedValues.filter(values => values.length === 1);
+        classConductModeFilterValue = selectedValues.filter(values => values === 'online' || values === 'physical');
+        visibilityFilterValue = selectedValues.filter(values => values === 'block' || values === 'unblock');
 
-        console.log(classConductModeFilterValue, visibilityFilterValue);
+        console.log(searchStudentName,classConductModeFilterValue, visibilityFilterValue);
 
         const xhr = new XMLHttpRequest();
         xhr.open('GET', `filterForStudentPage?classConductModeFilterValue=${classConductModeFilterValue}&visibilityFilterValue=${visibilityFilterValue}&searchStudentName=${searchStudentName}`, true);

@@ -14,16 +14,16 @@
     <div class="menu-bar">
         <div class="menu-bar-selection-btn">
             <div class="tutor-request-btn" id="tutor-request-btn">
-                <a href="tutorRequest"><button>Tutor Request</button></a>
+                <a href="tutorRequest"><button id="tutor-request">Tutor Request</button></a>
             </div>
             <div class="student-complaint-btn" id="student-complaint-btn">
-                <a href="studentComplaint"><button>Student Complaint</button></a>
+                <a href="studentComplaint"><button id="student-complaint">Student Complaint</button></a>
             </div>
             <div class="tutor-complaint-btn" id="tutor-complaint-btn">
-                <a href="tutorComplaint"><button>Tutor Complaint</button></a>
+                <a href="tutorComplaint"><button id="tutor-complaint">Tutor Complaint</button></a>
             </div>
             <div class="complaint-setting-btn" id="complaint-setting-btn">
-                <a href="complaintSetting"><button>Complaint Setting</button></a>
+                <a href="complaintSetting"><button id="complaint-setting">Complaint Setting</button></a>
             </div>
         </div>
     </div>
@@ -59,9 +59,9 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody id="student-complain">
+                <tbody id="student-complaint-table-section">
 
-                <?php if ($data['totalNumOfStudentComplaints'] == 0) : ?>
+                    <?php if ($data['totalNumOfStudentComplaints'] == 0) : ?>
                         <td class="noDataDisplay">There are no tutor complaints to display</td>
                     <?php endif; ?>
 
@@ -90,7 +90,7 @@
                             <?php } ?>
 
                             <td class="action">
-                                <a href="viewComplaint?studentComplaintId=<?php echo $studentComplaint->id; ?>"><button class="view-student-complaint">View</button></a>
+                                <a href="viewStudentComplaint?studentComplaintId=<?php echo $studentComplaint->id; ?>"><button class="view-student-complaint">View</button></a>
                             </td>
                         </tr>
                     <?php } ?>

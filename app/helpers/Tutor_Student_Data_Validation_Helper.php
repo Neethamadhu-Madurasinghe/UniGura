@@ -12,35 +12,33 @@ function validateName(string $name): String
 }
 
 
-function validateAccountName(string $name): String {
+function validateAccountName(string $name): String
+{
     if (empty($name) || !preg_match("/^[a-zA-Z]*$/", $name)) {
         return 'Please enter a valid name';
-
-    }elseif (strlen($name) > 50 && strlen($name) >0) {
+    } elseif (strlen($name) > 50 && strlen($name) > 0) {
         return 'Account Name should have less than 50 characters and more than 2 characters ';
-
-    }else {
+    } else {
         return '';
     }
 }
 
 
-function validateAccountNumber(String $number, String $bank, ModelTutorPending $modelObject, bool $isUnique = true): String {
+function validateAccountNumber(String $number, String $bank, ModelTutorPending $modelObject, bool $isUnique = true): String
+{
     if (empty($number) || !preg_match("/^[0-9]*$/", $number)) {
         return 'Please enter a valid Account Number';
-
-    }elseif (!(strlen($number) > 6) && !(strlen($number) < 14)) {
-        return 'Please enter a valid account number ' ;
-
-    }elseif ($isUnique && $modelObject->findUserByAccountNumber($number,$bank)) {
+    } elseif (!(strlen($number) > 6) && !(strlen($number) < 14)) {
+        return 'Please enter a valid account number ';
+    } elseif ($isUnique && $modelObject->findUserByAccountNumber($number, $bank)) {
         return 'Account no. is already Entered';
-
-    }else {
+    } else {
         return '';
     }
 }
 
-function validateAddressLines(string $addressLine, bool $isMandatory = false): String {
+function validateAddressLines(string $addressLine, bool $isMandatory = false): String
+{
 
 
     if ($isMandatory && empty($addressLine)) {
@@ -112,6 +110,7 @@ function validateFilePath(String $filePath, String $messageOnError): String
     }
 }
 
+
 function validateDescription(String $description): String
 {
     if (strlen($description) >= 100) {
@@ -133,6 +132,18 @@ function validateUniversity(String $university): String
 }
 
 
+function validatePassword(string $password, string $confirmPassword): String
+{
+    if (empty($password)) {
+        return 'Please enter a valid password';
+    } elseif (strlen($password) < 4) {
+        return 'Password should be minimum 4 characters long';
+    } elseif ($password !== $confirmPassword) {
+        return 'Please confirm the password';
+    } else {
+        return '';
+    }
+}
 
 
 // *******************  START - created by madusharini (For tutor profile update validation) ********************
@@ -151,20 +162,7 @@ function validateAccountNameForTutor(String $holderName, ModelTutorStudentComple
     }
 }
 
-function validatePassword(string $password, string $confirmPassword): String {
-    if (empty($password)) {
-        return 'Please enter a valid password';
 
-    }elseif (strlen($password) < 4) {
-        return 'Password should be minimum 4 characters long';
-
-    }elseif ($password !== $confirmPassword) {
-        return 'Please confirm the password';
-
-    }else {
-        return '';
-    }
-}
 
 function validateAccountNumberForTutor(String $accountNumber, ModelTutorStudentCompleteProfile $modelObject, int $tutor_id): String
 {
@@ -176,6 +174,7 @@ function validateAccountNumberForTutor(String $accountNumber, ModelTutorStudentC
         return '';
     }
 }
+
 
 
 function validateTelephoneNumberForTutor(String $telephone, ModelTutorStudentCompleteProfile $modelObject, int $tutor_id): String
@@ -215,7 +214,38 @@ function validateBranch(String $branch): String
     }
 }
 
+
 // *******************  END - created by madusharini (For tutor profile update validation) ********************
+
+
+
+// created by viraj
+
+function validateTutorReportReason(String $reason, ModelTutorStudentCompleteProfile $modelObject): String
+{
+    if (empty($reason)) {
+        return 'Please enter a valid reason';
+    } elseif ($modelObject->findReasonIdByTutorReportReason($reason)) {
+        return 'Reason is already in use';
+    } else if (strlen($reason) > 40) {
+        return 'Reason should have less than 40 characters';
+    }
+}
+
+
+function validateStudentReportReason(String $reason, ModelTutorStudentCompleteProfile $modelObject): String
+{
+    if (empty($reason)) {
+        return 'Please enter a valid reason';
+    } elseif ($modelObject->findReasonIdByStudentReportReason($reason)) {
+        return 'Reason is already in use';
+    } else if (strlen($reason) > 40) {
+        return 'Reason should have less than 40 characters';
+    } else {
+        return '';
+    }
+}
+
 
 
 

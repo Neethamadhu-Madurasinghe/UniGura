@@ -4,6 +4,7 @@ const feedbackFormUI = document.querySelector('.popup-feedback-form');
 const feedbackBtnUI = document.getElementById('feedback');
 const activityCheckBoxesUI = Array.from(document.querySelectorAll('.download-link'))
 
+
 feedbackBtnUI.addEventListener('click', e => {
     showLayoutBackground();
     feedbackFormUI.classList.remove('hidden');

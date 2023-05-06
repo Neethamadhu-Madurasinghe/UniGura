@@ -2,6 +2,8 @@
 <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/requirementComplaint.css">
 <script defer src="<?php echo URLROOT ?>/public/js/admin/complaint_setting.js"></script>
 
+<div class="blur-filter" id="blur-filter"></div>
+
 
 
 <section class="home" id="home">
@@ -10,19 +12,57 @@
     <p></p>
     <p></p>
 
+    <?php if ($data['errors']['student_reason'] === 'Please enter a valid reason') : ?>
+        <div class="popup" id="popup">
+            <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
+            <h2>Invalid Reason!</h2>
+            <h4>Please enter a valid student Report Reason.</h4>
+            <button type="button" id="closePopup">OK</button>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($data['errors']['student_reason'] === 'Reason is already in use') : ?>
+        <div class="popup" id="popup">
+            <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
+            <h2>Duplicate Reason!</h2>
+            <h4>Please enter a different student Report Reason.</h4>
+            <button type="button" id="closePopup">OK</button>
+        </div>
+    <?php endif; ?>
+
+
+    <?php if ($data['errors']['tutor_reason'] === 'Please enter a valid reason') : ?>
+        <div class="popup" id="popup">
+            <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
+            <h2>Invalid Reason!</h2>
+            <h4>Please enter a valid tutor Report Reason.</h4>
+            <button type="button" id="closePopup">OK</button>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($data['errors']['tutor_reason'] === 'Reason is already in use') : ?>
+        <div class="popup" id="popup">
+            <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
+            <h2>Duplicate Reason!</h2>
+            <h4>Please enter a different tutor Report Reason.</h4>
+            <button type="button" id="closePopup">OK</button>
+        </div>
+    <?php endif; ?>
+
+
     <div class="menu-bar">
         <div class="menu-bar-selection-btn">
             <div class="tutor-request-btn" id="tutor-request-btn">
-                <a href="tutorRequest"><button>Tutor Request</button></a>
+                <a href="tutorRequest"><button id="tutor-request">Tutor Request</button></a>
             </div>
             <div class="student-complaint-btn" id="student-complaint-btn">
-                <a href="studentComplaint"><button>Student Complaint</button></a>
+                <a href="studentComplaint"><button id="student-complaint">Student Complaint</button></a>
             </div>
             <div class="tutor-complaint-btn" id="tutor-complaint-btn">
-                <a href="tutorComplaint"><button>Tutor Complaint</button></a>
+                <a href="tutorComplaint"><button id="tutor-complaint">Tutor Complaint</button></a>
             </div>
             <div class="complaint-setting-btn" id="complaint-setting-btn">
-                <a href="complaintSetting"><button>Complaint Setting</button></a>
+                <a href="complaintSetting"><button id="complaint-setting">Complaint Setting</button></a>
             </div>
         </div>
     </div>
@@ -30,12 +70,12 @@
     <div class="complaint-setting" id="complaint-setting-box">
         <div class="complaint-reason">
             <div class="student-complaint-reason">
-                <h1>Student Reason</h1>
+                <h1>Student Report Reasons</h1>
 
                 <div class="add-complaint">
                     <form action="addStudentComplainReason" method="POST">
                         <input type="text" placeholder="Add the new student report reason" name="inputStudentReason">
-                        <button type="submit" id="add-student-complain-reason"><i class="fa fa-light fa-plus"></i> Complaint</button>
+                        <button type="submit" id="add-student-complain-reason"><i class="fa fa-light fa-plus"></i> Reason</button>
                     </form>
                 </div>
                 <div class="complaints-list">
@@ -56,12 +96,12 @@
             </div>
 
             <div class="tutor-complaint-reason">
-                <h1>Tutor Reason</h1>
+                <h1>Tutor Report Reasons</h1>
 
                 <div class="add-complaint">
                     <form action="addTutorComplainReason" method="POST">
                         <input type="text" placeholder="Add the new tutor report reason" name="inputTutorReason">
-                        <button type="submit" id="add-tutor-complain-reason"><i class="fa fa-light fa-plus"></i> Complaint</button>
+                        <button type="submit" id="add-tutor-complain-reason"><i class="fa fa-light fa-plus"></i> Reason</button>
                     </form>
                 </div>
                 <div class="complaints-list">

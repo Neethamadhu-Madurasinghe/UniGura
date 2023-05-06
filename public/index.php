@@ -72,9 +72,8 @@ $router->registerController('/admin/updateTutorComplainReason', [AdminRequiremen
 
 $router->registerController('/admin/payment', [AdminPayment::class, 'payment']);
 $router->registerController('/admin/selectedTutorDetails', [AdminPayment::class, 'selectedTutorDetails']);
+$router->registerController('/admin/uploadBankSlip', [AdminPayment::class, 'uploadBankSlip']);
 
-
-$router->registerController('/admin/chat', [AdminChat::class, 'chat']);
 
 
 
@@ -84,8 +83,10 @@ $router->registerController('/admin/notification/clearNotification', [AdminNotif
 
 
 
-$router->registerController('/admin/viewComplaint', [AdminComplaintView::class, 'viewComplaint']);
-$router->registerController('/admin/updateComplainInquire', [AdminComplaintView::class, 'updateComplainInquire']);
+$router->registerController('/admin/viewStudentComplaint', [AdminComplaintView::class, 'viewStudentComplaint']);
+$router->registerController('/admin/viewTutorComplaint', [AdminComplaintView::class, 'viewTutorComplaint']);
+$router->registerController('/admin/updateStudentComplainInquire', [AdminComplaintView::class, 'updateStudentComplainInquire']);
+$router->registerController('/admin/updateTutorComplainInquire', [AdminComplaintView::class, 'updateTutorComplainInquire']);
 
 
 
@@ -104,6 +105,7 @@ $router->registerController('/admin/filterForStudentPage', [AdminFilter::class, 
 $router->registerController('/admin/filterForTutorPage',[AdminFilter::class,'filterForTutorPage']);
 $router->registerController('/admin/filterForClassPage',[AdminFilter::class,'filterForClassPage']);
 $router->registerController('/admin/filterForStudentComplaint',[AdminFilter::class,'filterForStudentComplaint']);
+$router->registerController('/admin/filterForTutorComplaint',[AdminFilter::class,'filterForTutorComplaint']);
 
 
 

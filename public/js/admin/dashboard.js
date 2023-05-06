@@ -12,7 +12,6 @@ const image = document.getElementById("image");
 
 toggle.addEventListener("click", () => {
     sidebar.classList.toggle("close");
-
     image.src = "images/without-logo.png";
     image.style.width = "50px";
 })
