@@ -1,6 +1,6 @@
 <?php
 
-class StudentPayment {
+class StudentPayment extends Controller {
     private ModelStudentPayment $paymentModel;
 
     public function __construct() {
