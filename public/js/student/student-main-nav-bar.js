@@ -75,8 +75,8 @@ async function getNotifications() {
        if(result.notifications.length > 0) {
            result.notifications.forEach(notification => {
                notificationCardListUI.innerHTML += `
-                    <li data-id="${notification.id}">
-                       <a href="${notification.link ? notification.link : "#"}">
+                    <li data-id="${notification.id}" id="notification-${notification.id}">
+                       <a href="${notification.link ? notification.link : "#"}" onclick="deleteNotification(${notification.id})">
                          <div class="notification-card ${notification.is_seen === 1 ? 'notification-read' : ''}">
                            <h3>${notification.title}</h3>
                            <p class="description">${notification.description ? notification.description : ""}</p>
@@ -134,6 +134,29 @@ async function getUnseenMessageCount() {
         }else {
             unSeenMessageCountUI.textContent = "99+";
         }
+
+    }else if(respond.state === 401) {
+        window.location('/login');
+    }
+}
+
+// Delete a notification
+async function deleteNotification(id) {
+    unSeenMessageCountUI.textContent = "00"
+    const respond = await fetch('http://localhost/unigura/api/delete-notification', {
+        method: 'POST',
+        credentials: "include",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({id})
+    });
+    const result = await respond.json();
+
+    if(respond.status === 200) {
+    //    Remove that notification from the UI
+        const notificationUI = document.getElementById('notification-' + id);
+        notificationCardListUI.removeChild(notificationUI);
 
     }else if(respond.state === 401) {
         window.location('/login');

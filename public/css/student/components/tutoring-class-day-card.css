@@ -124,6 +124,26 @@
     visibility: visible;
 }
 
+.payment-btn-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 10px;
+}
+
+.btn-payment {
+    width: 100px;
+    height: 30px;
+    justify-self: flex-end;
+}
+
+.payment-btn-container h4 {
+    margin: 0;
+    color: green;
+}
+
 .activity-row {
     width: 100%;
     display: flex;

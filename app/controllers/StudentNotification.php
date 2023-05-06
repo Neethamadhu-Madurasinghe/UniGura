@@ -1,10 +1,10 @@
 <?php
 
 class StudentNotification extends Controller {
-    private ModelStudentNotification $studentNotification;
+    private ModelStudentNotification $notificationModel;
 
     public function __construct() {
-        $this->studentNotification = $this->model('ModelStudentNotification');
+        $this->notificationModel = $this->model('ModelStudentNotification');
     }
 
     public function getNotification(Request $request) {
@@ -19,7 +19,7 @@ class StudentNotification extends Controller {
 
 
         try {
-            $data['notifications'] = $this->studentNotification->getAllNotificationsByUserId($request->getUserId());
+            $data['notifications'] = $this->notificationModel->getAllNotificationsByUserId($request->getUserId());
             header("HTTP/1.0 200 Success");
             header('Content-type: application/json');
             echo json_encode($data);
@@ -41,7 +41,7 @@ class StudentNotification extends Controller {
 
         $result = true;
         foreach ($body['notification_ids'] as $id) {
-            if (!($result && $this->studentNotification->markNotificationAsSeen($id))) $result = false;
+            if (!($result && $this->notificationModel->markNotificationAsSeen($id))) $result = false;
         }
 
         print_r($body['notification_ids']);
@@ -50,6 +50,39 @@ class StudentNotification extends Controller {
         }else {
             header("HTTP/1.0 500 Internal Server Error");
         }
+    }
+
+    public function deleteNotification(Request $request) {
+        cors();
+
+        $body = json_decode(file_get_contents('php://input'), true);
+
+        if (!$request->isLoggedIn() || !$request->isStudent()) {
+            header("HTTP/1.0 401 Unauthorized");
+            return;
+        }
+
+        if ($request->isPost()) {
+            $isValid = true;
+
+            if (!isset($body['id'])) {
+                $isValid = false;
+            }
+
+            if ($isValid) {
+                if ($this->notificationModel->deleteNotification($body['id'])) {
+                    header("HTTP/1.0 200 Success");
+                }else {
+                    header("HTTP/1.0 500 Internal Server Error");
+                }
+            }else {
+                header("HTTP/1.0 400 Bad Request");
+            }
+        }else {
+            header("HTTP/1.0 404 Not Found");
+        }
+
+
 
     }
 }

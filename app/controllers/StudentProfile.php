@@ -3,6 +3,7 @@
 class StudentProfile extends Controller {
     private ModelStudent $studentModel;
     private ModelStudentRequest $requestModel;
+    private ModelStudentPayment $paymentModel;
 
 //    This Model is just for telephone number validation
     private ModelTutorStudentCompleteProfile $tutorStudentModel;
@@ -11,6 +12,7 @@ class StudentProfile extends Controller {
         $this->studentModel = $this->model('ModelStudent');
         $this->tutorStudentModel = $this->model('ModelTutorStudentCompleteProfile');
         $this->requestModel = $this->model('ModelStudentRequest');
+        $this->paymentModel = $this->model('ModelStudentPayment');
     }
 
     public function profile(Request $request) {
@@ -116,6 +118,9 @@ class StudentProfile extends Controller {
             $data['errors'] = $errors;
 
         }
+//        Fetch payment history
+        $data['payments'] = $this->paymentModel->getAllPaymentsByStudentId($request->getUserId());
+
         //          Fetch tutor request data
         $data['requests'] = $this->requestModel->getRequestsByStudentId($request->getUserId());
 //        Load the view for both post and get requests

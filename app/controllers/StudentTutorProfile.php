@@ -10,6 +10,7 @@ class StudentTutorProfile extends Controller {
     private ModelStudentReview $reviewModel;
     private ModelStudentReportReason $reportReasonModel;
     private ModelTutorStudentAuth $userModel;
+    private ModelStudentNotification $notificationModel;
 
     public function __construct() {
         $this->reportModel = $this->model('ModelStudentReport');
@@ -17,6 +18,7 @@ class StudentTutorProfile extends Controller {
         $this->reviewModel = $this->model('ModelStudentReview');
         $this->reportReasonModel = $this->model('ModelStudentReportReason');
         $this->userModel = $this->model('ModelTutorStudentAuth');
+        $this->notificationModel = $this->model('ModelStudentNotification');
     }
 
     public function tutorProfile(Request $request) {
@@ -143,6 +145,10 @@ class StudentTutorProfile extends Controller {
 
 //          If all the checks are passed, then make the report
             if ($this->reportModel->saveStudnetReport($body)) {
+//              Send the notification to the admin
+                $this->notificationModel->createAdminNotification(
+                    "A Student has reported a tutor"
+                );
                 header("HTTP/1.0 200 Success");
                 return;
             }

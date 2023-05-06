@@ -258,6 +258,12 @@ class FindTutor extends Controller {
                         "You have sent a tutor request. You can cancel it by clicking here"
 
                 );
+
+//                Notification for tutor
+                $this->notification->createNotification(
+                    $body['tutor_id'],
+                    "You have a new class request"
+                );
                 header("HTTP/1.0 200 Success");
                 return;
             }

@@ -136,6 +136,9 @@ class ModelStudentTutoringClass {
             $this->db->bind('day_id', $day['id'], PDO::PARAM_INT);
             $activities = $this->db->resultAllAssoc();
 
+//            Add session rate into each day sub array (because it is needed in that way to implement payment)
+            $tutoring_class['days'][$key]['session_rate'] = $tutoring_class['session_rate'];
+
 //            Format file download link
             foreach ($activities as $actKey => $actValue) {
                 if ($actValue['type'] != 2) {

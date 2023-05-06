@@ -110,6 +110,48 @@ class StudentClass extends Controller {
         $data['time'] = $this->convertTimeTo12HourFormat($data['time']);
         $data['report_reasons'] = $this->reportReasonModel->getStudentReportReason();
         $data['does_reschedule_exit'] = $this->rescheduleModel->doesRequestExist($body['id']);
+
+//        Add payment detail for each DAY
+        function mapDaysAndPaymentDetails($day) {
+            $hash = strtoupper(
+                md5(
+                    MERCHANT_ID .
+                    $day['id'] .
+                    number_format($day['session_rate'], 2, '.', '') .
+                    'LKR' .
+                    strtoupper(md5(MERCHANT_SECRET))
+                )
+            );
+
+            $day['payment'] = [
+                'order_id' => $day['id'],
+                'items' => $day['title'],
+                'hash' => $hash,
+            ];
+
+            return $day;
+        }
+
+        $data['days'] = array_map('mapDaysAndPaymentDetails', $data['days']);
+
+//        Add all the payment data
+        $data['payment'] = [
+            'amount' => $data['session_rate'],
+            'merchant_id' => MERCHANT_ID,
+            'notify_url' => tunnel_link,
+            'return_url' => URLROOT . '/student/tutoring-class?id=' . $data['id'],
+            'cancel_url' => URLROOT . '/student/tutoring-class?id=' . $data['id'],
+            'currency' => 'LKR',
+            'first_name' => 'samplefirstname',
+            'last_name' => 'samplelastname',
+            'email' => 'sample@gmail.com',
+            'phone' =>  '0000000000',
+            'address' => 'sampleaddress',
+            'city' => 'city',
+            'student_id' => $data['student_id'],
+            'tutor_id' => $data['tutor_id']
+        ];
+
 //        echo '<pre>';
 //        print_r($data);
 //        echo '</pre>';
@@ -258,6 +300,53 @@ class StudentClass extends Controller {
             }else {
                 header("HTTP/1.0 500 Internal Server Error");
             }
+        }
+    }
+
+    public function toggleActivityComplete(Request $request) {
+        cors();
+
+        $body = json_decode(file_get_contents('php://input'), true);
+
+        if (!$request->isLoggedIn() || !$request->isStudent()) {
+            header("HTTP/1.0 401 Unauthorized");
+            return;
+        }
+
+
+        if ($request->isPost()) {
+            //        validate
+            $isValid = true;
+            if (
+                !isset($body['activity_id']) ||
+                !isset($body['is_select'])
+            ) {
+                $isValid = false;
+            }
+
+//            Check if the user has access to this activity
+            function mapActivityToID($activity) {
+                return $activity['id'];
+            }
+//            Get all the activities user is related to and map them to their id and check a requested id is in it
+            $activities = $this->activityModel->getAllActivitiesByUser($request->getUserId());
+            $activityIds = array_map('mapActivityToID', $activities);
+
+            if (isset($body['activity_id']) && !in_array($body['activity_id'], $activityIds)) {
+                $isValid = false;
+            }
+
+            if ($isValid) {
+                if ($this->activityModel->setActivityCompletion($body['activity_id'], $body['is_select'])) {
+                    header("HTTP/1.0 200 Success");
+                } else {
+                    header("HTTP/1.0 500 Internal Server Error");
+                }
+            } else {
+                header("HTTP/1.0 400 Bad Request");
+            }
+        } else {
+            header("HTTP/1.0 404 Not Found");
         }
     }
 

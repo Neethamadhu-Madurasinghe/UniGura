@@ -47,7 +47,14 @@ function sendCodeAsEmail(Request $request, String $code, String $email = "") {
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Unigura: Verify your email';
-        $mail->Body    = '<h1 style="color: #00dd00">This is your code for Unigura: ' . $code . '</h1><br>This Code will be expired in 1 hour';
+        $mail->Body = '
+            <div style="display: block; color:black; border-radius: 10px; background-color: #FF8125; width: 480px; height: 260px;">
+                <h1 style="text-align: center;">Please use below code for email verification</h1>
+                <h1 style="text-align: center;">' . $code . '</h1>
+                <h4 style="text-align: center; color:black">Code will be expired in 1 hour</h4>
+                <p style="text-align: center; color:black">Thank you for choosing UniGura</p>
+            </div>
+        ';
         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         $mail->send();
