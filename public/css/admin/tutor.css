@@ -307,6 +307,12 @@ input[type="range"]::-moz-range-thumb {
     position: relative;
 }
 
+.card-section .card img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+}
 
 
 .mode-hide-show{

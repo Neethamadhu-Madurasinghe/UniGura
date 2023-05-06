@@ -351,7 +351,7 @@
                             $totalStudentPayment += $transaction->amount;
                         }
                         echo $totalStudentPayment;
-                        ?>  
+                        ?>.00
                     </span>
                 </div>
                 <div class="total-tutor-withdrawal">
@@ -368,7 +368,7 @@
                             }
                         }
                         echo (90 / 100) * $totalTutorWithdrawal;
-                        ?>
+                        ?>.00
                     </span>
                 </div>
                 <div class="profit">
@@ -385,7 +385,7 @@
                             }
                         }
                         echo (10 / 100) * $totalTutorWithdrawal;
-                        ?>
+                        ?>.00
                     </span>
                 </div>
             </div>

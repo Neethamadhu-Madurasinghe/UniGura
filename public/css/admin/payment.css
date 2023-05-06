@@ -16,7 +16,7 @@ body {
     padding: 20px;
 }
 
-.payment-page{
+.payment-page {
     height: 94vh;
     overflow-y: scroll;
 }
@@ -33,7 +33,7 @@ body {
     visibility: hidden;
 }
 
-.payment-page   :hover::-webkit-scrollbar-thumb {
+.payment-page :hover::-webkit-scrollbar-thumb {
     visibility: visible;
 }
 
@@ -64,7 +64,7 @@ body {
 }
 
 
-.before-selected-payment-right-side .empty-part .text-part{
+.before-selected-payment-right-side .empty-part .text-part {
     background-color: #fff;
     padding: 20px;
     /* border: 2px solid #F7931A; */
@@ -72,7 +72,7 @@ body {
     margin-bottom: 30px;
 }
 
-.before-selected-payment-right-side .empty-part .text-part h1{
+.before-selected-payment-right-side .empty-part .text-part h1 {
     font-size: 30px;
     text-align: center;
     margin-bottom: 15px;
@@ -143,18 +143,21 @@ body {
     z-index: 10;
 }
 
-.all-tutor .tutor img{
+.all-tutor .tutor img {
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 
-.all-tutor .tutor > div{
+.all-tutor .tutor>div {
     position: relative;
     z-index: -1;
 }
 
 
-.total-payoff{
+.total-payoff {
     /* border: 2px solid #F7931A; */
     border-radius: 5px;
     width: fit-content;
