@@ -34,7 +34,7 @@
                         <?php endif; ?>
                     </div>
                     <div class="profile-picture">
-                        <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="student profile picture">
+                            <img src="<?php echo URLROOT?><?php echo $aStudent->student->profile_picture ?>" alt="student profile picture">
                     </div>
                     <div class="name">
                         <h2><?php echo $aStudent->student->first_name . ' ' . $aStudent->student->last_name ?></h2>

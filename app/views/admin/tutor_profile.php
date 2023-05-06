@@ -15,7 +15,7 @@
         <div class="top-details-box">
             <div class="tutor-details">
                 <div class="profile-picture">
-                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
+                    <img src="<?php echo URLROOT ?><?php echo $data['tutorDetails']->profile_picture ?>" alt="tutor profile picture">
                 </div>
                 <div class="name-actions">
                     <div class="name">
@@ -749,26 +749,26 @@
         <div class="active-classes">
 
             <?php foreach ($data['allClasses'] as $aClassDay) : ?>
-            <?php if($aClassDay->completion_status === 0) : ?>
-                <div class="one-class">
-                    <div class="student-profile">
-                        <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
+                <?php if ($aClassDay->completion_status === 0) : ?>
+                    <div class="one-class">
+                        <div class="student-profile">
+                            <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
+                        </div>
+                        <div class="class-details">
+                            <div class="student-name">
+                                <h1>student: </h1>
+                                <h2><?php echo $aClassDay->tutor_first_name . ' ' . $aClassDay->tutor_last_name ?></h2>
+                            </div>
+                            <div class="subject">
+                                <h1>Subject: </h1>
+                                <h2><?php echo $aClassDay->subjectName ?></h2>
+                            </div>
+                            <div class="lessson">
+                                <h1>Lesson: </h1>
+                                <h2><?php echo $aClassDay->moduleName ?></h2>
+                            </div>
+                        </div>
                     </div>
-                    <div class="class-details">
-                        <div class="student-name">
-                            <h1>student: </h1>
-                            <h2><?php echo $aClassDay->tutor_first_name . ' ' . $aClassDay->tutor_last_name ?></h2>
-                        </div>
-                        <div class="subject">
-                            <h1>Subject: </h1>
-                            <h2><?php echo $aClassDay->subjectName ?></h2>
-                        </div>
-                        <div class="lessson">
-                            <h1>Lesson: </h1>
-                            <h2><?php echo $aClassDay->moduleName ?></h2>
-                        </div>
-                    </div>
-                </div>
                 <?php endif; ?>
             <?php endforeach; ?>
 
@@ -777,27 +777,27 @@
 
         <div class="finished-classes">
 
-        <?php foreach ($data['allClasses'] as $aClassDay) : ?>
-            <?php if($aClassDay->completion_status === 1) : ?>
-                <div class="one-class">
-                    <div class="student-profile">
-                        <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
+            <?php foreach ($data['allClasses'] as $aClassDay) : ?>
+                <?php if ($aClassDay->completion_status === 1) : ?>
+                    <div class="one-class">
+                        <div class="student-profile">
+                            <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
+                        </div>
+                        <div class="class-details">
+                            <div class="student-name">
+                                <h1>student: </h1>
+                                <h2><?php echo $aClassDay->tutor_first_name . ' ' . $aClassDay->tutor_last_name ?></h2>
+                            </div>
+                            <div class="subject">
+                                <h1>Subject: </h1>
+                                <h2><?php echo $aClassDay->subjectName ?></h2>
+                            </div>
+                            <div class="lessson">
+                                <h1>Lesson: </h1>
+                                <h2><?php echo $aClassDay->moduleName ?></h2>
+                            </div>
+                        </div>
                     </div>
-                    <div class="class-details">
-                        <div class="student-name">
-                            <h1>student: </h1>
-                            <h2><?php echo $aClassDay->tutor_first_name . ' ' . $aClassDay->tutor_last_name ?></h2>
-                        </div>
-                        <div class="subject">
-                            <h1>Subject: </h1>
-                            <h2><?php echo $aClassDay->subjectName ?></h2>
-                        </div>
-                        <div class="lessson">
-                            <h1>Lesson: </h1>
-                            <h2><?php echo $aClassDay->moduleName ?></h2>
-                        </div>
-                    </div>
-                </div>
                 <?php endif; ?>
             <?php endforeach; ?>
 

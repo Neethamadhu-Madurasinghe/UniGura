@@ -4,7 +4,6 @@
 
 
 
-
 <section class="home" id="home">
     <p></p>
     <p></p>
@@ -15,7 +14,7 @@
     <div class="top-details-box">
         <div class="student-details">
             <div class="profile-picture">
-                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                <img src="<?php echo URLROOT ?><?php echo $data['studentDetails']->profile_picture ?>" alt="student profile picture">
             </div>
             <div class="name-actions">
                 <div class="name">

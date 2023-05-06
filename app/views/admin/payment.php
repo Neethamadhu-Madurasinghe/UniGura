@@ -4,19 +4,21 @@
 
 <div class="blur-filter" id="blur-filter"></div>
 
+
+
 <section class="home" id="home">
     <p></p>
     <p></p>
     <p></p>
     <p></p>
 
-    <?php if($data['paymentBankSlip'] === 'notUploadBankSlip') : ?>
+    <?php if ($data['paymentBankSlip'] === 'notUploadBankSlip') : ?>
         <div class="popup" id="popup">
-        <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
-        <h2>Bank Slip Not Uploaded!</h2>
-        <h4>Please upload the bank slip to confirm the payment.</h4>
-        <button type="button" id="closePopup">OK</button>
-    </div>
+            <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
+            <h2>Bank Slip Not Uploaded!</h2>
+            <h4>Please upload the bank slip to confirm the payment.</h4>
+            <button type="button" id="closePopup">OK</button>
+        </div>
     <?php endif; ?>
 
 
@@ -33,7 +35,7 @@
                             <div class="tutor">
                                 <input type="hidden" value="<?php echo $tutor->tutor_id ?>" class="tutorId">
                                 <div class="tutor-img">
-                                    <img src="<?php echo URLROOT; ?>/public/img/admin/profile.png" alt="">
+                                    <img src="<?php echo URLROOT ?><?php echo $tutor->tutor->profile_picture ?>" alt="tutor profile picture">
                                 </div>
                                 <div class="tutor-name">
                                     <h3><?php echo $tutor->tutor->first_name ?> <?php echo $tutor->tutor->last_name ?></h3>

@@ -3,9 +3,6 @@
 <script defer src="<?php echo URLROOT ?>/public/js/admin/tutor.js"></script>
 
 
-
-
-
 <section class="home" id="home">
     <p></p>
     <p></p>
@@ -47,7 +44,7 @@
                     </div>
 
                     <div class='profile-picture'>
-                        <img src="<?php echo URLROOT; ?>/public/img/admin/profile.png" alt="">
+                        <img src="<?php echo URLROOT ?><?php echo $aTutor->contactDetails->profile_picture ?>" alt="tutor profile picture">
                     </div>
 
                     <div class="card-blur-effect">

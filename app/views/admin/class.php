@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/class.css">
 
 
+
 <section class="home" id="home">
     <p></p>
     <p></p>
@@ -16,7 +17,7 @@
                 <div class="one-class">
                     <div class="tutor">
                         <div class="profile-img">
-                            <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                            <img src="<?php echo URLROOT ?><?php echo $x->tutor->profile_picture ?>" alt="tutor profile picture">
                         </div>
                         <div class="name">
                             <h1>Tutor Name</h1>
@@ -29,7 +30,7 @@
                             <h1><?php echo $x->student_first_name . ' ' . $x->student_last_name ?></h1>
                         </div>
                         <div class="profile-img">
-                            <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                            <img src="<?php echo URLROOT ?><?php echo $x->student_profile_picture ?>" alt="student profile picture">
                         </div>
                     </div>
                     <div class="class-details">

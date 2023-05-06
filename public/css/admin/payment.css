@@ -143,6 +143,11 @@ body {
     z-index: 10;
 }
 
+.all-tutor .tutor img{
+    border-radius: 50%;
+}
+
+
 .all-tutor .tutor > div{
     position: relative;
     z-index: -1;
