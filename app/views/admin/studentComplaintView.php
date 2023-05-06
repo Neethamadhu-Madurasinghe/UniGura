@@ -16,7 +16,7 @@
         <button id="student-complaint-back-btn"><i class="fa-regular fa-circle-left"></i> <span>Back</span></button>
     </div> -->
 
-    <div class="complaint-check">
+    <div class="complain-check">
         <form action="updateStudentComplainInquire" method="POST">
             <input type="hidden" name="complainStatus" id="complainStatus" value="<?php echo $data['oneStudentComplaint']->is_inquired ?>">
             <input type="hidden" name="studentComplaintId" value="<?php echo $data['oneStudentComplaint']->id ?>">
@@ -30,7 +30,7 @@
                     <input type="checkbox" name="complainStatus">
                 <?php } ?>
             </label>
-            
+
             <div class="submit-status-btn">
                 <button type="submit" name="submit-status-btn" id="submit-status-btn">Submit</button>
             </div>
@@ -61,6 +61,14 @@
     <div class="tutor-review-section">
         <h1>Tutor's Other Reviews</h1>
         <div class="tutor-review">
+
+            <?php if (empty($data['otherStudentComplaints'])) : ?>
+                <div class="result-not-found">
+                    <img src="<?php echo URLROOT; ?>/public/img/admin/resultNotFound.png" alt=""><br>
+                    <h1>Looks like haven't other reviews yet for this tutor.</h1>
+                </div>
+            <?php endif; ?>
+
 
             <?php foreach ($data['otherStudentComplaints'] as $complain) : ?>
                 <div class="one-tutor-review">

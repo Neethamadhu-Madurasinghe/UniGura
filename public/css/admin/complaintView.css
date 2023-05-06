@@ -1,14 +1,3 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-body{
-    background-color: white;
-}
-
 .tutor-name, .student-name, .description, .report-reason{
     margin:20px 50px;
 }
@@ -47,22 +36,33 @@ body{
 
 /* ================================================== REVIEW SECTION ===================================================================== */
 
-
 .tutor-review-section{
     /* width: 70%; */
-    margin: 20px 50px;
-    margin-top: 60px;
+    margin: 0px 50px;
+    margin-top: 40px;
 }
 
+
+.tutor-review{
+    overflow-y: scroll;
+    height: 35vh;
+    margin-top: 20px;
+}
+
+.tutor-review::-webkit-scrollbar{
+    display: none;
+}
+
+
 .one-tutor-review{
-    margin-top: 30px;
+    margin-top: 25px;
 }
 
 .tutor-review-header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #FFA620;
+    background: #fff;
     padding: 0px 10px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -88,7 +88,7 @@ body{
     padding: 10px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    border: 2px solid #FFA620;
+    /* border: 1px solid #FFA620; */
     /* background-color: #F5F5F5; */
 }
 
@@ -142,14 +142,21 @@ body{
 
 /* ======================================================= COMPLAIN CHECK STATUS =============================================================== */
 
+.complain-check{
+    height: 20vh;
+    position: absolute;
+    left: 120vh;
+    top: 60px;
+    padding: 40px;
+    border-radius: 10px;
+    background-color: #fff;
+}
 
 .complain-check form{
-    margin: 20px 50px;
-    margin-top: 100px;
     display: flex;
     justify-content: right;
     align-items: center;
-    margin-bottom: -120px;
+    margin-top: 20px;
 }
 
 .complain-check input[type="checkbox"]{
@@ -170,3 +177,21 @@ body{
     margin-bottom: 3px;
 }
 
+/* ======================RESULT NOT FOUND SECTION====================================  */
+
+.result-not-found{
+    width: 100%;
+    /* height: 100vw; */
+    /* text-align: center; */
+    margin-top: 50px;
+}
+
+.result-not-found img{
+    width: 300px;
+    margin-left: 20px;
+}
+
+.result-not-found h1{
+    font-size: 18px;
+    margin-top: 10px;
+}
