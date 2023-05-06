@@ -50,6 +50,8 @@ $router->registerController('/admin/updateModuleHideShow', [AdminSubjectModule::
 
 
 
+
+
 $router->registerController('/admin/student', [AdminStudent::class, 'student']);
 $router->registerController('/admin/viewStudentProfile', [AdminStudentProfile::class, 'viewStudentProfile']);
 
@@ -79,6 +81,8 @@ $router->registerController('/admin/uploadBankSlip', [AdminPayment::class, 'uplo
 
 $router->registerController('/admin/notification', [AdminNotification::class, 'notification']);
 $router->registerController('/admin/notification/clearNotification', [AdminNotification::class, 'clearNotification']);
+$router->registerController('/admin/notificationCount', [AdminNotification::class, 'notificationCount']);
+
 
 
 

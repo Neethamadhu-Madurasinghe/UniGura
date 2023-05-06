@@ -3,6 +3,7 @@
 <script defer src="<?php echo URLROOT ?>/public/js/admin/notification.js"></script>
 
 
+
 <section class="home" id="home">
     <p></p>
     <p></p>
@@ -10,7 +11,7 @@
     <p></p>
 
 
-    <div class="notification">
+    <div class="notification" id="notificationCount">
         <?php foreach ($data as $notification) : ?>
 
             <div class="one-notification">

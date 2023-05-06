@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/dashboard.css">
+    <script defer src="<?php echo URLROOT ?>/public/js/admin/commonAdmin.js"></script>
     <script src="https://kit.fontawesome.com/401cc96be7.js" crossorigin="anonymous"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>UniGura</title>
@@ -76,8 +77,8 @@
             </li>
             <li class="nav-link" id="notification">
                 <a href="notification" class="notification-icon">
-                    <span class="icon"><i class="fa-solid fa-bell"></i></span>
-                    <span class="icon-button-badge">2</span>
+                    <span class="icon"><i class="fa-solid fa-bell icon"></i></span>
+                    <span class="icon-button-badge">0</span>
                     <span class="title">Notification</span>
                 </a>
             </li>

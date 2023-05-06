@@ -28,4 +28,12 @@ class ModelAdminNotification
         $this->db->bind(':notification_id', $notificationID);
         return $this->db->execute();
     }
+
+    public function getNotificationCount(){
+        $this->db->query('SELECT * FROM notification WHERE is_seen = 0');
+        $this->db->resultAll();
+
+        return $this->db->rowCount();
+
+    }
 }
