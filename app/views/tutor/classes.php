@@ -16,8 +16,8 @@ require_once APPROOT . '/views/tutor/inc/components/MainNavbar.php';
 Header::render(
      'Tutor Classes',
      [
-          URLROOT . '/public/css/tutor/base.css?v=2.9',
-          URLROOT . '/public/css/tutor/style.css?v=2.3',
+          URLROOT . '/public/css/tutor/base.css?v=2.8',
+          URLROOT . '/public/css/tutor/style.css?v=2.5',
 
 
      ]
@@ -166,7 +166,8 @@ MainNavbar::render($request);
                               let element = activities[0];
                               if(element.day_id == day.dayid){
                                    
-                                   day_container.querySelector('.textbox-one').innerHTML += `<img class='img02' src='http://localhost/UniGura/public/img/tutor/class/icons/file.png'><a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;' href = "http://localhost/unigura/tutor/viewactivitydoc?file=${element.link}">Tute</a>`
+                                   day_container.querySelector('.textbox-one').innerHTML += `<img class='img02' src='http://localhost/UniGura/public/img/tutor/class/icons/file.png' style="width: 10%; height:10%; margin-top: 8px; margin-bottom: 0px">
+                                   <a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;' href = "http://localhost/unigura/tutor/viewactivitydoc?file=${element.link}">Tute</a><br>`
                               }
                          }
                          document.querySelector('.studnt-details-container').style.display = 'block';
