@@ -48,6 +48,7 @@ $router->registerController('/admin/updateSubjectHideShow', [AdminSubjectModule:
 $router->registerController('/admin/updateModuleHideShow', [AdminSubjectModule::class, 'updateModuleHideShow']);
 
 
+$router->registerController('/admin/viewFiles', [AdminFileLoader::class, 'viewFiles']);
 
 
 

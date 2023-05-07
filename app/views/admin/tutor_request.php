@@ -3,15 +3,12 @@
 <script defer src="<?php echo URLROOT ?>/public/js/admin/tutor_request.js"></script>
 
 
+
 <section class="home" id="home">
     <p></p>
     <p></p>
     <p></p>
     <p></p>
-
-
-    
-
 
     <!-- <div class="menu-bar">
         <div class="menu-bar-selection-btn">
@@ -51,9 +48,9 @@
                                 <td><?php echo $x->tutor->first_name . ' ' . $x->tutor->last_name ?></td>
                                 <td><?php echo $x->tutor->phone_number ?></td>
                                 <td><?php echo $x->university ?></td>
-                                <td><a href="/user_files/16833968445895.pdf"><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></a></td>
-                                <td><a href="tutor_detail_files/id_copy/16833956602765.jpeg"><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></a></td>
-                                <td><a href="<?php echo URLROOT; ?>/public/profile_pictures/16774330206500.pdf"><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></a></td>
+                                <td><a href="viewFiles?file=<?php echo $x->id_copy ?>"><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></a></td>
+                                <td><a href="viewFiles?file=<?php echo $x->advanced_level_result ?>"><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></a></td>
+                                <td><a href="viewFiles?file=<?php echo $x->university_entrance_letter ?>"><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></a></td>
                                 <td><?php echo $x->education_qualification ?></td>
                                 <td class="action action-tutor-request">
                                     <button class="accept"><a href="acceptTutorRequest?tutorID=<?php echo $x->tutor->id; ?>">Accept</a></button>
