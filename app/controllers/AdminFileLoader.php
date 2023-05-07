@@ -10,8 +10,7 @@ class AdminFileLoader extends Controller
         }
 
         if ($request->isAdmin()) {
-            //        if request was ...?file= error message should be displayed
-            //        __nofile is a dummy name used for indicate to unavailable file
+            
             $fileName = $request->getBody()['file'] ?? '';
             $fileName = $fileName !== '' ? $fileName : '__nofile';
             $file = '..\\' . $fileName;
@@ -34,7 +33,7 @@ class AdminFileLoader extends Controller
                 exit;
             } else {
                 echo 'Requested file is not available';
-                //            TODO: Redirect to a new page
+                
             }
         } else {
             // header('HTTP/1.0 403 Forbidden');
