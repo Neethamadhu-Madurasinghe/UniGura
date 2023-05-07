@@ -136,11 +136,11 @@ class ModelTutorStudentCompleteProfile
             return false;
         } else {
             return true;
-            }
-            }
-            
-            
-      public function findReasonIdByTutorReportReason(String $reportReason): int
+        }
+    }
+
+
+    public function findReasonIdByTutorReportReason(String $reportReason): int
     {
         $this->db->query('SELECT * FROM report_reason WHERE description=:report_reason AND is_for_tutor = 1');
         $this->db->bind('report_reason', $reportReason, PDO::PARAM_STR);
@@ -157,8 +157,8 @@ class ModelTutorStudentCompleteProfile
 
 
 
-// *******************  START - created by madusharini (For tutor profile update validation) ********************
-    
+    // *******************  START - created by madusharini (For tutor profile update validation) ********************
+
 
     public function findUserByAccountHolderNameForTutor(String $holderName, int $tutor_id): bool
     {
@@ -206,6 +206,6 @@ class ModelTutorStudentCompleteProfile
         }
     }
 
-// *******************  END - created by madusharini (For tutor profile update validation) ********************
+    // *******************  END - created by madusharini (For tutor profile update validation) ********************
 
 }

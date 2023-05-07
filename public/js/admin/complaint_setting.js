@@ -31,6 +31,8 @@ const complaint_input_filed = document.querySelectorAll(".complaint_input_filed"
 const save_cancel = document.querySelectorAll(".save-cancel");
 const cancel_btn_js = document.querySelectorAll(".cancel_btn_js");
 
+const delete_icon_js = document.querySelectorAll(".delete_icon");
+
 
 
 for (let i = 0; i < edit_icon_js.length; i++) {
@@ -47,6 +49,7 @@ for (let i = 0; i < edit_icon_js.length; i++) {
 
         save_cancel[i].classList.add("show");
         edit_icon_js[i].style.display = "none";
+        delete_icon_js[i].style.display = "none";
     });
 }
 
@@ -62,6 +65,7 @@ for (let i = 0; i < cancel_btn_js.length; i++) {
 
         save_cancel[i].classList.remove("show");
         edit_icon_js[i].style.display = "block";
+        delete_icon_js[i].style.display = "block";
     });
 }
 

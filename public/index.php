@@ -70,6 +70,9 @@ $router->registerController('/admin/addStudentComplainReason', [AdminRequirement
 $router->registerController('/admin/addTutorComplainReason', [AdminRequirementComplaints::class, 'addTutorComplainReason']);
 $router->registerController('/admin/updateStudentComplainReason', [AdminRequirementComplaints::class, 'updateStudentComplainReason']);
 $router->registerController('/admin/updateTutorComplainReason', [AdminRequirementComplaints::class, 'updateTutorComplainReason']);
+$router->registerController('/admin/deleteStudentComplainReason', [AdminRequirementComplaints::class, 'deleteStudentComplainReason']);
+$router->registerController('/admin/deleteTutorComplainReason', [AdminRequirementComplaints::class, 'deleteTutorComplainReason']);
+
 
 
 

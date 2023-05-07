@@ -301,7 +301,11 @@ body{
 }
 
 .available-complaints img {
-    width: 50px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 5px;
 }
 
 .right_sidebar .complaints_list {
@@ -339,7 +343,11 @@ body{
 }
 
 .available-request img {
-    width: 50px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 5px;
 }
 
 .no_request img{

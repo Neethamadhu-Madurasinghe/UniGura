@@ -75,9 +75,8 @@
                     <div class="tutor-review-header">
                         <div class="tutor-review-info">
                             <div class="profile-img">
-                                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                                <img src="<?php echo URLROOT ?><?php echo $complain->tutor->profile_picture ?>" alt="profile picture">
                             </div>
-
                             <div class="tutor-review-title">
                                 <h3><?php echo $complain->tutor->first_name . ' ' . $complain->tutor->last_name ?></h3>
                                 <h5><?php echo $complain->reportReason->description ?></h5>

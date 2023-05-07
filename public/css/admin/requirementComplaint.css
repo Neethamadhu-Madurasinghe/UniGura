@@ -668,3 +668,8 @@ tbody img{
     left: 50%;
     transform: translate(-50%, -50%) scale(1);
 }
+
+
+.delete_icon{
+    margin-left: 40px;
+}

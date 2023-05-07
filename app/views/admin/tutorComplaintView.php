@@ -30,7 +30,7 @@
                     <input type="checkbox" name="complainStatus">
                 <?php } ?>
             </label>
-            
+
             <div class="submit-status-btn">
                 <button type="submit" name="submit-status-btn" id="submit-status-btn">Submit</button>
             </div>
@@ -67,9 +67,8 @@
                     <div class="tutor-review-header">
                         <div class="tutor-review-info">
                             <div class="profile-img">
-                                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                                <img src="<?php echo URLROOT ?><?php echo $complain->student->profile_picture ?>" alt="profile picture">
                             </div>
-
                             <div class="tutor-review-title">
                                 <h3><?php echo $complain->student->first_name . ' ' . $complain->student->last_name ?></h3>
                                 <h5><?php echo $complain->reportReason->description ?></h5>
