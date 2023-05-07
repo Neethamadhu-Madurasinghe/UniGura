@@ -25,15 +25,15 @@
                 <form action="uploadBankSlip?tutorID=<?php echo $data['tutorBankDetails']->user_id; ?>" method="POST" enctype="multipart/form-data">
                     <div class="col-1" id="col-1">
                         <img src="<?php echo URLROOT; ?>/public/img/admin/uploadBankSlip.gif" alt=""><br><br>
-                        <span>Drag & Drop your files here</span><br><br>
-                        <span>OR</span><br><br>
-                        <label class="file-selector" for="paymentBankSlip">Browse Files</label><br><br>
-                        <input type="file" name="paymentBankSlip" class="file-selector-input" id="paymentBankSlip" multiple hidden value="<?php echo $data['paymentBankSlip'] ?>">
+                        <!-- <span>Drag & Drop your files here</span><br><br>
+                        <span>OR</span><br><br> -->
+                        <input type="file" name="paymentBankSlip" class="file-selector-input" id="paymentBankSlip" multiple accept=".jpg,.jpeg,.png,.pdf" hidden onchange="this.form.submit()" value="<?php echo $data['paymentBankSlip'] ?>">
+                        <label class="file-selector" for="paymentBankSlip">Upload Bank Slip</label><br><br>
                     </div>
-                    <div class="col-2" id="col-2">
+                    <!-- <div class="col-2" id="col-2">
                         <div class="drop-here">Drop Here</div>
                     </div>
-                    <button type="submit">Upload</button>
+                    <button type="submit">Upload</button> -->
                 </form>
             </div>
         </div>

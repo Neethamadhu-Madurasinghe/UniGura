@@ -397,6 +397,10 @@
 }
 
 
+.module_loop .module_name {
+    width: 20vw;
+}
+
 .save-cancel-subject a {
     text-decoration: none;
     font-size: 15px;
@@ -469,7 +473,7 @@
 /* ---------------------------------- SUBJECT & MODULE update Field ---------------------------- */
 
 
-.subject_name_filed.editSubject{
+.subject_name_filed.editSubject {
     border-radius: 5px;
     border: 1px dotted #000000;
     padding: 3px;
@@ -480,7 +484,7 @@
 }
 
 
-.subject_name_filed.cancelEditSubject{
+.subject_name_filed.cancelEditSubject {
     border-radius: 0px;
     border: none;
     padding: 0px;
@@ -491,7 +495,7 @@
 }
 
 
-.module_input_filed.editModule{
+.module_input_filed.editModule {
     border-radius: 5px;
     border: 1px dotted #000000;
     padding: 3px;
@@ -502,7 +506,7 @@
 }
 
 
-.module_input_filed.cancelEditModule{
+.module_input_filed.cancelEditModule {
     border-radius: 0px;
     border: none;
     padding: 0px;

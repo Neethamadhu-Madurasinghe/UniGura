@@ -2,7 +2,6 @@
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/admin/payment.css">
 <script defer src="<?php echo URLROOT ?>/public/js/admin/payment.js"></script>
 
-<div class="blur-filter" id="blur-filter"></div>
 
 
 
@@ -12,14 +11,6 @@
     <p></p>
     <p></p>
 
-    <?php if ($data['paymentBankSlip'] === 'notUploadBankSlip') : ?>
-        <div class="popup" id="popup">
-            <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
-            <h2>Bank Slip Not Uploaded!</h2>
-            <h4>Please upload the bank slip to confirm the payment.</h4>
-            <button type="button" id="closePopup">OK</button>
-        </div>
-    <?php endif; ?>
 
 
     <div class="payment-page">
