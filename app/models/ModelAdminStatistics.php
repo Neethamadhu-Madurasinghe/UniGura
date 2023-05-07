@@ -482,4 +482,49 @@ class ModelAdminStatistics{
     }
 
 
+
+    public function getUserFeedbackOneRating(){
+        $this->db->query("SELECT * FROM user_feedback WHERE rate = 1");
+        $this->db->resultAll();
+        return $this->db->rowCount();
+    }
+
+    public function getUserFeedbackTwoRating(){
+        $this->db->query("SELECT * FROM user_feedback WHERE rate = 2");
+        $this->db->resultAll();
+        return $this->db->rowCount();
+    }
+
+    public function getUserFeedbackThreeRating(){
+        $this->db->query("SELECT * FROM user_feedback WHERE rate = 3");
+        $this->db->resultAll();
+        return $this->db->rowCount();
+    }
+
+    public function getUserFeedbackFourRating(){
+        $this->db->query("SELECT * FROM user_feedback WHERE rate = 4");
+        $this->db->resultAll();
+        return $this->db->rowCount();
+    }
+
+    public function getUserFeedbackFiveRating(){
+        $this->db->query("SELECT * FROM user_feedback WHERE rate = 5");
+        $this->db->resultAll();
+        return $this->db->rowCount();
+    }
+
+    public function getTotalUserFeedbackRating(){
+        $this->db->query("SELECT IFNULL(SUM(rate), 0) as totalStars FROM user_feedback");
+        return $this->db->resultOne();
+    }
+
+    public function getTotalUserGiveFeedback(){
+        $this->db->query("SELECT * FROM user_feedback");
+        $this->db->resultAll();
+        return $this->db->rowCount();
+    }
+
+    
+    
+
 }

@@ -6,7 +6,7 @@
     margin: 50px 20px;
 }
 
-.div1 .rating-summary{
+/* .div1 .rating-summary{
     text-align: center;
 }
 
@@ -17,7 +17,7 @@
 .div1 .rating-summary i{
     font-size: 25px;
     color: #FFD700;
-}
+} */
 
 
 
@@ -30,15 +30,31 @@
 
 .div2 .rating-summary{
     text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
 }
 
 .div2 .rating-summary h1{
     font-size: 60px;
 }
 
-.div2 .rating-summary i{
-    font-size: 25px;
+.div2 .rating-summary span{
+    font-size: 35px;
     color: #FFD700;
+}
+
+
+.div2 .rating-summary span .fa-star {
+    color: #f5a623;
+}
+
+.div2 .rating-summary span .fa-star-half-o {
+    color: #f5a623;
+}
+
+.div2 .rating-summary span .fa-star-o {
+    color: #d8d8d8;
 }
 
 
