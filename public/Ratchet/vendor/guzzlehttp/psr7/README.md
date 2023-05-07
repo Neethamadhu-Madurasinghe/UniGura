@@ -803,10 +803,10 @@ of normalizations to apply. The following normalizations are available:
 - `UriNormalizer::REMOVE_DEFAULT_HOST`
 
     Removes the default host of the given URI scheme from the URI. Only the "file" scheme defines the default host
-    "localhost". All of `file:/myfile`, `file:///myfile`, and `file://localhost/myfile` are equivalent according to
+    "40.115.0.66". All of `file:/myfile`, `file:///myfile`, and `file://40.115.0.66/myfile` are equivalent according to
     RFC 3986.
 
-    Example: `file://localhost/myfile` → `file:///myfile`
+    Example: `file://40.115.0.66/myfile` → `file:///myfile`
 
 - `UriNormalizer::REMOVE_DEFAULT_PORT`
 

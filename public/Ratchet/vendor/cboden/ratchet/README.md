@@ -67,7 +67,7 @@ class MyChat implements MessageComponentInterface {
 }
 
     // Run the server application through the WebSocket protocol on port 8080
-    $app = new Ratchet\App('localhost', 8080);
+    $app = new Ratchet\App('40.115.0.66', 8080);
     $app->route('/chat', new MyChat, array('*'));
     $app->route('/echo', new Ratchet\Server\EchoServer, array('*'));
     $app->run();
@@ -77,7 +77,7 @@ class MyChat implements MessageComponentInterface {
 
 ```javascript
     // Then some JavaScript in the browser:
-    var conn = new WebSocket('ws://localhost:8080/echo');
+    var conn = new WebSocket('ws://40.115.0.66:8080/echo');
     conn.onmessage = function(e) { console.log(e.data); };
     conn.onopen = function(e) { conn.send('Hello Me!'); };
 ```

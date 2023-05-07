@@ -3,7 +3,7 @@
   , "outdir": "reports/profile"
 
   , "servers": [
-        {"agent": "Ratchet", "url": "ws://localhost:8000", "options": {"version": 18}}
+        {"agent": "Ratchet", "url": "ws://40.115.0.66:8000", "options": {"version": 18}}
     ]
 
   , "cases": ["9.7.4"]

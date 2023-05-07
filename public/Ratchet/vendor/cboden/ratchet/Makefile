@@ -11,7 +11,7 @@ abtests:
 	ulimit -n 2048 && php tests/autobahn/bin/fuzzingserver.php 8001 LibEvent &
 	ulimit -n 2048 && php tests/autobahn/bin/fuzzingserver.php 8002 StreamSelect &
 	ulimit -n 2048 && php tests/autobahn/bin/fuzzingserver.php 8004 LibEv &
-	wstest -m testeeserver -w ws://localhost:8000 &
+	wstest -m testeeserver -w ws://40.115.0.66:8000 &
 	sleep 1
 	wstest -m fuzzingclient -s tests/autobahn/fuzzingclient-all.json
 	killall php wstest

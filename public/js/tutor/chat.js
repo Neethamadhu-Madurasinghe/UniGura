@@ -26,7 +26,7 @@ window.setInterval(() => {
 
 // Fetch all the chatThreads for this user
 async function fetchChatThreads() {
-    const response = await fetch('http://localhost/unigura/api/chat/get-all-chat-threads');
+    const response = await fetch('http://40.115.0.66/unigura/api/chat/get-all-chat-threads');
     if (response.status === 200) {
         let data = await response.json();
         console.log(data);
@@ -40,7 +40,7 @@ async function fetchChatThreads() {
 
             const element = `
             <li class="clearfix ${index === 0 ? "active" : ""}" data-threadid="${chatThread.id}">
-                <img src="${'http://localhost/unigura/' + chatThread.profile_picture}" alt="avatar">
+                <img src="${'http://40.115.0.66/unigura/' + chatThread.profile_picture}" alt="avatar">
                 <div class="about">
                     <div class="name">${chatThread.name}</div>
                     <div class="status" data-userid="${partnerId}"> <i class="fa fa-circle online"></i></div>
@@ -74,7 +74,7 @@ async function fetchMessages(threadId) {
     // find other participant's name and profile picture from chatThread array
     currentChatThread = chatThreads.filter(chatThread => chatThread.id === Number(threadId))[0];
     chatTitleUI.textContent = currentChatThread.name;
-    chatImageUI.src = 'http://localhost/unigura/' + currentChatThread.profile_picture;
+    chatImageUI.src = 'http://40.115.0.66/unigura/' + currentChatThread.profile_picture;
 
     // Enable UI access to the connection
     connections.forEach((value) => value.deactivate())
@@ -83,7 +83,7 @@ async function fetchMessages(threadId) {
     console.log(currentChatThread)
 
 
-    const response = await fetch(`http://localhost/unigura/api/chat/get-chat?chatThreadId=${threadId}`);
+    const response = await fetch(`http://40.115.0.66/unigura/api/chat/get-chat?chatThreadId=${threadId}`);
     const data = await response.json()
 
     if (response.status === 200) {
@@ -103,7 +103,7 @@ async function fetchMessages(threadId) {
                 const element = `
                     <li class="clearfix">
                         <div class="message-data">
-                            <img src="${'http://localhost/unigura/' + currentChatThread.profile_picture}" alt="avatar">
+                            <img src="${'http://40.115.0.66/unigura/' + currentChatThread.profile_picture}" alt="avatar">
                             <span class="message-data-time" data-time="${message.created_at}">${getTimePassed(message.created_at)}</span>
                         </div>
                         <div class="message my-message">${message.message}</div>                                    
@@ -243,7 +243,7 @@ async function sendMessage(message, threadId) {
         'message': message,
         'thread_id': threadId
     };
-    const result = await fetch('http://localhost/unigura/api/chat/save-message', {
+    const result = await fetch('http://40.115.0.66/unigura/api/chat/save-message', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

@@ -14,11 +14,11 @@ let currentRating = 1;
 starsUI.forEach((starUI, index) => {
     starUI.addEventListener('mouseover', (e) => {
         for(let i = 0; i <= index; i++) {
-            starsUI[i].src = "http://localhost/UniGura/public/img/student/big.png"
+            starsUI[i].src = "http://40.115.0.66/UniGura/public/img/student/big.png"
         }
 
         for(let i = index   +1; i < 4 + 1; i++) {
-            starsUI[i].src = "http://localhost/UniGura/public/img/student/star_inactive.png"
+            starsUI[i].src = "http://40.115.0.66/UniGura/public/img/student/star_inactive.png"
         }
         currentRating = index + 1;
     });
@@ -29,7 +29,7 @@ feedbackOkBtnUI.addEventListener('click', async (e) => {
     const comment = optionalCommentUI.value;
     const rating = currentRating;
 
-    const response = await fetch('http://localhost/unigura/api/create-review', {
+    const response = await fetch('http://40.115.0.66/unigura/api/create-review', {
         method: 'POST',
         credentials: "include",
         headers: {

@@ -64,7 +64,7 @@ Header::render(
             console.log(object);
 
             document.getElementById('cancel').addEventListener('click', () => {
-                window.location = `http://localhost/unigura/tutor/classes`;
+                window.location = `http://40.115.0.66/unigura/tutor/classes`;
             });
 
 

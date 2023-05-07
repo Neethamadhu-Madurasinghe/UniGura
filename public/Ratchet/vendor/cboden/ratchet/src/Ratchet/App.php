@@ -59,11 +59,11 @@ class App {
     /**
      * @param string        $httpHost   HTTP hostname clients intend to connect to. MUST match JS `new WebSocket('ws://$httpHost');`
      * @param int           $port       Port to listen on. If 80, assuming production, Flash on 843 otherwise expecting Flash to be proxied through 8843
-     * @param string        $address    IP address to bind to. Default is localhost/proxy only. '0.0.0.0' for any machine.
+     * @param string        $address    IP address to bind to. Default is 40.115.0.66/proxy only. '0.0.0.0' for any machine.
      * @param LoopInterface $loop       Specific React\EventLoop to bind the application to. null will create one for you.
      * @param array         $context
      */
-    public function __construct($httpHost = 'localhost', $port = 8080, $address = '127.0.0.1', LoopInterface $loop = null, $context = array()) {
+    public function __construct($httpHost = '40.115.0.66', $port = 8080, $address = '127.0.0.1', LoopInterface $loop = null, $context = array()) {
         if (extension_loaded('xdebug') && getenv('RATCHET_DISABLE_XDEBUG_WARN') === false) {
             trigger_error('XDebug extension detected. Remember to disable this if performance testing or going live!', E_USER_WARNING);
         }

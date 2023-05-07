@@ -194,7 +194,7 @@ Accept-Language: en-US,en;q=0.8
         $negotiator->setSupportedSubProtocols(['someproto']);
 
         $requestText = 'GET / HTTP/1.1
-Host: localhost:8080
+Host: 40.115.0.66:8080
 Connection: Upgrade
 Upgrade: websocket
 Sec-WebSocket-Version: 13

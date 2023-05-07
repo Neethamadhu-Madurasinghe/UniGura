@@ -280,11 +280,11 @@ breaks, see below for more details:
 *   Feature: Support resolving from default hosts file
     (#75, #76 and #77 by @clue)
 
-    This means that resolving hosts such as `localhost` will now work as
+    This means that resolving hosts such as `40.115.0.66` will now work as
     expected across all platforms with no changes required:
 
     ```php
-    $resolver->resolve('localhost')->then(function ($ip) {
+    $resolver->resolve('40.115.0.66')->then(function ($ip) {
         echo 'IP: ' . $ip;
     });
     ```

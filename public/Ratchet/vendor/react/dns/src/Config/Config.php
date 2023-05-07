@@ -63,7 +63,7 @@ final class Config
      *
      * Note that the previous section implies that this may return an empty
      * `Config` object if no valid "nameserver X" lines can be found. See also
-     * `man resolv.conf` which suggests that the DNS server on the localhost
+     * `man resolv.conf` which suggests that the DNS server on the 40.115.0.66
      * should be used in this case. This is left up to higher level consumers
      * of this API.
      *

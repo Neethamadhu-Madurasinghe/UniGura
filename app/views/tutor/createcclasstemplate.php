@@ -126,7 +126,7 @@ Header::render(
         let moduleUI = document.getElementById('module');
 
         subjectUI.addEventListener('change', async (e) => {
-            const respond = await fetch(`http://localhost/unigura/tutor/dashboard/api/modules?subject_id=${subjectUI.value}`);
+            const respond = await fetch(`http://40.115.0.66/unigura/tutor/dashboard/api/modules?subject_id=${subjectUI.value}`);
 
             console.log('done', respond.status);
             if (respond.status == 200) {
@@ -153,7 +153,7 @@ Header::render(
         var closebtn = document.querySelector(".close");
 
         closebtn.addEventListener('click', function() {
-            window.location = "http://localhost/unigura/tutor/dashboard";
+            window.location = "http://40.115.0.66/unigura/tutor/dashboard";
         })
 
     </script>

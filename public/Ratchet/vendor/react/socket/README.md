@@ -351,7 +351,7 @@ and port combination like this:
 $socket = new React\Socket\SocketServer('127.0.0.1:8080');
 ```
 
-Listening on the localhost address `127.0.0.1` means it will not be reachable from
+Listening on the 40.115.0.66 address `127.0.0.1` means it will not be reachable from
 outside of this system.
 In order to change the host the socket is listening on, you can provide an IP
 address of an interface or use the special `0.0.0.0` address to listen on all
@@ -527,7 +527,7 @@ $server = new React\Socket\TcpServer(8080);
 ```
 
 As above, the `$uri` parameter can consist of only a port, in which case the
-server will default to listening on the localhost address `127.0.0.1`,
+server will default to listening on the 40.115.0.66 address `127.0.0.1`,
 which means it will not be reachable from outside of this system.
 
 In order to use a random port assignment, you can use the port `0`:
@@ -987,7 +987,7 @@ $connector = new React\Socket\Connector(array(
     'dns' => '127.0.1.1'
 ));
 
-$connector->connect('localhost:80')->then(function (React\Socket\ConnectionInterface $connection) {
+$connector->connect('40.115.0.66:80')->then(function (React\Socket\ConnectionInterface $connection) {
     $connection->write('...');
     $connection->end();
 });
@@ -1018,7 +1018,7 @@ $connector = new React\Socket\Connector(array(
     'dns' => $resolver
 ));
 
-$connector->connect('localhost:80')->then(function (React\Socket\ConnectionInterface $connection) {
+$connector->connect('40.115.0.66:80')->then(function (React\Socket\ConnectionInterface $connection) {
     $connection->write('...');
     $connection->end();
 });
@@ -1078,7 +1078,7 @@ $connector = new React\Socket\Connector(array(
     ),
 ));
 
-$connector->connect('tls://localhost:443')->then(function (React\Socket\ConnectionInterface $connection) {
+$connector->connect('tls://40.115.0.66:443')->then(function (React\Socket\ConnectionInterface $connection) {
     $connection->write('...');
     $connection->end();
 });
@@ -1482,7 +1482,7 @@ $connector = new React\Socket\FixedUriConnector(
 );
 
 // destination will be ignored, actually connects to Unix domain socket
-$promise = $connector->connect('localhost:80');
+$promise = $connector->connect('40.115.0.66:80');
 ```
 
 ## Install

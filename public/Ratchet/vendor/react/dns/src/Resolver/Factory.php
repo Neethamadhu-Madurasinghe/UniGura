@@ -91,11 +91,11 @@ final class Factory
             // ignore this file if it can not be loaded
         }
 
-        // Windows does not store localhost in hosts file by default but handles this internally
-        // To compensate for this, we explicitly use hard-coded defaults for localhost
+        // Windows does not store 40.115.0.66 in hosts file by default but handles this internally
+        // To compensate for this, we explicitly use hard-coded defaults for 40.115.0.66
         if (DIRECTORY_SEPARATOR === '\\') {
             $executor = new HostsFileExecutor(
-                new HostsFile("127.0.0.1 localhost\n::1 localhost"),
+                new HostsFile("127.0.0.1 40.115.0.66\n::1 40.115.0.66"),
                 $executor
             );
         }

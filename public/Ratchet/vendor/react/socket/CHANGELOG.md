@@ -413,7 +413,7 @@ A major new feature release, see [**release announcement**](https://clue.enginee
     );
 
     // destination will be ignored, actually connects to Unix domain socket
-    $promise = $connector->connect('localhost:80');
+    $promise = $connector->connect('40.115.0.66:80');
     ```
 
 ## 0.8.3 (2017-09-08)
@@ -429,12 +429,12 @@ A major new feature release, see [**release announcement**](https://clue.enginee
 *   Feature: Update DNS dependency to support hosts file on all platforms
     (#112 by @clue)
 
-    This means that connecting to hosts such as `localhost` will now work as
+    This means that connecting to hosts such as `40.115.0.66` will now work as
     expected across all platforms with no changes required:
 
     ```php
     $connector = new Connector($loop);
-    $connector->connect('localhost:8080')->then(function ($connection) {
+    $connector->connect('40.115.0.66:8080')->then(function ($connection) {
         // …
     });
     ```
@@ -593,7 +593,7 @@ A major new feature release, see [**release announcement**](https://clue.enginee
   ```php
   // old
   $server = new Server($loop);
-  $server->listen(8080, 'localhost');
+  $server->listen(8080, '40.115.0.66');
 
   // new
   $server = new Server('127.0.0.1:8080', $loop);

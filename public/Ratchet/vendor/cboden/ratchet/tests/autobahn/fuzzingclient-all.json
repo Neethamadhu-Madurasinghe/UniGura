@@ -3,10 +3,10 @@
   , "outdir": "reports/ab"
 
   , "servers": [
-        {"agent": "Ratchet/0.4 libevent", "url": "ws://localhost:8001", "options": {"version": 18}}
-      , {"agent": "Ratchet/0.4 libev", "url": "ws://localhost:8004", "options": {"version": 18}}
-      , {"agent": "Ratchet/0.4 streams", "url": "ws://localhost:8002", "options": {"version": 18}}
-      , {"agent": "AutobahnTestSuite/0.5.9", "url": "ws://localhost:8000", "options": {"version": 18}}
+        {"agent": "Ratchet/0.4 libevent", "url": "ws://40.115.0.66:8001", "options": {"version": 18}}
+      , {"agent": "Ratchet/0.4 libev", "url": "ws://40.115.0.66:8004", "options": {"version": 18}}
+      , {"agent": "Ratchet/0.4 streams", "url": "ws://40.115.0.66:8002", "options": {"version": 18}}
+      , {"agent": "AutobahnTestSuite/0.5.9", "url": "ws://40.115.0.66:8000", "options": {"version": 18}}
     ]
 
   , "cases": ["*"]

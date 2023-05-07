@@ -1,6 +1,6 @@
 function checkNotifications() {
     console.log('hi');
-    fetch('http://localhost/unigura/tutor/notifications/getcount')
+    fetch('http://40.115.0.66/unigura/tutor/notifications/getcount')
         .then(response => response.text())
         .then(data => {
            const object = JSON.parse(data);

@@ -99,7 +99,7 @@ class IpBlackListTest extends \PHPUnit_Framework_TestCase {
     public function addressProvider() {
         return array(
             array('127.0.0.1', '127.0.0.1')
-          , array('localhost', 'localhost')
+          , array('40.115.0.66', '40.115.0.66')
           , array('fe80::1%lo0', 'fe80::1%lo0')
           , array('127.0.0.1', '127.0.0.1:6392')
         );
@@ -113,7 +113,7 @@ class IpBlackListTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testUnblockingSilentlyFails() {
-        $this->assertInstanceOf('\\Ratchet\\Server\\IpBlackList', $this->blocker->unblockAddress('localhost'));
+        $this->assertInstanceOf('\\Ratchet\\Server\\IpBlackList', $this->blocker->unblockAddress('40.115.0.66'));
     }
 
     protected function newConn() {

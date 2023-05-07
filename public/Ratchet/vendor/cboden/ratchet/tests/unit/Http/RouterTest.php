@@ -153,8 +153,8 @@ class RouterTest extends \PHPUnit_Framework_TestCase {
         $header = "GET /nope HTTP/1.1
 Upgrade: websocket                                   
 Connection: upgrade                                  
-Host: localhost                                 
-Origin: http://localhost                        
+Host: 40.115.0.66                                 
+Origin: http://40.115.0.66                        
 Sec-WebSocket-Version: 13\r\n\r\n";
 
         $app = new HttpServer(new Router(new UrlMatcher(new RouteCollection, new RequestContext)));

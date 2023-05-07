@@ -8,7 +8,7 @@ class WebSocketConnection {
     constructor(chatThreadId, UIElements) {
         this.UIElements = UIElements;
         this.threadId = chatThreadId;
-        this.conn = new WebSocket('ws://localhost:8080');
+        this.conn = new WebSocket('ws://40.115.0.66:8080');
 
         // What to do when the connection is started
         this.conn.onopen = (e) => {
@@ -39,7 +39,7 @@ class WebSocketConnection {
                 this.UIElements.messageBoxUI.innerHTML += `
                 <div class="message-i-box">
                     <div class="message-box-image-container">
-                         <img src="${'http://localhost/unigura/' + currentChatThread.profile_picture}" alt="" class="profile-picture-img">
+                         <img src="${'http://40.115.0.66/unigura/' + currentChatThread.profile_picture}" alt="" class="profile-picture-img">
                     </div> 
                     <div class="message-content">
                          <p class="message">${data.msg}.</p>

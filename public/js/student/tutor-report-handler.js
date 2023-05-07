@@ -38,7 +38,7 @@ reportSubmitButtonUI.addEventListener('click', async (e) => {
   console.log(report)
   
   // Send the request
-  const response = await fetch('http://localhost/unigura/api/report-tutor', {
+  const response = await fetch('http://40.115.0.66/unigura/api/report-tutor', {
       method: 'POST',
       credentials: "include",
       headers: {

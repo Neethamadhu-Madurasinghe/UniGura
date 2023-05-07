@@ -144,7 +144,7 @@ Header::render(
                 console.log(positionData);
 
                 function sendPositon(position_list) {
-                    fetch('http://localhost/unigura/tutor/sendposition', {
+                    fetch('http://40.115.0.66/unigura/tutor/sendposition', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -171,7 +171,7 @@ Header::render(
 
                 addactivitybtns.forEach(btn => {
                     btn.addEventListener('click', function() {
-                        window.location = "http://localhost/unigura/tutor/addactivity?id=" + this.id + "&subject=" + subject + "&module=" + module + "&course_id=" + <?php echo $data['id'] ?>;
+                        window.location = "http://40.115.0.66/unigura/tutor/addactivity?id=" + this.id + "&subject=" + subject + "&module=" + module + "&course_id=" + <?php echo $data['id'] ?>;
                     })
                 })
 
@@ -180,13 +180,13 @@ Header::render(
 
 
                 document_containers.forEach(container => {
-                    const url = "http://localhost/unigura/tutor/getactivity?id=" + container.dataset.id;
+                    const url = "http://40.115.0.66/unigura/tutor/getactivity?id=" + container.dataset.id;
                     fetch(url)
                         .then(response => response.json())
                         .then(data => {
                             if (data.length > 0) {
                                 for (let i = 0; i < data.length; i++) {
-                                    let code = `<img class='img02' src='http://localhost/UniGura/public/img/tutor/class/icons/file.png'><a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;' href = "http://localhost/unigura/tutor/viewactivitydoc?file=${data[i].link}">${data[i].description}</a>`;
+                                    let code = `<img class='img02' src='http://40.115.0.66/UniGura/public/img/tutor/class/icons/file.png'><a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;' href = "http://40.115.0.66/unigura/tutor/viewactivitydoc?file=${data[i].link}">${data[i].description}</a>`;
                                     container.innerHTML += code;
                                 }
                             }
@@ -203,7 +203,7 @@ Header::render(
 
                 updatedaybtns.forEach(btn => {
                     btn.addEventListener('click', function() {
-                        window.location = "http://localhost/unigura/tutor/updateday?id=" + this.id + "&subject=" + subject + "&module=" + module + "&course_id=" + <?php echo $data['id'] ?>;
+                        window.location = "http://40.115.0.66/unigura/tutor/updateday?id=" + this.id + "&subject=" + subject + "&module=" + module + "&course_id=" + <?php echo $data['id'] ?>;
                     })
                 })
 
@@ -213,7 +213,7 @@ Header::render(
 
                 deletedaybtns.forEach(btn => {
                     btn.addEventListener('click', function() {
-                        window.location = "http://localhost/unigura/tutor/deleteday?id=" + this.id + "&subject=" + subject + "&module=" + module + "&course_id=" + <?php echo $data['id'] ?>;
+                        window.location = "http://40.115.0.66/unigura/tutor/deleteday?id=" + this.id + "&subject=" + subject + "&module=" + module + "&course_id=" + <?php echo $data['id'] ?>;
                     })
                 })
 
@@ -223,7 +223,7 @@ Header::render(
 
 
                 document.querySelector('.button1').addEventListener('click',function(){
-                    window.location = `http://localhost/unigura/tutor/createday?class_template_id=${cid}&subject=${subject_name}&module=${module_name}?>`
+                    window.location = `http://40.115.0.66/unigura/tutor/createday?class_template_id=${cid}&subject=${subject_name}&module=${module_name}?>`
                 })
 
                 var updatedaybtns = document.querySelectorAll(".update-day");
@@ -231,7 +231,7 @@ Header::render(
 
                 updatedaybtns.forEach(btn => {
                     btn.addEventListener('click', function() {
-                        window.location = "http://localhost/unigura/tutor/updateday?id=" + this.id + "&subject=" + subject + "&module=" + module + "&course_id=" + <?php echo $data['id'] ?>;
+                        window.location = "http://40.115.0.66/unigura/tutor/updateday?id=" + this.id + "&subject=" + subject + "&module=" + module + "&course_id=" + <?php echo $data['id'] ?>;
                     })
                 })
 
@@ -241,7 +241,7 @@ Header::render(
 
                 deletedaybtns.forEach(btn => {
                     btn.addEventListener('click', function() {
-                        window.location = "http://localhost/unigura/tutor/deleteday?id=" + this.id + "&subject=" + subject + "&module=" + module + "&course_id=" + <?php echo $data['id'] ?>;
+                        window.location = "http://40.115.0.66/unigura/tutor/deleteday?id=" + this.id + "&subject=" + subject + "&module=" + module + "&course_id=" + <?php echo $data['id'] ?>;
                     })
                 })
             </script>

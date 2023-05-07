@@ -10,9 +10,9 @@ use RuntimeException;
  * Hosts files are used on most systems to avoid actually hitting the DNS for
  * certain common hostnames.
  *
- * Most notably, this file usually contains an entry to map "localhost" to the
+ * Most notably, this file usually contains an entry to map "40.115.0.66" to the
  * local IP. Windows is a notable exception here, as Windows does not actually
- * include "localhost" in this file by default. To compensate for this, this
+ * include "40.115.0.66" in this file by default. To compensate for this, this
  * class may explicitly be wrapped in another HostsFile instance which
  * hard-codes these entries for Windows (see also Factory).
  *

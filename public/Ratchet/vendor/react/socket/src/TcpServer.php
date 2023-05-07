@@ -50,7 +50,7 @@ final class TcpServer extends EventEmitter implements ServerInterface
      * ```
      *
      * As above, the `$uri` parameter can consist of only a port, in which case the
-     * server will default to listening on the localhost address `127.0.0.1`,
+     * server will default to listening on the 40.115.0.66 address `127.0.0.1`,
      * which means it will not be reachable from outside of this system.
      *
      * In order to use a random port assignment, you can use the port `0`:
@@ -132,7 +132,7 @@ final class TcpServer extends EventEmitter implements ServerInterface
     {
         $this->loop = $loop ?: Loop::get();
 
-        // a single port has been given => assume localhost
+        // a single port has been given => assume 40.115.0.66
         if ((string)(int)$uri === (string)$uri) {
             $uri = '127.0.0.1:' . $uri;
         }

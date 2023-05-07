@@ -39,7 +39,7 @@ class IoServerTest extends \PHPUnit_Framework_TestCase {
     public function testOnOpen() {
         $this->app->expects($this->once())->method('onOpen')->with($this->isInstanceOf('\\Ratchet\\ConnectionInterface'));
 
-        $client = stream_socket_client("tcp://localhost:{$this->port}");
+        $client = stream_socket_client("tcp://40.115.0.66:{$this->port}");
 
         $this->tickLoop($this->server->loop);
 
@@ -59,7 +59,7 @@ class IoServerTest extends \PHPUnit_Framework_TestCase {
         socket_set_option($client, SOL_SOCKET, SO_REUSEADDR, 1);
         socket_set_option($client, SOL_SOCKET, SO_SNDBUF, 4096);
         socket_set_block($client);
-        socket_connect($client, 'localhost', $this->port);
+        socket_connect($client, '40.115.0.66', $this->port);
 
         $this->tickLoop($this->server->loop);
 
@@ -80,7 +80,7 @@ class IoServerTest extends \PHPUnit_Framework_TestCase {
         socket_set_option($client, SOL_SOCKET, SO_REUSEADDR, 1);
         socket_set_option($client, SOL_SOCKET, SO_SNDBUF, 4096);
         socket_set_block($client);
-        socket_connect($client, 'localhost', $this->port);
+        socket_connect($client, '40.115.0.66', $this->port);
 
         $this->tickLoop($this->server->loop);
 

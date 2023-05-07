@@ -169,7 +169,7 @@ Header::render(
         }
         //convert the json object to a string and store it in a hidden input field
 
-        fetch('http://localhost/unigura/tutor/tutor-time-slot-inputs', {
+        fetch('http://40.115.0.66/unigura/tutor/tutor-time-slot-inputs', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -181,7 +181,7 @@ Header::render(
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
-                window.location.href = 'http://localhost/unigura/tutor/dashboard';
+                window.location.href = 'http://40.115.0.66/unigura/tutor/dashboard';
             })
             .catch((error) => {
                 console.error('Have Error');

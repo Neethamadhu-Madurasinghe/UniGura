@@ -22,7 +22,7 @@ async function requestTimeTable() {
   request.duration = dataElement.dataset.duration;
   request.mode = dataElement.dataset.mode;
 
-  const respond = await fetch('http://localhost/unigura/api/time-table?' + new URLSearchParams({ tutor_id: request.tutor_id}));
+  const respond = await fetch('http://40.115.0.66/unigura/api/time-table?' + new URLSearchParams({ tutor_id: request.tutor_id}));
   unsortedTimeSlots = await respond.json();
   sortedTimeSlots = sortTimeSlot(unsortedTimeSlots, request.duration/2);
   // Remove unusable time slots eg- if class requires 2 slots, then remove all isolated single timeslots

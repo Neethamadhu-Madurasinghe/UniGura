@@ -24,7 +24,7 @@ async function sendTutorRequest(hasNoDefaultValue = false) {
     request.time_slots = Array.from(selectedSlots);
     console.log(request);
 
-    const response = await fetch('http://localhost/unigura/api/request', {
+    const response = await fetch('http://40.115.0.66/unigura/api/request', {
       method: 'POST',
       credentials: "include",
       headers: {

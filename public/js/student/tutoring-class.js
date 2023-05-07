@@ -23,7 +23,7 @@ function hideLayoutBackground() {
 
 activityCheckBoxesUI.forEach(activityCheckBoxUI => {
     activityCheckBoxUI.addEventListener('change', async e => {
-        const response = await fetch('http://localhost/unigura/api/student/toggle-activity-completion', {
+        const response = await fetch('http://40.115.0.66/unigura/api/student/toggle-activity-completion', {
             method: 'POST',
             credentials: "include",
             headers: {

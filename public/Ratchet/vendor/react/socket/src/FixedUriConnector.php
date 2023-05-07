@@ -16,7 +16,7 @@ namespace React\Socket;
  * );
  *
  * // destination will be ignored, actually connects to Unix domain socket
- * $promise = $connector->connect('localhost:80');
+ * $promise = $connector->connect('40.115.0.66:80');
  * ```
  */
 class FixedUriConnector implements ConnectorInterface

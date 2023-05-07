@@ -1,6 +1,6 @@
 APPROOT : C:\xampp\htdocs\UniGura\app
 ROOT : C:\xampp\htdocs\UniGura
-URLROOT : http://localhost:8080/UniGura
+URLROOT : http://40.115.0.66:8080/UniGura
 
 // load the student js file
         // const script = document.createElement('script');

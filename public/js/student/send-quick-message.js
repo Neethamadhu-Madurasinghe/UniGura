@@ -12,7 +12,7 @@ messageSendBtn.addEventListener("click", async (e) => {
     if(message.length <= 0) {
         showErrorMessage("Please enter a valid message");
     }else {
-        const result = await fetch('http://localhost/unigura/api/chat/send-single-message', {
+        const result = await fetch('http://40.115.0.66/unigura/api/chat/send-single-message', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

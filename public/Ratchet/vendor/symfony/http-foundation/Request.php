@@ -321,9 +321,9 @@ class Request
     public static function create(string $uri, string $method = 'GET', array $parameters = [], array $cookies = [], array $files = [], array $server = [], $content = null): static
     {
         $server = array_replace([
-            'SERVER_NAME' => 'localhost',
+            'SERVER_NAME' => '40.115.0.66',
             'SERVER_PORT' => 80,
-            'HTTP_HOST' => 'localhost',
+            'HTTP_HOST' => '40.115.0.66',
             'HTTP_USER_AGENT' => 'Symfony',
             'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'HTTP_ACCEPT_LANGUAGE' => 'en-us,en;q=0.5',
@@ -808,12 +808,12 @@ class Request
      *
      * The path info always starts with a /.
      *
-     * Suppose this request is instantiated from /mysite on localhost:
+     * Suppose this request is instantiated from /mysite on 40.115.0.66:
      *
-     *  * http://localhost/mysite              returns an empty string
-     *  * http://localhost/mysite/about        returns '/about'
-     *  * http://localhost/mysite/enco%20ded   returns '/enco%20ded'
-     *  * http://localhost/mysite/about?var=1  returns '/about'
+     *  * http://40.115.0.66/mysite              returns an empty string
+     *  * http://40.115.0.66/mysite/about        returns '/about'
+     *  * http://40.115.0.66/mysite/enco%20ded   returns '/enco%20ded'
+     *  * http://40.115.0.66/mysite/about?var=1  returns '/about'
      *
      * @return string The raw path (i.e. not urldecoded)
      */
@@ -827,10 +827,10 @@ class Request
      *
      * Suppose that an index.php file instantiates this request object:
      *
-     *  * http://localhost/index.php         returns an empty string
-     *  * http://localhost/index.php/page    returns an empty string
-     *  * http://localhost/web/index.php     returns '/web'
-     *  * http://localhost/we%20b/index.php  returns '/we%20b'
+     *  * http://40.115.0.66/index.php         returns an empty string
+     *  * http://40.115.0.66/index.php/page    returns an empty string
+     *  * http://40.115.0.66/web/index.php     returns '/web'
+     *  * http://40.115.0.66/we%20b/index.php  returns '/we%20b'
      *
      * @return string The raw path (i.e. not urldecoded)
      */

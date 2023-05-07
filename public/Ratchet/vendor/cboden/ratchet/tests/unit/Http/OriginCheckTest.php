@@ -10,11 +10,11 @@ class OriginCheckTest extends AbstractMessageComponentTestCase {
 
     public function setUp() {
         $this->_reqStub = $this->getMock('Psr\Http\Message\RequestInterface');
-        $this->_reqStub->expects($this->any())->method('getHeader')->will($this->returnValue(['localhost']));
+        $this->_reqStub->expects($this->any())->method('getHeader')->will($this->returnValue(['40.115.0.66']));
 
         parent::setUp();
 
-        $this->_serv->allowedOrigins[] = 'localhost';
+        $this->_serv->allowedOrigins[] = '40.115.0.66';
     }
 
     protected function doOpen($conn) {
