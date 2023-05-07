@@ -150,18 +150,18 @@ Header::render(
                var closebtn = document.querySelector("#close_btn");
 
                closebtn.addEventListener('click', function() {
-                    window.location = "http://40.115.0.66/unigura/tutor/dashboard";
+                    window.location = "http://40.115.0.66/tutor/dashboard";
                })
 
                document.addEventListener('DOMContentLoaded', (event) => {
                     if (decline) {
                          decline.addEventListener('click', function() {
-                              const url = "http://40.115.0.66/unigura/tutor/requestdecline?id=" + request[0].id;
+                              const url = "http://40.115.0.66/tutor/requestdecline?id=" + request[0].id;
 
                               fetch(url)
                                    .then(response => response.json())
                                    .then(data => {
-                                        window.location = "http://40.115.0.66/unigura/tutor/dashboard";
+                                        window.location = "http://40.115.0.66/tutor/dashboard";
                                    })
                                    .catch(error => {
                                         console.error(error);

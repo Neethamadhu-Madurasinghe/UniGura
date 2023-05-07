@@ -47,7 +47,7 @@ deleteRequestCancelBtnUI.addEventListener('click', () => {
 
 // Confirm tutor request deletion
 deleteRequestConfirmBtnUI.addEventListener('click', async () => {
-    const response = await fetch('http://40.115.0.66/unigura/api/student/delete-request', {
+    const response = await fetch('http://40.115.0.66/api/student/delete-request', {
         method: 'POST',
         credentials: "include",
         headers: {
@@ -124,7 +124,7 @@ changePasswordOTPOkBtnUI.addEventListener('click', async () => {
         return;
     }
 
-    const respond = await fetch(`http://40.115.0.66/unigura/api/user/validate-otp?code=${code}`);
+    const respond = await fetch(`http://40.115.0.66/api/user/validate-otp?code=${code}`);
     const statusCode = respond.status;
 
     if(statusCode === 401) {
@@ -178,7 +178,7 @@ changePasswordOkBtnUI.addEventListener('click',  async () => {
         return;
     }
 
-    const respond = await fetch('http://40.115.0.66/unigura/api/user/change-password', {
+    const respond = await fetch('http://40.115.0.66/api/user/change-password', {
         method: "POST",
         credentials: "include",
         headers: {
@@ -235,7 +235,7 @@ async function initiatePasswordReset(isDisabling = false) {
     // Show loading screen
     layoutBackgroundUI.classList.remove('invisible');
     loaderUI.classList.remove('invisible');
-    const respond = await fetch('http://40.115.0.66/unigura/api/user/initiate-reset-password');
+    const respond = await fetch('http://40.115.0.66/api/user/initiate-reset-password');
     const statusCode = respond.status;
     layoutBackgroundUI.classList.add('invisible');
     loaderUI.classList.add('invisible');

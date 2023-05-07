@@ -27,7 +27,7 @@ window.setInterval(() => {
 
 // Fetch all the chatThreads for this user
 async function fetchChatThreads() {
-    const response = await fetch('http://40.115.0.66/unigura/api/chat/get-all-chat-threads');
+    const response = await fetch('http://40.115.0.66/api/chat/get-all-chat-threads');
     if (response.status === 200) {
         let data = await response.json();
         console.log(data);
@@ -38,7 +38,7 @@ async function fetchChatThreads() {
             chatComponentUI.innerHTML = `
                 <div class="no-msg-class">
                     <h2>You have no active chats</h2>
-                    <h4>You can start a new chat using <a href="http://40.115.0.66/UniGura/student/dashboard">Class</a> or <a href="http://40.115.0.66/UniGura/student/find-tutor">Find a tutor</a></h4>
+                    <h4>You can start a new chat using <a href="http://40.115.0.66/student/dashboard">Class</a> or <a href="http://40.115.0.66/student/find-tutor">Find a tutor</a></h4>
                 </div>
                 
             `;
@@ -52,7 +52,7 @@ async function fetchChatThreads() {
             const element = `
             <div class="contact-card ${ index === 0 ? "contact-card-selected" : "" }" data-threadid="${chatThread.id}">
                 <div class="contact-card-image-container">
-                  <img src="${'http://40.115.0.66/unigura/' + chatThread.profile_picture}" alt="" class="profile-picture-img">
+                  <img src="${'http://40.115.0.66/' + chatThread.profile_picture}" alt="" class="profile-picture-img">
                 </div>
                 <div class="details-container">
                   <div>
@@ -93,7 +93,7 @@ async function fetchMessages(threadId) {
     // find other participant's name and profile picture from chatThread array
     currentChatThread = chatThreads.filter(chatThread => chatThread.id === Number(threadId))[0];
     chatTitleUI.textContent = currentChatThread.name;
-    chatImageUI.src = 'http://40.115.0.66/unigura/' + currentChatThread.profile_picture;
+    chatImageUI.src = 'http://40.115.0.66/' + currentChatThread.profile_picture;
 
     // Enable UI access to the connection
     connections.forEach((value) => value.deactivate())
@@ -102,7 +102,7 @@ async function fetchMessages(threadId) {
     console.log(currentChatThread)
 
 
-    const response = await fetch(`http://40.115.0.66/unigura/api/chat/get-chat?chatThreadId=${threadId}`);
+    const response = await fetch(`http://40.115.0.66/api/chat/get-chat?chatThreadId=${threadId}`);
     const data = await response.json()
 
     if (response.status === 200) {
@@ -122,7 +122,7 @@ async function fetchMessages(threadId) {
                 const element = `
                     <div class="message-i-box">
                         <div class="message-box-image-container">
-                          <img src="${'http://40.115.0.66/unigura/' + currentChatThread.profile_picture}" alt="" class="profile-picture-img">
+                          <img src="${'http://40.115.0.66/' + currentChatThread.profile_picture}" alt="" class="profile-picture-img">
                         </div>
                         <div class="message-content">
                           <p class="message">${message.message}.</p>
@@ -261,7 +261,7 @@ async function sendMessage(message, threadId) {
         'message': message,
         'thread_id': threadId
     };
-    const result = await fetch('http://40.115.0.66/unigura/api/chat/save-message', {
+    const result = await fetch('http://40.115.0.66/api/chat/save-message', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

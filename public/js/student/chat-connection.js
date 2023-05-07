@@ -39,7 +39,7 @@ class WebSocketConnection {
                 this.UIElements.messageBoxUI.innerHTML += `
                 <div class="message-i-box">
                     <div class="message-box-image-container">
-                         <img src="${'http://40.115.0.66/unigura/' + currentChatThread.profile_picture}" alt="" class="profile-picture-img">
+                         <img src="${'http://40.115.0.66/' + currentChatThread.profile_picture}" alt="" class="profile-picture-img">
                     </div> 
                     <div class="message-content">
                          <p class="message">${data.msg}.</p>

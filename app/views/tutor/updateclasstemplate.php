@@ -86,7 +86,7 @@ Header::render(
 
         if (close) {
             close.addEventListener('click', function() {
-                window.location = "http://40.115.0.66/unigura/tutor/dashboard";
+                window.location = "http://40.115.0.66/tutor/dashboard";
             });
         }
     </script>

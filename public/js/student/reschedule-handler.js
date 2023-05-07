@@ -23,7 +23,7 @@ rescheduleBtnUI?.addEventListener('click', async (e) => {
     request.duration = dataElement.dataset.duration;
     request.class_id = dataElement.dataset.classid;
 
-    const respond = await fetch('http://40.115.0.66/unigura/api/time-table?' + new URLSearchParams({ tutor_id: request.tutor_id}));
+    const respond = await fetch('http://40.115.0.66/api/time-table?' + new URLSearchParams({ tutor_id: request.tutor_id}));
     unsortedTimeSlots = await respond.json();
     sortedTimeSlots = sortTimeSlot(unsortedTimeSlots);
     // Remove unusable time slots eg- if class requires 2 slots, then remove all isolated single timeslots
@@ -105,7 +105,7 @@ rescheduleSendBtnUI.addEventListener('click', async () => {
         request.time_slots = Array.from(selectedSlots);
         console.log(request);
 
-        const response = await fetch('http://40.115.0.66/unigura/api/reschedule', {
+        const response = await fetch('http://40.115.0.66/api/reschedule', {
             method: 'POST',
             credentials: "include",
             headers: {
@@ -161,7 +161,7 @@ rescheduleSendBtnUI.addEventListener('click', async () => {
 
 // Cancel a rescheduling that is already been sent
 cancelRescheduleBtnUI?.addEventListener('click', async() => {
-    const response = await fetch('http://40.115.0.66/unigura/api/student/delete-rescheduling', {
+    const response = await fetch('http://40.115.0.66/api/student/delete-rescheduling', {
         method: 'POST',
         credentials: "include",
         headers: {

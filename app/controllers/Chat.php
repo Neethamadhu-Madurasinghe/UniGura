@@ -218,7 +218,7 @@ class Chat extends Controller {
 //            Determine the redirect link
             $redirectLink = "";
             if($request->isStudent()) {
-                $redirectLink = "/UniGura/student/chat";
+                $redirectLink = "/student/chat";
             } else {
 //                TODO: Redirect to tutor's chat
             }

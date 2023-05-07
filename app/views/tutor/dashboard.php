@@ -94,7 +94,7 @@ MainNavbar::render($request);
                                 <li class='cardss'>
                                     <div class='msg_box' style='margin-top: 0px;'>
                                         <header>
-                                            <img  src= http://40.115.0.66/UniGura/$profile_pic>
+                                            <img  src= http://40.115.0.66/$profile_pic>
                                             <div>
                                                 <h4>$student_first_name  $student_last_name</h4>
                                                 <p style='color: rgba(112, 124, 151, 1) ; margin-top:0px;text-align: justify;'> $module | $mode</p>
@@ -371,13 +371,13 @@ MainNavbar::render($request);
 
     card_container.addEventListener('click', (event) => {
         if (event.target.classList.contains('view')) {
-            window.location = "http://40.115.0.66/unigura/tutor/viewcourse?subject=" + event.target.dataset.subject + "&module=" + event.target.dataset.module + "&id=" + event.target.dataset.id;
+            window.location = "http://40.115.0.66/tutor/viewcourse?subject=" + event.target.dataset.subject + "&module=" + event.target.dataset.module + "&id=" + event.target.dataset.id;
         }
         if (event.target.classList.contains('edit')) {
-            window.location = "http://40.115.0.66/unigura/tutor/updateclasstemplate?id=" + event.target.dataset.id;
+            window.location = "http://40.115.0.66/tutor/updateclasstemplate?id=" + event.target.dataset.id;
         }
         if (event.target.classList.contains('delete')) {
-            window.location = "http://40.115.0.66/unigura/tutor/deleteclasstemplate?id=" + event.target.dataset.id;
+            window.location = "http://40.115.0.66/tutor/deleteclasstemplate?id=" + event.target.dataset.id;
         }
     });
 
@@ -389,7 +389,7 @@ MainNavbar::render($request);
 
     list.addEventListener('click', (event) => {
         if (event.target.tagName === 'BUTTON') {
-            window.location = "http://40.115.0.66/unigura/tutor/viewstudentrequest?id=" + event.target.id;
+            window.location = "http://40.115.0.66/tutor/viewstudentrequest?id=" + event.target.id;
         }
     });
 

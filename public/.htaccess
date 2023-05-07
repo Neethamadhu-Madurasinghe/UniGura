@@ -1,7 +1,7 @@
 <IfModule mod_rewrite.c>
     Options -Multiviews
     RewriteEngine on
-    RewriteBase /Unigura/public
+    RewriteBase /public
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     # Rewriting the entire non-empty url as a query string

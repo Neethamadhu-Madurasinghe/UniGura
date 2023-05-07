@@ -11,7 +11,7 @@ async function sendClassListRequest() {
         'sort-payment': paymentFilterUI.value
     }
 
-    const response = await fetch('http://40.115.0.66/unigura/api/get-class?' + new URLSearchParams(body), {
+    const response = await fetch('http://40.115.0.66/api/get-class?' + new URLSearchParams(body), {
         credentials: "include",
         headers: {
             'Content-Type': 'application/json'
@@ -67,13 +67,13 @@ async function sendClassListRequest() {
                  <div class="class-card-bottom-section">
                     <div class="name-row">
                         <div class="class-card-profile-picture-container">
-                            <img src="${'http://40.115.0.66/unigura/' + tutoringClass.tutor.profile_picture}" alt="" srcset="">
+                            <img src="${'http://40.115.0.66/' + tutoringClass.tutor.profile_picture}" alt="" srcset="">
                         </div>
                         
                         <p>${tutoringClass.tutor.first_name} ${tutoringClass.tutor.last_name}</p>
                         <div class="class-card-payment-due-container">
                             <img
-                                src="${'http://40.115.0.66/unigura//public/img/common/money 1.png'}"
+                                src="${'http://40.115.0.66//public/img/common/money 1.png'}"
                                 class="${tutoringClass.payment_due_day_count > 0 ?
                                         "payment-due-image" :
                                         "payment-due-image-hidden"}">
@@ -87,7 +87,7 @@ async function sendClassListRequest() {
                         </div>
                     </div>
                     
-                    <a class="btn btn-enter-class" href="http://40.115.0.66/UniGura/student/tutoring-class?id=${tutoringClass.id}">Enter</a>
+                    <a class="btn btn-enter-class" href="http://40.115.0.66/student/tutoring-class?id=${tutoringClass.id}">Enter</a>
                 </div>
             </div>`;
         });

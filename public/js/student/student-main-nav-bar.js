@@ -52,7 +52,7 @@ _bodyUI.addEventListener('click', function (e) {
 // Get notifications and show !
 async function getNotifications() {
     notificationCardListUI.innerHTML = '';
-    const respond = await fetch('http://40.115.0.66/unigura/api/student/notification')
+    const respond = await fetch('http://40.115.0.66/api/student/notification')
     const result = await respond.json();
 
    if(respond.status === 200) {
@@ -102,7 +102,7 @@ async function markNotificationsAsSeen() {
     if(unreadNotificationIds.length === 0) {
         return;
     }
-    const response = await fetch('http://40.115.0.66/unigura/api/student/mark-seen', {
+    const response = await fetch('http://40.115.0.66/api/student/mark-seen', {
         method: 'POST',
         credentials: "include",
         headers: {
@@ -118,7 +118,7 @@ async function markNotificationsAsSeen() {
 // Get the number of unseen messages
 async function getUnseenMessageCount() {
     unSeenMessageCountUI.textContent = "00"
-    const respond = await fetch('http://40.115.0.66/unigura/api/chat/unseen-messages')
+    const respond = await fetch('http://40.115.0.66/api/chat/unseen-messages')
     const result = await respond.json();
 
     if(respond.status === 200) {
@@ -143,7 +143,7 @@ async function getUnseenMessageCount() {
 // Delete a notification
 async function deleteNotification(id) {
     unSeenMessageCountUI.textContent = "00"
-    const respond = await fetch('http://40.115.0.66/unigura/api/delete-notification', {
+    const respond = await fetch('http://40.115.0.66/api/delete-notification', {
         method: 'POST',
         credentials: "include",
         headers: {

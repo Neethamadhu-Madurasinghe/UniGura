@@ -254,7 +254,7 @@ class FindTutor extends Controller {
                 $this->notification->createNotification(
                             $body['student_id'],
                         "Tutor request has been sent",
-                    "/UniGura/student/profile#requests",
+                    "/student/profile#requests",
                         "You have sent a tutor request. You can cancel it by clicking here"
 
                 );

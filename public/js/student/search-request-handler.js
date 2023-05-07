@@ -72,7 +72,7 @@ let currentPage = 1;
 subjectUI.addEventListener('change', async (e) => {
   filterValues.subject = subjectUI.value
 
-  const respond = await fetch(`http://40.115.0.66/unigura/api/modules?subject_id=${filterValues.subject}`)
+  const respond = await fetch(`http://40.115.0.66/api/modules?subject_id=${filterValues.subject}`)
   if (respond.status == 200) {
     const result = await respond.json();
     if (result.modules) {
@@ -164,7 +164,7 @@ async function sendSearchClassRequest() {
     return;
   }
 
-  const respond = await fetch('http://40.115.0.66/unigura/api/find-tutoring-class?' + new URLSearchParams(filterValues))
+  const respond = await fetch('http://40.115.0.66/api/find-tutoring-class?' + new URLSearchParams(filterValues))
   if(respond.status !== 200) {
     const result  = await respond.json();
     if (result.error) {
@@ -255,7 +255,7 @@ function displayData(data, startIndex, endIndex) {
     const cardString = `
       <div class="tutor-search-card-top-section">
         <div class="tutor-search-card-image-container">
-          <img src="${'http://40.115.0.66/unigura/' + tutoringClass.profile_picture}" alt="" srcset="">
+          <img src="${'http://40.115.0.66/' + tutoringClass.profile_picture}" alt="" srcset="">
         </div>
         <div class="tutor-search-card-name-section">
           <h2>${tutoringClass.first_name} ${tutoringClass.last_name}</h2>
@@ -264,7 +264,7 @@ function displayData(data, startIndex, endIndex) {
 
           <div class="tutor-search-card-rating-container">
             <div class="tutor-search-card-rating">
-              <img src="http://40.115.0.66/Unigura/public/img/student/star.png" alt="" srcset="">
+              <img src="http://40.115.0.66/public/img/student/star.png" alt="" srcset="">
               <p>${tutoringClass.current_rating}</p>
             </div>
             <p>${tutoringClass.uncompleted_class_count} Active students</p>

@@ -12,7 +12,7 @@ define('PASSWORD', 'kpbhkzmkjkjksepw');
 
 define('APPROOT', dirname(dirname(__FILE__)));
 define('ROOT', dirname(dirname(dirname(__FILE__))));
-define('URLROOT', 'http://40.115.0.66/UniGura');
+define('URLROOT', 'http://40.115.0.66');
 define('tunnel_link','https://solid-chicken-invent-192-248-22-102.loca.lt/');
 
 define('CERT_PATH', APPROOT . '/config/cert.pem');

@@ -39,7 +39,7 @@ class WebSocketConnection {
                 this.UIElements.messageBoxUI.innerHTML += `
                 <li class="clearfix">
                     <div class="message-data">
-                        <img src="${'http://40.115.0.66/unigura/' + currentChatThread.profile_picture}" alt="avatar">
+                        <img src="${'http://40.115.0.66/' + currentChatThread.profile_picture}" alt="avatar">
                         <span class="message-data-time" data-time="${data.date}">${getTimePassed(data.date)}</span>
                     </div>
                     <div class="message my-message">${data.msg}</div>                                    

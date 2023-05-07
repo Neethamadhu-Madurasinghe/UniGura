@@ -840,7 +840,7 @@ MainNavbar::render($request);
         //     console.log(pair[0] + ': ' + pair[1]);
         // }
 
-        const response = fetch('http://40.115.0.66/Unigura/tutor/update-profile', {
+        const response = fetch('http://40.115.0.66/tutor/update-profile', {
                 method: 'POST',
                 body: formData
             })
@@ -936,7 +936,7 @@ MainNavbar::render($request);
 
         console.log(time_slots);
 
-        fetch('http://40.115.0.66/Unigura/tutor/update-time-slots', {
+        fetch('http://40.115.0.66/tutor/update-time-slots', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

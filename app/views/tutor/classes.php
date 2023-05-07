@@ -48,7 +48,7 @@ MainNavbar::render($request);
                          echo "
                         <div class='box_one'>
                     <header>
-                        <img src= 'http://40.115.0.66/UniGura/$profile_picture'>
+                        <img src= 'http://40.115.0.66/$profile_picture'>
                         <h4 style='margin-top: 5%;'>$first_name $last_name</h4>
                     </header>
                     <div class='textbox_one'>
@@ -100,7 +100,7 @@ MainNavbar::render($request);
 
      viewbtns.forEach(btn => {
           btn.addEventListener('click', function() {
-               const url = "http://40.115.0.66/unigura/tutor/getclassdetails?id=" + btn.dataset.id;
+               const url = "http://40.115.0.66/tutor/getclassdetails?id=" + btn.dataset.id;
                fetch(url)
                     .then(response => response.json())
                     .then(data => {
@@ -123,7 +123,7 @@ MainNavbar::render($request);
                          console.log(list);
 
                          document.getElementById('report').addEventListener('click', () => {
-                              window.location = `http://40.115.0.66/unigura/tutor/view-report?student_id=${list.student_id}`;
+                              window.location = `http://40.115.0.66/tutor/view-report?student_id=${list.student_id}`;
                          })
 
                          let days = data['days'];

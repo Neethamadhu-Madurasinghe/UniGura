@@ -32,7 +32,7 @@ Header::render(
     console.log('hello')
     let data = <?php echo json_encode($data) ?>;
 
-    let tunnel = '<?php echo tunnel_link ?>/UniGura/tutor/savepayment';
+    let tunnel = '<?php echo tunnel_link ?>/tutor/savepayment';
 
     console.log(tunnel);
 

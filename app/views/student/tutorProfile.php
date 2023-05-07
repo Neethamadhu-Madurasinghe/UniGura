@@ -94,7 +94,7 @@ Header::render(
                             <div class="icon-container">
                                 <object data="assests/Paper_Plus.svg" type=""></object>
                             </div>
-                            <a class="other-class-link" href="/Unigura/student/tutor-profile?template_id=' . $otherClass['id']  . '">
+                            <a class="other-class-link" href="/student/tutor-profile?template_id=' . $otherClass['id']  . '">
                                 <p>'
                                     . $otherClass['subject_name']
                                     . ' - '
@@ -186,7 +186,7 @@ Header::render(
 
             <div class="buttons-container">
                 <button class="btn btn-tutor-main" id="tutor-request-send">Send Tutor Request</button>
-                <button class="btn btn-tutor-main "><a href="http://40.115.0.66/Unigura/student/chat" style="text-decoration: none; color:white">Message Tutor</a></button>
+                <button class="btn btn-tutor-main "><a href="http://40.115.0.66/student/chat" style="text-decoration: none; color:white">Message Tutor</a></button>
                 <button class="btn btn-tutor-main" id="report-tutor-button">Report</button>
                 <button class="btn btn-tutor-main" id="other-classes-button">Other Classes</button>
             </div>
