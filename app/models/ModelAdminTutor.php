@@ -216,4 +216,22 @@ class ModelAdminTutor{
             return false;
         }
     }
+
+
+    public function getCountActiveTutorialClassesByTutorId($tutorID){
+        $this->db->query("SELECT * FROM tutoring_class WHERE tutor_id = :tutorID AND completion_status = 0");
+        $this->db->bind(':tutorID', $tutorID);
+        $this->db->resultAll();
+
+        return $this->db->rowCount();
+    }
+        
+
+    public function getCountCompletedTutorialClassesByTutorId($tutorID){
+        $this->db->query("SELECT * FROM tutoring_class WHERE tutor_id = :tutorID AND completion_status = 1");
+        $this->db->bind(':tutorID', $tutorID);
+        $this->db->resultAll();
+
+        return $this->db->rowCount();
+    }
 }

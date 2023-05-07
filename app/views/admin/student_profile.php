@@ -56,19 +56,19 @@
                 <h1>Pending Amount</h1>
                 <h2>Rs. 1000</h2>
             </div> -->
-        </div>
+    </div>
     </div>
 
     <div class="3-filed-section">
         <div class="filed-selection-btn">
-            <div class="info-btn">
-                <button>Student Info</button>
+            <div>
+                <button class="info-btn"><i class="fa-solid fa-circle-info"></i> Student Info</button>
             </div>
-            <div class="active-class-btn">
-                <button>Active Class</button>
+            <div>
+                <button class="active-class-btn"><i class="fa-solid fa-rotate fa-spin-pulse"></i> Active Class</button>
             </div>
-            <div class="finished-class-btn">
-                <button>Finished Class</button>
+            <div>
+                <button class="finished-class-btn"><i class="fa fa-regular fa-circle-check"></i> Finished Class</button>
             </div>
         </div>
     </div>
@@ -125,11 +125,19 @@
 
 
     <div class="active-classes">
+
+        <?php if ($data['numberOfActiveClasses'] === 0) : ?>
+            <div class="result-not-found">
+                <img src="<?php echo URLROOT; ?>/public/img/admin/nodata.png" alt=""><br>
+                <h1>No active classes.</h1>
+            </div>
+        <?php endif; ?>
+
         <?php foreach ($data['allClasses'] as $aClassDay) : ?>
             <?php if ($aClassDay->completion_status === 0) : ?>
                 <div class="one-class">
                     <div class="tutor-profile">
-                        <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
+                        <img src="<?php echo URLROOT ?><?php echo $aClassDay->tutor->profile_picture ?>" alt="student profile picture">
                     </div>
                     <div class="class-details">
                         <div class="tutor-name">
@@ -153,11 +161,20 @@
 
 
     <div class="finished-classes">
+
+        <?php if ($data['numberOfCompletedClasses'] == 0) : ?>
+            <div class="result-not-found">
+                <img src="<?php echo URLROOT; ?>/public/img/admin/nodata.png" alt=""><br>
+                <h1>No finished classes.</h1>
+            </div>
+        <?php endif; ?>
+
+
         <?php foreach ($data['allClasses'] as $aClassDay) : ?>
             <?php if ($aClassDay->completion_status === 1) : ?>
                 <div class="one-class">
                     <div class="tutor-profile">
-                        <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
+                    <img src="<?php echo URLROOT ?><?php echo $aClassDay->tutor->profile_picture ?>" alt="student profile picture">
                     </div>
                     <div class="class-details">
                         <div class="tutor-name">

@@ -172,6 +172,23 @@ class ModelAdminStudent {
 
         return $this->db->resultOne();
     }
+
+    public function getCountActiveTutorialClassesByStudentId($studentID){
+        $this->db->query("SELECT * FROM tutoring_class WHERE student_id = :studentID AND completion_status = 0");
+        $this->db->bind(':studentID', $studentID);
+        $this->db->resultAll();
+
+        return $this->db->rowCount();
+    }
+        
+
+    public function getCountCompletedTutorialClassesByStudentId($studentID){
+        $this->db->query("SELECT * FROM tutoring_class WHERE student_id = :studentID AND completion_status = 1");
+        $this->db->bind(':studentID', $studentID);
+        $this->db->resultAll();
+
+        return $this->db->rowCount();
+    }
         
 
 }
