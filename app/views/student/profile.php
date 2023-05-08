@@ -80,6 +80,26 @@ Header::render(
         </div>
     </div>
 
+    <div class="popup-feedback-form hidden">
+        <h1>Post a review</h1>
+        <div class="feedback-star-container">
+            <img id="star-1" class="star" src="<?php echo URLROOT . '/public/img/student/big.png' ?>" alt="" srcset="">
+            <img id="star-2" class="star" src="<?php echo URLROOT . '/public/img/student/star_inactive.png' ?>" alt="" srcset="">
+            <img id="star-3" class="star" src="<?php echo URLROOT . '/public/img/student/star_inactive.png' ?>" alt="" srcset="">
+            <img id="star-4" class="star" src="<?php echo URLROOT . '/public/img/student/star_inactive.png' ?>" alt="" srcset="">
+            <img id="star-5" class="star" src="<?php echo URLROOT . '/public/img/student/star_inactive.png' ?>" alt="" srcset="">
+        </div>
+        <div class="comments-container">
+            <p>Leave a comment (Optional):</p>
+            <textarea name="" id="feedback-input" cols="30" rows="10"></textarea>
+        </div>
+
+        <div class="submit-btn-container">
+            <button class="btn" id="feedback-cancel">Cancel</button>
+            <button class="btn" id="feedback-ok">Submit</button>
+        </div>
+    </div>
+
     <div class="loader invisible"></div>
 </div>
 
@@ -107,6 +127,7 @@ MainNavbar::render($request);
         <div class="utility-button-container">
             <button class="btn btn-utility" id="disable-profile">Disable Account</button>
             <button class="btn btn-utility" id="change-password">Change password</button>
+            <button class="btn btn-utility" id="give-feedback">Give us a Feedback !!</button>
         </div>
 
         <form action="" method="post" id="complete-profile-form">
@@ -336,7 +357,8 @@ MainNavbar::render($request);
         URLROOT . '/public/js/common/student-tutor-complete-profile.js',
         URLROOT . '/public/js/student/profile.js',
         URLROOT . '/public/js/student/student-profile-payment-table.js',
-        URLROOT . '/public/js/student/disable-profile.js'
+        URLROOT . '/public/js/student/disable-profile.js',
+        URLROOT . '/public/js/student/feedback.js'
     ]
 );
 ?>

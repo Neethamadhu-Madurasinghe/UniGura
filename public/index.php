@@ -28,6 +28,7 @@ $router->registerController('/verify-email', [TutorStudentAuth::class, 'verifyEm
 $router->registerController('/reset-password/initiate', [TutorStudentAuth::class, 'resetPassword']);
 $router->registerController('/reset-password/verify', [TutorStudentAuth::class, 'resetPassword']);
 $router->registerController('/reset-password/reset', [TutorStudentAuth::class, 'resetPassword']);
+$router->registerController('/api/user-feedback', [Common::class, 'saveFeedback']);
 
 
 
@@ -257,7 +258,6 @@ $router->registerController('/api/user/change-password', [StudentTutorProfile::c
 $router->registerController('/student/tutoring-class', [StudentClass::class, 'tutoringClass']);
 $router->registerController('/api/create-review', [StudentClass::class, 'createReview']);
 $router->registerController('/api/reschedule', [StudentClass::class, 'requestReschedule']);
-$router->registerController('/api/student/delete-rescheduling', [StudentClass::class, 'cancelReschedule']);
 $router->registerController('/api/student/toggle-activity-completion', [StudentClass::class, 'toggleActivityComplete']);
 
 $router->registerController('/student/payment', [StudentPayment::class, 'savePayment']);
