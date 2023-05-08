@@ -22,7 +22,7 @@ if(request_obj.mode == 'physical'){
                 fill: new ol.style.Fill({ color: 'red' }),
                 stroke: new ol.style.Stroke({ color: 'black', width: 1 }),
                 points: 100,
-                radius: 3,
+                radius: 5,
                 angle: Math.PI / 4,
             }),
         }),
