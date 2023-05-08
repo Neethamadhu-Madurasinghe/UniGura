@@ -16,7 +16,7 @@ $router->registerController('/api/example', [ExampleRestAPI::class, 'testAPI']);
 // Common routes
 $router->registerController('/load-file', [FileLoader::class, 'loadFile']);
 $router->registerController('/logout', [TutorStudentAuth::class, 'logout']);
-
+$router->registerController('/not-found', [Common::class, 'notFound']);
 
 
 
@@ -258,6 +258,12 @@ $router->registerController(
 $router->registerController('/api/user/validate-otp', [StudentTutorProfile::class, 'changePasswordValidation']);
 $router->registerController('/api/user/change-password', [StudentTutorProfile::class, 'changePassword']);
 $router->registerController('/student/tutoring-class', [StudentClass::class, 'tutoringClass']);
+$router->registerController('/api/create-review', [StudentClass::class, 'createReview']);
+$router->registerController('/api/reschedule', [StudentClass::class, 'requestReschedule']);
+$router->registerController('/api/student/delete-rescheduling', [StudentClass::class, 'cancelReschedule']);
+$router->registerController('/api/student/toggle-activity-completion', [StudentClass::class, 'toggleActivityComplete']);
 
+$router->registerController('/student/payment', [StudentPayment::class, 'savePayment']);
+$router->registerController('/api/delete-notification', [StudentNotification::class, 'deleteNotification']);
 
 $router->resolve();

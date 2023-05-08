@@ -21,6 +21,10 @@
     cursor: pointer;
 }
 
+.logo-container img {
+    cursor: pointer;
+}
+
 .nav-logo {
     height: 50px;
 }

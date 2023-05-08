@@ -45,4 +45,22 @@ class ModelStudentNotification {
         return $this->db->execute();
 
     }
+
+    public function createAdminNotification(string $title, string $link = "", string $description = ""): bool {
+//        Get the id of admin
+        $this->db->query('SELECT id FROM auth WHERE role=0');
+        $tutor = $this->db->resultOneAssoc();
+
+        if (isset($tutor['id'])) {
+            return $this->createNotification($tutor['id'], $title, $link, $description);
+        }
+
+        return false;
+    }
+
+    public function deleteNotification($id): bool {
+        $this->db->query('DELETE FROM notification WHERE id=:id');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        return $this->db->execute();
+    }
 }

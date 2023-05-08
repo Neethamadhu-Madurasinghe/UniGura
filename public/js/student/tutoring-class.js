@@ -1,20 +1,9 @@
 const dataElement = document.getElementById('template-data');
 const layoutBackGroundUI = document.querySelector('.layout-background');
-const timeTableUI = document.querySelector('.pop-time-table');
 const feedbackFormUI = document.querySelector('.popup-feedback-form');
-const reportUI = document.querySelector('.popup-report');
-const uploadUI = document.querySelector('.popup-upload-file');
+const feedbackBtnUI = document.getElementById('feedback');
+const activityCheckBoxesUI = Array.from(document.querySelectorAll('.download-link'))
 
-const rescheduleBtnUI = document.getElementById('reshedule');
-const feedbackBtnUI = document.getElementById('feeback');
-
-const rescheduleCancelBtnUI = document.getElementById('timetable-cancel');
-const feedbackCancelBtnUI = document.getElementById('feedback-cancel');
-
-rescheduleBtnUI.addEventListener('click', e => {
-    showLayoutBackground();
-    timeTableUI.classList.remove('hidden');
-});
 
 feedbackBtnUI.addEventListener('click', e => {
     showLayoutBackground();
@@ -22,24 +11,34 @@ feedbackBtnUI.addEventListener('click', e => {
 });
 
 
-rescheduleCancelBtnUI.addEventListener('click', e => {
-    hideLayoutBackground();
-    timeTableUI.classList.add('hidden');
-});
-
-feedbackCancelBtnUI.addEventListener('click', e => {
-    hideLayoutBackground();
-    feedbackFormUI.classList.add('hidden');
-});
-
 function showLayoutBackground() {
     bodyUI.classList.add('layout-mode');
     layoutBackGroundUI.classList.remove('hidden');
-
 }
 
 function hideLayoutBackground() {
     bodyUI.classList.remove('layout-mode');
     layoutBackGroundUI.classList.add('hidden');
-
 }
+
+activityCheckBoxesUI.forEach(activityCheckBoxUI => {
+    activityCheckBoxUI.addEventListener('change', async e => {
+        const response = await fetch('http://localhost/unigura/api/student/toggle-activity-completion', {
+            method: 'POST',
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                activity_id: +e.target.name,
+                is_select: e.target.checked ? 1 : 0
+            })
+        });
+
+        const res = await response.text()
+        if(response.status !== 200) {
+            showErrorMessage('An error has occurred');
+        }
+
+    })
+});

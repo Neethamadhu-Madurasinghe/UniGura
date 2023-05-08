@@ -33,7 +33,7 @@ class ModelActivity {
         $allActivities = [];
 
         foreach ($allDays as $day) {
-            $this->db->query('SELECT * FROM activity WHERE day_id=:day_id AND is_hidden=0 AND type=1');
+            $this->db->query('SELECT * FROM activity WHERE day_id=:day_id AND is_hidden=0');
             $this->db->bind('day_id', $day, PDO::PARAM_INT);
             $activities = $this->db->resultAllAssoc();
 
@@ -51,6 +51,14 @@ class ModelActivity {
         $this->db->query('UPDATE activity SET link=:link, is_completed=1 WHERE id=:id;');
         $this->db->bind('id', $id, PDO::PARAM_INT);
         $this->db->bind('link', $documentName, PDO::PARAM_STR);
+
+        return $this->db->execute();
+    }
+
+    public function setActivityCompletion(int $id, int $isCompleted): bool {
+        $this->db->query('UPDATE activity SET is_completed=:is_completed WHERE id=:id;');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        $this->db->bind('is_completed', $isCompleted, PDO::PARAM_INT);
 
         return $this->db->execute();
     }

@@ -24,17 +24,28 @@ const newPasswordConfirmInputFieldUI = document.getElementById('new-password-con
 const deleteRequestPopupUI = document.querySelector('.popup-delete-request');
 const deleteRequestCancelBtnUI = document.getElementById('cancel-request-deletion')
 const deleteRequestConfirmBtnUI = document.getElementById('confirm-request-confirm')
+
+const disableProfileBtnUI = document.getElementById('disable-profile');
+const disablePopupUI = document.querySelector('.popup-disable-profile');
+const disableCancelBtnUI = document.getElementById('cancel-profile-disable')
+const disableConfirmBtnUI = document.getElementById('confirm-profile-disable')
+
 let requestId = 0;
 
 let code = "";
 
+// OTP popup is used on both change password and disabling account use cases,
+// this variable is used to indicate OTP popup what is use case is executing
+let isDisabling = false;
 
-// Confirmation box button event listeners
+
+// Cancel tutor request deletion button event
 deleteRequestCancelBtnUI.addEventListener('click', () => {
     deleteRequestPopupUI.classList.remove('invisible')
     hideLayoutBackground();
 })
 
+// Confirm tutor request deletion
 deleteRequestConfirmBtnUI.addEventListener('click', async () => {
     const response = await fetch('http://localhost/unigura/api/student/delete-request', {
         method: 'POST',
@@ -48,7 +59,7 @@ deleteRequestConfirmBtnUI.addEventListener('click', async () => {
     handleDeleteRequestResponse(response.status)
 })
 
-// Cancel request handler
+// Show popup for confirm tutor request deletion
 bodyUI.addEventListener('click', async (e) => {
     if (e.target.classList.contains('req-cancel-btn')) {
         requestId = e.target.dataset.id;
@@ -57,6 +68,7 @@ bodyUI.addEventListener('click', async (e) => {
     }
 });
 
+// handles the response of the delete request
 function handleDeleteRequestResponse(status) {
     switch (status) {
         case 401:
@@ -79,6 +91,8 @@ function handleDeleteRequestResponse(status) {
 
         case 200:
             showSuccessMessage('Tutor request deleted successfully', () => {
+                deleteRequestPopupUI.classList.remove('invisible')
+                hideLayoutBackground();
                 location.reload();
             })
             break;
@@ -89,10 +103,12 @@ function handleDeleteRequestResponse(status) {
 }
 
 // Show change password dialog box
-resetPasswordBtnUI.addEventListener('click', initiatePasswordReset);
+resetPasswordBtnUI.addEventListener('click',  async () => {
+    isDisabling = false;
+    await initiatePasswordReset()
+});
 
-
-// Change confirm button
+// Cancel change password routine on OTP inserting stage
 changePasswordOTPCancelBtnUI.addEventListener('click', () => {
     layoutBackgroundUI.classList.add('invisible');
     changePasswordOTPPopupUI.classList.add('invisible');
@@ -100,6 +116,7 @@ changePasswordOTPCancelBtnUI.addEventListener('click', () => {
     otpInputFieldUI.value = "";
 });
 
+// Continue change password routine on OTP inserting stage
 changePasswordOTPOkBtnUI.addEventListener('click', async () => {
     code = otpInputFieldUI.value.trim();
     if(code.length < 1) {
@@ -118,16 +135,23 @@ changePasswordOTPOkBtnUI.addEventListener('click', async () => {
     }else if(statusCode === 403) {
         showErrorMessage("Invalid OTP code");
     }else {
+        if(!isDisabling) {
+            changePasswordOTPPopupUI.classList.add('invisible');
+            changePasswordPopupUI.classList.remove('invisible');
+        } else {
+            changePasswordOTPPopupUI.classList.add('invisible');
+            disablePopupUI.classList.remove('invisible');
+        }
 
-        changePasswordOTPPopupUI.classList.add('invisible');
-        changePasswordPopupUI.classList.remove('invisible');
     }
     otpInputFieldUI.value = "";
 
 })
 
+// Request a new OTP
 resendButtonUI.addEventListener('click', initiatePasswordReset);
 
+// Cancel change password routine on new password inserting stage
 changePasswordCancelBtnUI.addEventListener('click', () => {
     layoutBackgroundUI.classList.add('invisible');
     changePasswordPopupUI.classList.add('invisible');
@@ -136,6 +160,7 @@ changePasswordCancelBtnUI.addEventListener('click', () => {
     newPasswordConfirmInputFieldUI.value = "";
 });
 
+// Continue change password routine on new password inserting stage (this changes the password)
 changePasswordOkBtnUI.addEventListener('click',  async () => {
     const newPassword = newPasswordInputFieldUI.value.trim();
     const newPasswordConfirm = newPasswordConfirmInputFieldUI.value.trim();
@@ -184,7 +209,26 @@ changePasswordOkBtnUI.addEventListener('click',  async () => {
 
 });
 
-async function initiatePasswordReset() {
+// Disabling account popup showing event
+disableProfileBtnUI.addEventListener('click', async () => {
+    isDisabling = true;
+    await initiatePasswordReset(true);
+});
+
+// Cancel the disabling account routine
+disableCancelBtnUI.addEventListener('click', () => {
+    disablePopupUI.classList.add('invisible');
+    hideLayoutBackground();
+});
+
+// Confirms the disabling account
+disableConfirmBtnUI.addEventListener('click', async () => {
+// TODO: Disable account
+});
+
+
+// This function is used for 2 purposes - 1. When changing the password, 2. Disabling the account
+async function initiatePasswordReset(isDisabling = false) {
     otpInputFieldUI.value = "";
     changePasswordOTPPopupUI.classList.add('invisible');
     // Send the request to make an OTP
@@ -199,7 +243,6 @@ async function initiatePasswordReset() {
     if(statusCode === 200) {
         layoutBackgroundUI.classList.remove('invisible');
         changePasswordOTPPopupUI.classList.remove('invisible');
-        bodyUI.classList.add('layout-mode');
     }
 }
 
