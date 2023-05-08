@@ -262,21 +262,3 @@ function validateStudentReportReason(String $reason, ModelTutorStudentCompletePr
 
 
 
-
-//created by sachithra
-
-
-function validateRate(string $number): String
-{
-    if (filter_var($number, FILTER_VALIDATE_INT)) {
-        $int = intval($number);
-        if ($int >= 500 && $int < 5000) {
-            return "";
-        } else {
-            return "Amount must in a range between LKR (500 - 5000)";
-        }
-    } else {
-        return "Please enter a valid amount";
-    }
-}
-

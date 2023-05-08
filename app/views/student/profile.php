@@ -80,9 +80,9 @@ Header::render(
         </div>
     </div>
 
-    <div class="popup-feedback-form hidden">
+    <div class="popup-feedback-form invisible">
         <h1>Post a review</h1>
-        <div class="feedback-star-container">
+        <div class="feedback-star-container hidden">
             <img id="star-1" class="star" src="<?php echo URLROOT . '/public/img/student/big.png' ?>" alt="" srcset="">
             <img id="star-2" class="star" src="<?php echo URLROOT . '/public/img/student/star_inactive.png' ?>" alt="" srcset="">
             <img id="star-3" class="star" src="<?php echo URLROOT . '/public/img/student/star_inactive.png' ?>" alt="" srcset="">
