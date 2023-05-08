@@ -2,7 +2,7 @@
 
 class AdminFileLoader extends Controller
 {
-    public function viewFiles(Request $request): void
+    public function viewFiles(Request $request): void  // for tutor_detail_files folder
     {
         if (!$request->isLoggedIn()) {
             redirect('/login');
@@ -41,4 +41,6 @@ class AdminFileLoader extends Controller
             exit;
         }
     }
+
+    
 }

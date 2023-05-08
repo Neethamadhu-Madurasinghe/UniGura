@@ -3,8 +3,6 @@
 <script defer src="<?php echo URLROOT ?>/public/js/admin/payment.js"></script>
 
 
-
-
 <section class="home" id="home">
     <p></p>
     <p></p>
@@ -84,7 +82,7 @@
                                         <td>Rs. <?php echo $Withdrawal->amount ?>.00</td>
                                         <td><?php echo explode(" ", $Withdrawal->timestamp)[0] ?></td>
                                         <td><?php echo explode(" ", $Withdrawal->timestamp)[1] ?></td>
-                                        <td><a href="<?php echo URLROOT; ?>/profile_pictures/16774330206500.pdf"><button>View</button></a></td>
+                                        <td><a href="viewFiles?file=<?php echo $Withdrawal->slip ?>"><button>View</button></a></td>
                                     </tr>
                                 <?php endif; ?>
                             <?php endforeach; ?>
@@ -106,7 +104,7 @@
                                 <th>Payment</th>
                                 <th>Date</th>
                                 <th>Time</th>
-                                <th>Receipt</th>
+                                <!-- <th>Receipt</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -117,7 +115,7 @@
                                         <td>Rs. <?php echo $Withdrawal->amount ?>.00</td>
                                         <td><?php echo explode(" ", $Withdrawal->timestamp)[0] ?></td>
                                         <td><?php echo explode(" ", $Withdrawal->timestamp)[1] ?></td>
-                                        <td><a href="#"><button>View</button></a></td>
+                                        <!-- <td><a href="#"><button>View</button></a></td> -->
                                     </tr>
                                 <?php endif; ?>
                             <?php endforeach; ?>

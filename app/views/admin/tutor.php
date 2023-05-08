@@ -14,7 +14,6 @@
     <div class="tutor-page">
 
         <div class="card-section" id="card-section">
-
             <?php foreach ($data as $aTutor) : ?>
                 <?php if ($aTutor->is_approved === 1) : ?>
                     <div class='card'>
@@ -49,11 +48,11 @@
                             <img src="<?php echo URLROOT ?><?php echo $aTutor->contactDetails->profile_picture ?>" alt="tutor profile picture">
                         </div>
 
-                        <div class="card-blur-effect">
+                        <!-- <div class="card-blur-effect">
                             <div class='view-profile'>
                                 <a href="viewTutorProfile?tutorID=<?php echo $aTutor->user_id ?>"><button class="view-profile-btn">View Profile</button></a>
                             </div>
-                        </div>
+                        </div> -->
 
 
                         <div class='name'>
@@ -61,7 +60,12 @@
                         </div>
 
 
-                        <div class='selection-menu'>
+                        <div class='view-profile'>
+                            <a href="viewTutorProfile?tutorID=<?php echo $aTutor->user_id ?>"><button class="view-profile-btn">View Profile</button></a>
+                        </div>
+
+
+                        <!-- <div class='selection-menu'>
                             <div class='menu-1' id='menu-1'>
                                 <h3>About</h3>
                             </div>
@@ -73,9 +77,9 @@
                             <div class='menu-3' id='menu-3'>
                                 <h3>Contact</h3>
                             </div>
-                        </div>
+                        </div> -->
 
-                        <div class='selection-info'>
+                        <!-- <div class='selection-info'>
                             <div class='info-1' id='info-1'>
                                 <small><i class="fa-solid fa-address-card"></i> - <?php echo $aTutor->description; ?></small>
                             </div>
@@ -93,7 +97,7 @@
                                 <small><i class="fa-solid fa-location-dot"></i> - <?php echo $aTutor->contactDetails->city; ?></small><br>
                                 <small><i class="fa-solid fa-venus-mars"></i> - <?php echo $aTutor->contactDetails->gender; ?></small>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 <?php endif; ?>
 

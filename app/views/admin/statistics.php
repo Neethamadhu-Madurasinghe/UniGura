@@ -332,7 +332,7 @@
                     labels: ['5\u0020\u0020\u2605', '4\u0020\u0020\u2605', '3\u0020\u0020\u2605', '2\u0020\u0020\u2605', '1\u0020\u0020\u2605'],
                     datasets: [{
                         axis: 'y',
-                        label: '# of Rating',
+                        label: '# of Stars',
                         data: [<?php echo $data['userFeedbackFiveRating'] ?>, <?php echo $data['userFeedbackFourRating'] ?>, <?php echo $data['userFeedbackThreeRating'] ?>, <?php echo $data['userFeedbackTwoRating'] ?>, <?php echo $data['userFeedbackOneRating'] ?>],
                         backgroundColor: [
                             '#4CAF50',

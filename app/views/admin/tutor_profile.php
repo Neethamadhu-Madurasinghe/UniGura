@@ -67,16 +67,31 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="class-summary">
+            <div class="class-summary">
                 <div class="total-class">
-                    <h1>Total Classes</h1>
-                    <h2>10</h2>
+                    <p><?php echo $data['tutorDetails']->description ?></p>
                 </div>
                 <div class="pending-amount">
-                    <h1>Pending Amount</h1>
-                    <h2>Rs. 1000</h2>
+                    <h1>Educational Qualifications</h1>
+                    <div class="qualification-files">
+                        <div class="qualification">
+                            <a href="viewFiles?file=<?php echo $data['tutorDetails']->id_copy ?>" target="_blank"><i class="fa-solid fa-file-lines"></i> &nbspNational Identity Card Copy</a>
+                        </div>
+                        <div class="qualification">
+                            <a href="viewFiles?file=<?php echo $data['tutorDetails']->university_entrance_letter ?>" target="_blank"><i class="fa-solid fa-file-lines"></i> &nbspUniversity Entrance Letter</a>
+                        </div>
+                        <div class="qualification">
+                            <a href="viewFiles?file=<?php echo $data['tutorDetails']->advanced_level_result ?>" target="_blank"><i class="fa-solid fa-file-lines"></i> &nbspAdvanced Level Result</a>
+                        </div>
+                        <div class="qualification">
+                            <i class="fa-solid fa-user-graduate"></i> &nbsp<?php echo $data['tutorDetails']->education_qualification ?>
+                        </div>
+                        <div class="qualification">
+                        <i class="fa-solid fa-graduation-cap"></i> <?php echo $data['tutorDetails']->university ?>
+                        </div>
+                    </div>
                 </div>
-            </div> -->
+            </div>
         </div>
 
 

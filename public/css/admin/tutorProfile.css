@@ -41,8 +41,9 @@
 
 
 .class-summary {
-    width: 40%;
-    margin-right: 50px;
+    width: 100%;
+    margin-right: 10px;
+    /* background: #000; */
 }
 
 .total-class {
@@ -57,13 +58,27 @@
 }
 
 .pending-amount {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin: 10px 0;
     border: 2px solid #FC941D;
     padding: 8px;
     border-radius: 5px;
+}
+
+.pending-amount .qualification-files{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.pending-amount .qualification-files .qualification{
+    width: 100%;
+    margin-top: 10px;
+}
+
+.pending-amount .qualification-files .qualification a{
+    text-decoration: none;
 }
 
 .class-summary h1 {
@@ -96,13 +111,19 @@
 .tutor-details {
     display: flex;
     align-items: center;
-    width: 100%;
-    margin-left: 20px;
+    width: 35%;
+    margin-right: 60px;
 }
 
 .name-actions {
     margin-left: 30px;
     margin-bottom: 15px;
+}
+
+.name-actions .name{
+    overflow: auto;
+    overflow-wrap:break-word;   
+    width: 300px;
 }
 
 .actions .chat button {

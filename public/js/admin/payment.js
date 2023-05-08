@@ -23,8 +23,6 @@ nav_link.forEach((link) => {
 payment.classList.add('active');
 
 
-const blur_filter = document.getElementById('blur-filter');
-blur_filter.style.display = "none";
 
 
 /*  ================================ SHOW SELECTED TUTOR IN RIGHT SIDE DISPLAY  ================================*/

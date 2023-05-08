@@ -295,21 +295,30 @@ input[type="range"]::-moz-range-thumb {
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex-direction: column;
-
-    background-color: #ffb75e;
+    padding: 10px 0;
     /* width: 350px; */
     width: 96%;
-    height: 370px;
     border-radius: 10px;
-    /* border: 3px solid #FC941D; */
-    margin-bottom: 50px;
-    position: relative;
+    margin-bottom: 40px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+    height: 330px;
+    background-color: #fbc36e;
+    text-align: center;
+    background-color: #ffffff;
 }
 
+.card-section .card .profile-picture {
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    position: relative;
+    bottom: 15px;
+}
+
+
 .card-section .card img {
-    width: 160px;
-    height: 160px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     object-fit: cover;
 }
