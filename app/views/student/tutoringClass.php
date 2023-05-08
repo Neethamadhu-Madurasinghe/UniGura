@@ -57,7 +57,7 @@ Header::render(
     </div>
 
     <div class="pop-time-table hidden">
-        <h1>Request a Rescheduling</h1>
+        <h1>Rescheduling Class</h1>
 
         <div class="time-table-container">
             <table id="time-table">
@@ -187,7 +187,7 @@ Header::render(
             <?php if($data['does_reschedule_exit']): ?>
             <button class="btn" id="cancel-reschedule">Cancel Reschedule</button>
             <?php else:?>
-            <button class="btn" id="reschedule">Request Reschedule</button>
+            <button class="btn" id="reschedule">Reschedule</button>
             <?php endif; ?>
             <button class="btn" id="feedback">Give Feedback</button>
             <button class="btn" id="report-tutor-button">Report Tutor</button>

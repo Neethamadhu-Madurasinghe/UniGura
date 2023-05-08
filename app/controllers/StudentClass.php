@@ -7,6 +7,7 @@ class StudentClass extends Controller {
     private ModelFeedback $feedbackModel;
     private ModelStudentReschedule $rescheduleModel;
     private ModelStudentTimeSlot $timeSlotModel;
+    private ModelStudentNotification $notificationModel;
 
     public function __construct() {
         $this->tutoringClassModel = $this->model('ModelStudentTutoringClass');
@@ -15,6 +16,7 @@ class StudentClass extends Controller {
         $this->feedbackModel = $this->model('ModelFeedback');
         $this->rescheduleModel = $this->model('ModelStudentReschedule');
         $this->timeSlotModel = $this->model('ModelStudentTimeSlot');
+        $this->notificationModel = $this->model('ModelStudentNotification');
     }
 
     public function tutoringClass(Request $request) {
@@ -242,14 +244,32 @@ class StudentClass extends Controller {
                 }
             }
 
-//          Check if the rescheduling request has been sent previously
-            if ($this->rescheduleModel->doesRequestExist($body['class_id'])) {
-                header("HTTP/1.0 403 Forbidden");
-                return;
+            //           Check whether time slots are consecutive
+            $previousTimeSlot = [];
+            for ($i = 1; $i < count($body['time_slots']); $i++) {
+                if ($i == 1) {
+                    $previousTimeSlot = $this->timeSlotModel->getTimeSlot($body['time_slots'][$i - 1]);
+                }
+                $currentTimeSlot = $this->timeSlotModel->getTimeSlot($body['time_slots'][$i]);
+
+                if (
+                    $currentTimeSlot['day'] != $previousTimeSlot['day'] ||
+                    abs(getTimeDifference($previousTimeSlot['time'], $currentTimeSlot['time'])) != 2
+                ) {
+                    $isValid = false;
+                }
+
+                $previousTimeSlot = $currentTimeSlot;
             }
 
+
             if ($isValid) {
-                if ($this->rescheduleModel->makeRequest($body)) {
+                if ($this->rescheduleModel->reschedule($body)) {
+//                    Send a notification to tutor
+                    $this->notificationModel->createNotification(
+                        $body['tutor_id'],
+                        "A Student has rescheduled a class"
+                    );
                     header("HTTP/1.0 200 Success");
                 } else {
                     header("HTTP/1.0 500 Internal Server Error");
@@ -259,47 +279,6 @@ class StudentClass extends Controller {
             }
         } else {
             header("HTTP/1.0 404 Not Found");
-        }
-    }
-
-    public function cancelReschedule(Request $request) {
-        cors();
-
-//      Sending a tutor request is a POST
-        if ($request->isPost()) {
-//          Unauthorized error code
-            if (!$request->isLoggedIn() || !$request->isStudent()) {
-                header("HTTP/1.0 401 Unauthorized");
-                return;
-            }
-
-            $body = json_decode(file_get_contents('php://input'), true);
-            $body['student_id'] = $request->getUserId();
-
-//            Validate request
-            if (!isset($body['class_id'])) {
-                header("HTTP/1.0 400 Bad Request");
-                return;
-            }
-
-//        Check if the student has access to the corresponding rescheduling request
-            function mapTutoringClassToID($tutoringClass) {
-                return $tutoringClass['id'];
-            }
-            $allTutoringClasses = $this->tutoringClassModel->getTutoringClassByStudentId($request->getUserId());
-            $allTutoringClassesId = array_map('mapTutoringClassToID', $allTutoringClasses);
-
-            if (!in_array($body['class_id'], $allTutoringClassesId)) {
-                header("HTTP/1.0 400 Bad Request");
-                return;
-            }
-
-//            Delete the request
-            if ($this->rescheduleModel->deleteRequestByClassId($body['class_id'])) {
-                header("HTTP/1.0 200 Success");
-            }else {
-                header("HTTP/1.0 500 Internal Server Error");
-            }
         }
     }
 
