@@ -126,7 +126,7 @@ h1, h2, h3, h4, h5, h6 {
  }
  
  .people-list .status {
-     color: #525252;
+     /*color: #525252;*/
      font-size: 13px
  }
 

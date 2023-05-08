@@ -93,7 +93,7 @@ Header::render(
                </div>
           </div>
           
-          <div class='location'>
+          <div class='location' id='map-container'>
           
           </div>
           
@@ -129,9 +129,7 @@ Header::render(
 
                request_container.innerHTML += code;
 
-               if(request_obj.class_type == 'physical'){
-                    request_container.querySelector('#location').innerHTML = `<div></div>`
-               }
+
 
                var closebtn = document.querySelector("#close_btn");
 
@@ -140,23 +138,26 @@ Header::render(
                })
 
                document.addEventListener('DOMContentLoaded', (event) => {
-                    if (decline) {
-                         decline.addEventListener('click', function() {
-                              const url = "http://localhost/unigura/tutor/requestdecline?id=" + request[0].id;
-
-                              fetch(url)
-                                   .then(response => response.json())
-                                   .then(data => {
-                                        window.location = "http://localhost/unigura/tutor/dashboard";
-                                   })
-                                   .catch(error => {
-                                        console.error(error);
-                                   });
-                         })
-                    }
+                    // if (decline) {
+                    //      decline.addEventListener('click', function() {
+                    //           const url = "http://localhost/unigura/tutor/requestdecline?id=" + request[0].id;
+                    //
+                    //           fetch(url)
+                    //                .then(response => response.json())
+                    //                .then(data => {
+                    //                     window.location = "http://localhost/unigura/tutor/dashboard";
+                    //                })
+                    //                .catch(error => {
+                    //                     console.error(error);
+                    //                });
+                    //      })
+                    // }
                });
           </script>
 
           <?php Footer::render(
-               []
+               [
+                   'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js',
+                   URLROOT . '/public/js/tutor/request-map-component.js',
+               ]
           ); ?>
