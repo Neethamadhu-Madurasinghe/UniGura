@@ -7,37 +7,6 @@ class ModelTutorChat {
     {
         $this->db = new Database();
     }
-    
-
-
-
-
-
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-?>

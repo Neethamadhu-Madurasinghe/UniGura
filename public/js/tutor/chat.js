@@ -1,4 +1,4 @@
-const messageBoxUI = document.querySelector(".m-b-0");
+const messageBoxUI = document.getElementById("msg-history-box");
 const contactListUI = document.querySelector(".chat-list");
 const chatTitleUI = document.querySelector(".m-b-0");
 const chatImageUI = document.getElementById("main-chat-image");
@@ -39,7 +39,7 @@ async function fetchChatThreads() {
             else partnerId = chatThread.user_id_1;
 
             const element = `
-            <li class="clearfix ${index === 0 ? "active" : ""}" data-threadid="${chatThread.id}">
+            <li class="clearfix contact-card ${index === 0 ? "active" : ""}" data-threadid="${chatThread.id}">
                 <img src="${'http://localhost/unigura/' + chatThread.profile_picture}" alt="avatar">
                 <div class="about">
                     <div class="name">${chatThread.name}</div>
@@ -103,7 +103,7 @@ async function fetchMessages(threadId) {
                 const element = `
                     <li class="clearfix">
                         <div class="message-data">
-                            <img src="${'http://localhost/unigura/' + currentChatThread.profile_picture}" alt="avatar">
+                            <img src="${'http://localhost/unigura/' + currentChatThread.profile_picture}" alt="avatar" class="msg-profile-pic">
                             <span class="message-data-time" data-time="${message.created_at}">${getTimePassed(message.created_at)}</span>
                         </div>
                         <div class="message my-message">${message.message}</div>                                    
@@ -170,9 +170,9 @@ document.getElementsByTagName("body")[0].addEventListener("click", function hand
     let currentElement = event.target;
     while (currentElement) {
         // Check if the current element has the class name "contact-card"
-        if (currentElement.classList.contains('clearfix')) {
+        if (currentElement.classList.contains('contact-card')) {
             // Remove selected class from any other class
-            const otherContactCards = document.querySelectorAll(".clearfix");
+            const otherContactCards = document.querySelectorAll(".contact-card");
             otherContactCards.forEach(contractCard => {
                 contractCard.classList.remove("active");
             });
@@ -185,7 +185,7 @@ document.getElementsByTagName("body")[0].addEventListener("click", function hand
             // Add selected class to the current card
             currentElement.classList.add("active");
             fetchMessages(currentElement.dataset.threadid);
-
+            
             return;
         }
         // If not, move up to the next parent element

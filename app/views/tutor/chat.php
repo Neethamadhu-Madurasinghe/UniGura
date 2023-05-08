@@ -37,7 +37,7 @@ MainNavbar::render($request);
                         <input type="text" class="form-control"  placeholder="Search..." style="border:0Px ;border-radius: 0px;">
                     </div> -->
                     <ul class="list-unstyled chat-list mt-2 mb-0" id="list" style="overflow-y: auto; width: 100%; height: 620px;padding-right:10px ;margin-right: 0px;">
-                        <li class="clearfix">
+                        <!-- <li class="clearfix">
                             <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
                             <div class="about">
                                 <div class="name">Vincent Porter</div>
@@ -50,70 +50,7 @@ MainNavbar::render($request);
                                 <div class="name">Aiden Chavez</div>
                                 <div class="status"> <i class="fa fa-circle online"></i> online </div>
                             </div>
-                        </li>
-                        <li class="clearfix active">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
-                            <div class="about">
-                                <div class="name">Mike Thomas</div>
-                                <div class="status"> <i class="fa fa-circle online"></i> online </div>
-                            </div>
-                        </li>
-                        <li class="clearfix">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
-                            <div class="about">
-                                <div class="name">Christian Kelly</div>
-                                <div class="status"> <i class="fa fa-circle offline"></i> left 10 hours ago </div>
-                            </div>
-                        </li>
-                        <li class="clearfix">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar8.png" alt="avatar">
-                            <div class="about">
-                                <div class="name">Monica Ward</div>
-                                <div class="status"> <i class="fa fa-circle online"></i> online </div>
-                            </div>
-                        </li>
-                        <li class="clearfix">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
-                            <div class="about">
-                                <div class="name">Dean Henry</div>
-                                <div class="status"> <i class="fa fa-circle offline"></i> offline since Oct 28 </div>
-                            </div>
-                        </li>
-                        <li class="clearfix">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
-                            <div class="about">
-                                <div class="name">Dean Henry</div>
-                                <div class="status"> <i class="fa fa-circle offline"></i> offline since Oct 28 </div>
-                            </div>
-                        </li>
-                        <li class="clearfix">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
-                            <div class="about">
-                                <div class="name">Dean Henry</div>
-                                <div class="status"> <i class="fa fa-circle offline"></i> offline since Oct 28 </div>
-                            </div>
-                        </li>
-                        <li class="clearfix">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
-                            <div class="about">
-                                <div class="name">Dean Henry</div>
-                                <div class="status"> <i class="fa fa-circle offline"></i> offline since Oct 28 </div>
-                            </div>
-                        </li>
-                        <li class="clearfix">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
-                            <div class="about">
-                                <div class="name">Dean Henry</div>
-                                <div class="status"> <i class="fa fa-circle offline"></i> offline since Oct 28 </div>
-                            </div>
-                        </li>
-                        <li class="clearfix">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
-                            <div class="about">
-                                <div class="name">Dean Henry</div>
-                                <div class="status"> <i class="fa fa-circle offline"></i> offline since Oct 28 </div>
-                            </div>
-                        </li>
+                        </li> -->
 
                     </ul>
                 </div>
@@ -138,22 +75,7 @@ MainNavbar::render($request);
                         </div>
                     </div>
                     <div class="chat-history">
-                        <ul class="m-b-0" style="overflow-y: auto; width: 100%; height: 490px;padding-right:10px ;margin-right: 0px;">
-                            <li class="clearfix">
-                                <div class="message-data text-right">
-                                    <div class="message other-messages float-right"> Hi Aiden, how are you? How is the project coming along? </div>
-                                </div>
-                                <span class="message-data-time-right">10:10 AM, Today</span>
-
-                            </li>
-                            <li class="clearfix">
-                                <div class="message-data">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
-                                    <div class="message my-message">Are we meeting today?</div>
-                                </div>
-                                <span class="message-data-time">10:12 AM, Today</span>
-
-                            </li>
+                        <ul class="m-b-0" id="msg-history-box" style="overflow-y: auto; width: 100%; height: 490px;padding-right:10px ;margin-right: 0px;">
                             <li class="clearfix">
                                 <div class="message-data">
                                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
@@ -168,27 +90,6 @@ MainNavbar::render($request);
                                 </div>
                                 <span class="message-data-time-right">10:16 AM, Today</span>
 
-                            </li>
-                            <li class="clearfix">
-                                <div class="message-data text-right">
-                                    <div class="message other-messages float-right"> Hi Aiden, how are you? How is the project coming along? </div>
-                                </div>
-                                <span class="message-data-time-right">10:17 AM, Today</span>
-
-                            </li>
-                            <li class="clearfix">
-                                <div class="message-data">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
-                                    <div class="message my-message">Are we meeting today?</div>
-                                </div>
-                                <span class="message-data-time">10:18 AM, Today</span>
-
-                            </li>
-                            <li class="clearfix">
-                                <div class="message-data text-right">
-                                    <div class="message other-messages float-right"> Hi Aiden, how are you? How is the project coming along? </div>
-                                </div>
-                                <span class="message-data-time-right">10:20 AM, Today</span>
                             </li>
                         </ul>
                     </div>

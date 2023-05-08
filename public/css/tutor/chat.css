@@ -113,7 +113,11 @@ h1, h2, h3, h4, h5, h6 {
  
  .people-list img {
      float: left;
-     border-radius: 50%
+     border-radius: 50%;
+     width: 40px;
+     height: 40px;
+     border-radius: 50%;
+     object-fit: cover;
  }
  
  .people-list .about {
@@ -135,8 +139,11 @@ h1, h2, h3, h4, h5, h6 {
  
  .chat .chat-header img {
      float: left;
-     border-radius: 40px;
-     width: 50px
+     border-radius: 50%;
+     width: 50px;
+     height: 50px;
+     border-radius: 50%;
+     object-fit: cover;
  }
  
  .chat .chat-header .chat-about {
@@ -174,8 +181,10 @@ h1, h2, h3, h4, h5, h6 {
  }
  
  .chat .chat-history .message-data img {
-     border-radius: 40px;
-     width: 40px
+     border-radius: 50%;
+     width: 40px;
+     height: 40px;
+     object-fit: cover;
  }
  
  .chat .chat-history .message-data-time {
@@ -420,3 +429,5 @@ h1, h2, h3, h4, h5, h6 {
          overflow-x: auto
      }
  }
+
+
