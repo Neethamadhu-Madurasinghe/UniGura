@@ -21,6 +21,9 @@
             <input type="hidden" name="complainStatus" id="complainStatus" value="<?php echo $data['oneTutorComplaint']->is_inquired ?>">
             <input type="hidden" name="tutorComplaintId" value="<?php echo $data['oneTutorComplaint']->id ?>">
 
+            <input type="hidden" name="studentId" value="<?php echo $data['oneTutorComplaint']->student_id ?>">
+            <input type="hidden" name="tutorId" value="<?php echo $data['oneTutorComplaint']->tutor_id ?>">
+
             <h4>Complaint Status (Solved or not):&nbsp;&nbsp; </h4>
 
             <label for="checking">

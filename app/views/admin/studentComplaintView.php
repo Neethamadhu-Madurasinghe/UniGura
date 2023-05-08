@@ -2,10 +2,6 @@
 <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/complaintView.css">
 <script defer src="<?php echo URLROOT ?>/public/js/admin/complaint_view.js"></script>
 
-
-
-
-
 <section class="home" id="home">
     <p></p>
     <p></p>
@@ -20,6 +16,11 @@
         <form action="updateStudentComplainInquire" method="POST">
             <input type="hidden" name="complainStatus" id="complainStatus" value="<?php echo $data['oneStudentComplaint']->is_inquired ?>">
             <input type="hidden" name="studentComplaintId" value="<?php echo $data['oneStudentComplaint']->id ?>">
+
+
+            <input type="hidden" name="studentId" value="<?php echo $data['oneStudentComplaint']->student_id ?>">
+            <input type="hidden" name="tutorId" value="<?php echo $data['oneStudentComplaint']->tutor_id ?>">
+
 
             <h4>Complaint Status (Solved or not):&nbsp;&nbsp; </h4>
 

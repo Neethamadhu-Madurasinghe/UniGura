@@ -33,7 +33,9 @@ class AdminNotification extends Controller
 
     public function notificationCount(Request $request)
     {
-        $notificationCount = $this->notificationModel->getNotificationCount();
+        $adminID = $request->getUserId();
+
+        $notificationCount = $this->notificationModel->getNotificationCount($adminID);
 
         $data = $notificationCount;
         // $this->view('admin/class', $request, $data);
@@ -58,7 +60,10 @@ class AdminNotification extends Controller
 
         // $notificationID = $bodyData['notificationID'];
 
-        $this->notificationModel->clearNotification();
+        $adminID = $request->getUserId();
+
+
+        $this->notificationModel->clearNotification($adminID);
         // }
 
         echo json_encode([

@@ -377,6 +377,8 @@ class AdminRequirementComplaints extends Controller
 
             $this->requirementComplaintsModel->acceptTutorRequest($tutorID);
 
+            $this->requirementComplaintsModel->addNotification($tutorID, 'Your tutor request has been accepted.', 'Now you can login to your account and start tutoring.');
+
             redirect('admin/tutorRequest');
         }
     }
@@ -396,6 +398,8 @@ class AdminRequirementComplaints extends Controller
             $tutorID = $data['tutorID'];
 
             $this->requirementComplaintsModel->rejectTutorRequest($tutorID);
+
+            $this->requirementComplaintsModel->addNotification($tutorID, 'Your tutor request has been rejected.', 'Please contact us for more information.');
 
             redirect('admin/tutorRequest');
         }

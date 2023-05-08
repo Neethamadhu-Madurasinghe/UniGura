@@ -12,27 +12,13 @@ class ModelAdminRequirementComplaints
 
     public function getStudentComplaints($start, $rowsPerPage)
     {
-        $this->db->query("(SELECT *
-        FROM student_report
-        WHERE is_inquired = 0)
-        UNION ALL
-        (SELECT *
-        FROM student_report
-        WHERE is_inquired = 1) LIMIT $start, $rowsPerPage
-        ");
+        $this->db->query("SELECT * FROM student_report LIMIT $start, $rowsPerPage");
         return $this->db->resultAll();
     }
 
     public function getTutorComplaints($start, $rowsPerPage)
     {
-        $this->db->query("(SELECT *
-        FROM tutor_report
-        WHERE is_inquired = 0)
-        UNION ALL
-        (SELECT *
-        FROM tutor_report
-        WHERE is_inquired = 1) LIMIT $start, $rowsPerPage
-        ");
+        $this->db->query("SELECT * FROM tutor_report LIMIT $start, $rowsPerPage");
         return $this->db->resultAll();
     }
 
@@ -189,8 +175,16 @@ class ModelAdminRequirementComplaints
     public function rejectTutorRequest($tutorID)
     {
         $this->db->query("DELETE FROM `tutor` WHERE user_id = :tutor_id");
-
         $this->db->bind(':tutor_id', $tutorID);
+        return $this->db->execute();
+    }
+
+    public function addNotification($userID, $title, $description)
+    {
+        $this->db->query("INSERT INTO notification (user_id, title,description) VALUES (:user_id,:title,:description)");
+        $this->db->bind(':user_id', $userID);
+        $this->db->bind(':title', $title);
+        $this->db->bind(':description', $description);
         return $this->db->execute();
     }
 }
