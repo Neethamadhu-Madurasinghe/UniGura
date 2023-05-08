@@ -104,9 +104,8 @@ MainNavbar::render($request);
                fetch(url)
                     .then(response => response.json())
                     .then(data => {
+                         document.querySelector('.studnt-details-container').style.display = 'block';
                          let list = data['data'][0];
-               
-
                          let student_name = document.getElementById('student_name');
                          let module_name = document.getElementById('module_name');
                          let mode = document.getElementById('mode');
@@ -129,9 +128,11 @@ MainNavbar::render($request);
                          let days = data['days'];
                          let activities = data['activities'];
 
-                         console.log(activities);
+                         console.log(days)
 
+          
                          for (let i = 0; i < days.length; i++) {
+                              console.log(i)
                               let day = days[i];
 
                               let status = `<i class="fa fa-eye-slash" style="font-size:19px;color: rgba(112, 124, 151, 0.678);" title="Hide"></i>`;
@@ -145,8 +146,6 @@ MainNavbar::render($request);
                                    console.log('Error')
                               }
 
-                    
-
                               let code = `<div class="day_box" style="margin-top: 0px;">
                                    <div style="display: grid;grid-template-columns: 10fr 1fr;border-bottom:2px solid  rgba(112, 124, 151, 0.151) ;padding-bottom: 5px;">
                                         <h4>Day ${day.position} - ${day.title}</h4>
@@ -157,10 +156,9 @@ MainNavbar::render($request);
                                    <div class='textbox-one'></div>
                                    <p  class = "Payment"; style="text-align: right;font-size: 17px;font-weight: 600;color:#f7721adc; margin-top: 5px;">Payment Due</p>
                               </div>`
-
-               
-               
+                       
                          day_container.innerHTML += code;
+     
 
                          for(key in activities){
                               let element = activities[0];
@@ -170,9 +168,8 @@ MainNavbar::render($request);
                                    <a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;' href = "http://localhost/unigura/tutor/viewactivitydoc?file=${element.link}">Tute</a><br>`
                               }
                          }
-                         document.querySelector('.studnt-details-container').style.display = 'block';
+                         
                          }
-
                     })
                     .catch(error => {
                          console.error(error);
