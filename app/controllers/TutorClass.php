@@ -42,16 +42,18 @@ class TutorClass extends Controller
 
         $data = $this->classModel->getsingleclassdetails(intval($body['id']));
         $days = $this->classModel->getTutoringClassDays(intval($body['id']));
+        $activities = $this->classModel->getActivities(intval($body['id']));
+
+        
 
 
         header('Content-Type: application/json');
         echo json_encode([
             "data" => $data,
-            "days" => $days
+            "days" => $days,
+            "activities" => $activities
 
         ]);
-
-        
     }
 
     public function day_unhide(Request $request)

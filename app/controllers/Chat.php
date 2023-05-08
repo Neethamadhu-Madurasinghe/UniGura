@@ -20,6 +20,15 @@ class Chat extends Controller {
         $this->view('/student/chat', $request, $data);
     }
 
+    public function  tutorChatView(Request $request){
+        if (!$request->isLoggedIn() || !$request->isTutor()){
+            redirectBasedOnUserRole($request);
+            return;
+        }
+        $data = [];
+        $this->view('/tutor/chat', $request, $data);
+    }
+
 //    Get all the messages of a thread when the threadId is given
     public function getChatMessages(Request $request) {
         cors();

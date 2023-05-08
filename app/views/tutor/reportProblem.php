@@ -50,7 +50,9 @@ Header::render(
             let form_container = document.querySelector('.form-container');
 
             let student_id = <?php echo $data['student_id'] ?>;
-            let object = <?php echo $data['report_resons'] ?>;
+            let object = <?php echo $data['report_reasons'] ?>;
+
+            console.log(object)
 
             document.getElementById('student_id').value = student_id;
 
@@ -66,6 +68,10 @@ Header::render(
             document.getElementById('cancel').addEventListener('click', () => {
                 window.location = `http://localhost/unigura/tutor/classes`;
             });
+
+            document.getElementById('submit').addEventListener('click', () => {
+                window.location = `http://localhost/unigura/tutor/classes`;
+            })
 
 
     </script>

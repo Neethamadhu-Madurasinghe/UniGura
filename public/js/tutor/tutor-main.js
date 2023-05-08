@@ -30,7 +30,7 @@ modeSwitch.addEventListener("click", () => {
 
     if (body.classList.contains("dark")) {
         modeText.innerText = "Light mode";
-    } else {
+    }else {
         modeText.innerText = "Dark mode";
 
     }
@@ -44,5 +44,5 @@ const actualFileUploadBtnUI = document.getElementById('actual-btn');
 const profilePictureUI = document.getElementById('profile-picture');
 
 actualFileUploadBtnUI.addEventListener('change', function () {
-    profilePictureUI.src = URL.createObjectURL(actualFileUploadBtnUI.files[0])
+        profilePictureUI.src = URL.createObjectURL(actualFileUploadBtnUI.files[0])
 });

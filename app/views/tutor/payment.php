@@ -23,9 +23,6 @@ Header::render(
 ?>
 
 
-
-
-
 <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
 <button type="submit" id="payhere-payment" >Pay</button>
 <script>
