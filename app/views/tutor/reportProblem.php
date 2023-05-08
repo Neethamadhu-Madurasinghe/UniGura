@@ -52,8 +52,6 @@ Header::render(
             let student_id = <?php echo $data['student_id'] ?>;
             let object = <?php echo $data['report_reasons'] ?>;
 
-            console.log(object)
-
             document.getElementById('student_id').value = student_id;
 
             for ( key in object){
@@ -63,15 +61,10 @@ Header::render(
                 form_container.innerHTML += code;
             }
 
-            console.log(object);
-
             document.getElementById('cancel').addEventListener('click', () => {
-                window.location = `http://localhost/unigura/tutor/classes`;
+                console.log('Hiii')
             });
 
-            document.getElementById('submit').addEventListener('click', () => {
-                window.location = `http://localhost/unigura/tutor/classes`;
-            })
 
 
     </script>
@@ -79,7 +72,7 @@ Header::render(
 
  <?php Footer::render(
     [
-        'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js',
+      
         URLROOT . '/public/js/tutor/tutor-main.js?v=1.2'
         
     ]
