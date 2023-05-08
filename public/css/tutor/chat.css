@@ -36,6 +36,7 @@ h1, h2, h3, h4, h5, h6 {
   
   h2{
        font-weight: 400;
+       margin-bottom: 90%;
   }
   h4{
        font-weight: 600;
@@ -76,7 +77,9 @@ h1, h2, h3, h4, h5, h6 {
      -moz-transition: .5s;
      -o-transition: .5s;
      -webkit-transition: .5s;
-     transition: .5s
+     transition: .5s;
+     margin-top: -24px ;
+
  }
  
  .people-list .chat-list li {
@@ -110,7 +113,11 @@ h1, h2, h3, h4, h5, h6 {
  
  .people-list img {
      float: left;
-     border-radius: 50%
+     border-radius: 50%;
+     width: 40px;
+     height: 40px;
+     border-radius: 50%;
+     object-fit: cover;
  }
  
  .people-list .about {
@@ -132,8 +139,11 @@ h1, h2, h3, h4, h5, h6 {
  
  .chat .chat-header img {
      float: left;
-     border-radius: 40px;
-     width: 50px
+     border-radius: 50%;
+     width: 50px;
+     height: 50px;
+     border-radius: 50%;
+     object-fit: cover;
  }
  
  .chat .chat-header .chat-about {
@@ -171,13 +181,20 @@ h1, h2, h3, h4, h5, h6 {
  }
  
  .chat .chat-history .message-data img {
-     border-radius: 40px;
-     width: 40px
+     border-radius: 50%;
+     width: 40px;
+     height: 40px;
+     object-fit: cover;
  }
  
  .chat .chat-history .message-data-time {
     color: rgba(112, 124, 151, 0.7);
      padding-left: 6px;
+     font-size: 14px;
+ }
+ .chat .chat-history .message-data-time-right {
+    color: rgba(112, 124, 151, 0.7);
+     padding-left: 770px;
      font-size: 14px;
  }
  
@@ -412,3 +429,13 @@ h1, h2, h3, h4, h5, h6 {
          overflow-x: auto
      }
  }
+
+ .red {
+    color: red;
+ }
+
+ .green {
+    color: green;
+ }
+
+

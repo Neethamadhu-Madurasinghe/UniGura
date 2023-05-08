@@ -13,6 +13,10 @@
     opacity: 0;
 }
 
+.studnt-details-container{
+    display: none;
+}
+
 .notification.close{
     left: 34%;
     width: 80%;

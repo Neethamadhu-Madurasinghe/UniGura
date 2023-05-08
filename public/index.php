@@ -180,7 +180,7 @@ $router->registerController('/tutor/payments/filterpayments', [TutorPayments::cl
 $router->registerController('/tutor/payments/getpaymentamounts', [TutorPayments::class, 'monthly_payment_amounts']);
 
 
-$router->registerController('/tutor/chat', [TutorChat::class, 'mainpage']);
+$router->registerController('/tutor/chat', [Chat::class, 'tutorChatView']);
 $router->registerController('/tutor/notification', [TutorNotification::class, 'mainpage']);
 
 $router->registerController('/tutor/viewstudentrequest', [TutorDashboard::class, 'viewrequest']);
@@ -234,6 +234,9 @@ $router->registerController(
     '/student/dashboard',
     [StudentDashboard::class, 'dashboard']
 );
+
+
+
 $router->registerController('/api/get-class', [StudentDashboard::class, 'takenClasses']);
 $router->registerController('/api/modules', [FindTutor::class, 'getModule']);
 $router->registerController('/api/find-tutoring-class', [FindTutor::class, 'findTutoringClass']);
