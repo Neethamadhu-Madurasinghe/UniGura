@@ -39,28 +39,22 @@ class ModelTutorClass
         Join module AS m 
         ON m.id = ct.module_id
         WHERE c.id = :id;');
-
         $this->db->bind('id', $id, PDO::PARAM_INT);
-
         return $this->db->resultAllAssoc();
     }
 
 
     public function getTutoringClassDays($id): array
     {
-        $this->db->query('SELECT d.position, d.title, d.id as dayid , dt.id as day_template_id , d.is_hidden FROM day AS d JOIN day_template AS dt ON dt.id = d.id  WHERE class_id = :id ORDER BY dt.position ASC;');
-
+        $this->db->query('SELECT position, title, id as dayid , day_template_id , is_hidden FROM day WHERE class_id = :id ORDER BY position ASC;');
         $this->db->bind('id', $id, PDO::PARAM_INT);
-
         return $this->db->resultAllAssoc();
     }
 
     public function getActivities($id): array
     {
-        $this->db->query('SELECT a.id , a.day_id, a.description, a.type, a.link , a.position, d.is_hidden FROM activity AS a JOIN day as d ON d.id = a.day_id WHERE d.class_id = :id ORDER BY a.type ASC;');
-
+        $this->db->query('SELECT a.id , a.day_id, a.description, a.type, a.link FROM activity AS a JOIN day as d ON d.id = a.day_id WHERE d.class_id = :id ORDER BY a.type ASC;');
         $this->db->bind('id', $id, PDO::PARAM_INT);
-
         return $this->db->resultAllAssoc();
     }
 

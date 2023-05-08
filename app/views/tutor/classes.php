@@ -120,6 +120,7 @@ MainNavbar::render($request);
                          mode.innerHTML = list.mode;
 
                          console.log(list);
+                    
 
                          document.getElementById('report').addEventListener('click', () => {
                               window.location = `http://localhost/unigura/tutor/view-report?student_id=${list.student_id}`;
@@ -128,12 +129,14 @@ MainNavbar::render($request);
                          let days = data['days'];
                          let activities = data['activities'];
 
-                         console.log(days)
+                         console.log(days);
+                         console.log(activities);
 
           
                          for (let i = 0; i < days.length; i++) {
-                              console.log(i)
                               let day = days[i];
+
+                              console.log(day.dayid);
 
                               let status = `<i class="fa fa-eye-slash" style="font-size:19px;color: rgba(112, 124, 151, 0.678);" title="Hide"></i>`;
 
@@ -153,7 +156,7 @@ MainNavbar::render($request);
                                              ${status}
                                         </label>
                                    </div>
-                                   <div class='textbox-one'></div>
+                                   <div class='textbox-one' id='text${day.dayid}'></div>
                                    <p  class = "Payment"; style="text-align: right;font-size: 17px;font-weight: 600;color:#f7721adc; margin-top: 5px;">Payment Due</p>
                               </div>`
                        
@@ -161,11 +164,13 @@ MainNavbar::render($request);
      
 
                          for(key in activities){
-                              let element = activities[0];
+                              
+                              let element = activities[key];
+                              
                               if(element.day_id == day.dayid){
-                                   
-                                   day_container.querySelector('.textbox-one').innerHTML += `<img class='img02' src='http://localhost/UniGura/public/img/tutor/class/icons/file.png' style="width: 10%; height:10%; margin-top: 8px; margin-bottom: 0px">
-                                   <a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;' href = "http://localhost/unigura/tutor/viewactivitydoc?file=${element.link}">Tute</a><br>`
+
+                                   day_container.querySelector(`#text${day.dayid}`).innerHTML += `<img class='img02' src='http://localhost/UniGura/public/img/tutor/class/icons/file.png' style="width: 10%; height:10%; margin-top: 8px; margin-bottom: 0px">
+                                   <a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;' href = "http://localhost/unigura/tutor/viewactivitydoc?file=${element.link}">${element.description}</a><br>`
                               }
                          }
                          
