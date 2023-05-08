@@ -70,7 +70,7 @@
             </div>
 
             <div class='info-2' id='info-2'>
-                <small><i class="fa-solid fa-download"></i> - Education Qualification</small><br>
+                <small><i class="fa-solid fa-graduation-cap"></i> <?php echo $aTutor->education_qualification; ?></small><br>
                 <small><i class="fa-solid fa-download"></i> - National Identity Card Copy</small><br>
                 <small><i class="fa-solid fa-download"></i> - University Entrance Letter</small><br>
                 <small><i class="fa-solid fa-download"></i> - Advanced Level Result</small>
@@ -78,7 +78,7 @@
 
             <div class='info-3' id='info-3'>
                 <small><i class="fa-solid fa-phone"></i> - <?php echo $aTutor->contactDetails->phone_number; ?></small><br>
-                <small><i class="fa-solid fa-house"></i> - <?php echo $aTutor->contactDetails->letter_box_number . '/' . $aTutor->contactDetails->street; ?></small><br>
+                <small><i class="fa-solid fa-house"></i> - <?php echo $aTutor->contactDetails->address_line1 . ' / ' . $aTutor->contactDetails->address_line2; ?></small><br>
                 <small><i class="fa-solid fa-location-dot"></i> - <?php echo $aTutor->contactDetails->city; ?></small><br>
                 <small><i class="fa-solid fa-venus-mars"></i> - <?php echo $aTutor->contactDetails->gender; ?></small>
             </div>

@@ -9,7 +9,7 @@ class AdminComplaintView extends Controller
         $this->viewComplaintModel = $this->model('ModelAdminComplaintView');
     }
 
-    public function viewComplaint(Request $request)
+    public function viewStudentComplaint(Request $request)
     {
 
         if (!$request->isLoggedIn()) {
@@ -56,11 +56,63 @@ class AdminComplaintView extends Controller
         // print_r($data);
         // echo '</pre>';
 
-        $this->view('admin/complaint_view', $request, $data);
+        $this->view('admin/studentComplaintView', $request, $data);
     }
 
 
-    public function updateComplainInquire(Request $request)
+    public function viewTutorComplaint(Request $request)
+    {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        if ($request->isGet()) {
+            $data = $request->getBody();
+
+            $tutorComplainID = $data['tutorComplaintId'];
+
+            $oneTutorComplaint = $this->viewComplaintModel->tutorReportById($tutorComplainID);
+
+            $oneTutorComplaint->tutor = $this->viewComplaintModel->userById($oneTutorComplaint->tutor_id);
+            $oneTutorComplaint->student = $this->viewComplaintModel->userById($oneTutorComplaint->student_id);
+            $oneTutorComplaint->reportReason = $this->viewComplaintModel->reportSeasonById($oneTutorComplaint->reason_id);
+
+
+            $allTutorComplaints = $this->viewComplaintModel->getTutorComplaints();
+            $allTutorComplaints = array_map(function ($complain) {
+                $complain->tutor = $this->viewComplaintModel->userById($complain->tutor_id);
+                $complain->student = $this->viewComplaintModel->userById($complain->student_id);
+                $complain->reportReason = $this->viewComplaintModel->reportSeasonById($complain->reason_id);
+                return $complain;
+            }, $allTutorComplaints);
+
+
+            $otherTutorComplaints = [];
+
+            foreach ($allTutorComplaints as $complaint) {
+                if ($complaint->id != $tutorComplainID && $complaint->student_id == $oneTutorComplaint->student_id) {
+                    $otherTutorComplaints[] = $complaint;
+                }
+            }
+
+            $data = [
+                'oneTutorComplaint' => $oneTutorComplaint,
+                'otherTutorComplaints' => $otherTutorComplaints
+            ];
+        }
+
+
+        // echo '<pre>';
+        // print_r($data);
+        // echo '</pre>';
+
+        $this->view('admin/tutorComplaintView', $request, $data);
+    }
+
+
+
+    public function updateStudentComplainInquire(Request $request)
     {
 
         if (!$request->isLoggedIn()) {
@@ -75,12 +127,37 @@ class AdminComplaintView extends Controller
             $studentComplainID = $data['studentComplaintId'];
 
             if ($complainStatus == 1) {
-                $this->viewComplaintModel->updateComplainStatus($studentComplainID, 0);
+                $this->viewComplaintModel->updateStudentComplainStatus($studentComplainID, 0);
             } else {
-                $this->viewComplaintModel->updateComplainStatus($studentComplainID, 1);
+                $this->viewComplaintModel->updateStudentComplainStatus($studentComplainID, 1);
             }
 
             redirect('/admin/studentComplaint');
+        }
+    }
+
+
+    public function updateTutorComplainInquire(Request $request)
+    {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+
+        if ($request->isPost()) {
+            $data = $request->getBody();
+
+            $complainStatus = $data['complainStatus'];
+            $tutorComplainID = $data['tutorComplaintId'];
+
+            if ($complainStatus == 1) {
+                $this->viewComplaintModel->updateTutorComplainStatus($tutorComplainID, 0);
+            } else {
+                $this->viewComplaintModel->updateTutorComplainStatus($tutorComplainID, 1);
+            }
+
+            redirect('/admin/tutorComplaint');
         }
     }
 }

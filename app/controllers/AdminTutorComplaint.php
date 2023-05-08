@@ -14,7 +14,36 @@ class AdminTutorComplaint extends Controller {
             redirect('/login');
         }
 
-        $allTutorComplaints = $this->tutorComplaintModel->getTutorComplaints();
+
+        $rowsPerPage = 5;
+        $totalNumOfStudentComplaints = $this->tutorComplaintModel->totalNumOfTutorComplaints();
+        $lastPageNum = ceil($totalNumOfStudentComplaints / $rowsPerPage);
+
+        if (isset($_GET['currentPageNum'])) {
+            $currentPageNum = $_GET['currentPageNum'];
+        } else {
+            $currentPageNum = 1;
+        }
+
+        $start = ($currentPageNum - 1) * $rowsPerPage;
+
+        $allTutorComplaints = $this->tutorComplaintModel->getTutorComplaints($start, $rowsPerPage);
+
+        // next page
+        if ($currentPageNum < $lastPageNum) {
+            $nextPageNum = $currentPageNum + 1;
+        } else {
+            $nextPageNum = $lastPageNum;
+        }
+
+        // previous page
+        if ($currentPageNum > 1) {
+            $previousPageNum = $currentPageNum - 1;
+        } else {
+            $previousPageNum = 1;
+        }
+
+
 
         foreach ($allTutorComplaints as $x) {
             $reasonID = $x->reason_id;
@@ -35,7 +64,11 @@ class AdminTutorComplaint extends Controller {
 
         $data = [
             'allTutorComplaints' => $allTutorComplaints,
-            'totalNumOfTutorComplaints' => $totalNumOfTutorComplaints
+            'totalNumOfTutorComplaints' => $totalNumOfTutorComplaints,
+            'lastPageNum' => $lastPageNum,
+            'nextPageNum' => $nextPageNum,
+            'previousPageNum' => $previousPageNum,
+            'currentPageNum' => $currentPageNum,
 
         ];
 

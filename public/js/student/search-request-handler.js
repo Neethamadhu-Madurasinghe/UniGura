@@ -40,6 +40,7 @@ const bottomContainerUI = document.querySelector('.bottom-container');
 const searchResultAreaUI = document.querySelector('.search-result-title-container');
 const searchResultTitleUI = document.getElementById('search-result-title');
 const searchResultFilterUI = document.getElementById('search-result-filter');
+const paginationUI = document.getElementById("pagination");
 
 // Get initial values from UI elements
 
@@ -163,7 +164,6 @@ async function sendSearchClassRequest() {
     return;
   }
 
-
   const respond = await fetch('http://localhost/unigura/api/find-tutoring-class?' + new URLSearchParams(filterValues))
   if(respond.status !== 200) {
     const result  = await respond.json();
@@ -179,12 +179,14 @@ async function sendSearchClassRequest() {
   LastSearch = JSON.parse(JSON.stringify(filterValues));
 
   data = await respond.json()
-  console.log(filterValues);
   console.log(data);
 
   searchResultAreaUI.classList.remove('invisible');
   bottomContainerUI.classList.remove('invisible');
+  // Clear UI elements
   tutoringClassContainerUI.innerHTML = '';
+  paginationUI.innerHTML = '';
+  showTutorLocationsOnMap([]);
   
   if(data.length > 0) {
     searchResultTitleUI.textContent = 'Search Results';
@@ -197,8 +199,6 @@ async function sendSearchClassRequest() {
     // Use pagination to show the rest of the records
     displayPagination(data, itemsPerPage);
 
-  //  Scroll to result area
-
 
   } else {
     searchResultTitleUI.textContent = 'No Search Results';
@@ -209,9 +209,19 @@ async function sendSearchClassRequest() {
 
 function displayData(data, startIndex, endIndex) {
   const container = document.getElementById("data-container");
+
+  // Array for hold locations of currently showing page's tutors
+  let locationArray = [];
+
   tutoringClassContainerUI.innerHTML = "";
   for (let i = startIndex; i < endIndex; i++) {
     const tutoringClass = data[i];
+
+    // Add locations of the locationArray if the mode is not online
+    if (tutoringClass.mode !== 'online') {
+      locationArray.push([tutoringClass.latitude, tutoringClass.longitude])
+    }
+
     // Format values
     tutoringClass.first_name = tutoringClass.first_name.charAt(0).toUpperCase() + tutoringClass.first_name.slice(1);
     tutoringClass.last_name = tutoringClass.last_name.charAt(0).toUpperCase() + tutoringClass.last_name.slice(1);
@@ -276,7 +286,7 @@ function displayData(data, startIndex, endIndex) {
       <div class="tutor-search-card-bottom-section">
         <h2>${tutoringClass.first_name}'s ${tutoringClass.module_name} Class</h2>
         <div class="tutor-search-card-toast-container">
-          <div>${tutoringClass.day_count} Days, ${tutoringClass.duration} hours per day, ${tutoringClass.day_count * tutoringClass.duration} LKR</div>
+          <div>${tutoringClass.day_count} Days, ${tutoringClass.duration} hours per day, ${tutoringClass.day_count * tutoringClass.session_rate} LKR</div>
           <div>Completed ${tutoringClass.completed_class_count} classes</div>
           <div>${tutoringClass.medium}</div>
           <div>${tutoringClass.class_type}</div>
@@ -306,12 +316,15 @@ function displayData(data, startIndex, endIndex) {
     tutoringClassContainerUI.appendChild(tutoringClassCardUI);
     scrollToBottomSection()
   }
+
+//  Send the locationArray to map component update function
+  showTutorLocationsOnMap(locationArray);
 }
 
 function displayPagination(data, itemsPerPage) {
   const numPages = Math.ceil(data.length / itemsPerPage);
-  const pagination = document.getElementById("pagination");
-  pagination.innerHTML = "";
+
+  paginationUI.innerHTML = "";
   for (let i = 1; i <= numPages; i++) {
     const button = document.createElement("button");
     button.textContent = i;
@@ -325,7 +338,7 @@ function displayPagination(data, itemsPerPage) {
       displayData(data, (i - 1) * itemsPerPage, upperBound);
       displayPagination(data, itemsPerPage);
     });
-    pagination.appendChild(button);
+    paginationUI.appendChild(button);
   }
 }
 

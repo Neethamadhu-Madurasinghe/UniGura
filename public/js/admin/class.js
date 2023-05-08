@@ -81,7 +81,7 @@ const searchClasses = document.getElementById('search-classes');
 const cardSection = document.getElementById('card-section');
 
 
-let classConductModeValue = [];
+let completionStatusFilterValue = [];
 let classFeesInputField = [];
 let classFeesSliderField = [];
 let selectedSubject = [];
@@ -101,7 +101,7 @@ classFeesInputMax.addEventListener('input', function () {
     console.log(classFeesInputMaxValue);
 
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', `filterForClassPage?classFeesInputMaxValue=${classFeesInputMaxValue}&ratingFilterValue=${ratingFilterValue}&classConductModeFilterValue=${classConductModeFilterValue}&subjectFilterValue=${subjectFilterValue}`, true);
+    xhr.open('GET', `filterForClassPage?classFeesInputMaxValue=${classFeesInputMaxValue}&ratingFilterValue=${ratingFilterValue}&completionStatusFilterValue=${completionStatusFilterValue}&subjectFilterValue=${subjectFilterValue}`, true);
 
     xhr.onload = function () {
         if (this.status === 200) {
@@ -119,7 +119,7 @@ classFeesSliderMax.addEventListener('input', function () {
     console.log(classFeesInputMaxValue);
 
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', `filterForClassPage?classFeesInputMaxValue=${classFeesInputMaxValue}&ratingFilterValue=${ratingFilterValue}&classConductModeFilterValue=${classConductModeFilterValue}&subjectFilterValue=${subjectFilterValue}`, true);
+    xhr.open('GET', `filterForClassPage?classFeesInputMaxValue=${classFeesInputMaxValue}&ratingFilterValue=${ratingFilterValue}&completionStatusFilterValue=${completionStatusFilterValue}&subjectFilterValue=${subjectFilterValue}`, true);
 
     xhr.onload = function () {
         if (this.status === 200) {
@@ -159,14 +159,14 @@ for (var i = 0; i < checkboxes.length; i++) {
 
 
         ratingFilterValue = selectedValues.filter(value => value === '1' || value === '2' || value === '3' || value === '4' || value === '5');
-        classConductModeFilterValue = selectedValues.filter(value => value === 'both' || value === 'online' || value === 'physical');
-        subjectFilterValue = selectedValues.filter(value => value !== 'both' && value !== 'online' && value !== 'physical' && value !== '1' && value !== '2' && value !== '3' && value !== '4' && value !== '5');
+        completionStatusFilterValue = selectedValues.filter(value => value === 'active' || value === 'complete');
+        subjectFilterValue = selectedValues.filter(value => value !== 'active' && value !== 'complete' && value !== '1' && value !== '2' && value !== '3' && value !== '4' && value !== '5');
 
 
-        console.log(classFeesInputMaxValue, ratingFilterValue, classConductModeFilterValue, subjectFilterValue);
+        console.log(classFeesInputMaxValue, ratingFilterValue, completionStatusFilterValue, subjectFilterValue);
 
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', `filterForClassPage?classFeesInputMaxValue=${classFeesInputMaxValue}&ratingFilterValue=${ratingFilterValue}&classConductModeFilterValue=${classConductModeFilterValue}&subjectFilterValue=${subjectFilterValue}`, true);
+        xhr.open('GET', `filterForClassPage?classFeesInputMaxValue=${classFeesInputMaxValue}&ratingFilterValue=${ratingFilterValue}&completionStatusFilterValue=${completionStatusFilterValue}&subjectFilterValue=${subjectFilterValue}`, true);
 
         xhr.onload = function () {
             if (this.status === 200) {

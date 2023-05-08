@@ -8,7 +8,8 @@ let request = {
   template_id: 0,
   tutor_id: 0,
   mode: '',
-  time_slots: []
+  time_slots: [],
+  custom_location: []
 }
 
 // This set contains the slot id of slots selected by user
@@ -22,6 +23,13 @@ bodyUI.addEventListener('click', async (e) => {
     request.template_id = e.target.dataset.template;
     request.duration = e.target.dataset.duration;
     request.mode = e.target.dataset.mode;
+
+    // If the mode is not online, then add the location of the student
+    if(request.mode !== 'online' && filterValues.location === 'custom') {
+      request.custom_location = [filterValues.latitude, filterValues.longitude];
+    }else {
+      request.custom_location = [];
+    }
 
     const respond = await fetch('http://localhost/unigura/api/time-table?' + new URLSearchParams({ tutor_id: request.tutor_id}));
     unsortedTimeSlots = await respond.json();

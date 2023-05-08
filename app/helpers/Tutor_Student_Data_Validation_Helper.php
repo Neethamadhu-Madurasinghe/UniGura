@@ -40,7 +40,8 @@ function validateAccountNumber(String $number, String $bank, ModelTutorPending $
     }
 }
 
-function validateAddressLines(string $addressLine, bool $isMandatory = false): String {
+function validateAddressLines(string $addressLine, bool $isMandatory = false): String
+{
 
 
     if ($isMandatory && empty($addressLine)) {
@@ -138,6 +139,20 @@ function validateUniversity(String $university): String
 // *******************  START - created by madusharini (For tutor profile update validation) ********************
 
 
+function validateRate(string $number): String
+{
+    if (filter_var($number, FILTER_VALIDATE_INT)) {
+        $int = intval($number);
+        if ($int >= 500 && $int < 5000) {
+            return "";
+        } else {
+            return "Amount must in a range between LKR (500 - 5000)";
+        }
+    } else {
+        return "Please enter a valid amount";
+    }
+}
+
 function validateAccountNameForTutor(String $holderName, ModelTutorStudentCompleteProfile $modelObject, int $tutor_id): String
 {
     if (empty($holderName) || !preg_match("/^[a-zA-Z\s]*$/", $holderName)) {
@@ -148,20 +163,19 @@ function validateAccountNameForTutor(String $holderName, ModelTutorStudentComple
         return 'Account Name should have less than 255 characters ';
     } else {
         return '';
+
     }
 }
 
-function validatePassword(string $password, string $confirmPassword): String {
+function validatePassword(string $password, string $confirmPassword): String
+{
     if (empty($password)) {
         return 'Please enter a valid password';
-
-    }elseif (strlen($password) < 4) {
+    } elseif (strlen($password) < 4) {
         return 'Password should be minimum 4 characters long';
-
-    }elseif ($password !== $confirmPassword) {
+    } elseif ($password !== $confirmPassword) {
         return 'Please confirm the password';
-
-    }else {
+    } else {
         return '';
     }
 }
@@ -178,6 +192,8 @@ function validateAccountNumberForTutor(String $accountNumber, ModelTutorStudentC
 }
 
 
+
+// created by viraj
 function validateTelephoneNumberForTutor(String $telephone, ModelTutorStudentCompleteProfile $modelObject, int $tutor_id): String
 {
     if (empty($telephone) || !preg_match("/^[0-9]*$/", $telephone)) {
@@ -191,6 +207,18 @@ function validateTelephoneNumberForTutor(String $telephone, ModelTutorStudentCom
     }
 }
 
+function validateStudentReportReason(String $reason, ModelTutorStudentCompleteProfile $modelObject): String
+{
+    if (empty($reason)) {
+        return 'Please enter a valid reason';
+    } elseif ($modelObject->findReasonIdByStudentReportReason($reason)) {
+        return 'Reason is already in use';
+    } else if (strlen($reason) > 40) {
+        return 'Reason should have less than 40 characters';
+    } else {
+        return '';
+    }
+}
 
 function validateBankName(String $bankName): String
 {
@@ -204,6 +232,17 @@ function validateBankName(String $bankName): String
 }
 
 
+function validateTutorReportReason(String $reason, ModelTutorStudentCompleteProfile $modelObject): String
+{
+    if (empty($reason)) {
+        return 'Please enter a valid reason';
+    } elseif ($modelObject->findReasonIdByTutorReportReason($reason)) {
+        return 'Reason is already in use';
+    } else if (strlen($reason) > 40) {
+        return 'Reason should have less than 40 characters';
+    }
+}
+
 function validateBranch(String $branch): String
 {
     if (empty($branch) || !preg_match("/^[a-zA-Z\s]*$/", $branch)) {
@@ -215,22 +254,10 @@ function validateBranch(String $branch): String
     }
 }
 
+
 // *******************  END - created by madusharini (For tutor profile update validation) ********************
 
 
 
 //created by sachithra
 
-function validateRate(string $number): String
-{
-    if (filter_var($number, FILTER_VALIDATE_INT)) {
-        $int = intval($number);
-        if ($int >= 500 && $int < 5000) {
-            return "";
-        } else {
-            return "Amount must in a range between LKR (500 - 5000)";
-        }
-    } else {
-        return "Please enter a valid amount";
-    }
-}

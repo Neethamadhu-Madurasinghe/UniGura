@@ -30,6 +30,8 @@ nav_link.forEach((link) => {
 request_complaint.classList.add('active');
 
 
+const blur_filter = document.getElementById('blur-filter');
+blur_filter.style.display = "none";
 
 
 /* ---------------------------------- complaint update btn ---------------------------- */
@@ -73,3 +75,35 @@ for (let i = 0; i < cancel_btn_js.length; i++) {
     });
 }
 
+
+
+
+
+/* ---------------------------------- active button ---------------------------- */
+
+const complaint_setting_btn = document.getElementById('complaint-setting');
+
+complaint_setting_btn.style.background = "linear-gradient(180deg, #FFA620 0%, #FF7A20 100%)";
+
+
+
+
+/* --------------------------- DUPLICATE ENTRY POPUP ERROR MESSAGE -------------------------------- */
+
+const popup = document.getElementById('popup');
+const closePopupBtn = document.getElementById('closePopup');
+const container = document.getElementById('container');
+
+closePopupBtn.addEventListener("click", function () {
+    popup.style.display = "none";
+    blur_filter.style.display = "none";
+
+})
+
+
+
+var blurElement = document.querySelector(".popup");
+
+if (blurElement) {
+    blur_filter.style.display = "block";
+}

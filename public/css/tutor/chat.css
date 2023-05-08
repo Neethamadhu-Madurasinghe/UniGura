@@ -36,6 +36,7 @@ h1, h2, h3, h4, h5, h6 {
   
   h2{
        font-weight: 400;
+       margin-bottom: 90%;
   }
   h4{
        font-weight: 600;
@@ -76,7 +77,9 @@ h1, h2, h3, h4, h5, h6 {
      -moz-transition: .5s;
      -o-transition: .5s;
      -webkit-transition: .5s;
-     transition: .5s
+     transition: .5s;
+     margin-top: -24px ;
+
  }
  
  .people-list .chat-list li {
@@ -178,6 +181,11 @@ h1, h2, h3, h4, h5, h6 {
  .chat .chat-history .message-data-time {
     color: rgba(112, 124, 151, 0.7);
      padding-left: 6px;
+     font-size: 14px;
+ }
+ .chat .chat-history .message-data-time-right {
+    color: rgba(112, 124, 151, 0.7);
+     padding-left: 770px;
      font-size: 14px;
  }
  

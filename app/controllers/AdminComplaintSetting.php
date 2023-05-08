@@ -22,7 +22,13 @@ class AdminComplaintSetting extends Controller
 
         $data = [
             'studentComplaintReason' => $studentComplaintReason,
-            'tutorComplaintReason' => $tutorComplaintReason
+            'tutorComplaintReason' => $tutorComplaintReason,
+
+            'errors' => [
+                'student_reason' => '',
+                'tutor_reason' => '',
+
+            ]
         ];
 
         $this->view('admin/complaint_settings', $request, $data);

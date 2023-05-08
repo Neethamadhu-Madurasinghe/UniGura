@@ -351,7 +351,7 @@
                             $totalStudentPayment += $transaction->amount;
                         }
                         echo $totalStudentPayment;
-                        ?>
+                        ?>  
                     </span>
                 </div>
                 <div class="total-tutor-withdrawal">
@@ -401,13 +401,11 @@
                     <?php if ($data['numOfTutorRequest'] == 0) : ?>
                         <div class="no_request">
                             <img src="<?php echo URLROOT ?>/public/img/admin/emptyTutorRequest.png" alt=""><br>
-                            <span>Looks like you haven't tutor request yet</span>
+                            <span>Looks like haven't tutor request yet</span>
                         </div>
                     <?php endif; ?>
 
                     <div class="requested_list">
-
-
                         <?php foreach ($data['allTutors'] as $requestTutor) : ?>
                             <?php if ($requestTutor->is_approved == '0') : ?>
                                 <div class="available-request">
@@ -420,7 +418,6 @@
                                 </div>
                             <?php endif; ?>
                         <?php endforeach; ?>
-
                     </div>
                 </div>
 
@@ -433,7 +430,7 @@
                     <?php if ($data['numOfStudentReport'] == 0 && $data['numOfTutorReport'] == 0) : ?>
                         <div class="no_complaint">
                             <img src="<?php echo URLROOT ?>/public/img/admin/emptyCompliants.png" alt=""><br>
-                            <span>Looks like you haven't complaints yet</span>
+                            <span>Looks like haven't complaints yet</span>
                         </div>
                     <?php endif; ?>
 

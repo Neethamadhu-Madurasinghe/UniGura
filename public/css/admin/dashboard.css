@@ -508,14 +508,11 @@ body.dark .home .text {
 
 .complaints_list {
     margin-top: 15px;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    grid-column-gap: 0px;
-    grid-row-gap: 15px;
 }
 
-.complaints_list>div {
+
+
+.complaints_list .available-complaints{
     display: flex;
     justify-content: left;
     align-items: center;
@@ -524,6 +521,7 @@ body.dark .home .text {
     border-radius: 5px;
     line-height: 1.3;
     height: 60px;
+    margin-bottom: 15px;
 }
 
 .complaints_list .complaint-details {
@@ -556,27 +554,23 @@ body.dark .home .text {
     display: none;
 }
 
-
 .requested_list {
     margin-top: 15px;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    grid-column-gap: 0px;
-    grid-row-gap: 15px;
 }
 
 
-.requested_list>div {
+.requested_list .available-request {
     display: flex;
     justify-content: left;
     align-items: center;
     background: #aaa8a8;
     padding: 5px;
     border-radius: 5px;
-    line-height: 1.3;
     height: 60px;
+    margin-bottom: 15px;
 }
+
+
 
 .requested_list .request-details {
     margin-left: 15px;

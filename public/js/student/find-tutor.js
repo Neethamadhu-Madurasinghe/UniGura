@@ -17,10 +17,14 @@ const _modeUI = document.getElementById('mode');
 // But open layers follows Longitude first and Latitude
 const defaultPosition = [_longitudeUI.value, _latitudeUI.value];
 
+// List of locations marked on the map
+let currentlyShowingLocations = [];
+
 let radius = +(_distanceUI.value.split("K")[0]);
 
 // Script for include map element into form
-generateMapComponent();
+// Return value here is a function that can be used to show dots on the map
+const showTutorLocationsOnMap = generateMapComponent();
 
 // Hide or show location filters at the beginning
 if (_modeUI.value == 'online') {
@@ -137,6 +141,40 @@ function generateMapComponent() {
   // Change the circle size when user is selecting different distances
   _distanceUI.addEventListener('change', updateDistanceCircle);
 
+  // Setting up the dot layer on the map
+  const dotLayer = new ol.layer.Vector({
+    source: new ol.source.Vector(),
+    style: new ol.style.Style({
+      image: new ol.style.RegularShape({
+        fill: new ol.style.Fill({ color: 'red' }),
+        stroke: new ol.style.Stroke({ color: 'black', width: 1 }),
+        points: 100,
+        radius: 3,
+        angle: Math.PI / 4,
+      }),
+    }),
+  });
+
+  map.addLayer(dotLayer);
+
+  //    This inner function is for adding locations of tutors once the searching is done
+  function showTutorLocationsOnMap(locations) {
+    // Remove any visible locations on the map
+    currentlyShowingLocations.forEach(location => {
+      dotLayer.getSource().removeFeature(location);
+    });
+
+    currentlyShowingLocations = [];
+
+    // Add new locations
+    locations.forEach(location => {
+      let dot = new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.fromLonLat(location)),
+      });
+      dotLayer.getSource().addFeature(dot)
+      currentlyShowingLocations.push(dot);
+    });
+  }
 
   // Market element on map
   let marker_el = document.getElementById('marker');
@@ -170,6 +208,8 @@ function generateMapComponent() {
   mapComponentUI.style.display = 'none';
   _longitudeUI.style.display = 'none';
   _latitudeUI.style.display = 'none';
+
+  return showTutorLocationsOnMap;
 }
 
 

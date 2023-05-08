@@ -76,7 +76,10 @@
 
 .name-actions {
     position: relative;
+}
 
+.name-actions .name{
+    margin-bottom: 15px;
 }
 
 .tutor-details {
@@ -116,14 +119,12 @@
 
 .active-classes {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 40px;
-    width: 95%;
-    margin: 20px auto;
-    height: 54vh;
-    display: none;
+    width: 96%;
+    margin: 20px;
     overflow-y: scroll;
-    padding-right: 15px;
+    display: none;
 }
 
 
@@ -145,14 +146,12 @@
 
 .finished-classes {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 40px;
-    width: 95%;
-    margin: 20px auto;
-    display: none;
-    height: 54vh;
-    padding-right: 15px;
+    width: 96%;
+    margin: 20px;
     overflow-y: scroll;
+    display: none;
 }
 
 .finished-classes::-webkit-scrollbar {
