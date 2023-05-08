@@ -229,7 +229,7 @@ class FindTutor extends Controller {
 
                 if (
                     $currentTimeSlot['day'] != $previousTimeSlot['day'] ||
-                    getTimeDifference($previousTimeSlot['time'], $currentTimeSlot['time']) != 2
+                    abs(getTimeDifference($previousTimeSlot['time'], $currentTimeSlot['time'])) != 2
                 ) {
                     $isError = true;
                 }

@@ -136,7 +136,7 @@ rescheduleSendBtnUI.addEventListener('click', async () => {
                 break;
 
             case 200:
-                showSuccessMessage('Tutor request has been sent successfully', () => {
+                showSuccessMessage('Rescheduling successful', () => {
                     hideTimeTable()
                     unsortedTimeSlots = [];
                     sortedTimeSlots = [];
