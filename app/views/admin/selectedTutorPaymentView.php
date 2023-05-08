@@ -3,13 +3,12 @@
             <?php
             $totalAmount = 0;
             foreach ($data['tutorPaymentDetails'] as $tutorPaymentDetail) {
-                if($tutorPaymentDetail->is_withdrawed == 0){
+                if ($tutorPaymentDetail->is_withdrawed == 0) {
                     $totalAmount += $tutorPaymentDetail->amount;
                 }
             }
-            echo $totalAmount*(90/100);
-            ?>
-        </span></h2>
+            echo $totalAmount * (90 / 100);
+            ?>.00</span></h2>
 </div>
 
 
@@ -27,7 +26,7 @@
                         <img src="<?php echo URLROOT; ?>/public/img/admin/uploadBankSlip.gif" alt=""><br><br>
                         <!-- <span>Drag & Drop your files here</span><br><br>
                         <span>OR</span><br><br> -->
-                        <input type="file" name="paymentBankSlip" class="file-selector-input" id="paymentBankSlip" multiple accept=".jpg,.jpeg,.png,.pdf" hidden onchange="this.form.submit()" value="<?php echo $data['paymentBankSlip'] ?>">
+                        <input type="file" name="paymentBankSlip" class="file-selector-input" id="paymentBankSlip" multiple accept=".jpg,.jpeg,.png,.pdf" hidden onchange="this.form.submit()">
                         <label class="file-selector" for="paymentBankSlip">Upload Bank Slip</label><br><br>
                     </div>
                     <!-- <div class="col-2" id="col-2">
@@ -95,8 +94,8 @@
                 <tr>
                     <th>Student</th>
                     <th>Subject</th>
+                    <th>Module</th>
                     <th>Lesson</th>
-                    <th>Day</th>
                     <th>Method</th>
                     <th>Class Fess</th>
                 </tr>
@@ -108,8 +107,8 @@
                             <td><?php echo $aTutorPaymentDetails->student->first_name . ' ' . $aTutorPaymentDetails->student->last_name ?></td>
                             <td><?php echo $aTutorPaymentDetails->subject->name ?></td>
                             <td><?php echo $aTutorPaymentDetails->module->name ?></td>
-                            <td>ssssssssssssss</td>
-                            <td><?php echo $aTutorPaymentDetails->tutorialClass->mode ?></td>
+                            <td><?php echo $aTutorPaymentDetails->title ?></td>
+                            <td><?php echo $aTutorPaymentDetails->mode ?></td>
                             <td><?php echo $aTutorPaymentDetails->amount ?></td>
                         </tr>
                     <?php endif; ?>

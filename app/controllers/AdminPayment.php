@@ -54,15 +54,12 @@ class AdminPayment extends Controller
             $tutorId = $bodyData['selectedTutorId'];
 
             $tutorBankDetails = $this->paymentModel->selectedTutorBankDetails($tutorId);
-            $tutorPaymentDetails = $this->paymentModel->paymentDetailsByTutorId($tutorId);
+            $tutorPaymentDetails = $this->paymentModel->getAllClassDaysByTutorId($tutorId);
 
             foreach ($tutorPaymentDetails as $aTutorPaymentDetails) {
-                $aTutorPaymentDetails->classDay = $this->paymentModel->classDayByDayId($aTutorPaymentDetails->day_id);
-                $aTutorPaymentDetails->tutorialClass = $this->paymentModel->getTutorialClassByClassId($aTutorPaymentDetails->classDay->class_id);
-                $aTutorPaymentDetails->classTemplate = $this->paymentModel->getClassTemplateByClassTemplateId($aTutorPaymentDetails->tutorialClass->class_template_id);
-                $aTutorPaymentDetails->subject = $this->paymentModel->getSubjectBySubjectId($aTutorPaymentDetails->classTemplate->subject_id);
-                $aTutorPaymentDetails->module = $this->paymentModel->getModuleByModuleId($aTutorPaymentDetails->classTemplate->module_id);
-                $aTutorPaymentDetails->student = $this->paymentModel->getStudentById($aTutorPaymentDetails->tutorialClass->student_id);
+                $aTutorPaymentDetails->subject = $this->paymentModel->getSubjectBySubjectId($aTutorPaymentDetails->subject_id);
+                $aTutorPaymentDetails->module = $this->paymentModel->getModuleByModuleId($aTutorPaymentDetails->module_id);
+                $aTutorPaymentDetails->student = $this->paymentModel->getStudentById($aTutorPaymentDetails->student_id);
             }
 
 
@@ -70,7 +67,6 @@ class AdminPayment extends Controller
             $data = [
                 'tutorBankDetails' => $tutorBankDetails,
                 'tutorPaymentDetails' => $tutorPaymentDetails,
-                'paymentBankSlip' => ''
             ];
 
             // echo '<pre>';
