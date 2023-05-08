@@ -1,6 +1,6 @@
 <?php if (empty($data)) : ?>
     <div class="result-not-found">
-        <img src="<?php echo URLROOT; ?>/public/img/admin/resultNotFound.png" alt=""><br>
+        <img src="<?php echo URLROOT; ?>/public/img/admin/notSearchResult.png" alt=""><br>
         <h1>Result Not Found</h1>
         <p>We couldn't find any result for your search.</p>
         <p>Try searching again.</p>
@@ -14,7 +14,6 @@
 // echo '</pre>';
 
 ?>
-
 
 <?php foreach ($data as $aStudent) : ?>
     <div class="card">
@@ -37,7 +36,7 @@
             <?php endif; ?>
         </div>
         <div class="profile-picture">
-            <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="student profile picture">
+            <img src="<?php echo URLROOT ?><?php echo $aStudent->student->profile_picture ?>" alt="student profile picture">
         </div>
         <div class="name">
             <h2><?php echo $aStudent->student->first_name . ' ' . $aStudent->student->last_name ?></h2>

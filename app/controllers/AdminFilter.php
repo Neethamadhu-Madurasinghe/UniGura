@@ -492,8 +492,8 @@ class AdminFilter extends Controller
 
         $allSubjects = $this->filterModel->getAllSubjects();
 
-        foreach ($allClasses as $x) {
-            $tutorId = $x->tutor_id;
+        foreach($allClasses as $x){
+            $tutorId = $x->tutorID;
 
             $tutor = $this->filterModel->findTutor($tutorId);
 

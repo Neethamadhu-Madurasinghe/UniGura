@@ -513,23 +513,23 @@ input[type="range"]::-moz-range-thumb {
 
 /* ======================RESULT NOT FOUND SECTION====================================  */
 
-.result-not-found{
+.result-not-found {
     width: 117vh;
-    height: 100vw;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 30px;
+    margin-left: 70px;
 }
 
-.result-not-found img{
-    width: 700px;
+.result-not-found img {
+    width: 500px;
 }
 
-.result-not-found h1{
+.result-not-found h1 {
     font-size: 50px;
-    margin-top: 20px;
+    color: #fff;
 }
 
-.result-not-found p{
+.result-not-found p {
     font-size: 17px;
     margin-top: 4px;
 }
