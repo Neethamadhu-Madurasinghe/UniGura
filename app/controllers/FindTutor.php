@@ -220,10 +220,21 @@ class FindTutor extends Controller {
             }
 
 //           Check whether time slots are consecutive
-            for ($i = 0; $i < count($body['time_slots']) - 1; $i++) {
-                if ($body['time_slots'][$i+1] - $body['time_slots'][$i] != 1) {
+            $previousTimeSlot = [];
+            for ($i = 1; $i < count($body['time_slots']); $i++) {
+                if ($i == 1) {
+                    $previousTimeSlot = $this->timeSlotModel->getTimeSlot($body['time_slots'][$i - 1]);
+                }
+                $currentTimeSlot = $this->timeSlotModel->getTimeSlot($body['time_slots'][$i]);
+
+                if (
+                    $currentTimeSlot['day'] != $previousTimeSlot['day'] ||
+                    getTimeDifference($previousTimeSlot['time'], $currentTimeSlot['time']) != 2
+                ) {
                     $isError = true;
                 }
+
+                $previousTimeSlot = $currentTimeSlot;
             }
 
             if ($isError) {
@@ -246,6 +257,12 @@ class FindTutor extends Controller {
                     "/UniGura/student/profile#requests",
                         "You have sent a tutor request. You can cancel it by clicking here"
 
+                );
+
+//                Notification for tutor
+                $this->notification->createNotification(
+                    $body['tutor_id'],
+                    "You have a new class request"
                 );
                 header("HTTP/1.0 200 Success");
                 return;
@@ -332,5 +349,12 @@ function arrayToString(array $timeSlotStateArray): string {
     return implode('', array_map(function ($entry) {
         return $entry['state'];
     }, $timeSlotStateArray));
+}
+
+function getTimeDifference($start_time, $end_time) {
+    $start = strtotime($start_time);
+    $end = strtotime($end_time);
+    $diff = $end - $start;
+    return floor($diff / (60 * 60));;
 }
 

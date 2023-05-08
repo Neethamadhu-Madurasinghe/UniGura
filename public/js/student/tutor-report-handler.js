@@ -47,9 +47,9 @@ reportSubmitButtonUI.addEventListener('click', async (e) => {
       body: JSON.stringify(report)
     });
 
-
   handleTutorReportResponse(response.status);
-
+  const res = await response.text();
+  console.log(res);
 });
 
 // Clear call form data and hide the popup when Canel is clicked
@@ -88,7 +88,8 @@ function handleTutorReportResponse(status) {
 
     case 200:
       showSuccessMessage('Report Saved successfully', () => {
-        // hideTimeTable()
+        hideLayoutBackground();
+        tutorReportPopupUI.classList.add('invisible');
         reportCommentUI.value = '';
         report.reason_id = 0;
         report.description = '';

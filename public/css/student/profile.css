@@ -237,6 +237,28 @@
     width: auto;
 }
 
+.chart-section {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.chart-container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+}
+
+@media screen and (max-width: 600px) {
+    .chart-container {
+        width: 90%;
+    }
+}
+
 #al-result-upload-btn, #al-identity-card-btn, #university-entrance-letter{
     background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
     font-size: 0.9rem;
@@ -406,6 +428,23 @@
 
 }
 
+#pagination {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.pagination-button {
+    padding: 8px 16px;
+    margin: 0 4px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pagination-button.active {
+    background-color: var(--lightest-orrange);
+}
 
 /* Popup send message */
 .popup-send-message, .popup-change-password {
@@ -496,7 +535,7 @@
     font-size: 0.6rem;
 }
 
-.popup-delete-request {
+.popup-delete-request, .popup-disable-profile {
     height: 200px;
     width: 450px;
     background-color: white;
@@ -506,7 +545,7 @@
     align-items: center;
 }
 
-#popup-delete-heading {
+#popup-delete-heading, #popup-delete-heading  {
     font-weight: bold;
     font-size: 1.4rem;
     width: 80%;

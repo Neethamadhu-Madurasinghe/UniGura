@@ -58,7 +58,7 @@ class ModelStudentTutoringClass {
 //           Fetch all the incomplete days
             $this->db->query('
                 SELECT COUNT(day.id) as incomplete_day_count FROM tutoring_class JOIN day ON
-                tutoring_class.id= day.class_id WHERE tutoring_class.id=:id AND day.is_completed = 1 AND day.is_hidden = 0'
+                tutoring_class.id= day.class_id WHERE tutoring_class.id=:id AND day.is_completed = 0 AND day.is_hidden = 0'
             );
 
             $this->db->bind('id', $value['id'], PDO::PARAM_INT);
@@ -68,7 +68,7 @@ class ModelStudentTutoringClass {
 //           Payment due
             $this->db->query('
                 SELECT COUNT(day.id) as payment_due_day_count FROM tutoring_class JOIN day ON
-                tutoring_class.id= day.class_id WHERE tutoring_class.id=:id AND day.payment_status = 1'
+                tutoring_class.id= day.class_id WHERE tutoring_class.id=:id AND day.payment_status = 0 AND day.is_completed = 1'
             );
 
             $this->db->bind('id', $value['id'], PDO::PARAM_INT);
@@ -135,6 +135,9 @@ class ModelStudentTutoringClass {
             $this->db->query('SELECT * FROM activity WHERE day_id=:day_id AND is_hidden=0 ORDER BY position asc');
             $this->db->bind('day_id', $day['id'], PDO::PARAM_INT);
             $activities = $this->db->resultAllAssoc();
+
+//            Add session rate into each day sub array (because it is needed in that way to implement payment)
+            $tutoring_class['days'][$key]['session_rate'] = $tutoring_class['session_rate'];
 
 //            Format file download link
             foreach ($activities as $actKey => $actValue) {
