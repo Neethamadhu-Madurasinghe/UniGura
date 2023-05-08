@@ -111,7 +111,6 @@ class StudentClass extends Controller {
         $data['date'] = $this->convertShortDayToFullDay($data['date']);
         $data['time'] = $this->convertTimeTo12HourFormat($data['time']);
         $data['report_reasons'] = $this->reportReasonModel->getStudentReportReason();
-        $data['does_reschedule_exit'] = $this->rescheduleModel->doesRequestExist($body['id']);
 
 //        Add payment detail for each DAY
         function mapDaysAndPaymentDetails($day) {

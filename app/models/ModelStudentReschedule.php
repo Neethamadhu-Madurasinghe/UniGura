@@ -7,15 +7,6 @@ class ModelStudentReschedule {
         $this->db = new Database();
     }
 
-    public function doesRequestExist(int $id): bool {
-        $this->db->query('SELECT * FROM reschedule WHERE tutoring_class_id=:class_id');
-
-        $this->db->bind('class_id', $id, PDO::PARAM_INT);
-        $this->db->resultOne();
-//      Returns whether the row count is greater than 0
-        return $this->db->rowCount() > 0;
-    }
-
     public function reschedule(array $data): bool {
 //        Since there are more than one writes, a transaction will be executed
         $this->db->startTransaction();
