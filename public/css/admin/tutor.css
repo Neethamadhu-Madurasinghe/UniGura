@@ -489,9 +489,9 @@ input[type="range"]::-moz-range-thumb {
     font-size: 14px;
     height: 20px;
     border: none;
-    background: #f20707bc;
     border-radius: 5px;
     color: #fff;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
     transition: 0.3s;
     text-align: center;
 }
@@ -503,9 +503,11 @@ input[type="range"]::-moz-range-thumb {
     text-align: center;
     font-size: 14px;
     font-weight: bolder;
-    transition: 0.3s;
     border-radius: 5px;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    transition: 0.3s;
 }
+
 
 
 

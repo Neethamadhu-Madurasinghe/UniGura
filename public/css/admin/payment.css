@@ -11,7 +11,7 @@ body {
 
 .payment {
     display: grid;
-    grid-template-columns: 300px auto;
+    grid-template-columns: 400px auto;
     grid-gap: 20px;
     padding: 20px;
 }
@@ -322,7 +322,8 @@ tbody button {
 }
 
 .drop-section img {
-    width: 100px;
+    width: 130px;
+    margin-bottom: 20px;
 }
 
 .list-section img {
@@ -341,7 +342,8 @@ tbody button {
     margin-bottom: 5px;
     text-align: center;
     border-radius: 5px;
-    height: 270px;
+    height: 250px;
+    background: #fdfdfd;
 }
 
 
@@ -501,7 +503,7 @@ tbody button {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin: 40px 0;
+    margin: 40px 0 0 40px;
 
 }
 

@@ -17,9 +17,9 @@
     <div class="upload-payment-slip">
         <div class="bank-slip-uploader">
             <div class="header-section">
-                <h1>Upload Bank Payment Slip</h1>
-                <p>This this is payment slip will help to the when tutor</p>
-                <p>PDF & Images are allowed</p>
+                <h1>Upload Bank Payment Slip.</h1><br>
+                <p>This payment slip will serve as evidence that the tutor payment has been made.</p><br>
+                <p>PDF & Images are allowed.</p>
             </div>
             <div class="drop-section">
                 <form action="uploadBankSlip?tutorID=<?php echo $data['tutorBankDetails']->user_id; ?>" method="POST" enctype="multipart/form-data">

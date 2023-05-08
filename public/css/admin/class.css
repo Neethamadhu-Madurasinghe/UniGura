@@ -373,11 +373,11 @@ input[type="range"]::-moz-range-thumb {
     font-size: 14px;
     height: 20px;
     border: none;
-    background: #f20707bc;
     border-radius: 5px;
     color: #fff;
-    text-align: center;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
     transition: 0.3s;
+    text-align: center;
 }
 
 .checkbox:checked+label:before {
@@ -388,6 +388,7 @@ input[type="range"]::-moz-range-thumb {
     font-size: 14px;
     font-weight: bolder;
     border-radius: 5px;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
     transition: 0.3s;
 }
 

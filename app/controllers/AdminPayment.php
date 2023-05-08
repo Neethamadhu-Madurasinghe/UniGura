@@ -90,7 +90,7 @@ class AdminPayment extends Controller
 
 
         if ($request->isPost()) {
-            $filePath = handleUpload(array('.png', '.pdf'), '\\withdrawal_slips\\', 'paymentBankSlip');
+            $filePath = handleUpload(array('.pdf', '.png', '.jpeg', '.jpg', '.JPG'), '\\withdrawal_slips\\', 'paymentBankSlip');
             $this->paymentModel->insertTutorWithdrawalDetails($filePath);
             $withdrawalSlipID = $this->paymentModel->getTutorWithdrawalDetailID($filePath);
             $this->paymentModel->updateTutorWithdrawalDetails($_GET['tutorID'], $withdrawalSlipID->id);

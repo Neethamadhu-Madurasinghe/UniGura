@@ -12,13 +12,27 @@ class ModelAdminRequirementComplaints
 
     public function getStudentComplaints($start, $rowsPerPage)
     {
-        $this->db->query("SELECT * FROM student_report LIMIT $start, $rowsPerPage");
+        $this->db->query("(SELECT *
+        FROM student_report
+        WHERE is_inquired = 0)
+        UNION ALL
+        (SELECT *
+        FROM student_report
+        WHERE is_inquired = 1) LIMIT $start, $rowsPerPage
+        ");
         return $this->db->resultAll();
     }
 
     public function getTutorComplaints($start, $rowsPerPage)
     {
-        $this->db->query("SELECT * FROM tutor_report LIMIT $start, $rowsPerPage");
+        $this->db->query("(SELECT *
+        FROM tutor_report
+        WHERE is_inquired = 0)
+        UNION ALL
+        (SELECT *
+        FROM tutor_report
+        WHERE is_inquired = 1) LIMIT $start, $rowsPerPage
+        ");
         return $this->db->resultAll();
     }
 
