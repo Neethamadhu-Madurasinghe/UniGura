@@ -130,7 +130,7 @@ class ModelTutorDashboard
 
     public function viewStudentRequests($id): array
     {
-        $this->db->query(' SELECT r.id as id , r.class_template_id , r.mode , r.tutor_id , r.student_id , s.name as subject , m.name as module , u.first_name , u.last_name , u.profile_picture , u.id as user_id ,c.class_type , c.session_rate , c.duration ,c.medium FROM request AS r JOIN tutoring_class_template AS c ON r.class_template_id = c.id JOIN subject AS s ON c.subject_id = s.id JOIN module AS m ON c.module_id = m.id JOIN user AS u ON r.student_id = u.id WHERE r.id = :id;');
+        $this->db->query(' SELECT r.id as id , r.class_template_id , r.mode , r.location , r.tutor_id , r.student_id, ST_X(r.location) AS longitude, ST_Y(r.location) AS latitude, s.name as subject , m.name as module , u.first_name , u.last_name , u.profile_picture , u.id as user_id ,c.class_type , c.session_rate , c.duration ,c.medium FROM request AS r JOIN tutoring_class_template AS c ON r.class_template_id = c.id JOIN subject AS s ON c.subject_id = s.id JOIN module AS m ON c.module_id = m.id JOIN user AS u ON r.student_id = u.id WHERE r.id = :id;');
         $this->db->bind('id', $id, PDO::PARAM_INT);
         return $this->db->resultAllAssoc();
     }
@@ -212,16 +212,15 @@ class ModelTutorDashboard
 
     public function getNewlyAddedclass()
     {
-        $this->db->query('SELECT max(id) as id from tutoring_class;');
-
+        $this->db->query('SELECT id FROM tutoring_class ORDER BY id DESC LIMIT 1;');
         return $this->db->resultOneAssoc();
     }
 
 
     public function setDaysofClass($class_id,$data):bool{
         $this->db->query('
-        INSERT INTO day (class_id, title, position )
-            SELECT :class_id , title , position 
+        INSERT INTO day (class_id, title, position,day_template_id)
+            SELECT :class_id , title , position , id 
             FROM day_template
             WHERE class_template_id = :c_id ;
             ');
@@ -233,6 +232,20 @@ class ModelTutorDashboard
         return $this->db->execute();
     }
 
+    public function setActivitiesofDay($class_id):bool{
+        $this->db->query('
+        INSERT INTO activity (day_id, description, type ,link )
+        SELECT d.id , a.description , 0 , a.link 
+        FROM activity_template as a JOIN day as d on d.day_template_id = a.day_template_id
+        WHERE d.class_id = :class_id ;
+            ');
+
+        $this->db->bind('class_id', $class_id , PDO::PARAM_INT);
+        
+        return $this->db->execute();
+    }
+
+
     public function setClass($data): bool {
         $this->db->startTransaction();
 
@@ -240,6 +253,7 @@ class ModelTutorDashboard
         $class_id = $this->getNewlyAddedclass();
         $this->setStudentAproveRequest($data['id']);
         $this->setDaysofClass(intval($class_id['id']),$data);
+        $this->setActivitiesofDay($class_id['id']);
         $this->UpdateTutorTimeSlotWithRequest($data['time_slot_id']);
 
         return $this->db->commitTransaction();

@@ -94,20 +94,18 @@ Header::render(
                             <label for="Mode">Mode</label>
                         </div>
                         <select name="mode" id="mode">
-                            <option value="Physical">Physical</option>
-                            <option value="Online">Online</option>
-                            <option value="Both">Both</option>
+                            <option value="physical">Physical</option>
+                            <option value="online">Online</option>
+                            <option value="both">Both</option>
                         </select>
                     </div>
-
                     <div class="dropdown">
                         <div class="dropdown_name">
                             <label for="Type">Type</label>
                         </div>
                         <select name="class_type" id="type">
-                            <option value="Theory">Theory</option>
-                            <option value="Revision">Revision</option>
-                            <option value="Paper Class">Paper</option>
+                            <option value="theory">Theory</option>
+                            <option value="revision">Revision</option>
                         </select>
                     </div>
 

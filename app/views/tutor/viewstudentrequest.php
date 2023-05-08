@@ -26,9 +26,6 @@ Header::render(
 
 <div class="lightbox">
      <div class="box">
-
-          
-
           <script>
                let student_name = document.getElementById('first_name');
                let student_image = document.getElementById('image');
@@ -42,7 +39,7 @@ Header::render(
                let request = <?php echo $data['tutor_request'] ?>;
                let request_obj = request[0];
 
-               console.log(request_obj);
+               
 
 
                let request_container = document.querySelector('.box');
@@ -56,10 +53,10 @@ Header::render(
                     case 'mon':
                          day = 'Monday'
                     case 'tue':
-                         day = 'Tuestday'
+                         day = 'Tuesday'
                          break;
                     case 'wed':
-                         day = 'Wendesday'
+                         day = 'Wednesday'
                          break;
                     case 'thu':
                          day = 'Thursday'
@@ -94,7 +91,10 @@ Header::render(
                <div class="new_req_table">
                     <i class="fa-brands fa-chromecast"></i><span id="mode" class="text">Mode : ${request_obj.mode}</span>
                </div>
-
+          </div>
+          
+          <div class='location'>
+          
           </div>
           
           <div class="form_container">
@@ -129,24 +129,9 @@ Header::render(
 
                request_container.innerHTML += code;
 
-
-               let input_id = document.getElementById('id');
-               let input_c_id = document.getElementById('c_id');
-               let input_mode = document.getElementById('Imode');
-               let input_student_id = document.getElementById('student_id');
-               let input_tutor_id = document.getElementById('tutor_id');
-               let input_date = document.getElementById('date');
-               let input_time = document.getElementById('Itime');
-               let input_duration = document.getElementById('duration');
-               let input_rate = document.getElementById('rate');
-
-               let decline = document.getElementById('decline_btn');
-
-
-     
-
-
-
+               if(request_obj.class_type == 'physical'){
+                    request_container.querySelector('#location').innerHTML = `<div></div>`
+               }
 
                var closebtn = document.querySelector("#close_btn");
 
