@@ -278,10 +278,10 @@ input[type="range"]::-moz-range-thumb {
 
 .card-section{
     display: grid;
-    grid-template-columns: 32% 32% 32%;
-    column-gap: 20px;
+    grid-template-columns: 30% 30% 30%;
+    column-gap: 40px;
     justify-content: center;
-    padding: 10px;
+    padding: 20px;
     height: 97vh;
     overflow-y: scroll;
 }
@@ -336,7 +336,6 @@ input[type="range"]::-moz-range-thumb {
     /* margin-bottom: 50px; */
     position: relative;
     left: 130px;
-
 }
 
 
@@ -346,90 +345,54 @@ input[type="range"]::-moz-range-thumb {
 }
 
 
-.card > div{
-    margin-top: -20px;
+.card-section .card img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-.name{
-    font-size: 14px;
-    font-weight: 500;
-    position: relative;
-    text-align: center;
-    width: 100%;
-    height: 70px;
+
+.card-section .name {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 3px;
-}
-
-.selection-menu{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 27px 0;
-    width: 100%;
-    user-select: none;
     position: relative;
-    z-index: 10;
+    bottom: 10px;
 }
 
-.selection-menu h3{
+.card-section .name h2 {
     font-size: 20px;
-    font-weight: 500;
-    cursor: pointer;
+    font-weight: bold;
+    padding: 5px;
 }
 
-.selection-info{
-    background-color: #ffffff;
-    width: 100%;
-    height: 150px;
-    padding: 10px 5px;
+.card .info {
+    position: relative;
+    bottom: 10px;
+    /* margin-bottom: 30px; */
+}
+
+.card .info h5 {
+    font-weight: 500;
     font-size: 18px;
-    font-weight: normal;
-    overflow-y: scroll;
-    border-radius: 5px;
-}
-
-.selection-info small{
-    font-size: 17px;
-    font-weight: 500;
-    line-height: 1.5;
-    margin-left: 10px;
 }
 
 
-.selection-info::-webkit-scrollbar{
-    display: none;
-}
 
-.selection-menu > div{
-    padding: 5px 10px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    position: relative;
-    top: 10px;
-}
-
-
-.card .view-profile button{
+.card .view-profile button {
+    font-size: 1rem;
     background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
-    border: 2px solid black;
-    font-size: 20px;
-    cursor: pointer;
-    outline: none;
-    padding: 10px;
-    text-align: center;
-    border-radius: 5px;
     color: white;
-    height: 50px;
-    width: 140px;
-    position: relative;
-    user-select: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
     transition: transform 0.1s;
-    z-index: -1;
+    user-select: none;
+    height: 45px;
+    width: 120px;
+    position: relative;
 }
-
 
 .card .view-profile button:hover {
     transform: scale(1.05);
@@ -439,80 +402,58 @@ input[type="range"]::-moz-range-thumb {
     background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
 }
 
-.card .view-profile{
-    position: relative;
-    left: 26%;
-    top: 27%;
-    
-}
-
-.card-blur-effect{
-    position: absolute; 
-    top: 20px;
-    left: 0;
-    width: 100%;
-    height: 0%;
-    background-color: #ffb75e;
-    transition: height 0.8s linear;
-}
-
-
-.profile-picture{
-    height: 80%;
-}
-
-
-.profile-picture img{
-    width: 130px;
-    height: 130px;
-    border-radius: 50%;
-    position: relative;
-    top: 30px;
-}
 
 
 
 /* ====================== HIDE SHOW MODE SUMMARY============================ */
 
-.online-physical-both{
+.online-physical-both {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    margin-top: 45px;
 }
 
-.online-physical-both .online{
+.card-section .online-physical-both .online {
     width: 26px;
 }
 
-.online-physical-both .physical{
+.card-section .online-physical-both .physical {
     width: 40px;
     margin-top: 10px;
 }
 
 
-.mode-hide-show{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 95%;
-    position: relative;
-    top: 30px;
-    padding: 10px;
-    height: 20px;
-}
-
-
-.hide-show{
+.mode-hide-show {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    margin-top: 35px;
+    width: 95%;
+    position: relative;
+    /* top: 10px; */
+    padding: 10px;
+    height: 20px;
+    left: 127px;
+    /* background: #000; */
 }
 
-.hide-show img{
+
+.mode-hide-show i {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+
+.hide-show {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.card-section .mode-hide-show img {
     width: 32px;
     margin-top: 10px;
 }

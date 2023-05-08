@@ -22,67 +22,67 @@ nav_link.forEach((link) => {
 tutor.classList.add('active');
 
 
-menuSelection();
+// menuSelection();
 
-function menuSelection () {
+// function menuSelection () {
 
-    const menu_1 = document.getElementsByClassName('menu-1');
-    const menu_2 = document.getElementsByClassName('menu-2');
-    const menu_3 = document.getElementsByClassName('menu-3');
+//     const menu_1 = document.getElementsByClassName('menu-1');
+//     const menu_2 = document.getElementsByClassName('menu-2');
+//     const menu_3 = document.getElementsByClassName('menu-3');
 
-    const info_1 = document.getElementsByClassName('info-1');
-    const info_2 = document.getElementsByClassName('info-2');
-    const info_3 = document.getElementsByClassName('info-3');
-
-
-    for (let i = 0; i < menu_1.length; i++) {
-        info_1[i].style.display = 'block';
-        info_2[i].style.display = 'none';
-        info_3[i].style.display = 'none';
-    }
-
-    for (let i = 0; i < menu_1.length; i++) {
-        menu_1[i].style.backgroundColor = 'white';
-    }
+//     const info_1 = document.getElementsByClassName('info-1');
+//     const info_2 = document.getElementsByClassName('info-2');
+//     const info_3 = document.getElementsByClassName('info-3');
 
 
-    for (let i = 0; i < menu_1.length; i++) {
-        menu_1[i].addEventListener('click', function () {
-            info_1[i].style.display = 'block';
-            info_2[i].style.display = 'none';
-            info_3[i].style.display = 'none';
-            menu_1[i].style.backgroundColor = 'white';
-            menu_2[i].style.backgroundColor = '#ffb75e';
-            menu_3[i].style.backgroundColor = '#ffb75e';
+//     for (let i = 0; i < menu_1.length; i++) {
+//         info_1[i].style.display = 'block';
+//         info_2[i].style.display = 'none';
+//         info_3[i].style.display = 'none';
+//     }
 
-        });
-    }
+//     for (let i = 0; i < menu_1.length; i++) {
+//         menu_1[i].style.backgroundColor = 'white';
+//     }
 
 
-    for (let i = 0; i < menu_1.length; i++) {
-        menu_2[i].addEventListener('click', function () {
-            info_1[i].style.display = 'none';
-            info_2[i].style.display = 'block';
-            info_3[i].style.display = 'none';
-            menu_1[i].style.backgroundColor = '#ffb75e';
-            menu_2[i].style.backgroundColor = 'white';
-            menu_3[i].style.backgroundColor = '#ffb75e';
-        });
-    }
+//     for (let i = 0; i < menu_1.length; i++) {
+//         menu_1[i].addEventListener('click', function () {
+//             info_1[i].style.display = 'block';
+//             info_2[i].style.display = 'none';
+//             info_3[i].style.display = 'none';
+//             menu_1[i].style.backgroundColor = 'white';
+//             menu_2[i].style.backgroundColor = '#ffb75e';
+//             menu_3[i].style.backgroundColor = '#ffb75e';
+
+//         });
+//     }
 
 
-    for (let i = 0; i < menu_1.length; i++) {
-        menu_3[i].addEventListener('click', function () {
-            info_1[i].style.display = 'none';
-            info_2[i].style.display = 'none';
-            info_3[i].style.display = 'block';
-            menu_1[i].style.backgroundColor = '#ffb75e';
-            menu_2[i].style.backgroundColor = '#ffb75e';
-            menu_3[i].style.backgroundColor = 'white';
-        });
-    }
+//     for (let i = 0; i < menu_1.length; i++) {
+//         menu_2[i].addEventListener('click', function () {
+//             info_1[i].style.display = 'none';
+//             info_2[i].style.display = 'block';
+//             info_3[i].style.display = 'none';
+//             menu_1[i].style.backgroundColor = '#ffb75e';
+//             menu_2[i].style.backgroundColor = 'white';
+//             menu_3[i].style.backgroundColor = '#ffb75e';
+//         });
+//     }
 
-}
+
+//     for (let i = 0; i < menu_1.length; i++) {
+//         menu_3[i].addEventListener('click', function () {
+//             info_1[i].style.display = 'none';
+//             info_2[i].style.display = 'none';
+//             info_3[i].style.display = 'block';
+//             menu_1[i].style.backgroundColor = '#ffb75e';
+//             menu_2[i].style.backgroundColor = '#ffb75e';
+//             menu_3[i].style.backgroundColor = 'white';
+//         });
+//     }
+
+// }
 
 
 
@@ -165,35 +165,35 @@ for (var i = 0; i < checkboxes.length; i++) {
 
 
 
-// -------------------------CARD SHOW PROFILE BUTTON---------------------------------------
+// // -------------------------CARD SHOW PROFILE BUTTON---------------------------------------
 
-showProfileBtn();
+// showProfileBtn();
 
-function showProfileBtn () {
-    const profilePicture = document.querySelectorAll('.profile-picture');
-    const cardBlurEffect = document.querySelectorAll('.card-blur-effect');
-    const card = document.querySelectorAll('.card');
-    const viewProfileBtn = document.querySelectorAll('.view-profile-btn');
+// function showProfileBtn () {
+//     const profilePicture = document.querySelectorAll('.profile-picture');
+//     const cardBlurEffect = document.querySelectorAll('.card-blur-effect');
+//     const card = document.querySelectorAll('.card');
+//     const viewProfileBtn = document.querySelectorAll('.view-profile-btn');
 
 
 
-    for (let i = 0; i < card.length; i++) {
-        card[i].addEventListener('mouseenter', function () {
-            cardBlurEffect[i].style.height = '70%';
-            viewProfileBtn[i].style.zIndex = '10';
-            card[i].style.backgroundColor = '#ffb75e';
-        });
-    }
+//     for (let i = 0; i < card.length; i++) {
+//         card[i].addEventListener('mouseenter', function () {
+//             cardBlurEffect[i].style.height = '70%';
+//             viewProfileBtn[i].style.zIndex = '10';
+//             card[i].style.backgroundColor = '#ffb75e';
+//         });
+//     }
 
-    for (let i = 0; i < card.length; i++) {
-        card[i].addEventListener('mouseleave', function () {
-            cardBlurEffect[i].style.height = '0%';
-            viewProfileBtn[i].style.zIndex = '-1';
-            card[i].style.backgroundColor = '#ffb75e';
+//     for (let i = 0; i < card.length; i++) {
+//         card[i].addEventListener('mouseleave', function () {
+//             cardBlurEffect[i].style.height = '0%';
+//             viewProfileBtn[i].style.zIndex = '-1';
+//             card[i].style.backgroundColor = '#ffb75e';
 
-        });
-    }
+//         });
+//     }
 
-}
+// }
 
 
