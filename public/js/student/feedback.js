@@ -16,7 +16,7 @@ let currentRating = 1;
 
 feedbackBtnUI.addEventListener('click', e => {
     showLayoutBackground();
-    feedbackFormUI.classList.remove('hidden');
+    feedbackFormUI.classList.remove('invisible');
 });
 
 starsUI.forEach((starUI, index) => {
@@ -55,7 +55,7 @@ feedbackOkBtnUI.addEventListener('click', async (e) => {
     if(status === 200) {
         showSuccessMessage("Feedback saved successfully", () => {
             hideLayoutBackground();
-            feedbackFormUI.classList.add('hidden');
+            feedbackFormUI.classList.add('invisible');
             optionalCommentUI.value = '';
         });
     } else if(status === 401) {
@@ -66,7 +66,7 @@ feedbackOkBtnUI.addEventListener('click', async (e) => {
     } else if(status === 400) {
         showErrorMessage("Invalid request format", () => {
             hideLayoutBackground();
-            feedbackFormUI.classList.add('hidden');
+            feedbackFormUI.classList.add('invisible');
             optionalCommentUI.value = '';
         });
 
@@ -78,7 +78,7 @@ feedbackOkBtnUI.addEventListener('click', async (e) => {
 
 feedbackCancelBtnUI.addEventListener('click', e => {
     hideLayoutBackground();
-    feedbackFormUI.classList.add('hidden');
+    feedbackFormUI.classList.add('invisible');
     optionalCommentUI.value = '';
 });
 
