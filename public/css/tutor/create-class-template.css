@@ -107,3 +107,110 @@ form .form-main-area {
 }
 
 
+@media (max-width: 768px) {
+
+    /* Main area */
+    .main-area {
+      flex-direction: column;
+    }
+  
+    /* Main title */
+    .main-title {
+      margin: 20px 0 0 0;
+      text-align: center;
+    }
+  
+    /* Sub title */
+    .sub-title {
+      margin: 0;
+    }
+  
+    /* Form */
+    form {
+      width: 100%;
+      margin-top: 20px;
+    }
+  
+    /* Form main area */
+    form .form-main-area {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+  
+    /* Form field */
+    .form-field {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+  
+    /* Form field label */
+    .form-field label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+      text-align:justify;
+    }
+  
+    /* Form field label span */
+    .form-field label span {
+      color: red;
+      font-size: 0.6rem;
+      font-weight: normal;
+    }
+  
+    /* Form field input, select, textarea */
+    .form-field input, .form-field select, .form-field textarea {
+      border: none;
+      background-color: rgb(255, 237, 220);
+      border-bottom: 1px solid var(--bright-orange);
+      font-size: 0.8rem;
+      height: 30px;
+      border-radius: 5px;
+      padding-left: 5px;
+      width: 100%;
+    }
+  
+    /* Button container */
+    .btn-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      width: 100%;
+    }
+  
+    /* Button */
+    .btn {
+      width: 100%;
+      height: 35px;
+      font-size: 0.8rem;
+      background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.1s;
+      user-select: none;
+      padding: 10px;
+      text-align: center;
+      margin-top: 15px;
+      border: 2px solid black;
+    }
+  
+    /* Button:hover */
+    .btn:hover {
+      transform: scale(1.05);
+    }
+  
+    /* Button:active */
+    .btn:active {
+      background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
+    }
+  
+  }
+
+

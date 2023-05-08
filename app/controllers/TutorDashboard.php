@@ -216,6 +216,9 @@ class TutorDashboard extends Controller
         }
 
         $data['tutor_request'] = json_encode($this->dashboardModel->viewStudentRequests($body['id']));
+        echo '<pre>';
+        print_r($data['tutor_request']);
+        echo '</pre>';
         $data['time_slots'] = json_encode($this->dashboardModel->getRequestTimeSlots($body['id']));
 
 
