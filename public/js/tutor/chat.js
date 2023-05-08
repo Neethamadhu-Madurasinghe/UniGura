@@ -5,6 +5,7 @@ const chatImageUI = document.getElementById("main-chat-image");
 const userStateUI = document.getElementById("user-state");
 const msgInputUI = document.getElementById("msg-box");
 const sendBtnUI = document.getElementById("btn-send");
+const chatHistoryContainerUI = document.getElementById("chat-history-container");
 
 let chatThreads = [];
 let currentChatThread = null;
@@ -32,6 +33,13 @@ async function fetchChatThreads() {
         console.log(data);
         chatThreads = sortByCreatedAtDesc(data.threads);
         userId = data.id;
+        
+        if (chatThreads.length == 0) {
+            chatHistoryContainerUI.style.display = 'none';
+            console.log('No messages')
+            return
+        }
+
         chatThreads.forEach((chatThread, index) => {
 
             let partnerId = 0;
@@ -141,7 +149,6 @@ function updateOnlineStatus() {
     Array.from(document.querySelectorAll(".status")).forEach(element => {
         if (onlineUserList.includes(Number(element.dataset.userid))) {
             element.textContent = "Online";
-            // TODO: Create a css class to make red and green fonts
             element.classList.remove("red");
             element.classList.add("green");
 

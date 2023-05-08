@@ -61,9 +61,9 @@ Header::render(
                         <label for="Medium">Medium</label>
                     </div>
                     <select name="medium" id="medium">
-                        <option value="Sinhala">Sinhala</option>
-                        <option value="English">English</option>
-                        <option value="Tamil">Tamil</option>
+                        <option value="0">Sinhala</option>
+                        <option value="1">English</option>
+                        <option value="2">Tamil</option>
                     </select>
                 </div>
                 <div class="grid">

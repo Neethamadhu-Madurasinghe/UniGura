@@ -54,7 +54,7 @@ MainNavbar::render($request);
 
                     </ul>
                 </div>
-                <div class="chat" style="background: white;margin-right:20px; margin-bottom: 20px;border-radius: 10px;">
+                <div class="chat" id="chat-history-container" style="background: white;margin-right:20px; margin-bottom: 20px;border-radius: 10px;">
                     <div class="chat-header clearfix">
                         <div class="row">
                             <div class="col-lg-6">
