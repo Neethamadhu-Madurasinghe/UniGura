@@ -1,7 +1,7 @@
 <?php if (empty($data)) : ?>
     <div class="result-not-found">
         <img src="<?php echo URLROOT; ?>/public/img/admin/notSearchResult.png" alt=""><br>
-        <h1>Result Not Found</h1>
+        <h1>Result Not Found.</h1>
         <p>We couldn't find any result for your search.</p>
         <p>Try searching again.</p>
     </div>

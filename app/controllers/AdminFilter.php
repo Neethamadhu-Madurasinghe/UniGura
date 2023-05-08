@@ -492,7 +492,7 @@ class AdminFilter extends Controller
 
         $allSubjects = $this->filterModel->getAllSubjects();
 
-        foreach($allClasses as $x){
+        foreach ($allClasses as $x) {
             $tutorId = $x->tutorID;
 
             $tutor = $this->filterModel->findTutor($tutorId);
@@ -540,6 +540,18 @@ class AdminFilter extends Controller
                 }
             }
 
+
+            function array_contains_value_less_than_rating($arr, $starCount)
+            {
+                foreach ($arr as $item) {
+                    if ($starCount < $item) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+
             // print_r($arrayStatus);
 
             if (!empty($classFeesInputMaxValue) && empty($ratingFilterValue) && empty($completionStatusFilterValue) && empty($subjectFilterValue)) {
@@ -575,61 +587,61 @@ class AdminFilter extends Controller
                 }
             } elseif (!empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($completionStatusFilterValue) && empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->current_rating, $arrayRating)) {
+                    if ($aClass->session_rate <= $classFeesInputMaxValue && array_contains_value_less_than_rating($arrayRating, $aClass->current_rating)) {
                         array_push($filterResult, $aClass);
                     }
                 }
             } elseif (!empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($completionStatusFilterValue) && !empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->current_rating, $arrayRating) && in_array($aClass->subjectName, $arraySubjects)) {
+                    if ($aClass->session_rate <= $classFeesInputMaxValue && array_contains_value_less_than_rating($arrayRating, $aClass->current_rating) && in_array($aClass->subjectName, $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
-                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->current_rating, $arrayRating) && in_array('all', $arraySubjects)) {
+                    if ($aClass->session_rate <= $classFeesInputMaxValue && array_contains_value_less_than_rating($arrayRating, $aClass->current_rating) && in_array('all', $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
                 }
             } elseif (!empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($completionStatusFilterValue) && empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->current_rating, $arrayRating) && in_array($aClass->completion_status, $arrayStatus)) {
+                    if ($aClass->session_rate <= $classFeesInputMaxValue && array_contains_value_less_than_rating($arrayRating, $aClass->current_rating) && in_array($aClass->completion_status, $arrayStatus)) {
                         array_push($filterResult, $aClass);
                     }
                 }
             } elseif (!empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($completionStatusFilterValue) && !empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->current_rating, $arrayRating) && in_array($aClass->completion_status, $arrayStatus) && in_array($aClass->subjectName, $arraySubjects)) {
+                    if ($aClass->session_rate <= $classFeesInputMaxValue && array_contains_value_less_than_rating($arrayRating, $aClass->current_rating) && in_array($aClass->completion_status, $arrayStatus) && in_array($aClass->subjectName, $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
-                    if ($aClass->session_rate <= $classFeesInputMaxValue && in_array($aClass->current_rating, $arrayRating) && in_array($aClass->completion_status, $arrayStatus) && in_array('all', $arraySubjects)) {
+                    if ($aClass->session_rate <= $classFeesInputMaxValue && array_contains_value_less_than_rating($arrayRating, $aClass->current_rating) && in_array($aClass->completion_status, $arrayStatus) && in_array('all', $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
                 }
             } elseif (empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($completionStatusFilterValue) && empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if (in_array($aClass->current_rating, $arrayRating)) {
+                    if (array_contains_value_less_than_rating($arrayRating, $aClass->current_rating)) {
                         array_push($filterResult, $aClass);
                     }
                 }
             } elseif (empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && empty($completionStatusFilterValue) && !empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if (in_array($aClass->current_rating, $arrayRating) && in_array($aClass->subjectName, $arraySubjects)) {
+                    if (array_contains_value_less_than_rating($arrayRating, $aClass->current_rating) && in_array($aClass->subjectName, $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
-                    if (in_array($aClass->current_rating, $arrayRating) && in_array('all', $arraySubjects)) {
+                    if (array_contains_value_less_than_rating($arrayRating, $aClass->current_rating) && in_array('all', $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
                 }
             } elseif (empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($completionStatusFilterValue) && empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if (in_array($aClass->current_rating, $arrayRating) && in_array($aClass->completion_status, $arrayStatus)) {
+                    if (array_contains_value_less_than_rating($arrayRating, $aClass->current_rating) && in_array($aClass->completion_status, $arrayStatus)) {
                         array_push($filterResult, $aClass);
                     }
                 }
             } elseif (empty($classFeesInputMaxValue) && !empty($ratingFilterValue) && !empty($completionStatusFilterValue) && !empty($subjectFilterValue)) {
                 foreach ($allClasses as $aClass) {
-                    if (in_array($aClass->current_rating, $arrayRating) && in_array($aClass->completion_status, $arrayStatus) && in_array($aClass->subjectName, $arraySubjects)) {
+                    if (array_contains_value_less_than_rating($arrayRating, $aClass->current_rating) && in_array($aClass->completion_status, $arrayStatus) && in_array($aClass->subjectName, $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
-                    if (in_array($aClass->current_rating, $arrayRating) && in_array($aClass->completion_status, $arrayStatus) && in_array('all', $arraySubjects)) {
+                    if (array_contains_value_less_than_rating($arrayRating, $aClass->current_rating) && in_array($aClass->completion_status, $arrayStatus) && in_array('all', $arraySubjects)) {
                         array_push($filterResult, $aClass);
                     }
                 }

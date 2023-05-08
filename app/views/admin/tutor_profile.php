@@ -3,8 +3,6 @@
 <script defer src="<?php echo URLROOT ?>/public/js/admin/tutorProfile.js"></script>
 
 
-
-
 <section class="home" id="home">
     <p></p>
     <p></p>

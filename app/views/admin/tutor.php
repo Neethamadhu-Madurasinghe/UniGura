@@ -51,11 +51,6 @@
                         <div class='name'>
                             <h2><?php echo $aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name; ?></h2>
                         </div>
-                        <div class="info">
-                            <h5>Phone: </h5>
-                            <h5>Exam Year:</h5>
-                        </div>
-
                         <div class='view-profile'>
                             <a href="viewTutorProfile?tutorID=<?php echo $aTutor->user_id ?>"><button class="view-profile-btn">View Profile</button></a>
                         </div>

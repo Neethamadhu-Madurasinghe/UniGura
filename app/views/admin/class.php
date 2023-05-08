@@ -96,17 +96,6 @@
 
         <div class="filter-selection">
 
-            <!-- <div class="search">
-                <div class="search-bar">
-                    <div class="icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <div class="input">
-                        <input type="text" placeholder="Search by Tutor or Student Name" id="search-classes">
-                    </div>
-                </div>
-            </div> -->
-
             <div class="fees-filter">
                 <header>
                     <h1>By Fees</h1>
@@ -143,7 +132,7 @@
                             <i class="active fa fa-star"></i>
                             <i class="active fa fa-star"></i>
                             <i class="active fa fa-star"></i>
-                            <i class="active fa fa-star"></i><small> And Up</small>
+                            <i class="active fa fa-star"></i><small> And Below</small>
                         </label>
                     </div>
                     <div class="star">
@@ -153,7 +142,7 @@
                             <i class="active fa fa-star"></i>
                             <i class="active fa fa-star"></i>
                             <i class="active fa fa-star"></i>
-                            <i class="fa-regular fa-star"></i><small> And Up</small>
+                            <i class="fa-regular fa-star"></i><small> And Below</small>
                         </label>
                     </div>
                     <div class="star">
@@ -163,7 +152,7 @@
                             <i class="active fa fa-star"></i>
                             <i class="active fa fa-star"></i>
                             <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i><small> And Up</small>
+                            <i class="fa-regular fa-star"></i><small> And Below</small>
                         </label>
                     </div>
                     <div class="star">
@@ -173,7 +162,7 @@
                             <i class="active fa fa-star"></i>
                             <i class="fa-regular fa-star"></i>
                             <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i><small> And Up</small>
+                            <i class="fa-regular fa-star"></i><small> And Below</small>
                         </label>
                     </div>
                     <div class="star">
@@ -183,7 +172,7 @@
                             <i class="fa-regular fa-star"></i>
                             <i class="fa-regular fa-star"></i>
                             <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i><small> And Up</small>
+                            <i class="fa-regular fa-star"></i><small> And Below</small>
                         </label>
                     </div>
 
