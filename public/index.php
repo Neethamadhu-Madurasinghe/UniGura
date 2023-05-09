@@ -265,5 +265,6 @@ $router->registerController('/api/student/toggle-activity-completion', [StudentC
 
 $router->registerController('/student/payment', [StudentPayment::class, 'savePayment']);
 $router->registerController('/api/delete-notification', [StudentNotification::class, 'deleteNotification']);
+$router->registerController('/api/disable-account', [StudentProfile::class, 'disableAccount']);
 
 $router->resolve();

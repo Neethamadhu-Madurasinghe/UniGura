@@ -45,4 +45,15 @@ class ModelUser {
         if ($row) { return true; }
         else { return false; }
     }
+
+    public function disableAccount(int $id): bool {
+        $this->db->query('UPDATE user SET
+                phone_number = NULL, 
+                is_banned=1, 
+                first_name="Previous", 
+                last_name="User", 
+                profile_picture=NULL WHERE id=:id');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        return $this->db->execute();
+    }
 }

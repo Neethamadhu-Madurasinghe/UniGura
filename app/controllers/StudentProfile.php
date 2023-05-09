@@ -4,6 +4,7 @@ class StudentProfile extends Controller {
     private ModelStudent $studentModel;
     private ModelStudentRequest $requestModel;
     private ModelStudentPayment $paymentModel;
+    private ModelUser $userModel;
 
 //    This Model is just for telephone number validation
     private ModelTutorStudentCompleteProfile $tutorStudentModel;
@@ -13,6 +14,7 @@ class StudentProfile extends Controller {
         $this->tutorStudentModel = $this->model('ModelTutorStudentCompleteProfile');
         $this->requestModel = $this->model('ModelStudentRequest');
         $this->paymentModel = $this->model('ModelStudentPayment');
+        $this->userModel = $this->model('ModelUser');
     }
 
     public function profile(Request $request) {
@@ -203,5 +205,20 @@ class StudentProfile extends Controller {
                 header("HTTP/1.0 500 Internal Server Error");
             }
         }
+    }
+
+    public function disableAccount(Request $request) {
+        cors();
+        if (!$request->isLoggedIn() || !$request->isStudent()) {
+            header("HTTP/1.0 401 Unauthorized");
+            return;
+        }
+
+        if ($this->userModel->disableAccount($request->getUserId())) {
+            header("HTTP/1.0 200 Success");
+        }else {
+            header("HTTP/1.0 500 Internal Server Error");
+        }
+
     }
 }
