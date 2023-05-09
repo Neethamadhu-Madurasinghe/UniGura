@@ -225,7 +225,11 @@
                         y: {
                             beginAtZero: true
                         }
-                    }
+                    },
+                    animation: {
+                        easing: false,
+                        duration: 0
+                    },
                 }
 
             });
@@ -265,8 +269,13 @@
                 options: {
                     indexAxis: 'x',
                     barPercentage: 0.7, // controls the width of the bars
-                    categoryPercentage: 0.7 // controls the spacing between bars
+                    categoryPercentage: 0.7, // controls the spacing between bars
+                    animation: {
+                        easing: false,
+                        duration: 0
+                    },
                 },
+
 
                 scales: {
                     yAxes: [{
@@ -317,6 +326,10 @@
                 },
                 options: {
                     indexAxis: 'x',
+                    animation: {
+                        easing: false,
+                        duration: 0
+                    },
                 }
 
             });
@@ -357,6 +370,10 @@
                     responsive: true,
                     maintainAspectRatio: true,
                     barThickness: 30, // set the width of the bars
+                    animation: {
+                        easing: false,
+                        duration: 0
+                    },
                 }
 
             });
@@ -383,6 +400,10 @@
                 },
                 options: {
                     indexAxis: 'x',
+                    animation: {
+                        easing: false,
+                        duration: 0
+                    },
                 }
 
             });

@@ -52,7 +52,7 @@ class ModelAdminComplaintView
 
     public function updateStudentComplainStatus($complainID, $complainStatus)
     {
-        $this->db->query("UPDATE `student_report` SET `is_inquired` = :status WHERE `id`=:complain_id");
+        $this->db->query("UPDATE student_report SET is_inquired = :status WHERE id=:complain_id");
 
         $this->db->bind(':status', $complainStatus, PDO::PARAM_INT);
         $this->db->bind(':complain_id', $complainID, PDO::PARAM_INT);
@@ -71,7 +71,7 @@ class ModelAdminComplaintView
 
     public function updateTutorComplainStatus($complainID, $complainStatus)
     {
-        $this->db->query("UPDATE `tutor_report` SET `is_inquired` = :status WHERE `id`=:complain_id");
+        $this->db->query("UPDATE tutor_report SET is_inquired = :status WHERE id=:complain_id");
 
         $this->db->bind(':status', $complainStatus, PDO::PARAM_INT);
         $this->db->bind(':complain_id', $complainID, PDO::PARAM_INT);

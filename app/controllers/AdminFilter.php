@@ -167,7 +167,6 @@ class AdminFilter extends Controller
             $arrayDuration =  explode(',', $tutorDurationFilterValue);
 
 
-
             // print_r($arrayVisibility);
 
             $sql = "SELECT tutor.*, user.* FROM tutor INNER JOIN user ON tutor.user_id = user.id WHERE 1";

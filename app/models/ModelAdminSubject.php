@@ -38,7 +38,7 @@ class ModelAdminSubject
     public function addSubject($subjectName)
     {
         try {
-            $this->db->query('INSERT INTO `subject`(`name`, `is_hidden`) VALUES (:name,0)');
+            $this->db->query('INSERT INTO subject(name, is_hidden) VALUES (:name,0)');
             $this->db->bind(':name', $subjectName, PDO::PARAM_STR);
             $this->db->execute();
         } catch (PDOException $e) {
@@ -77,7 +77,7 @@ class ModelAdminSubject
     {
 
         try {
-            $this->db->query('INSERT INTO `module`(`name`, `subject_id`,`is_hidden`) VALUES (:name,:subject_id,0)');
+            $this->db->query('INSERT INTO module(name, subject_id,is_hidden) VALUES (:name,:subject_id,0)');
             $this->db->bind(':name', $moduleName);
             $this->db->bind(':subject_id', $subjectId);
             $this->db->execute();
@@ -107,7 +107,7 @@ class ModelAdminSubject
     public function updateModuleHideShow($moduleId, $isHidden)
     {
 
-        $this->db->query('UPDATE `module` SET `is_hidden`=:is_hidden WHERE id=:id');
+        $this->db->query('UPDATE module SET is_hidden=:is_hidden WHERE id=:id');
         $this->db->bind(':is_hidden', $isHidden, PDO::PARAM_INT);
         $this->db->bind(':id', $moduleId, PDO::PARAM_INT);
 
