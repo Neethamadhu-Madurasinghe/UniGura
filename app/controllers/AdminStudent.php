@@ -16,14 +16,6 @@ class AdminStudent extends Controller{
 
         $allStudent = $this->studentModel->getAllStudent();
 
-        foreach ($allStudent as $aStudent){
-            $studentID = $aStudent->user_id;
-
-            $student = $this->studentModel->getStudentById($studentID);
-
-            $aStudent->student = $student;
-        }
-
         $data = $allStudent;
 
         // echo '<pre>';

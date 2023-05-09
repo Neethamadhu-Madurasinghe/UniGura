@@ -121,7 +121,7 @@ class AdminRequirementComplaints extends Controller
             }
 
             if ($hasErrors) {
-                $this->view('admin/complaint_settings', $request, $data);
+                $this->view('admin/complaintSettings', $request, $data);
             }
 
 

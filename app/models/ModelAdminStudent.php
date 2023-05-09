@@ -9,7 +9,7 @@ class ModelAdminStudent {
     }
 
     public function getAllStudent() {
-        $this->db->query("SELECT * FROM student");
+        $this->db->query("SELECT student.*, user.* FROM student INNER JOIN user ON student.user_id = user.id");
 
         $rows = $this->db->resultAll();
 
