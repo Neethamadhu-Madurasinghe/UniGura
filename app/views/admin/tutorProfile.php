@@ -31,19 +31,11 @@
                             <div class="button" title="Show" style="background-color: #ff8a0544;">
                                 <a href="showTutor?tutorID=<?php echo $data['tutorDetails']->id; ?>" title="Show"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/show.png"></a>
                             </div>
-                        <?php else : ?>
-                            <div class="button" title="Show" style="cursor:not-allowed;">
-                                <a href="#" title="Show"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/show.png" style="cursor:not-allowed;"></a>
-                            </div>
                         <?php endif; ?>
 
                         <?php if ($data['tutorDetails']->is_hidden == 0) : ?>
                             <div class="button" style="background-color: #ff8a0544;">
                                 <a href="hideTutor?tutorID=<?php echo $data['tutorDetails']->id; ?>" title="Hide"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/hide.png"></a>
-                            </div>
-                        <?php else : ?>
-                            <div class="button" title="Hide" style="cursor:not-allowed;">
-                                <a href="#" title="Hide"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/hide.png" id="tutor-hide-btn" style="cursor:not-allowed;"></a>
                             </div>
                         <?php endif; ?>
 
@@ -51,19 +43,11 @@
                             <div class="button" style="background-color: #ff8a0544;">
                                 <a href="blockTutor?tutorID=<?php echo $data['tutorDetails']->id; ?>" title="Block"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/block.png"></a>
                             </div>
-                        <?php else : ?>
-                            <div class="button" style="cursor:not-allowed;">
-                                <a href="#" title="Block"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/block.png" style="cursor:not-allowed;"></a>
-                            </div>
                         <?php endif; ?>
 
                         <?php if ($data['tutorDetails']->is_banned == 1) : ?>
                             <div class="button" style="background-color: #ff8a0544;">
                                 <a href="unblockTutor?tutorID=<?php echo $data['tutorDetails']->id; ?>" title="Unblock"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/unblock.png"></a>
-                            </div>
-                        <?php else : ?>
-                            <div class="button" style="cursor:not-allowed;">
-                                <a href="#" title="Unblock"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/unblock.png" style="cursor:not-allowed;"></a>
                             </div>
                         <?php endif; ?>
                     </div>

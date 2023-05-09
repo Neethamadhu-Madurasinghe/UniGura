@@ -327,6 +327,11 @@
     margin-right: 10px;
 }
 
+.name-actions .actions{
+    margin-left: -40px;
+    left: 20px;
+}
+
 
 /* ======================RESULT NOT FOUND SECTION====================================  */
 

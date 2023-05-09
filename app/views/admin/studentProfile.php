@@ -30,20 +30,12 @@
                         <div class="button" title="Block" style="background-color: #ff8a0544;">
                             <a href="blockStudent?studentID=<?php echo $data['studentDetails']->user_id; ?>" title="Block"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/block.png"></a>
                         </div>
-                    <?php else : ?>
-                        <div class="button" title="Block" style="cursor:not-allowed;">
-                            <a href="#" title="Block"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/block.png" style="cursor:not-allowed;"></a>
-                        </div>
                     <?php endif; ?>
 
 
                     <?php if ($data['studentDetails']->is_banned == 1) : ?>
                         <div class="button" title="Unblock" style="background-color: #ff8a0544;">
                             <a href="unblockStudent?studentID=<?php echo $data['studentDetails']->user_id; ?>" title="Unblock"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/unblock.png"></a>
-                        </div>
-                    <?php else : ?>
-                        <div class="button" title="Unblock" style="cursor:not-allowed;">
-                            <a href="#" title="Unblock"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/unblock.png" style="cursor:not-allowed;"></a>
                         </div>
                     <?php endif; ?>
 
