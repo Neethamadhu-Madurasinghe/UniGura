@@ -69,9 +69,7 @@ Header::render(
                 window.location = `http://localhost/unigura/tutor/classes`;
             });
 
-            document.getElementById('submit').addEventListener('click', () => {
-                window.location = `http://localhost/unigura/tutor/classes`;
-            })
+          
 
 
     </script>

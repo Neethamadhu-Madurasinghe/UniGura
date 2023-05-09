@@ -139,6 +139,7 @@ toggle between hiding and showing the dropdown content */
                     var openDropdown = dropdowns[i];
                     if (openDropdown.classList.contains('show')) {
                          openDropdown.classList.remove('show');
+                         
                     }
                }
           }
@@ -149,20 +150,35 @@ toggle between hiding and showing the dropdown content */
      let monthly_earns = <?php echo $data['monthlyearns'] ?>;
 
 
+     console.log(payments);
+     console.log(amounts);
+     console.log(monthly_earns);
+
+
      let root = '<?php echo URLROOT ?>';
 
      let payment_container = document.querySelector('.Payments_box');
 
 
      list_payment(payments);
-     let pending = amounts[0].Pending;
-     let earning = amounts[0].Earns;
+
+     let pending = (amounts[0].Pending*90)/100;
+     let earning = (amounts[0].Earns*90)/100;
 
      document.getElementById('monthly-pending').innerHTML = `Pending : Rs. ${pending}`;
      document.getElementById('monthly-earings').innerHTML = `Earnings : Rs. ${earning}`;
 
-     let earings_percentage = Math.floor(earning*100/(pending+earning));
-     document.getElementById('earing_percentage').innerHTML = `${earings_percentage}%`
+     let total = pending+earning;
+     let earings_percentage;
+
+     if(total != 0){
+          earings_percentage = Math.floor(earning*100/(pending+earning));
+          document.getElementById('earing_percentage').innerHTML = `${earings_percentage}%`
+     }else{
+          document.getElementById('earing_percentage').innerHTML = `0%`
+     }
+
+     
 
 
      function list_payment(payments) {
@@ -176,8 +192,6 @@ toggle between hiding and showing the dropdown content */
                } else {
                     payment_status = "PAID-OFF";
                }
-
-               console.log(element.date);
                
                let year = element.date.slice(0,4);
                console.log(element.date)
@@ -199,7 +213,7 @@ toggle between hiding and showing the dropdown content */
                cell2.innerHTML = `${element.first_name} ${element.last_name}</span>
                          <p>${element.module}</p>
                     `;
-               cell3.innerHTML = `${element.session_rate}`;
+               cell3.innerHTML = `Rs.${element.session_rate}`;
                cell4.innerHTML = `<span   class='p_status ${payment_status.toLowerCase()}' >${payment_status}</span>`;
                cell5.innerHTML = `<i style="color:#7c7c8f9c ;font-size: 18px;" class="fas fa-calendar-alt"></i><span> ${month_text} ${day} ${year}</span>`;
 
@@ -251,12 +265,8 @@ toggle between hiding and showing the dropdown content */
      }
 
      
-
-
      document.addEventListener('DOMContentLoaded', function() {
           let dateRangeFilter = document.getElementById('dropbtn');
-        
-
           dateRangeFilter.addEventListener('change', function() {
                var selectedOption = dateRangeFilter.value;
                payment_container.innerHTML = ''; //clear previous results
@@ -291,53 +301,53 @@ toggle between hiding and showing the dropdown content */
 
      //Monthly earnings
      let monthly_payment_obj  = monthly_earns[0];
-     let maxVal = Math.max(...Object.values(monthly_payment_obj));
+     let maxVal = Math.max(...Object.values(monthly_payment_obj));;
      console.log(monthly_payment_obj);
 
-     document.getElementById('jan').style.height = `${Math.floor(monthly_payment_obj.JAN*100/maxVal)}%`
+     document.getElementById('jan').style.height = `${maxVal !== 0 ? Math.floor(monthly_payment_obj.JAN*100/maxVal) : 0}%`;
      document.getElementById('jan_count').innerText = monthly_payment_obj.JAN;
 
 
-     document.getElementById('feb').style.height = `${Math.floor(monthly_payment_obj.FEB*100/maxVal)}%`
+     document.getElementById('feb').style.height = `${maxVal !== 0 ? Math.floor(monthly_payment_obj.FEB*100/maxVal) : 0}%`
      document.getElementById('feb_count').innerText = monthly_payment_obj.FEB;
 
 
-     document.getElementById('mar').style.height = `${Math.floor(monthly_payment_obj.MAR*100/maxVal)}%`
+     document.getElementById('mar').style.height = `${maxVal !== 0 ? Math.floor(monthly_payment_obj.MAR*100/maxVal): 0}%`
      document.getElementById('mar_count').innerText = monthly_payment_obj.MAR;
 
 
-     document.getElementById('apr').style.height = `${Math.floor(monthly_payment_obj.APR*100/maxVal)}%`
+     document.getElementById('apr').style.height = `${maxVal !== 0 ?Math.floor(monthly_payment_obj.APR*100/maxVal): 0}%`
      document.getElementById('apr_count').innerText = monthly_payment_obj.APR;
 
 
-     document.getElementById('may').style.height = `${Math.floor(monthly_payment_obj.MAY*100/maxVal)}%`
+     document.getElementById('may').style.height = `${maxVal !== 0 ?Math.floor(monthly_payment_obj.MAY*100/maxVal): 0}%`
      document.getElementById('may_count').innerText = monthly_payment_obj.MAY;
 
 
-     document.getElementById('jun').style.height = `${Math.floor(monthly_payment_obj.JUN*100/maxVal)}%`
+     document.getElementById('jun').style.height = `${maxVal !== 0 ?Math.floor(monthly_payment_obj.JUN*100/maxVal): 0}%`
      document.getElementById('jun_count').innerText = monthly_payment_obj.JUN;
 
 
-     document.getElementById('jul').style.height = `${Math.floor(monthly_payment_obj.JUL*100/maxVal)}%`
+     document.getElementById('jul').style.height = `${maxVal !== 0 ?Math.floor(monthly_payment_obj.JUL*100/maxVal): 0}%`
      document.getElementById('jul_count').innerText = monthly_payment_obj.JUL;
 
 
-     document.getElementById('aug').style.height = `${Math.floor(monthly_payment_obj.AUG*100/maxVal)}%`
+     document.getElementById('aug').style.height = `${maxVal !== 0 ?Math.floor(monthly_payment_obj.AUG*100/maxVal): 0}%`
      document.getElementById('aug_count').innerText = monthly_payment_obj.AUG;
 
-     document.getElementById('sep').style.height = `${Math.floor(monthly_payment_obj.SEP*100/maxVal)}%`
+     document.getElementById('sep').style.height = `${maxVal !== 0 ?Math.floor(monthly_payment_obj.SEP*100/maxVal): 0}%`
      document.getElementById('sep_count').innerText = monthly_payment_obj.SEP;
 
 
-     document.getElementById('oct').style.height = `${Math.floor(monthly_payment_obj.OCT*100/maxVal)}%`
+     document.getElementById('oct').style.height = `${maxVal !== 0 ?Math.floor(monthly_payment_obj.OCT*100/maxVal): 0}%`
      document.getElementById('oct_count').innerText = monthly_payment_obj.OCT;
 
 
 
-     document.getElementById('nov').style.height = `${Math.floor(monthly_payment_obj.NOV*100/maxVal)}%`
+     document.getElementById('nov').style.height = `${maxVal !== 0 ?Math.floor(monthly_payment_obj.NOV*100/maxVal): 0}%`
      document.getElementById('nov_count').innerText = monthly_payment_obj.NOV;
 
-     document.getElementById('dec').style.height = `${Math.floor(monthly_payment_obj.DECE*100/maxVal)}%`
+     document.getElementById('dec').style.height = `${maxVal !== 0 ?Math.floor(monthly_payment_obj.DECE*100/maxVal): 0}%`
      document.getElementById('dec_count').innerText = monthly_payment_obj.DECE;
 
 

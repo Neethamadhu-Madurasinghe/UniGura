@@ -406,8 +406,8 @@ MainNavbar::render($request);
     let acting_per = acting_slots;
 
 
-    document.getElementById('working').innerHTML = `${Math.floor((working_per/56)*100)}%`;
-    document.getElementById('acting').innerHTML = `${Math.floor((acting_per/56)*100)}%`;
+    document.getElementById('working').innerHTML = `${Math.floor((acting_per/56)*100)}%`;
+    document.getElementById('acting').innerHTML = `${Math.floor((working_per/56)*100)}%`;
 
     var data = [working_slots, acting_slots, halt_slots];
     var colors = ['#FFA620', '#F7711A', '#d4d5dbb8'];
