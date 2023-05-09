@@ -150,13 +150,12 @@ Header::render(
 
 <div class="main-area-container">
     <div class="main-area">
-        <h1 class="main-title"><?php echo $data['module_name'] . ' - ' . ucwords($data['class_type']) ?></h1>
-        <h2 class="sub-title"><?php echo $data['subject_name'] ?></h2>
-        <h3 class="tutor-name"><?php echo $data['tutor_name'] ?></h3>
-        <h2 class="date-time"><?php echo $data['date'] . ' @ ' . $data['time'] ?></h2>
+        <h1 class="main-title"><?php echo $data['subject_name'] ?> <?php echo $data['module_name'] . ' - ' . ucwords($data['class_type']) ?></h1>
+        <h3 class="sub-title">By <?php echo $data['tutor_name'] ?></h3>
+        <h3 class="tutor-name">Date and time: <?php echo $data['date'] . ' @ ' . $data['time'] ?></h3>
 
         <div class="progress-bar-container">
-            <h2>Progress</h2>
+            <h2>Completed <?php echo ($data['day_count'] !== 0 ? round($data['incomplete_day_count'] * 100/$data['day_count']) : 0) . '%' ?></h2>
             <div class="progress-bar-outer">
                 <div class="progress-bar-inner" style="width: <?php echo ($data['day_count'] !== 0 ? $data['incomplete_day_count'] * 100/$data['day_count'] : 0) . '%' ?>"></div>
             </div>

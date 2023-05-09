@@ -134,9 +134,10 @@
 }
 
 .btn-payment {
-    width: 100px;
+    width: 150px;
     height: 30px;
     justify-self: flex-end;
+    font-size: 0.9rem;
 }
 
 .payment-btn-container h4 {

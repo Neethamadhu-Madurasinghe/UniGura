@@ -55,7 +55,7 @@ class TutoringClassDay {
             </div>
             <?php if ($day['is_completed'] == 1 && $day['payment_status'] == 0): ?>
                 <div class="payment-btn-container">
-                    <button class="btn btn-payment">Pay</button>
+                    <button class="btn btn-payment">Pay <?php echo $data['payment']['amount'] . ' LKR'?></button>
 <!--                    Adding all the payment related data into this hidden element -->
                     <div class="invisible"
                         <?php foreach ($day['payment'] as $key => $value) {
