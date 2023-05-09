@@ -42,88 +42,52 @@ class AdminFilter extends Controller
 
             // print_r($arrayModes); // Array ( [0] => online [1] => physical )
 
-            // print_r($arrayVisibility);
-
-            if (array_key_exists("0", $arrayVisibility)) {
-                if ($arrayVisibility[0] == 'block') {
-                    $arrayVisibility[0] = 1;
-                } else {
-                    $arrayVisibility[0] = 0;
-                }
-            }
-
-            if (array_key_exists("1", $arrayVisibility)) {
-                if ($arrayVisibility[1] == 'unblock') {
-                    $arrayVisibility[1] = 0;
-                } else {
-                    $arrayVisibility[1] = 1;
-                }
-            }
-
-            // print_r($arrayVisibility);
-
             // Array ( [0] => block [1] => unblock ) 
             // Array ( [0] => 1 [1] => 0 )
 
 
-            if (array_key_exists("0", $arrayModes) && array_key_exists("1", $arrayModes)) {
-                if ($arrayModes[0] == 'online' && $arrayModes[1] == 'physical') {
-                    unset($arrayModes[1]);
-                    $arrayModes[0] = 'both';
-                } else if ($arrayModes[0] == 'physical' && $arrayModes[1] == 'online') {
-                    unset($arrayModes[1]);
-                    $arrayModes[0] = 'both';
+            $sql = "SELECT student.*, user.* FROM student INNER JOIN user ON student.user_id = user.id WHERE 1";
+
+            if (!empty($searchStudentName)) {
+                $sql .= " AND user.first_name LIKE '%$searchStudentName%' OR user.last_name LIKE '%$searchStudentName%' ";
+            }
+
+
+            if (!empty($arrayModes[0]) && !empty($arrayModes[1]) && !empty($arrayModes[2])) {
+                $sql .= " AND user.mode IN ('$arrayModes[0]','$arrayModes[1]','$arrayModes[2]')";
+            } else if (!empty($arrayModes[0]) && !empty($arrayModes[1])) {
+                $sql .= " AND user.mode IN ('$arrayModes[0]','$arrayModes[1]')";
+            } else if (!empty($arrayModes[0])) {
+                $sql .= " AND user.mode = '$arrayModes[0]'";
+            }
+
+            if (!empty($arrayVisibility[0]) && !empty($arrayVisibility[1])) {
+                if ($arrayVisibility[0] == 'block') {
+                    $sql .= " AND user.is_banned = 1";
+                }
+
+                if ($arrayVisibility[1] == 'unblock') {
+                    $sql .= " OR user.is_banned = 0";
+                }
+
+                if ($arrayVisibility[0] == 'unblock') {
+                    $sql .= " AND user.is_banned = 0";
+                }
+
+                if ($arrayVisibility[1] == 'block') {
+                    $sql .= " OR user.is_banned = 1";
+                }
+            } elseif (!empty($arrayVisibility[0])) {
+                if ($arrayVisibility[0] == 'block') {
+                    $sql .= " AND user.is_banned = 1";
+                } else {
+                    $sql .= " AND user.is_banned = 0";
                 }
             }
 
-            // print_r($arrayModes);
+            $allStudent = $this->filterModel->getStudentByQuery($sql);
 
-
-            if (empty($searchStudentName) && empty($classConductModeValue) && empty($visibilityFilterValue)) {
-                $filterResult = $allStudent;
-            } elseif (empty($searchStudentName) && empty($classConductModeValue) && !empty($visibilityFilterValue)) {
-                foreach ($allStudent as $aStudent) {
-                    if (in_array($aStudent->student->is_banned, $arrayVisibility)) {
-                        array_push($filterResult, $aStudent);
-                    }
-                }
-            } elseif (empty($searchStudentName) && !empty($classConductModeValue) && empty($visibilityFilterValue)) {
-                foreach ($allStudent as $aStudent) {
-                    if (in_array($aStudent->student->mode, $arrayModes)) {
-                        array_push($filterResult, $aStudent);
-                    }
-                }
-            } elseif (empty($searchStudentName) && !empty($classConductModeValue) && !empty($visibilityFilterValue)) {
-                foreach ($allStudent as $aStudent) {
-                    if (in_array($aStudent->student->mode, $arrayModes) && in_array($aStudent->student->is_banned, $arrayVisibility)) {
-                        array_push($filterResult, $aStudent);
-                    }
-                }
-            } elseif (!empty($searchStudentName) && empty($classConductModeValue) && empty($visibilityFilterValue)) {
-                foreach ($allStudent as $aStudent) {
-                    if (str_contains(strtolower($aStudent->student->first_name . ' ' . $aStudent->student->last_name), strtolower($searchStudentName))) {
-                        array_push($filterResult, $aStudent);
-                    }
-                }
-            } elseif (!empty($searchStudentName) && empty($classConductModeValue) && !empty($visibilityFilterValue)) {
-                foreach ($allStudent as $aStudent) {
-                    if (str_contains(strtolower($aStudent->student->first_name . ' ' . $aStudent->student->last_name), strtolower($searchStudentName)) && in_array($aStudent->student->is_banned, $arrayVisibility)) {
-                        array_push($filterResult, $aStudent);
-                    }
-                }
-            } elseif (!empty($searchStudentName) && !empty($classConductModeValue) && empty($visibilityFilterValue)) {
-                foreach ($allStudent as $aStudent) {
-                    if (str_contains(strtolower($aStudent->student->first_name . ' ' . $aStudent->student->last_name), strtolower($searchStudentName)) && in_array($aStudent->student->mode, $arrayModes)) {
-                        array_push($filterResult, $aStudent);
-                    }
-                }
-            } elseif (!empty($searchStudentName) && !empty($classConductModeValue) && !empty($visibilityFilterValue)) {
-                foreach ($allStudent as $aStudent) {
-                    if (str_contains(strtolower($aStudent->student->first_name . ' ' . $aStudent->student->last_name), strtolower($searchStudentName)) && in_array($aStudent->student->mode, $arrayModes) && in_array($aStudent->student->is_banned, $arrayVisibility)) {
-                        array_push($filterResult, $aStudent);
-                    }
-                }
-            }
+            $filterResult = $allStudent;
         }
 
         $data = $filterResult;

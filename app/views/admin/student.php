@@ -82,10 +82,10 @@
                         <input type="checkbox" id="physical" name="mode" value="physical" class="physical checkbox class-conduct-mode">
                         <label for="physical">&nbspPhysical</label>
                     </div>
-                    <!-- <div class="checkbox-button">
+                    <div class="checkbox-button">
                         <input type="checkbox" id="both" name="mode" value="both" class="both checkbox class-conduct-mode">
                         <label for="both">&nbspBoth</label>
-                    </div> -->
+                    </div>
                 </div>
             </div>
 

@@ -181,6 +181,18 @@ class ModelAdminFilter
             return false;
         }
     }
+
+    public function getStudentByQuery($sql){
+        $this->db->query($sql);
+
+        $rows = $this->db->resultAll();
+
+        if ($this->db->rowCount() >= 0) {
+            return $rows;
+        } else {
+            return false;
+        }
+    }
     
 
     public function getTutorContactDetails($tutorID)
