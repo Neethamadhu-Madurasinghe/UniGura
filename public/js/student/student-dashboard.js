@@ -2,6 +2,7 @@ const classCardContainerUI = document.querySelector('.class-card-container');
 const subjectFilterUI = document.getElementById('sort-subject');
 const completionFilterUI = document.getElementById('sort-completion');
 const paymentFilterUI = document.getElementById('sort-payment');
+const addNewClassButtonContainerUI = document.querySelector('.add-new-class-button-container');
 
 // Sends a get request to fetch the classes of student
 async function sendClassListRequest() {
@@ -36,15 +37,6 @@ async function sendClassListRequest() {
 
         classCardContainerUI.innerHTML = '';
 
-        if (tutoringClasses.length === 0) {
-            classCardContainerUI.innerHTML = `
-                <div class="no-class-message-container">
-                     <h1>You have no matching results</h1>
-                     <h3>Add a class by clicking below button</h3>
-                </div>
-            `
-
-        }
 
         // Additional fields into class cards
         tutoringClasses = tutoringClasses.map(tutoringClass => {
@@ -75,11 +67,14 @@ async function sendClassListRequest() {
                  
                  <div class="class-card-bottom-section">
                     <div class="name-row">
-                        <div class="class-card-profile-picture-container">
-                            <img src="${'http://localhost/unigura/' + tutoringClass.tutor.profile_picture}" alt="" srcset="">
+                        <div class="class-card-name-pic-container">
+                            <div class="class-card-profile-picture-container">
+                                <img src="${'http://localhost/unigura/' + tutoringClass.tutor.profile_picture}" alt="" srcset="">
+                            </div>
+                            
+                            <p>${tutoringClass.tutor.first_name} ${tutoringClass.tutor.last_name}</p>
                         </div>
                         
-                        <p>${tutoringClass.tutor.first_name} ${tutoringClass.tutor.last_name}</p>
                         <div class="class-card-payment-due-container">
                             <img
                                 src="${'http://localhost/unigura//public/img/common/money 1.png'}"
@@ -103,6 +98,19 @@ async function sendClassListRequest() {
                 </div>
             </div>`;
         });
+
+        // Add an extra card like element to add a new card
+        classCardContainerUI.innerHTML += `
+        <div class="class-card class-card-add-new">
+            <h2>Add A New Class</h2>
+            <a href="http://localhost/UniGura/student/find-tutor" class="add-new-class-button">
+                <img src="http://localhost/UniGura/public/img/student/plus 1.png" alt="">
+            </a>
+        </div>
+        `;
+
+    //    Remove add a new class button - will be showen if there is no class to be shown at the beginning
+        addNewClassButtonContainerUI.remove();
     }
 
 
