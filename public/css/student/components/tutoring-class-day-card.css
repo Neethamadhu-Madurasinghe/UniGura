@@ -152,6 +152,17 @@
     padding: 0 8px;
 }
 
+.activity-row div {
+    display: flex;
+    align-items: center;
+}
+
+.activity-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+
 .file-upload-form {
     width: 100%;
     display: flex;

@@ -20,14 +20,20 @@ class TutoringClassDay {
                         <div class="activity-row">
                             <!--                            Just text-->
                             <?php if ($activity['type'] == 2): ?>
-                                <p class="activity-component"><?php echo $activity['description'] ?></p>
+                                <div>
+                                    <img class="activity-icon" src="<?php echo URLROOT . '/public/img/student/writing.png' ?>">
+                                    <p class="activity-component"><?php echo $activity['description'] ?></p>
+                                </div>
 
                                 <!--                               File upload - this is a dynamically created form -->
                             <?php elseif ($activity['type'] == 1): ?>
                                 <form class="file-upload-form" action="" id="assignment-submit-form-<?php echo $activity['id']?>" method="POST" enctype = "multipart/form-data">
-                                    <label for="file-upload-<?php echo $activity['id']?>" class="file-upload-label activity-component">
-                                        <?php echo $activity['description'] ?>
-                                    </label>
+                                    <div>
+                                        <img class="activity-icon" src="<?php echo URLROOT . '/public/img/student/upload.png' ?>">
+                                        <label for="file-upload-<?php echo $activity['id']?>" class="file-upload-label activity-component">
+                                            <?php echo $activity['description'] ?>
+                                        </label>
+                                    </div>
                                     <input id="file-upload-<?php echo $activity['id']?>" class="file-upload-input" type="file" name="assignment-file" />
 
                                     <label class="custom-checkbox">
@@ -42,7 +48,10 @@ class TutoringClassDay {
 
                                 <!--                               File download-->
                             <?php elseif ($activity['type'] == 0) : ?>
-                                <a href="<?php echo URLROOT . '/load-file?file=' . $activity['link']  ?>" class="activity-component"><?php echo $activity['description'] ?></a>
+                                <div>
+                                    <img class="activity-icon" src="<?php echo URLROOT . '/public/img/student/pdf.png' ?>">
+                                    <a href="<?php echo URLROOT . '/load-file?file=' . $activity['link']  ?>" class="activity-component"><?php echo $activity['description'] ?></a>
+                                </div>
                                 <label class="custom-checkbox">
                                     <input type="checkbox" class="download-link" id="" name="<?php echo $activity['id']?>" <?php echo $activity['is_completed'] == 1 ? "checked" : ""?> >
                                     <span class="checkmark"></span>
