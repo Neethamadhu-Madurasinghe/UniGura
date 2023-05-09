@@ -544,7 +544,8 @@ class TutorCourse extends Controller
         if ($request->isPost()) {
             $isValid = true;
 
-            if (isset($body['course_id']) ||isset($body['tutor_id']) || $body['tutor_id'] != $request->getUserId()) {
+
+            if (isset($body['course_id']) ||isset($body['tutor_id'])) {
                 $this->courseModel->changeClassTemplateStatus($body['course_id']);
             }else{
                 header("HTTP/1.0 400 Bad Request");

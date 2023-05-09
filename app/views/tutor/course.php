@@ -80,6 +80,7 @@ Header::render(
                         <button class='right delete-day' id = $id><i class='fa-solid fa-trash'></i></button>
 
                     </div>
+
                 </div>";
                     }
                     ?>
@@ -87,6 +88,7 @@ Header::render(
             </div>
 
             <script>
+
                 var draggableItems = document.querySelectorAll("#sortable .day");
                 var draggingItem = null;
                 var originalIndex = null;
@@ -142,8 +144,7 @@ Header::render(
                         this.style.backgroundColor = "";
                     });
                 }
-                // Log the initial position data to the console
-                console.log(positionData);
+
 
                 function sendPositon(position_list) {
                     fetch('http://localhost/unigura/tutor/sendposition', {
@@ -252,14 +253,25 @@ Header::render(
 
 
                 document.getElementById('publish').addEventListener('click',()=>{
-                    fetch("http://localhost/unigura/tutor/change-classtemplate-status" )
-                        .then(response => response.json())
-                        .then(data => {
-                            
-                        })
-                        .catch(error => {
-                            console.error(error);
-                        });
+                    fetch(`http://localhost/unigura/tutor/payments/filterpayments`, {
+                         method: 'POST',
+                         body: new URLSearchParams({
+                              course_id: <?php echo $data['id']?>
+                         })
+                    })
+                    .then(function(response) {
+                         if (!response.ok) {
+                              throw new Error('Network response was not ok');
+                         }
+                         return response.text();
+                    })
+                    .then(function(responseText) {
+                        console.log('OK')
+                    })
+                    .catch(function(error) {
+                         console.error('Error retrieving data:', error);
+
+                    });
                 })
             </script>
             <?php Footer::render(
