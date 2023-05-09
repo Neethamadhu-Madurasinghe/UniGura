@@ -144,6 +144,55 @@
 
 /* ======================================================= COMPLAIN CHECK STATUS =============================================================== */
 
+.checkbox-button label{
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.checkbox {
+    display: none;
+}
+
+.checkbox+label {
+    position: relative;
+    cursor: pointer;
+    padding-left: 25px;
+    user-select: none;
+    margin-right: 50px;
+}
+
+.checkbox+label:before {
+    content: "\2716";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    font-size: 14px;
+    height: 20px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    transition: 0.3s;
+    text-align: center;
+}
+
+.checkbox:checked+label:before {
+    content: "✔";
+    background-color: #0d0;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bolder;
+    border-radius: 5px;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    transition: 0.3s;
+}
+
+
+
+
 .complain-check{
     height: 20vh;
     position: absolute;
