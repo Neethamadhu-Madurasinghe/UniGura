@@ -82,7 +82,7 @@ class AdminRequirementComplaints extends Controller
         // echo '</pre>';
 
 
-        $this->view('admin/requirement_complaints', $request, $data);
+        $this->view('admin/requirementComplaints', $request, $data);
     }
 
 
@@ -171,7 +171,7 @@ class AdminRequirementComplaints extends Controller
             }
 
             if ($hasErrors) {
-                $this->view('admin/complaint_settings', $request, $data);
+                $this->view('admin/complaintSettings', $request, $data);
             }
 
 
@@ -216,7 +216,7 @@ class AdminRequirementComplaints extends Controller
                     ]
                 ];
 
-                $this->view('admin/complaint_settings', $request, $data);
+                $this->view('admin/complaintSettings', $request, $data);
             }
         }
     }
@@ -259,7 +259,7 @@ class AdminRequirementComplaints extends Controller
             }
 
             if ($hasErrors) {
-                $this->view('admin/complaint_settings', $request, $data);
+                $this->view('admin/complaintSettings', $request, $data);
             }
 
 
@@ -309,7 +309,7 @@ class AdminRequirementComplaints extends Controller
             }
 
             if ($hasErrors) {
-                $this->view('admin/complaint_settings', $request, $data);
+                $this->view('admin/complaintSettings', $request, $data);
             }
 
 
@@ -355,7 +355,7 @@ class AdminRequirementComplaints extends Controller
                     ]
                 ];
 
-                $this->view('admin/complaint_settings', $request, $data);
+                $this->view('admin/complaintSettings', $request, $data);
             }
         }
     }

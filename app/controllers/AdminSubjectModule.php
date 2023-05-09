@@ -37,7 +37,7 @@ class AdminSubjectModule extends Controller
         // print_r($data[0]);
         // echo '</pre>';
 
-        $this->view('admin/newSubject', $request, $data);
+        $this->view('admin/subjectModule', $request, $data);
     }
 
 
@@ -69,7 +69,7 @@ class AdminSubjectModule extends Controller
                 }
 
                 $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule, $invalidSubjectName, $invalidModuleName);
-                $this->view('admin/newSubject', $request, $data);
+                $this->view('admin/subjectModule', $request, $data);
             } else {
                 $subjectName =  $this->subjectModel->addSubject($subjectName);
 
@@ -90,7 +90,7 @@ class AdminSubjectModule extends Controller
                 }
 
                 $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule, $invalidSubjectName, $invalidModuleName);
-                $this->view('admin/newSubject', $request, $data);
+                $this->view('admin/subjectModule', $request, $data);
             }
         }
     }
@@ -128,7 +128,7 @@ class AdminSubjectModule extends Controller
                 }
 
                 $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule, $invalidSubjectName, $invalidModuleName);
-                $this->view('admin/newSubject', $request, $data);
+                $this->view('admin/subjectModule', $request, $data);
             } else {
                 $subjectName = $this->subjectModel->updateSubject($subjectId, $subjectName);
 
@@ -146,7 +146,7 @@ class AdminSubjectModule extends Controller
                 }
 
                 $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule, $invalidSubjectName, $invalidModuleName);
-                $this->view('admin/newSubject', $request, $data);
+                $this->view('admin/subjectModule', $request, $data);
             }
         }
     }
@@ -202,7 +202,7 @@ class AdminSubjectModule extends Controller
                 }
 
                 $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule, $invalidSubjectName, $invalidModuleName);
-                $this->view('admin/newSubject', $request, $data);
+                $this->view('admin/subjectModule', $request, $data);
             } else {
                 $moduleName = $this->subjectModel->addModule($moduleName, $subjectId);
 
@@ -223,7 +223,7 @@ class AdminSubjectModule extends Controller
                 }
 
                 $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule, $invalidSubjectName, $invalidModuleName);
-                $this->view('admin/newSubject', $request, $data);
+                $this->view('admin/subjectModule', $request, $data);
             }
         }
     }
@@ -258,7 +258,7 @@ class AdminSubjectModule extends Controller
                 }
 
                 $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule, $invalidSubjectName, $invalidModuleName);
-                $this->view('admin/newSubject', $request, $data);
+                $this->view('admin/subjectModule', $request, $data);
             } else {
                 $moduleName = $this->subjectModel->updateModule($moduleName, $moduleId);
 
@@ -275,7 +275,7 @@ class AdminSubjectModule extends Controller
                 }
 
                 $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule, $invalidSubjectName, $invalidModuleName);
-                $this->view('admin/newSubject', $request, $data);
+                $this->view('admin/subjectModule', $request, $data);
             }
         }
     }

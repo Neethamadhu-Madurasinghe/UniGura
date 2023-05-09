@@ -1,4 +1,4 @@
-<?php require_once APPROOT . '/views/admin/side_bar.php'; ?>
+<?php require_once APPROOT . '/views/admin/sideBar.php'; ?>
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/admin/tutor.css">
 <script defer src="<?php echo URLROOT ?>/public/js/admin/tutor.js"></script>
 

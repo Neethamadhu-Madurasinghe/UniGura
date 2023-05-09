@@ -1,5 +1,5 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<?php require_once APPROOT . '/views/admin/side_bar.php'; ?>
+<?php require_once APPROOT . '/views/admin/sideBar.php'; ?>
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/admin/statistics.css">
 <script defer src="<?php echo URLROOT ?>/public/js/admin/Statistic.js"></script>
 

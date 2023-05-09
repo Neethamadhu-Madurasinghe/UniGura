@@ -47,7 +47,7 @@ class AdminTutorProfile extends Controller{
         }
 
 
-        $this->view('admin/tutor_profile', $request, $data);
+        $this->view('admin/tutorProfile', $request, $data);
     }
 
 

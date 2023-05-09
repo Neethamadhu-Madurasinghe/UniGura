@@ -46,6 +46,6 @@ class AdminStudentProfile extends Controller
 
 
 
-        $this->view('admin/student_profile', $request, $data);
+        $this->view('admin/studentProfile', $request, $data);
     }
 }

@@ -75,6 +75,6 @@ class AdminStudentComplaint extends Controller {
         // echo '</pre>';
 
 
-        $this->view('admin/student_complaint', $request, $data);
+        $this->view('admin/studentComplaint', $request, $data);
     }
 }

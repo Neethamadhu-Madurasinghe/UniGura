@@ -1,4 +1,4 @@
-<?php require_once APPROOT . '/views/admin/side_bar.php'; ?>
+<?php require_once APPROOT . '/views/admin/sideBar.php'; ?>
 <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/requirementComplaint.css">
 <script defer src="<?php echo URLROOT ?>/public/js/admin/complaint_setting.js"></script>
 

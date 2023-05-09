@@ -1,4 +1,4 @@
-<?php require_once APPROOT . '/views/admin/side_bar.php'; ?>
+<?php require_once APPROOT . '/views/admin/sideBar.php'; ?>
 <script defer src="<?php echo URLROOT ?>/public/js/admin/dashboard.js"></script>
 <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/dashboard.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
