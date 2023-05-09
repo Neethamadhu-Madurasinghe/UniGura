@@ -38,13 +38,13 @@ class TutorClass extends Controller
     {
         $body = $request->getBody();
 
-        
+
 
         $data = $this->classModel->getsingleclassdetails(intval($body['id']));
         $days = $this->classModel->getTutoringClassDays(intval($body['id']));
         $activities = $this->classModel->getActivities(intval($body['id']));
 
-        
+
 
 
         header('Content-Type: application/json');
@@ -70,5 +70,165 @@ class TutorClass extends Controller
             ]);
         };
     }
-   
+
+    public function addActivity(Request $request)
+    {
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        if ($request->isProfileNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isNotApprovedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isBankDetialsNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+
+
+        if ($request->isGet()) {
+            $data = [];
+
+            $body = $request->getBody();
+
+            $data = [
+                'id' => $body['id']
+            ];
+
+            $this->view('tutor/classaddactivity', $request, $data);
+        }
+
+        if ($request->isPost()) {
+            $body = $request->getBody();
+
+            $activityPath = handleUpload(
+                array('pdf'),
+                '\\user_files\\',
+                'activity-doc'
+            );
+
+            $data = [
+                'id' => $body['id'],
+                'link' => $activityPath,
+                'type' => $body['type'],
+                'description' => $body['description']
+            ];
+
+            if ($this->classModel->setActivity($data)) {
+                redirect('tutor/classes', $request, $data);
+            }
+        }
+
+        //        If the request is a GET request, then serve the page
+    }
+
+    public function markdayashide(Request $request)
+    {
+        if (!$request->isLoggedIn() || !$request->isTutor()) {
+            header("HTTP/1.0 401 Unauthorized");
+            return;
+        }
+
+        $body = $request->getBody();
+
+        $this->classModel->markDayAsHiden($body['id']);
+    }
+
+
+    public function createcustomday(Request $request)
+    {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        if ($request->isProfileNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isNotApprovedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isBankDetialsNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        //Fetch all the visible subjects, modules and maximum class price
+
+        if ($request->isGet()) {
+            $body = $request->getBody();
+            $position_count = $this->classModel->getDayCounts($body['id']);
+            $position_count =  $position_count + 1;
+            $data = [
+                'id' => $body['id'],
+                'title' => "",
+                'position' => $position_count,
+                'errors' => [
+                    'title_error' => ""
+                ]
+            ];
+        };
+
+
+        if ($request->isPost()) {
+            $body = $request->getBody();
+            $data = [];
+            $data = [
+                'id' => $body['id'],
+                'title' => $body['title'],
+                'position' => $body['position'],
+                'errors' => [
+                    'title_error' => ""
+                ]
+            ];
+
+            $data['errors']['title_error'] = $this->validateTitle($body['title'], $body['id']);
+
+
+            $hasErrors = FALSE;
+
+            foreach ($data['errors'] as $errorString) {
+                if ($errorString !== '') {
+                    $hasErrors = TRUE;
+                }
+            }
+
+            if (!$hasErrors) {
+
+                if ($this->classModel->setClassDay($data)) {
+                    redirect('tutor/classes');
+                } else {
+                    header("HTTP/1.0 500 Internal Server Error");
+                    die('Something went wrong');
+                }
+
+                $this->view('tutor/createcustomday', $request, $data);
+
+                //If the request is a GET request, then serve the page
+
+            } else {
+                $this->view('tutor/createcustomday', $request, $data);
+            }
+        }
+
+        $this->view('tutor/createday', $request, $data);
+    }
+
+
+    public function validateTitle(string $name, $c_id): String
+    {
+        if (empty($name)) {
+            return 'Please enter a valid name';
+        } elseif ($this->classModel->findDayByName($name, $c_id)) {
+            return 'Title Already Exist';
+        } else {
+            return '';
+        }
+    }
 }

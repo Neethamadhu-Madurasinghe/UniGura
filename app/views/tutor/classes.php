@@ -71,7 +71,7 @@ MainNavbar::render($request);
                <div class="Student studnt-details-container">
                     <div style="display: grid;grid-template-columns: 1fr 1fr;">
                          <h2 id='student_name' style="margin-bottom: 20px;">Sachithra Kavinda</h2>
-                         <h3 style="color: rgba(112, 124, 151, 1);text-align: right;margin-top: 13px;font-size: 17px;">Started on 22June 2022</h3>
+                         <h3 id='class-time' style="color: rgba(112, 124, 151, 1);text-align: right;margin-top: 13px;font-size: 17px;">Started on 22June 2022</h3>
                     </div>
                     <img style="position: absolute;right: 150px;width: 10%;" src="<?php echo URLROOT ?>/public/img/tutor/class/images/progres.png">
                     <div class="textbox_two">
@@ -83,6 +83,7 @@ MainNavbar::render($request);
                     <div>
                          <button class="msg_box button" id='report'>Report</button>
                          <button class="msg_box button">Chat</button>
+                         <button class="add_day button">Add Day</button>
                     </div>
 
                     <div class="day_box_container">
@@ -98,6 +99,8 @@ MainNavbar::render($request);
 <script>
      let viewbtns = document.querySelectorAll('.msg_box');
 
+
+
      viewbtns.forEach(btn => {
           btn.addEventListener('click', function() {
                const url = "http://localhost/unigura/tutor/getclassdetails?id=" + btn.dataset.id;
@@ -105,22 +108,61 @@ MainNavbar::render($request);
                     .then(response => response.json())
                     .then(data => {
                          document.querySelector('.studnt-details-container').style.display = 'block';
+
                          let list = data['data'][0];
+
                          let student_name = document.getElementById('student_name');
                          let module_name = document.getElementById('module_name');
                          let mode = document.getElementById('mode');
                          let day_container = document.querySelector('.half');
                          let reportBtn = document.querySelector('.reportBtn');
+                         let classtime = document.querySelector('class-time');
 
                          day_container.innerHTML = '';
 
+                         document.querySelector('.add_day').addEventListener('click', () => {
+                              window.location = `http://localhost/unigura/tutor/createcustomday?id=${list.id}`
+                         })
+
+                         switch (list.date) {
+                              case 'mon':
+                                   document.getElementById('class-time').innerText = `Class on Monday ${list.time}`;
+                                   break
+
+                              case 'tue':
+                                   document.getElementById('class-time').innerText = `Class on Tuesday ${list.time}`;
+                                   break
+
+                              case 'wed':
+                                   document.getElementById('class-time').innerText = `Class on Wednesday ${list.time}`;
+                                   break
+
+                              case 'thu':
+                                   document.getElementById('class-time').innerText = `Class on Thursday ${list.time}`;
+                                   break
+
+                              case 'fri':
+                                   document.getElementById('class-time').innerText = `Class on Friday ${list.time}`;
+                                   break
+
+                              case 'sat':
+                                   document.getElementById('class-time').innerText = `Class on Saturday ${list.time}`;
+                                   break
+
+                              case 'sun':
+                                   document.getElementById('class-time').innerText = `Class on Sunday ${list.time}`;
+                                   break
+
+
+
+                         }
 
                          student_name.innerHTML = list.first_name + " " + list.last_name;
                          module_name.innerHTML = list.name + list.class_type;
                          mode.innerHTML = list.mode;
 
-                         console.log(list);
-                    
+
+
 
                          document.getElementById('report').addEventListener('click', () => {
                               window.location = `http://localhost/unigura/tutor/view-report?student_id=${list.student_id}`;
@@ -132,19 +174,17 @@ MainNavbar::render($request);
                          console.log(days);
                          console.log(activities);
 
-          
+
                          for (let i = 0; i < days.length; i++) {
                               let day = days[i];
 
-                              console.log(day.dayid);
-
-                              let status = `<i class="fa fa-eye-slash" style="font-size:19px;color: rgba(112, 124, 151, 0.678);" title="Hide"></i>`;
-
+                              let status;
+                              //is_hidden = 1 ---> hide 0 --> show
                               if (day.is_hidden == 0) {
-
-                                   status = `<i class="fa fa-eye-slash" style="font-size:19px;color: rgba(112, 124, 151, 0.678);" title="Hide"></i>`;
+                                   status = `<i  data-id = ${day.dayid} class="fa fa-eye-slash hide-btn" style="font-size:19px;color: rgba(112, 124, 151, 0.678);" title="Hide"></i>
+                                             <input  type="checkbox" ><span class="checkmark"></span>`;
                               } else if (day.is_hidden = 1) {
-                                   status = ` <input  type="checkbox" checked="checked"><span class="checkmark"></span>`
+                                   status = ` <i class="fa fa-eye" style="font-size:19px;color: rgba(112, 124, 151, 0.678);" title="Hide"></i> `
                               } else {
                                    console.log('Error')
                               }
@@ -158,23 +198,54 @@ MainNavbar::render($request);
                                    </div>
                                    <div class='textbox-one' id='text${day.dayid}'></div>
                                    <p  class = "Payment"; style="text-align: right;font-size: 17px;font-weight: 600;color:#f7721adc; margin-top: 5px;">Payment Due</p>
+                                   <button class='left add-activity' data-id=${day.dayid} ><i class='fa-solid fa-plus'></i></button>
+
                               </div>`
-                       
-                         day_container.innerHTML += code;
-     
 
-                         for(key in activities){
-                              
-                              let element = activities[key];
-                              
-                              if(element.day_id == day.dayid){
 
-                                   day_container.querySelector(`#text${day.dayid}`).innerHTML += `<img class='img02' src='http://localhost/UniGura/public/img/tutor/class/icons/file.png' style="width: 10%; height:10%; margin-top: 8px; margin-bottom: 0px">
+
+
+
+                              day_container.innerHTML += code;
+
+
+
+
+                              for (key in activities) {
+
+                                   let element = activities[key];
+
+                                   if (element.day_id == day.dayid) {
+
+                                        day_container.querySelector(`#text${day.dayid}`).innerHTML += `<img class='img02' src='http://localhost/UniGura/public/img/tutor/class/icons/file.png' style="width: 10%; height:10%; margin-top: 8px; margin-bottom: 0px">
                                    <a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;' href = "http://localhost/unigura/tutor/viewactivitydoc?file=${element.link}">${element.description}</a><br>`
+                                   }
                               }
+
                          }
-                         
-                         }
+
+
+                         var addactivitybtns = document.querySelectorAll(".add-activity");
+                         addactivitybtns.forEach(btn => {
+                              btn.addEventListener('click', function() {
+                                   window.location = `http://localhost/unigura/tutor/add-activity-inclass?id=${btn.getAttribute('data-id')}`;
+                              })
+                         })
+                         var hidebtns = document.querySelectorAll(".hide-btn");
+                         hidebtns.forEach(hidebtn => {
+                              hidebtn.addEventListener('click', function() {
+                                   const url = "http://localhost/unigura/tutor/getactivity?id=" + hidebtn.dataset.id;
+                                   fetch(url)
+                                        .then(response => response.json())
+                                        .then(data => {
+
+                                        })
+                                        .catch(error => {
+                                             console.error(error);
+                                        });
+
+                              })
+                         })
                     })
                     .catch(error => {
                          console.error(error);

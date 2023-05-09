@@ -30,7 +30,7 @@ class ModelTutorClass
 
     public function getsingleclassdetails($id): array
     {
-        $this->db->query(' SELECT c.id , c.mode ,c.student_id, ct.class_type , m.name, u.first_name , u.last_name , u.profile_picture 
+        $this->db->query(' SELECT c.id , c.mode ,c.date, c.time ,c.student_id, ct.class_type , m.name, u.first_name , u.last_name , u.profile_picture 
         FROM tutoring_class AS c
         JOIN user AS u 
         ON c.student_id = u.id
@@ -64,5 +64,62 @@ class ModelTutorClass
         $this->db->bind('id', $id, PDO::PARAM_INT);
 
         return $this->db->execute();
+    }
+
+    public function setActivity($data): bool {
+        $this->db->query('INSERT INTO activity SET
+                 day_id = :id,
+                 link = :link,
+                 type = :type,
+                 description = :description');
+
+
+        $this->db->bind('id', $data['id'], PDO::PARAM_INT);
+        $this->db->bind('description', $data['description'], PDO::PARAM_STR);
+        $this->db->bind('link', $data['link'], PDO::PARAM_STR);
+        $this->db->bind('type', $data['type'], PDO::PARAM_STR);
+
+        return $this->db->execute();
+    }
+
+    public function markDayAsHiden($id) : bool 
+    {
+        $this->db->query('UPDATE day SET is_hidden = 1 WHERE id = :id ;');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+//      Returns whether the row count is greater than 0
+        return $this->db->execute();
+    }
+
+    public function setClassDay($data): bool
+    {
+        $this->db->query('INSERT INTO  day SET
+                 class_id = :id,
+                 title = :title'
+                 );
+
+        $this->db->bind('id', $data['id'], PDO::PARAM_INT);
+        $this->db->bind('title', $data['title'], PDO::PARAM_STR);
+        // $this->db->bind('position', $data['position'], PDO::PARAM_STR);
+
+        return $this->db->execute();
+    }
+
+    public function getDayCounts($id): int
+    {
+        $this->db->query(' SELECT * FROM day
+        WHERE class_id = :id ');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        return count($this->db->resultAll());
+    }
+
+    public function findDayByName(String $name,$c_id): bool {
+        $this->db->query('SELECT * FROM day WHERE title=:name and class_id = :c_id');
+        $this->db->bind('name', $name, PDO::PARAM_STR);
+        $this->db->bind('c_id', $c_id, PDO::PARAM_INT);
+
+        $this->db->resultOne();
+
+//      Returns whether the row count is greater than 0
+        return $this->db->rowCount() > 0;
     }
 }
