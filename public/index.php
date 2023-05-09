@@ -66,7 +66,6 @@ $router->registerController('/admin/tutor', [AdminTutor::class, 'tutor']);
 $router->registerController('/admin/viewTutorProfile', [AdminTutorProfile::class, 'viewTutorProfile']);
 
 
-$router->registerController('/admin/requirementComplaints', [AdminRequirementComplaints::class, 'requirementComplaints']);
 $router->registerController('/admin/addStudentComplainReason', [AdminRequirementComplaints::class, 'addStudentComplainReason']);
 $router->registerController('/admin/addTutorComplainReason', [AdminRequirementComplaints::class, 'addTutorComplainReason']);
 $router->registerController('/admin/updateStudentComplainReason', [AdminRequirementComplaints::class, 'updateStudentComplainReason']);

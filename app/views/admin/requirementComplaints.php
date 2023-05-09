@@ -11,6 +11,16 @@
     <title>Responsive side bar</title>
 </head>
 
+
+<?php
+    echo '<pre>';
+    print_r($data);
+    echo '</pre>';
+
+
+
+?>
+
 <body>
 
     <div class="menu-bar">

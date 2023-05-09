@@ -90,7 +90,7 @@ class ModelAdminRequirementComplaints
 
     public function getTutorRequest()
     {
-        $this->db->query("SELECT * FROM tutor");
+        $this->db->query("SELECT tutor.*,user.* FROM tutor INNER JOIN user ON tutor.user_id = user.id");
         return $this->db->resultAll();
     }
 
