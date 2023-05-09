@@ -23,6 +23,9 @@ class AdminTutorProfile extends Controller{
             $tutorDetails = $this->tutorModel->getTutor($tutorId);            
             $allTimeSlots = $this->tutorModel->getAllTimeSlotsByTutorId($tutorId);
 
+            $numberOfActiveClasses = $this->tutorModel->getCountActiveTutorialClassesByTutorId($tutorId);
+            $numberOfCompletedClasses = $this->tutorModel->getCountCompletedTutorialClassesByTutorId($tutorId);
+
 
 
             foreach ($allClasses as $x) {
@@ -37,6 +40,8 @@ class AdminTutorProfile extends Controller{
                 'allClasses' => $allClasses,
                 'tutorDetails' => $tutorDetails,
                 'allTimeSlots' => $allTimeSlots,
+                'numberOfActiveClasses' => $numberOfActiveClasses,
+                'numberOfCompletedClasses' => $numberOfCompletedClasses
             ];
 
         }

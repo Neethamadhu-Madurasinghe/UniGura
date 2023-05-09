@@ -9,7 +9,6 @@
 
 /* ----------------------------TABLE---------------------------------- */
 
-
 section.table {
     margin: 20px 50px;
     height: 77vh;
@@ -18,8 +17,13 @@ section.table {
     box-shadow: 0 .4rem .8rem #0005;
     border-radius: .8rem;
     background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
-
+    /* background-color: #ffb75e; */
 }
+
+section .tutor-request-table{
+    margin-top: 80px;
+}
+
 
 .table-header {
     width: 100%;
@@ -360,6 +364,7 @@ tbody img{
     font-size: 15px;
     font-weight: bold;
     border: 2px solid #F7931A;
+    background-color: #F7931A;
     padding: 5px;
     border-radius: 5px;
 }
@@ -382,6 +387,8 @@ tbody img{
 }
 
 
+
+
 .one-complaint form a {
     text-decoration: none;
     font-size: 15px;
@@ -390,7 +397,6 @@ tbody img{
     padding: 5px;
     border-radius: 5px;
     margin-top: 15px;
-
 }
 
 .one-complaint form button {
@@ -401,7 +407,6 @@ tbody img{
     padding: 5px;
     border-radius: 5px;
     margin-top: 15px;
-
 }
 
 .one-complaint input{
@@ -412,8 +417,9 @@ tbody img{
     padding: 8px;
     font-size: 17px;
     font-weight: bold;
-    background-color: #ffa620a3;
+    /* background-color: #ffa620a3; */
     color: black;
+    background-color: transparent;
     margin-top: 15px;
 }
 
@@ -521,7 +527,7 @@ tbody img{
 .complaint-setting {
     width: 90%;
     height: 600px;
-    border-radius: 6px;
+    border-radius: 10px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -531,7 +537,7 @@ tbody img{
     color: #333;
     visibility: visible;
     z-index: 1;
-    background-color: #ffa620a3;
+    background-color: #FFFFFF;
     margin-top: 30px;
 }
 
@@ -664,3 +670,10 @@ tbody img{
     left: 50%;
     transform: translate(-50%, -50%) scale(1);
 }
+
+
+.delete_icon{
+    margin-left: 40px;
+}
+
+

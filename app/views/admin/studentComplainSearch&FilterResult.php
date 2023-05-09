@@ -7,8 +7,8 @@
     <?php foreach ($data['allStudentComplaints'] as $studentComplaint) { ?>
         <tr>
             <td><?php echo $studentComplaint->reportReason->description; ?></td>
-            <td><?php echo $studentComplaint->tutor->first_name . " " . $studentComplaint->tutor->last_name ?></td>
             <td><?php echo $studentComplaint->student->first_name . " " . $studentComplaint->student->last_name ?></td>
+            <td><?php echo $studentComplaint->tutor->first_name . " " . $studentComplaint->tutor->last_name ?></td>
 
             <input type="hidden" class="complaint-id" value="<?php echo $studentComplaint->id; ?>">
 

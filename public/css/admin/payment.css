@@ -11,12 +11,12 @@ body {
 
 .payment {
     display: grid;
-    grid-template-columns: 300px auto;
+    grid-template-columns: 400px auto;
     grid-gap: 20px;
     padding: 20px;
 }
 
-.payment-page{
+.payment-page {
     height: 94vh;
     overflow-y: scroll;
 }
@@ -33,7 +33,7 @@ body {
     visibility: hidden;
 }
 
-.payment-page   :hover::-webkit-scrollbar-thumb {
+.payment-page :hover::-webkit-scrollbar-thumb {
     visibility: visible;
 }
 
@@ -48,7 +48,7 @@ body {
 .before-selected-payment-right-side .empty-part {
     /* background-color: #fff; */
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 2px solid #F7931A;
     height: 90vh;
     margin: auto -20px;
@@ -64,15 +64,15 @@ body {
 }
 
 
-.before-selected-payment-right-side .empty-part .text-part{
+.before-selected-payment-right-side .empty-part .text-part {
     background-color: #fff;
     padding: 20px;
-    border: 2px solid #F7931A;
+    /* border: 2px solid #F7931A; */
     border-radius: 10px;
     margin-bottom: 30px;
 }
 
-.before-selected-payment-right-side .empty-part .text-part h1{
+.before-selected-payment-right-side .empty-part .text-part h1 {
     font-size: 30px;
     text-align: center;
     margin-bottom: 15px;
@@ -82,7 +82,7 @@ body {
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
-    border: 2px solid #F7931A;
+    /* border: 2px solid #F7931A; */
     height: 90vh;
 }
 
@@ -95,7 +95,7 @@ body {
 }
 
 .payoff-tutors {
-    border: 2px solid #F7931A;
+    /* border: 2px solid #F7931A; */
     padding: 10px;
     border-radius: 5px;
     text-align: center;
@@ -143,14 +143,22 @@ body {
     z-index: 10;
 }
 
-.all-tutor .tutor > div{
+.all-tutor .tutor img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+.all-tutor .tutor>div {
     position: relative;
     z-index: -1;
 }
 
 
-.total-payoff{
-    border: 2px solid #F7931A;
+.total-payoff {
+    /* border: 2px solid #F7931A; */
     border-radius: 5px;
     width: fit-content;
     padding: 10px;
@@ -166,7 +174,7 @@ body {
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
-    border: 2px solid #F7931A;
+    /* border: 2px solid #F7931A; */
     border-radius: 5px;
     height: 30px;
 }
@@ -309,12 +317,13 @@ tbody button {
     border-radius: 10px;
     padding: 10px 20px;
     height: 60vh;
-    border: 2px solid #F7931A;
+    /* border: 2px solid #F7931A; */
     width: 500px;
 }
 
 .drop-section img {
-    width: 100px;
+    width: 130px;
+    margin-bottom: 20px;
 }
 
 .list-section img {
@@ -333,7 +342,8 @@ tbody button {
     margin-bottom: 5px;
     text-align: center;
     border-radius: 5px;
-    height: 270px;
+    height: 250px;
+    background: #fdfdfd;
 }
 
 
@@ -493,13 +503,13 @@ tbody button {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin: 40px 0;
+    margin: 40px 0 0 40px;
 
 }
 
 .bank-details {
     width: 45%;
-    border: 2px solid #F7931A;
+    /* border: 2px solid #F7931A; */
     padding: 10px 20px;
     border-radius: 5px;
     height: 60vh;

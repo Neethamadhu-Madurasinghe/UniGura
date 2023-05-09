@@ -19,7 +19,7 @@ class AdminClass extends Controller{
         $allSubjects = $this->classModel->getAllSubjects();
 
         foreach($allClasses as $x){
-            $tutorId = $x->tutor_id;
+            $tutorId = $x->tutorID;
 
             $tutor = $this->classModel->findTutor($tutorId);
 

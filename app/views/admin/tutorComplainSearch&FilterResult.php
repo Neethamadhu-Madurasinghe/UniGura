@@ -1,6 +1,6 @@
 <tbody id="tutor-complaint">
     <?php if (empty($data['allTutorComplaints'])) : ?>
-        <td class="noDataDisplay">There are no tutor complaints to display</td>
+        <td class="noDataDisplay">There are no tutor complaints to display.</td>
     <?php endif; ?>
 
     <?php foreach ($data['allTutorComplaints'] as $tutorComplaint) { ?>

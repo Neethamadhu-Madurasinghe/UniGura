@@ -57,4 +57,14 @@ class ModelAdminHideShowBlockUnblock{
 
         $this->db->execute();
     }
+
+
+    public function addNotification($userID, $title, $description)
+    {
+        $this->db->query("INSERT INTO notification (user_id, title,description) VALUES (:user_id,:title,:description)");
+        $this->db->bind(':user_id', $userID);
+        $this->db->bind(':title', $title);
+        $this->db->bind(':description', $description);
+        return $this->db->execute();
+    }
 }

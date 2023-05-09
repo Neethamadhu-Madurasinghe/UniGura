@@ -49,6 +49,9 @@ $router->registerController('/admin/updateSubjectHideShow', [AdminSubjectModule:
 $router->registerController('/admin/updateModuleHideShow', [AdminSubjectModule::class, 'updateModuleHideShow']);
 
 
+$router->registerController('/admin/viewFiles', [AdminFileLoader::class, 'viewFiles']);
+
+
 
 
 $router->registerController('/admin/student', [AdminStudent::class, 'student']);
@@ -68,6 +71,9 @@ $router->registerController('/admin/addStudentComplainReason', [AdminRequirement
 $router->registerController('/admin/addTutorComplainReason', [AdminRequirementComplaints::class, 'addTutorComplainReason']);
 $router->registerController('/admin/updateStudentComplainReason', [AdminRequirementComplaints::class, 'updateStudentComplainReason']);
 $router->registerController('/admin/updateTutorComplainReason', [AdminRequirementComplaints::class, 'updateTutorComplainReason']);
+$router->registerController('/admin/deleteStudentComplainReason', [AdminRequirementComplaints::class, 'deleteStudentComplainReason']);
+$router->registerController('/admin/deleteTutorComplainReason', [AdminRequirementComplaints::class, 'deleteTutorComplainReason']);
+
 
 
 
@@ -80,6 +86,10 @@ $router->registerController('/admin/uploadBankSlip', [AdminPayment::class, 'uplo
 
 $router->registerController('/admin/notification', [AdminNotification::class, 'notification']);
 $router->registerController('/admin/notification/clearNotification', [AdminNotification::class, 'clearNotification']);
+$router->registerController('/admin/notificationCount', [AdminNotification::class, 'notificationCount']);
+$router->registerController('/admin/deleteNotification', [AdminNotification::class, 'deleteNotification']);
+
+
 
 
 

@@ -17,8 +17,14 @@ class ModelAdminPayment
 
     public function allPaymentDetails()
     {
-        // $this->db->query("SELECT * FROM `payment` GROUP BY `withdrawal_day`, `withdrawalSlip`");
-        $this->db->query("SELECT * FROM `payment`");
+        $this->db->query("SELECT payment.*,withdrawal.* FROM payment LEFT JOIN withdrawal ON payment.withdrawal_slip = withdrawal.id");
+        return $this->db->resultAll();
+    }
+
+    public function getAllClassDaysByTutorId($tutorId)
+    {
+        $this->db->query("SELECT payment.*, day.*,tutoring_class.*,tutoring_class_template.* FROM payment INNER JOIN day ON payment.day_id = day.id INNER JOIN tutoring_class ON day.class_id = tutoring_class.id INNER JOIN tutoring_class_template ON tutoring_class.class_template_id = tutoring_class_template.id  WHERE payment.tutor_id = :id AND payment.is_withdrawed = 0");
+        $this->db->bind(':id', $tutorId);
         return $this->db->resultAll();
     }
 
