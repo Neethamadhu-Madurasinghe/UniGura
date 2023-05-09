@@ -15,7 +15,11 @@
         <div class="top-details-box">
             <div class="tutor-details">
                 <div class="profile-picture">
-                    <img src="<?php echo URLROOT ?><?php echo $data['tutorDetails']->profile_picture ?>" alt="tutor profile picture">
+                    <?php if ($data['tutorDetails']->profile_picture === NULL) : ?>
+                        <img src="<?php echo URLROOT ?>/public/img/common/profile.png" alt="tutor profile picture">
+                    <?php else : ?>
+                        <img src="<?php echo URLROOT ?><?php echo $data['tutorDetails']->profile_picture ?>" alt="tutor profile picture">
+                    <?php endif; ?>
                 </div>
                 <div class="name-actions">
                     <div class="name">
@@ -85,7 +89,7 @@
                             <i class="fa-solid fa-user-graduate"></i> &nbsp<?php echo $data['tutorDetails']->education_qualification ?>
                         </div>
                         <div class="qualification">
-                        <i class="fa-solid fa-graduation-cap"></i> <?php echo $data['tutorDetails']->university ?>
+                            <i class="fa-solid fa-graduation-cap"></i> <?php echo $data['tutorDetails']->university ?>
                         </div>
                     </div>
                 </div>

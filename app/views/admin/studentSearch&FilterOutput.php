@@ -13,7 +13,9 @@
 // print_r($data);
 // echo '</pre>';
 
+// 
 ?>
+
 
 <?php foreach ($data as $aStudent) : ?>
     <div class="card">
@@ -36,7 +38,11 @@
             <?php endif; ?>
         </div>
         <div class="profile-picture">
-            <img src="<?php echo URLROOT ?><?php echo $aStudent->student->profile_picture ?>" alt="student profile picture">
+            <?php if ($aStudent->student->profile_picture === NULL) : ?>
+                <img src="<?php echo URLROOT ?>/public/img/common/profile.png" alt="tutor profile picture">
+            <?php else : ?>
+                <img src="<?php echo URLROOT ?><?php echo $aStudent->student->profile_picture ?>" alt="student profile picture">
+            <?php endif; ?>
         </div>
         <div class="name">
             <h2><?php echo $aStudent->student->first_name . ' ' . $aStudent->student->last_name ?></h2>

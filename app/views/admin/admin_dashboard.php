@@ -410,7 +410,11 @@
                             <?php if ($requestTutor->is_approved == '0') : ?>
                                 <div class="available-request">
                                     <div class="profile-img">
-                                        <img src="<?php echo URLROOT ?><?php echo $requestTutor->tutorDetails->profile_picture ?>" alt="tutor profile picture">
+                                        <?php if ($requestTutor->tutorDetails->profile_picture === NULL) : ?>
+                                            <img src="<?php echo URLROOT ?>/public/img/common/profile.png" alt="tutor profile picture">
+                                        <?php else : ?>
+                                            <img src="<?php echo URLROOT ?><?php echo $requestTutor->tutorDetails->profile_picture ?>" alt="tutor profile picture">
+                                        <?php endif; ?>
                                     </div>
                                     <div class="request-details">
                                         <h3><?php echo $requestTutor->tutorDetails->first_name . ' ' . $requestTutor->tutorDetails->last_name ?></h3>
@@ -441,7 +445,11 @@
                             <?php if ($complaint->is_inquired == '0') : ?>
                                 <div class="available-complaints">
                                     <div class="profile-img">
-                                        <img src="<?php echo URLROOT ?><?php echo $complaint->tutorDetails->profile_picture ?>" alt="profile picture">
+                                        <?php if ($complaint->tutorDetails->profile_picture === NULL) : ?>
+                                            <img src="<?php echo URLROOT ?>/public/img/common/profile.png" alt="tutor profile picture">
+                                        <?php else : ?>
+                                            <img src="<?php echo URLROOT ?><?php echo $complaint->tutorDetails->profile_picture ?>" alt="profile picture">
+                                        <?php endif; ?>
                                     </div>
                                     <div class="complaint-details">
                                         <h3><?php echo $complaint->tutorDetails->first_name . ' ' . $complaint->tutorDetails->last_name ?></h3>
@@ -456,7 +464,11 @@
                             <?php if ($complaint->is_inquired == '0') : ?>
                                 <div class="available-complaints">
                                     <div class="profile-img">
-                                        <img src="<?php echo URLROOT ?><?php echo $complaint->studentDetails->profile_picture ?>" alt="profile picture">
+                                        <?php if ($complaint->studentDetails->profile_picture === NULL) : ?>
+                                            <img src="<?php echo URLROOT ?>/public/img/common/profile.png" alt="tutor profile picture">
+                                        <?php else : ?>
+                                            <img src="<?php echo URLROOT ?><?php echo $complaint->studentDetails->profile_picture ?>" alt="profile picture">
+                                        <?php endif; ?>
                                     </div>
                                     <div class="complaint-details">
                                         <h3><?php echo $complaint->studentDetails->first_name . ' ' . $complaint->studentDetails->last_name ?></h3>
