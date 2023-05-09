@@ -228,13 +228,28 @@ input[type="range"]::-moz-range-thumb {
     border-radius: 5px;
     padding: 10px;
     background-color: #FFFFFF;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
 }
 
 .visibility-filter h1{
     font-size: 23px;
     margin-bottom: 10px;
 }
+
+
+.permission-filter{
+    /* border: 2px solid #FC941D; */
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #FFFFFF;
+    margin-bottom: 60px;
+}
+
+.permission-filter h1{
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+
 
 
 .subject-select > div{
@@ -252,6 +267,11 @@ input[type="range"]::-moz-range-thumb {
 .visibility-select > div{
     margin-bottom: 5px;
 }
+
+.permission-select > div{
+    margin-bottom: 5px;
+}
+
 
 .class-rating{
     /* border: 2px solid #FC941D; */

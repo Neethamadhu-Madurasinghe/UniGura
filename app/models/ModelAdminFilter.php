@@ -158,7 +158,7 @@ class ModelAdminFilter
 
     public function getAllTutor()
     {
-        $this->db->query("SELECT * FROM tutor");
+        $this->db->query("SELECT tutor.*, user.* FROM tutor INNER JOIN user ON tutor.user_id = user.id");
 
         $rows = $this->db->resultAll();
 
@@ -168,6 +168,20 @@ class ModelAdminFilter
             return false;
         }
     }
+
+
+    public function getTutorByQuery($sql){
+        $this->db->query($sql);
+
+        $rows = $this->db->resultAll();
+
+        if ($this->db->rowCount() >= 0) {
+            return $rows;
+        } else {
+            return false;
+        }
+    }
+    
 
     public function getTutorContactDetails($tutorID)
     {

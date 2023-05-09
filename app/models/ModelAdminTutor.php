@@ -1,20 +1,23 @@
 <?php
 
-class ModelAdminTutor{
+class ModelAdminTutor
+{
     private Database $db;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->db = new Database();
     }
 
-    public function getAllTutor() {
-        $this->db->query("SELECT * FROM tutor");
+    public function getAllTutor()
+    {
+        $this->db->query("SELECT tutor.*, user.* FROM tutor INNER JOIN user ON tutor.user_id = user.id");
 
         $rows = $this->db->resultAll();
 
         if ($this->db->rowCount() >= 0) {
             return $rows;
-        }else {
+        } else {
             return false;
         }
     }
@@ -40,7 +43,8 @@ class ModelAdminTutor{
 
 
 
-    public function getTutor($tutorID) {
+    public function getTutor($tutorID)
+    {
         $this->db->query("SELECT tutor.*,user.* FROM tutor,user WHERE tutor.user_id = user.id AND tutor.user_id = :tutorID");
         $this->db->bind(':tutorID', $tutorID);
 
@@ -54,7 +58,8 @@ class ModelAdminTutor{
     }
 
 
-    public function getTutorContactDetails($tutorID) {
+    public function getTutorContactDetails($tutorID)
+    {
         $this->db->query("SELECT * FROM user WHERE id = :tutor_id");
         $this->db->bind(':tutor_id', $tutorID);
 
@@ -62,12 +67,13 @@ class ModelAdminTutor{
 
         if ($this->db->rowCount() > 0) {
             return $row;
-        }else {
+        } else {
             return false;
         }
     }
 
-    public function getStudentContactDetails($studentID) {
+    public function getStudentContactDetails($studentID)
+    {
         $this->db->query("SELECT * FROM user WHERE id = :student_id");
         $this->db->bind(':student_id', $studentID);
 
@@ -75,7 +81,7 @@ class ModelAdminTutor{
 
         if ($this->db->rowCount() > 0) {
             return $row;
-        }else {
+        } else {
             return false;
         }
     }
@@ -83,7 +89,8 @@ class ModelAdminTutor{
 
 
 
-    public function getTutorById($tutorID) {
+    public function getTutorById($tutorID)
+    {
         $this->db->query("SELECT * FROM user WHERE id = :tutorID");
         $this->db->bind(':tutorID', $tutorID);
 
@@ -97,7 +104,8 @@ class ModelAdminTutor{
     }
 
 
-    public function getClassTemplateById($classTemplateID) {
+    public function getClassTemplateById($classTemplateID)
+    {
         $this->db->query("SELECT * FROM tutoring_class_template WHERE id = :classTemplateID");
         $this->db->bind(':classTemplateID', $classTemplateID);
 
@@ -111,7 +119,8 @@ class ModelAdminTutor{
     }
 
 
-    public function getSubjectById($subjectID) {
+    public function getSubjectById($subjectID)
+    {
         $this->db->query("SELECT * FROM subject WHERE id = :subjectID");
         $this->db->bind(':subjectID', $subjectID);
 
@@ -124,7 +133,8 @@ class ModelAdminTutor{
         }
     }
 
-    public function getModuleById($moduleID) {
+    public function getModuleById($moduleID)
+    {
         $this->db->query("SELECT * FROM module WHERE id = :moduleID");
         $this->db->bind(':moduleID', $moduleID);
 
@@ -137,7 +147,8 @@ class ModelAdminTutor{
         }
     }
 
-    public function getAllClassDays() {
+    public function getAllClassDays()
+    {
         $this->db->query("SELECT * FROM day");
 
         $rows = $this->db->resultAll();
@@ -150,7 +161,8 @@ class ModelAdminTutor{
     }
 
 
-    public function getClassDayByTutorialClassId($tutorialClassID) {
+    public function getClassDayByTutorialClassId($tutorialClassID)
+    {
         $this->db->query("SELECT * FROM day WHERE class_id = :tutorialClassID");
         $this->db->bind(':tutorialClassID', $tutorialClassID);
 
@@ -163,21 +175,24 @@ class ModelAdminTutor{
         }
     }
 
-    public function getAllTutorialClassesByClassId($classID){
+    public function getAllTutorialClassesByClassId($classID)
+    {
         $this->db->query("SELECT * FROM tutoring_class WHERE id = :classID");
         $this->db->bind(':classID', $classID);
 
         return $this->db->resultOne();
     }
 
-    public function getClassTemplateByClassTemplateId($classTemplateID){
+    public function getClassTemplateByClassTemplateId($classTemplateID)
+    {
         $this->db->query("SELECT * FROM tutoring_class_template WHERE id = :classTemplateID");
         $this->db->bind(':classTemplateID', $classTemplateID);
 
         return $this->db->resultOne();
     }
 
-    public function getStudentById($studentID) {
+    public function getStudentById($studentID)
+    {
         $this->db->query("SELECT * FROM student WHERE user_id = :studentID");
         $this->db->bind(':studentID', $studentID);
 
@@ -190,7 +205,8 @@ class ModelAdminTutor{
         }
     }
 
-    public function getTutorByUserId($userID) {
+    public function getTutorByUserId($userID)
+    {
         $this->db->query("SELECT * FROM tutor WHERE user_id = :userID");
         $this->db->bind(':userID', $userID);
 
@@ -204,7 +220,8 @@ class ModelAdminTutor{
     }
 
 
-    public function getAllTimeSlotsByTutorId($tutorID) {
+    public function getAllTimeSlotsByTutorId($tutorID)
+    {
         $this->db->query("SELECT * FROM time_slot WHERE tutor_id = :tutorID");
         $this->db->bind(':tutorID', $tutorID);
 
@@ -218,16 +235,18 @@ class ModelAdminTutor{
     }
 
 
-    public function getCountActiveTutorialClassesByTutorId($tutorID){
+    public function getCountActiveTutorialClassesByTutorId($tutorID)
+    {
         $this->db->query("SELECT * FROM tutoring_class WHERE tutor_id = :tutorID AND completion_status = 0");
         $this->db->bind(':tutorID', $tutorID);
         $this->db->resultAll();
 
         return $this->db->rowCount();
     }
-        
 
-    public function getCountCompletedTutorialClassesByTutorId($tutorID){
+
+    public function getCountCompletedTutorialClassesByTutorId($tutorID)
+    {
         $this->db->query("SELECT * FROM tutoring_class WHERE tutor_id = :tutorID AND completion_status = 1");
         $this->db->bind(':tutorID', $tutorID);
         $this->db->resultAll();
