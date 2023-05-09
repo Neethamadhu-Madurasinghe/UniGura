@@ -24,7 +24,7 @@
 
             <h4>Complaint Status (Solved or not):&nbsp;&nbsp; </h4>
 
-            <label for="checking">
+            <label for="checking" class="checkbox-button">
                 <?php if ($data['oneStudentComplaint']->is_inquired == 1) { ?>
                     <input type="checkbox" name="complainStatus" checked>
                 <?php } else { ?>
@@ -66,7 +66,7 @@
             <?php if (empty($data['otherStudentComplaints'])) : ?>
                 <div class="result-not-found">
                     <img src="<?php echo URLROOT; ?>/public/img/admin/resultNotFound.png" alt=""><br>
-                    <h1>Looks like haven't other reviews yet for this tutor.</h1>
+                    <h1>Looks like there haven't been any other reviews yet for this tutor.</h1>
                 </div>
             <?php endif; ?>
 

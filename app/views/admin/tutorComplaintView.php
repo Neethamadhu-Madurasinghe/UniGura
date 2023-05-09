@@ -65,6 +65,13 @@
         <h1>Tutor's Other Reviews</h1>
         <div class="tutor-review">
 
+            <?php if (empty($data['otherTutorComplaints'])) : ?>
+                <div class="result-not-found">
+                    <img src="<?php echo URLROOT; ?>/public/img/admin/resultNotFound.png" alt=""><br>
+                    <h1>Looks like there haven't been any other reviews yet for this student.</h1>
+                </div>
+            <?php endif; ?>
+
             <?php foreach ($data['otherTutorComplaints'] as $complain) : ?>
                 <div class="one-tutor-review">
                     <div class="tutor-review-header">

@@ -306,7 +306,7 @@
 
 .popup {
     width: 400px;
-    background-color: #FFFFFF;
+    background-color: #F7931A;
     border-radius: 6px;
     position: absolute;
     top: 50%;
@@ -345,38 +345,24 @@
     width: 100%;
     margin-top: 50px;
     padding: 10px 0;
+    background-color: red;
     color: #fff;
     border: 0;
     outline: none;
     cursor: pointer;
-    font-size: 1rem;
     font-size: 18px;
-    transition: transform 0.1s;
-    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
-    border-radius: 5px;
+    border-radius: 4px;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 }
 
 
-/* .popup button:hover {
-    transform: scale(1.05);
-}
-
-.popup button:active {
-    background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
-} */
-
-
-
-
-
 .blur-filter {
-    background: #f7941a2a;
+    background: #f7941a57;
     z-index: 10000;
     position: relative;
     height: 100vh;
     width: 100vw;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
     position: absolute;
     top: 50%;
     left: 50%;

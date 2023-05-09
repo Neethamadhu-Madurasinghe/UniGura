@@ -117,8 +117,6 @@ searchTutor.addEventListener('keyup', function () {
         if (this.status === 200) {
             cardSection.innerHTML = this.responseText;
         }
-        showProfileBtn();
-        menuSelection();
     }
 
     xhr.send();
@@ -153,8 +151,6 @@ for (var i = 0; i < checkboxes.length; i++) {
             if (this.status === 200) {
                 cardSection.innerHTML = this.responseText;
             }
-            showProfileBtn();
-            menuSelection();
         }
 
         xhr.send();
