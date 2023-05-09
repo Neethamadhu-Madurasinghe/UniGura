@@ -36,4 +36,13 @@ class ModelUser {
 
         return $this->db->resultOneAssoc();
     }
+
+    public function isBanned(int $id): bool {
+        $this->db->query('SELECT * FROM user WHERE id=:id AND is_banned=1');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        $row = $this->db->resultOne();
+
+        if ($row) { return true; }
+        else { return false; }
+    }
 }

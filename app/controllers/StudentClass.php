@@ -8,6 +8,7 @@ class StudentClass extends Controller {
     private ModelStudentReschedule $rescheduleModel;
     private ModelStudentTimeSlot $timeSlotModel;
     private ModelStudentNotification $notificationModel;
+    private ModelUser $userModel;
 
     public function __construct() {
         $this->tutoringClassModel = $this->model('ModelStudentTutoringClass');
@@ -17,6 +18,7 @@ class StudentClass extends Controller {
         $this->rescheduleModel = $this->model('ModelStudentReschedule');
         $this->timeSlotModel = $this->model('ModelStudentTimeSlot');
         $this->notificationModel = $this->model('ModelStudentNotification');
+        $this->userModel = $this->model('ModelUser');
     }
 
     public function tutoringClass(Request $request) {
@@ -35,6 +37,12 @@ class StudentClass extends Controller {
         if (!$request->isStudent()) {
             redirectBasedOnUserRole($request);
             die;
+        }
+
+//            If the user is banned he cannot access this page
+        if ($this->userModel->isBanned($request->getUserId())) {
+            redirect('/logout');
+            return;
         }
 
         $body = $request->getBody();

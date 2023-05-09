@@ -7,6 +7,7 @@ class FindTutor extends Controller {
     private ModelStudentRequest $requestModel;
     private ModelStudentTimeSlot $timeSlotModel;
     private ModelStudentNotification $notification;
+    private ModelUser $userModel;
 
     public function __construct() {
         $this->moduleModel = $this->model('ModelStudentModule');
@@ -16,6 +17,7 @@ class FindTutor extends Controller {
         $this->requestModel = $this->model('ModelStudentRequest');
         $this->timeSlotModel = $this->model('ModelStudentTimeSlot');
         $this->notification = $this->model('ModelStudentNotification');
+        $this->userModel = $this->model('ModelUser');
     }
 
     public function findTutor(Request $request) {
@@ -177,6 +179,12 @@ class FindTutor extends Controller {
         if ($request->isPost()) {
 //          Unauthorized error code
             if (!$request->isLoggedIn() || !$request->isStudent()) {
+                header("HTTP/1.0 401 Unauthorized");
+                return;
+            }
+
+//            If the user is banned he cannot send tutor requests
+            if ($this->userModel->isBanned($request->getUserId())) {
                 header("HTTP/1.0 401 Unauthorized");
                 return;
             }
