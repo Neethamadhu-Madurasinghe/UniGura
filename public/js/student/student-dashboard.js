@@ -18,7 +18,7 @@ async function sendClassListRequest() {
         }
     });
 
-    const tutoringClasses = (await response.json()).tutoring_classes;
+    let tutoringClasses = (await response.json()).tutoring_classes;
 
     // Disable filters and show no Classes message if there are no records
     if (subjectFilterUI.value === 'all' &&
@@ -45,7 +45,9 @@ async function sendClassListRequest() {
             `
 
         }
-        tutoringClasses.forEach(tutoringClass => {
+
+        // Additional fields into class cards
+        tutoringClasses = tutoringClasses.map(tutoringClass => {
             tutoringClass.class_type = tutoringClass.class_type.charAt(0).toUpperCase() + tutoringClass.class_type.slice(1);
             if (!tutoringClass.tutor.profile_picture) {
                 tutoringClass['tutor']['profile_picture'] = '/public/img/common/profile.png';
@@ -57,6 +59,13 @@ async function sendClassListRequest() {
                 tutoringClass['completion'] = 100;
             }
 
+            return tutoringClass;
+        })
+
+        // Sort class carded according to completion percentage
+        tutoringClasses.sort((tutoringClass1, tutoringClass2) => tutoringClass1.completion - tutoringClass2.completion);
+
+        tutoringClasses.forEach(tutoringClass => {
             classCardContainerUI.innerHTML += `
             <div class="class-card">
                 <div class="class-card-top-section">
@@ -76,12 +85,15 @@ async function sendClassListRequest() {
                                 src="${'http://localhost/unigura//public/img/common/money 1.png'}"
                                 class="${tutoringClass.payment_due_day_count > 0 ?
                                         "payment-due-image" :
-                                        "payment-due-image-hidden"}">
+                                        "payment-due-image-hidden"}"
+                                title="Payment due"
+                                >
+                                
                         </div>
                     </div>
 
                     <div class="progress-bar-row">
-                        <p>${tutoringClass['completion']}%</p>
+                        <p>${tutoringClass['completion']}% Completed</p>
                         <div class="progress-bar-outer">
                             <div class="progress-bar-inner" style="width: ${tutoringClass['completion']}%"></div>
                         </div>
