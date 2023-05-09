@@ -12,7 +12,7 @@ class ModelAdminRequirementComplaints
 
     public function getStudentComplaints($start, $rowsPerPage)
     {
-        $this->db->query("SELECT * FROM student_report LIMIT $start, $rowsPerPage");
+        $this->db->query("SELECT student_report.id as studentReportID,student_report.description,student_report.is_inquired,student_report.student_id ,student_report.tutor_id,report_reason.* FROM student_report LEFT JOIN report_reason ON student_report.reason_id = report_reason.id LIMIT $start, $rowsPerPage");
         return $this->db->resultAll();
     }
 

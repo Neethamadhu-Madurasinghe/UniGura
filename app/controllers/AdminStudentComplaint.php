@@ -46,10 +46,6 @@ class AdminStudentComplaint extends Controller {
         // echo '</pre>';
 
         foreach ($allStudentComplaints as $x) {
-            $reasonID = $x->reason_id;
-            $reportReason = $this->studentComplaintModel->reportSeasonById($reasonID);
-            $x->reportReason = $reportReason;
-
             $tutorID = $x->tutor_id;
             $tutor = $this->studentComplaintModel->userById($tutorID);
             $x->tutor = $tutor;

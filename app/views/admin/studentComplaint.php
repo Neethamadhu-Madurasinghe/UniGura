@@ -4,7 +4,6 @@
 
 
 
-
 <section class="home" id="home">
     <p></p>
     <p></p>
@@ -64,7 +63,7 @@
 
                     <?php foreach ($data['allStudentComplaints'] as $studentComplaint) { ?>
                         <tr>
-                            <td><?php echo $studentComplaint->reportReason->description; ?></td>
+                            <td><?php echo $studentComplaint->description; ?></td>
                             <td><?php echo $studentComplaint->student->first_name . " " . $studentComplaint->student->last_name ?></td>
                             <td><?php echo $studentComplaint->tutor->first_name . " " . $studentComplaint->tutor->last_name ?></td>
 
@@ -87,7 +86,7 @@
                             <?php } ?>
 
                             <td class="action">
-                                <a href="viewStudentComplaint?studentComplaintId=<?php echo $studentComplaint->id; ?>"><button class="view-student-complaint">View</button></a>
+                                <a href="viewStudentComplaint?studentComplaintId=<?php echo $studentComplaint->studentReportID; ?>"><button class="view-student-complaint">View</button></a>
                             </td>
                         </tr>
                     <?php } ?>
