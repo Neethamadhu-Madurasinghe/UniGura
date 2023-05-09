@@ -286,7 +286,7 @@ MainNavbar::render($request);
             </div>
         </form>
 
-        <div class="payment-history">
+        <div class="payment-history" id="payments">
             <h1>Payment History</h1>
             <div class="payment-history-container">
                 <?php if (count($data['payments']) == 0): ?>

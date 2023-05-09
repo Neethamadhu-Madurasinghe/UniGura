@@ -34,12 +34,21 @@ class ModelStudentPayment {
     }
 
     public function savePayment($data) : bool {
-        $this->db->query('INSERT INTO payment SET day_id =:day_id,student_id = :student_id, tutor_id = :tutor_id , amount = :amount ,timestamp = NOW(), status = 1;');
+        $this->db->startTransaction();
+
+//        Add the record to the database
+        $this->db->query('INSERT INTO payment SET day_id =:day_id,student_id = :student_id, tutor_id = :tutor_id , amount = :amount ,timestamp = NOW()');
         $this->db->bind('amount', $data['amount'], PDO::PARAM_INT);
         $this->db->bind('day_id', $data['day_id'], PDO::PARAM_INT);
         $this->db->bind('student_id', $data['student_id'], PDO::PARAM_INT);
         $this->db->bind('tutor_id', $data['tutor_id'], PDO::PARAM_INT);
+        $this->db->execute();
 
-        return $this->db->execute();
+//        Mark that day as paid
+        $this->db->query('UPDATE day SET payment_status=1, timestamp = NOW() WHERE id=:id');
+        $this->db->bind('id', $data['day_id'], PDO::PARAM_INT);
+        $this->db->execute();
+
+        return $this->db->commitTransaction();
     }
 }
