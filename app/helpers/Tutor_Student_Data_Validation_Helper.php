@@ -149,20 +149,6 @@ function validatePassword(string $password, string $confirmPassword): String
 // *******************  START - created by madusharini (For tutor profile update validation) ********************
 
 
-function validateRate(string $number): String
-{
-    if (filter_var($number, FILTER_VALIDATE_INT)) {
-        $int = intval($number);
-        if ($int >= 500 && $int < 5000) {
-            return "";
-        } else {
-            return "Amount must in a range between LKR (500 - 5000)";
-        }
-    } else {
-        return "Please enter a valid amount";
-    }
-}
-
 function validateAccountNameForTutor(String $holderName, ModelTutorStudentCompleteProfile $modelObject, int $tutor_id): String
 {
     if (empty($holderName) || !preg_match("/^[a-zA-Z\s]*$/", $holderName)) {

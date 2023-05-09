@@ -13,7 +13,6 @@ class AdminClass extends Controller{
         if (!$request->isLoggedIn()) {
             redirect('/login');
         }
-        
 
         $allClasses = $this->classModel->getAllClasses();
 
