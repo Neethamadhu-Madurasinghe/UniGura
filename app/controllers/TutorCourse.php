@@ -47,7 +47,6 @@ class TutorCourse extends Controller
         $body = $request->getBody();
 
 
-
         $activities = json_encode($this->courseModel->getTutoringActivities($body['id']));
 
         $response = [
@@ -525,8 +524,33 @@ class TutorCourse extends Controller
 
         }
 
+       
+
 
 
         //        If the request is a GET request, then serve the page
+    }
+    public function changeClassTemplateStatus(Request $request){
+        cors();
+
+        $body = json_decode(file_get_contents('php://input'), true);
+
+
+        if (!$request->isLoggedIn() || !$request->isTutor()) {
+            header("HTTP/1.0 401 Unauthorized");
+            return;
+        }
+
+        if ($request->isPost()) {
+            $isValid = true;
+
+
+            if (isset($body['course_id']) ||isset($body['tutor_id'])) {
+                $this->courseModel->changeClassTemplateStatus($body['course_id']);
+            }else{
+                header("HTTP/1.0 400 Bad Request");
+            }
+        }
+    
     }
 }

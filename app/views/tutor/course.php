@@ -31,6 +31,7 @@ Header::render(
     <div class="part_two">
         <div class="Student">
             <h1 id='module' style="margin-bottom: 0px;text-align: center;font-weight: 400;"><?php echo $data['module'] ?></h1>
+                    <div id='publish'><i class="fa-solid fa-plus"></i> Add Day</div>
             <div style="display: grid;grid-template-columns: 1fr 1fr; gap: 20px;">
                 <div style="color: #7b7f8f;text-align: right;margin-top: px;font-size: 17px;">
                     <span><i class="fa-solid fa-graduation-cap"></i></span><span id='subject'><?php print_r($data['subject']) ?></span>
@@ -43,6 +44,7 @@ Header::render(
                 <div class="button1">
                     <a id='add_day'><i class="fa-solid fa-plus"></i> Add Day</a>
                 </div>
+                
                 <div class="button2">
                     <?php echo '<a  href= /unigura/tutor/dashboard><i class="fa-solid fa-home"></i> Home</a>' ?>
                 </div>
@@ -78,6 +80,7 @@ Header::render(
                         <button class='right delete-day' id = $id><i class='fa-solid fa-trash'></i></button>
 
                     </div>
+
                 </div>";
                     }
                     ?>
@@ -85,6 +88,7 @@ Header::render(
             </div>
 
             <script>
+
                 var draggableItems = document.querySelectorAll("#sortable .day");
                 var draggingItem = null;
                 var originalIndex = null;
@@ -140,8 +144,7 @@ Header::render(
                         this.style.backgroundColor = "";
                     });
                 }
-                // Log the initial position data to the console
-                console.log(positionData);
+
 
                 function sendPositon(position_list) {
                     fetch('http://localhost/unigura/tutor/sendposition', {
@@ -161,6 +164,9 @@ Header::render(
                             console.error('Have Error');
                         });
                 }
+
+
+
 
 
                 var addactivitybtns = document.querySelectorAll(".add-activity");
@@ -243,6 +249,29 @@ Header::render(
                     btn.addEventListener('click', function() {
                         window.location = "http://localhost/unigura/tutor/deleteday?id=" + this.id + "&subject=" + subject + "&module=" + module + "&course_id=" + <?php echo $data['id'] ?>;
                     })
+                })
+
+
+                document.getElementById('publish').addEventListener('click',()=>{
+                    fetch(`http://localhost/unigura/tutor/payments/filterpayments`, {
+                         method: 'POST',
+                         body: new URLSearchParams({
+                              course_id: <?php echo $data['id']?>
+                         })
+                    })
+                    .then(function(response) {
+                         if (!response.ok) {
+                              throw new Error('Network response was not ok');
+                         }
+                         return response.text();
+                    })
+                    .then(function(responseText) {
+                        console.log('OK')
+                    })
+                    .catch(function(error) {
+                         console.error('Error retrieving data:', error);
+
+                    });
                 })
             </script>
             <?php Footer::render(

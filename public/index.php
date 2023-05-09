@@ -166,6 +166,7 @@ $router->registerController('/tutor/getactivity', [TutorCourse::class, 'getactiv
 $router->registerController('/tutor/viewactivitydoc', [TutorCourse::class, 'loadTutorFile']);
 $router->registerController('/tutor/updateday', [TutorCourse::class, 'updateDay']);
 $router->registerController('/tutor/deleteday', [TutorCourse::class, 'deleteDayTemplate']);
+$router->registerController('/tutor/change-classtemplate-status', [TutorCourse::class, 'changeClassTemplateStatus']);
 
 $router->registerController('/tutor/requestdecline', [TutorDashboard::class, 'requestDecline']);
 $router->registerController('/tutor/payment', [TutorDashboard::class, 'payment']);
@@ -186,6 +187,7 @@ $router->registerController('/tutor/viewstudentrequest', [TutorDashboard::class,
 
 
 $router->registerController('/tutor/getclassdetails', [TutorClass::class, 'getclassdetails']);
+
 
 
 

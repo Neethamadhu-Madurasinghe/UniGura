@@ -29,13 +29,7 @@ class ModelTutorPayment
 
     public function getFilteredPayments($tutorId,$startDate,$endDate){
 
-        $this->db->query('SELECT d.id AS day_id, d.payment_status, d.is_completed, d.timestamp as date , c.id AS class_id , c.session_rate , m.name AS module, u.first_name, u.last_name, u.profile_picture 
-        FROM tutoring_class AS c 
-        JOIN user AS u ON u.id = c.student_id 
-        JOIN tutoring_class_template AS ct ON ct.id = c.class_template_id 
-        JOIN module AS m ON ct.module_id = m.id 
-        JOIN day AS d ON d.class_id = c.id 
-        WHERE c.tutor_id = :tutorId AND d.is_completed = 1 AND (d.timestamp as Date BETWEEN :start_date AND :end_date) ORDER BY d.Timestamp ASC');
+        $this->db->query('SELECT d.id AS day_id, d.payment_status, d.is_completed, d.timestamp as date , c.id AS class_id , c.session_rate , m.name AS module, u.first_name, u.last_name, u.profile_picture FROM tutoring_class AS c JOIN user AS u ON u.id = c.student_id JOIN tutoring_class_template AS ct ON ct.id = c.class_template_id JOIN module AS m ON ct.module_id = m.id JOIN day AS d ON d.class_id = c.id WHERE c.tutor_id = :tutorId AND d.is_completed = 1 AND (d.timestamp BETWEEN :start_date AND :end_date) ORDER BY d.Timestamp ASC;');
 
         $this->db->bind(':start_date', $startDate, PDO::PARAM_STR);
         $this->db->bind(':end_date', $endDate, PDO::PARAM_STR);
@@ -46,7 +40,7 @@ class ModelTutorPayment
 
     public function getMonthlyPaymentStatus($tutorId): array
     {
-        $this->db->query("SELECT SUM(CASE WHEN payment_status = 0 THEN c.session_rate ELSE 0 END) AS Pending, SUM(CASE WHEN payment_status = 1  THEN c.session_rate ELSE 0 END) AS Earns FROM tutoring_class AS c JOIN day AS d ON d.class_id = c.id WHERE MONTH(d.timestamp) = MONTH(CURRENT_DATE()) AND YEAR(d.timestamp) = YEAR(CURRENT_DATE()) AND c.tutor_id = :tutorId ;");
+        $this->db->query("SELECT SUM(CASE WHEN payment_status = 0 THEN c.session_rate ELSE 0 END) AS Pending, SUM(CASE WHEN payment_status = 1  THEN c.session_rate ELSE 0 END) AS Earns FROM tutoring_class AS c JOIN day AS d ON d.class_id = c.id WHERE c.tutor_id = :tutorId ;");
         $this->db->bind(':tutorId', $tutorId, PDO::PARAM_INT);
 
         $this->db->execute();
