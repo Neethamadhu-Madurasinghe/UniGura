@@ -5,7 +5,6 @@
 
 
 
-
 <section class="home" id="home">
     <p></p>
     <p></p>
@@ -53,7 +52,7 @@
 
     <div class="report-reason">
         <h1>Report Reason</h1>
-        <h3><?php echo $data['oneTutorComplaint']->reportReason->description ?></h3>
+        <h3><?php echo $data['oneTutorComplaint']->description ?></h3>
     </div>
 
     <div class="description">
@@ -77,11 +76,15 @@
                     <div class="tutor-review-header">
                         <div class="tutor-review-info">
                             <div class="profile-img">
-                                <img src="<?php echo URLROOT ?><?php echo $complain->student->profile_picture ?>" alt="profile picture">
+                                <?php if ($complain->student->profile_picture === NULL) : ?>
+                                    <img src="<?php echo URLROOT ?>/public/img/common/profile.png" alt="tutor profile picture">
+                                <?php else : ?>
+                                    <img src="<?php echo URLROOT ?><?php echo $complain->student->profile_picture ?>" alt="profile picture">
+                                <?php endif; ?>
                             </div>
                             <div class="tutor-review-title">
                                 <h3><?php echo $complain->student->first_name . ' ' . $complain->student->last_name ?></h3>
-                                <h5><?php echo $complain->reportReason->description ?></h5>
+                                <h5><?php echo $complain->ReportReason ?></h5>
                             </div>
                         </div>
                     </div>

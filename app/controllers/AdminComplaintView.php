@@ -25,28 +25,26 @@ class AdminComplaintView extends Controller
 
             $oneStudentComplaint->tutor = $this->viewComplaintModel->userById($oneStudentComplaint->tutor_id);
             $oneStudentComplaint->student = $this->viewComplaintModel->userById($oneStudentComplaint->student_id);
-            $oneStudentComplaint->reportReason = $this->viewComplaintModel->reportSeasonById($oneStudentComplaint->reason_id);
 
 
             $allStudentComplaints = $this->viewComplaintModel->getStudentComplaints();
-            $allStudentComplaints = array_map(function ($complain) {
-                $complain->tutor = $this->viewComplaintModel->userById($complain->tutor_id);
-                $complain->student = $this->viewComplaintModel->userById($complain->student_id);
-                $complain->reportReason = $this->viewComplaintModel->reportSeasonById($complain->reason_id);
-                return $complain;
-            }, $allStudentComplaints);
 
+            foreach($allStudentComplaints as $aStudentComplaints){
+                $aStudentComplaints->tutor = $this->viewComplaintModel->userById($aStudentComplaints->tutor_id);
+                $aStudentComplaints->student = $this->viewComplaintModel->userById($aStudentComplaints->student_id);
+            }
 
+            
             $otherStudentComplaints = [];
 
-            foreach ($allStudentComplaints as $complain) {
-                if ($complain->id != $studentComplainID && $complain->tutor_id == $oneStudentComplaint->tutor_id) {
-                    $otherStudentComplaints[] = $complain;
+            foreach ($allStudentComplaints as $aStudentComplaints) {
+                if ($aStudentComplaints->studentReportID != $studentComplainID && $aStudentComplaints->tutor_id == $oneStudentComplaint->tutor_id) {
+                    $otherStudentComplaints[] = $aStudentComplaints;
                 }
             }
 
             $data = [
-                'oneStudentComplaint' => $oneStudentComplaint,
+                'oneStudentComplaint' => $allStudentComplaints,
                 'otherStudentComplaints' => $otherStudentComplaints
             ];
         }
@@ -76,22 +74,20 @@ class AdminComplaintView extends Controller
 
             $oneTutorComplaint->tutor = $this->viewComplaintModel->userById($oneTutorComplaint->tutor_id);
             $oneTutorComplaint->student = $this->viewComplaintModel->userById($oneTutorComplaint->student_id);
-            $oneTutorComplaint->reportReason = $this->viewComplaintModel->reportSeasonById($oneTutorComplaint->reason_id);
 
 
             $allTutorComplaints = $this->viewComplaintModel->getTutorComplaints();
-            $allTutorComplaints = array_map(function ($complain) {
-                $complain->tutor = $this->viewComplaintModel->userById($complain->tutor_id);
-                $complain->student = $this->viewComplaintModel->userById($complain->student_id);
-                $complain->reportReason = $this->viewComplaintModel->reportSeasonById($complain->reason_id);
-                return $complain;
-            }, $allTutorComplaints);
+
+            foreach($allTutorComplaints as $aTutorComplaints){
+                $aTutorComplaints->tutor = $this->viewComplaintModel->userById($aTutorComplaints->tutor_id);
+                $aTutorComplaints->student = $this->viewComplaintModel->userById($aTutorComplaints->student_id);
+            }
 
 
             $otherTutorComplaints = [];
 
             foreach ($allTutorComplaints as $complaint) {
-                if ($complaint->id != $tutorComplainID && $complaint->student_id == $oneTutorComplaint->student_id) {
+                if ($complaint->tutorReportID != $tutorComplainID && $complaint->student_id == $oneTutorComplaint->student_id) {
                     $otherTutorComplaints[] = $complaint;
                 }
             }
