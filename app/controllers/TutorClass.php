@@ -38,14 +38,9 @@ class TutorClass extends Controller
     {
         $body = $request->getBody();
 
-
-
-        $data = $this->classModel->getsingleclassdetails(intval($body['id']));
+        $data = $this->classModel->getsingleclassdetails(intval($body['id']));  //class id pass as the body id
         $days = $this->classModel->getTutoringClassDays(intval($body['id']));
         $activities = $this->classModel->getActivities(intval($body['id']));
-
-
-
 
         header('Content-Type: application/json');
         echo json_encode([
@@ -129,14 +124,69 @@ class TutorClass extends Controller
 
     public function markdayashide(Request $request)
     {
+        cors();
+
+        $body = json_decode(file_get_contents('php://input'), true);
+
+
         if (!$request->isLoggedIn() || !$request->isTutor()) {
             header("HTTP/1.0 401 Unauthorized");
             return;
         }
 
-        $body = $request->getBody();
+        if ($request->isPost()) {
+          
+            if (isset($body['day_id'])) {
+                $this->classModel->markDayAsHiden($body['day_id']);
+            }else{
+                echo "Error". $body['day_id'];
+            }
+        }
+    }
 
-        $this->classModel->markDayAsHiden($body['id']);
+    public function markdayasunhide(Request $request)
+    {
+        cors();
+
+        $body = json_decode(file_get_contents('php://input'), true);
+
+
+        if (!$request->isLoggedIn() || !$request->isTutor()) {
+            header("HTTP/1.0 401 Unauthorized");
+            return;
+        }
+
+        if ($request->isPost()) {
+          
+            if (isset($body['day_id'])) {
+                $this->classModel->markDayAsUnHiden($body['day_id']);
+            }else{
+                echo "Error". $body['day_id'];
+            }
+        }
+    }
+
+
+    public function markdayascomplete(Request $request)
+    {
+        cors();
+
+        $body = json_decode(file_get_contents('php://input'), true);
+
+
+        if (!$request->isLoggedIn() || !$request->isTutor()) {
+            header("HTTP/1.0 401 Unauthorized");
+            return;
+        }
+
+        if ($request->isPost()) {
+          
+            if (isset($body['day_id'])) {
+                $this->classModel->markDayAsComplete($body['day_id']);
+            }else{
+               
+            }
+        }
     }
 
 

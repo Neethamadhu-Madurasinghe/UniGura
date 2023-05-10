@@ -623,6 +623,13 @@ p {
   width: 70%;
 }
 
+.activity-icon{
+  width: 10%; 
+  height:10%; 
+  margin-top: 8px; 
+  margin-bottom: 0px
+}
+
 .Student {
   background: linear-gradient(180deg, #F5F3FB 0%, #FDFBFD 100%);
   border-radius: 10px;
@@ -1323,4 +1330,12 @@ tr:nth-child(odd) {
   border-radius: 0%;
   margin-top: 8px;
   width: 70%;
+}
+
+
+.activity-icon{
+  width: 10%; 
+  height:10%; 
+  margin-top: 8px; 
+  margin-bottom: 0px
 }

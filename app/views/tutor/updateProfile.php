@@ -42,7 +42,7 @@ MainNavbar::render($request);
         <form action="update-profile" method="POST" id="updateFormData">
             <div class="parent">
                 <div class="div1">
-                <h2>Personal Details</h2>
+                    <h2>Personal Details</h2>
                     <div class="tutor-profile">
                         <div class="form-field">
                             <label for="first-name">First Name<br>
@@ -829,6 +829,17 @@ MainNavbar::render($request);
     const university_error = document.querySelector('#university_error');
 
 
+    // Script to customize file upload button and
+    // Show Uploaded images in profile picture component
+
+    const actualFileUploadBtnUI = document.getElementById('actual-btn');
+    const profilePictureUI = document.getElementById('profile-picture');
+
+    actualFileUploadBtnUI.addEventListener('change', function() {
+        profilePictureUI.src = URL.createObjectURL(actualFileUploadBtnUI.files[0])
+    });
+
+
 
 
     form.addEventListener('submit', async (event) => {
@@ -890,7 +901,7 @@ MainNavbar::render($request);
         tableRows[i].addEventListener("click", function() {
             console.log(this.className);
             if (this.className == "slot slot-free") { // use-slot(1) => cannot-used-slot(0)
-                this.setAttribute("data-state", 0); 
+                this.setAttribute("data-state", 0);
                 this.classList.add("slot-used");
                 this.classList.remove("slot-free");
             } else if (this.className == "slot slot-used") { // slot-cannot-used

@@ -17,9 +17,7 @@ Header::render(
      'Tutor Classes',
      [
           URLROOT . '/public/css/tutor/base.css?v=2.8',
-          URLROOT . '/public/css/tutor/style.css?v=2.5',
-
-
+          URLROOT . '/public/css/tutor/style.css?v=2.8',
      ]
 );
 MainNavbar::render($request);
@@ -57,7 +55,7 @@ MainNavbar::render($request);
                               <img style='border-radius: 0%;'  src='$root/public/img/tutor/class/icons/cast.png'>
                               <p style='color: rgba(112, 124, 151, 1) ; margin-top: 0px;text-align: justify;margin-bottom: 0px;'>$mode</p>
                          </div>
-                         <button class='msg_box button' data-id = $id >View Details</button>
+                         <button class='msg_box button view-class' data-id = $id >View Details</button>
                          </div>
      
                           ";
@@ -70,15 +68,15 @@ MainNavbar::render($request);
           <div class="part_two">
                <div class="Student studnt-details-container">
                     <div style="display: grid;grid-template-columns: 1fr 1fr;">
-                         <h2 id='student_name' style="margin-bottom: 20px;">Sachithra Kavinda</h2>
-                         <h3 id='class-time' style="color: rgba(112, 124, 151, 1);text-align: right;margin-top: 13px;font-size: 17px;">Started on 22June 2022</h3>
+                         <h2 id='student_name' style="margin-bottom: 20px;"></h2>
+                         <h3 id='class-time' style="color: rgba(112, 124, 151, 1);text-align: right;margin-top: 13px;font-size: 17px;"></h3>
                     </div>
-                    <img style="position: absolute;right: 150px;width: 10%;" src="<?php echo URLROOT ?>/public/img/tutor/class/images/progres.png">
+                  
                     <div class="textbox_two">
                          <img class="img03" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/BookBookmark.png" style>
-                         <p id='module_name' style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Mechanics Theory</p>
+                         <p id='module_name' style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;"></p>
                          <img class="img04" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/cast.png">
-                         <p id='mode' style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;">Online</p>
+                         <p id='mode' style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;"></p>
                     </div>
                     <div>
                          <button class="msg_box button" id='report'>Report</button>
@@ -97,7 +95,7 @@ MainNavbar::render($request);
      </div>
 </div>
 <script>
-     let viewbtns = document.querySelectorAll('.msg_box');
+     let viewbtns = document.querySelectorAll('.view-class');
 
 
 
@@ -110,6 +108,7 @@ MainNavbar::render($request);
                          document.querySelector('.studnt-details-container').style.display = 'block';
 
                          let list = data['data'][0];
+
 
                          let student_name = document.getElementById('student_name');
                          let module_name = document.getElementById('module_name');
@@ -152,17 +151,11 @@ MainNavbar::render($request);
                               case 'sun':
                                    document.getElementById('class-time').innerText = `Class on Sunday ${list.time}`;
                                    break
-
-
-
                          }
 
                          student_name.innerHTML = list.first_name + " " + list.last_name;
                          module_name.innerHTML = list.name + list.class_type;
                          mode.innerHTML = list.mode;
-
-
-
 
                          document.getElementById('report').addEventListener('click', () => {
                               window.location = `http://localhost/unigura/tutor/view-report?student_id=${list.student_id}`;
@@ -171,54 +164,73 @@ MainNavbar::render($request);
                          let days = data['days'];
                          let activities = data['activities'];
 
-                         console.log(days);
-                         console.log(activities);
-
-
                          for (let i = 0; i < days.length; i++) {
                               let day = days[i];
-
                               let status;
+                              let checkbox = ``;
                               //is_hidden = 1 ---> hide 0 --> show
                               if (day.is_hidden == 0) {
-                                   status = `<i  data-id = ${day.dayid} class="fa fa-eye-slash hide-btn" style="font-size:19px;color: rgba(112, 124, 151, 0.678);" title="Hide"></i>
-                                             <input  type="checkbox" ><span class="checkmark"></span>`;
+                                   status = `<i  data-id = ${day.dayid} class="fa fa-eye hide-btn" style="font-size:19px;color: rgba(112, 124, 151, 0.678); margin-right:10px" ></i> <i class="fa fa-eye-slash unhide-btn" data-id=${day.dayid} style="font-size:19px; color: rgba(112, 124, 151, 0.678); display:none" ></i>`;
+
                               } else if (day.is_hidden = 1) {
-                                   status = ` <i class="fa fa-eye" style="font-size:19px;color: rgba(112, 124, 151, 0.678);" title="Hide"></i> `
+                                   status = `<i  data-id = ${day.dayid} class="fa fa-eye hide-btn" style="font-size:19px;color: rgba(112, 124, 151, 0.678); margin-right:10px; display:none" ></i> <i class="fa fa-eye-slash unhide-btn" data-id=${day.dayid} style="font-size:19px; color: rgba(112, 124, 151, 0.678);" ></i>`;
                               } else {
                                    console.log('Error')
                               }
 
+                              let payment_status;
+
+                              if (day.payment_status == 0 && day.is_completed == 1) {
+                                   payment_status = `not paid`
+                              } else if (day.payment_status == 1 && day.is_completed == 1) {
+                                   payment_status = `paid`
+                              } else if (day.is_completed == 0) {
+                                   payment_status = ``;
+                              }
+
+                              if (day.is_completed == 1) {
+                                   checkbox = `<input class = 'checkmark-input' type="checkbox" data-id=${day.dayid} checked><span class="checkmark" ></span>`;
+                              } else {
+                                   checkbox = `<input class='checkmark-input' type="checkbox" data-id=${day.dayid}><span class="checkmark" ></span>`;
+                              }
+
                               let code = `<div class="day_box" style="margin-top: 0px;">
-                                   <div style="display: grid;grid-template-columns: 10fr 1fr;border-bottom:2px solid  rgba(112, 124, 151, 0.151) ;padding-bottom: 5px;">
+                                   <div style="display: grid;grid-template-columns: 8fr 1fr 1fr;border-bottom:2px solid  rgba(112, 124, 151, 0.151) ;padding-bottom: 5px;">
                                         <h4>Day ${day.position} - ${day.title}</h4>
                                         <label class="container">
                                              ${status}
                                         </label>
+                                        <label class = "container">
+                                             ${checkbox}
+                                        </label>
                                    </div>
                                    <div class='textbox-one' id='text${day.dayid}'></div>
-                                   <p  class = "Payment"; style="text-align: right;font-size: 17px;font-weight: 600;color:#f7721adc; margin-top: 5px;">Payment Due</p>
+                                   <p  class = "Payment"; style="text-align: right;font-size: 17px;font-weight: 600;color:#f7721adc; margin-top: 5px;">${payment_status}</p>
                                    <button class='left add-activity' data-id=${day.dayid} ><i class='fa-solid fa-plus'></i></button>
-
                               </div>`
-
-
-
-
 
                               day_container.innerHTML += code;
 
-
-
-
                               for (key in activities) {
-
                                    let element = activities[key];
-
                                    if (element.day_id == day.dayid) {
+                                        if (element.type == 0) {
+                                             day_container.querySelector(`#text${day.dayid}`).innerHTML += `<img class='activity-icon' src='http://localhost/UniGura/public/img/tutor/class/icons/file.png' style="width: 6%; height:6%; margin-top: 9px; border-radius : 0%" >
+                                                  <a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 1px;' href = "http://localhost/unigura/tutor/viewactivitydoc?file=${element.link}">${element.description}</a><br>`
+                                        } else if (element.type == 1) {
+                                             if (element.is_completed == 0) {
+                                                  day_container.querySelector(`#text${day.dayid}`).innerHTML += `<img class='activity-icon' src='http://localhost/UniGura/public/img/tutor/class/icons/share-arrow.png'  style="width: 6%; height:6%; margin-top: 9px; border-radius : 0%" >
+                                                  <a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;' >${element.description}</a><br>`
+                                             } else if (element.is_completed == 1) {
+                                                  day_container.querySelector(`#text${day.dayid}`).innerHTML += `<img class='activity-icon' src='http://localhost/UniGura/public/img/tutor/class/icons/share-arrow.png' style="width: 6%; height:6%; margin-top: 9px; border-radius : 0%" >
+                                                  <a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 1px;' href = "http://localhost/unigura/tutor/viewactivitydoc?file=${element.link}">${element.description}</a><br>`
+                                             }
 
-                                        day_container.querySelector(`#text${day.dayid}`).innerHTML += `<img class='img02' src='http://localhost/UniGura/public/img/tutor/class/icons/file.png' style="width: 10%; height:10%; margin-top: 8px; margin-bottom: 0px">
-                                   <a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;' href = "http://localhost/unigura/tutor/viewactivitydoc?file=${element.link}">${element.description}</a><br>`
+                                        } else if (element.type == 2) {
+                                             day_container.querySelector(`#text${day.dayid}`).innerHTML += `<img class='activity-icon' src='http://localhost/UniGura/public/img/tutor/class/icons/cast.png'  style="width: 6%; height:6%; margin-top: 9px; border-radius : 0%" >
+                                                  <a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;'>${element.description}</a><br>`
+                                        }
+
                                    }
                               }
 
@@ -231,21 +243,92 @@ MainNavbar::render($request);
                                    window.location = `http://localhost/unigura/tutor/add-activity-inclass?id=${btn.getAttribute('data-id')}`;
                               })
                          })
+
                          var hidebtns = document.querySelectorAll(".hide-btn");
                          hidebtns.forEach(hidebtn => {
                               hidebtn.addEventListener('click', function() {
-                                   const url = "http://localhost/unigura/tutor/getactivity?id=" + hidebtn.dataset.id;
-                                   fetch(url)
-                                        .then(response => response.json())
-                                        .then(data => {
+                                   const url = "http://localhost/unigura/tutor/markdayashide";
+                                   fetch(url, {
+                                             method: 'POST',
+                                             body: JSON.stringify({
+                                                  day_id: hidebtn.getAttribute('data-id')
+                                             })
+                                        })
+                                        .then(function(response) {
+                                             if (!response.ok) {
+                                                  throw new Error('Network response was not ok');
+                                             }
+                                             return response.text();
+                                        })
+                                        .then(function(responseText) {
+                                             hidebtn.nextElementSibling.style.display = 'block';
+                                             hidebtn.style.display = 'none';
+                                        })
+                                        .catch(function(error) {
+                                             console.error('Error retrieving data:', error);
+                                        });
+                              })
+                         })
+
+
+                         var unhidebtns = document.querySelectorAll(".unhide-btn");
+                         unhidebtns.forEach(unhidebtn => {
+                              unhidebtn.addEventListener('click', function() {
+                                   const url = "http://localhost/unigura/tutor/markdayasunhide";
+                                   fetch(url, {
+                                             method: 'POST',
+                                             body: JSON.stringify({
+                                                  day_id: unhidebtn.getAttribute('data-id')
+                                             })
+                                        })
+                                        .then(function(response) {
+                                             if (!response.ok) {
+                                                  throw new Error('Network response was not ok');
+                                             }
+                                             return response.text();
+                                        })
+                                        .then(function(responseText) {
+                                             unhidebtn.previousElementSibling.style.display = 'block';
+                                             unhidebtn.style.display = 'none';
 
                                         })
-                                        .catch(error => {
-                                             console.error(error);
+                                        .catch(function(error) {
+                                             console.error('Error retrieving data:', error);
                                         });
+                              })
+                         })
+
+
+                         var checkmark_inputs = document.querySelectorAll('.checkmark-input');
+                         checkmark_inputs.forEach(input => {
+                              input.addEventListener('change', function() {
+                                   if (input.checked) {
+                                        const url = "http://localhost/unigura/tutor/markdayascomplete";
+                                        fetch(url, {
+                                                  method: 'POST',
+                                                  body: JSON.stringify({
+                                                       day_id: input.getAttribute('data-id')
+                                                  })
+                                             })
+                                             .then(function(response) {
+                                                  if (!response.ok) {
+                                                       throw new Error('Network response was not ok');
+                                                  }
+                                                  return response.text();
+                                             })
+                                             .then(function(responseText) {
+                                                  console.log('ok');
+                                             })
+                                             .catch(function(error) {
+                                                  console.error('Error retrieving data:', error);
+                                             });
+                                   }
+
 
                               })
                          })
+
+
                     })
                     .catch(error => {
                          console.error(error);

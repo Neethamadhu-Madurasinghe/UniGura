@@ -17,7 +17,7 @@ Header::render(
      [
           'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css',
           'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css',
-          URLROOT . '/public/css/tutor/forms.css?v=1.5'
+          URLROOT . '/public/css/tutor/forms.css?v=1.8'
      ]
      //    Student base style is used here, because In this part, both student and tutor looks same
 );
@@ -33,25 +33,24 @@ Header::render(
                     <div>
                          <div class="dropdown">
                               <div class="dropdown_name">
-                                   <label for="Mode">Type of Document</label>
+                                   <label for="Mode">Activity Type</label>
                               </div>
                               <select id="type" name="type">
-                                   <option value="0">Theory Tute</option>
-                                   <option value="1">Question Tute</option>
+                                   <option value="0">Tute</option>
+                                   <option value="1">Submition</option>
+                                   <option value="2">Text</option>
                               </select>
                          </div>
                          <div class="dropdown">
                               <div Class="Uploadbox">
                                    <div>
                                         <input name="id" value="<?php echo $data['id'] ?>" type="hidden">
-
-                                        <input style="width : 100% " name='description' type="text">
+                                        <input id='title' style="width : 100% ;" name='description' type="text">
                                         <input type="file" id="activity-doc" name="activity-doc" hidden />
                                    </div>
                                    <label for="activity-doc" class="upload_label">Upload</label>
                               </div>
                          </div>
-
                     </div>
                     <button>Create</button>
                </form>
@@ -60,11 +59,30 @@ Header::render(
 
           <script>
                var closebtn = document.querySelector(".close");
-            
+
                closebtn.addEventListener('click', function() {
-                    window.location = "http://localhost/unigura/tutor/viewcourse?subject=" + "<?php echo $data['subject'] ?>" + "&module="+ "<?php echo $data['module'] ?>" + "&id=" + "<?php echo $data['c_id'] ?>";
+                    window.location = "http://localhost/unigura/tutor/classes";
                })
 
+               const select = document.getElementById('type');
+               const upload_btn = document.querySelector('.upload_label');
+               const title = document.getElementById('title');
+
+               select.addEventListener('change', () => {
+                    // Get the selected value
+                    const selectedValue = select.value;
+                    // Show/hide the divs based on the selected value
+                    if (selectedValue === '0') {
+                         upload_btn.style.display = 'block';
+                    } else if (selectedValue === '1') {
+                         upload_btn.style.display = 'none';
+                    } else if (selectedValue === '2') {
+                         upload_btn.style.display = 'none';
+          
+                    } else {
+                         
+                    }
+               });
           </script>
 
           <?php Footer::render(

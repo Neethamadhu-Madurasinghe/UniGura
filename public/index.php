@@ -180,7 +180,10 @@ $router->registerController('/tutor/payments/filterpayments', [TutorPayments::cl
 $router->registerController('/tutor/payments/getpaymentamounts', [TutorPayments::class, 'monthly_payment_amounts']);
 $router->registerController('/tutor/add-activity-inclass', [TutorClass::class, 'addactivity']);
 $router->registerController('/tutor/markdayashide', [TutorClass::class, 'markdayashide']);
+$router->registerController('/tutor/markdayasunhide', [TutorClass::class, 'markdayasunhide']);
 $router->registerController('/tutor/createcustomday', [TutorClass::class, 'createcustomday']);
+$router->registerController('/tutor/markdayascomplete', [TutorClass::class, 'markdayascomplete']);
+
 
 
 $router->registerController('/tutor/chat', [Chat::class, 'tutorChatView']);

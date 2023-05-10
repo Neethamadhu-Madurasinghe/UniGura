@@ -46,7 +46,7 @@ class ModelTutorClass
 
     public function getTutoringClassDays($id): array
     {
-        $this->db->query('SELECT position, title, id as dayid , day_template_id , is_hidden FROM day WHERE class_id = :id ORDER BY position ASC;');
+        $this->db->query('SELECT position, title, id as dayid , day_template_id , is_hidden , is_completed , payment_status FROM day WHERE class_id = :id ORDER BY position ASC;');
         $this->db->bind('id', $id, PDO::PARAM_INT);
         return $this->db->resultAllAssoc();
     }
@@ -90,16 +90,35 @@ class ModelTutorClass
         return $this->db->execute();
     }
 
+    public function markDayAsUnHiden($id) : bool 
+    {
+        $this->db->query('UPDATE day SET is_hidden = 0 WHERE id = :id ;');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+//      Returns whether the row count is greater than 0
+        return $this->db->execute();
+    }
+
+    public function markDayAsComplete($id) : bool 
+    {
+        $this->db->query('UPDATE day SET is_completed = 1 WHERE id = :id ;');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+//      Returns whether the row count is greater than 0
+        return $this->db->execute();
+    }
+
+
+
     public function setClassDay($data): bool
     {
         $this->db->query('INSERT INTO  day SET
                  class_id = :id,
-                 title = :title'
+                 title = :title, 
+                 position = :position'
                  );
 
         $this->db->bind('id', $data['id'], PDO::PARAM_INT);
         $this->db->bind('title', $data['title'], PDO::PARAM_STR);
-        // $this->db->bind('position', $data['position'], PDO::PARAM_STR);
+        $this->db->bind('position', $data['position'], PDO::PARAM_STR);
 
         return $this->db->execute();
     }

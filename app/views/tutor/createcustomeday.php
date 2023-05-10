@@ -29,8 +29,8 @@ Header::render(
         <div class="form_container">
             <form action="" method="POST" enctype='multipart/form-data'>
                 <div class="grid-plane">
-                    <input style="display:none" type="text" name="id" value='<?php echo $data['id'] ?>'>
-                    <input style="display:none" type="text" name="position" value='<?php echo $data['position'] ?>'>
+                    <input type="text" name="id" value='<?php echo $data['id'] ?>'>
+                    <input type="text" name="position" value='<?php echo $data['position'] ?>'>
                     <div class="dropdown">
                         <div class="dropdown_name">
                             <label for="Session Fee">Heading</label><br>
