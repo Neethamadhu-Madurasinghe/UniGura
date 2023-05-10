@@ -174,14 +174,14 @@ class ModelAdminRequirementComplaints
     public function rejectTutorRequest($tutorID)
     {
         $this->db->query("UPDATE tutor SET is_approved = 2 WHERE user_id = :tutor_id");
-        $this->db->bind(':tutor_id', $tutorID);
+        $this->db->bind(':tutor_id', $tutorID,PDO::PARAM_INT);
         return $this->db->execute();
     }
 
     public function addNotification($userID, $title, $description)
     {
         $this->db->query("INSERT INTO notification (user_id, title,description) VALUES (:user_id,:title,:description)");
-        $this->db->bind(':user_id', $userID);
+        $this->db->bind(':user_id', $userID,PDO::PARAM_INT);
         $this->db->bind(':title', $title);
         $this->db->bind(':description', $description);
         return $this->db->execute();
