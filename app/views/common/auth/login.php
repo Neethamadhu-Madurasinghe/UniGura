@@ -33,17 +33,17 @@ LandingPageNavBar::render($request)
 
         <div class="login-form-container">
             <h1>Login</h1>
-            <p>Register as a
+            <p>Not already registered ? Register as a
                 <a href="<?php echo URLROOT . '/student/register' ?>">Student</a>
                 or
                 <a href="<?php echo URLROOT . '/tutor/register' ?>">Tutor</a>
             </p>
 
-            <form action="" class="login-form" method="POST">
+            <form action="" class="login-form" method="POST" id="login-form">
 
                 <div class="form-row">
                     <div class="form-field">
-                        <label for="email">Email <span><?php echo $data['errors']['email_error'] ?></span></label>
+                        <label for="email">Email <span id="email-error"><?php echo $data['errors']['email_error'] ?></span></label>
                         <input type="text" class="form-input" name="email" id="login-email" value="<?php echo $data['email'] ?>">
                     </div>
                 </div>
@@ -51,7 +51,7 @@ LandingPageNavBar::render($request)
                 <div class="form-row">
                     <div class="form-field">
                         <label for="password">Password
-                            <span><?php echo $data['errors']['password_error'] ?></span>
+                            <span  id="password-error"><?php echo $data['errors']['password_error'] ?></span>
                         </label>
                         <input type="password" class="form-input" name="password" id="login-password">
                     </div>
@@ -74,4 +74,6 @@ LandingPageNavBar::render($request)
     </div>
 </div>
 
-<?php Footer::render([]); ?>
+<?php Footer::render([
+    URLROOT . '/public/js/common/login-signup-validation.js'
+]); ?>

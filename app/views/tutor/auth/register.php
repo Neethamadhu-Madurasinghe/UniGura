@@ -40,7 +40,7 @@ LandingPageNavBar::render($request)
                 <a href="<?php echo URLROOT . '/login' ?>">Login</a>
             </p>
 
-            <form action="" class="login-form" method="POST">
+            <form action="" class="login-form" method="POST" id="register-form">
 
                 <div class="form-row">
                     <div class="form-field">
@@ -64,7 +64,7 @@ LandingPageNavBar::render($request)
                 <div class="form-row">
                     <div class="form-field">
                         <label for="confirm-password">Confirm Password</label>
-                        <input type="password" class="form-input" name="confirm-password" id="login-password">
+                        <input type="password" class="form-input" name="confirm-password" id="login-password-confirm">
                     </div>
                 </div>
                 <input type="submit" value="Register" class="btn">
@@ -73,4 +73,6 @@ LandingPageNavBar::render($request)
     </div>
 </div>
 
-<?php Footer::render([]); ?>
+<?php Footer::render([
+    URLROOT . '/public/js/common/login-signup-validation.js'
+]); ?>
