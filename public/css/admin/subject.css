@@ -27,23 +27,23 @@
 .form {
     width: 50%;
     height: 100%;
-    background-color: #f2f2f2;
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 20px;
-    border-radius: 5px;
-    border: 2px solid #F7931A;
+    border-radius: 10px;
+    /* border: 2px solid #F7931A; */
 }
 
 .form .add-subject input {
     width: 100%;
     height: 35px;
-    border: 2px solid #F7931A;
+    /* border: 2px solid #F7931A; */
     border-radius: 5px;
     padding: 10px;
-    background-color: #EBEFF2;
+    background-color: #ffffff;
     margin-right: 15px;
     font-size: 17px;
 }
@@ -80,12 +80,12 @@
 
 
 .subject_module_box {
-    border-radius: 5px;
-    border: 2px solid #F7931A;
+    border-radius: 10px;
+    /* border: 2px solid #F7931A; */
     height: 45vh;
     /* padding: 15px; */
     /* width: 26vw; */
-    background-color: #f2f2f2;
+    background-color: #ffffff;
 }
 
 .subject_module_box .subject {
@@ -123,6 +123,8 @@
     margin-bottom: 8px;
     border: none;
     color: #000000;
+    background-color: #fff;
+
 }
 
 
@@ -140,10 +142,10 @@
 .insert_module input {
     width: 80%;
     height: 35px;
-    border: 2px solid #F7931A;
+    /* border: 2px solid #F7931A; */
     border-radius: 5px;
     padding: 10px;
-    background-color: #EBEFF2;
+    background-color: #ffffff;
 }
 
 .insert_module button {
@@ -264,6 +266,7 @@
     font-weight: bold;
     width: 100%;
     color: #000000;
+    background-color: #fff;
 }
 
 
@@ -380,6 +383,10 @@
 }
 
 
+.module_loop .module_name {
+    width: 20vw;
+}
+
 .save-cancel-subject a {
     text-decoration: none;
     font-size: 15px;
@@ -452,45 +459,45 @@
 /* ---------------------------------- SUBJECT & MODULE update Field ---------------------------- */
 
 
-.subject_name_filed.editSubject{
+.subject_name_filed.editSubject {
     border-radius: 5px;
     border: 1px dotted #000000;
     padding: 3px;
     width: 100%;
     color: #000000;
-    background-color: #f2f2f2;
+    background-color: #ffffff;
     transition: all 0.5s ease;
 }
 
 
-.subject_name_filed.cancelEditSubject{
+.subject_name_filed.cancelEditSubject {
     border-radius: 0px;
     border: none;
     padding: 0px;
     width: 100%;
     color: #000000;
-    background-color: #f2f2f2;
+    background-color: #ffffff;
     transition: all 0.5s ease;
 }
 
 
-.module_input_filed.editModule{
+.module_input_filed.editModule {
     border-radius: 5px;
     border: 1px dotted #000000;
     padding: 3px;
     width: 100%;
     color: #000000;
-    background-color: #f2f2f2;
+    background-color: #ffffff;
     transition: all 0.5s ease;
 }
 
 
-.module_input_filed.cancelEditModule{
+.module_input_filed.cancelEditModule {
     border-radius: 0px;
     border: none;
     padding: 0px;
     width: 100%;
     color: #000000;
-    background-color: #f2f2f2;
+    background-color: #ffffff;
     transition: all 0.5s ease;
 }

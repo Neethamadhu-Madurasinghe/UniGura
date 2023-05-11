@@ -187,5 +187,12 @@ public function setClassTemplateDay($data): bool
 //      Returns whether the row count is greater than 0
         return $this->db->execute();
     }
-
+    
+    public function changeClassTemplateStatus($id) : bool 
+    {
+        $this->db->query('UPDATE tutoring_class_template SET is_hidden = 0 WHERE id = :c_id ;');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+//      Returns whether the row count is greater than 0
+        return $this->db->execute();
+    }
 }

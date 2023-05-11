@@ -176,11 +176,51 @@ class AdminRequirementComplaints extends Controller
 
 
             if (!$hasErrors) {
-                $this->requirementComplaintsModel->updateStudentComplainReason($data['student_reason'], $data['student_reason_id']);
+                $this->requirementComplaintsModel->updateStudentComplainReason($data['student_reason_id'], $data['student_reason']);
                 redirect('admin/complaintSetting');
             }
         }
     }
+
+
+
+    public function deleteStudentComplainReason(Request $request)
+    {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+
+        if ($request->isGet()) {
+            $body = $request->getBody();
+
+            $studentComplaintReason = $this->requirementComplaintsModel->getStudentComplaintReason();
+            $tutorComplaintReason = $this->requirementComplaintsModel->getTutorComplaintReason();
+
+
+            if ($this->requirementComplaintsModel->deleteComplaint($body['complaintID']) === '') {
+                $this->requirementComplaintsModel->deleteComplaint($body['complaintID']);
+                redirect('admin/complaintSetting');
+            } else {
+
+                $data = [
+                    'student_reason_id' => $body['complaintID'],
+                    'studentComplaintReason' => $studentComplaintReason,
+                    'tutorComplaintReason' => $tutorComplaintReason,
+
+                    'errors' => [
+                        'student_reason' => $this->requirementComplaintsModel->deleteComplaint($body['complaintID']),
+                        'tutor_reason' => '',
+
+                    ]
+                ];
+
+                $this->view('admin/complaint_settings', $request, $data);
+            }
+        }
+    }
+
 
 
 
@@ -282,6 +322,47 @@ class AdminRequirementComplaints extends Controller
 
 
 
+    
+    public function deleteTutorComplainReason(Request $request)
+    {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+
+        if ($request->isGet()) {
+            $body = $request->getBody();
+
+            $studentComplaintReason = $this->requirementComplaintsModel->getStudentComplaintReason();
+            $tutorComplaintReason = $this->requirementComplaintsModel->getTutorComplaintReason();
+
+
+            if ($this->requirementComplaintsModel->deleteComplaint($body['complaintID']) === '') {
+                $this->requirementComplaintsModel->deleteComplaint($body['complaintID']);
+                redirect('admin/complaintSetting');
+            } else {
+
+                $data = [
+                    'tutor_reason_id' => $body['complaintID'],
+                    'studentComplaintReason' => $studentComplaintReason,
+                    'tutorComplaintReason' => $tutorComplaintReason,
+
+                    'errors' => [
+                        'student_reason' => '',
+                        'tutor_reason' => $this->requirementComplaintsModel->deleteComplaint($body['complaintID']),
+
+                    ]
+                ];
+
+                $this->view('admin/complaint_settings', $request, $data);
+            }
+        }
+    }
+
+
+
+
     public function acceptTutorRequest(Request $request)
     {
 
@@ -295,6 +376,8 @@ class AdminRequirementComplaints extends Controller
             $tutorID = $data['tutorID'];
 
             $this->requirementComplaintsModel->acceptTutorRequest($tutorID);
+
+            $this->requirementComplaintsModel->addNotification($tutorID, 'Your tutor request has been accepted.', 'Now you can login to your account and start tutoring.');
 
             redirect('admin/tutorRequest');
         }
@@ -315,6 +398,8 @@ class AdminRequirementComplaints extends Controller
             $tutorID = $data['tutorID'];
 
             $this->requirementComplaintsModel->rejectTutorRequest($tutorID);
+
+            $this->requirementComplaintsModel->addNotification($tutorID, 'Your tutor request has been rejected.', 'Please contact us for more information.');
 
             redirect('admin/tutorRequest');
         }

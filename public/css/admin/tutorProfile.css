@@ -22,25 +22,28 @@
 
 
 .top-details-box {
-    width: 95%;
+    width: 96%;
     background: white;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin: 20px auto;
-    padding: 10px;
     border-radius: 10px;
+    margin: 20px auto;
+    padding: 15px;
 }
 
 .profile-picture img {
-    width: 150px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 
 .class-summary {
-    width: 40%;
-    margin-right: 50px;
+    width: 100%;
+    margin-right: 10px;
+    /* background: #000; */
 }
 
 .total-class {
@@ -55,13 +58,27 @@
 }
 
 .pending-amount {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin: 10px 0;
     border: 2px solid #FC941D;
     padding: 8px;
     border-radius: 5px;
+}
+
+.pending-amount .qualification-files{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.pending-amount .qualification-files .qualification{
+    width: 100%;
+    margin-top: 10px;
+}
+
+.pending-amount .qualification-files .qualification a{
+    text-decoration: none;
 }
 
 .class-summary h1 {
@@ -78,20 +95,35 @@
     position: relative;
 }
 
+.name-actions .actions{
+    margin-left: 40px;
+}
+
 .name-actions .name{
     margin-bottom: 15px;
 }
 
+.name-actions .name h1{
+    font-size: 35px;
+}
+
+
 .tutor-details {
     display: flex;
     align-items: center;
-    width: 100%;
-    margin-left: 20px;
+    width: 45%;
+    margin-right: 60px;
 }
 
 .name-actions {
     margin-left: 30px;
     margin-bottom: 15px;
+}
+
+.name-actions .name{
+    overflow: auto;
+    overflow-wrap:break-word;   
+    width: 300px;
 }
 
 .actions .chat button {
@@ -120,11 +152,15 @@
 .active-classes {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 40px;
+    grid-gap: 30px;
     width: 96%;
-    margin: 20px;
+    margin: 20px auto;
+    padding: 15px;
+    height: 50vh;
+    border-radius: 10px;
     overflow-y: scroll;
     display: none;
+    background-color: #fff;
 }
 
 
@@ -147,11 +183,15 @@
 .finished-classes {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 40px;
+    grid-gap: 30px;
     width: 96%;
-    margin: 20px;
+    padding: 15px;
+    height: 50vh;
+    border-radius: 10px;
     overflow-y: scroll;
+    margin: 20px auto;
     display: none;
+    background-color: #fff;
 }
 
 .finished-classes::-webkit-scrollbar {
@@ -175,16 +215,19 @@
     display: flex;
     justify-content: left;
     align-items: center;
-    background: white;
+    background-color: #ffb75e54;
     padding: 10px;
     border-radius: 5px;
-    border: 2px solid #FC941D;
-    height: 130px;
+    height: 100px;
+    border: 2px solid #FFA620;
 }
 
 .student-profile img {
-    width: 100px;
+    width: 90px;
+    height: 90px;
+    margin-top: 5px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .class-details {
@@ -218,13 +261,12 @@
 
 .filed-selection-btn{
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     align-items: center;
     padding: 10px;
     border-radius: 5px;
-    width: 90%;
+    width: 95%;
     margin: 20px auto;
-    background-color: #ffa620a3;
 }
 
 .filed-selection-btn button{
@@ -234,8 +276,11 @@
     font-size: 18px;
     font-weight: 500;
     padding: 10px;
+    margin-right: 10px;
+    border: 2px solid black;
     border-radius: 5px;
-    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    /* background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%); */
+    background-color: #fff;
     user-select: none;
 }
 
@@ -252,24 +297,25 @@
 /* ========================= tutor INFO ============================== */
 
 .tutor-info {
-    width: 95%;
-    margin: 20px auto;
+    width: 96%;
     background: white;
-    padding: 10px;
-    border-radius: 10px;
+    height: 50vh;
     display: flex;
     justify-content: space-around;
     align-items: center;
     /* display: none; */
+    padding: 15px;
+    margin: 20px auto;
+    border-radius: 10px;
 }
 
 .tutor-info>div {
-    width: 30%;
+    width: 34%;
 }
 
 .tutor-info>div>div {
     border: 2px solid #FC941D;
-    padding: 10px;
+    padding: 13px;
     border-radius: 5px;
     margin: 20px 0;
 
@@ -277,18 +323,19 @@
 
 .tutor-info h1 {
     font-size: 18px;
-    font-weight: 500;
+    font-weight:bold;
 }
 
 .tutor-info h2 {
     font-size: 18px;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .section-1>div {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #ffb75e54;
     margin: 10px 0;
 }
 
@@ -296,6 +343,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #ffb75e54;
     margin: 10px 0;
 }
 
@@ -305,6 +353,7 @@
 .actions{
     display: flex;
     justify-content: space-around;
+    width: 150px;
     align-items: center;
 }
 
@@ -355,7 +404,7 @@
     align-items: center;
     padding: 30px;
     margin: 20px auto;
-    width: 100%;
+    width: 96%;
 }
 
 .pop-time-table h2 {
@@ -400,4 +449,24 @@
 
 .slot-selected {
     background-image: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+}
+
+
+/* ======================RESULT NOT FOUND SECTION====================================  */
+
+.result-not-found {
+    width: 80vw;
+    /* height: 100vw; */
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.result-not-found img {
+    width: 300px;
+}
+
+.result-not-found h1 {
+    font-size: 30px;
+    margin-left: 15px;
 }

@@ -158,7 +158,7 @@ class ModelAdminFilter
 
     public function getAllTutor()
     {
-        $this->db->query("SELECT * FROM tutor");
+        $this->db->query("SELECT tutor.*, user.* FROM tutor INNER JOIN user ON tutor.user_id = user.id");
 
         $rows = $this->db->resultAll();
 
@@ -168,6 +168,20 @@ class ModelAdminFilter
             return false;
         }
     }
+
+
+    public function getTutorByQuery($sql){
+        $this->db->query($sql);
+
+        $rows = $this->db->resultAll();
+
+        if ($this->db->rowCount() >= 0) {
+            return $rows;
+        } else {
+            return false;
+        }
+    }
+    
 
     public function getTutorContactDetails($tutorID)
     {
@@ -190,7 +204,8 @@ class ModelAdminFilter
 
     public function getAllClasses()
     {
-        $this->db->query("SELECT tutoring_class.*, tutoring_class_template.*,subject.name as subjectName,module.name as moduleName,user.first_name as student_first_name, user.last_name as student_last_name,user.profile_picture as student_profile_picture FROM tutoring_class,tutoring_class_template,subject,module,user WHERE tutoring_class.class_template_id = tutoring_class_template.id AND tutoring_class_template.subject_id = subject.id AND tutoring_class_template.module_id = module.id AND tutoring_class.student_id = user.id");
+
+        $this->db->query("SELECT tutoring_class.tutor_id as tutorID, tutoring_class.date as date, tutoring_class.time as time, tutoring_class.class_type as class_type, tutoring_class.mode as mode,tutoring_class.session_rate as session_rate,tutoring_class.completion_status as completion_status, tutoring_class.student_id as student_id, tutoring_class_template.*,subject.name as subjectName,module.name as moduleName,user.first_name as student_first_name, user.last_name as student_last_name,user.profile_picture as student_profile_picture, tutoring_class_template.current_rating as currentRating FROM tutoring_class,tutoring_class_template,subject,module,user WHERE tutoring_class.class_template_id = tutoring_class_template.id AND tutoring_class_template.subject_id = subject.id AND tutoring_class_template.module_id = module.id AND tutoring_class.student_id = user.id");
 
         return $this->db->resultAll();
     }
@@ -297,7 +312,7 @@ class ModelAdminFilter
     }
 
 
-    
+
     // For Tutor Complaint Search & Filter
 
     public function getTutorComplaints($start, $rowsPerPage)

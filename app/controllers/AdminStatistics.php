@@ -297,6 +297,16 @@ class AdminStatistics extends Controller
         }
 
 
+        $userFeedbackOneRating = $this->statisticsModel->getUserFeedbackOneRating();
+        $userFeedbackTwoRating = $this->statisticsModel->getUserFeedbackTwoRating();
+        $userFeedbackThreeRating = $this->statisticsModel->getUserFeedbackThreeRating();
+        $userFeedbackFourRating = $this->statisticsModel->getUserFeedbackFourRating();
+        $userFeedbackFiveRating = $this->statisticsModel->getUserFeedbackFiveRating();
+
+        $totalUserFeedbackRating = $this->statisticsModel->getTotalUserFeedbackRating();
+        $totalUsers = $this->statisticsModel->getTotalUserGiveFeedback();
+
+
         $data = [
             'totalStudents' => $totalStudent,
             'totalTutors' => $totalTutor,
@@ -394,6 +404,14 @@ class AdminStatistics extends Controller
             'systemOctoberProfit' => $systemOctoberProfit,
             'systemNovemberProfit' => $systemNovemberProfit,
             'systemDecemberProfit' => $systemDecemberProfit,
+
+            'userFeedbackOneRating' => $userFeedbackOneRating,
+            'userFeedbackTwoRating' => $userFeedbackTwoRating,
+            'userFeedbackThreeRating' => $userFeedbackThreeRating,
+            'userFeedbackFourRating' => $userFeedbackFourRating,
+            'userFeedbackFiveRating' => $userFeedbackFiveRating,
+            'totalUserFeedbackRating' => $totalUserFeedbackRating,
+            'totalUsers' => $totalUsers,
         ];
 
         $this->view('admin/statistics', $request, $data);

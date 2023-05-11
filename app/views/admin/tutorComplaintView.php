@@ -21,6 +21,9 @@
             <input type="hidden" name="complainStatus" id="complainStatus" value="<?php echo $data['oneTutorComplaint']->is_inquired ?>">
             <input type="hidden" name="tutorComplaintId" value="<?php echo $data['oneTutorComplaint']->id ?>">
 
+            <input type="hidden" name="studentId" value="<?php echo $data['oneTutorComplaint']->student_id ?>">
+            <input type="hidden" name="tutorId" value="<?php echo $data['oneTutorComplaint']->tutor_id ?>">
+
             <h4>Complaint Status (Solved or not):&nbsp;&nbsp; </h4>
 
             <label for="checking">
@@ -30,7 +33,7 @@
                     <input type="checkbox" name="complainStatus">
                 <?php } ?>
             </label>
-            
+
             <div class="submit-status-btn">
                 <button type="submit" name="submit-status-btn" id="submit-status-btn">Submit</button>
             </div>
@@ -62,14 +65,20 @@
         <h1>Tutor's Other Reviews</h1>
         <div class="tutor-review">
 
+            <?php if (empty($data['otherTutorComplaints'])) : ?>
+                <div class="result-not-found">
+                    <img src="<?php echo URLROOT; ?>/public/img/admin/resultNotFound.png" alt=""><br>
+                    <h1>Looks like there haven't been any other reviews yet for this student.</h1>
+                </div>
+            <?php endif; ?>
+
             <?php foreach ($data['otherTutorComplaints'] as $complain) : ?>
                 <div class="one-tutor-review">
                     <div class="tutor-review-header">
                         <div class="tutor-review-info">
                             <div class="profile-img">
-                                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                                <img src="<?php echo URLROOT ?><?php echo $complain->student->profile_picture ?>" alt="profile picture">
                             </div>
-
                             <div class="tutor-review-title">
                                 <h3><?php echo $complain->student->first_name . ' ' . $complain->student->last_name ?></h3>
                                 <h5><?php echo $complain->reportReason->description ?></h5>

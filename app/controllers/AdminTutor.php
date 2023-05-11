@@ -16,12 +16,6 @@ class AdminTutor extends Controller{
 
         $allTutors = $this->tutorModel->getAllTutor();
 
-        foreach ($allTutors as $tutor){
-            $tutorID = $tutor->user_id;
-            $tutorContactDetails = $this->tutorModel->getTutorContactDetails($tutorID);
-            $tutor->contactDetails = $tutorContactDetails;
-        }
-
         $data = $allTutors;
 
         $this->view('admin/tutor', $request, $data);

@@ -2,10 +2,6 @@
 <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/complaintView.css">
 <script defer src="<?php echo URLROOT ?>/public/js/admin/complaint_view.js"></script>
 
-
-
-
-
 <section class="home" id="home">
     <p></p>
     <p></p>
@@ -21,16 +17,21 @@
             <input type="hidden" name="complainStatus" id="complainStatus" value="<?php echo $data['oneStudentComplaint']->is_inquired ?>">
             <input type="hidden" name="studentComplaintId" value="<?php echo $data['oneStudentComplaint']->id ?>">
 
+
+            <input type="hidden" name="studentId" value="<?php echo $data['oneStudentComplaint']->student_id ?>">
+            <input type="hidden" name="tutorId" value="<?php echo $data['oneStudentComplaint']->tutor_id ?>">
+
+
             <h4>Complaint Status (Solved or not):&nbsp;&nbsp; </h4>
 
-            <label for="checking">
+            <label for="checking" class="checkbox-button">
                 <?php if ($data['oneStudentComplaint']->is_inquired == 1) { ?>
                     <input type="checkbox" name="complainStatus" checked>
                 <?php } else { ?>
                     <input type="checkbox" name="complainStatus">
                 <?php } ?>
             </label>
-            
+
             <div class="submit-status-btn">
                 <button type="submit" name="submit-status-btn" id="submit-status-btn">Submit</button>
             </div>
@@ -62,14 +63,21 @@
         <h1>Tutor's Other Reviews</h1>
         <div class="tutor-review">
 
+            <?php if (empty($data['otherStudentComplaints'])) : ?>
+                <div class="result-not-found">
+                    <img src="<?php echo URLROOT; ?>/public/img/admin/resultNotFound.png" alt=""><br>
+                    <h1>Looks like there haven't been any other reviews yet for this tutor.</h1>
+                </div>
+            <?php endif; ?>
+
+
             <?php foreach ($data['otherStudentComplaints'] as $complain) : ?>
                 <div class="one-tutor-review">
                     <div class="tutor-review-header">
                         <div class="tutor-review-info">
                             <div class="profile-img">
-                                <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                                <img src="<?php echo URLROOT ?><?php echo $complain->tutor->profile_picture ?>" alt="profile picture">
                             </div>
-
                             <div class="tutor-review-title">
                                 <h3><?php echo $complain->tutor->first_name . ' ' . $complain->tutor->last_name ?></h3>
                                 <h5><?php echo $complain->reportReason->description ?></h5>

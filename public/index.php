@@ -49,6 +49,9 @@ $router->registerController('/admin/updateSubjectHideShow', [AdminSubjectModule:
 $router->registerController('/admin/updateModuleHideShow', [AdminSubjectModule::class, 'updateModuleHideShow']);
 
 
+$router->registerController('/admin/viewFiles', [AdminFileLoader::class, 'viewFiles']);
+
+
 
 
 $router->registerController('/admin/student', [AdminStudent::class, 'student']);
@@ -68,6 +71,9 @@ $router->registerController('/admin/addStudentComplainReason', [AdminRequirement
 $router->registerController('/admin/addTutorComplainReason', [AdminRequirementComplaints::class, 'addTutorComplainReason']);
 $router->registerController('/admin/updateStudentComplainReason', [AdminRequirementComplaints::class, 'updateStudentComplainReason']);
 $router->registerController('/admin/updateTutorComplainReason', [AdminRequirementComplaints::class, 'updateTutorComplainReason']);
+$router->registerController('/admin/deleteStudentComplainReason', [AdminRequirementComplaints::class, 'deleteStudentComplainReason']);
+$router->registerController('/admin/deleteTutorComplainReason', [AdminRequirementComplaints::class, 'deleteTutorComplainReason']);
+
 
 
 
@@ -80,6 +86,10 @@ $router->registerController('/admin/uploadBankSlip', [AdminPayment::class, 'uplo
 
 $router->registerController('/admin/notification', [AdminNotification::class, 'notification']);
 $router->registerController('/admin/notification/clearNotification', [AdminNotification::class, 'clearNotification']);
+$router->registerController('/admin/notificationCount', [AdminNotification::class, 'notificationCount']);
+$router->registerController('/admin/deleteNotification', [AdminNotification::class, 'deleteNotification']);
+
+
 
 
 
@@ -167,6 +177,7 @@ $router->registerController('/tutor/getactivity', [TutorCourse::class, 'getactiv
 $router->registerController('/tutor/viewactivitydoc', [TutorCourse::class, 'loadTutorFile']);
 $router->registerController('/tutor/updateday', [TutorCourse::class, 'updateDay']);
 $router->registerController('/tutor/deleteday', [TutorCourse::class, 'deleteDayTemplate']);
+$router->registerController('/tutor/change-classtemplate-status', [TutorCourse::class, 'changeClassTemplateStatus']);
 
 $router->registerController('/tutor/requestdecline', [TutorDashboard::class, 'requestDecline']);
 $router->registerController('/tutor/payment', [TutorDashboard::class, 'payment']);
@@ -178,6 +189,15 @@ $router->registerController('/tutor/classes', [TutorClass::class, 'mainpage']);
 $router->registerController('/tutor/payments', [TutorPayments::class, 'mainpage']);
 $router->registerController('/tutor/payments/filterpayments', [TutorPayments::class, 'filter_payments_by_day']);
 $router->registerController('/tutor/payments/getpaymentamounts', [TutorPayments::class, 'monthly_payment_amounts']);
+$router->registerController('/tutor/add-activity-inclass', [TutorClass::class, 'addactivity']);
+$router->registerController('/tutor/markdayashide', [TutorClass::class, 'markdayashide']);
+$router->registerController('/tutor/markdayasunhide', [TutorClass::class, 'markdayasunhide']);
+$router->registerController('/tutor/createcustomday', [TutorClass::class, 'createcustomday']);
+$router->registerController('/tutor/markdayascomplete', [TutorClass::class, 'markdayascomplete']);
+$router->registerController('/tutor/sendpositioninclass', [TutorClass::class, 'sendposition']);
+$router->registerController('/tutor/finishclass', [TutorClass::class, 'finishclass']);
+
+
 
 
 $router->registerController('/tutor/chat', [Chat::class, 'tutorChatView']);
@@ -187,6 +207,7 @@ $router->registerController('/tutor/viewstudentrequest', [TutorDashboard::class,
 
 
 $router->registerController('/tutor/getclassdetails', [TutorClass::class, 'getclassdetails']);
+
 
 
 
