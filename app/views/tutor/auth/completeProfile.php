@@ -203,29 +203,29 @@ IntermediateNavBar::render($request);
 
         <div class="form-row upload-btn-row">
             <div class="form-field btn-field">
-                <span class="upload-button-error">
+                <span class="upload-button-error" id="result-sheet-error">
                     <?php echo $data['errors']['advanced_level_result_error'] ?>
                 </span>
                 <input type="file" id="actual-al-result-btn" name="advanced-level-result" hidden />
-                <label for="actual-al-result-btn" id="al-result-upload-btn">
+                <label for="actual-al-result-btn" id="al-result-upload-btn"  class="upload-btn-fake">
                     Upload A/L Result Sheet
                 </label>
             </div>
             <div class="form-field btn-field">
-                <span class="upload-button-error">
+                <span class="upload-button-error" id="identity-card-error">
                     <?php echo $data['errors']['id_copy_error'] ?>
                 </span>
                 <input type="file" id="actual-identity-card-btn" name="id-copy" hidden />
-                <label for="actual-identity-card-btn" id="al-identity-card-btn">
+                <label for="actual-identity-card-btn" id="al-identity-card-btn" class="upload-btn-fake">
                     Upload Identity Card Photo
                 </label>
             </div>
             <div class="form-field btn-field">
-                <span class="upload-button-error">
+                <span class="upload-button-error" id="uni-entrance-error">
                     <?php echo $data['errors']['university_entrance_letter_error'] ?>
                 </span>
                 <input type="file" id="actual-university-entrance-letter" name="university-entrance-letter" hidden />
-                <label for="actual-university-entrance-letter" id="university-entrance-letter">
+                <label for="actual-university-entrance-letter" id="university-entrance-letter" class="upload-btn-fake">
                     Upload University Entrance Letter
                 </label>
             </div>
@@ -261,6 +261,7 @@ IntermediateNavBar::render($request);
         'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js',
         URLROOT . '/public/js/common/student-tutor-complete-profile.js?v=1.2',
         URLROOT . '/public/js/common/tutor-student-profile-detail-validator-functions.js',
-        URLROOT . '/public/js/common/tutor-student-profile-detail-validator.js'
+        URLROOT . '/public/js/common/tutor-student-profile-detail-validator.js',
+        URLROOT . '/public/js/tutor/file-upload-indicator.js'
     ]
 ); ?>

@@ -16,6 +16,13 @@ const universityInputUI = document.getElementById('university-input');
 const universityErrorUI = document.getElementById('university-error')
 const bioInputUI = document.getElementById('bio-input');
 const bioErrorUI = document.getElementById('bio-error')
+// File upload buttons
+const alResultFileUploadUI = document.getElementById('actual-al-result-btn');
+const alResultErrorUI = document.getElementById('result-sheet-error');
+const identityCardUploadUI = document.getElementById('actual-identity-card-btn');
+const identityErrorUI = document.getElementById('identity-card-error');
+const universityEntranceUploadUI = document.getElementById('actual-university-entrance-letter');
+const universityEntranceErrorUI = document.getElementById('uni-entrance-error');
 
 const profileCompleteForm = document.getElementById('complete-profile-form');
 
@@ -102,6 +109,38 @@ profileCompleteForm?.addEventListener('submit', (e) => {
             bioErrorUI.innerText = "";
         }
     }
+
+    //Tutor files upload things
+    if (alResultFileUploadUI) {
+        if (alResultFileUploadUI.value === "") {
+            isValid = false;
+
+            console.log(alResultErrorUI);
+            alResultErrorUI.innerText = "Please upload a document";
+        }else {
+            alResultErrorUI.innerText = "";
+        }
+    }
+
+    if (identityCardUploadUI) {
+        if (identityCardUploadUI.value === "") {
+            isValid = false;
+            identityErrorUI.innerText = "Please upload a document";
+        }else {
+            identityErrorUI.innerText = "";
+        }
+    }
+
+    if (universityEntranceUploadUI) {
+        if (universityEntranceUploadUI.value === "") {
+            isValid = false;
+            universityEntranceErrorUI.innerText = "Please upload a document";
+        }else {
+            universityEntranceErrorUI.innerText = "";
+        }
+    }
+
+
 
     if(!isValid) {
         e.preventDefault();
