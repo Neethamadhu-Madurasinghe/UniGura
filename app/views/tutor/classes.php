@@ -17,7 +17,7 @@ Header::render(
      'Tutor Classes',
      [
           URLROOT . '/public/css/tutor/base.css?v=2.8',
-          URLROOT . '/public/css/tutor/style.css?v=2.8',
+          URLROOT . '/public/css/tutor/style.css?v=2.9',
      ]
 );
 MainNavbar::render($request);
@@ -71,7 +71,7 @@ MainNavbar::render($request);
                          <h2 id='student_name' style="margin-bottom: 20px;"></h2>
                          <h3 id='class-time' style="color: rgba(112, 124, 151, 1);text-align: right;margin-top: 13px;font-size: 17px;"></h3>
                     </div>
-                  
+
                     <div class="textbox_two">
                          <img class="img03" src="<?php echo URLROOT ?>/public/img/tutor/class/icons/BookBookmark.png" style>
                          <p id='module_name' style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;"></p>
