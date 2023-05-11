@@ -172,7 +172,7 @@ toggle between hiding and showing the dropdown content */
      let earings_percentage;
 
      if(total != 0){
-          earings_percentage = Math.floor(earning*100/(pending+earning));
+          earings_percentage = Math.ceil(earning*100/(pending+earning));
           document.getElementById('earing_percentage').innerHTML = `${earings_percentage}%`
      }else{
           document.getElementById('earing_percentage').innerHTML = `0%`
@@ -192,9 +192,10 @@ toggle between hiding and showing the dropdown content */
                } else {
                     payment_status = "PAID-OFF";
                }
+
                
                let year = element.date.slice(0,4);
-               console.log(element.date)
+             
                let month = element.date.toString().slice(5, 7);
                let day = element.date.toString().slice(8, 10);
                let month_text = new Date(Date.UTC(2023, parseInt(month) - 1, 1)).toLocaleString('default', {

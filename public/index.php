@@ -183,6 +183,7 @@ $router->registerController('/tutor/markdayashide', [TutorClass::class, 'markday
 $router->registerController('/tutor/markdayasunhide', [TutorClass::class, 'markdayasunhide']);
 $router->registerController('/tutor/createcustomday', [TutorClass::class, 'createcustomday']);
 $router->registerController('/tutor/markdayascomplete', [TutorClass::class, 'markdayascomplete']);
+$router->registerController('/tutor/sendpositioninclass', [TutorClass::class, 'sendposition']);
 
 
 

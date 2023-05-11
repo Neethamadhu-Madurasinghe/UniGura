@@ -97,11 +97,25 @@ MainNavbar::render($request);
 <script>
      let viewbtns = document.querySelectorAll('.view-class');
 
+     const urlParams = new URLSearchParams(window.location.search);
+
+     const classid = urlParams.get('id'); 
+
+     if(classid != null){
+          showclass(classid);
+          console.log('Have')
+     }else{
+          console.log('csss')
+     }
 
 
      viewbtns.forEach(btn => {
-          btn.addEventListener('click', function() {
-               const url = "http://localhost/unigura/tutor/getclassdetails?id=" + btn.dataset.id;
+          btn.addEventListener('click', () => showclass(btn.dataset.id))
+     })
+
+
+     function showclass(id){
+               const url = "http://localhost/unigura/tutor/getclassdetails?id=" + id;
                fetch(url)
                     .then(response => response.json())
                     .then(data => {
@@ -194,7 +208,7 @@ MainNavbar::render($request);
                                    checkbox = `<input class='checkmark-input' type="checkbox" data-id=${day.dayid}><span class="checkmark" ></span>`;
                               }
 
-                              let code = `<div class="day_box" style="margin-top: 0px;">
+                              let code = `<div class="day_box" style="margin-top: 0px;" id=${day.dayid}>
                                    <div style="display: grid;grid-template-columns: 8fr 1fr 1fr;border-bottom:2px solid  rgba(112, 124, 151, 0.151) ;padding-bottom: 5px;">
                                         <h4>Day ${day.position} - ${day.title}</h4>
                                         <label class="container">
@@ -329,12 +343,91 @@ MainNavbar::render($request);
                          })
 
 
+                         var draggableItems = document.querySelectorAll(".day_box");
+                         var draggingItem = null;
+                         var originalIndex = null;
+
+                         // Define a data object to store the position of the elements
+                         var positionData = {};
+
+                         // Initialize the data object with the initial position of the elements
+                         for (var i = 0; i < draggableItems.length; i++) {
+                              positionData[draggableItems[i].id] = i + 1;
+                         }
+
+                         for (var i = 0; i < draggableItems.length; i++) {
+                              draggableItems[i].addEventListener("dragstart", function(e) {
+                                   draggingItem = this;
+                                   originalIndex = Array.prototype.indexOf.call(this.parentNode.children, this);
+                              });
+
+                              draggableItems[i].addEventListener("dragover", function(e) {
+                                   e.preventDefault();
+                                   this.style.backgroundColor = "lightgray";
+                              });
+
+                              draggableItems[i].addEventListener("dragleave", function(e) {
+                                   this.style.backgroundColor = "";
+                              });
+
+                              draggableItems[i].addEventListener("drop", function(e) {
+                                   if (draggingItem !== this) {
+                                        var newIndex = Array.prototype.indexOf.call(this.parentNode.children, this);
+                                        var temp = this.id;
+                                        this.id = draggingItem.id;
+                                        draggingItem.id = temp;
+
+                                        var temphtml = this.innerHTML;
+                                        this.innerHTML = draggingItem.innerHTML;
+                                        draggingItem.innerHTML = temphtml;
+
+                                        draggableItems[originalIndex].style.backgroundColor = "";
+                                        originalIndex = newIndex;
+                      
+
+                                        // Update the position data object with the new position of the elements
+                                        var tempPositionData = {};
+
+                                        for (var i = 0; i < draggableItems.length; i++) {
+                                             tempPositionData[draggableItems[i].id] = i + 1;
+                                        }
+                                        positionData = tempPositionData;
+                                        console.log(positionData);
+                                        sendPositon(positionData);
+                                   }
+                                   this.style.backgroundColor = "";
+                              });
+                         }
+
+
+
                     })
                     .catch(error => {
-                         console.error(error);
+                         let container = document.querySelector('.studnt-details-container');
+                         container.innerHTML = `<div>Requested Class Not Exists</div>`
+                         document.querySelector('.studnt-details-container').style.display = 'block';
                     });
-          })
-     })
+          }
+     
+
+     function sendPositon(position_list) {
+          fetch('http://localhost/unigura/tutor/sendpositioninclass', {
+                    method: 'POST',
+                    headers: {
+                         'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                         data: position_list
+                    })
+               })
+               .then(response => response.json())
+               .then(data => {
+                    console.log(`success : ${data}`);
+               })
+               .catch((error) => {
+                    console.error('Have Error');
+               });
+     }
 </script>
 
 
