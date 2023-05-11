@@ -114,11 +114,11 @@ MainNavbar::render($request);
           id="image-upload-form"
           enctype = "multipart/form-data"
           method="post">
-        <h1 class="main-title">My Profile</h1>
+        <h1 class="main-title">Hello <?php echo $data['first_name'] . " " . $data['last_name'] ?> </h1>
         <div class="upload-picture-container">
             <img src="<?php echo URLROOT . $request->getUserPicture() ?>" alt="" id="profile-picture">
             <input type="file" name="profile-picture" id="actual-btn" accept="image/*" hidden onchange="this.form.submit()" />
-            <label for="actual-btn" id="profile-image-upload-btn">Change and Save</label>
+            <label for="actual-btn" id="profile-image-upload-btn">Change Profile Picture</label>
         </div>
     </form>
 

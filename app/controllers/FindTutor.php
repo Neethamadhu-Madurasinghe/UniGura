@@ -259,11 +259,14 @@ class FindTutor extends Controller {
 //          If all the checks are passed, then make the request
             if ($this->requestModel->makeRequest($body)) {
 //                Create a notification
+//                Get the course details to be shown in the notification
+                $course = $this->classTemplateModel->getClassTemplateById($body['template_id']);
+
                 $this->notification->createNotification(
                             $body['student_id'],
                         "Tutor request has been sent",
                     "/UniGura/student/profile#requests",
-                        "You have sent a tutor request. You can cancel it by clicking here"
+                        "You have sent a tutor request to "  . $course->first_name . ' ' . $course->last_name . ". You can cancel it by clicking here"
 
                 );
 

@@ -5,7 +5,7 @@ const profileMenu = document.querySelector('.profile-menu');
 const _bodyUI = document.getElementsByTagName('body')[0];
 const notificationIconUI = document.querySelector('.notification-dropdown');
 const notificationListUI = document.querySelector('.notification-list');
-const notificationCardListUI = document.getElementById('notification-card-list');
+let notificationCardListUI = document.getElementById('notification-card-list');
 const notificationCountUI = document.querySelector('.notification-span');
 const unSeenMessageCountUI = document.querySelector('.message-span');
 
@@ -51,7 +51,7 @@ _bodyUI.addEventListener('click', function (e) {
 
 // Get notifications and show !
 async function getNotifications() {
-    notificationCardListUI.innerHTML = '';
+    notificationListUI.innerHTML = ''
     const respond = await fetch('http://localhost/unigura/api/student/notification')
     const result = await respond.json();
 
@@ -73,6 +73,9 @@ async function getNotifications() {
        }
 
        if(result.notifications.length > 0) {
+           notificationCardListUI = document.createElement('ul');
+           notificationCardListUI.id = 'notification-card-list';
+
            result.notifications.forEach(notification => {
                notificationCardListUI.innerHTML += `
                     <li data-id="${notification.id}" id="notification-${notification.id}">
@@ -86,6 +89,8 @@ async function getNotifications() {
                     </li>
                `
            });
+
+           notificationListUI.appendChild(notificationCardListUI);
        }else {
            notificationListUI.innerHTML += '<p class="no-notification-message">No Notifications</p>'
        }

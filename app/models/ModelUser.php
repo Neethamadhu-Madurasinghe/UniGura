@@ -56,4 +56,10 @@ class ModelUser {
         $this->db->bind('id', $id, PDO::PARAM_INT);
         return $this->db->execute();
     }
+
+    public function getUserById(int $id): array {
+        $this->db->query('SELECT * FROM user WHERE id=:id');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        return $this->db->resultOneAssoc();
+    }
 }
