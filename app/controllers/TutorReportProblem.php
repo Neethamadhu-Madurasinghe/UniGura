@@ -33,6 +33,7 @@ class TutorReportProblem extends Controller{
             $data = [
                 'tutor_id' => $request->getUserId(),
                 'student_id' => $body['student_id'],
+                'class_id' => $body['class_id'],
                 'description' => $body['description'],
                 'report_reasons' => NULL
             ];
@@ -41,14 +42,16 @@ class TutorReportProblem extends Controller{
                 $data['report_reasons'] = $body['report_reason'];
             }
 
-        if ($this->reportProblem->setStudentreport($data) == 0) {
-                    redirect('tutor/class');
+        if ($this->reportProblem->setStudentreport($data)) {
+                    redirect('tutor/classes?id='. $body['class_id']);
             }  
         }
 
         $data['student_id'] = $body['student_id'];
+        $data['class_id'] = $body['class_id'];
 
         $reportReason = $this->reportProblem->getTutorReportReason();
+
 
         $data['report_reasons'] = json_encode($reportReason);
 

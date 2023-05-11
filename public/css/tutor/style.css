@@ -325,7 +325,15 @@ p {
 .box_one img {
   border-radius: 50%;
   width: 80%;
+  max-width: 70px;
+  object-fit: cover;
+}
 
+.box_one header img {
+  border-radius: 50%;
+  object-fit: cover;
+  width: 50px;
+  height: 50px;
 }
 
 .box_one button {
@@ -623,6 +631,13 @@ p {
   width: 70%;
 }
 
+.activity-icon {
+  width: 10%;
+  height: 10%;
+  margin-top: 8px;
+  margin-bottom: 0px
+}
+
 .Student {
   background: linear-gradient(180deg, #F5F3FB 0%, #FDFBFD 100%);
   border-radius: 10px;
@@ -631,7 +646,7 @@ p {
   height: 680px;
 }
 
-.studnt-details-container{
+.studnt-details-container {
   display: none;
 }
 
@@ -799,7 +814,7 @@ p {
   margin-bottom: 40px;
 }
 
-.Student button a{
+.Student button a {
   text-decoration: none;
   color: #ffffff;
 }
@@ -1302,7 +1317,7 @@ tr:nth-child(odd) {
 
 /* payment end */
 
-.textbox_one{
+.textbox_one {
   margin-top: 10px;
   display: grid;
   gap: 0px;
@@ -1310,17 +1325,25 @@ tr:nth-child(odd) {
   grid-template-columns: 1fr 10fr;
 }
 
-.textbox_one .img01{
+.textbox_one .img01 {
   border-radius: 0%;
   margin: 0;
   margin-top: 6px;
   width: 90%;
-  
+
 }
 
-.textbox_one .img02{
+.textbox_one .img02 {
   margin: 0;
   border-radius: 0%;
   margin-top: 8px;
   width: 70%;
+}
+
+
+.activity-icon {
+  width: 10%;
+  height: 10%;
+  margin-top: 8px;
+  margin-bottom: 0px
 }

@@ -30,11 +30,11 @@ MainNavbar::render($request);
 
         <div class='div5'>
             <form action="<?php echo URLROOT . '/tutor/change-profile-picture' ?>" id="image-upload-form" enctype="multipart/form-data" method="post">
-                <h2 class="main-title">My Profile</h2>
+                <h2 class="main-title"><?php echo $data['first_name'].' '.$data['last_name']?></h2>
                 <div class="upload-picture-container">
                     <img src="<?php echo URLROOT . $request->getUserPicture() ?>" alt="" id="profile-picture">
                     <input type="file" name="profile-picture" id="actual-btn" accept="image/*" hidden onchange="this.form.submit()" />
-                    <label for="actual-btn" id="profile-image-upload-btn">Change and Save</label>
+                    <label for="actual-btn" id="profile-image-upload-btn">Change Profile Picture</label>
                 </div>
             </form>
         </div>
@@ -42,7 +42,7 @@ MainNavbar::render($request);
         <form action="update-profile" method="POST" id="updateFormData">
             <div class="parent">
                 <div class="div1">
-                <h2>Personal Details</h2>
+                    <h2>Personal Details</h2>
                     <div class="tutor-profile">
                         <div class="form-field">
                             <label for="first-name">First Name<br>
@@ -829,6 +829,17 @@ MainNavbar::render($request);
     const university_error = document.querySelector('#university_error');
 
 
+    // Script to customize file upload button and
+    // Show Uploaded images in profile picture component
+
+    const actualFileUploadBtnUI = document.getElementById('actual-btn');
+    const profilePictureUI = document.getElementById('profile-picture');
+
+    actualFileUploadBtnUI.addEventListener('change', function() {
+        profilePictureUI.src = URL.createObjectURL(actualFileUploadBtnUI.files[0])
+    });
+
+
 
 
     form.addEventListener('submit', async (event) => {
@@ -890,7 +901,7 @@ MainNavbar::render($request);
         tableRows[i].addEventListener("click", function() {
             console.log(this.className);
             if (this.className == "slot slot-free") { // use-slot(1) => cannot-used-slot(0)
-                this.setAttribute("data-state", 0); 
+                this.setAttribute("data-state", 0);
                 this.classList.add("slot-used");
                 this.classList.remove("slot-free");
             } else if (this.className == "slot slot-used") { // slot-cannot-used

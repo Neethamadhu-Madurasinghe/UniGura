@@ -16,7 +16,7 @@ Header::render(
     [
         'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css',
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css',
-        URLROOT . '/public/css/tutor/forms.css?v=1.7'
+        URLROOT . '/public/css/tutor/forms.css?v=1.8'
     ]
     //    Student base style is used here, because In this part, both student and tutor looks same
 );
@@ -29,8 +29,8 @@ Header::render(
         <div class="form_container">
             <form action="" method="POST" enctype='multipart/form-data'>
                 <div class="grid-plane">
-                    <input style="display:none" type="text" name="id" value='<?php echo $data['id'] ?>'>
-                    <input style="display:none" type="text" name="position" value='<?php echo $data['position'] ?>'>
+                    <input hidden type="text" name="id" value='<?php echo $data['id'] ?>'>
+                    <input hidden type="text" name="position" value='<?php echo $data['position'] ?>'>
                     <div class="dropdown">
                         <div class="dropdown_name">
                             <label for="Session Fee">Heading</label><br>
@@ -48,9 +48,10 @@ Header::render(
 <script>
     var closebtn = document.querySelector(".close");
 
+    let class_id = `<?php echo $data['id'] ?>`;
+
     closebtn.addEventListener('click', function() {
-        window.location = "http://localhost/unigura/tutor/viewcourse?subject=" + '<?php echo $data['subject']?>' + "&module=" + '<?php echo $data['module']?>' + "&id=" + <?php echo $data['id']?> ;
-        
+        window.location = `http://localhost/unigura/tutor/classes?id=${class_id}` ;
     })
 </script>
 
