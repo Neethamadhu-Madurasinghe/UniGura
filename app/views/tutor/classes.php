@@ -97,11 +97,25 @@ MainNavbar::render($request);
 <script>
      let viewbtns = document.querySelectorAll('.view-class');
 
+     const urlParams = new URLSearchParams(window.location.search);
+
+     const classid = urlParams.get('id'); 
+
+     if(classid != null){
+          showclass(classid);
+          console.log('Have')
+     }else{
+          console.log('csss')
+     }
 
 
      viewbtns.forEach(btn => {
-          btn.addEventListener('click', function() {
-               const url = "http://localhost/unigura/tutor/getclassdetails?id=" + btn.dataset.id;
+          btn.addEventListener('click', () => showclass(btn.dataset.id))
+     })
+
+
+     function showclass(id){
+               const url = "http://localhost/unigura/tutor/getclassdetails?id=" + id;
                fetch(url)
                     .then(response => response.json())
                     .then(data => {
@@ -389,10 +403,12 @@ MainNavbar::render($request);
 
                     })
                     .catch(error => {
-                         console.error(error);
+                         let container = document.querySelector('.studnt-details-container');
+                         container.innerHTML = `<div>Requested Class Not Exists</div>`
+                         document.querySelector('.studnt-details-container').style.display = 'block';
                     });
-          })
-     })
+          }
+     
 
      function sendPositon(position_list) {
           fetch('http://localhost/unigura/tutor/sendpositioninclass', {

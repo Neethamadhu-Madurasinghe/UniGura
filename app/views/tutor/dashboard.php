@@ -132,55 +132,7 @@ MainNavbar::render($request);
 
                     </div>
                     <div class="Payments_box">
-                        <table>
-                            <tr>
-                                <td><img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg"></td>
-                                <td>Dasun Shanaka</span>
-                                    <p>Organic</p>
-                                </td>
-                                <td>Rs.900/=</td>
-                                <td><span style="border: 1px solid #ff8f0e;border-radius: 20px;padding: 5px;padding-left: 15px;padding-right: 15px;color: #ff8f0e;font-size: 14PX;">PAIDOFF</span></td>
-                                <td><i style="color:#7c7c8f9c ;font-size: 18px;" class="fas fa-calendar-alt"></i><span> FEB 10 2023</span></td>
-                            </tr>
-                            <tr>
-                                <td><img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg"></td>
-                                <td>Dasun Shanaka</span>
-                                    <p>Organic</p>
-                                </td>
-                                <td>Rs.900/=</td>
-                                <td><span style="border: 1px solid #08ad029c;border-radius: 20px;padding: 5px;padding-left: 15px;padding-right: 15px;color: #08ad029c;font-size: 14PX;">RECEIVED</span></td>
-                                <td><i style="color:#7c7c8f9c ;font-size: 18px;" class="fas fa-calendar-alt"></i><span> FEB 10 2023</span></td>
-                            </tr>
-                            <tr>
-                                <td><img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg"></td>
-                                <td>Dasun Shanaka</span>
-                                    <p>Organic</p>
-                                </td>
-                                <td>Rs.900/=</td>
-                                <td><span style="border: 1px solid #7c7c8f9c;border-radius: 20px;padding: 5px;padding-left: 15px;padding-right: 15px;color: #7c7c8f9c;font-size: 14PX;">PENDING</span></td>
-                                <td><i style="color:#7c7c8f9c ;font-size: 18px;" class="fas fa-calendar-alt"></i><span> FEB 10 2023</span></td>
-                            </tr>
-                            <tr>
-                                <td><img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg"></td>
-                                <td>Dasun Shanaka</span>
-                                    <p>Organic</p>
-                                </td>
-                                <td>Rs.900/=</td>
-                                <td><span style="border: 1px solid #7c7c8f9c;border-radius: 20px;padding: 5px;padding-left: 15px;padding-right: 15px;color: #7c7c8f9c;font-size: 14PX;">PENDING</span></td>
-                                <td><i style="color:#7c7c8f9c ;font-size: 18px;" class="fas fa-calendar-alt"></i><span> FEB 10 2023</span></td>
-                            </tr>
-                            <tr>
-                                <td><img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg"></td>
-                                <td>Dasun Shanaka</span>
-                                    <p>Organic</p>
-                                </td>
-                                <td>Rs.800/=</td>
-                                <td><span style="border: 1px solid #ff8f0e;border-radius: 20px;padding: 5px;padding-left: 15px;padding-right: 15px;color: #ff8f0e;font-size: 14PX;">PAIDOFF</span></td>
-                                <td><i style="color:#7c7c8f9c ;font-size: 18px;" class="fas fa-calendar-alt"></i><span> FEB 10 2023</span></td>
-                            </tr>
-
-                        </table>
-
+                        
                     </div>
                 </div>
 
@@ -284,6 +236,15 @@ MainNavbar::render($request);
                         $rate = (string) $array['current_rating'];
                         $count = (string) $array['class_count'];
 
+                        if($medium == 0){
+                            $medium = 'Sinhala';
+                        }
+                        else if($medium == 1){
+                            $medium = 'English';
+                        }else{
+                            $medium = 'Tamil';
+                        }
+
                         echo "
                             <div class = 'main_card'>
                                 <div class='msg_box' id='content'> 
@@ -348,6 +309,7 @@ MainNavbar::render($request);
 </section>
 <script>
     //declaring varibles
+    let root = '<?php echo URLROOT ?>';
 
     let active_class_count = document.querySelector('#active-class-count');
     let block_class_count = document.querySelector('#blocked-class-count');
@@ -452,6 +414,63 @@ MainNavbar::render($request);
 
         startAngle = endAngle;
     }
+
+    let payments = <?php echo $data['payments'] ?>;
+    let payment_container = document.querySelector('.Payments_box');
+    list_payment(payments)
+
+    function list_payment(payments) {
+          let table = document.createElement('table');
+          for (const element of payments) {
+               let payment_status;
+               if (element.payment_status == 0) {
+                    payment_status = "PENDING";
+               } else if (element.payment_status == 1) {
+                    payment_status = "RECIVED";
+               } else {
+                    payment_status = "PAID-OFF";
+               }
+
+               console.log(element)
+
+               
+               
+               let year = element.date.slice(0,4);
+             
+               let month = element.date.toString().slice(5, 7);
+               let day = element.date.toString().slice(8, 10);
+               let month_text = new Date(Date.UTC(2023, parseInt(month) - 1, 1)).toLocaleString('default', {
+                    month: 'short'
+               });
+           
+
+               let tr = document.createElement('tr');
+               let cell1 = document.createElement('td');
+               let cell2 = document.createElement('td');
+               let cell3 = document.createElement('td');
+               let cell4 = document.createElement('td');
+               let cell5 = document.createElement('td');
+
+               cell1.innerHTML = `<img src="${root}/${element.profile_picture}">`;
+               cell2.innerHTML = `${element.first_name} ${element.last_name}</span>
+                         <p>${element.module}</p>
+                    `;
+               cell3.innerHTML = `Rs.${element.session_rate}`;
+               cell4.innerHTML = `<span   class='p_status ${payment_status.toLowerCase()}' >${payment_status}</span>`;
+               cell5.innerHTML = `<i style="color:#7c7c8f9c ;font-size: 18px;" class="fas fa-calendar-alt"></i><span> ${month_text} ${day} ${year}</span>`;
+
+    
+
+               tr.appendChild(cell1);
+               tr.appendChild(cell2);
+               tr.appendChild(cell3);
+               tr.appendChild(cell4);
+               tr.appendChild(cell5);
+               table.appendChild(tr);
+          }
+          payment_container.appendChild(table);
+     
+     }
 
 
    

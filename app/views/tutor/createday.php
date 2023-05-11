@@ -50,6 +50,7 @@ Header::render(
 
     closebtn.addEventListener('click', function() {
         window.location = "http://localhost/unigura/tutor/viewcourse?subject=" + '<?php echo $data['subject']?>' + "&module=" + '<?php echo $data['module']?>' + "&id=" + <?php echo $data['id']?> ;
+        
     })
 </script>
 

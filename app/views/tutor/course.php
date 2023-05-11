@@ -31,7 +31,7 @@ Header::render(
     <div class="part_two">
         <div class="Student">
             <h1 id='module' style="margin-bottom: 0px;text-align: center;font-weight: 400;"><?php echo $data['module'] ?></h1>
-                    <div id='publish'><i class="fa-solid fa-plus"></i> Add Day</div>
+                    <div id='publish'><i class="fa-solid fa-plus"></i> Publish Course</div>
             <div style="display: grid;grid-template-columns: 1fr 1fr; gap: 20px;">
                 <div style="color: #7b7f8f;text-align: right;margin-top: px;font-size: 17px;">
                     <span><i class="fa-solid fa-graduation-cap"></i></span><span id='subject'><?php print_r($data['subject']) ?></span>
@@ -228,7 +228,7 @@ Header::render(
 
 
                 document.querySelector('.button1').addEventListener('click',function(){
-                    window.location = `http://localhost/unigura/tutor/createday?class_template_id=${cid}&subject=${subject_name}&module=${module_name}?>`
+                    window.location = `http://localhost/unigura/tutor/createday?class_template_id=${cid}&subject=${subject_name}&module=${module_name}`
                 })
 
                 var updatedaybtns = document.querySelectorAll(".update-day");
