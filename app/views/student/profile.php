@@ -135,42 +135,44 @@ MainNavbar::render($request);
 
                 <div class="form-row">
                     <div class="form-field">
-                        <label for="first-name">First Name
-                            <span><?php echo $data['errors']['first_name_error'] ?></span>
+                        <label for="first-name">First Name *
+                            <span id="first-name-error"><?php echo $data['errors']['first_name_error'] ?></span>
                         </label>
-                        <input type="text" name="first-name" value="<?php echo $data['first_name'] ?>">
+                        <input type="text" name="first-name" id="first-name-input" value="<?php echo $data['first_name'] ?>">
                     </div>
                     <div class="form-field">
-                        <label for="last-name">Last Name
-                            <span><?php echo $data['errors']['last_name_error'] ?></span>
+                        <label for="last-name">Last Name *
+                            <span id="last-name-error"><?php echo $data['errors']['last_name_error'] ?></span>
                         </label>
-                        <input type="text" name="last-name" value="<?php echo $data['last_name'] ?>">
+                        <input type="text" name="last-name" id="last-name-input" value="<?php echo $data['last_name'] ?>">
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-field">
                         <label for="address-line-1">Address Line 1
-                            <span><?php echo $data['errors']['address_line_1_error'] ?></span>
+                            <span id="address-line-one-error"><?php echo $data['errors']['address_line_1_error'] ?></span>
                         </label>
                         <input type="text"
                                name="address-line-1"
+                               id="address-one-input"
                                value="<?php echo $data['address_line1'] ?>">
                     </div>
                     <div class="form-field">
                         <label for="address_line_2">Address Line 2
-                            <span><?php echo $data['errors']['address_line_2_error'] ?></span>
+                            <span id="address-line-two-error"><?php echo $data['errors']['address_line_2_error'] ?></span>
                         </label>
                         <input type="text"
                                name="address-line-2"
+                               id="address-two-input"
                                value="<?php echo $data['address_line2'] ?>">
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-field">
-                        <label for="city">City <span><?php echo $data['errors']['city_error'] ?></span></label>
-                        <input type="text" name="city" value="<?php echo $data['city'] ?>">
+                        <label for="city">City <span <span id="city-error"><?php echo $data['errors']['city_error'] ?></span></label>
+                        <input type="text" name="city" id="city-input" value="<?php echo $data['city'] ?>">
                     </div>
                     <div class="form-field">
                         <label for="district">District<span><?php echo $data['errors']['district_error'] ?></span></label>
@@ -196,10 +198,11 @@ MainNavbar::render($request);
                 <div class="form-row">
                     <div class="form-field">
                         <label for="telephone-number">Telephone Number
-                            <span><?php echo $data['errors']['telephone_number_error'] ?></span>
+                            <span id="telephone-error"><?php echo $data['errors']['telephone_number_error'] ?></span>
                         </label>
                         <input type="text"
                                name="telephone-number"
+                               id="telephone-input"
                                value="<?php echo $data['phone_number'] ?>">
                     </div>
                     <div class="form-field">
@@ -231,9 +234,9 @@ MainNavbar::render($request);
 
                     <div class="form-field">
                         <label for="year-of-exam">Year of Exam
-                            <span><?php echo $data['errors']['year_of_exam_error'] ?></span>
+                            <span id="exam-year-error"><?php echo $data['errors']['year_of_exam_error'] ?></span>
                         </label>
-                        <input type="number" name="year-of-exam" value="<?php echo $data['year_of_exam'] ?>">
+                        <input type="number" id="exam-year-input" name="year-of-exam" value="<?php echo $data['year_of_exam'] ?>">
                     </div>
                 </div>
 
@@ -358,7 +361,9 @@ MainNavbar::render($request);
         URLROOT . '/public/js/student/profile.js',
         URLROOT . '/public/js/student/student-profile-payment-table.js',
         URLROOT . '/public/js/student/disable-profile.js',
-        URLROOT . '/public/js/student/feedback.js'
+        URLROOT . '/public/js/student/feedback.js',
+        URLROOT . '/public/js/common/tutor-student-profile-detail-validator-functions.js',
+        URLROOT . '/public/js/common/tutor-student-profile-detail-validator.js'
     ]
 );
 ?>
