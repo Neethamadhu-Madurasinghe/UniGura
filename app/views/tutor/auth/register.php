@@ -44,7 +44,7 @@ LandingPageNavBar::render($request)
 
                 <div class="form-row">
                     <div class="form-field">
-                        <label for="email">Email <span><?php echo $data['errors']['email_error'] ?></span></label>
+                        <label for="email">Email <span id="email-error"><?php echo $data['errors']['email_error'] ?></span></label>
                         <input type="text"
                                class="form-input"
                                name="email"
@@ -56,11 +56,12 @@ LandingPageNavBar::render($request)
                 <div class="form-row">
                     <div class="form-field">
                         <label for="password">Password
-                            <span><?php echo $data['errors']['password_error'] ?></span>
+                            <span id="password-error"><?php echo $data['errors']['password_error'] ?></span>
                         </label>
                         <input type="password" class="form-input" name="password" id="login-password">
                     </div>
                 </div>
+
                 <div class="form-row">
                     <div class="form-field">
                         <label for="confirm-password">Confirm Password</label>
