@@ -29,8 +29,8 @@ Header::render(
         <div class="form_container">
             <form action="" method="POST" enctype='multipart/form-data'>
                 <div class="grid-plane">
-                    <input type="text" name="id" value='<?php echo $data['id'] ?>'>
-                    <input type="text" name="position" value='<?php echo $data['position'] ?>'>
+                    <input hidden type="text" name="id" value='<?php echo $data['id'] ?>'>
+                    <input hidden type="text" name="position" value='<?php echo $data['position'] ?>'>
                     <div class="dropdown">
                         <div class="dropdown_name">
                             <label for="Session Fee">Heading</label><br>
@@ -48,8 +48,10 @@ Header::render(
 <script>
     var closebtn = document.querySelector(".close");
 
+    let class_id = `<?php echo $data['id'] ?>`;
+
     closebtn.addEventListener('click', function() {
-        window.location = "http://localhost/unigura/tutor/viewcourse?subject=" + '<?php echo $data['subject']?>' + "&module=" + '<?php echo $data['module']?>' + "&id=" + <?php echo $data['id']?> ;
+        window.location = `http://localhost/unigura/tutor/classes?id=${class_id}` ;
     })
 </script>
 

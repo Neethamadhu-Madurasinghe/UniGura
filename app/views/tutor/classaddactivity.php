@@ -45,6 +45,7 @@ Header::render(
                               <div Class="Uploadbox">
                                    <div>
                                         <input name="id" value="<?php echo $data['id'] ?>" type="hidden">
+                                        <input name="class_id" value="<?php echo $data['class_id'] ?>" type="hidden">
                                         <input id='title' style="width : 100% ;" name='description' type="text">
                                         <input type="file" id="activity-doc" name="activity-doc" hidden />
                                    </div>
@@ -59,9 +60,9 @@ Header::render(
 
           <script>
                var closebtn = document.querySelector(".close");
-
+               let class_id = `<?php echo $data['class_id'] ?>`
                closebtn.addEventListener('click', function() {
-                    window.location = "http://localhost/unigura/tutor/classes";
+                    window.location = `http://localhost/unigura/tutor/classes?id=${class_id}`;
                })
 
                const select = document.getElementById('type');

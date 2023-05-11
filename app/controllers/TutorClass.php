@@ -92,7 +92,8 @@ class TutorClass extends Controller
             $body = $request->getBody();
 
             $data = [
-                'id' => $body['id']
+                'id' => $body['id'],
+                'class_id'=>$body['class_id']
             ];
 
             $this->view('tutor/classaddactivity', $request, $data);
@@ -115,7 +116,7 @@ class TutorClass extends Controller
             ];
 
             if ($this->classModel->setActivity($data)) {
-                redirect('tutor/classes', $request, $data);
+                redirect('tutor/classes?id='.$body['class_id'], $request, $data);
             }
         }
 
@@ -189,6 +190,28 @@ class TutorClass extends Controller
         }
     }
 
+    public function finishclass(Request $request)
+    {
+        cors();
+
+        $body = json_decode(file_get_contents('php://input'), true);
+
+
+        if (!$request->isLoggedIn() || !$request->isTutor()) {
+            header("HTTP/1.0 401 Unauthorized");
+            return;
+        }
+
+        if ($request->isPost()) {
+          
+            if (isset($body['class_id'])) {
+                $this->classModel->finishclass($body['class_id']);
+            }else{
+                echo "Error";
+            }
+        }
+    }
+
 
     public function createcustomday(Request $request)
     {
@@ -252,22 +275,22 @@ class TutorClass extends Controller
             if (!$hasErrors) {
 
                 if ($this->classModel->setClassDay($data)) {
-                    redirect('tutor/classes');
+                    redirect('tutor/classes?id='.$data['id']);
                 } else {
                     header("HTTP/1.0 500 Internal Server Error");
                     die('Something went wrong');
                 }
 
-                $this->view('tutor/createcustomday', $request, $data);
+                $this->view('tutor/createcustomeday', $request, $data);
 
                 //If the request is a GET request, then serve the page
 
             } else {
-                $this->view('tutor/createcustomday', $request, $data);
+                $this->view('tutor/createcustomeday', $request, $data);
             }
         }
 
-        $this->view('tutor/createday', $request, $data);
+        $this->view('tutor/createcustomeday', $request, $data);
     }
 
 

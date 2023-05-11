@@ -53,7 +53,7 @@ class ModelTutorClass
 
     public function getActivities($id): array
     {
-        $this->db->query('SELECT a.id , a.day_id, a.description, a.type, a.link FROM activity AS a JOIN day as d ON d.id = a.day_id WHERE d.class_id = :id ORDER BY a.type ASC;');
+        $this->db->query('SELECT a.id , a.day_id, a.description, a.is_completed , a.type, a.link FROM activity AS a JOIN day as d ON d.id = a.day_id WHERE d.class_id = :id ORDER BY a.type ASC;');
         $this->db->bind('id', $id, PDO::PARAM_INT);
         return $this->db->resultAllAssoc();
     }
@@ -66,6 +66,14 @@ class ModelTutorClass
         return $this->db->execute();
     }
 
+    public function finishclass($id): bool
+    {
+        $this->db->query('UPDATE tutoring_class SET completion_status = 1  WHERE id = :id;');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        return $this->db->execute();
+    }
+    
     public function setActivity($data): bool {
         $this->db->query('INSERT INTO activity SET
                  day_id = :id,

@@ -37,6 +37,7 @@ Header::render(
                 <div class="form-container"> </div>
 
                 <input name='student_id' type='hidden' id='student_id'>
+                <input name='class_id' type='hidden' id='class_id'>
 
                 <label for="description">Leave a Comment(Optional): </label><br><br>
                 <textarea id="description" name="description" rows="5" cols="30"></textarea><br><br>
@@ -52,11 +53,12 @@ Header::render(
 
         <script>
             let form_container = document.querySelector('.form-container');
-
             let student_id = <?php echo $data['student_id'] ?>;
+            let class_id = <?php echo $data['class_id'] ?>;
             let object = <?php echo $data['report_reasons'] ?>;
 
             document.getElementById('student_id').value = student_id;
+            document.getElementById('class_id').value = class_id;
 
             for (key in object) {
                 let element = object[key];
@@ -66,7 +68,7 @@ Header::render(
             }
 
             document.querySelector('.close').addEventListener('click', () => {
-                window.location = `http://localhost/unigura/tutor/classes`;
+                window.location = `http://localhost/unigura/tutor/classes?id=${class_id}`;
             });
         </script>
 

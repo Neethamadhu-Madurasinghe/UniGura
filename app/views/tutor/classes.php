@@ -82,6 +82,8 @@ MainNavbar::render($request);
                          <button class="msg_box button" id='report'>Report</button>
                          <button class="msg_box button">Chat</button>
                          <button class="add_day button">Add Day</button>
+                         <button class="finish button">Finish Class</button>
+
                     </div>
 
                     <div class="day_box_container">
@@ -97,15 +99,19 @@ MainNavbar::render($request);
 <script>
      let viewbtns = document.querySelectorAll('.view-class');
 
+   
+
+
+     // geting query params of the url
      const urlParams = new URLSearchParams(window.location.search);
 
+     // Check whether id is in urlParms
      const classid = urlParams.get('id'); 
-
+     
+     // call show class function if id is set
      if(classid != null){
           showclass(classid);
-          console.log('Have')
      }else{
-          console.log('csss')
      }
 
 
@@ -171,8 +177,10 @@ MainNavbar::render($request);
                          module_name.innerHTML = list.name + list.class_type;
                          mode.innerHTML = list.mode;
 
+                         console.log(list)
+
                          document.getElementById('report').addEventListener('click', () => {
-                              window.location = `http://localhost/unigura/tutor/view-report?student_id=${list.student_id}`;
+                              window.location = `http://localhost/unigura/tutor/view-report?student_id=${list.student_id}&class_id=${list.id}`;
                          })
 
                          let days = data['days'];
@@ -232,29 +240,28 @@ MainNavbar::render($request);
                                              day_container.querySelector(`#text${day.dayid}`).innerHTML += `<img class='activity-icon' src='http://localhost/UniGura/public/img/tutor/class/icons/file.png' style="width: 6%; height:6%; margin-top: 9px; border-radius : 0%" >
                                                   <a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 1px;' href = "http://localhost/unigura/tutor/viewactivitydoc?file=${element.link}">${element.description}</a><br>`
                                         } else if (element.type == 1) {
+                                             console.log(element)
                                              if (element.is_completed == 0) {
+                                                  console.log(element.description)
                                                   day_container.querySelector(`#text${day.dayid}`).innerHTML += `<img class='activity-icon' src='http://localhost/UniGura/public/img/tutor/class/icons/share-arrow.png'  style="width: 6%; height:6%; margin-top: 9px; border-radius : 0%" >
                                                   <a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;' >${element.description}</a><br>`
                                              } else if (element.is_completed == 1) {
                                                   day_container.querySelector(`#text${day.dayid}`).innerHTML += `<img class='activity-icon' src='http://localhost/UniGura/public/img/tutor/class/icons/share-arrow.png' style="width: 6%; height:6%; margin-top: 9px; border-radius : 0%" >
                                                   <a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 1px;' href = "http://localhost/unigura/tutor/viewactivitydoc?file=${element.link}">${element.description}</a><br>`
                                              }
-
                                         } else if (element.type == 2) {
                                              day_container.querySelector(`#text${day.dayid}`).innerHTML += `<img class='activity-icon' src='http://localhost/UniGura/public/img/tutor/class/icons/cast.png'  style="width: 6%; height:6%; margin-top: 9px; border-radius : 0%" >
                                                   <a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;'>${element.description}</a><br>`
                                         }
-
                                    }
                               }
 
                          }
 
-
                          var addactivitybtns = document.querySelectorAll(".add-activity");
                          addactivitybtns.forEach(btn => {
                               btn.addEventListener('click', function() {
-                                   window.location = `http://localhost/unigura/tutor/add-activity-inclass?id=${btn.getAttribute('data-id')}`;
+                                   window.location = `http://localhost/unigura/tutor/add-activity-inclass?id=${btn.getAttribute('data-id')}&class_id=${list.id}`;
                               })
                          })
 
@@ -400,6 +407,27 @@ MainNavbar::render($request);
                          }
 
 
+                         document.querySelector('.finish').addEventListener('click', function() {
+                                   const url = "http://localhost/unigura/tutor/finishclass";
+                                   fetch(url, {
+                                             method: 'POST',
+                                             body: JSON.stringify({
+                                                  class_id: list.id
+                                             })
+                                        })
+                                        .then(function(response) {
+                                             if (!response.ok) {
+                                                  throw new Error('Network response was not ok');
+                                             }
+                                             return response.text();
+                                        })
+                                        .then(function(responseText) {
+                                             
+                                        })
+                                        .catch(function(error) {
+                                             console.error('Error retrieving data:', error);
+                                        });
+                              })
 
                     })
                     .catch(error => {
@@ -427,6 +455,7 @@ MainNavbar::render($request);
                .catch((error) => {
                     console.error('Have Error');
                });
+
      }
 </script>
 
