@@ -29,7 +29,7 @@ registerFormUI?.addEventListener('submit', (e) => {
         isValid = false;
     }
 
-    if (!validatePassword(passwordInputUI.value, passwordConfirmInputUI)) {
+    if (!validatePassword(passwordInputUI.value, passwordConfirmInputUI.value)) {
         isValid = false;
     }
 
@@ -57,11 +57,16 @@ function validatePassword(pass, confirmPass = false) {
         if(passwordConfirmInputUI) passwordConfirmInputUI.value = "";
         return false;
 
-    } else if(confirmPass && pass !== confirmPass){
-        passwordErrorUI.innerText = "Please confirm the password";
-        passwordInputUI.value = "";
-        passwordConfirmInputUI.value = "";
-        return false;
+    } else if(confirmPass){
+        if (confirmPass !== pass) {
+            passwordErrorUI.innerText = "Please confirm the password";
+            passwordInputUI.value = "";
+            passwordConfirmInputUI.value = "";
+            return false;
+        }else {
+            passwordErrorUI.innerText = "";
+            return true;
+        }
     } else {
         passwordErrorUI.innerText = "";
         return true;
