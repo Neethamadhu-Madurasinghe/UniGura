@@ -12,6 +12,10 @@ const telephoneInputUI = document.getElementById('telephone-input');
 const telephoneErrorUI = document.getElementById('telephone-error');
 const examYearInputUI = document.getElementById('exam-year-input');
 const examYearErrorUI = document.getElementById('exam-year-error');
+const universityInputUI = document.getElementById('university-input');
+const universityErrorUI = document.getElementById('university-error')
+const bioInputUI = document.getElementById('bio-input');
+const bioErrorUI = document.getElementById('bio-error')
 
 const profileCompleteForm = document.getElementById('complete-profile-form');
 
@@ -69,13 +73,33 @@ profileCompleteForm?.addEventListener('submit', (e) => {
         telephoneErrorUI.innerText = "";
     }
 
-//    If year of exam is available, check is
+//    If year of exam is available, check it
     if (examYearInputUI) {
         if (validateYearOfExam(examYearInputUI.value)) {
             isValid = false;
             examYearErrorUI.innerText = validateYearOfExam(examYearInputUI.value);
         }else {
             examYearErrorUI.innerText = "";
+        }
+    }
+
+    //If university is available, check it
+    if (universityInputUI) {
+        if (validateUniversity(universityInputUI.value)) {
+            isValid = false;
+            universityErrorUI.innerText = validateUniversity(universityInputUI.value);
+        }else {
+            universityErrorUI.innerText = "";
+        }
+    }
+
+    //If bio(tutor description) is available, check it
+    if (bioInputUI) {
+        if (validateDescription(bioInputUI.value)) {
+            isValid = false;
+            bioErrorUI.innerText = validateDescription(bioInputUI.value);
+        }else {
+            bioErrorUI.innerText = "";
         }
     }
 

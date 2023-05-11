@@ -83,7 +83,9 @@ function validateTelephoneNumber(telephone) {
 }
 
 function validateDescription(description) {
-    if (description.length >= 1000) {
+    if (description.length <= 10) {
+        return 'Please add a bio';
+    }else if (description.length >= 1000) {
         return 'Bio should have less than 1000 characters';
     } else {
         return false;
