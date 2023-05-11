@@ -39,7 +39,7 @@ class ModelTutorStudentAuth {
 
 //    Login the user
     public function login($email, $password) {
-        $this->db->query('SELECT * FROM auth JOIN user ON auth.id = user.id WHERE email=:email AND user.is_banned=0');
+        $this->db->query('SELECT * FROM auth WHERE email=:email');
         $this->db->bind('email', $email, PDO::PARAM_STR);
 
         $row = $this->db->resultOne();
