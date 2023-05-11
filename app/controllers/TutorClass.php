@@ -281,4 +281,22 @@ class TutorClass extends Controller
             return '';
         }
     }
+
+    public function sendposition(Request $request)
+    {
+        $body = file_get_contents('php://input');
+        $array = json_decode($body, true);
+
+        // Now you can access the elements of the JavaScript array in the PHP script
+        $data = $array['data'];
+
+        // Do something with the data, such as saving it to a database
+
+        $model_data = $this->classModel->setDayPosition($data);
+
+        echo json_encode([
+            "message" => "Data saved successfully"
+        ]);
+    }
+
 }

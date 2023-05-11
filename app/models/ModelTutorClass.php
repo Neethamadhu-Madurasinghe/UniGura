@@ -141,4 +141,16 @@ class ModelTutorClass
 //      Returns whether the row count is greater than 0
         return $this->db->rowCount() > 0;
     }
+
+    public function setDayPosition($data): bool
+    {
+
+        foreach ($data as $key => $value) {
+            $this->db->query("UPDATE day SET position = :position WHERE id = :id");
+            $this->db->bind('position',$value, PDO::PARAM_INT);
+            $this->db->bind('id', $key, PDO::PARAM_STR);
+            $this->db->execute();  
+          }
+        return 1;
+    }
 }
