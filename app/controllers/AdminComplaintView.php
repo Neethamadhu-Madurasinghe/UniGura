@@ -126,10 +126,17 @@ class AdminComplaintView extends Controller
             $complainStatus = $data['complainStatus'];
             $studentComplainID = $data['studentComplaintId'];
 
+            $studentId = $data['studentId'];
+            $tutorId = $data['tutorId'];
+
             if ($complainStatus == 1) {
                 $this->viewComplaintModel->updateStudentComplainStatus($studentComplainID, 0);
+                $this->viewComplaintModel->addNotification($studentId,"Your complain has been rejected","We have carefully reviewed your report, but we were unable to take action due to a lack of evidence or information.");
+
             } else {
                 $this->viewComplaintModel->updateStudentComplainStatus($studentComplainID, 1);
+                $this->viewComplaintModel->addNotification($studentId,"Your complain has been accepted","We have carefully reviewed your report, and we have taken action against the tutor.");
+                $this->viewComplaintModel->addNotification($tutorId,"You have been reported","We will review the report carefully and we will take action against you.");
             }
 
             redirect('/admin/studentComplaint');
@@ -151,10 +158,17 @@ class AdminComplaintView extends Controller
             $complainStatus = $data['complainStatus'];
             $tutorComplainID = $data['tutorComplaintId'];
 
+            $studentId = $data['studentId'];
+            $tutorId = $data['tutorId'];
+
             if ($complainStatus == 1) {
                 $this->viewComplaintModel->updateTutorComplainStatus($tutorComplainID, 0);
+                $this->viewComplaintModel->addNotification($tutorId,"Your complain has been rejected","We have carefully reviewed your report, but we were unable to take action due to a lack of evidence or information.");
+
             } else {
                 $this->viewComplaintModel->updateTutorComplainStatus($tutorComplainID, 1);
+                $this->viewComplaintModel->addNotification($tutorId,"Your complain has been accepted","We have carefully reviewed your report, and we have taken action against the student.");
+                $this->viewComplaintModel->addNotification($studentId,"You have been reported","We will review the report carefully and we will take action against you.");
             }
 
             redirect('/admin/tutorComplaint');

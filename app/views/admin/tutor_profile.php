@@ -15,7 +15,7 @@
         <div class="top-details-box">
             <div class="tutor-details">
                 <div class="profile-picture">
-                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
+                    <img src="<?php echo URLROOT ?><?php echo $data['tutorDetails']->profile_picture ?>" alt="tutor profile picture">
                 </div>
                 <div class="name-actions">
                     <div class="name">
@@ -67,12 +67,27 @@
             </div>
             <div class="class-summary">
                 <div class="total-class">
-                    <h1>Total Classes</h1>
-                    <h2>10</h2>
+                    <p><?php echo $data['tutorDetails']->description ?></p>
                 </div>
                 <div class="pending-amount">
-                    <h1>Pending Amount</h1>
-                    <h2>Rs. 1000</h2>
+                    <h1>Educational Qualifications</h1>
+                    <div class="qualification-files">
+                        <div class="qualification">
+                            <a href="viewFiles?file=<?php echo $data['tutorDetails']->id_copy ?>" target="_blank"><i class="fa-solid fa-file-lines"></i> &nbspNational Identity Card Copy</a>
+                        </div>
+                        <div class="qualification">
+                            <a href="viewFiles?file=<?php echo $data['tutorDetails']->university_entrance_letter ?>" target="_blank"><i class="fa-solid fa-file-lines"></i> &nbspUniversity Entrance Letter</a>
+                        </div>
+                        <div class="qualification">
+                            <a href="viewFiles?file=<?php echo $data['tutorDetails']->advanced_level_result ?>" target="_blank"><i class="fa-solid fa-file-lines"></i> &nbspAdvanced Level Result</a>
+                        </div>
+                        <div class="qualification">
+                            <i class="fa-solid fa-user-graduate"></i> &nbsp<?php echo $data['tutorDetails']->education_qualification ?>
+                        </div>
+                        <div class="qualification">
+                        <i class="fa-solid fa-graduation-cap"></i> <?php echo $data['tutorDetails']->university ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -691,14 +706,14 @@
 
         <div class="3-filed-section">
             <div class="filed-selection-btn">
-                <div class="info-btn">
-                    <button>Tutor Info</button>
+                <div>
+                    <button class="info-btn"><i class="fa-solid fa-circle-info"></i> Student Info</button>
                 </div>
-                <div class="active-class-btn">
-                    <button>Active Class</button>
+                <div>
+                    <button class="active-class-btn"><i class="fa-solid fa-rotate fa-spin-pulse"></i> Active Class</button>
                 </div>
-                <div class="finished-class-btn">
-                    <button>Finished Class</button>
+                <div>
+                    <button class="finished-class-btn"><i class="fa fa-regular fa-circle-check"></i> Finished Class</button>
                 </div>
             </div>
         </div>
@@ -748,27 +763,34 @@
 
         <div class="active-classes">
 
-            <?php foreach ($data['allClasses'] as $aClassDay) : ?>
-            <?php if($aClassDay->completion_status === 0) : ?>
-                <div class="one-class">
-                    <div class="student-profile">
-                        <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
-                    </div>
-                    <div class="class-details">
-                        <div class="student-name">
-                            <h1>student: </h1>
-                            <h2><?php echo $aClassDay->tutor_first_name . ' ' . $aClassDay->tutor_last_name ?></h2>
-                        </div>
-                        <div class="subject">
-                            <h1>Subject: </h1>
-                            <h2><?php echo $aClassDay->subjectName ?></h2>
-                        </div>
-                        <div class="lessson">
-                            <h1>Lesson: </h1>
-                            <h2><?php echo $aClassDay->moduleName ?></h2>
-                        </div>
-                    </div>
+            <?php if ($data['numberOfActiveClasses'] === 0) : ?>
+                <div class="result-not-found">
+                    <img src="<?php echo URLROOT; ?>/public/img/admin/nodata.png" alt=""><br>
+                    <h1>No active classes.</h1>
                 </div>
+            <?php endif; ?>
+
+            <?php foreach ($data['allClasses'] as $aClassDay) : ?>
+                <?php if ($aClassDay->completion_status === 0) : ?>
+                    <div class="one-class">
+                        <div class="student-profile">
+                            <img src="<?php echo URLROOT ?><?php echo $aClassDay->student->profile_picture ?>" alt="student profile picture">
+                        </div>
+                        <div class="class-details">
+                            <div class="student-name">
+                                <h1>student: </h1>
+                                <h2><?php echo $aClassDay->tutor_first_name . ' ' . $aClassDay->tutor_last_name ?></h2>
+                            </div>
+                            <div class="subject">
+                                <h1>Subject: </h1>
+                                <h2><?php echo $aClassDay->subjectName ?></h2>
+                            </div>
+                            <div class="lessson">
+                                <h1>Lesson: </h1>
+                                <h2><?php echo $aClassDay->moduleName ?></h2>
+                            </div>
+                        </div>
+                    </div>
                 <?php endif; ?>
             <?php endforeach; ?>
 
@@ -777,27 +799,35 @@
 
         <div class="finished-classes">
 
-        <?php foreach ($data['allClasses'] as $aClassDay) : ?>
-            <?php if($aClassDay->completion_status === 1) : ?>
-                <div class="one-class">
-                    <div class="student-profile">
-                        <img src="<?php echo URLROOT ?>/public/img/admin/profile.png">
-                    </div>
-                    <div class="class-details">
-                        <div class="student-name">
-                            <h1>student: </h1>
-                            <h2><?php echo $aClassDay->tutor_first_name . ' ' . $aClassDay->tutor_last_name ?></h2>
-                        </div>
-                        <div class="subject">
-                            <h1>Subject: </h1>
-                            <h2><?php echo $aClassDay->subjectName ?></h2>
-                        </div>
-                        <div class="lessson">
-                            <h1>Lesson: </h1>
-                            <h2><?php echo $aClassDay->moduleName ?></h2>
-                        </div>
-                    </div>
+            <?php if ($data['numberOfCompletedClasses'] == 0) : ?>
+                <div class="result-not-found">
+                    <img src="<?php echo URLROOT; ?>/public/img/admin/nodata.png" alt=""><br>
+                    <h1>No finished classes.</h1>
                 </div>
+            <?php endif; ?>
+
+
+            <?php foreach ($data['allClasses'] as $aClassDay) : ?>
+                <?php if ($aClassDay->completion_status === 1) : ?>
+                    <div class="one-class">
+                        <div class="student-profile">
+                            <img src="<?php echo URLROOT ?><?php echo $aClassDay->student->profile_picture ?>" alt="student profile picture">
+                        </div>
+                        <div class="class-details">
+                            <div class="student-name">
+                                <h1>student: </h1>
+                                <h2><?php echo $aClassDay->tutor_first_name . ' ' . $aClassDay->tutor_last_name ?></h2>
+                            </div>
+                            <div class="subject">
+                                <h1>Subject: </h1>
+                                <h2><?php echo $aClassDay->subjectName ?></h2>
+                            </div>
+                            <div class="lessson">
+                                <h1>Lesson: </h1>
+                                <h2><?php echo $aClassDay->moduleName ?></h2>
+                            </div>
+                        </div>
+                    </div>
                 <?php endif; ?>
             <?php endforeach; ?>
 

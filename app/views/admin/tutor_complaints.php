@@ -13,9 +13,6 @@
 
     <div class="menu-bar">
         <div class="menu-bar-selection-btn">
-            <div class="tutor-request-btn" id="tutor-request-btn">
-                <a href="tutorRequest"><button id="tutor-request">Tutor Request</button></a>
-            </div>
             <div class="student-complaint-btn" id="student-complaint-btn">
                 <a href="studentComplaint"><button id="student-complaint">Student Complaint</button></a>
             </div>

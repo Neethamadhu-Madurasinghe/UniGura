@@ -9,9 +9,10 @@ class ModelAdminNotification
         $this->db = new Database();
     }
 
-    public function getAllUnseenNotifications()
+    public function getAllUnseenNotifications($adminID)
     {
-        $this->db->query('SELECT * FROM notification WHERE is_seen = 0');
+        $this->db->query('SELECT * FROM notification WHERE user_id = :adminID ORDER BY created_at DESC');
+        $this->db->bind(':adminID',$adminID);
         return $this->db->resultAll();
     }
 
@@ -22,10 +23,26 @@ class ModelAdminNotification
         return $this->db->resultOne();
     }
 
-    public function clearNotification($notificationID)
+    public function clearNotification($adminID)
     {
-        $this->db->query('UPDATE notification SET is_seen = 1 WHERE id = :notification_id');
-        $this->db->bind(':notification_id', $notificationID);
+        $this->db->query('UPDATE notification SET is_seen = 1 WHERE user_id = :adminID');
+        $this->db->bind(':adminID',$adminID);
         return $this->db->execute();
+    }
+
+    public function getNotificationCount($adminID){
+        $this->db->query('SELECT * FROM notification WHERE is_seen = 0 AND user_id = :adminID');
+        $this->db->bind(':adminID',$adminID);
+        $this->db->resultAll();
+
+        return $this->db->rowCount();
+    }
+
+    public function deleteNotification($notificationID){
+        $this->db->query('DELETE FROM notification WHERE id = :notificationID');
+        $this->db->bind(':notificationID', $notificationID);
+        $this->db->resultAll();
+
+        return $this->db->rowCount();
     }
 }
