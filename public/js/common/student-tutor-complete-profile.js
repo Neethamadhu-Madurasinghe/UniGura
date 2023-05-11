@@ -96,11 +96,11 @@ function convertCoordinates(pos) {
 
 
 
-nextBtn.addEventListener("click", () => {
+nextBtn?.addEventListener("click", () => {
     form.classList.add('secActive');
     
 })
 
-backBtn.addEventListener("click", () => form.classList.remove('secActive'));
+backBtn?.addEventListener("click", () => form.classList.remove('secActive'));
 
 

@@ -123,14 +123,22 @@ class ModelTutorDashboard
 
     public function getStudentRequests($id): array
     {
-        $this->db->query(' SELECT r.id , r.class_template_id , r.mode , r.tutor_id , r.student_id , s.name as subject , m.name as module , u.first_name , u.last_name , u.profile_picture , u.id as user_id FROM request AS r JOIN tutoring_class_template AS c ON r.class_template_id = c.id JOIN subject AS s ON c.subject_id = s.id JOIN module AS m ON c.module_id = m.id JOIN user AS u ON r.student_id = u.id WHERE r.tutor_id = :id AND status = 0;');
+        $this->db->query(' SELECT r.id , r.class_template_id , r.mode , r.tutor_id , r.student_id , 
+        s.name as subject , m.name as module , u.first_name , u.last_name , u.profile_picture , u.id as 
+        user_id FROM request AS r JOIN tutoring_class_template AS c ON r.class_template_id = c.id JOIN subject
+            AS s ON c.subject_id = s.id JOIN module AS m ON c.module_id = m.id JOIN user AS u ON r.student_id = u.id 
+                                                                    WHERE r.tutor_id = :id AND status = 0;');
         $this->db->bind('id', $id, PDO::PARAM_INT);
         return $this->db->resultAllAssoc();
     }
 
     public function viewStudentRequests($id): array
     {
-        $this->db->query(' SELECT r.id as id , r.class_template_id , r.mode , r.location , r.tutor_id , r.student_id, ST_X(r.location) AS longitude, ST_Y(r.location) AS latitude, s.name as subject , m.name as module , u.first_name , u.last_name , u.profile_picture , u.id as user_id ,c.class_type , c.session_rate , c.duration ,c.medium FROM request AS r JOIN tutoring_class_template AS c ON r.class_template_id = c.id JOIN subject AS s ON c.subject_id = s.id JOIN module AS m ON c.module_id = m.id JOIN user AS u ON r.student_id = u.id WHERE r.id = :id;');
+        $this->db->query(' SELECT r.id as id , r.class_template_id , r.mode, r.tutor_id , r.student_id, 
+        ST_X(r.location) AS longitude, ST_Y(r.location) AS latitude, s.name as subject , m.name as module , u.first_name , u.last_name ,
+         u.profile_picture , u.id as user_id ,c.class_type , c.session_rate , c.duration ,c.medium FROM request AS r JOIN tutoring_class_template 
+         AS c ON r.class_template_id = c.id JOIN subject AS s ON c.subject_id = s.id JOIN module AS m ON c.module_id = m.id 
+             JOIN user AS u ON r.student_id = u.id WHERE r.id = :id;');
         $this->db->bind('id', $id, PDO::PARAM_INT);
         return $this->db->resultAllAssoc();
     }
@@ -279,6 +287,13 @@ class ModelTutorDashboard
         return $this->db->execute();
     }
 
+
+    public function getTutorSelectedClassMode($id): array {
+        $this->db->query('SELECT mode FROM user WHERE id = :id;');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        return $this->db->resultOneAssoc();
+
     public function getAllPaymentDetails($tutorId): array
     {
 
@@ -294,6 +309,7 @@ class ModelTutorDashboard
         $this->db->bind('tutorId', $tutorId, PDO::PARAM_INT);
 
         return $this->db->resultAllAssoc();
+
     }
 }
 

@@ -134,9 +134,10 @@
 }
 
 .btn-payment {
-    width: 100px;
+    width: 150px;
     height: 30px;
     justify-self: flex-end;
+    font-size: 0.9rem;
 }
 
 .payment-btn-container h4 {
@@ -149,6 +150,17 @@
     display: flex;
     justify-content: space-between;
     padding: 0 8px;
+}
+
+.activity-row div {
+    display: flex;
+    align-items: center;
+}
+
+.activity-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
 }
 
 .file-upload-form {

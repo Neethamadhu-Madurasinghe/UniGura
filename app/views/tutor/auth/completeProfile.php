@@ -44,67 +44,60 @@ IntermediateNavBar::render($request);
                     <div class="form-row">
                         <div class="form-field">
                             <label for="first-name">First Name *
-                                <span><?php echo $data['errors']['first_name_error'] ?></span>
+                                <span id="first-name-error"><?php echo $data['errors']['first_name_error'] ?></span>
                             </label>
-                            <input type="text" name="first-name" id="" value="<?php echo $data['first_name'] ?>">
+                            <input type="text" name="first-name" id="first-name-input" value="<?php echo $data['first_name'] ?>">
                         </div>
                         <div class="form-field">
                             <label for="last-name">Last Name *
-                                <span><?php echo $data['errors']['last_name_error'] ?></span>
+                                <span id="last-name-error"><?php echo $data['errors']['last_name_error'] ?></span>
                             </label>
-                            <input type="text" name="last-name" id="" value="<?php echo $data['last_name'] ?>">
+                            <input type="text" name="last-name" id="last-name-input" value="<?php echo $data['last_name'] ?>">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-field">
                             <label for="address-line-1">Address Line 1 *
-                                <span><?php echo $data['errors']['address_line_1_error'] ?></span>
+                                <span id="address-line-one-error"><?php echo $data['errors']['address_line_1_error'] ?></span>
                             </label>
-
-                            <input type="text" name="address-line-1" id="" value="<?php echo $data['address_line_1'] ?>">
+                            <input type="text"
+                                   name="address-line-1"
+                                   id="address-one-input"
+                                   value="<?php echo $data['address_line_1'] ?>">
                         </div>
                         <div class="form-field">
                             <label for="address_line_2">Address Line 2
-                                <span><?php echo $data['errors']['address_line_2_error'] ?></span>
+                                <span id="address-line-two-error"><?php echo $data['errors']['address_line_2_error'] ?></span>
                             </label>
-                            <input type="text" name="address-line-2" id="" value="<?php echo $data['address_line_2'] ?>">
+                            <input type="text"
+                                   name="address-line-2"
+                                   id="address-two-input"
+                                   value="<?php echo $data['address_line_2'] ?>">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-field">
-                            <label for="city">City * <span><?php echo $data['errors']['city_error'] ?></span></label>
-                            <input type="text" name="city" id="" value="<?php echo $data['city'] ?>">
+                            <label for="city">City * <span id="city-error"><?php echo $data['errors']['city_error'] ?></span></label>
+                            <input type="text" name="city" id="city-input" value="<?php echo $data['city'] ?>">
                         </div>
                         <div class="form-field">
-                            <label for="district">District * <span><?php echo $data['errors']['district_error'] ?></span></label>
-                            <select name="district" id="">
-                                <option value="Ampara" <?php echo $data['district'] === 'Ampara' ? 'selected' : '' ?>>Ampara</option>
-                                <option value="Anuradhapura" <?php echo $data['district'] === 'Anuradhapura' ? 'selected' : '' ?>>Anuradhapura</option>
-                                <option value="Badulla" <?php echo $data['district'] === 'Badulla' ? 'selected' : '' ?>>Badulla</option>
-                                <option value="Batticaloa" <?php echo $data['district'] === 'Batticaloa' ? 'selected' : '' ?>>Batticaloa</option>
-                                <option value="Colombo" <?php echo $data['district'] === 'Colombo' ? 'selected' : '' ?>>Colombo</option>
-                                <option value="Galle" <?php echo $data['district'] === 'Galle' ? 'selected' : '' ?>>Galle</option>
-                                <option value="Gampaha" <?php echo $data['district'] === 'Gampaha' ? 'selected' : '' ?>>Gampaha</option>
-                                <option value="Hambantota" <?php echo $data['district'] === 'Hambantota' ? 'selected' : '' ?>>Hambantota</option>
-                                <option value="Jaffna" <?php echo $data['district'] === 'Jaffna' ? 'selected' : '' ?>>Jaffna</option>
-                                <option value="Kalutara" <?php echo $data['district'] === 'Kalutara' ? 'selected' : '' ?>>Kalutara</option>
-                                <option value="Kandy" <?php echo $data['district'] === 'Kandy' ? 'selected' : '' ?>>Kandy</option>
-                                <option value="Kegalle" <?php echo $data['district'] === 'Kegalle' ? 'selected' : '' ?>>Kegalle</option>
-                                <option value="Kilinochchi" <?php echo $data['district'] === 'Kilinochchi' ? 'selected' : '' ?>>Kilinochchi</option>
-                                <option value="Kurunegala" <?php echo $data['district'] === 'Kurunegala' ? 'selected' : '' ?>>Kurunegala</option>
-                                <option value="Mannar" <?php echo $data['district'] === 'Mannar' ? 'selected' : '' ?>>Mannar</option>
-                                <option value="Matale" <?php echo $data['district'] === 'Matale' ? 'selected' : '' ?>>Matale</option>
-                                <option value="Matara" <?php echo $data['district'] === 'Matara' ? 'selected' : '' ?>>Matara</option>
-                                <option value="Moneragala" <?php echo $data['district'] === 'Moneragala' ? 'selected' : '' ?>>Moneragala</option>
-                                <option value="Mullaitivu" <?php echo $data['district'] === 'Mullaitivu' ? 'selected' : '' ?>>Mullaitivu</option>
-                                <option value="Nuwara Eliya" <?php echo $data['district'] === 'Nuwara Eliya' ? 'selected' : '' ?>>Nuwara Eliya</option>
-                                <option value="Polonnaruwa" <?php echo $data['district'] === 'Polonnaruwa' ? 'selected' : '' ?>>Polonnaruwa</option>
-                                <option value="Puttalam" <?php echo $data['district'] === 'Puttalam' ? 'selected' : '' ?>>Puttalam</option>
-                                <option value="Ratnapura" <?php echo $data['district'] === 'Ratnapura' ? 'selected' : '' ?>>Ratnapura</option>
-                                <option value="Trincomalee" <?php echo $data['district'] === 'Trincomalee' ? 'selected' : '' ?>>Trincomalee</option>
-                                <option value="Vavuniya" <?php echo $data['district'] === 'Vavuniya' ? 'selected' : '' ?>>Vavuniya</option>
+                            <label for="district">District * <span id="city-error"><?php echo $data['errors']['district_error'] ?></span></label>
+                            <?php
+                            $districts = array(
+                                'Ampara', 'Anuradhapura', 'Badulla', 'Batticaloa', 'Colombo', 'Galle', 'Gampaha', 'Hambantota',
+                                'Jaffna', 'Kalutara', 'Kandy', 'Kegalle', 'Kilinochchi', 'Kurunegala', 'Mannar', 'Matale', 'Matara',
+                                'Moneragala', 'Mullaitivu', 'Nuwara Eliya', 'Polonnaruwa', 'Puttalam', 'Ratnapura', 'Trincomalee', 'Vavuniya'
+                            );
+                            ?>
+
+                            <select name="district">
+                                <?php foreach ($districts as $district) : ?>
+                                    <option value="<?php echo $district; ?>"<?php echo ($data['district'] === $district) ? 'selected' : ''; ?>>
+                                        <?php echo $district; ?>
+                                    </option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
 
@@ -113,9 +106,12 @@ IntermediateNavBar::render($request);
                     <div class="form-row">
                         <div class="form-field">
                             <label for="telephone-number">Telephone Number *
-                                <span><?php echo $data['errors']['telephone_number_error'] ?></span>
+                                <span id="telephone-error"><?php echo $data['errors']['telephone_number_error'] ?></span>
                             </label>
-                            <input type="text" name="telephone-number" id="" value="<?php echo $data['telephone_number'] ?>">
+                            <input type="text"
+                                   name="telephone-number"
+                                   id="telephone-input"
+                                   value="<?php echo $data['telephone_number'] ?>">
                         </div>
                         <div class="form-field">
                             <label for="gender">Gender</label>
@@ -174,9 +170,9 @@ IntermediateNavBar::render($request);
         <div class="form-row">
             <div class="form-field">
                 <label for="university">University
-                    <span><?php echo $data['errors']['university_error'] ?></span>
+                    <span id="university-error"><?php echo $data['errors']['university_error'] ?></span>
                 </label>
-                <input type="text" name="university" id="" value="<?php echo $data['university'] ?>">
+                <input type="text" name="university" id="university-input" value="<?php echo $data['university'] ?>">
             </div>
             <div class="form-field">
                 <label for="education-qualification">Highest Education Qualification</label>
@@ -198,38 +194,38 @@ IntermediateNavBar::render($request);
         <div class="form-row">
             <div class="form-field" id="description-field">
                 <label for="description">Bio (1000 letters max)
-                    <span><?php echo $data['errors']['description_error'] ?></span>
+                    <span id="bio-error"><?php echo $data['errors']['description_error'] ?></span>
                 </label>
-                <?php echo '<textarea name="description" id="">' . $data['description'] . '</textarea>' ?>
+                <?php echo '<textarea name="description" id="bio-input">' . $data['description'] . '</textarea>' ?>
             </div>
         </div>
 
 
         <div class="form-row upload-btn-row">
             <div class="form-field btn-field">
-                <span class="upload-button-error">
+                <span class="upload-button-error" id="result-sheet-error">
                     <?php echo $data['errors']['advanced_level_result_error'] ?>
                 </span>
                 <input type="file" id="actual-al-result-btn" name="advanced-level-result" hidden />
-                <label for="actual-al-result-btn" id="al-result-upload-btn">
+                <label for="actual-al-result-btn" id="al-result-upload-btn"  class="upload-btn-fake">
                     Upload A/L Result Sheet
                 </label>
             </div>
             <div class="form-field btn-field">
-                <span class="upload-button-error">
+                <span class="upload-button-error" id="identity-card-error">
                     <?php echo $data['errors']['id_copy_error'] ?>
                 </span>
                 <input type="file" id="actual-identity-card-btn" name="id-copy" hidden />
-                <label for="actual-identity-card-btn" id="al-identity-card-btn">
+                <label for="actual-identity-card-btn" id="al-identity-card-btn" class="upload-btn-fake">
                     Upload Identity Card Photo
                 </label>
             </div>
             <div class="form-field btn-field">
-                <span class="upload-button-error">
+                <span class="upload-button-error" id="uni-entrance-error">
                     <?php echo $data['errors']['university_entrance_letter_error'] ?>
                 </span>
                 <input type="file" id="actual-university-entrance-letter" name="university-entrance-letter" hidden />
-                <label for="actual-university-entrance-letter" id="university-entrance-letter">
+                <label for="actual-university-entrance-letter" id="university-entrance-letter" class="upload-btn-fake">
                     Upload University Entrance Letter
                 </label>
             </div>
@@ -264,6 +260,8 @@ IntermediateNavBar::render($request);
     [
         'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js',
         URLROOT . '/public/js/common/student-tutor-complete-profile.js?v=1.2',
-
+        URLROOT . '/public/js/common/tutor-student-profile-detail-validator-functions.js',
+        URLROOT . '/public/js/common/tutor-student-profile-detail-validator.js',
+        URLROOT . '/public/js/tutor/file-upload-indicator.js'
     ]
 ); ?>

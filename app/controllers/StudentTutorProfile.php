@@ -9,16 +9,18 @@ class StudentTutorProfile extends Controller {
     private ModelStudentClassTemplate $classTemplateModel;
     private ModelStudentReview $reviewModel;
     private ModelStudentReportReason $reportReasonModel;
-    private ModelTutorStudentAuth $userModel;
+    private ModelTutorStudentAuth $authModel;
     private ModelStudentNotification $notificationModel;
+    private ModelUser $userModel;
 
     public function __construct() {
         $this->reportModel = $this->model('ModelStudentReport');
         $this->classTemplateModel = $this->model('ModelStudentClassTemplate');
         $this->reviewModel = $this->model('ModelStudentReview');
         $this->reportReasonModel = $this->model('ModelStudentReportReason');
-        $this->userModel = $this->model('ModelTutorStudentAuth');
+        $this->authModel = $this->model('ModelTutorStudentAuth');
         $this->notificationModel = $this->model('ModelStudentNotification');
+        $this->userModel = $this->model('ModelUser');
     }
 
     public function tutorProfile(Request $request) {
@@ -30,6 +32,12 @@ class StudentTutorProfile extends Controller {
 //       Redirect user to correct page is user is not a student
         if (!$request->isStudent()) {
             redirectBasedOnUserRole($request);
+        }
+
+//            If the user is banned he cannot access this page
+        if ($this->userModel->isBanned($request->getUserId())) {
+            redirect('/logout');
+            return;
         }
 
         $body = $request->getBody();
@@ -173,7 +181,7 @@ class StudentTutorProfile extends Controller {
 
         $code = generateCode();
         if (sendCodeAsEmail($request, $code)) {
-            $this->userModel->setVerificationCode($request->getUserId(), $code);
+            $this->authModel->setVerificationCode($request->getUserId(), $code);
             header("HTTP/1.0 200 Success");
 
         } else {
@@ -197,7 +205,7 @@ class StudentTutorProfile extends Controller {
             return;
         }
 
-        if (!$this->userModel->isCodeValid($request->getUserId(), $body)) {
+        if (!$this->authModel->isCodeValid($request->getUserId(), $body)) {
             header("HTTP/1.0 403 Forbidden");
             return;
         }
@@ -222,7 +230,7 @@ class StudentTutorProfile extends Controller {
             return;
         }
 
-        if (!$this->userModel->isCodeValid($request->getUserId(), $body)) {
+        if (!$this->authModel->isCodeValid($request->getUserId(), $body)) {
             header("HTTP/1.0 403 Forbidden");
             return;
         }
@@ -234,7 +242,7 @@ class StudentTutorProfile extends Controller {
         }
 
         $data['password'] = password_hash($body['password'], PASSWORD_DEFAULT);
-        $result = $this->userModel->changePassword($data['password'], $request->getUserId());
+        $result = $this->authModel->changePassword($data['password'], $request->getUserId());
 
         if(!$result) {
             header("HTTP/1.0 500 Internal Server Error");
