@@ -135,13 +135,13 @@ MainNavbar::render($request);
 
                 <div class="form-row">
                     <div class="form-field">
-                        <label for="first-name">First Name *
+                        <label for="first-name">First Name
                             <span id="first-name-error"><?php echo $data['errors']['first_name_error'] ?></span>
                         </label>
                         <input type="text" name="first-name" id="first-name-input" value="<?php echo $data['first_name'] ?>">
                     </div>
                     <div class="form-field">
-                        <label for="last-name">Last Name *
+                        <label for="last-name">Last Name
                             <span id="last-name-error"><?php echo $data['errors']['last_name_error'] ?></span>
                         </label>
                         <input type="text" name="last-name" id="last-name-input" value="<?php echo $data['last_name'] ?>">
