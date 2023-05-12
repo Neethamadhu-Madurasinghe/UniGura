@@ -288,11 +288,13 @@ class ModelTutorDashboard
     }
 
 
-    public function getTutorSelectedClassMode($id): array {
+    public function getTutorSelectedClassMode($id): array
+    {
         $this->db->query('SELECT mode FROM user WHERE id = :id;');
         $this->db->bind('id', $id, PDO::PARAM_INT);
 
         return $this->db->resultOneAssoc();
+    }
 
     public function getAllPaymentDetails($tutorId): array
     {

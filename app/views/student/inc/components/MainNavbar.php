@@ -36,6 +36,7 @@ class MainNavbar {
                                 alt="" class="profile-picture-img">
                                 <div class="profile-menu profile-menu-hidden">
                                     <a href="' . URLROOT . '/student/profile' . '">Profile</a>
+                                    <a href="' . URLROOT . '/student/stats' . '">Stats</a>
                                     <a href="' . URLROOT . '/logout' . '">Logout</a>
                                 </div>
                             </div>
