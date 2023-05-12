@@ -33,11 +33,12 @@ Header::render(
                     <div>
                          <div class="dropdown">
                               <div class="dropdown_name">
-                                   <label for="Mode">Type of Document</label>
+                                   <label for="Mode">Activity Type</label>
                               </div>
                               <select id="type" name="type">
-                                   <option value="0">Theory Tute</option>
-                                   <option value="1">Question Tute</option>
+                                   <option value="0">Tute</option>
+                                   <option value="1">Submition</option>
+                                   <option value="2">Text</option>
                               </select>
                          </div>
                          <div class="dropdown">
@@ -67,6 +68,26 @@ Header::render(
                closebtn.addEventListener('click', function() {
                     window.location = "http://localhost/unigura/tutor/viewcourse?subject=" + "<?php echo $data['subject'] ?>" + "&module="+ "<?php echo $data['module'] ?>" + "&id=" + "<?php echo $data['c_id'] ?>";
                })
+
+               const select = document.getElementById('type');
+               const upload_btn = document.querySelector('.upload_label');
+               const title = document.getElementById('title');
+
+               select.addEventListener('change', () => {
+                    // Get the selected value
+                    const selectedValue = select.value;
+                    // Show/hide the divs based on the selected value
+                    if (selectedValue === '0') {
+                         upload_btn.style.display = 'block';
+                    } else if (selectedValue === '1') {
+                         upload_btn.style.display = 'none';
+                    } else if (selectedValue === '2') {
+                         upload_btn.style.display = 'none';
+          
+                    } else {
+                         
+                    }
+               });
 
           </script>
 

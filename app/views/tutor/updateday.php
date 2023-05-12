@@ -30,7 +30,6 @@ Header::render(
             <form action="" method="POST" enctype='multipart/form-data'>
                 <div class="grid-plane">
                 <input style="display:none" type="text" name="id" value='<?php echo $data['id'] ?>'>
-                <input style="display:none" type="text" name="position" value='<?php echo $data['position'] ?>'>
                 <input style="display:none" type="text" name="course_id" value='<?php echo $data['course_id'] ?>'>
                     <div class="dropdown">
                         <div class="dropdown_name">

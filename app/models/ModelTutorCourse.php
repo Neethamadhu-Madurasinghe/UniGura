@@ -35,12 +35,10 @@ public function setClassTemplateDay($data): bool
         return $this->db->resultAllAssoc();
     }
 
-    public function getTutoringActivities($id): array
+    public function getActivities($id): array
     {
-        $this->db->query('SELECT * FROM activity_template  WHERE day_template_id = :id ;');
-
+        $this->db->query('SELECT a.id , a.day_template_id , a.description, a.type , a.link FROM activity_template AS a JOIN day_template as d ON d.id = a.day_template_id WHERE d.class_template_id = :id ORDER BY a.type ASC;');
         $this->db->bind('id', $id, PDO::PARAM_INT);
-
         return $this->db->resultAllAssoc();
     }
 
@@ -168,9 +166,8 @@ public function setClassTemplateDay($data): bool
     public function updateDayTemplate($data) : bool 
     {
 
-        $this->db->query('UPDATE day_template SET title = :title , position = :position   WHERE id = :id;');
+        $this->db->query('UPDATE day_template SET title = :title  WHERE id = :id;');
         $this->db->bind('title', $data['title'], PDO::PARAM_STR);
-        $this->db->bind('position', $data['position'], PDO::PARAM_STR);
         $this->db->bind('id', $data['id'], PDO::PARAM_INT);
 
 
@@ -188,10 +185,21 @@ public function setClassTemplateDay($data): bool
         return $this->db->execute();
     }
     
-    public function changeClassTemplateStatus($id) : bool 
+    public function changeClassTemplateStatus($id,$is_hidden) : bool 
     {
-        $this->db->query('UPDATE tutoring_class_template SET is_hidden = 0 WHERE id = :c_id ;');
+        $this->db->query('UPDATE tutoring_class_template SET is_hidden = :is_hidden WHERE id = :c_id ;');
+        $this->db->bind(':c_id', $id, PDO::PARAM_INT);
+        $this->db->bind(':is_hidden', $is_hidden, PDO::PARAM_INT);
+//      Returns whether the row count is greater than 0
+        return $this->db->execute();
+    }
+
+    public function deleteActivityTemplate($id) : bool 
+    {
+
+        $this->db->query('DELETE FROM activity_template WHERE id = :id;');
         $this->db->bind('id', $id, PDO::PARAM_INT);
+
 //      Returns whether the row count is greater than 0
         return $this->db->execute();
     }

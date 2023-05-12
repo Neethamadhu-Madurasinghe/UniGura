@@ -12,6 +12,22 @@ class TutorCourse extends Controller
 
     public function viewcourse(Request $request)
     {
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        if ($request->isProfileNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isNotApprovedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isBankDetialsNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
 
         $data = [];
 
@@ -28,34 +44,21 @@ class TutorCourse extends Controller
                 'subject' => $subject[0]['subject'],
                 'module' =>  $module[0]['module'],
                 'mode' => $details[0]['mode'],
-                'days' => $days
+                'days' => $days,
+                'tutor_id' => $details[0]['tutor_id'],
+                'is_hidden'=>$details[0]['is_hidden']
             ];
         };
 
-        $days = json_encode($this->courseModel->getTutoringClassTemplateDays($data['id']));
+        $days = $this->courseModel->getTutoringClassTemplateDays($data['id']);
+        $activities = $this->courseModel->getActivities($data['id']);
 
         $data['days'] = $days;
+        $data['activities'] = $activities;
 
         $this->view('tutor/course', $request, $data);
     }
 
-    public function getactivity(Request $request)
-    {
-
-        $data = [];
-
-        $body = $request->getBody();
-
-
-        $activities = json_encode($this->courseModel->getTutoringActivities($body['id']));
-
-        $response = [
-            'activities' => $activities
-          ];
-          
-        header('Content-Type: application/json');
-        echo $activities;
-    }
 
 
     public function createDay(Request $request)
@@ -418,7 +421,6 @@ class TutorCourse extends Controller
             $data = [
                 'id' => $body['id'],
                 'title' =>  $details[0]['title'],
-                'position' => $position_count,
                 'course_id' => $body['course_id'],
                 'errors' => [
                     'title_error' => "",
@@ -434,7 +436,6 @@ class TutorCourse extends Controller
             $data = [
                 'id' => $body['id'],
                 'title' => $body['title'],
-                'position' => $body['position'],
                 'course_id' => $body['course_id'],
                 'errors' => [
                     'title_error' => "",
@@ -444,9 +445,7 @@ class TutorCourse extends Controller
 
             $data['errors']['title_error'] = $this->validateTitle($body['title'], $body['id']);
 
-            $data['errors']['position_error'] = $this->validatePosition($body['position'], $body['id']);
-
-    
+         
             $hasErrors = FALSE;
 
             foreach ($data['errors'] as $errorString) {
@@ -542,18 +541,43 @@ class TutorCourse extends Controller
         }
 
         if ($request->isPost()) {
-            $isValid = true;
-
-
-            if (isset($body['course_id']) ||isset($body['tutor_id'])) {
-                $this->courseModel->changeClassTemplateStatus($body['course_id']);
-            }else{
-                header("HTTP/1.0 400 Bad Request");
+            if($body['tutor_id'] === $request->getUserId()){
+                if (isset($body['course_id'])) {
+                    $this->courseModel->changeClassTemplateStatus($body['course_id'],$body['is_hidden']);
+                }else{
+                    header("HTTP/1.0 400 Bad Request");
+                }
+            }
+            else{
+                header("HTTP/1.0 401 Unauthorized Tutor");
+                return;
             }
         }
-    
-    }
+    }  
+
+    public function deleteActivityTemplate(Request $request){
+        cors();
+
+        $body = json_decode(file_get_contents('php://input'), true);
 
 
-    
+        if (!$request->isLoggedIn() || !$request->isTutor()) {
+            header("HTTP/1.0 401 Unauthorized");
+            return;
+        }
+
+        if ($request->isPost()) {
+            if($body['tutor_id'] === $request->getUserId()){
+                if (isset($body['activity_id'])) {
+                    $this->courseModel->deleteActivityTemplate($body['activity_id']);
+                }else{
+                    header("HTTP/1.0 400 Bad Request");
+                }
+            }
+            else{
+                header("HTTP/1.0 401 Unauthorized Tutor");
+                return;
+            }
+        }
+    }  
 }
