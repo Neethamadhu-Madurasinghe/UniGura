@@ -25,7 +25,8 @@ Header::render(
 ?>
 
 <div class="lightbox">
-     <div class="box">
+    <div class="box"></div>
+</div>
           <script>
                let student_name = document.getElementById('first_name');
                let student_image = document.getElementById('image');
@@ -137,22 +138,19 @@ Header::render(
                     window.location = "http://localhost/unigura/tutor/dashboard";
                })
 
-               document.addEventListener('DOMContentLoaded', (event) => {
-                    // if (decline) {
-                    //      decline.addEventListener('click', function() {
-                    //           const url = "http://localhost/unigura/tutor/requestdecline?id=" + request[0].id;
-                    //
-                    //           fetch(url)
-                    //                .then(response => response.json())
-                    //                .then(data => {
-                    //                     window.location = "http://localhost/unigura/tutor/dashboard";
-                    //                })
-                    //                .catch(error => {
-                    //                     console.error(error);
-                    //                });
-                    //      })
-                    // }
-               });
+                document.getElementById('decline_btn').addEventListener('click', function() {
+                            console.log('sss');
+                              const url = "http://localhost/unigura/tutor/requestdecline?id=" + request[0].id;
+
+                              fetch(url)
+                                   .then(response => response.json())
+                                   .then(data => {
+                                        window.location = "http://localhost/unigura/tutor/dashboard";
+                                   })
+                                   .catch(error => {
+                                        console.error(error);
+                                   });
+                         })
           </script>
 
           <?php Footer::render(
