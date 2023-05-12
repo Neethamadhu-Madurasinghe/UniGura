@@ -19,6 +19,7 @@ class ModelTutorUpdateProfile
                                                       address_line2 = :address_line2, 
                                                       city = :city , 
                                                       district = :district,  
+                                                      mode = :mode,
                                                       location = ST_PointFromText(:location, :srid),
                                                       bank_account_owner = :bank_account_owner ,
                                                       bank_account_number = :bank_account_number , 
@@ -46,6 +47,7 @@ class ModelTutorUpdateProfile
 
         $this->db->bind('location', $location, PDO::PARAM_STR);
         $this->db->bind('srid', 4326, PDO::PARAM_INT);
+        $this->db->bind(':mode', $data['mode']);
 
 
         return $this->db->execute();

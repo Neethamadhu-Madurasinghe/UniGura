@@ -4,11 +4,13 @@ class TutorUpdateProfile extends Controller
 {
     private ModelTutorUpdateProfile $updateProfile;
     private ModelTutorStudentCompleteProfile $tutorStudentModel;
+    private ModelTutorCourse $courseModel;
 
     public function __construct()
     {
         $this->updateProfile = $this->model('ModelTutorUpdateProfile');
         $this->tutorStudentModel = $this->model('ModelTutorStudentCompleteProfile');
+        $this->courseModel = $this->model('ModelTutorCourse');
     }
 
 
@@ -56,6 +58,7 @@ class TutorUpdateProfile extends Controller
                 'bank_name' => $body['bank_name'],
                 'bank_branch' => $body['bank_branch'],
                 'education_qualification' => $body['education_qualification'],
+                'mode' => $body['preferred-class-mode'],
                 'university' => $body['university'],
                 'longitude' => $body['longitude'],
                 'latitude' => $body['latitude'],
@@ -138,7 +141,10 @@ class TutorUpdateProfile extends Controller
         $tutorBankDetails = $this->updateProfile->getTutorBankDetails($request->getUserId());
         $tutorTimeSlots = $this->updateProfile->getTimeSlots($request->getUserId());
 
-
+//        Tells the nature of templates of this tutor. If tutor has online classes. then we should not let him to set his preferred mode
+//        To online and wiseversa
+        $classModes = $this->courseModel->getOnlineAndPhysicalClassesByTutorId($request->getUserId());
+        
         $data = [
             'id' => $request->getUserId(),
             'first_name' => $tutorProfileDetails[0]['first_name'],
@@ -175,6 +181,7 @@ class TutorUpdateProfile extends Controller
             //     'university_error' => ''
             // ]
         ];
+        $data['class_modes'] = $classModes;
 
         $this->view('tutor/updateProfile', $request, $data);
     }

@@ -129,14 +129,19 @@ MainNavbar::render($request);
                         <div class="form-field">
                             <label for="preferred-class-mode">Preferred Class Mode</label>
                             <select name="preferred-class-mode" id="preferred-class-mode">
-                                <option value="online"
-                                    <?php echo $data['mode'] === 'online' ? 'selected' : '' ?>>
-                                    Online
-                                </option>
-                                <option value="physical"
-                                    <?php echo $data['mode'] === 'physical' ? 'selected' : '' ?>>
-                                    Physical
-                                </option>
+                                <?php if(count($data['class_modes']['number_of_physical_classes']) == 0): ?>
+                                    <option value="online"
+                                        <?php echo $data['mode'] === 'online' ? 'selected' : '' ?>>
+                                        Online
+                                    </option>
+                                <?php endif?>
+                                <?php if(count($data['class_modes']['number_of_online_classes']) == 0): ?>
+                                    <option value="physical"
+                                        <?php echo $data['mode'] === 'physical' ? 'selected' : '' ?>>
+                                        Physical
+                                    </option>
+                                <?php endif?>
+
                                 <option value="both"
                                     <?php echo $data['mode'] === 'both' ? 'selected' : '' ?>>
                                     Both
