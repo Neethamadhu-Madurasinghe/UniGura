@@ -135,13 +135,13 @@ MainNavbar::render($request);
 
                 <div class="form-row">
                     <div class="form-field">
-                        <label for="first-name">First Name *
+                        <label for="first-name">First Name
                             <span id="first-name-error"><?php echo $data['errors']['first_name_error'] ?></span>
                         </label>
                         <input type="text" name="first-name" id="first-name-input" value="<?php echo $data['first_name'] ?>">
                     </div>
                     <div class="form-field">
-                        <label for="last-name">Last Name *
+                        <label for="last-name">Last Name
                             <span id="last-name-error"><?php echo $data['errors']['last_name_error'] ?></span>
                         </label>
                         <input type="text" name="last-name" id="last-name-input" value="<?php echo $data['last_name'] ?>">
@@ -289,64 +289,6 @@ MainNavbar::render($request);
             </div>
         </form>
 
-        <div class="payment-history" id="payments">
-            <h1>Payment History</h1>
-            <div class="payment-history-container">
-                <?php if (count($data['payments']) == 0): ?>
-                    <div class="no-data-table-msg">
-                        <h4>You have not made any payments yet</h4>
-                    </div>
-
-                <?php else: ?>
-                    <table class="data-table" id="payment-table">
-                        <script>
-                            const payments = <?php echo json_encode($data['payments']); ?>
-                        </script>
-                    </table>
-                    <div id="pagination"></div>
-                <?php endif; ?>
-            </div>
-
-            <?php if (count($data['payments']) != 0): ?>
-            <div class="chart-section">
-                <div class="chart-container">
-                    <canvas id="payment-chart"></canvas>
-                </div>
-            </div>
-            <?php endif; ?>
-        </div>
-
-        <div class="request-history" id="requests">
-            <h1>Pending Tutor Requests</h1>
-            <div class="request-history-container">
-                <?php if (count($data['requests']) === 0): ?>
-                    <div class="no-data-table-msg">
-                        <h4>There are no pending tutor requests</h4>
-                    </div>
-
-                <?php else: ?>
-                    <table class="data-table">
-                        <tr class="top-table-row">
-                            <th>Tutor</th>
-                            <th>Subject</th>
-                            <th>Module</th>
-                            <th>Mode</th>
-                            <th></th>
-                        </tr>
-
-                        <?php foreach ($data['requests'] as $request): ?>
-                            <tr>
-                                <td><?php echo $request['first_name'] . ' ' . $request['last_name']; ?></td>
-                                <td><?php echo $request['subject']; ?></td>
-                                <td><?php echo $request['module']; ?></td>
-                                <td><?php echo $request['mode']; ?></td>
-                                <td><button class="btn req-cancel-btn" data-id="<?php echo $request['id']; ?>">Cancel</button></td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </table>
-                <?php endif; ?>
-            </div>
-        </div>
 
     </div>
 </div>

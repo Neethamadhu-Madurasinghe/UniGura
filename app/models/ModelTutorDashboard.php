@@ -177,10 +177,11 @@ class ModelTutorDashboard
         return $this->db->execute();
     }
 
-    public function UpdateTutorTimeSlotWithRequest($id) : bool
+    public function UpdateTutorTimeSlotWithRequest($id, $classId) : bool
     {
-        $this->db->query('UPDATE time_slot SET state = 2  WHERE id = :id;');
+        $this->db->query('UPDATE time_slot SET state = 2, tutoring_class_id=:classId  WHERE id = :id;');
         $this->db->bind('id', $id , PDO::PARAM_INT);
+        $this->db->bind('classId', $classId , PDO::PARAM_INT);
 
 //      Returns whether the row count is greater than 0
         return $this->db->execute();
@@ -261,7 +262,7 @@ class ModelTutorDashboard
         $this->setStudentAproveRequest($data['id']);
         $this->setDaysofClass(intval($class_id['id']),$data);
         $this->setActivitiesofDay($class_id['id']);
-        $this->UpdateTutorTimeSlotWithRequest($data['time_slot_id']);
+        $this->UpdateTutorTimeSlotWithRequest($data['time_slot_id'], $class_id['id']);
 
         return $this->db->commitTransaction();
     }
@@ -288,11 +289,13 @@ class ModelTutorDashboard
     }
 
 
-    public function getTutorSelectedClassMode($id): array {
+    public function getTutorSelectedClassMode($id): array
+    {
         $this->db->query('SELECT mode FROM user WHERE id = :id;');
         $this->db->bind('id', $id, PDO::PARAM_INT);
 
         return $this->db->resultOneAssoc();
+    }
 
     public function getAllPaymentDetails($tutorId): array
     {

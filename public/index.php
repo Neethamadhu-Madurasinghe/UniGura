@@ -265,6 +265,7 @@ $router->registerController('/api/time-table', [FindTutor::class, 'getTutorTimeT
 $router->registerController('/api/request', [FindTutor::class, 'sendTutorRequest']);
 $router->registerController('/student/find-tutor', [FindTutor::class, 'findTutor']);
 $router->registerController('/student/profile', [StudentProfile::class, 'profile']);
+$router->registerController('/student/stats', [StudentStats::class, 'studentStats']);
 $router->registerController('/api/student/delete-request', [StudentProfile::class, 'deleteTutorRequest']);
 $router->registerController('/api/report-tutor', [StudentTutorProfile::class, 'reportTutor']);
 $router->registerController('/student/tutor-profile', [StudentTutorProfile::class, 'tutorProfile']);

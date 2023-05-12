@@ -120,11 +120,7 @@ class StudentProfile extends Controller {
             $data['errors'] = $errors;
 
         }
-//        Fetch payment history
-        $data['payments'] = $this->paymentModel->getAllPaymentsByStudentId($request->getUserId());
 
-        //          Fetch tutor request data
-        $data['requests'] = $this->requestModel->getRequestsByStudentId($request->getUserId());
 //        Load the view for both post and get requests
         $this->view('/student/profile', $request, $data);
     }

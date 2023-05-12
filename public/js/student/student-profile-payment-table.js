@@ -43,7 +43,7 @@ if(payments.length !== 0) {
         data: {
             labels: monthNames,
             datasets: [{
-                label: 'Payments in this year',
+                label: 'Payments by month',
                 data: totals,
                 borderWidth: 1,
                 backgroundColor: 'rgba(247, 113, 26, 0.8)' // Set the background color to orange
@@ -69,11 +69,25 @@ function displayData(data, startIndex, endIndex) {
     tableHeaderRow.innerHTML = `
         <th>Tutor</th><th>Subject</th><th>Module</th><th>Amount</th><th>Date and Time</th>
     `;
-    const container = document.getElementById("data-container");
+
     paymentTableUI.appendChild(tableHeaderRow);
 
     for (let i = startIndex; i < endIndex; i++) {
         const payment = data[i];
+
+        const inputStr = payment.timestamp;
+        // Convert input string to a Date object
+        const date = new Date(inputStr);
+
+        // Format the date object to "YYYY-MM-DD hh:mm AM/PM" using Intl.DateTimeFormat
+        const formattedDate = new Intl.DateTimeFormat('en-US', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true
+        }).format(date);
 
         const tableRow = document.createElement('tr');
         tableRow.innerHTML = `
@@ -81,7 +95,7 @@ function displayData(data, startIndex, endIndex) {
             <td>${payment.subject_name}</td>
             <td>${payment.module_name}</td>
             <td>${payment.amount} LKR</td>
-            <td>${payment.timestamp}</td>
+            <td>${formattedDate}</td>
         `;
         paymentTableUI.appendChild(tableRow);
     }

@@ -135,7 +135,9 @@ class StudentTutorProfile extends Controller {
             if (
                 !(isset($body['description']) &&
                     isset($body['tutor_id']) &&
-                    isset($body['reason_id']))
+                    isset($body['reason_id']) &&
+                    isset($body['template_id'])
+                )
             ) {
                 $isError = true;
             }
@@ -152,7 +154,7 @@ class StudentTutorProfile extends Controller {
             }
 
 //          If all the checks are passed, then make the report
-            if ($this->reportModel->saveStudnetReport($body)) {
+            if ($this->reportModel->saveStudentReport($body)) {
 //              Send the notification to the admin
                 $this->notificationModel->createAdminNotification(
                     "A Student has reported a tutor"

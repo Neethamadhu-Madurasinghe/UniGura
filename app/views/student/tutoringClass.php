@@ -30,6 +30,7 @@ Header::render(
         data-classid="<?php echo $data['id'] ?>"
         data-tutor="<?php echo $data['tutor_id'] ?>"
         data-duration="<?php echo $data['duration'] ?>"
+        data-template="<?php echo $data['class_template_id'] ?>"
         ></div>
 
 <div class="error-layout-background invisible">

@@ -323,6 +323,7 @@
     width: 100%;
     border-collapse: collapse;
     border-radius: 10px;
+    margin-bottom: 20px;
 }
 
 .data-table tr {

@@ -125,6 +125,51 @@ MainNavbar::render($request);
 
                                 </select>
                         </div>
+
+                        <div class="form-field">
+                            <label for="preferred-class-mode">Preferred Class Mode</label>
+                            <select name="preferred-class-mode" id="preferred-class-mode">
+                                <?php if(count($data['class_modes']['number_of_physical_classes']) == 0): ?>
+                                    <option value="online"
+                                        <?php echo $data['mode'] === 'online' ? 'selected' : '' ?>>
+                                        Online
+                                    </option>
+                                <?php endif?>
+                                <?php if(count($data['class_modes']['number_of_online_classes']) == 0): ?>
+                                    <option value="physical"
+                                        <?php echo $data['mode'] === 'physical' ? 'selected' : '' ?>>
+                                        Physical
+                                    </option>
+                                <?php endif?>
+
+                                <option value="both"
+                                    <?php echo $data['mode'] === 'both' ? 'selected' : '' ?>>
+                                    Both
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="map-container" id="map-container">
+                            <p>Select location</p>
+                            <div id="map" class="map"></div>
+                            <div id="marker"
+                                 title="Marker"
+                                 style="<?php echo 'background:url(' . URLROOT . '/public/img/student/marker-64.ico)
+                                     no-repeat top center; background-size: contain;' ?>">
+
+                            </div>
+                            <input type="number"
+                                   id="longitude"
+                                   name="longitude"
+                                   readonly
+                                   value="<?php echo $data['longitude']; ?>">
+
+                            <input type="number"
+                                   id="latitude"
+                                   name="latitude"
+                                   readonly
+                                   value="<?php echo $data['latitude']; ?>">
+                        </div>
                     </div>
                 </div>
 
@@ -967,6 +1012,8 @@ MainNavbar::render($request);
 
 <?php Footer::render(
     [
-        URLROOT . '/public/js/tutor/tutor-main.js?v=1.2'
+        'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js',
+        URLROOT . '/public/js/tutor/tutor-main.js?v=1.2',
+        URLROOT . '/public/js/tutor/tutor-profile-location-change.js'
     ]
 );

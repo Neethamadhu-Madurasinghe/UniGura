@@ -376,5 +376,12 @@ class StudentClass extends Controller {
         return $formattedTime;
     }
 
+}
 
+// Just a helper function to get a different between two times in hours
+function getTimeDifference($start_time, $end_time) {
+    $start = strtotime($start_time);
+    $end = strtotime($end_time);
+    $diff = $end - $start;
+    return floor($diff / (60 * 60));;
 }
