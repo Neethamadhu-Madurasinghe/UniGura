@@ -8,7 +8,8 @@ const reportSubmitButtonUI = document.getElementById('popup-report-submit');
 const report = {
   reason_id: 0,
   description: '',
-  tutor_id: 0
+  tutor_id: 0,
+  template_id: 0,
 }
 
 
@@ -27,6 +28,7 @@ reportSubmitButtonUI.addEventListener('click', async (e) => {
       report.reason_id = reportReasonRadioButtonsUI[i].value;
       report.description = reportCommentUI.value;
       report.tutor_id = dataElement.dataset.tutor;
+      report.template_id = dataElement.dataset.template;
     }
   }
 

@@ -1,4 +1,5 @@
 const popupTimeTableUI = document.querySelector('.pop-time-table'); 
+const popupTimeTableUI = document.querySelector('.pop-time-table');
 const popupTimeTableCancelButtonUI = document.getElementById('time-table-cancel');
 const timeTableUI = document.getElementById('time-table');
 let unsortedTimeSlots = [];
