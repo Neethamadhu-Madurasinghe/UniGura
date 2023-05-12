@@ -20,6 +20,7 @@ async function sendClassListRequest() {
     });
 
     let tutoringClasses = (await response.json()).tutoring_classes;
+    console.log(tutoringClasses);
 
     // Disable filters and show no Classes message if there are no records
     if (subjectFilterUI.value === 'all' &&
@@ -41,8 +42,8 @@ async function sendClassListRequest() {
         // Additional fields into class cards
         tutoringClasses = tutoringClasses.map(tutoringClass => {
             tutoringClass.class_type = tutoringClass.class_type.charAt(0).toUpperCase() + tutoringClass.class_type.slice(1);
-            if (!tutoringClass.tutor.profile_picture) {
-                tutoringClass['tutor']['profile_picture'] = '/public/img/common/profile.png';
+            if (!tutoringClass.profile_picture) {
+                tutoringClass['profile_picture'] = '/public/img/common/profile.png';
             }
             console.log(tutoringClass)
             if (tutoringClass.day_count > 0) {
@@ -61,18 +62,18 @@ async function sendClassListRequest() {
             classCardContainerUI.innerHTML += `
             <div class="class-card">
                 <div class="class-card-top-section">
-                    <h2>${tutoringClass.module.name} ${tutoringClass.class_type}</h2>
-                    <h4>${tutoringClass.subject.name}</h4>
+                    <h2>${tutoringClass.module_name} ${tutoringClass.class_type}</h2>
+                    <h4>${tutoringClass.subject_name}</h4>
                  </div>
                  
                  <div class="class-card-bottom-section">
                     <div class="name-row">
                         <div class="class-card-name-pic-container">
                             <div class="class-card-profile-picture-container">
-                                <img src="${'http://localhost/unigura/' + tutoringClass.tutor.profile_picture}" alt="" srcset="">
+                                <img src="${'http://localhost/unigura/' + tutoringClass.profile_picture}" alt="" srcset="">
                             </div>
                             
-                            <p>${tutoringClass.tutor.first_name} ${tutoringClass.tutor.last_name}</p>
+                            <p>${tutoringClass.first_name} ${tutoringClass.last_name}</p>
                         </div>
                         
                         <div class="class-card-payment-due-container">

@@ -6,78 +6,76 @@ class ModelStudentTutoringClass {
         $this->db = new Database();
     }
 
-    public function getTutoringClassByStudentId($studentId): array {
-        $this->db->query('SELECT * FROM tutoring_class WHERE student_id=:student_id');
+    public function getTutoringClassByStudentId(int $studentId, array $filters = []): array {
+//        Add optional parts to query to make filter
+
+        $filterString = '';
+        foreach ($filters as $field => $value) {
+            if ($value != 'all') {
+                if ($field == 'sort-subject') {
+                    $filterString = $filterString . ' AND tutoring_class_template.subject_id=:subject_id';
+                }elseif ($field == 'sort-completion') {
+                    $filterString = $filterString . ' AND tutoring_class.completion_status=:completion_status';
+                }elseif ($field == 'sort-payment') {
+                    if ($value == 'payment-not-due') {
+                        $filterString = $filterString . ' AND payment_due_day_counts.payment_due_day_count IS NULL';
+                    }elseif ($value == 'payment-due') {
+                        $filterString = $filterString . ' AND payment_due_day_counts.payment_due_day_count>0';
+                    }
+                }
+            }
+        }
+
+        $this->db->query('SELECT 
+                            tutoring_class.*,
+                            tutoring_class_template.subject_id,
+                            user.first_name,
+                            user.last_name,
+                            user.profile_picture,
+                            subject.name as subject_name,
+                            module.name as module_name,
+                            day_counts.day_count,
+                            incomplete_day_counts.incomplete_day_count,
+                            payment_due_day_counts.payment_due_day_count
+                        FROM 
+                            tutoring_class
+                            JOIN user ON tutoring_class.tutor_id = user.id
+                            JOIN tutoring_class_template ON tutoring_class.class_template_id = tutoring_class_template.id
+                            JOIN subject ON tutoring_class_template.subject_id = subject.id
+                            JOIN module ON tutoring_class_template.module_id = module.id
+                            LEFT JOIN (
+                                SELECT class_id, COUNT(*) as day_count
+                                FROM day
+                                WHERE is_hidden = 0
+                                GROUP BY class_id
+                            ) as day_counts ON tutoring_class.id = day_counts.class_id
+                            LEFT JOIN (
+                                SELECT class_id, COUNT(*) as incomplete_day_count
+                                FROM day
+                                WHERE is_hidden = 0 AND is_completed = 0
+                                GROUP BY class_id
+                            ) as incomplete_day_counts ON tutoring_class.id = incomplete_day_counts.class_id
+                            LEFT JOIN (
+                                SELECT class_id, COUNT(*) as payment_due_day_count
+                                FROM day
+                                WHERE is_completed = 1 AND payment_status = 0
+                                GROUP BY class_id
+                            ) as payment_due_day_counts ON tutoring_class.id = payment_due_day_counts.class_id
+                            WHERE tutoring_class.student_id = :student_id' . $filterString);
+
         $this->db->bind('student_id', $studentId, PDO::PARAM_INT);
 
-//        Fetch all the records as an array of objects and covert it into an array of associative arrays
-        $rows = json_decode(json_encode($this->db->resultAll()), true);
-
-        if (!$rows) { return $rows; }
-
-//        After fetching tutoring classes, fetch the first name, last name and profile picture of each class's tutor
-//        Also do the same to  subject name and module name
-
-        foreach ($rows as $key => $value) {
-//            Fetch tutor
-            $this->db->query('SELECT first_name, last_name, profile_picture FROM user WHERE id=:id');
-            $this->db->bind('id', $value['tutor_id'], PDO::PARAM_INT);
-            $tutor = $this->db->resultOne();
-            $rows[$key]['tutor'] = json_decode(json_encode($tutor), true);
-
-//            Fetch subject
-            $this->db->query('
-                SELECT subject.id as id, subject.name as name FROM tutoring_class_template JOIN subject ON
-                tutoring_class_template.subject_id = subject.id WHERE tutoring_class_template.id = :template_id
-                ');
-
-            $this->db->bind('template_id', $value['class_template_id'], PDO::PARAM_INT);
-            $subject = json_decode(json_encode($this->db->resultOne()), true);
-            $rows[$key]['subject'] = $subject;
-
-//            Fetch Module
-            $this->db->query('
-                SELECT module.id as id, module.name as name FROM tutoring_class_template JOIN module ON
-                tutoring_class_template.module_id = module.id WHERE tutoring_class_template.id = :template_id
-            ');
-
-            $this->db->bind('template_id', $value['class_template_id'], PDO::PARAM_INT);
-            $module = json_decode(json_encode($this->db->resultOne()), true);
-            $rows[$key]['module'] = $module;
-
-//           Fetch all the days
-            $this->db->query('
-                SELECT COUNT(day.id) as day_count FROM tutoring_class JOIN day ON
-                tutoring_class.id= day.class_id WHERE tutoring_class.id=:id AND day.is_hidden = 0'
-            );
-
-            $this->db->bind('id', $value['id'], PDO::PARAM_INT);
-            $dayCount = $this->db->resultOne();
-            $rows[$key]['day_count'] = $dayCount->day_count;
-
-//           Fetch all the incomplete days
-            $this->db->query('
-                SELECT COUNT(day.id) as incomplete_day_count FROM tutoring_class JOIN day ON
-                tutoring_class.id= day.class_id WHERE tutoring_class.id=:id AND day.is_completed = 0 AND day.is_hidden = 0'
-            );
-
-            $this->db->bind('id', $value['id'], PDO::PARAM_INT);
-            $incompleteDayCount = $this->db->resultOne();
-            $rows[$key]['incomplete_day_count'] = $incompleteDayCount->incomplete_day_count;
-
-//           Payment due
-            $this->db->query('
-                SELECT COUNT(day.id) as payment_due_day_count FROM tutoring_class JOIN day ON
-                tutoring_class.id= day.class_id WHERE tutoring_class.id=:id AND day.payment_status = 0 AND day.is_completed = 1'
-            );
-
-            $this->db->bind('id', $value['id'], PDO::PARAM_INT);
-            $paymentDueDayCount = $this->db->resultOne();
-            $rows[$key]['payment_due_day_count'] = $paymentDueDayCount->payment_due_day_count;
-
-
+        if (isset($filters['sort-subject']) && $filters['sort-subject'] != 'all') {
+            $this->db->bind('subject_id', $filters['sort-subject'], PDO::PARAM_INT);
         }
-        return $rows;
+
+        if (isset($filters['sort-subject']) && $filters['sort-completion'] == 'not-completed') {
+            $this->db->bind('completion_status', 0, PDO::PARAM_INT);
+        }elseif (isset($filters['sort-subject']) && $filters['sort-completion'] == 'completed') {
+            $this->db->bind('completion_status', 1, PDO::PARAM_INT);
+        }
+
+        return $this->db->resultAllAssoc();
     }
 
 //    Returns all the details related to a tutoring class (Not a course) when the id is given
@@ -145,7 +143,6 @@ class ModelStudentTutoringClass {
                     $explodedFileName = explode('/', $actValue['link']);
                     $activities[$actKey]['link'] = end($explodedFileName);
                 }
-
             }
 
             $tutoring_class['days'][$key]['activities'] = $activities;
