@@ -6,9 +6,29 @@ class ModelStudentTutoringClass {
         $this->db = new Database();
     }
 
-    public function getTutoringClassByStudentId($studentId): array {
+    public function getTutoringClassByStudentId(int $studentId, array $filters = []): array {
+//        Add optional parts to query to make filter
+
+        $filterString = '';
+        foreach ($filters as $field => $value) {
+            if ($value != 'all') {
+                if ($field == 'sort-subject') {
+                    $filterString = $filterString . ' AND tutoring_class_template.subject_id=:subject_id';
+                }elseif ($field == 'sort-completion') {
+                    $filterString = $filterString . ' AND tutoring_class.completion_status=:completion_status';
+                }elseif ($field == 'sort-payment') {
+                    if ($value == 'payment-not-due') {
+                        $filterString = $filterString . ' AND payment_due_day_counts.payment_due_day_count IS NULL';
+                    }elseif ($value == 'payment-due') {
+                        $filterString = $filterString . ' AND payment_due_day_counts.payment_due_day_count>0';
+                    }
+                }
+            }
+        }
+
         $this->db->query('SELECT 
                             tutoring_class.*,
+                            tutoring_class_template.subject_id,
                             user.first_name,
                             user.last_name,
                             user.profile_picture,
@@ -41,8 +61,19 @@ class ModelStudentTutoringClass {
                                 WHERE is_completed = 1 AND payment_status = 0
                                 GROUP BY class_id
                             ) as payment_due_day_counts ON tutoring_class.id = payment_due_day_counts.class_id
-                            WHERE tutoring_class.student_id = :student_id');
+                            WHERE tutoring_class.student_id = :student_id' . $filterString);
+
         $this->db->bind('student_id', $studentId, PDO::PARAM_INT);
+
+        if (isset($filters['sort-subject']) && $filters['sort-subject'] != 'all') {
+            $this->db->bind('subject_id', $filters['sort-subject'], PDO::PARAM_INT);
+        }
+
+        if (isset($filters['sort-subject']) && $filters['sort-completion'] == 'not-completed') {
+            $this->db->bind('completion_status', 0, PDO::PARAM_INT);
+        }elseif (isset($filters['sort-subject']) && $filters['sort-completion'] == 'completed') {
+            $this->db->bind('completion_status', 1, PDO::PARAM_INT);
+        }
 
         return $this->db->resultAllAssoc();
     }
@@ -112,7 +143,6 @@ class ModelStudentTutoringClass {
                     $explodedFileName = explode('/', $actValue['link']);
                     $activities[$actKey]['link'] = end($explodedFileName);
                 }
-
             }
 
             $tutoring_class['days'][$key]['activities'] = $activities;
