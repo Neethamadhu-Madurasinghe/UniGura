@@ -7,6 +7,7 @@ class FindTutor extends Controller {
     private ModelStudentRequest $requestModel;
     private ModelStudentTimeSlot $timeSlotModel;
     private ModelStudentNotification $notification;
+    private ModelUser $userModel;
 
     public function __construct() {
         $this->moduleModel = $this->model('ModelStudentModule');
@@ -16,6 +17,7 @@ class FindTutor extends Controller {
         $this->requestModel = $this->model('ModelStudentRequest');
         $this->timeSlotModel = $this->model('ModelStudentTimeSlot');
         $this->notification = $this->model('ModelStudentNotification');
+        $this->userModel = $this->model('ModelUser');
     }
 
     public function findTutor(Request $request) {
@@ -181,6 +183,12 @@ class FindTutor extends Controller {
                 return;
             }
 
+//            If the user is banned he cannot send tutor requests
+            if ($this->userModel->isBanned($request->getUserId())) {
+                header("HTTP/1.0 401 Unauthorized");
+                return;
+            }
+
 //          Get the payload
             $body = json_decode(file_get_contents('php://input'), true);
             $body['student_id'] = $request->getUserId();
@@ -229,7 +237,7 @@ class FindTutor extends Controller {
 
                 if (
                     $currentTimeSlot['day'] != $previousTimeSlot['day'] ||
-                    getTimeDifference($previousTimeSlot['time'], $currentTimeSlot['time']) != 2
+                    abs(getTimeDifference($previousTimeSlot['time'], $currentTimeSlot['time'])) != 2
                 ) {
                     $isError = true;
                 }
@@ -251,11 +259,14 @@ class FindTutor extends Controller {
 //          If all the checks are passed, then make the request
             if ($this->requestModel->makeRequest($body)) {
 //                Create a notification
+//                Get the course details to be shown in the notification
+                $course = $this->classTemplateModel->getClassTemplateById($body['template_id']);
+
                 $this->notification->createNotification(
                             $body['student_id'],
                         "Tutor request has been sent",
-                    "/UniGura/student/profile#requests",
-                        "You have sent a tutor request. You can cancel it by clicking here"
+                    "/UniGura/student/stats#requests",
+                        "You have sent a tutor request to "  . $course->first_name . ' ' . $course->last_name . ". You can cancel it by clicking here"
 
                 );
 

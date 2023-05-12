@@ -4,7 +4,6 @@
 <script defer src="<?php echo URLROOT ?>/public/js/admin/Statistic.js"></script>
 
 
-
 <section class="home" id="home">
     <p></p>
     <p></p>
@@ -13,28 +12,43 @@
 
     <div class="statistic-page">
         <div class="div1">
-            <div style="width: 800px;" class="myChart">
+            <div style="width: 810px;" class="myChart">
                 <canvas id="myChart"></canvas>
             </div>
 
-            <div style="width: 320px;" class="myChart2">
+            <div style="width: 450px;" class="myChart2">
                 <canvas id="myChart2"></canvas>
             </div>
         </div>
 
-        <div class="div1">
-            <div style="width: 320px;" class="rating-summary">
-                <h1>3.8</h1><br>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <br><br><br>
-                <h2>67 Total</h2>
+        <div class="div2">
+            <div style="width: 380px;" class="rating-summary">
+                <h1><?php echo number_format($data['totalUserFeedbackRating']->totalStars / $data['totalUsers'], 1) ?></h1><br>
+                <div class="star-ratings">
+                    <?php
+                    $fullStars = floor($data['totalUserFeedbackRating']->totalStars / $data['totalUsers']);
+                    $halfStars = ceil($data['totalUserFeedbackRating']->totalStars / $data['totalUsers'] - $fullStars);
+                    $emptyStars = 5 - $fullStars - $halfStars;
+
+                    for ($i = 0; $i < $fullStars; $i++) {
+                        echo '<span class="fa fa-star checked"></span>';
+                    }
+
+                    for ($i = 0; $i < $halfStars; $i++) {
+                        echo '<span class="fa fa-star-half-o checked"></span>';
+                    }
+
+                    for ($i = 0; $i < $emptyStars; $i++) {
+                        echo '<span class="fa fa-star-o checked"></span>';
+                    }
+                    ?>
+                </div>
+
+                <br><br>
+                <h2><?php echo $data['totalUserFeedbackRating']->totalStars ?> Total</h2>
             </div>
 
-            <div style="width: 800px;" class="myChart5">
+            <div style="width: 880px;" class="myChart5">
                 <canvas id="myChart5"></canvas>
             </div>
 
@@ -42,11 +56,11 @@
 
 
 
-        <div style="width: 1220px; text-align: center;" class="myChart4">
+        <div style="width: 1310px; text-align: center;" class="myChart4">
             <canvas id="myChart4"></canvas>
         </div>
 
-        <div style="width: 1200px; text-align: center;" class="myChart3">
+        <div style="width: 1310px; text-align: center;" class="myChart3">
             <canvas id="myChart3"></canvas>
         </div>
 
@@ -318,8 +332,8 @@
                     labels: ['5\u0020\u0020\u2605', '4\u0020\u0020\u2605', '3\u0020\u0020\u2605', '2\u0020\u0020\u2605', '1\u0020\u0020\u2605'],
                     datasets: [{
                         axis: 'y',
-                        label: '# of Rating',
-                        data: [10, 20, 30, 40, 50],
+                        label: '# of Stars',
+                        data: [<?php echo $data['userFeedbackFiveRating'] ?>, <?php echo $data['userFeedbackFourRating'] ?>, <?php echo $data['userFeedbackThreeRating'] ?>, <?php echo $data['userFeedbackTwoRating'] ?>, <?php echo $data['userFeedbackOneRating'] ?>],
                         backgroundColor: [
                             '#4CAF50',
                             '#8BC34A',

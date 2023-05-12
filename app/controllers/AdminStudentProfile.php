@@ -24,6 +24,9 @@ class AdminStudentProfile extends Controller
             $allClasses = $this->studentModel->getAllTutorialClassesByStudentId($studentId);
             $studentDetails = $this->studentModel->getStudent($studentId);
 
+            $numberOfActiveClasses = $this->studentModel->getCountActiveTutorialClassesByStudentId($studentId);
+            $numberOfCompletedClasses = $this->studentModel->getCountCompletedTutorialClassesByStudentId($studentId);
+
 
             foreach ($allClasses as $x) {
                 $tutorId = $x->tutor_id;
@@ -36,6 +39,8 @@ class AdminStudentProfile extends Controller
             $data = [
                 'allClasses' => $allClasses,
                 'studentDetails' => $studentDetails,
+                'numberOfActiveClasses' => $numberOfActiveClasses,
+                'numberOfCompletedClasses' => $numberOfCompletedClasses
             ];
         }
 

@@ -37,4 +37,27 @@ class ModelFeedback {
 
         return $this->db->execute();
     }
+
+    public function createFeedback(int $userId, int $rating, string $description = ''): bool {
+        if ($description) {
+            $this->db->query('INSERT INTO user_feedback SET
+                    user_id=:user_id,
+                    description=:description,
+                    rate=:rating
+                    ');
+
+            $this->db->bind('description', $description, PDO::PARAM_STR);
+
+        }else {
+            $this->db->query('INSERT INTO user_feedback SET
+                    user_id=:user_id,
+                    rate=:rating
+                    ');
+        }
+
+        $this->db->bind('user_id', $userId, PDO::PARAM_INT);
+        $this->db->bind('rating', $rating, PDO::PARAM_INT);
+
+        return $this->db->execute();
+    }
 }

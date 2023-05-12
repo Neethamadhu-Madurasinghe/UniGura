@@ -94,9 +94,15 @@ Header::render(
                             <label for="Mode">Mode</label>
                         </div>
                         <select name="mode" id="mode">
-                            <option value="physical">Physical</option>
-                            <option value="online">Online</option>
-                            <option value="both">Both</option>
+                            <?php if($data['preferred_mode'] == 'physical'): ?>
+                                <option value="physical">Physical</option>
+                            <?php elseif($data['preferred_mode'] == 'online'): ?>
+                                <option value="online">Online</option>
+                            <?php else: ?>
+                                <option value="physical">Physical</option>
+                                <option value="online">Online</option>
+                                <option value="both">Both</option>
+                            <?php endif ?>
                         </select>
                     </div>
                     <div class="dropdown">

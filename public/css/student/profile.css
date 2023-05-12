@@ -323,6 +323,7 @@
     width: 100%;
     border-collapse: collapse;
     border-radius: 10px;
+    margin-bottom: 20px;
 }
 
 .data-table tr {
@@ -564,8 +565,82 @@
     height: 40px;
     margin: 3px 10px;
 }
+#give-feedback {
+    background: red;
+
+}
 
 /* Popup send message end */
+
+/* Css for Feedback form */
+
+.popup-feedback-form {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    background-color: white;
+}
+
+@media screen and (max-width: 600px) {
+    .popup-feedback-form  {
+        width: 90%;
+    }
+}
+
+.feedback-star-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0 0 0
+}
+
+.feedback-star-container img {
+    width: 32px;
+    height: 32px;
+    margin: 0 5px;
+}
+
+.star {
+    cursor: pointer;
+}
+
+.comments-container {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.comments-container p {
+    font-family: 'DM Sans', sans-serif;
+    align-self: flex-start;
+    font-size: 1.2rem;
+}
+
+
+.comments-container textarea {
+    width: 100%;
+    background-color: var(--lightest-orrange);
+    font-size: 1.2rem;
+    resize: none;
+    border-radius: 10px;
+    padding: 10px;
+    border: none;
+    outline: none;
+}
+
+.submit-btn-container {
+    margin: 20px 0;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.submit-btn-container .btn {
+    margin: 5px 15px;
+}
 
 /* Loader */
 

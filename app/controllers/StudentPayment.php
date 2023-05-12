@@ -2,9 +2,11 @@
 
 class StudentPayment extends Controller {
     private ModelStudentPayment $paymentModel;
+    private ModelStudentNotification $notificationModel;
 
     public function __construct() {
         $this->paymentModel = $this->model('ModelStudentPayment');
+        $this->notificationModel = $this->model('ModelStudentNotification');
     }
 
 //    Saves the payment details once it is received via payhere
@@ -19,6 +21,8 @@ class StudentPayment extends Controller {
         $status_code         = $body['status_code'];
         $md5sig              = $body['md5sig'];
         $merchant_secret = MERCHANT_SECRET;
+
+        print_r($body);
 
         $local_md5sig = strtoupper(
             md5(
@@ -38,7 +42,24 @@ class StudentPayment extends Controller {
 
 
         if (($local_md5sig === $md5sig) && ($status_code == 2)) {
-            $this->paymentModel->savePayment($data);
+            if ($this->paymentModel->savePayment($data)) {
+//                Show a notification to the tutor
+                $this->notificationModel->createNotification(
+                    $data['student_id'],
+                    "Your payment has been accepted",
+                    URLROOT . '/student/profile#payments',
+                    "Click here to see all payments"
+                );
+
+                $this->notificationModel->createNotification(
+                    $data['tutor_id'],
+                    "Student has paid for your class"
+                );
+            }
         }
     }
 }
+
+//     Visa : 4916217501611292
+// MasterCard : 5307732125531191
+// AMEX : 346781005510225

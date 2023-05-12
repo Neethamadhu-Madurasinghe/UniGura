@@ -237,21 +237,9 @@ function validateBranch(String $branch): String
 
 function validateTutorReportReason(String $reason, ModelTutorStudentCompleteProfile $modelObject): String
 {
-    if (empty($reason)) {
+    if (empty($reason) || strlen($reason) < 3) {
         return 'Please enter a valid reason';
     } elseif ($modelObject->findReasonIdByTutorReportReason($reason)) {
-        return 'Reason is already in use';
-    } else if (strlen($reason) > 40) {
-        return 'Reason should have less than 40 characters';
-    }
-}
-
-
-function validateStudentReportReason(String $reason, ModelTutorStudentCompleteProfile $modelObject): String
-{
-    if (empty($reason)) {
-        return 'Please enter a valid reason';
-    } elseif ($modelObject->findReasonIdByStudentReportReason($reason)) {
         return 'Reason is already in use';
     } else if (strlen($reason) > 40) {
         return 'Reason should have less than 40 characters';
@@ -261,6 +249,18 @@ function validateStudentReportReason(String $reason, ModelTutorStudentCompletePr
 }
 
 
+function validateStudentReportReason(String $reason, ModelTutorStudentCompleteProfile $modelObject): String
+{
+    if (empty($reason) || strlen($reason) < 3) {
+        return 'Please enter a valid reason';
+    } elseif ($modelObject->findReasonIdByStudentReportReason($reason)) {
+        return 'Reason is already in use';
+    } else if (strlen($reason) > 40) {
+        return 'Reason should have less than 40 characters';
+    } else {
+        return '';
+    }
+}
 
 
 

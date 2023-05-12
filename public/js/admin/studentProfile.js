@@ -6,16 +6,6 @@ const body = document.querySelector('body'),
     modeText = body.querySelector(".mode-text");
 
 
-const image = document.getElementById("image");
-
-
-toggle.addEventListener("click", () => {
-    sidebar.classList.toggle("close");
-
-    image.src = "images/without-logo.png";
-    image.style.width = "50px";
-})
-
 
 
 
@@ -30,7 +20,7 @@ student.classList.add('active');
 
 
 
-// --------------------MENU SELECTION( fro tutor profile page)----------------------------------------
+// --------------------MENU SELECTION( fro student profile page)----------------------------------------
 
 menuSelection();
 
@@ -46,22 +36,40 @@ function menuSelection () {
 
 
     student_info[0].style.display = 'flex';
+    info_btn[0].style.background = "linear-gradient(180deg, #FFA620 0%, #FF7A20 100%)";
+
+
 
     info_btn[0].addEventListener('click', function () {
         student_info[0].style.display = 'flex';
         active_classes[0].style.display = 'none';
         finished_classes[0].style.display = 'none';
+
+        info_btn[0].style.background = "linear-gradient(180deg, #FFA620 0%, #FF7A20 100%)";
+        active_class_btn[0].style.background = "white";
+        finished_class_btn[0].style.background = "white";
     });
+
 
     active_class_btn[0].addEventListener('click', function () {
         student_info[0].style.display = 'none';
         active_classes[0].style.display = 'grid';
         finished_classes[0].style.display = 'none';
+
+        active_class_btn[0].style.background = "linear-gradient(180deg, #FFA620 0%, #FF7A20 100%)";
+        info_btn[0].style.background = "white";
+        finished_class_btn[0].style.background = "white";
     });
+
+
 
     finished_class_btn[0].addEventListener('click', function () {
         student_info[0].style.display = 'none';
         active_classes[0].style.display = 'none';
         finished_classes[0].style.display = 'grid';
+        
+        finished_class_btn[0].style.background = "linear-gradient(180deg, #FFA620 0%, #FF7A20 100%)";
+        active_class_btn[0].style.background = "white";
+        info_btn[0].style.background = "white";
     });
 }

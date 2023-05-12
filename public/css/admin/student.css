@@ -12,11 +12,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #f2f2f2;
-    border: 2px solid #FC941D;
-    border-radius: 5px;
+    /* border: 2px solid #FC941D; */
+    border-radius: 8px;
     margin-top: 10px;
     margin-bottom: 20px;
+    background-color: #f2f2f2;
+
 }
 
 .search-bar {
@@ -25,9 +26,9 @@
     align-items: center;
     width: 100%;
     height: 40px;
-    border-radius: 5px;
+    border-radius: 8px;
     padding: 10px;
-    background-color: #f2f2f2;
+    background-color: #ffffff;
 }
 
 
@@ -206,10 +207,11 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .mode-filter {
-    border: 2px solid #FC941D;
-    border-radius: 5px;
+    /* border: 2px solid #FC941D; */
+    border-radius: 8px;
     padding: 10px;
     margin-bottom: 20px;
+    background-color: #ffffff;
 }
 
 .mode-filter h1 {
@@ -219,9 +221,10 @@ input[type="range"]::-moz-range-thumb {
 
 
 .visibility-filter {
-    border: 2px solid #FC941D;
-    border-radius: 5px;
+    /* border: 2px solid #FC941D; */
+    border-radius: 8px;
     padding: 10px;
+    background-color: #ffffff;
     margin-bottom: 40px;
 }
 
@@ -289,34 +292,44 @@ input[type="range"]::-moz-range-thumb {
     height: 330px;
     background-color: #fbc36e;
     text-align: center;
+    background-color: #ffffff;
+
 }
 
 .card-section .card .profile-picture {
     width: 200px;
     height: 200px;
     text-align: center;
+    position: relative;
+    bottom: 15px;
 }
 
 .card-section .card img {
-    width: 150px;
-    border-radius: 5px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 
-.card-section .name{
+.card-section .name {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    bottom: 10px;
 }
 
-.card-section .name h2{
+.card-section .name h2 {
     font-size: 20px;
     font-weight: bold;
     padding: 5px;
 }
 
 .card .info {
-    margin-bottom: 30px;
+    position: relative;
+    bottom: 10px;
+    /* margin-bottom: 30px; */
 }
 
 .card .info h5 {
@@ -324,10 +337,6 @@ input[type="range"]::-moz-range-thumb {
     font-size: 18px;
 }
 
-.card .view-profile{
-    position: fixed;
-    margin-top: 290px;
-}
 
 
 .card .view-profile button {
@@ -339,8 +348,8 @@ input[type="range"]::-moz-range-thumb {
     cursor: pointer;
     transition: transform 0.1s;
     user-select: none;
-    height: 50px;
-    width: 140px;
+    height: 45px;
+    width: 120px;
     position: relative;
 }
 
@@ -357,7 +366,7 @@ input[type="range"]::-moz-range-thumb {
 
 /* =========================== CHECKBOX STYLE =========================================== */
 
-.checkbox-button label{
+.checkbox-button label {
     cursor: pointer;
     font-size: 17px;
     font-weight: 500;
@@ -384,9 +393,9 @@ input[type="range"]::-moz-range-thumb {
     font-size: 14px;
     height: 20px;
     border: none;
-    background: #f20707bc;
     border-radius: 5px;
     color: #fff;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
     transition: 0.3s;
     text-align: center;
 }
@@ -399,6 +408,7 @@ input[type="range"]::-moz-range-thumb {
     font-size: 14px;
     font-weight: bolder;
     border-radius: 5px;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
     transition: 0.3s;
 }
 
@@ -406,36 +416,45 @@ input[type="range"]::-moz-range-thumb {
 
 /* ====================== HIDE SHOW MODE SUMMARY============================ */
 
-.online-physical-both{
+.online-physical-both {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
 }
 
-.card-section .online-physical-both .online{
+.card-section .online-physical-both .online {
     width: 26px;
 }
 
-.card-section .online-physical-both .physical{
+.card-section .online-physical-both .physical {
     width: 40px;
     margin-top: 10px;
 }
 
 
-.mode-hide-show{
+.mode-hide-show {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: column;
     width: 95%;
     position: relative;
-    top: 30px;
+    /* top: 10px; */
     padding: 10px;
     height: 20px;
+    left: 127px;
+    /* background: #000; */
 }
 
 
-.hide-show{
+.mode-hide-show i {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+
+.hide-show {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -443,7 +462,7 @@ input[type="range"]::-moz-range-thumb {
     margin-bottom: 20px;
 }
 
-.card-section .hide-show img{
+.card-section .mode-hide-show img {
     width: 32px;
     margin-top: 10px;
 }
@@ -451,23 +470,23 @@ input[type="range"]::-moz-range-thumb {
 
 /* ======================RESULT NOT FOUND SECTION====================================  */
 
-.result-not-found{
+.result-not-found {
     width: 117vh;
-    height: 100vw;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 30px;
+    margin-left: 70px;
 }
 
-.result-not-found img{
-    width: 700px;
+.result-not-found img {
+    width: 500px;
 }
 
-.result-not-found h1{
+.result-not-found h1 {
     font-size: 50px;
-    margin-top: 20px;
+    color: #fff;
 }
 
-.result-not-found p{
+.result-not-found p {
     font-size: 17px;
     margin-top: 4px;
 }

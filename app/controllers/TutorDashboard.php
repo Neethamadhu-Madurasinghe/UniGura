@@ -112,6 +112,8 @@ class TutorDashboard extends Controller
 
             $data['subjects'] = $subjects;
             $data['modules'] = $modules;
+            //        Get tutor's preferred class mode
+            $data['preferred_mode'] = $this->dashboardModel->getTutorSelectedClassMode($request->getUserId())['mode'];
 
             $this->view('tutor/createcclasstemplate', $request, $data);
 
@@ -133,6 +135,8 @@ class TutorDashboard extends Controller
                 ]
 
             ];
+            //        Get tutor's preferred class mode
+            $data['preferred_mode'] = $this->dashboardModel->getTutorSelectedClassMode($request->getUserId())['mode'];
         }
 
         $this->view('tutor/createcclasstemplate', $request, $data);

@@ -10,23 +10,13 @@
     <p></p>
     <p></p>
 
-
-    <div class="menu-bar">
+    <!-- <div class="menu-bar">
         <div class="menu-bar-selection-btn">
             <div class="tutor-request-btn" id="tutor-request-btn">
                 <a href="tutorRequest"><button id="tutor-request">Tutor Request</button></a>
             </div>
-            <div class="student-complaint-btn" id="student-complaint-btn">
-                <a href="studentComplaint"><button id="student-complaint">Student Complaint</button></a>
-            </div>
-            <div class="tutor-complaint-btn" id="tutor-complaint-btn">
-                <a href="tutorComplaint"><button id="tutor-complaint">Tutor Complaint</button></a>
-            </div>
-            <div class="complaint-setting-btn" id="complaint-setting-btn">
-                <a href="complaintSetting"><button id="complaint-setting">Complaint Setting</button></a>
-            </div>
         </div>
-    </div>
+    </div> -->
 
     <section class="table tutor-request-table" id="tutor-request-table">
         <section class="table-header">
@@ -58,9 +48,9 @@
                                 <td><?php echo $x->tutor->first_name . ' ' . $x->tutor->last_name ?></td>
                                 <td><?php echo $x->tutor->phone_number ?></td>
                                 <td><?php echo $x->university ?></td>
-                                <td><a href="<?php echo URLROOT; ?>/public/profile_pictures/16774330206500.pdf"><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></a></td>
-                                <td><a href="<?php echo URLROOT; ?>/public/profile_pictures/16774330206500.pdf"><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></a></td>
-                                <td><a href="<?php echo URLROOT; ?>/public/profile_pictures/16774330206500.pdf"><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></a></td>
+                                <td><a href="viewFiles?file=<?php echo $x->id_copy ?>"><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></a></td>
+                                <td><a href="viewFiles?file=<?php echo $x->advanced_level_result ?>"><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></a></td>
+                                <td><a href="viewFiles?file=<?php echo $x->university_entrance_letter ?>"><img class="qualification-img" src="<?php echo URLROOT ?>/public/img/admin/download-icon.png" alt=""></a></td>
                                 <td><?php echo $x->education_qualification ?></td>
                                 <td class="action action-tutor-request">
                                     <button class="accept"><a href="acceptTutorRequest?tutorID=<?php echo $x->tutor->id; ?>">Accept</a></button>

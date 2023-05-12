@@ -193,8 +193,9 @@ changePasswordOkBtnUI.addEventListener('click',  async () => {
     const statusCode = respond.status;
 
     if(statusCode === 401) {
-        //    TODO: LOGOUT
-        showErrorMessage( "Please sign in before changing the password")
+        showErrorMessage( "Please sign in before changing the password", () => {
+            document.location.href = '../logout';
+        })
     }else if(statusCode === 400) {
         showErrorMessage("Please enter a valid password");
     }else if(statusCode === 403) {
@@ -212,7 +213,7 @@ changePasswordOkBtnUI.addEventListener('click',  async () => {
 // Disabling account popup showing event
 disableProfileBtnUI.addEventListener('click', async () => {
     isDisabling = true;
-    await initiatePasswordReset(true);
+    await initiatePasswordReset();
 });
 
 // Cancel the disabling account routine
@@ -223,12 +224,25 @@ disableCancelBtnUI.addEventListener('click', () => {
 
 // Confirms the disabling account
 disableConfirmBtnUI.addEventListener('click', async () => {
-// TODO: Disable account
+    const respond = await fetch('http://localhost/unigura/api/disable-account');
+    const statusCode = respond.status;
+
+    if(statusCode === 401) {
+        showErrorMessage( "Please sign in before disabling the account", () => {
+            document.location.href = '../logout';
+        })
+    }else if(statusCode === 500) {
+        showErrorMessage("Internal server error");
+    }else {
+        showSuccessMessage("Account is disabled, Thank you for using UniGura", () => {
+            document.location.href = '../logout';
+        });
+    }
 });
 
 
 // This function is used for 2 purposes - 1. When changing the password, 2. Disabling the account
-async function initiatePasswordReset(isDisabling = false) {
+async function initiatePasswordReset() {
     otpInputFieldUI.value = "";
     changePasswordOTPPopupUI.classList.add('invisible');
     // Send the request to make an OTP

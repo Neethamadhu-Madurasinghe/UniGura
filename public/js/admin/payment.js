@@ -10,16 +10,6 @@ const body = document.querySelector('body'),
     modeText = body.querySelector(".mode-text");
 
 
-const image = document.getElementById("image");
-
-
-toggle.addEventListener("click", () => {
-    sidebar.classList.toggle("close");
-
-    image.src = "images/without-logo.png";
-    image.style.width = "50px";
-})
-
 
 
 
@@ -33,8 +23,6 @@ nav_link.forEach((link) => {
 payment.classList.add('active');
 
 
-const blur_filter = document.getElementById('blur-filter');
-blur_filter.style.display = "none";
 
 
 /*  ================================ SHOW SELECTED TUTOR IN RIGHT SIDE DISPLAY  ================================*/

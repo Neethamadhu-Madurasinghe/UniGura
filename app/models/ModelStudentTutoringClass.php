@@ -132,7 +132,7 @@ class ModelStudentTutoringClass {
 
 //        Get activities for each day
         foreach ($tutoring_class['days'] as $key => $day) {
-            $this->db->query('SELECT * FROM activity WHERE day_id=:day_id AND is_hidden=0 ORDER BY position asc');
+            $this->db->query('SELECT * FROM activity WHERE day_id=:day_id AND is_hidden=0');
             $this->db->bind('day_id', $day['id'], PDO::PARAM_INT);
             $activities = $this->db->resultAllAssoc();
 

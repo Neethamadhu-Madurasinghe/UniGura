@@ -55,6 +55,17 @@ class ModelTutorStudentAuth {
         }
     }
 
+//    Method that tells whether a user is banned or not
+    public function isBanned($email): bool {
+        $this->db->query('SELECT * FROM auth JOIN user ON auth.id = user.id WHERE email=:email AND user.is_banned=1');
+        $this->db->bind('email', $email, PDO::PARAM_STR);
+
+        $row = $this->db->resultOne();
+
+        if ($row) { return true; }
+        else { return false; }
+    }
+
     //    Retrieves the profile picture of a user then the id is given
     public function getUserProfilePicture($id): mixed {
         $this->db->query('SELECT profile_picture FROM user WHERE id=:id');

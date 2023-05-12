@@ -36,4 +36,30 @@ class ModelUser {
 
         return $this->db->resultOneAssoc();
     }
+
+    public function isBanned(int $id): bool {
+        $this->db->query('SELECT * FROM user WHERE id=:id AND is_banned=1');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        $row = $this->db->resultOne();
+
+        if ($row) { return true; }
+        else { return false; }
+    }
+
+    public function disableAccount(int $id): bool {
+        $this->db->query('UPDATE user SET
+                phone_number = NULL, 
+                is_banned=1, 
+                first_name="Previous", 
+                last_name="User", 
+                profile_picture=NULL WHERE id=:id');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        return $this->db->execute();
+    }
+
+    public function getUserById(int $id): array {
+        $this->db->query('SELECT * FROM user WHERE id=:id');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        return $this->db->resultOneAssoc();
+    }
 }
