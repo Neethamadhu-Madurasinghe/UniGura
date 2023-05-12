@@ -196,6 +196,7 @@ $router->registerController('/tutor/createcustomday', [TutorClass::class, 'creat
 $router->registerController('/tutor/markdayascomplete', [TutorClass::class, 'markdayascomplete']);
 $router->registerController('/tutor/sendpositioninclass', [TutorClass::class, 'sendposition']);
 $router->registerController('/tutor/finishclass', [TutorClass::class, 'finishclass']);
+$router->registerController('/tutor/startchat', [TutorClass::class, 'startchat']);
 
 
 

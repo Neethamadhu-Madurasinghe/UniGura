@@ -11,7 +11,7 @@ class ModelTutorClass
 
 
 
-    public function getTutoringClasses($id): array
+    public function getTutoringClasses($id,$data): array
     {
         $this->db->query('SELECT c.id as classid , c.mode , c.student_id ,ct.class_type , m.name, u.first_name , u.last_name , u.profile_picture 
         FROM tutoring_class AS c
@@ -21,9 +21,11 @@ class ModelTutorClass
         ON ct.id = c.class_template_id
         Join module AS m 
         ON m.id = ct.module_id
-        WHERE c.tutor_id = :id;');
+        WHERE c.tutor_id = :id AND c.completion_status = :completion_status AND c.is_suspended = :is_suspended');
 
-        $this->db->bind('id', $id, PDO::PARAM_INT);
+        $this->db->bind('id', $id , PDO::PARAM_INT);
+        $this->db->bind('completion_status', $data['completion_status'] , PDO::PARAM_INT);
+        $this->db->bind('is_suspended', $data['is_suspended'] , PDO::PARAM_INT);
 
         return $this->db->resultAllAssoc();
     }

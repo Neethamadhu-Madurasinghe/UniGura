@@ -30,8 +30,7 @@ MainNavbar::render($request);
                 <div id="details">
                     <div class="text">
                         <h1 style="font-size: 30px; font-weight:700;">Hello
-                            <?php print_r($data['tutor_name']['first_name']);
-                            ?>
+                            <?php print_r($data['tutor_name']['first_name']);?>
                         </h1>
                         <p>Its Good to see you !</p>
                     </div>
@@ -52,18 +51,18 @@ MainNavbar::render($request);
                     <div class="component">
                         <div class="heading">Completed</div>
                         <div class="count" id="complete-class-count"></div>
-                        <a class="view_all">View all</a>
+                        <a class="view_all completed-class">View all</a>
                     </div>
                     <div class="component">
                         <div class="heading">Active</div>
                         <div class="count" id="active-class-count"></div>
-                        <a class="view_all">View all</a>
+                        <a class="view_all active-class">View all</a>
                     </div>
                     <div class="component">
                         <div class="heading">Blocked</div>
 
                         <div class="count" id="blocked-class-count"></div>
-                        <a class="view_all">View all</a>
+                        <a class="view_all blocked-class">View all</a>
                     </div>
                 </div>
             </div>
@@ -315,6 +314,19 @@ MainNavbar::render($request);
     let block_class_count = document.querySelector('#blocked-class-count');
     let complete_class_count = document.querySelector('#complete-class-count');
 
+
+    document.querySelector('.active-class').addEventListener('click',()=>{
+        window.location= `${root}/tutor/classes`;
+    })
+
+    document.querySelector('.completed-class').addEventListener('click',()=>{
+        window.location= `${root}/tutor/classes?completion_status=1`;
+    })
+
+    document.querySelector('.blocked-class').addEventListener('click',()=>{
+        window.location= `${root}/tutor/classes?is_suspended=1`;
+    })
+
     //Getting active class count
     let class_counts = <?php echo $data['active_class_count'] ?>;
 
@@ -421,6 +433,7 @@ MainNavbar::render($request);
 
     function list_payment(payments) {
           let table = document.createElement('table');
+          console.log(payments)
           for (const element of payments) {
                let payment_status;
                if (element.payment_status == 0) {
@@ -430,11 +443,7 @@ MainNavbar::render($request);
                } else {
                     payment_status = "PAID-OFF";
                }
-
-               console.log(element)
-
-               
-               
+             
                let year = element.date.slice(0,4);
              
                let month = element.date.toString().slice(5, 7);
