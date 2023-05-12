@@ -144,7 +144,7 @@ class TutorUpdateProfile extends Controller
 //        Tells the nature of templates of this tutor. If tutor has online classes. then we should not let him to set his preferred mode
 //        To online and wiseversa
         $classModes = $this->courseModel->getOnlineAndPhysicalClassesByTutorId($request->getUserId());
-
+        
         $data = [
             'id' => $request->getUserId(),
             'first_name' => $tutorProfileDetails[0]['first_name'],
