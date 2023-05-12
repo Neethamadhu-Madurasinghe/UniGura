@@ -12,49 +12,79 @@
 
     <div class="complain-check">
         <form action="updateStudentComplainInquire" method="POST">
-            <input type="hidden" name="complainStatus" id="complainStatus" value="<?php echo $data['oneStudentComplaint'][0]->is_inquired ?>">
-            <input type="hidden" name="studentComplaintId" value="<?php echo $data['oneStudentComplaint'][0]->studentReportID ?>">
+            <input type="hidden" name="complainStatus" id="complainStatus" value="<?php echo $data['oneStudentComplaint']->is_inquired ?>">
+            <input type="hidden" name="studentComplaintId" value="<?php echo $data['oneStudentComplaint']->studentReportID ?>">
 
 
-            <input type="hidden" name="studentId" value="<?php echo $data['oneStudentComplaint'][0]->student_id ?>">
-            <input type="hidden" name="tutorId" value="<?php echo $data['oneStudentComplaint'][0]->tutor_id ?>">
+            <input type="hidden" name="studentId" value="<?php echo $data['oneStudentComplaint']->student_id ?>">
+            <input type="hidden" name="tutorId" value="<?php echo $data['oneStudentComplaint']->tutor_id ?>">
 
 
-            <h4>Complaint Status (Solved or not):&nbsp;&nbsp; </h4>
+            <div class="checkbox-button">
+                <div class="check-side">
+                    <?php if ($data['oneStudentComplaint']->is_inquired == 1) { ?>
+                        <input type="checkbox" name="complainStatus" checked class="checkbox" id="checkboxID">
+                        <label for="checkboxID">Complaint Solved or not: </label>
+                    <?php } else { ?>
+                        <input type="checkbox" name="complainStatus" class="checkbox" id="checkboxID">
+                        <label for="checkboxID">Complaint Solved or not: </label>
+                    <?php } ?>
+                </div>
 
-            <label for="checking" class="checkbox-button">
-                <?php if ($data['oneStudentComplaint'][0]->is_inquired == 1) { ?>
-                    <input type="checkbox" name="complainStatus" checked>
-                <?php } else { ?>
-                    <input type="checkbox" name="complainStatus">
-                <?php } ?>
-            </label>
-
-            <div class="submit-status-btn">
-                <button type="submit" name="submit-status-btn" id="submit-status-btn">Submit</button>
+                <div class="submit-status-btn">
+                    <button type="submit" name="submit-status-btn" id="submit-status-btn">Submit</button>
+                </div>
             </div>
         </form>
+
+
+        <form action="updateTutoringClassSuspended" method="POST">
+            <input type="hidden" name="suspendStatus" id="suspendStatus" value="<?php echo $data['oneStudentComplaint']->is_suspended ?>">
+            <input type="hidden" name="tutorClassId" value="<?php echo $data['oneStudentComplaint']->tutorClassId ?>">
+
+
+            <input type="hidden" name="studentId" value="<?php echo $data['oneStudentComplaint']->student_id ?>">
+            <input type="hidden" name="tutorId" value="<?php echo $data['oneStudentComplaint']->tutor_id ?>">
+
+
+            <div class="checkbox-button">
+                <div class="check-side">
+                    <?php if ($data['oneStudentComplaint']->is_suspended == 1) { ?>
+                        <input type="checkbox" name="complainStatus" checked class="checkbox" id="checkboxID">
+                        <label for="checkboxID">Class Suspended or not: </label>
+                    <?php } else { ?>
+                        <input type="checkbox" name="complainStatus" class="checkbox" id="checkboxID">
+                        <label for="checkboxID">Class Suspended or not: </label>
+                    <?php } ?>
+                </div>
+
+                <div class="submit-status-btn">
+                    <button type="submit" name="submit-status-btn" id="submit-status-btn">Submit</button>
+                </div>
+            </div>
+        </form>
+
     </div>
 
 
     <div class="tutor-name">
         <h1>Tutor Name</h1>
-        <h3><?php echo $data['oneStudentComplaint'][0]->tutor->first_name . ' ' . $data['oneStudentComplaint'][0]->tutor->last_name ?></h3>
+        <h3><?php echo $data['oneStudentComplaint']->tutor->first_name . ' ' . $data['oneStudentComplaint']->tutor->last_name ?></h3>
     </div>
 
     <div class="student-name">
         <h1>Student Name</h1>
-        <h3><?php echo $data['oneStudentComplaint'][0]->student->first_name . ' ' . $data['oneStudentComplaint'][0]->student->last_name ?></h3>
+        <h3><?php echo $data['oneStudentComplaint']->student->first_name . ' ' . $data['oneStudentComplaint']->student->last_name ?></h3>
     </div>
 
     <div class="report-reason">
         <h1>Report Reason</h1>
-        <h3><?php echo $data['oneStudentComplaint'][0]->description ?></h3>
+        <h3><?php echo $data['oneStudentComplaint']->description ?></h3>
     </div>
 
     <div class="description">
         <h1>Description</h1>
-        <h3><?php echo $data['oneStudentComplaint'][0]->description ?></h3>
+        <h3><?php echo $data['oneStudentComplaint']->description ?></h3>
     </div>
 
     <div class="tutor-review-section">

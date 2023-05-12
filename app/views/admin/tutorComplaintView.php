@@ -11,9 +11,6 @@
     <p></p>
     <p></p>
 
-    <!-- <div class="back-btn">
-        <button id="student-complaint-back-btn"><i class="fa-regular fa-circle-left"></i> <span>Back</span></button>
-    </div> -->
 
     <div class="complain-check">
         <form action="updateTutorComplainInquire" method="POST">
@@ -23,20 +20,51 @@
             <input type="hidden" name="studentId" value="<?php echo $data['oneTutorComplaint']->student_id ?>">
             <input type="hidden" name="tutorId" value="<?php echo $data['oneTutorComplaint']->tutor_id ?>">
 
-            <h4>Complaint Status (Solved or not):&nbsp;&nbsp; </h4>
 
-            <label for="checking">
-                <?php if ($data['oneTutorComplaint']->is_inquired == 1) { ?>
-                    <input type="checkbox" name="complainStatus" checked>
-                <?php } else { ?>
-                    <input type="checkbox" name="complainStatus">
-                <?php } ?>
-            </label>
+            <div class="checkbox-button">
+                <div class="check-side">
+                    <?php if ($data['oneTutorComplaint']->is_inquired == 1) { ?>
+                        <input type="checkbox" name="complainStatus" checked class="checkbox" id="checkboxID">
+                        <label for="checkboxID">Complaint Solved or not: </label>
+                    <?php } else { ?>
+                        <input type="checkbox" name="complainStatus" class="checkbox" id="checkboxID">
+                        <label for="checkboxID">Complaint Solved or not: </label>
+                    <?php } ?>
+                </div>
 
-            <div class="submit-status-btn">
-                <button type="submit" name="submit-status-btn" id="submit-status-btn">Submit</button>
+                <div class="submit-status-btn">
+                    <button type="submit" name="submit-status-btn" id="submit-status-btn">Submit</button>
+                </div>
             </div>
         </form>
+
+
+        <form action="updateClassTemplateSuspended" method="POST">
+            <input type="hidden" name="suspendStatus" id="suspendStatus" value="<?php echo $data['oneTutorComplaint']->is_suspended ?>">
+            <input type="hidden" name="tutorClassTemplateId" value="<?php echo $data['oneTutorComplaint']->tutorClassTemplateId ?>">
+
+            <input type="hidden" name="studentId" value="<?php echo $data['oneTutorComplaint']->student_id ?>">
+            <input type="hidden" name="tutorId" value="<?php echo $data['oneTutorComplaint']->tutor_id ?>">
+
+
+            <div class="checkbox-button">
+                <div class="check-side">
+                    <?php if ($data['oneTutorComplaint']->is_suspended == 1) { ?>
+                        <input type="checkbox" name="complainStatus" checked class="checkbox" id="checkboxID">
+                        <label for="checkboxID">Class Suspended or not: </label>
+                    <?php } else { ?>
+                        <input type="checkbox" name="complainStatus" class="checkbox" id="checkboxID">
+                        <label for="checkboxID">Class Suspended or not: </label>
+                    <?php } ?>
+                </div>
+
+                <div class="submit-status-btn">
+                    <button type="submit" name="submit-status-btn" id="submit-status-btn">Submit</button>
+                </div>
+            </div>
+
+        </form>
+
     </div>
 
 

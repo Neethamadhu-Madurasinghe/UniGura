@@ -108,88 +108,8 @@
 }
 
 
-/* ======================================================= BACK BUTTON =============================================================== */
-
-.back-btn{
-    padding: 10px 20px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: -70px;
-}
-
-.back-btn button{
-    background-color: #FFA620;
-    font-size: 17px;
-    font-weight: 600;
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    margin-right: 20px;
-    margin-top: 10px;
-}
-
-.back-btn span{
-    font-size: 27px;
-    color: black;
-}
-
-
-.back-btn i{
-    font-size: 30px;
-    color: black;
-}
-
 
 /* ======================================================= COMPLAIN CHECK STATUS =============================================================== */
-
-.checkbox-button label{
-    cursor: pointer;
-    font-size: 17px;
-    font-weight: 500;
-}
-
-.checkbox {
-    display: none;
-}
-
-.checkbox+label {
-    position: relative;
-    cursor: pointer;
-    padding-left: 25px;
-    user-select: none;
-    margin-right: 50px;
-}
-
-.checkbox+label:before {
-    content: "\2716";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 20px;
-    font-size: 14px;
-    height: 20px;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
-    transition: 0.3s;
-    text-align: center;
-}
-
-.checkbox:checked+label:before {
-    content: "✔";
-    background-color: #0d0;
-    color: #fff;
-    text-align: center;
-    font-size: 14px;
-    font-weight: bolder;
-    border-radius: 5px;
-    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
-    transition: 0.3s;
-}
-
 
 
 
@@ -198,7 +118,7 @@
     position: absolute;
     left: 120vh;
     top: 60px;
-    padding: 40px;
+    padding: 20px;
     border-radius: 10px;
     background-color: #fff;
 }
@@ -210,11 +130,6 @@
     margin-top: 20px;
 }
 
-.complain-check input[type="checkbox"]{
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-}
 
 .submit-status-btn button{
     background-color: #FFA620;
@@ -247,6 +162,60 @@
     margin-top: 10px;
 }
 
+
+.checkbox-button{
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+}
+
+
+/* =========================== CHECKBOX STYLE =========================================== */
+
+.checkbox-button label {
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.checkbox {
+    display: none;
+}
+
+.checkbox+label {
+    position: relative;
+    cursor: pointer;
+    padding-left: 30px;
+    user-select: none;
+}
+
+.checkbox+label::after {
+    content: "\2716";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 22px;
+    font-size: 15px;
+    height: 22px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    transition: 0.3s;
+    text-align: center;
+}
+
+.checkbox:checked+label::after {
+    content: "✔";
+    background-color: #0d0;
+    color: #fff;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bolder;
+    border-radius: 5px;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    transition: 0.3s;
+}
 
 
 

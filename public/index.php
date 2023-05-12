@@ -97,6 +97,8 @@ $router->registerController('/admin/viewStudentComplaint', [AdminComplaintView::
 $router->registerController('/admin/viewTutorComplaint', [AdminComplaintView::class, 'viewTutorComplaint']);
 $router->registerController('/admin/updateStudentComplainInquire', [AdminComplaintView::class, 'updateStudentComplainInquire']);
 $router->registerController('/admin/updateTutorComplainInquire', [AdminComplaintView::class, 'updateTutorComplainInquire']);
+$router->registerController('/admin/updateTutoringClassSuspended', [AdminComplaintView::class, 'updateTutoringClassSuspended']);
+$router->registerController('/admin/updateClassTemplateSuspended', [AdminComplaintView::class, 'updateClassTemplateSuspended']);
 
 
 

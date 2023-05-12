@@ -24,7 +24,11 @@
                             <div class="tutor">
                                 <input type="hidden" value="<?php echo $tutor->tutor_id ?>" class="tutorId">
                                 <div class="tutor-img">
-                                    <img src="<?php echo URLROOT ?><?php echo $tutor->tutor->profile_picture ?>" alt="tutor profile picture">
+                                    <?php if ($tutor->tutor->profile_picture === NULL) : ?>
+                                        <img src="<?php echo URLROOT ?>/public/img/common/profile.png" alt="tutor profile picture">
+                                    <?php else : ?>
+                                        <img src="<?php echo URLROOT ?><?php echo $tutor->tutor->profile_picture ?>" alt="tutor profile picture">
+                                    <?php endif; ?>
                                 </div>
                                 <div class="tutor-name">
                                     <h3><?php echo $tutor->tutor->first_name ?> <?php echo $tutor->tutor->last_name ?></h3>

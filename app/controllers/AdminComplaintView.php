@@ -44,7 +44,7 @@ class AdminComplaintView extends Controller
             }
 
             $data = [
-                'oneStudentComplaint' => $allStudentComplaints,
+                'oneStudentComplaint' => $oneStudentComplaint,
                 'otherStudentComplaints' => $otherStudentComplaints
             ];
         }
@@ -165,6 +165,70 @@ class AdminComplaintView extends Controller
                 $this->viewComplaintModel->updateTutorComplainStatus($tutorComplainID, 1);
                 $this->viewComplaintModel->addNotification($tutorId,"Your complain has been accepted","We have carefully reviewed your report, and we have taken action against the student.");
                 $this->viewComplaintModel->addNotification($studentId,"You have been reported","We will review the report carefully and we will take action against you.");
+            }
+
+            redirect('/admin/tutorComplaint');
+        }
+    }
+
+
+    public function updateTutoringClassSuspended(Request $request)
+    {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+
+        if ($request->isPost()) {
+            $data = $request->getBody();
+
+            $suspendStatus = $data['suspendStatus'];
+            $tutorClassId = $data['tutorClassId'];
+
+
+            $studentId = $data['studentId'];
+            $tutorId = $data['tutorId'];
+
+            if ($suspendStatus == 1) {
+                $this->viewComplaintModel->updateSuspendStatusTutorialClass($tutorClassId, 0);
+                $this->viewComplaintModel->addNotification($studentId,"Now you can continue your class","We remove the your class from the suspended list.");
+
+            } else {
+                $this->viewComplaintModel->updateSuspendStatusTutorialClass($tutorClassId, 1);
+                $this->viewComplaintModel->addNotification($studentId,"Your class has been suspended","We got report against your class, so we have suspended your class.");
+            }
+
+            redirect('/admin/studentComplaint');
+        }
+    }
+
+
+    public function updateClassTemplateSuspended(Request $request)
+    {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+
+        if ($request->isPost()) {
+            $data = $request->getBody();
+
+            $suspendStatus = $data['suspendStatus'];
+            $tutorClassTemplateId = $data['tutorClassTemplateId'];
+
+            $studentId = $data['studentId'];
+            $tutorId = $data['tutorId'];
+
+            if ($suspendStatus == 1) {
+                $this->viewComplaintModel->updateSuspendStatusAllClassByClassTemplateById($tutorClassTemplateId, 0);
+                $this->viewComplaintModel->addNotification($tutorId,"Now you can continue your classes","We remove the your classes from the suspended list.");
+
+            } else {
+                echo "here";
+                $this->viewComplaintModel->updateSuspendStatusAllClassByClassTemplateById($tutorClassTemplateId, 1);
+                $this->viewComplaintModel->addNotification($tutorId,"Your classes has been suspended","We got report against your classes, so we have suspended your classes.");
             }
 
             redirect('/admin/tutorComplaint');
