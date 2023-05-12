@@ -13,13 +13,13 @@ class ModelStudentRequest {
                           tutor_id=:tutor_id AND
                           student_id=:student_id AND
                           class_template_id=:class_template_id AND
-                          status=0 OR status=1');
+                          (status=0 OR status=1)');
 
         $this->db->bind('tutor_id', $data['tutor_id'], PDO::PARAM_INT);
         $this->db->bind('student_id', $data['student_id'], PDO::PARAM_INT);
         $this->db->bind('class_template_id', $data['template_id'], PDO::PARAM_INT);
 
-        $this->db->resultOne();
+        $row = $this->db->resultOne();
 //      Returns whether the row count is greater than 0
         return $this->db->rowCount() > 0;
     }
@@ -127,5 +127,12 @@ class ModelStudentRequest {
         $this->db->bind('id', $id, PDO::PARAM_INT);
 
         return $this->db->execute();
+    }
+
+    public function getStudentIdByRequestId(int $id): int {
+        $this->db->query('SELECT student_id FROM request WHERE id=:id');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+        return $this->db->resultOneAssoc()['student_id'];
     }
 }
