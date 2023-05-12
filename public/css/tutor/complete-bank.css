@@ -6,7 +6,7 @@
     justify-content: center;
     align-items: center;
     padding: 30px;
-    width: 1000px;
+    width: 100%;
 
 }
 
@@ -15,7 +15,7 @@
 }
 
 .time-table-container {
-    width: 100%;
+    width: 1000px
 }
 
 #time-table {
@@ -56,6 +56,18 @@
 
 .slot-selected {
     background-image: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+}
+
+#submit-btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#submit-btn-container div {
+    width: 1000px;
+    display: flex;
+    justify-content: flex-end;
 }
 
 

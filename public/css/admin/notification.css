@@ -11,23 +11,36 @@ body{
 
 .notification{
     /* width: 70%; */
-    margin: 20px 50px;
+    margin: 23px 50px;
+    overflow-y: scroll;
+    height: 92vh;
+    margin-bottom: 60px;
+}
+
+.notification a{
+    text-decoration: none;
+    color: black;
+}
+
+.notification::-webkit-scrollbar {
+    display: none;
 }
 
 .one-notification{
-    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-top: 10px;
 }
 
 .notification-header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
-    padding: 0px 10px;
+    background-color: #fff;
+    padding: 10px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-
 }
+
 
 .profile-img img{
     width: 60px;
@@ -40,7 +53,6 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-
 }
 
 .notification-description{
@@ -48,7 +60,7 @@ body{
     padding: 10px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    border: 2px solid #FFA620;
+    border-top: 1px solid #FFA620;
 }
 
 

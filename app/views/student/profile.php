@@ -80,6 +80,26 @@ Header::render(
         </div>
     </div>
 
+    <div class="popup-feedback-form invisible">
+        <h1>Post a review</h1>
+        <div class="feedback-star-container hidden">
+            <img id="star-1" class="star" src="<?php echo URLROOT . '/public/img/student/big.png' ?>" alt="" srcset="">
+            <img id="star-2" class="star" src="<?php echo URLROOT . '/public/img/student/star_inactive.png' ?>" alt="" srcset="">
+            <img id="star-3" class="star" src="<?php echo URLROOT . '/public/img/student/star_inactive.png' ?>" alt="" srcset="">
+            <img id="star-4" class="star" src="<?php echo URLROOT . '/public/img/student/star_inactive.png' ?>" alt="" srcset="">
+            <img id="star-5" class="star" src="<?php echo URLROOT . '/public/img/student/star_inactive.png' ?>" alt="" srcset="">
+        </div>
+        <div class="comments-container">
+            <p>Leave a comment (Optional):</p>
+            <textarea name="" id="feedback-input" cols="30" rows="10"></textarea>
+        </div>
+
+        <div class="submit-btn-container">
+            <button class="btn" id="feedback-cancel">Cancel</button>
+            <button class="btn" id="feedback-ok">Submit</button>
+        </div>
+    </div>
+
     <div class="loader invisible"></div>
 </div>
 
@@ -94,11 +114,11 @@ MainNavbar::render($request);
           id="image-upload-form"
           enctype = "multipart/form-data"
           method="post">
-        <h1 class="main-title">My Profile</h1>
+        <h1 class="main-title">Hello <?php echo $data['first_name'] . " " . $data['last_name'] ?> </h1>
         <div class="upload-picture-container">
             <img src="<?php echo URLROOT . $request->getUserPicture() ?>" alt="" id="profile-picture">
             <input type="file" name="profile-picture" id="actual-btn" accept="image/*" hidden onchange="this.form.submit()" />
-            <label for="actual-btn" id="profile-image-upload-btn">Change and Save</label>
+            <label for="actual-btn" id="profile-image-upload-btn">Change Profile Picture</label>
         </div>
     </form>
 
@@ -107,6 +127,7 @@ MainNavbar::render($request);
         <div class="utility-button-container">
             <button class="btn btn-utility" id="disable-profile">Disable Account</button>
             <button class="btn btn-utility" id="change-password">Change password</button>
+            <button class="btn btn-utility" id="give-feedback">Give us a Feedback !!</button>
         </div>
 
         <form action="" method="post" id="complete-profile-form">
@@ -115,41 +136,43 @@ MainNavbar::render($request);
                 <div class="form-row">
                     <div class="form-field">
                         <label for="first-name">First Name
-                            <span><?php echo $data['errors']['first_name_error'] ?></span>
+                            <span id="first-name-error"><?php echo $data['errors']['first_name_error'] ?></span>
                         </label>
-                        <input type="text" name="first-name" value="<?php echo $data['first_name'] ?>">
+                        <input type="text" name="first-name" id="first-name-input" value="<?php echo $data['first_name'] ?>">
                     </div>
                     <div class="form-field">
                         <label for="last-name">Last Name
-                            <span><?php echo $data['errors']['last_name_error'] ?></span>
+                            <span id="last-name-error"><?php echo $data['errors']['last_name_error'] ?></span>
                         </label>
-                        <input type="text" name="last-name" value="<?php echo $data['last_name'] ?>">
+                        <input type="text" name="last-name" id="last-name-input" value="<?php echo $data['last_name'] ?>">
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-field">
                         <label for="address-line-1">Address Line 1
-                            <span><?php echo $data['errors']['address_line_1_error'] ?></span>
+                            <span id="address-line-one-error"><?php echo $data['errors']['address_line_1_error'] ?></span>
                         </label>
                         <input type="text"
                                name="address-line-1"
+                               id="address-one-input"
                                value="<?php echo $data['address_line1'] ?>">
                     </div>
                     <div class="form-field">
                         <label for="address_line_2">Address Line 2
-                            <span><?php echo $data['errors']['address_line_2_error'] ?></span>
+                            <span id="address-line-two-error"><?php echo $data['errors']['address_line_2_error'] ?></span>
                         </label>
                         <input type="text"
                                name="address-line-2"
+                               id="address-two-input"
                                value="<?php echo $data['address_line2'] ?>">
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-field">
-                        <label for="city">City <span><?php echo $data['errors']['city_error'] ?></span></label>
-                        <input type="text" name="city" value="<?php echo $data['city'] ?>">
+                        <label for="city">City <span <span id="city-error"><?php echo $data['errors']['city_error'] ?></span></label>
+                        <input type="text" name="city" id="city-input" value="<?php echo $data['city'] ?>">
                     </div>
                     <div class="form-field">
                         <label for="district">District<span><?php echo $data['errors']['district_error'] ?></span></label>
@@ -175,10 +198,11 @@ MainNavbar::render($request);
                 <div class="form-row">
                     <div class="form-field">
                         <label for="telephone-number">Telephone Number
-                            <span><?php echo $data['errors']['telephone_number_error'] ?></span>
+                            <span id="telephone-error"><?php echo $data['errors']['telephone_number_error'] ?></span>
                         </label>
                         <input type="text"
                                name="telephone-number"
+                               id="telephone-input"
                                value="<?php echo $data['phone_number'] ?>">
                     </div>
                     <div class="form-field">
@@ -210,9 +234,9 @@ MainNavbar::render($request);
 
                     <div class="form-field">
                         <label for="year-of-exam">Year of Exam
-                            <span><?php echo $data['errors']['year_of_exam_error'] ?></span>
+                            <span id="exam-year-error"><?php echo $data['errors']['year_of_exam_error'] ?></span>
                         </label>
-                        <input type="number" name="year-of-exam" value="<?php echo $data['year_of_exam'] ?>">
+                        <input type="number" id="exam-year-input" name="year-of-exam" value="<?php echo $data['year_of_exam'] ?>">
                     </div>
                 </div>
 
@@ -265,64 +289,6 @@ MainNavbar::render($request);
             </div>
         </form>
 
-        <div class="payment-history">
-            <h1>Payment History</h1>
-            <div class="payment-history-container">
-                <?php if (count($data['payments']) == 0): ?>
-                    <div class="no-data-table-msg">
-                        <h4>You have not made any payments yet</h4>
-                    </div>
-
-                <?php else: ?>
-                    <table class="data-table" id="payment-table">
-                        <script>
-                            const payments = <?php echo json_encode($data['payments']); ?>
-                        </script>
-                    </table>
-                    <div id="pagination"></div>
-                <?php endif; ?>
-            </div>
-
-            <?php if (count($data['payments']) != 0): ?>
-            <div class="chart-section">
-                <div class="chart-container">
-                    <canvas id="payment-chart"></canvas>
-                </div>
-            </div>
-            <?php endif; ?>
-        </div>
-
-        <div class="request-history" id="requests">
-            <h1>Pending Tutor Requests</h1>
-            <div class="request-history-container">
-                <?php if (count($data['requests']) === 0): ?>
-                    <div class="no-data-table-msg">
-                        <h4>There are no pending tutor requests</h4>
-                    </div>
-
-                <?php else: ?>
-                    <table class="data-table">
-                        <tr class="top-table-row">
-                            <th>Tutor</th>
-                            <th>Subject</th>
-                            <th>Module</th>
-                            <th>Mode</th>
-                            <th></th>
-                        </tr>
-
-                        <?php foreach ($data['requests'] as $request): ?>
-                            <tr>
-                                <td><?php echo $request['first_name'] . ' ' . $request['last_name']; ?></td>
-                                <td><?php echo $request['subject']; ?></td>
-                                <td><?php echo $request['module']; ?></td>
-                                <td><?php echo $request['mode']; ?></td>
-                                <td><button class="btn req-cancel-btn" data-id="<?php echo $request['id']; ?>">Cancel</button></td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </table>
-                <?php endif; ?>
-            </div>
-        </div>
 
     </div>
 </div>
@@ -336,7 +302,10 @@ MainNavbar::render($request);
         URLROOT . '/public/js/common/student-tutor-complete-profile.js',
         URLROOT . '/public/js/student/profile.js',
         URLROOT . '/public/js/student/student-profile-payment-table.js',
-        URLROOT . '/public/js/student/disable-profile.js'
+        URLROOT . '/public/js/student/disable-profile.js',
+        URLROOT . '/public/js/student/feedback.js',
+        URLROOT . '/public/js/common/tutor-student-profile-detail-validator-functions.js',
+        URLROOT . '/public/js/common/tutor-student-profile-detail-validator.js'
     ]
 );
 ?>

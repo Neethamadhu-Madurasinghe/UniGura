@@ -54,15 +54,12 @@ class AdminPayment extends Controller
             $tutorId = $bodyData['selectedTutorId'];
 
             $tutorBankDetails = $this->paymentModel->selectedTutorBankDetails($tutorId);
-            $tutorPaymentDetails = $this->paymentModel->paymentDetailsByTutorId($tutorId);
+            $tutorPaymentDetails = $this->paymentModel->getAllClassDaysByTutorId($tutorId);
 
             foreach ($tutorPaymentDetails as $aTutorPaymentDetails) {
-                $aTutorPaymentDetails->classDay = $this->paymentModel->classDayByDayId($aTutorPaymentDetails->day_id);
-                $aTutorPaymentDetails->tutorialClass = $this->paymentModel->getTutorialClassByClassId($aTutorPaymentDetails->classDay->class_id);
-                $aTutorPaymentDetails->classTemplate = $this->paymentModel->getClassTemplateByClassTemplateId($aTutorPaymentDetails->tutorialClass->class_template_id);
-                $aTutorPaymentDetails->subject = $this->paymentModel->getSubjectBySubjectId($aTutorPaymentDetails->classTemplate->subject_id);
-                $aTutorPaymentDetails->module = $this->paymentModel->getModuleByModuleId($aTutorPaymentDetails->classTemplate->module_id);
-                $aTutorPaymentDetails->student = $this->paymentModel->getStudentById($aTutorPaymentDetails->tutorialClass->student_id);
+                $aTutorPaymentDetails->subject = $this->paymentModel->getSubjectBySubjectId($aTutorPaymentDetails->subject_id);
+                $aTutorPaymentDetails->module = $this->paymentModel->getModuleByModuleId($aTutorPaymentDetails->module_id);
+                $aTutorPaymentDetails->student = $this->paymentModel->getStudentById($aTutorPaymentDetails->student_id);
             }
 
 
@@ -70,7 +67,6 @@ class AdminPayment extends Controller
             $data = [
                 'tutorBankDetails' => $tutorBankDetails,
                 'tutorPaymentDetails' => $tutorPaymentDetails,
-                'paymentBankSlip' => ''
             ];
 
             // echo '<pre>';
@@ -81,6 +77,7 @@ class AdminPayment extends Controller
         }
     }
 
+
     public function uploadBankSlip(Request $request)
     {
         if (!$request->isLoggedIn()) {
@@ -89,33 +86,10 @@ class AdminPayment extends Controller
 
 
         if ($request->isPost()) {
-
-            $fileName = $_FILES["paymentBankSlip"]["name"];
-
-            if (empty($fileName)) {
-                $allUniquePayoffTutors = $this->paymentModel->allUniquePayoffTutors();
-                $allPaymentDetails = $this->paymentModel->allPaymentDetails();
-
-                foreach ($allUniquePayoffTutors as $tutor) {
-                    $tutor->tutor = $this->paymentModel->getTutorById($tutor->tutor_id);
-                }
-
-                foreach ($allPaymentDetails as $tutor) {
-                    $tutor->tutor = $this->paymentModel->getTutorById($tutor->tutor_id);
-                }
-
-                $data = [
-                    'allUniquePayoffTutors' => $allUniquePayoffTutors,
-                    'allPaymentDetails' => $allPaymentDetails,
-                    'paymentBankSlip' => 'notUploadBankSlip'
-                ];
-                $this->view('admin/payment', $request, $data);
-            } else {
-                $filePath = handleUpload(array('.png', '.pdf'), '\\public\\profile_pictures\\', 'paymentBankSlip');
-                $this->paymentModel->insertTutorWithdrawalDetails($filePath);
-                $withdrawalSlipID = $this->paymentModel->getTutorWithdrawalDetailID($filePath);
-                $this->paymentModel->updateTutorWithdrawalDetails($_GET['tutorID'], $withdrawalSlipID->id);
-            }
+            $filePath = handleUpload(array('.pdf', '.png', '.jpeg', '.jpg', '.JPG'), '\\withdrawal_slips\\', 'paymentBankSlip');
+            $this->paymentModel->insertTutorWithdrawalDetails($filePath);
+            $withdrawalSlipID = $this->paymentModel->getTutorWithdrawalDetailID($filePath);
+            $this->paymentModel->updateTutorWithdrawalDetails($_GET['tutorID'], $withdrawalSlipID->id);
         }
 
         redirect('/admin/payment');

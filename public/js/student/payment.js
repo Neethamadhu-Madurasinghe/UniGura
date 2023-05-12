@@ -25,7 +25,7 @@ paymentBtnsUI.forEach(paymentBtnUI => {
             'custom_2' : dataElementUI.dataset.tutor_id
         };
 
-        console.log(paymentData);
+        console.log(dataElementUI.dataset.notify_url);
         payhere.onCompleted = function onCompleted(orderId) {
             console.log("Payment completed. OrderID:" + orderId);
             location.reload();

@@ -203,4 +203,29 @@ public function setClassTemplateDay($data): bool
 //      Returns whether the row count is greater than 0
         return $this->db->execute();
     }
+
+    public function getOnlineAndPhysicalClassesByTutorId($id): array {
+        $classes = [
+            "number_of_online_classes" => [],
+            "number_of_physical_classes" => [],
+        ];
+        $this->db->query("SELECT * FROM tutoring_class_template WHERE 
+                                              tutor_id = :id AND 
+                                              is_hidden = 0 AND 
+                                              mode='online'");
+
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        $classes['number_of_online_classes'] = $this->db->resultAllAssoc();
+
+        $this->db->query("SELECT * FROM tutoring_class_template WHERE 
+                                              tutor_id = :id AND 
+                                              is_hidden = 0 AND 
+                                              mode='physical'");
+
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        $classes['number_of_physical_classes'] = $this->db->resultAllAssoc();
+
+        return $classes;
+
+    }
 }

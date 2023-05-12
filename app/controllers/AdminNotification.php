@@ -2,11 +2,11 @@
 
 class AdminNotification extends Controller
 {
-    private mixed $classModel;
+    private mixed $notificationModel;
 
     public function __construct()
     {
-        $this->classModel = $this->model('ModelAdminNotification');
+        $this->notificationModel = $this->model('ModelAdminNotification');
     }
 
     public function notification(Request $request)
@@ -15,10 +15,12 @@ class AdminNotification extends Controller
             redirect('/login');
         }
 
-        $allUnseenNotifications = $this->classModel->getAllUnseenNotifications();
+        $adminID = $request->getUserId();
+
+        $allUnseenNotifications = $this->notificationModel->getAllUnseenNotifications($adminID);
 
         foreach ($allUnseenNotifications as $notification) {
-            $user = $this->classModel->getUserById($notification->user_id);
+            $user = $this->notificationModel->getUserById($notification->user_id);
             $notification->user = $user;
         }
 
@@ -28,21 +30,68 @@ class AdminNotification extends Controller
     }
 
 
+
+    public function notificationCount(Request $request)
+    {
+        $adminID = $request->getUserId();
+
+        $notificationCount = $this->notificationModel->getNotificationCount($adminID);
+
+        $data = $notificationCount;
+        // $this->view('admin/class', $request, $data);
+
+        echo json_encode([
+            "notificationCount" => $data
+        ]);
+    }
+
+
+
     public function clearNotification(Request $request)
     {
 
         if (!$request->isLoggedIn()) {
             redirect('/login');
         }
-        
+
+        // if ($request->isGet()) {
+
+        // $bodyData = $request->getBody();
+
+        // $notificationID = $bodyData['notificationID'];
+
+        $adminID = $request->getUserId();
+
+
+        $this->notificationModel->clearNotification($adminID);
+        // }
+
+        echo json_encode([
+            "notificationCount" => "successfully"
+        ]);
+
+        // $this->notification($request);
+    }
+
+    public function deleteNotification(Request $request)
+    {
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
         if ($request->isGet()) {
 
             $bodyData = $request->getBody();
 
             $notificationID = $bodyData['notificationID'];
 
-            $result = $this->classModel->clearNotification($notificationID);
+            $this->notificationModel->deleteNotification($notificationID);
         }
+
+        // echo json_encode([
+        //     "message" => "notificationDelete"
+        // ]);
 
         $this->notification($request);
     }

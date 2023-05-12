@@ -124,7 +124,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0 0 50px 0;
+    margin: 10px 0 10px 0;
 }
 
 .no-class-message-container h1 {
@@ -175,6 +175,14 @@
 }
 
 .add-new-class-button-container img:hover {
+    transform: scale(1.05);
+}
+
+.add-new-class-button {
+    transition: transform 0.1s;
+}
+
+.add-new-class-button:hover {
     transform: scale(1.05);
 }
 

@@ -13,7 +13,7 @@ class ModelStudentRequest {
                           tutor_id=:tutor_id AND
                           student_id=:student_id AND
                           class_template_id=:class_template_id AND
-                          status=0');
+                          status=0 OR status=1');
 
         $this->db->bind('tutor_id', $data['tutor_id'], PDO::PARAM_INT);
         $this->db->bind('student_id', $data['student_id'], PDO::PARAM_INT);
@@ -76,7 +76,7 @@ class ModelStudentRequest {
         return $this->db->commitTransaction();
     }
 
-    public function getRequestsByStudentId($id): array {
+    public function getAllRequestsByStudentId($id): array {
         $this->db->query('SELECT id FROM request WHERE student_id=:id');
         $this->db->bind('id', $id, PDO::PARAM_INT);
 
@@ -88,6 +88,7 @@ class ModelStudentRequest {
                                 request.id,
                                 request.mode,
                                 request.class_template_id,
+                                request.status,
                                 user.first_name,
                                 user.last_name 
                                 FROM request INNER JOIN user ON

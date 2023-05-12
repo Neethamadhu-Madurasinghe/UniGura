@@ -13,30 +13,16 @@ require_once APPROOT . '/views/common/inc/components/LandingPageNavBar.php';
 require_once APPROOT . '/views/student/inc/components/MainNavbar.php';
 
 
-if ($request->isLoggedIn()) {
-    Header::render(
-        'Login',
-        [
-            URLROOT . '/public/css/common/student-base-style.css',
-            URLROOT . '/public/css/student/components/main-nav-bar.css',
-            URLROOT . '/public/css/common/not-found.css',
+Header::render(
+    'Login',
+    [
+        URLROOT . '/public/css/common/student-base-style.css',
+        URLROOT . '/public/css/components/tutor-student-login-nav-bar.css',
+        URLROOT . '/public/css/common/not-found.css',
+    ]
+);
 
-        ]
-    );
-}else {
-    Header::render(
-        'Login',
-        [
-            URLROOT . '/public/css/common/student-base-style.css',
-            URLROOT . '/public/css/components/tutor-student-login-nav-bar.css',
-            URLROOT . '/public/css/common/not-found.css',
-        ]
-    );
-}
-
-if ($request->isLoggedIn()) {
-    MainNavbar::render($request);
-}else {
+if (!$request->isLoggedIn()) {
     LandingPageNavBar::render($request);
 }
 

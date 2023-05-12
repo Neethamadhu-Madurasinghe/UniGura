@@ -180,6 +180,7 @@
     display: none;
     max-height: 30rem;
     overflow: scroll;
+    padding: 5px;
 }
 
 .notification-list::-webkit-scrollbar {
@@ -228,10 +229,13 @@
     border: 3px solid var(--dark-orange);
     border-radius: 5px;
     margin: 0;
+    background-color: #f6ae33;
 }
 
 .notification-read {
     color: #6b6a6a;
+    border: 3px solid #f6ae33;
+    background-color: var(--lightest-orrange);
 }
 
 .notification-card h3 {

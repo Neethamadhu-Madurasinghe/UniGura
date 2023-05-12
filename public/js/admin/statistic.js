@@ -9,17 +9,6 @@ const body = document.querySelector('body'),
     modeText = body.querySelector(".mode-text");
 
 
-const image = document.getElementById("image");
-
-
-toggle.addEventListener("click", () => {
-    sidebar.classList.toggle("close");
-
-    image.src = "images/without-logo.png";
-    image.style.width = "50px";
-})
-
-
 
 
 const statistic = document.getElementById("statistic");
@@ -30,3 +19,4 @@ nav_link.forEach((link) => {
 })
 
 statistic.classList.add('active');
+

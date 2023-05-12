@@ -5,136 +5,97 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/dashboard.css">
+    <script defer src="<?php echo URLROOT ?>/public/js/admin/commonAdmin.js"></script>
     <script src="https://kit.fontawesome.com/401cc96be7.js" crossorigin="anonymous"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/dashboard.css">
     <title>UniGura</title>
 </head>
 
 <body>
+    <div class="navigation">
+        <ul>
+            <li class="logo">
+                <img src="<?php echo URLROOT ?>/public/img/admin/logo.png" alt="">
+            </li>
 
-    <nav class="sidebar">
-        <header>
-            <div class="image-text">
-                <span class="image">
-                    <img src="images/without-logo.png" alt="" id="image">
-                </span>
 
-                <!-- <div class="text logo-text">
-                    <span class="name">UniGura</span>
-                    <span class="profession">Web developer</span>
-                </div> -->
-            </div>
+            <li class="nav-link active" id="dashboard">
+                <a href="dashboard">
+                    <span class="icon"><i class="fa fa-solid fa-house icon"></i></span>
+                    <span class="title">Home</span>
+                </a>
+            </li>
+            <li class="nav-link" id="student">
+                <a href="student">
+                    <span class="icon"><i class="fa fa-graduation-cap icon"></i></span>
+                    <span class="title">Student</span>
+                </a>
+            </li>
+            <li class="nav-link" id="tutor">
+                <a href="tutor">
+                    <span class="icon"><i class="fa fa-person-chalkboard icon"></i></span>
+                    <span class="title">Tutor</span>
+                </a>
+            </li>
+            <li class="nav-link" id="class">
+                <a href="class">
+                    <span class="icon"><i class="fa fa-school icon"></i></span>
+                    <span class="title">Class</span>
+                </a>
+            </li>
+            <li class="nav-link subjectLink" id="subject">
+                <a href="subjectModule">
+                    <span class="icon"><i class="fa fa-light fa-book icon"></i></span>
+                    <span class="title">Subject</span>
+                </a>
+            </li>
+            <li class="nav-link subjectLink" id="statistic">
+                <a href="statistics">
+                    <span class="icon"><i class="fa fa-solid fa-chart-simple icon"></i></span>
+                    <span class="title">Statistic</span>
+                </a>
+            </li>
+            <li class="nav-link" id="request-complaint">
+                <a href="tutorRequest">
+                    <span class="icon"><i class="fa fa-solid fa-user-plus icon"></i></span>
+                    <span class="title">Request</span>
+                </a>
+            </li>
+            <li class="nav-link" id="complaint">
+                <a href="studentComplaint">
+                    <span class="icon"><i class="fa fa-sharp fa-light fa-file-circle-exclamation icon"></i></span>
+                    <span class="title">Complaint</span>
+                </a>
+            </li>
+            <li class="nav-link" id="payment">
+                <a href="payment">
+                    <!-- <span class="icon"><i class="fa fa-money-bill-wave icon"></i></span> -->
+                    <span class="icon"><i class="fa fa-sharp fa-sack-dollar icon"></i></span>
+                    <span class="title">Payment</span>
+                </a>
+            </li>
+            <li class="nav-link" id="notification">
+                <a href="notification" class="notification-icon">
+                    <span class="icon"><i class="fa-solid fa-bell icon"></i></span>
+                    <span class="icon-button-badge">0</span>
+                    <span class="title">Notification</span>
+                </a>
+            </li>
+            <li class="nav-link" id="profile">
+                <a href="profileView">
+                    <span class="icon"><i class="fa fa-user icon"></i></span>
+                    <span class="title">Profile</span>
+                </a>
+            </li>
 
-            <i class='bx bx-chevron-right toggle'></i>
-        </header>
 
-        <div class="menu-bar">
-            <div class="menu">
-                <ul class="menu-links">
-                    <li class="nav-link active" id="dashboard">
-                        <p></p>
-                        <p></p>
-                        <a href="dashboard">
-                            <i class='fa fa-home-alt icon'></i>
-                            <span class="text nav-text">Dashboard</span>
-                        </a>
-                    </li>
 
-                    <li class="nav-link" id="student">
-                        <p></p>
-                        <p></p>
-                        <a href="student">
-                            <i class="fa fa-graduation-cap icon"></i>
-                            <span class="text nav-text">Student</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link" id="tutor">
-                        <p></p>
-                        <p></p>
-                        <a href="tutor">
-                            <i class="fa fa-person-chalkboard icon"></i>
-                            <span class="text nav-text">Tutor</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link" id="class">
-                        <p></p>
-                        <p></p>
-                        <a href="class">
-                            <i class="fa fa-school icon"></i>
-                            <span class="text nav-text">Class</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link subjectLink" id="subject">
-                        <p></p>
-                        <p></p>
-                        <a href="subjectModule">
-                            <i class="fa fa-light fa-book icon"></i>
-                            <span class="text nav-text">Subject</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link subjectLink" id="statistic">
-                        <p></p>
-                        <p></p>
-                        <a href="statistics">
-                            <i class="fa-solid fa-chart-simple icon "></i>
-                            <span class="text nav-text">Statistic</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link" id="request-complaint">
-                        <p></p>
-                        <p></p>
-                        <a href="tutorRequest">
-                            <i class="fa fa-headset icon"></i>
-                            <span class="text nav-text">Request & Complaint</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link" id="payment">
-                        <p></p>
-                        <p></p>
-                        <a href="payment">
-                            <i class="fa fa-money-bill-wave icon"></i>
-                            <span class="text nav-text">Payment</span>
-                        </a>
-                    </li>
-                    <li class="nav-link" id="notification">
-                        <p></p>
-                        <p></p>
-                        <a href="notification">
-                            <i class="fa fa-bell icon"></i>
-                            <span class="text nav-text">Notification</span>
-                        </a>
-                    </li>
-                    <li class="nav-link" id="profile">
-                        <p></p>
-                        <p></p>
-                        <a href="profileView">
-                            <i class="fa fa-user icon"></i>
-                            <span class="text nav-text">Profile</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="bottom-content">
-                <br>
-                <ul>
-                    <li class="nav-link" id="logout">
-                        <p></p>
-                        <p></p>
-                        <a href="../logout">
-                            <i class='bx bx-log-out icon'></i>
-                            <span class="text nav-text">logout</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-    </nav>
+            <li class="log-out">
+                <a href="../logout">
+                    <span class="icon"><i class="fa fa-solid fa-right-from-bracket fa-rotate-180 icon"></i></span>
+                    <span class="title">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </div>

@@ -2,7 +2,6 @@
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/admin/payment.css">
 <script defer src="<?php echo URLROOT ?>/public/js/admin/payment.js"></script>
 
-<div class="blur-filter" id="blur-filter"></div>
 
 <section class="home" id="home">
     <p></p>
@@ -10,14 +9,6 @@
     <p></p>
     <p></p>
 
-    <?php if($data['paymentBankSlip'] === 'notUploadBankSlip') : ?>
-        <div class="popup" id="popup">
-        <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
-        <h2>Bank Slip Not Uploaded!</h2>
-        <h4>Please upload the bank slip to confirm the payment.</h4>
-        <button type="button" id="closePopup">OK</button>
-    </div>
-    <?php endif; ?>
 
 
     <div class="payment-page">
@@ -33,7 +24,7 @@
                             <div class="tutor">
                                 <input type="hidden" value="<?php echo $tutor->tutor_id ?>" class="tutorId">
                                 <div class="tutor-img">
-                                    <img src="<?php echo URLROOT; ?>/public/img/admin/profile.png" alt="">
+                                    <img src="<?php echo URLROOT ?><?php echo $tutor->tutor->profile_picture ?>" alt="tutor profile picture">
                                 </div>
                                 <div class="tutor-name">
                                     <h3><?php echo $tutor->tutor->first_name ?> <?php echo $tutor->tutor->last_name ?></h3>
@@ -91,7 +82,7 @@
                                         <td>Rs. <?php echo $Withdrawal->amount ?>.00</td>
                                         <td><?php echo explode(" ", $Withdrawal->timestamp)[0] ?></td>
                                         <td><?php echo explode(" ", $Withdrawal->timestamp)[1] ?></td>
-                                        <td><a href="<?php echo URLROOT; ?>/profile_pictures/16774330206500.pdf"><button>View</button></a></td>
+                                        <td><a href="viewFiles?file=<?php echo $Withdrawal->slip ?>"><button>View</button></a></td>
                                     </tr>
                                 <?php endif; ?>
                             <?php endforeach; ?>
@@ -113,7 +104,7 @@
                                 <th>Payment</th>
                                 <th>Date</th>
                                 <th>Time</th>
-                                <th>Receipt</th>
+                                <!-- <th>Receipt</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -124,7 +115,7 @@
                                         <td>Rs. <?php echo $Withdrawal->amount ?>.00</td>
                                         <td><?php echo explode(" ", $Withdrawal->timestamp)[0] ?></td>
                                         <td><?php echo explode(" ", $Withdrawal->timestamp)[1] ?></td>
-                                        <td><a href="#"><button>View</button></a></td>
+                                        <!-- <td><a href="#"><button>View</button></a></td> -->
                                     </tr>
                                 <?php endif; ?>
                             <?php endforeach; ?>

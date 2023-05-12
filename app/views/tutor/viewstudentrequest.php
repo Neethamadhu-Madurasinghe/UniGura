@@ -25,7 +25,8 @@ Header::render(
 ?>
 
 <div class="lightbox">
-     <div class="box">
+    <div class="box"></div>
+</div>
           <script>
                let student_name = document.getElementById('first_name');
                let student_image = document.getElementById('image');
@@ -100,7 +101,7 @@ Header::render(
                </div>
           </div>
           
-          <div class='location'>
+          <div class='location' id='map-container'>
           
           </div>
           
@@ -137,9 +138,7 @@ Header::render(
 
                request_container.innerHTML += code;
 
-               if(request_obj.class_type == 'physical'){
-                    request_container.querySelector('#location').innerHTML = `<div></div>`
-               }
+
 
                var closebtn = document.querySelector("#close_btn");
 
@@ -147,11 +146,8 @@ Header::render(
                     window.location = "http://localhost/unigura/tutor/dashboard";
                })
 
-               let decline = document.getElementById('decline-btn');
 
-               document.addEventListener('DOMContentLoaded', (event) => {
-                    if (decline) {
-                         decline.addEventListener('click', function() {
+                document.getElementById('decline_btn').addEventListener('click', function() {
                               const url = "http://localhost/unigura/tutor/requestdecline?id=" + request[0].id;
 
                               fetch(url)
@@ -163,10 +159,11 @@ Header::render(
                                         console.error(error);
                                    });
                          })
-                    }
-               });
           </script>
 
           <?php Footer::render(
-               []
+               [
+                   'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js',
+                   URLROOT . '/public/js/tutor/request-map-component.js',
+               ]
           ); ?>

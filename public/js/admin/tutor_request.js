@@ -6,15 +6,6 @@ const body = document.querySelector('body'),
     modeText = body.querySelector(".mode-text");
 
 
-const image = document.getElementById("image");
-
-
-toggle.addEventListener("click", () => {
-    sidebar.classList.toggle("close");
-
-    image.src = "images/without-logo.png";
-    image.style.width = "50px";
-})
 
 
 
@@ -33,6 +24,6 @@ request_complaint.classList.add('active');
 
 /* ---------------------------------- active button ---------------------------- */
 
-const tutor_reques_btn = document.getElementById('tutor-request');
+const tutor_request_btn = document.getElementById('tutor-request');
 
-tutor_reques_btn.style.background = "linear-gradient(180deg, #FFA620 0%, #FF7A20 100%)";
+tutor_request_btn.style.background = "linear-gradient(180deg, #FFA620 0%, #FF7A20 100%)";

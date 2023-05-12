@@ -9,9 +9,8 @@
 <?php
 require_once APPROOT . '/views/common/inc/Header.php';
 require_once APPROOT . '/views/common/inc/Footer.php';
-require_once APPROOT . '/views/common/inc/components/LandingPageNavBar.php';
+require_once APPROOT . '/views/common/inc/components/IntermediateNavBar.php';
 
-$navbar = new LandingPageNavBar($request);
 
 Header::render(
     'Complete Profile',
@@ -19,10 +18,13 @@ Header::render(
         'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css',
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css',
         URLROOT . '/public/css/common/student-base-style.css',
+        URLROOT . '/public/css/components/intermediate-nav-bar.css',
         URLROOT . '/public/css/tutor/complete-bank.css?v=2.2'
     ]
     //    Student base style is used here, because In this part, both student and tutor looks same
 );
+
+IntermediateNavBar::render($request);
 ?>
 
 
@@ -133,7 +135,10 @@ Header::render(
 
 </div>
 <div id="submit-btn-container">
-    <input type="submit" id="submit" value="Finish" class="btn">
+    <div>
+        <input type="submit" id="submit" value="Finish" class="btn">
+    </div>
+
 </div>
 
 

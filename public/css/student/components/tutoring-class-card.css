@@ -1,5 +1,5 @@
 .class-card {
-    width: 400px;
+    width: 45%;
     min-width: 350px;
     display: flex;
     flex-direction: column;
@@ -58,6 +58,20 @@
     align-items: center;
 }
 
+.class-card-name-pic-container {
+    display: flex;
+    align-items: center;
+    width: 80%;
+}
+
+@media screen and (max-width: 600px) {
+    .class-card-name-pic-container {
+        display: flex;
+        align-items: center;
+        width: 90%;
+    }
+}
+
 
 .class-card-profile-picture-container {
     display: flex;
@@ -69,6 +83,7 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    margin-right: 10px;
 }
 
 .name-row p {
@@ -147,4 +162,16 @@
     width: 65%;
     border-radius: 5px;
     background-color: var(--bright-orange);
+}
+
+.class-card-add-new {
+    background-color: rgba(255, 129, 37, 0.1);
+    padding: 50px;
+}
+
+@media screen and (max-width: 600px) {
+    .class-card-add-new {
+        height: 248px;
+    }
+
 }

@@ -28,6 +28,7 @@ $router->registerController('/verify-email', [TutorStudentAuth::class, 'verifyEm
 $router->registerController('/reset-password/initiate', [TutorStudentAuth::class, 'resetPassword']);
 $router->registerController('/reset-password/verify', [TutorStudentAuth::class, 'resetPassword']);
 $router->registerController('/reset-password/reset', [TutorStudentAuth::class, 'resetPassword']);
+$router->registerController('/api/user-feedback', [Common::class, 'saveFeedback']);
 
 
 
@@ -46,6 +47,9 @@ $router->registerController('/admin/updateSubject', [AdminSubjectModule::class, 
 $router->registerController('/admin/updateModule', [AdminSubjectModule::class, 'updateModule']);
 $router->registerController('/admin/updateSubjectHideShow', [AdminSubjectModule::class, 'updateSubjectHideShow']);
 $router->registerController('/admin/updateModuleHideShow', [AdminSubjectModule::class, 'updateModuleHideShow']);
+
+
+$router->registerController('/admin/viewFiles', [AdminFileLoader::class, 'viewFiles']);
 
 
 
@@ -67,6 +71,9 @@ $router->registerController('/admin/addStudentComplainReason', [AdminRequirement
 $router->registerController('/admin/addTutorComplainReason', [AdminRequirementComplaints::class, 'addTutorComplainReason']);
 $router->registerController('/admin/updateStudentComplainReason', [AdminRequirementComplaints::class, 'updateStudentComplainReason']);
 $router->registerController('/admin/updateTutorComplainReason', [AdminRequirementComplaints::class, 'updateTutorComplainReason']);
+$router->registerController('/admin/deleteStudentComplainReason', [AdminRequirementComplaints::class, 'deleteStudentComplainReason']);
+$router->registerController('/admin/deleteTutorComplainReason', [AdminRequirementComplaints::class, 'deleteTutorComplainReason']);
+
 
 
 
@@ -79,6 +86,10 @@ $router->registerController('/admin/uploadBankSlip', [AdminPayment::class, 'uplo
 
 $router->registerController('/admin/notification', [AdminNotification::class, 'notification']);
 $router->registerController('/admin/notification/clearNotification', [AdminNotification::class, 'clearNotification']);
+$router->registerController('/admin/notificationCount', [AdminNotification::class, 'notificationCount']);
+$router->registerController('/admin/deleteNotification', [AdminNotification::class, 'deleteNotification']);
+
+
 
 
 
@@ -256,6 +267,7 @@ $router->registerController('/api/time-table', [FindTutor::class, 'getTutorTimeT
 $router->registerController('/api/request', [FindTutor::class, 'sendTutorRequest']);
 $router->registerController('/student/find-tutor', [FindTutor::class, 'findTutor']);
 $router->registerController('/student/profile', [StudentProfile::class, 'profile']);
+$router->registerController('/student/stats', [StudentStats::class, 'studentStats']);
 $router->registerController('/api/student/delete-request', [StudentProfile::class, 'deleteTutorRequest']);
 $router->registerController('/api/report-tutor', [StudentTutorProfile::class, 'reportTutor']);
 $router->registerController('/student/tutor-profile', [StudentTutorProfile::class, 'tutorProfile']);
@@ -273,10 +285,10 @@ $router->registerController('/api/user/change-password', [StudentTutorProfile::c
 $router->registerController('/student/tutoring-class', [StudentClass::class, 'tutoringClass']);
 $router->registerController('/api/create-review', [StudentClass::class, 'createReview']);
 $router->registerController('/api/reschedule', [StudentClass::class, 'requestReschedule']);
-$router->registerController('/api/student/delete-rescheduling', [StudentClass::class, 'cancelReschedule']);
 $router->registerController('/api/student/toggle-activity-completion', [StudentClass::class, 'toggleActivityComplete']);
 
 $router->registerController('/student/payment', [StudentPayment::class, 'savePayment']);
 $router->registerController('/api/delete-notification', [StudentNotification::class, 'deleteNotification']);
+$router->registerController('/api/disable-account', [StudentProfile::class, 'disableAccount']);
 
 $router->resolve();

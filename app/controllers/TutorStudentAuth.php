@@ -214,6 +214,11 @@ class TutorStudentAuth extends Controller {
             $data['errors']['email_error'] = $this->validateEmail($data['email'], FALSE);
             $data['errors']['password_error'] = validatePassword($data['password'], $data['password']);
 
+//            Check if the user is banned
+            if (empty($data['errors']['email_error']) && $this->tutorStudentAuthModel->isBanned($data['email'])) {
+                $data['errors']['email_error'] = 'This user account has been banned';
+            }
+
 //            If data is valid, then check is the password matches with email
             if (empty($data['errors']['email_error']) && empty($data['errors']['password_error'])) {
                 $loggedUser = $this->tutorStudentAuthModel->login($data['email'], $data['password']);
