@@ -49,7 +49,7 @@ class AdminFilter extends Controller
             $sql = "SELECT student.*, user.* FROM student INNER JOIN user ON student.user_id = user.id WHERE 1";
 
             if (!empty($searchStudentName)) {
-                $sql .= " AND user.first_name LIKE '%$searchStudentName%' OR user.last_name LIKE '%$searchStudentName%' ";
+                $sql .= " AND CONCAT(user.first_name,' ',user.last_name) LIKE '%$searchStudentName%' ";
             }
 
 
@@ -63,25 +63,25 @@ class AdminFilter extends Controller
 
             if (!empty($arrayVisibility[0]) && !empty($arrayVisibility[1])) {
                 if ($arrayVisibility[0] == 'block') {
-                    $sql .= " AND user.is_banned = 1";
+                    $sql .= " AND (user.is_banned = '1'";
                 }
 
                 if ($arrayVisibility[1] == 'unblock') {
-                    $sql .= " OR user.is_banned = 0";
+                    $sql .= " OR user.is_banned = '0')";
                 }
 
                 if ($arrayVisibility[0] == 'unblock') {
-                    $sql .= " AND user.is_banned = 0";
+                    $sql .= " (AND user.is_banned = '0'";
                 }
 
                 if ($arrayVisibility[1] == 'block') {
-                    $sql .= " OR user.is_banned = 1";
+                    $sql .= " OR user.is_banned = '1')";
                 }
             } elseif (!empty($arrayVisibility[0])) {
                 if ($arrayVisibility[0] == 'block') {
-                    $sql .= " AND user.is_banned = 1";
+                    $sql .= " AND user.is_banned = '1'";
                 } else {
-                    $sql .= " AND user.is_banned = 0";
+                    $sql .= " AND user.is_banned = '0'";
                 }
             }
 
@@ -89,6 +89,8 @@ class AdminFilter extends Controller
 
             $filterResult = $allStudent;
         }
+
+        // echo $sql;
 
         $data = $filterResult;
 
@@ -133,10 +135,10 @@ class AdminFilter extends Controller
 
             // print_r($arrayVisibility);
 
-            $sql = "SELECT tutor.*, user.* FROM tutor INNER JOIN user ON tutor.user_id = user.id WHERE 1";
+            $sql = "SELECT tutor.*, user.* FROM tutor INNER JOIN user ON tutor.user_id = user.id WHERE tutor.is_approved = 1";
 
             if (!empty($searchTutorName)) {
-                $sql .= " AND user.first_name LIKE '%$searchTutorName%' OR user.last_name LIKE '%$searchTutorName%'";
+                $sql .= " AND CONCAT(user.first_name,' ',user.last_name) LIKE '%$searchTutorName%' ";
             }
 
             if (!empty($arrayModes[0]) && !empty($arrayModes[1]) && !empty($arrayModes[2])) {
@@ -151,18 +153,18 @@ class AdminFilter extends Controller
 
             if (!empty($arrayVisibility[0]) && !empty($arrayVisibility[1])) {
                 if ($arrayVisibility[0] == 'hide') {
-                    $sql .= ' AND tutor.is_hidden = 1';
+                    $sql .= ' AND (tutor.is_hidden = 1';
                 }
                 if ($arrayVisibility[1] == 'show') {
-                    $sql .= ' OR tutor.is_hidden = 0';
+                    $sql .= ' OR tutor.is_hidden = 0)';
                 }
 
                 if ($arrayVisibility[0] == 'show') {
-                    $sql .= ' AND tutor.is_hidden = 0';
+                    $sql .= ' AND (tutor.is_hidden = 0';
                 }
 
                 if ($arrayVisibility[1] == 'hide') {
-                    $sql .= ' OR tutor.is_hidden = 1';
+                    $sql .= ' OR tutor.is_hidden = 1)';
                 }
             } elseif (!empty($arrayVisibility[0])) {
                 if ($arrayVisibility[0] == 'hide') {

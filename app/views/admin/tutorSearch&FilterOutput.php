@@ -1,3 +1,4 @@
+
 <?php if (empty($data)) : ?>
     <div class="result-not-found">
         <img src="<?php echo URLROOT; ?>/public/img/admin/notSearchResult.png" alt=""><br>
