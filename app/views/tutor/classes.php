@@ -26,7 +26,7 @@ MainNavbar::render($request);
 <div class="classes">
      <div class="Active-class">
           <div class="Active-class-container">
-               <h2>Active Classes</h2>
+               <h2 id='heading'>Active Classes</h2>
                <div class="container_one">
                     <?php
                     $classes = json_decode($data['tutor_classes']);
@@ -56,9 +56,7 @@ MainNavbar::render($request);
                               <p style='color: rgba(112, 124, 151, 1) ; margin-top: 0px;text-align: justify;margin-bottom: 0px;'>$mode</p>
                          </div>
                          <button class='msg_box button view-class' data-id = $id >View Details</button>
-                         </div>
-     
-                          ";
+                         </div>";
                     }
                     ?>
 
@@ -80,7 +78,7 @@ MainNavbar::render($request);
                     </div>
                     <div>
                          <button class="msg_box button" id='report'>Report</button>
-                         <button class="msg_box button">Chat</button>
+                         <button class="chat button">Chat</button>
                          <button class="add_day button">Add Day</button>
                          <button class="finish button">Finish Class</button>
 
@@ -98,20 +96,28 @@ MainNavbar::render($request);
 </div>
 <script>
      let viewbtns = document.querySelectorAll('.view-class');
-
-   
-
+     
 
      // geting query params of the url
      const urlParams = new URLSearchParams(window.location.search);
 
      // Check whether id is in urlParms
      const classid = urlParams.get('id'); 
+     const completion_status = urlParams.get('completion_status');
+     const is_suspended = urlParams.get('is_suspended');
      
      // call show class function if id is set
      if(classid != null){
           showclass(classid);
      }else{
+     }
+
+     if(completion_status == 1){
+          document.getElementById('heading').innerText = "Completed Classes"
+     }
+  
+     if(is_suspended == 1){
+          document.getElementById('heading').innerText = "Blocked Classes"
      }
 
 
@@ -121,7 +127,7 @@ MainNavbar::render($request);
 
 
      function showclass(id){
-               const url = "http://localhost/unigura/tutor/getclassdetails?id=" + id;
+               const url = `http://localhost/unigura/tutor/getclassdetails?id=${id}` ;
                fetch(url)
                     .then(response => response.json())
                     .then(data => {
@@ -181,6 +187,10 @@ MainNavbar::render($request);
 
                          document.getElementById('report').addEventListener('click', () => {
                               window.location = `http://localhost/unigura/tutor/view-report?student_id=${list.student_id}&class_id=${list.id}`;
+                         })
+
+                         document.querySelector('.chat').addEventListener('click', () => {
+                              window.location = `http://localhost/unigura/tutor/startchat?class_id=${list.id}`;
                          })
 
                          let days = data['days'];

@@ -45,7 +45,14 @@ Header::render(
                let request_container = document.querySelector('.box');
                let time_slots = <?php echo $data['time_slots'] ?>;
 
-               console.log(time_slots[0]);
+               let time_slot_ids=[];
+               
+
+               for(let i = 0 ; i < time_slots.length ; i++){
+                    time_slot_ids.push(time_slots[i].time_slot_id);
+               }
+
+               console.log(time_slot_ids);
 
                let day;
 
@@ -116,6 +123,7 @@ Header::render(
                               <input id = "time_slot_id" name = "time_slot_id" value = ${time_slots[0].time_slot_id} type="hidden">
                               <input id = "type" name = "type" value = ${request_obj.class_type} type="hidden">
                               <input id = "medium" name = "medium" value = ${request_obj.medium} type="hidden">
+                              <input id = "time_slot_list" name = "time_slot_list" value = ${time_slot_ids} type="hidden">
                               <div class="dropdown">
                                    <button type="submit" class="yes" id="approve">Approve</button>
                               </div>
@@ -138,6 +146,8 @@ Header::render(
                closebtn.addEventListener('click', function() {
                     window.location = "http://localhost/unigura/tutor/dashboard";
                })
+
+               let decline = document.getElementById('decline-btn');
 
                document.addEventListener('DOMContentLoaded', (event) => {
                     if (decline) {

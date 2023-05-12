@@ -25,10 +25,24 @@ class TutorClass extends Controller
             redirectBasedOnUserRole($request);
         }
 
+        $body = $request->getBody();
         $data = [];
 
+        if (isset($body['completion_status'])) {
+            $data['completion_status'] = $body['completion_status'];
+        }else{
+            $data['completion_status'] = 0;
+        }
 
-        $data['tutor_classes'] = json_encode($this->classModel->getTutoringClasses($request->getUserId()));
+        if (isset($body['is_suspended'] )) {
+            $data['is_suspended'] = $body['is_suspended']; 
+        }else{
+            $data['is_suspended'] = 0;
+        }
+
+
+
+        $data['tutor_classes'] = json_encode($this->classModel->getTutoringClasses($request->getUserId(),$data));
 
 
         $this->view('tutor/classes', $request, $data);
@@ -320,6 +334,34 @@ class TutorClass extends Controller
         echo json_encode([
             "message" => "Data saved successfully"
         ]);
+    }
+
+    public function startchat(Request $request){
+
+        if (!$request->isLoggedIn()) {
+            redirect('/login');
+        }
+
+        if ($request->isProfileNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isNotApprovedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isBankDetialsNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+        $body = $request->getBody();
+
+        if ($request->isPost()) {
+    
+        }
+
+        $data['class_id'] = $body['class_id'];
+
+        $this->view('tutor/startchat',$request,$data);
     }
 
 }

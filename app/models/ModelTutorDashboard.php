@@ -204,8 +204,6 @@ class ModelTutorDashboard
         $this->db->bind('type', $data['type'], PDO::PARAM_INT);
         $this->db->bind('medium', $data['medium'], PDO::PARAM_INT);
 
-
-
         return $this->db->execute();
     }
 
@@ -247,15 +245,32 @@ class ModelTutorDashboard
 
     public function setClass($data): bool {
         $this->db->startTransaction();
-
         $this->setNewClass($data);
         $class_id = $this->getNewlyAddedclass();
         $this->setStudentAproveRequest($data['id']);
+        $this->declineSameTimeSlotRequests($data['time_slot_list'],$data['id']);
         $this->setDaysofClass(intval($class_id['id']),$data);
         $this->setActivitiesofDay($class_id['id']);
         $this->UpdateTutorTimeSlotWithRequest($data['time_slot_id']);
 
         return $this->db->commitTransaction();
+    }
+
+    public function declineSameTimeSlotRequests($data,$r_id): bool {
+        $success = true;
+        $data = explode(",", $data);
+        foreach ($data as $id) {
+            $this->db->query('UPDATE request r
+            INNER JOIN request_time_slot rts ON r.id = rts.request_id
+            SET r.status = 2
+            WHERE r.id != :r_id AND rts.time_slot_id = :id;');
+            $this->db->bind('id', $id, PDO::PARAM_INT);
+            $this->db->bind('r_id', $r_id, PDO::PARAM_INT);
+            if (!$this->db->execute()) {
+                $success = false;
+            }
+        }
+        return $success;
     }
 
     public function declineStudentAproveRequest($id) : bool

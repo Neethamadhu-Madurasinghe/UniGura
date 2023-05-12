@@ -8,8 +8,6 @@ class TutorDashboard extends Controller
         $this->dashboardModel = $this->model('ModelTutorDashboard');
     }
 
-
-
     public function dashboard(Request $request)
     {
 
@@ -140,9 +138,6 @@ class TutorDashboard extends Controller
         $this->view('tutor/createcclasstemplate', $request, $data);
     }
 
-
-
-
     public function getModule(Request $request)
     {
         //      Cors support
@@ -201,10 +196,12 @@ class TutorDashboard extends Controller
                 'time' => $body['time'],
                 'duration' => $body['duration'],
                 'rate' => $body['rate'],
-                'time_slot_id'=>$body['time_slot_id'],
+                'time_slot_id'=> $body['time_slot_id'],
                 'type' => $body['type'],
-                'medium' => $body['medium']
+                'medium' => $body['medium'],
+                'time_slot_list' => $body['time_slot_list']
             ];
+
 
 
             if ($this->dashboardModel->setClass($data)) {
@@ -218,7 +215,7 @@ class TutorDashboard extends Controller
 
         $data['tutor_request'] = json_encode($this->dashboardModel->viewStudentRequests($body['id']));
         $data['time_slots'] = json_encode($this->dashboardModel->getRequestTimeSlots($body['id']));
-
+      
 
         $this->view('tutor/viewstudentrequest', $request, $data);
     }
