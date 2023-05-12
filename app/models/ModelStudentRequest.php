@@ -76,7 +76,7 @@ class ModelStudentRequest {
         return $this->db->commitTransaction();
     }
 
-    public function getRequestsByStudentId($id): array {
+    public function getAllRequestsByStudentId($id): array {
         $this->db->query('SELECT id FROM request WHERE student_id=:id');
         $this->db->bind('id', $id, PDO::PARAM_INT);
 
@@ -88,6 +88,7 @@ class ModelStudentRequest {
                                 request.id,
                                 request.mode,
                                 request.class_template_id,
+                                request.status,
                                 user.first_name,
                                 user.last_name 
                                 FROM request INNER JOIN user ON

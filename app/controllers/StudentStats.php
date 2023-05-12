@@ -44,7 +44,24 @@ class StudentStats extends Controller {
         $data['payments'] = $this->paymentModel->getAllPaymentsByStudentId($request->getUserId());
 
 //          Fetch tutor request data
-        $data['requests'] = $this->requestModel->getRequestsByStudentId($request->getUserId());
+        $requests = $this->requestModel->getAllRequestsByStudentId($request->getUserId());
+        $data['requests'] = [
+            'accepted' => [],
+            'rejected' => [],
+            'pending' => []
+        ];
+
+         foreach ($requests as $tutorRequest) {
+             if ($tutorRequest['status'] == 0) {
+                 $data['requests']['pending'][] = $tutorRequest;
+             }elseif ($tutorRequest['status'] == 1) {
+                 $data['requests']['accepted'][] = $tutorRequest;
+             }else {
+                 $data['requests']['rejected'][] = $tutorRequest;
+             }
+         }
+
+
 //        Load the view for both post and get requests
         $this->view('/student/stats', $request, $data);
     }

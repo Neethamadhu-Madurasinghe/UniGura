@@ -113,7 +113,7 @@ Header::render(
         <div class="request-history" id="requests">
             <h1>Pending Tutor Requests</h1>
             <div class="request-history-container">
-                <?php if (count($data['requests']) === 0): ?>
+                <?php if (count($data['requests']['pending']) === 0): ?>
                     <div class="no-data-table-msg">
                         <h4>There are no pending tutor requests</h4>
                     </div>
@@ -128,13 +128,43 @@ Header::render(
                             <th></th>
                         </tr>
 
-                        <?php foreach ($data['requests'] as $request): ?>
+                        <?php foreach ($data['requests']['pending'] as $request): ?>
                             <tr>
                                 <td><?php echo $request['first_name'] . ' ' . $request['last_name']; ?></td>
                                 <td><?php echo $request['subject']; ?></td>
                                 <td><?php echo $request['module']; ?></td>
-                                <td><?php echo $request['mode']; ?></td>
+                                <td><?php echo $request['mode'] == 'physical' ? 'Physical' : 'Online'; ?></td>
                                 <td><button class="btn req-cancel-btn" data-id="<?php echo $request['id']; ?>">Cancel</button></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </table>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <div class="request-history" id="rejected-requests">
+            <h1>Rejected Tutor Requests</h1>
+            <div class="request-history-container">
+                <?php if (count($data['requests']['rejected']) === 0): ?>
+                    <div class="no-data-table-msg">
+                        <h4>There are no rejected tutor requests</h4>
+                    </div>
+
+                <?php else: ?>
+                    <table class="data-table">
+                        <tr class="top-table-row">
+                            <th>Tutor</th>
+                            <th>Subject</th>
+                            <th>Module</th>
+                            <th>Mode</th>
+                        </tr>
+
+                        <?php foreach ($data['requests']['rejected'] as $request): ?>
+                            <tr>
+                                <td><?php echo $request['first_name'] . ' ' . $request['last_name']; ?></td>
+                                <td><?php echo $request['subject']; ?></td>
+                                <td><?php echo $request['module']; ?></td>
+                                <td><?php echo $request['mode'] == 'physical' ? 'Physical' : 'Online'; ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </table>
