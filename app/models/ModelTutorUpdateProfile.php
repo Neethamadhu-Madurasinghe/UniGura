@@ -12,7 +12,22 @@ class ModelTutorUpdateProfile
     public function update($data)
     {
         
-        $this->db->query('UPDATE user JOIN  tutor on user.id = tutor.user_id SET first_name = :first_name, last_name = :last_name,  phone_number = :phone_number ,address_line1 = :address_line1, address_line2 = :address_line2, city = :city , district = :district,  bank_account_owner = :bank_account_owner , bank_account_number = :bank_account_number , bank_name = :bank_name , bank_branch = :bank_branch , education_qualification = :education_qualification , university= :university  WHERE id = :id');
+        $this->db->query('UPDATE user JOIN tutor on user.id = tutor.user_id SET first_name = :first_name, 
+                                                      last_name = :last_name,  
+                                                      phone_number = :phone_number ,
+                                                      address_line1 = :address_line1, 
+                                                      address_line2 = :address_line2, 
+                                                      city = :city , 
+                                                      district = :district,  
+                                                      location = ST_PointFromText(:location, :srid),
+                                                      bank_account_owner = :bank_account_owner ,
+                                                      bank_account_number = :bank_account_number , 
+                                                      bank_name = :bank_name , bank_branch = :bank_branch , 
+                                                      education_qualification = :education_qualification , 
+                                                      university= :university 
+                                                    WHERE id = :id');
+
+        $location = 'POINT(' . floatval($data['latitude']) . " " . floatval($data['longitude']) . ')';
 
         $this->db->bind(':first_name', $data['first_name']);
         $this->db->bind(':last_name',  $data['last_name']);
@@ -29,6 +44,9 @@ class ModelTutorUpdateProfile
         $this->db->bind(':university', $data['university']);
         $this->db->bind(':id', $data['id']);
 
+        $this->db->bind('location', $location, PDO::PARAM_STR);
+        $this->db->bind('srid', 4326, PDO::PARAM_INT);
+
 
         return $this->db->execute();
     }
@@ -38,8 +56,15 @@ class ModelTutorUpdateProfile
     {
         $this->db->query('SELECT * from user where id = :tutorID');
         $this->db->bind(':tutorID', $tutorID);
+        $tutor = $this->db->resultAllAssoc();
 
-        return $this->db->resultAllAssoc();
+        $this->db->query('SELECT ST_X(location) as latitude, ST_Y(location) as longitude FROM user WHERE id=:tutorID');
+        $this->db->bind(':tutorID', $tutorID);
+        $location = $this->db->resultOneAssoc();
+
+        $tutor[0]['latitude'] = $location['latitude'];
+        $tutor[0]['longitude'] = $location['longitude'];
+        return $tutor;
     }
 
     public function getTutorBankDetails($tutorID)

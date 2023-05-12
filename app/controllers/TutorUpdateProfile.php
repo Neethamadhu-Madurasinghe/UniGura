@@ -57,6 +57,8 @@ class TutorUpdateProfile extends Controller
                 'bank_branch' => $body['bank_branch'],
                 'education_qualification' => $body['education_qualification'],
                 'university' => $body['university'],
+                'longitude' => $body['longitude'],
+                'latitude' => $body['latitude'],
 
                 'errors' => [
                     'first_name_error' => '',
@@ -154,6 +156,9 @@ class TutorUpdateProfile extends Controller
             'education_qualification' => $tutorBankDetails[0]['education_qualification'],
             'university' => $tutorBankDetails[0]['university'],
             'tutorTimeSlots' => $tutorTimeSlots,
+            'mode' => $tutorProfileDetails[0]['mode'],
+            'longitude' =>$tutorProfileDetails[0]['longitude'],
+            'latitude' =>$tutorProfileDetails[0]['latitude'],
 
             // 'errors' => [
             //     'first_name_error' => '',

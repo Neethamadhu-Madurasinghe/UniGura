@@ -248,11 +248,11 @@ IntermediateNavBar::render($request);
 
 <script>
     nextBtn.addEventListener("click", () => {
-        form.classList.add('secActive');
+        _form.classList.add('secActive');
         console.log('ok')
     })
 
-    backBtn.addEventListener("click", () => form.classList.remove('secActive'));
+    backBtn.addEventListener("click", () => _form.classList.remove('secActive'));
 </script>
 
 
