@@ -26,7 +26,6 @@ Header::render(
 
 
 
-
 <div>
     <div class="part_two">
         <div class="Student">

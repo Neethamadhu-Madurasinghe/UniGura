@@ -137,10 +137,9 @@ p {
 
 .textbox_one{
     margin-top: 10px;
-    display: grid;
-    gap: 0px;
+    display: flex;
     height: fit-content;
-    grid-template-columns: 1fr;
+    flex-direction: column;
 }
 
 .textbox_one .img01{
@@ -306,10 +305,7 @@ p {
 .activity-container {
     display: grid;
     grid-template-columns: 1fr 5fr 1fr;
-    align-items: center;
-    justify-content: space-between;
     width: 100%;
-    padding: 10px;
 
   }
   

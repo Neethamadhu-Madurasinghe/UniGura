@@ -62,8 +62,13 @@ Header::render(
 
           </div>
 
+
           <script>
-               var closebtn = document.querySelector(".close");
+                let root = '<?php echo URLROOT ?>';
+               let closebtn = document.querySelector(".close");
+               let data = JSON.parse(data_string)
+
+         
             
                closebtn.addEventListener('click', function() {
                     window.location = "http://localhost/unigura/tutor/viewcourse?subject=" + "<?php echo $data['subject'] ?>" + "&module="+ "<?php echo $data['module'] ?>" + "&id=" + "<?php echo $data['c_id'] ?>";

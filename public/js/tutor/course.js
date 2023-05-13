@@ -33,7 +33,7 @@
     subject_text.innerText = data.subject;
     mode_text.innerText = data.mode;
 
-    console.log(typeof(data.activities), data.activities);
+
 
 
     // Main Button Setup 
@@ -111,7 +111,7 @@
                     activity_item += `<div class="activity-container">
                                          <i class="fas fa-file"></i>
                                          <a class="activity-anchor" href="${root}/tutor/viewactivitydoc?file=${activity.link}">${activity.description}</a>
-                                         <div class="delete-btn" data-activityid = ${activity.id}><i class="fas fa-trash-alt"></i></button>
+                                         <div class="delete-btn" data-activityid = ${activity.id}><i class="fas fa-trash-alt"></i></div>
                                     </div>
                                         `
 

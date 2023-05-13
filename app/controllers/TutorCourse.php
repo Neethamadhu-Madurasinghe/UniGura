@@ -501,7 +501,10 @@ class TutorCourse extends Controller
 
             $data = [
                 'id' => $body['id'],
-                'course_id' => $body['course_id']
+                'course_id' => $body['course_id'],
+                'subject' => $body['subject'],
+                'module' => $body['module']
+
             ];
 
             $this->view('tutor/deleteday', $request, $data);

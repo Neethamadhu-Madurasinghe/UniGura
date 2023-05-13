@@ -29,14 +29,14 @@ Header::render(
         <div class="form_container">
             <form action="" method="POST" enctype='multipart/form-data'>
                 <div class="grid-plane">
-                <input style="display:none" type="text" name="id" value='<?php echo $data['id'] ?>'>
-                <input style="display:none" type="text" name="course_id" value='<?php echo $data['course_id'] ?>'>
+                <input type="hidden" name='id' id='id'>
+                <input type="hidden" name='course_id' id='cid'>
                     <div class="dropdown">
                         <div class="dropdown_name">
                             <label for="Session Fee">Heading</label><br>
                             <span><?php echo $data['errors']['title_error'] ?></span>
                         </div>
-                        <input type="text" name="title" value='<?php echo $data['title'] ?>'>
+                        <input type="text" name="title" id='title'>
                     </div>
                 </div>
                 <button type="submit">Update</button>
@@ -45,6 +45,11 @@ Header::render(
     </div>
 </div>
 
+<script>
+    let data_string = '<?php echo json_encode($data) ?>';
+    let root = '<?php echo URLROOT ?>';
+</script>
+
     <?php Footer::render(
-        []
+        [URLROOT . '/public/js/tutor/updateday.js']
     ); ?>
