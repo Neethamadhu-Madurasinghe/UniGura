@@ -30,8 +30,8 @@ echo '</pre>';
     <?php if ($data['errors']['student_reason'] === 'Reason is already in use') : ?>
         <div class="popup" id="popup">
             <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
-            <h2>A reason is already in use!</h2>
-            <h4>Can't delete a reason that is already in use as may be student report or tutor report.</h4>
+            <h2>Duplicate Reason!</h2>
+            <h4>Please enter a reason that is not already in use.</h4>
             <button type="button" id="closePopup">OK</button>
         </div>
     <?php endif; ?>
@@ -41,7 +41,7 @@ echo '</pre>';
         <div class="popup" id="popup">
             <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
             <h2>Already in used!</h2>
-            <h4>A reason that is already in use cannot be deleted, either a student report or a tutor report.</h4>
+            <h4>A reason that is already being used as a report reason for a complaint cannot be deleted.</h4>
             <button type="button" id="closePopup">OK</button>
         </div>
     <?php endif; ?>
@@ -73,7 +73,7 @@ echo '</pre>';
         <div class="popup" id="popup">
             <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
             <h2>Duplicate Reason!</h2>
-            <h4>Please enter a different tutor Report Reason.</h4>
+            <h4>Please enter a reason that is not already in use.</h4>
             <button type="button" id="closePopup">OK</button>
         </div>
     <?php endif; ?>
@@ -83,7 +83,7 @@ echo '</pre>';
         <div class="popup" id="popup">
             <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
             <h2>Already in used!</h2>
-            <h4>A reason that is already in use cannot be deleted, either a student report or a tutor report.</h4>
+            <h4>A reason that is already being used as a report reason for a complaint cannot be deleted.</h4>
             <button type="button" id="closePopup">OK</button>
         </div>
     <?php endif; ?>

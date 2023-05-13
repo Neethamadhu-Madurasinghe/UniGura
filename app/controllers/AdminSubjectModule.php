@@ -58,7 +58,20 @@ class AdminSubjectModule extends Controller
             $invalidModuleName = [];
 
             if (strlen($subjectName) < 3) {
-                $invalidSubjectName = 'minimum3Character';
+                $invalidSubjectName = 'invalidInput';
+
+                $allSubjects = $this->subjectModel->getSubjects();
+                $moduleSubject = array();
+                foreach ($allSubjects as $x) {
+                    $subjectID = $x->id;
+                    $allModules = $this->subjectModel->getModule($subjectID);
+                    $moduleSubject[$subjectID] = $allModules;
+                }
+
+                $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule, $invalidSubjectName, $invalidModuleName);
+                $this->view('admin/subjectModule', $request, $data);
+            } else if (preg_match('/^\d+[A-Za-z0-9]*$/', $subjectName)) {
+                $invalidSubjectName = 'invalidInput';
 
                 $allSubjects = $this->subjectModel->getSubjects();
                 $moduleSubject = array();
@@ -77,7 +90,7 @@ class AdminSubjectModule extends Controller
                     $duplicateSubject = 'Duplicate entry';
                 }
 
-                if (strlen($subjectName) >= 3 && $subjectName != 'Duplicate entry') {
+                if (strlen($subjectName) >= 3 && $subjectName != 'Duplicate entry' && !preg_match('/^\d+[A-Za-z0-9]*$/', $subjectName)) {
                     $subjectName =  $this->subjectModel->addSubject($subjectName);
                 }
 
@@ -117,7 +130,21 @@ class AdminSubjectModule extends Controller
 
 
             if (strlen($subjectName) < 3) {
-                $invalidSubjectName = 'minimum3Character';
+                $invalidSubjectName = 'invalidInput';
+
+                $allSubjects = $this->subjectModel->getSubjects();
+                $moduleSubject = array();
+                foreach ($allSubjects as $x) {
+                    $subjectID = $x->id;
+                    $allModules = $this->subjectModel->getModule($subjectID);
+                    $moduleSubject[$subjectID] = $allModules;
+                }
+
+                $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule, $invalidSubjectName, $invalidModuleName);
+                $this->view('admin/subjectModule', $request, $data);
+            }
+            if (preg_match('/^\d+[A-Za-z0-9]*$/', $subjectName)) {
+                $invalidSubjectName = 'invalidInput';
 
                 $allSubjects = $this->subjectModel->getSubjects();
                 $moduleSubject = array();
@@ -191,7 +218,20 @@ class AdminSubjectModule extends Controller
 
 
             if (strlen($moduleName) < 3) {
-                $invalidModuleName = 'minimum3Character';
+                $invalidModuleName = 'invalidInput';
+
+                $allSubjects = $this->subjectModel->getSubjects();
+                $moduleSubject = array();
+                foreach ($allSubjects as $x) {
+                    $subjectID = $x->id;
+                    $allModules = $this->subjectModel->getModule($subjectID);
+                    $moduleSubject[$subjectID] = $allModules;
+                }
+
+                $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule, $invalidSubjectName, $invalidModuleName);
+                $this->view('admin/subjectModule', $request, $data);
+            } else if (preg_match('/^\d+[A-Za-z0-9]*$/', $moduleName)) {
+                $invalidModuleName = 'invalidInput';
 
                 $allSubjects = $this->subjectModel->getSubjects();
                 $moduleSubject = array();
@@ -210,7 +250,7 @@ class AdminSubjectModule extends Controller
                     $duplicateModule = 'Duplicate entry';
                 }
 
-                if (strlen($moduleName) >= 3 && $moduleName != 'Duplicate entry') {
+                if (strlen($moduleName) >= 3 && $moduleName != 'Duplicate entry' && !preg_match('/^\d+[A-Za-z0-9]*$/', $moduleName)) {
                     $moduleName =  $this->subjectModel->addModule($moduleName, $subjectId);
                 }
 
@@ -247,7 +287,20 @@ class AdminSubjectModule extends Controller
 
 
             if (strlen($moduleName) < 3) {
-                $invalidModuleName = 'minimum3Character';
+                $invalidModuleName = 'invalidInput';
+
+                $allSubjects = $this->subjectModel->getSubjects();
+                $moduleSubject = array();
+                foreach ($allSubjects as $x) {
+                    $subjectID = $x->id;
+                    $allModules = $this->subjectModel->getModule($subjectID);
+                    $moduleSubject[$subjectID] = $allModules;
+                }
+
+                $data = array($allSubjects, $moduleSubject, $duplicateSubject, $duplicateModule, $invalidSubjectName, $invalidModuleName);
+                $this->view('admin/subjectModule', $request, $data);
+            } else if (preg_match('/^\d+[A-Za-z0-9]*$/', $moduleName)) {
+                $invalidModuleName = 'invalidInput';
 
                 $allSubjects = $this->subjectModel->getSubjects();
                 $moduleSubject = array();

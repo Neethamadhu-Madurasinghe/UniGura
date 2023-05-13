@@ -82,7 +82,7 @@ class AdminRequirementComplaints extends Controller
                 'tutorComplaintReason' => $tutorComplaintReason,
 
                 'errors' => [
-                    'student_reason' => validateStudentReportReason($body['inputStudentReason'], $this->tutorStudentModel),
+                    'student_reason' => validateStudentReportReason($body['inputStudentReason'], $this->tutorStudentModel, false),
                     'tutor_reason' => '',
 
                 ]
@@ -102,8 +102,10 @@ class AdminRequirementComplaints extends Controller
             }
 
 
-            if (!$hasErrors) {
-                $this->requirementComplaintsModel->updateStudentComplainReason($data['student_reason_id'], $data['student_reason']);
+            if (($this->requirementComplaintsModel->updateStudentComplainReason($data['student_reason_id'], $data['student_reason'])) === "false") {
+                $data['errors']['student_reason'] = 'Reason is already in use';
+                $this->view('admin/complaintSettings', $request, $data);
+            } else {
                 redirect('admin/complaintSetting');
             }
         }
@@ -222,7 +224,7 @@ class AdminRequirementComplaints extends Controller
 
                 'errors' => [
                     'student_reason' => '',
-                    'tutor_reason' => validateTutorReportReason($body['inputTutorReason'], $this->tutorStudentModel),
+                    'tutor_reason' => validateTutorReportReason($body['inputTutorReason'], $this->tutorStudentModel,false),
 
                 ]
             ];
@@ -239,11 +241,13 @@ class AdminRequirementComplaints extends Controller
                 $this->view('admin/complaintSettings', $request, $data);
             }
 
-
-            if (!$hasErrors) {
-                $this->requirementComplaintsModel->updateTutorComplainReason($data['tutor_reason_id'], $data['tutor_reason']);
+            if (($this->requirementComplaintsModel->updateTutorComplainReason($data['tutor_reason_id'], $data['tutor_reason'])) === "false") {
+                $data['errors']['tutor_reason'] = 'Reason is already in use';
+                $this->view('admin/complaintSettings', $request, $data);
+            } else {
                 redirect('admin/complaintSetting');
             }
+
         }
     }
 

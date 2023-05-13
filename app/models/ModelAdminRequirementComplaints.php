@@ -128,20 +128,45 @@ class ModelAdminRequirementComplaints
 
     public function updateStudentComplainReason($reasonID, $description)
     {
-        $this->db->query("UPDATE report_reason SET description = :description WHERE id = :reason_id");
-
-        $this->db->bind(':reason_id', $reasonID);
+        $this->db->query("SELECT * FROM report_reason WHERE is_for_tutor = 0 AND description = :description AND id != :reason_id");
         $this->db->bind(':description', $description);
-        return $this->db->execute();
+        $this->db->bind(':reason_id', $reasonID);
+
+        $this->db->resultAll();
+
+        if ($this->db->rowCount() > 0) {
+            return "false";
+            die();
+        } else {
+            $this->db->query("UPDATE report_reason SET description = :description WHERE id = :reason_id");
+            $this->db->bind(':reason_id', $reasonID);
+            $this->db->bind(':description', $description);
+            $this->db->execute();
+            return "true";
+            die();
+        }
     }
 
     public function updateTutorComplainReason($reasonID, $description)
     {
-        $this->db->query("UPDATE report_reason SET description = :description WHERE id = :reason_id");
 
-        $this->db->bind(':reason_id', $reasonID);
+        $this->db->query("SELECT * FROM report_reason WHERE is_for_tutor = 1 AND description = :description AND id != :reason_id");
         $this->db->bind(':description', $description);
-        return $this->db->execute();
+        $this->db->bind(':reason_id', $reasonID);
+
+        $this->db->resultAll();
+
+        if ($this->db->rowCount() > 0) {
+            return "false";
+            die();
+        } else {
+            $this->db->query("UPDATE report_reason SET description = :description WHERE id = :reason_id");
+            $this->db->bind(':reason_id', $reasonID);
+            $this->db->bind(':description', $description);
+            $this->db->execute();
+            return "true";
+            die();
+        }
     }
 
 
@@ -174,14 +199,14 @@ class ModelAdminRequirementComplaints
     public function rejectTutorRequest($tutorID)
     {
         $this->db->query("UPDATE tutor SET is_approved = 2 WHERE user_id = :tutor_id");
-        $this->db->bind(':tutor_id', $tutorID,PDO::PARAM_INT);
+        $this->db->bind(':tutor_id', $tutorID, PDO::PARAM_INT);
         return $this->db->execute();
     }
 
     public function addNotification($userID, $title, $description)
     {
         $this->db->query("INSERT INTO notification (user_id, title,description) VALUES (:user_id,:title,:description)");
-        $this->db->bind(':user_id', $userID,PDO::PARAM_INT);
+        $this->db->bind(':user_id', $userID, PDO::PARAM_INT);
         $this->db->bind(':title', $title);
         $this->db->bind(':description', $description);
         return $this->db->execute();

@@ -24,11 +24,11 @@
                     <h4>This subject name already exists.</h4>
                     <button type="button" id="closePopup">OK</button>
                 </div>
-            <?php elseif ($data[4] == 'minimum3Character') : ?>
+            <?php elseif ($data[4] == 'invalidInput') : ?>
                 <div class="popup" id="popup">
                     <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
                     <h2>Invalid Subject Name!</h2>
-                    <h4>Subject name must be at least 3 characters.</h4>
+                    <h4>Subject name must begin with a letter and must be at least 3 characters.</h4>
                     <button type="button" id="closePopup">OK</button>
                 </div>
             <?php endif; ?>
@@ -42,11 +42,11 @@
                     <h4>This module name already exists.</h4>
                     <button type="button" id="closePopup">OK</button>
                 </div>
-            <?php elseif ($data[5] == 'minimum3Character') : ?>
+            <?php elseif ($data[5] == 'invalidInput') : ?>
                 <div class="popup" id="popup">
                     <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">
                     <h2>Invalid Module Name!</h2>
-                    <h4>Module name must be at least 3 characters.</h4>
+                    <h4>Module name must begin with a letter and must be at least 3 characters.</h4>
                     <button type="button" id="closePopup">OK</button>
                 </div>
             <?php endif; ?>
