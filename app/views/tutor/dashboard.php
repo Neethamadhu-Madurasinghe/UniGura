@@ -309,6 +309,10 @@ MainNavbar::render($request);
     let tutor_name_string = '<?php echo json_encode($data['tutor_name']) ?>';
     let tutor_name_obj =  JSON.parse(tutor_name_string)
     let class_counts = <?php echo $data['active_class_count'] ?>;
+
+    let tutor_classes =  <?php echo $data['tutor_classes'] ?>;
+
+    console.log(tutor_classes)
     
 
 
@@ -486,6 +490,10 @@ MainNavbar::render($request);
     //seting today classes.
 
     let class_container = document.getElementById('today_classes');
+
+
+
+console.log(typeof(tutor_classes))
 
     
 </script>
