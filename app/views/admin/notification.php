@@ -11,6 +11,16 @@
     <p></p>
 
 
+    <?php if (empty($data)) : ?>
+        <div class="result-not-found not-notification">
+            <img src="<?php echo URLROOT; ?>/public/img/admin/no_notification.png" alt=""><br>
+            <h1>No Notification!.</h1>
+            <p>There are no notifications to show.</p>
+            <p>When you have a new notification, you will see it here.</p>
+        </div>
+    <?php endif; ?>
+
+
     <div class="notification" id="notificationCount">
         <?php foreach ($data as $notification) : ?>
 

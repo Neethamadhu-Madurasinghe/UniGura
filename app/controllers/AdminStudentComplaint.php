@@ -46,11 +46,11 @@ class AdminStudentComplaint extends Controller {
         // echo '</pre>';
 
         foreach ($allStudentComplaints as $x) {
-            $tutorID = $x->tutor_id;
+            $tutorID = $x->tutorID;
             $tutor = $this->studentComplaintModel->userById($tutorID);
             $x->tutor = $tutor;
 
-            $studentID = $x->student_id;
+            $studentID = $x->studentID;
             $student = $this->studentComplaintModel->userById($studentID);
             $x->student = $student;
         }
