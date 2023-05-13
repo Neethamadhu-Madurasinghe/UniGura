@@ -134,7 +134,7 @@ class TutorClass extends Controller
             }
         }
 
-        //        If the request is a GET request, then serve the page
+        //If the request is a GET request, then serve the page
     }
 
     public function markdayashide(Request $request)

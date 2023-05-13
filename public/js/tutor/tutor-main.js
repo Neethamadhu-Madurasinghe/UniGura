@@ -20,11 +20,6 @@ toggle.addEventListener("click", () => {
 
 })
 
-
-
-
-
-
 modeSwitch.addEventListener("click", () => {
     body.classList.toggle("dark");
 
