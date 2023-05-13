@@ -53,7 +53,7 @@ MainNavbar::render($request);
                               <img style='border-radius: 0%;'  src='$root/public/img/tutor/class/icons/BookBookmark.png'>
                               <p style='color: rgba(112, 124, 151, 1) ; margin-top: 0px;text-align: justify;margin-bottom: 0px;'>$module $class_type</p>
                               <img style='border-radius: 0%;'  src='$root/public/img/tutor/class/icons/cast.png'>
-                              <p style='color: rgba(112, 124, 151, 1) ; margin-top: 0px;text-align: justify;margin-bottom: 0px;'>$mode</p>
+                              <p style='color: rgba(112, 124, 151, 1) ; margin-top: 0px;text-align: justify;margin-bottom: 0px;'>" . ($mode == 'online' ? 'Online' : 'Physical') . "</p>
                          </div>
                          <button class='msg_box button view-class' data-id = $id >View Details</button>
                          </div>";
@@ -180,8 +180,8 @@ MainNavbar::render($request);
                          }
 
                          student_name.innerHTML = list.first_name + " " + list.last_name;
-                         module_name.innerHTML = list.name + list.class_type;
-                         mode.innerHTML = list.mode;
+                         module_name.innerHTML = list.name + " " + list.class_type.charAt(0).toUpperCase() + list.class_type    .slice(1); ;
+                         mode.innerHTML = list.mode === 'physical' ? 'Physical' : 'Online';
 
                          console.log(list)
 
@@ -213,9 +213,9 @@ MainNavbar::render($request);
                               let payment_status;
 
                               if (day.payment_status == 0 && day.is_completed == 1) {
-                                   payment_status = `not paid`
+                                   payment_status = `Not paid`
                               } else if (day.payment_status == 1 && day.is_completed == 1) {
-                                   payment_status = `paid`
+                                   payment_status = `Paid`
                               } else if (day.is_completed == 0) {
                                    payment_status = ``;
                               }

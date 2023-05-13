@@ -47,7 +47,7 @@ class StudentPayment extends Controller {
                 $this->notificationModel->createNotification(
                     $data['student_id'],
                     "Your payment has been accepted",
-                    URLROOT . '/student/profile#payments',
+                    URLROOT . '/student/stats',
                     "Click here to see all payments"
                 );
 
