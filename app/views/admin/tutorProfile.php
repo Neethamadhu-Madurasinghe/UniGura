@@ -29,25 +29,25 @@
 
                         <?php if ($data['tutorDetails']->is_hidden == 1) : ?>
                             <div class="button" title="Show" style="background-color: #ff8a0544;">
-                                <a href="showTutor?tutorID=<?php echo $data['tutorDetails']->id; ?>" title="Show"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/show.png"></a>
+                                <a href="showTutor?tutorID=<?php echo $data['tutorDetails']->id; ?>" title="Show"><i class="fa-solid fa-eye"></i></a>
                             </div>
                         <?php endif; ?>
 
                         <?php if ($data['tutorDetails']->is_hidden == 0) : ?>
                             <div class="button" style="background-color: #ff8a0544;">
-                                <a href="hideTutor?tutorID=<?php echo $data['tutorDetails']->id; ?>" title="Hide"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/hide.png"></a>
+                                <a href="hideTutor?tutorID=<?php echo $data['tutorDetails']->id; ?>" title="Hide"> <i class="fa-solid fa-eye-slash"></i></a>
                             </div>
                         <?php endif; ?>
 
                         <?php if ($data['tutorDetails']->is_banned == 0) : ?>
                             <div class="button" style="background-color: #ff8a0544;">
-                                <a href="blockTutor?tutorID=<?php echo $data['tutorDetails']->id; ?>" title="Block"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/block.png"></a>
+                                <a href="blockTutor?tutorID=<?php echo $data['tutorDetails']->id; ?>" title="Block"><i class="fa-solid fa-lock"></i></a>
                             </div>
                         <?php endif; ?>
 
                         <?php if ($data['tutorDetails']->is_banned == 1) : ?>
                             <div class="button" style="background-color: #ff8a0544;">
-                                <a href="unblockTutor?tutorID=<?php echo $data['tutorDetails']->id; ?>" title="Unblock"><img src="<?php echo URLROOT ?>/public/img/admin/student_tutor_profile/unblock.png"></a>
+                                <a href="unblockTutor?tutorID=<?php echo $data['tutorDetails']->id; ?>" title="Unblock"> <i class="fa-solid fa-lock-open"></i></a>
                             </div>
                         <?php endif; ?>
                     </div>
@@ -724,6 +724,10 @@
                 <div class="tel-number">
                     <h1>Tel Number: </h1>
                     <h2><?php echo $data['tutorDetails']->phone_number; ?></h2>
+                </div>
+                <div class="joined-date">
+                    <h1>Joined Date: </h1>
+                    <h2><?php echo $data['tutorDetails']->joined_date ?></h2>
                 </div>
             </div>
 
