@@ -55,5 +55,7 @@ Header::render(
 </script>
 
 <?php Footer::render(
-    []
+    [
+       
+    ]
 ); ?>

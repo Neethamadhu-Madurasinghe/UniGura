@@ -105,7 +105,7 @@
         let activity_item = '';
 
         activities.forEach(activity => {
-            console.log(activity_item)
+    
             if (activity.day_template_id == day.id) {
                 if (activity.type == 0) {
                     activity_item += `<div class="activity-container">
