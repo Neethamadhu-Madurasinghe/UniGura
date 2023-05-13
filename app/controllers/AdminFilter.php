@@ -177,18 +177,18 @@ class AdminFilter extends Controller
 
             if (!empty($arrayPermission[0]) && !empty($arrayPermission[1])) {
                 if ($arrayPermission[0] == 'block') {
-                    $sql .= ' AND user.is_banned = 1';
+                    $sql .= ' AND (user.is_banned = 1';
                 }
                 if ($arrayPermission[1] == 'unblock') {
-                    $sql .= ' OR user.is_banned = 0';
+                    $sql .= ' OR user.is_banned = 0)';
                 }
 
                 if ($arrayPermission[0] == 'unblock') {
-                    $sql .= ' AND user.is_banned = 0';
+                    $sql .= ' AND (user.is_banned = 0';
                 }
 
                 if ($arrayPermission[1] == 'block') {
-                    $sql .= ' OR user.is_banned = 1';
+                    $sql .= ' OR user.is_banned = 1)';
                 }
             } elseif (!empty($arrayPermission[0])) {
 
