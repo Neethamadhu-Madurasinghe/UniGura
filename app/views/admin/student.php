@@ -1,6 +1,7 @@
-<?php require_once APPROOT . '/views/admin/side_bar.php'; ?>
+<?php require_once APPROOT . '/views/admin/sideBar.php'; ?>
 <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/student.css">
 <script defer src="<?php echo URLROOT ?>/public/js/admin/student.js"></script>
+
 
 
 
@@ -16,32 +17,32 @@
             <?php foreach ($data as $aStudent) : ?>
                 <div class="card">
                     <div class="mode-hide-show">
-                        <?php if ($aStudent->student->mode == 'online') : ?>
+                        <?php if ($aStudent->mode == 'online') : ?>
                             <i class="fa-solid fa-wifi"></i>
                         <?php endif; ?>
-                        <?php if ($aStudent->student->mode == 'physical') : ?>
+                        <?php if ($aStudent->mode == 'physical') : ?>
                             <i class="fa fa-solid fa-location-arrow"></i>
                         <?php endif; ?>
-                        <?php if ($aStudent->student->mode == 'both') : ?>
+                        <?php if ($aStudent->mode == 'both') : ?>
                             <i class="fa-solid fa-wifi"></i>
                             <i class="fa fa-solid fa-location-arrow"></i>
                         <?php endif; ?>
-                        <?php if ($aStudent->student->is_banned == '1') : ?>
+                        <?php if ($aStudent->is_banned == '1') : ?>
                             <i class="fa-solid fa-lock"></i>
                         <?php endif; ?>
-                        <?php if ($aStudent->student->is_banned == '0') : ?>
-                        <i class="fa-solid fa-lock-open"></i>
+                        <?php if ($aStudent->is_banned == '0') : ?>
+                            <i class="fa-solid fa-lock-open"></i>
                         <?php endif; ?>
                     </div>
                     <div class="profile-picture">
-                            <img src="<?php echo URLROOT?><?php echo $aStudent->student->profile_picture ?>" alt="student profile picture">
+                        <?php if ($aStudent->profile_picture === NULL) : ?>
+                            <img src="<?php echo URLROOT ?>/public/img/common/profile.png" alt="tutor profile picture">
+                        <?php else : ?>
+                            <img src="<?php echo URLROOT ?><?php echo $aStudent->profile_picture ?>" alt="student profile picture">
+                        <?php endif; ?>
                     </div>
                     <div class="name">
-                        <h2><?php echo $aStudent->student->first_name . ' ' . $aStudent->student->last_name ?></h2>
-                    </div>
-                    <div class="info">
-                        <h5>Phone: <?php echo $aStudent->student->phone_number ?></h5>
-                        <h5>Exam Year: <?php echo $aStudent->year_of_exam ?></h5>
+                        <h2><?php echo $aStudent->first_name . ' ' . $aStudent->last_name ?></h2>
                     </div>
                     <div class="view-profile">
                         <a href="viewStudentProfile?studentID=<?php echo $aStudent->user_id ?>"><button class="view-student-profile-btn">View Profile</button></a>
@@ -77,17 +78,17 @@
                         <input type="checkbox" id="physical" name="mode" value="physical" class="physical checkbox class-conduct-mode">
                         <label for="physical">&nbspPhysical</label>
                     </div>
-                    <!-- <div class="checkbox-button">
+                    <div class="checkbox-button">
                         <input type="checkbox" id="both" name="mode" value="both" class="both checkbox class-conduct-mode">
                         <label for="both">&nbspBoth</label>
-                    </div> -->
+                    </div>
                 </div>
             </div>
 
 
             <div class="visibility-filter">
                 <div class="duration">
-                    <h1>By Visibility</h1>
+                    <h1>By Permission</h1>
                 </div>
                 <div class="visibility-select">
                     <div class="checkbox-button">

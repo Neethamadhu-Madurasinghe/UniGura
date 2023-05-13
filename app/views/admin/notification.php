@@ -1,4 +1,4 @@
-<?php require_once APPROOT . '/views/admin/side_bar.php'; ?>
+<?php require_once APPROOT . '/views/admin/sideBar.php'; ?>
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/css/admin/notification.css">
 <script defer src="<?php echo URLROOT ?>/public/js/admin/notification.js"></script>
 
@@ -9,6 +9,16 @@
     <p></p>
     <p></p>
     <p></p>
+
+
+    <?php if (empty($data)) : ?>
+        <div class="result-not-found not-notification">
+            <img src="<?php echo URLROOT; ?>/public/img/admin/no_notification.png" alt=""><br>
+            <h1>No Notification!.</h1>
+            <p>There are no notifications to show.</p>
+            <p>When you have a new notification, you will see it here.</p>
+        </div>
+    <?php endif; ?>
 
 
     <div class="notification" id="notificationCount">

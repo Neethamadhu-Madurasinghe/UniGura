@@ -127,7 +127,7 @@ class ModelTutorStudentCompleteProfile
 
     public function findReasonIdByStudentReportReason(String $reportReason): int
     {
-        $this->db->query('SELECT * FROM report_reason WHERE description=:report_reason AND is_for_tutor = 0');
+        $this->db->query('SELECT * FROM report_reason WHERE description = :report_reason AND is_for_tutor = 0');
         $this->db->bind('report_reason', $reportReason, PDO::PARAM_STR);
 
         $this->db->resultAll();
@@ -142,7 +142,7 @@ class ModelTutorStudentCompleteProfile
 
     public function findReasonIdByTutorReportReason(String $reportReason): int
     {
-        $this->db->query('SELECT * FROM report_reason WHERE description=:report_reason AND is_for_tutor = 1');
+        $this->db->query('SELECT * FROM report_reason WHERE description = :report_reason AND is_for_tutor = 1');
         $this->db->bind('report_reason', $reportReason, PDO::PARAM_STR);
 
         $this->db->resultAll();

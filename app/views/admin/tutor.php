@@ -1,4 +1,4 @@
-<?php require_once APPROOT . '/views/admin/side_bar.php'; ?>
+<?php require_once APPROOT . '/views/admin/sideBar.php'; ?>
 <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/admin/tutor.css">
 <script defer src="<?php echo URLROOT ?>/public/js/admin/tutor.js"></script>
 
@@ -45,7 +45,11 @@
                         </div>
 
                         <div class='profile-picture'>
-                            <img src="<?php echo URLROOT ?><?php echo $aTutor->profile_picture ?>" alt="tutor profile picture">
+                            <?php if ($aTutor->profile_picture === NULL) : ?>
+                                <img src="<?php echo URLROOT ?>/public/img/common/profile.png" alt="tutor profile picture">
+                            <?php else : ?>
+                                <img src="<?php echo URLROOT ?><?php echo $aTutor->profile_picture ?>" alt="tutor profile picture">
+                            <?php endif; ?>
                         </div>
 
                         <div class='name'>
@@ -59,7 +63,6 @@
                 <?php endif; ?>
 
             <?php endforeach; ?>
-
         </div>
 
 

@@ -1,4 +1,4 @@
-<?php require_once APPROOT . '/views/admin/side_bar.php'; ?>
+<?php require_once APPROOT . '/views/admin/sideBar.php'; ?>
 <script defer src="<?php echo URLROOT ?>/public/js/admin/class.js"></script>
 <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/admin/class.css">
 
@@ -16,7 +16,11 @@
                 <div class="one-class">
                     <div class="tutor">
                         <div class="profile-img">
-                            <img src="<?php echo URLROOT ?><?php echo $x->tutor->profile_picture ?>" alt="tutor profile picture">
+                            <?php if ($x->tutor->profile_picture === NULL) : ?>
+                                <img src="<?php echo URLROOT ?>/public/img/common/profile.png" alt="tutor profile picture">
+                            <?php else : ?>
+                                <img src="<?php echo URLROOT ?><?php echo $x->tutor->profile_picture ?>" alt="tutor profile picture">
+                            <?php endif; ?>
                         </div>
                         <div class="name">
                             <h1><i class="fa-solid fa-person-chalkboard"></i> Tutor </h1>
@@ -29,7 +33,11 @@
                             <h1><?php echo $x->student_first_name . ' ' . $x->student_last_name ?></h1>
                         </div>
                         <div class="profile-img">
-                            <img src="<?php echo URLROOT ?><?php echo $x->student_profile_picture ?>" alt="student profile picture">
+                            <?php if ($x->student_profile_picture === NULL) : ?>
+                                <img src="<?php echo URLROOT ?>/public/img/common/profile.png" alt="tutor profile picture">
+                            <?php else : ?>
+                                <img src="<?php echo URLROOT ?><?php echo $x->student_profile_picture ?>" alt="student profile picture">
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="class-details">
@@ -127,7 +135,7 @@
                 <div class="rating-select-using-star">
                     <div class="star">
                         <input type="checkbox" id="star-5" name="rating" value="5" class="class-rating checkbox">
-                        <label for="star-5" title="5 Stars And Up">
+                        <label for="star-5" title="5 Stars And Below">
                             <i class="active fa fa-star"></i>
                             <i class="active fa fa-star"></i>
                             <i class="active fa fa-star"></i>
@@ -137,7 +145,7 @@
                     </div>
                     <div class="star">
                         <input type="checkbox" id="star-4" name="rating" value="4" class="class-rating checkbox">
-                        <label for="star-4" title="4 Stars And Up">
+                        <label for="star-4" title="4 Stars And Below">
                             <i class="active fa fa-star"></i>
                             <i class="active fa fa-star"></i>
                             <i class="active fa fa-star"></i>
@@ -147,7 +155,7 @@
                     </div>
                     <div class="star">
                         <input type="checkbox" id="star-3" name="rating" value="3" class="class-rating checkbox">
-                        <label for="star-3" title="3 Stars And Up">
+                        <label for="star-3" title="3 Stars And Below">
                             <i class="active fa fa-star"></i>
                             <i class="active fa fa-star"></i>
                             <i class="active fa fa-star"></i>
@@ -157,7 +165,7 @@
                     </div>
                     <div class="star">
                         <input type="checkbox" id="star-2" name="rating" value="2" class="class-rating checkbox">
-                        <label for="star-2" title="2 Stars And Up">
+                        <label for="star-2" title="2 Stars And Below">
                             <i class="active fa fa-star"></i>
                             <i class="active fa fa-star"></i>
                             <i class="fa-regular fa-star"></i>
@@ -167,7 +175,7 @@
                     </div>
                     <div class="star">
                         <input type="checkbox" id="star-1" name="rating" value="1" class="class-rating checkbox">
-                        <label for="star-1" title="1 Stars And Up">
+                        <label for="star-1" title="1 Stars And Below">
                             <i class="active fa fa-star"></i>
                             <i class="fa-regular fa-star"></i>
                             <i class="fa-regular fa-star"></i>

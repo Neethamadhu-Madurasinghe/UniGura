@@ -12,7 +12,7 @@ class ModelAdminRequirementComplaints
 
     public function getStudentComplaints($start, $rowsPerPage)
     {
-        $this->db->query("SELECT * FROM student_report LIMIT $start, $rowsPerPage");
+        $this->db->query("SELECT student_report.id as studentReportID,student_report.description,student_report.is_inquired,student_report.student_id as studentID ,student_report.tutor_id as tutorID, student_report.tutoring_class_id as tutorClassId,report_reason.*,tutoring_class.* FROM student_report INNER JOIN report_reason ON student_report.reason_id = report_reason.id  INNER JOIN tutoring_class ON student_report.tutoring_class_id = tutoring_class.id LIMIT $start, $rowsPerPage");
         return $this->db->resultAll();
     }
 
@@ -90,7 +90,7 @@ class ModelAdminRequirementComplaints
 
     public function getTutorRequest()
     {
-        $this->db->query("SELECT * FROM tutor");
+        $this->db->query("SELECT tutor.*,user.* FROM tutor INNER JOIN user ON tutor.user_id = user.id");
         return $this->db->resultAll();
     }
 
@@ -112,7 +112,7 @@ class ModelAdminRequirementComplaints
 
     public function addStudentComplainReason($description)
     {
-        $this->db->query("INSERT INTO `report_reason`(`is_for_tutor`, `description`) VALUES (0, :description)");
+        $this->db->query("INSERT INTO report_reason(is_for_tutor, description) VALUES (0, :description)");
 
         $this->db->bind(':description', $description);
         return $this->db->execute();
@@ -120,7 +120,7 @@ class ModelAdminRequirementComplaints
 
     public function addTutorComplainReason($description)
     {
-        $this->db->query("INSERT INTO `report_reason`(`is_for_tutor`, `description`) VALUES (1, :description)");
+        $this->db->query("INSERT INTO report_reason (is_for_tutor, description) VALUES (1, :description)");
 
         $this->db->bind(':description', $description);
         return $this->db->execute();
@@ -128,27 +128,52 @@ class ModelAdminRequirementComplaints
 
     public function updateStudentComplainReason($reasonID, $description)
     {
-        $this->db->query("UPDATE `report_reason` SET `description` = :description WHERE id = :reason_id");
-
-        $this->db->bind(':reason_id', $reasonID);
+        $this->db->query("SELECT * FROM report_reason WHERE is_for_tutor = 0 AND description = :description AND id != :reason_id");
         $this->db->bind(':description', $description);
-        return $this->db->execute();
+        $this->db->bind(':reason_id', $reasonID);
+
+        $this->db->resultAll();
+
+        if ($this->db->rowCount() > 0) {
+            return "false";
+            die();
+        } else {
+            $this->db->query("UPDATE report_reason SET description = :description WHERE id = :reason_id");
+            $this->db->bind(':reason_id', $reasonID);
+            $this->db->bind(':description', $description);
+            $this->db->execute();
+            return "true";
+            die();
+        }
     }
 
     public function updateTutorComplainReason($reasonID, $description)
     {
-        $this->db->query("UPDATE `report_reason` SET `description` = :description WHERE id = :reason_id");
 
-        $this->db->bind(':reason_id', $reasonID);
+        $this->db->query("SELECT * FROM report_reason WHERE is_for_tutor = 1 AND description = :description AND id != :reason_id");
         $this->db->bind(':description', $description);
-        return $this->db->execute();
+        $this->db->bind(':reason_id', $reasonID);
+
+        $this->db->resultAll();
+
+        if ($this->db->rowCount() > 0) {
+            return "false";
+            die();
+        } else {
+            $this->db->query("UPDATE report_reason SET description = :description WHERE id = :reason_id");
+            $this->db->bind(':reason_id', $reasonID);
+            $this->db->bind(':description', $description);
+            $this->db->execute();
+            return "true";
+            die();
+        }
     }
 
 
     public function deleteComplaint($reasonID)
     {
         try {
-            $this->db->query("DELETE FROM `report_reason` WHERE id = :reason_id");
+            $this->db->query("DELETE FROM report_reason WHERE id = :reason_id");
             $this->db->bind(':reason_id', $reasonID);
             $this->db->execute();
             return "";
@@ -166,23 +191,22 @@ class ModelAdminRequirementComplaints
 
     public function acceptTutorRequest($tutorID)
     {
-        $this->db->query("UPDATE `tutor` SET `is_approved` = 1 WHERE user_id = :tutor_id");
-
+        $this->db->query("UPDATE tutor SET is_approved = 1 WHERE user_id = :tutor_id");
         $this->db->bind(':tutor_id', $tutorID);
         return $this->db->execute();
     }
 
     public function rejectTutorRequest($tutorID)
     {
-        $this->db->query("DELETE FROM `tutor` WHERE user_id = :tutor_id");
-        $this->db->bind(':tutor_id', $tutorID);
+        $this->db->query("UPDATE tutor SET is_approved = 2 WHERE user_id = :tutor_id");
+        $this->db->bind(':tutor_id', $tutorID, PDO::PARAM_INT);
         return $this->db->execute();
     }
 
     public function addNotification($userID, $title, $description)
     {
         $this->db->query("INSERT INTO notification (user_id, title,description) VALUES (:user_id,:title,:description)");
-        $this->db->bind(':user_id', $userID);
+        $this->db->bind(':user_id', $userID, PDO::PARAM_INT);
         $this->db->bind(':title', $title);
         $this->db->bind(':description', $description);
         return $this->db->execute();

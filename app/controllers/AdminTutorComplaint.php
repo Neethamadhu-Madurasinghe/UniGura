@@ -72,7 +72,7 @@ class AdminTutorComplaint extends Controller {
 
         ];
 
-        $this->view('admin/tutor_complaints', $request, $data);
+        $this->view('admin/tutorComplaints', $request, $data);
 
     }
 }

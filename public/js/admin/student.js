@@ -79,7 +79,7 @@ for (var i = 0; i < checkboxes.length; i++) {
         let searchStudentName = searchStudent.value.toLowerCase();
 
 
-        classConductModeFilterValue = selectedValues.filter(values => values === 'online' || values === 'physical');
+        classConductModeFilterValue = selectedValues.filter(values => values === 'online' || values === 'physical' || values === 'both');
         visibilityFilterValue = selectedValues.filter(values => values === 'block' || values === 'unblock');
 
         console.log(searchStudentName,classConductModeFilterValue, visibilityFilterValue);

@@ -37,17 +37,17 @@ Header::render(
                               </div>
                               <select id="type" name="type">
                                    <option value="0">Tute</option>
-                                   <option value="1">Submition</option>
+                                   <option value="1">Submission</option>
                                    <option value="2">Text</option>
                               </select>
                          </div>
                          <div class="dropdown">
                               <div Class="Uploadbox">
                                    <div>
-                                        <input name="id" value="<?php echo $data['id'] ?>" type="hidden">
-                                        <input name="subject" value="<?php echo $data['subject'] ?>" type="hidden">
-                                        <input name="module" value="<?php echo $data['module'] ?>" type="hidden">
-                                        <input name="c_id" value="<?php echo $data['c_id'] ?>" type="hidden">
+                                        <input name="id" id='id' type="hidden">
+                                        <input name="subject" id='subject' type="hidden">
+                                        <input name="module" id='module' type="hidden">
+                                        <input name="c_id" id='cid' type="hidden">
 
                                         <input style="width : 100% " name='description' type="text">
                                         <input type="file" id="activity-doc" name="activity-doc" hidden />
@@ -64,38 +64,13 @@ Header::render(
 
 
           <script>
-                let root = '<?php echo URLROOT ?>';
-               let closebtn = document.querySelector(".close");
-               let data = JSON.parse(data_string)
-
-         
-            
-               closebtn.addEventListener('click', function() {
-                    window.location = "http://localhost/unigura/tutor/viewcourse?subject=" + "<?php echo $data['subject'] ?>" + "&module="+ "<?php echo $data['module'] ?>" + "&id=" + "<?php echo $data['c_id'] ?>";
-               })
-
-               const select = document.getElementById('type');
-               const upload_btn = document.querySelector('.upload_label');
-               const title = document.getElementById('title');
-
-               select.addEventListener('change', () => {
-                    // Get the selected value
-                    const selectedValue = select.value;
-                    // Show/hide the divs based on the selected value
-                    if (selectedValue === '0') {
-                         upload_btn.style.display = 'block';
-                    } else if (selectedValue === '1') {
-                         upload_btn.style.display = 'none';
-                    } else if (selectedValue === '2') {
-                         upload_btn.style.display = 'none';
-          
-                    } else {
-                         
-                    }
-               });
-
+               let root = '<?php echo URLROOT ?>';
+               let data_string = '<?php echo json_encode($data) ?>';
+               
+               
+               
           </script>
 
           <?php Footer::render(
-               []
+               [ URLROOT . '/public/js/tutor/addactivitytemplate.js']
           ); ?>
