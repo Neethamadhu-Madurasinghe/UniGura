@@ -72,8 +72,8 @@ class AdminComplaintView extends Controller
 
             $oneTutorComplaint = $this->viewComplaintModel->tutorReportById($tutorComplainID);
 
-            $oneTutorComplaint->tutor = $this->viewComplaintModel->userById($oneTutorComplaint->tutor_id);
-            $oneTutorComplaint->student = $this->viewComplaintModel->userById($oneTutorComplaint->student_id);
+            $oneTutorComplaint->tutor = $this->viewComplaintModel->userById($oneTutorComplaint->tutorID);
+            $oneTutorComplaint->student = $this->viewComplaintModel->userById($oneTutorComplaint->studentID);
 
 
             $allTutorComplaints = $this->viewComplaintModel->getTutorComplaints();
@@ -87,7 +87,7 @@ class AdminComplaintView extends Controller
             $otherTutorComplaints = [];
 
             foreach ($allTutorComplaints as $complaint) {
-                if ($complaint->tutorReportID != $tutorComplainID && $complaint->student_id == $oneTutorComplaint->student_id) {
+                if ($complaint->tutorReportID != $tutorComplainID && $complaint->tutor_id == $oneTutorComplaint->tutorID) {
                     $otherTutorComplaints[] = $complaint;
                 }
             }
@@ -154,17 +154,18 @@ class AdminComplaintView extends Controller
             $complainStatus = $data['complainStatus'];
             $tutorComplainID = $data['tutorComplaintId'];
 
+
             $studentId = $data['studentId'];
             $tutorId = $data['tutorId'];
 
             if ($complainStatus == 1) {
                 $this->viewComplaintModel->updateTutorComplainStatus($tutorComplainID, 0);
-                $this->viewComplaintModel->addNotification($tutorId,"Your complain has been rejected","We have carefully reviewed your report, but we were unable to take action due to a lack of evidence or information.");
+                // $this->viewComplaintModel->addNotification($tutorId,"Your complain has been rejected","We have carefully reviewed your report, but we were unable to take action due to a lack of evidence or information.");
 
             } else {
                 $this->viewComplaintModel->updateTutorComplainStatus($tutorComplainID, 1);
-                $this->viewComplaintModel->addNotification($tutorId,"Your complain has been accepted","We have carefully reviewed your report, and we have taken action against the student.");
-                $this->viewComplaintModel->addNotification($studentId,"You have been reported","We will review the report carefully and we will take action against you.");
+                // $this->viewComplaintModel->addNotification($tutorId,"Your complain has been accepted","We have carefully reviewed your report, and we have taken action against the student.");
+                // $this->viewComplaintModel->addNotification($studentId,"You have been reported","We will review the report carefully and we will take action against you.");
             }
 
             redirect('/admin/tutorComplaint');
@@ -226,7 +227,6 @@ class AdminComplaintView extends Controller
                 $this->viewComplaintModel->addNotification($tutorId,"Now you can continue your classes","We remove the your classes from the suspended list.");
 
             } else {
-                echo "here";
                 $this->viewComplaintModel->updateSuspendStatusAllClassByClassTemplateById($tutorClassTemplateId, 1);
                 $this->viewComplaintModel->addNotification($tutorId,"Your classes has been suspended","We got report against your classes, so we have suspended your classes.");
             }
