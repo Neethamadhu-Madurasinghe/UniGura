@@ -190,8 +190,8 @@ MainNavbar::render($request);
                          })
 
                          document.querySelector('.chat').addEventListener('click', () => {
-                              window.location = `http://localhost/unigura/tutor/startchat?class_id=${list.id}`;
-                         })
+                              window.location = `http://localhost/unigura/tutor/startchat?student_id=${list.student_id}&class_id=${list.id}`;
+                         });
 
                          let days = data['days'];
                          let activities = data['activities'];
