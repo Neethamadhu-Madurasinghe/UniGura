@@ -360,6 +360,7 @@ class TutorClass extends Controller
         }
 
         $data['class_id'] = $body['class_id'];
+        $data['student_id'] = $body['student_id'];
 
         $this->view('tutor/startchat',$request,$data);
     }

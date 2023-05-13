@@ -151,8 +151,9 @@ Header::render(
                               const url = "http://localhost/unigura/tutor/requestdecline?id=" + request[0].id;
 
                               fetch(url)
-                                   .then(response => response.json())
+                                   .then(response => response.text())
                                    .then(data => {
+                                       console.error(data);
                                         window.location = "http://localhost/unigura/tutor/dashboard";
                                    })
                                    .catch(error => {

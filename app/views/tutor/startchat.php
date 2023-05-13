@@ -39,6 +39,7 @@ Header::render(
               
 
                 <label for="description">Message </label><br><br>
+                <span id="error"></span>
                 <textarea id="description" name="description" rows="5" cols="30"></textarea><br><br>
 
                 <div class="create-btn">
@@ -53,10 +54,59 @@ Header::render(
         <script>
   
             let class_id = <?php echo $data['class_id'] ?>;
+            let student_id = <?php echo $data['student_id'] ?>;
        
             
             document.querySelector('.close').addEventListener('click', () => {
                 window.location = `http://localhost/unigura/tutor/classes?id=${class_id}`;
+            });
+
+            const messageSendBtn = document.getElementById("submit");
+            const messageInputField = document.getElementById("description");
+            const errorMessage = document.getElementById("error");
+            let chosenTutorId;
+
+
+            // Send
+            messageSendBtn.addEventListener("click", async (e) => {
+                e.preventDefault();
+                const message = messageInputField.value.trim();
+
+                if(message.length <= 0) {
+                    errorMessage.textContent = "Please enter a valid message";
+                    setInterval(() => errorMessage.textContent = "", 1000)
+                }else {
+                    const result = await fetch('http://localhost/unigura/api/chat/send-single-message', {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+
+                        },
+                        body: JSON.stringify({
+                            message,
+                            receiver: student_id
+                        })
+                    });
+
+                    const status = result.status;
+
+
+                    if(status === 200) {
+                        window.location = `http://localhost/unigura/tutor/classes?id=${class_id}`;
+                    } else if(status === 401) {
+                        const data = await result.text();
+                        errorMessage.textContent = "Please login to send message";
+                        setInterval(() => {
+                            errorMessage.textContent = ""
+                            document.location.href = '../logout';
+                        }, 1000)
+                    } else {
+                        errorMessage.textContent = "Something went wrong, please try again";
+                        setInterval(() => errorMessage.textContent = "", 1000)
+                        const data = await result.text();
+                        console.log(data);
+                    }
+                }
             });
         </script>
 

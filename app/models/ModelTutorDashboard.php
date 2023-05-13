@@ -177,14 +177,16 @@ class ModelTutorDashboard
         return $this->db->execute();
     }
 
-    public function UpdateTutorTimeSlotWithRequest($id, $classId) : bool
+    public function UpdateTutorTimeSlotWithRequest(array $timeSlotIds, $classId) : bool
     {
-        $this->db->query('UPDATE time_slot SET state = 2, tutoring_class_id=:classId  WHERE id = :id;');
-        $this->db->bind('id', $id , PDO::PARAM_INT);
-        $this->db->bind('classId', $classId , PDO::PARAM_INT);
+        foreach ($timeSlotIds as $timeSlotId) {
+            $this->db->query('UPDATE time_slot SET state = 2, tutoring_class_id=:classId  WHERE id = :id;');
+            $this->db->bind('id', $timeSlotId, PDO::PARAM_INT);
+            $this->db->bind('classId', $classId , PDO::PARAM_INT);
 
-//      Returns whether the row count is greater than 0
-        return $this->db->execute();
+            $this->db->execute();
+        }
+        return true;
     }
 
     public function setNewClass($data):bool
@@ -198,7 +200,7 @@ class ModelTutorDashboard
                  tutor_id = :tutor_id,
                  session_rate = :rate,
                  duration = :duration,
-                 class_type = :type,
+                 class_type = :class_type,
                  medium = :medium');
 
 
@@ -210,7 +212,7 @@ class ModelTutorDashboard
         $this->db->bind('tutor_id', $data['tutor_id'], PDO::PARAM_STR);
         $this->db->bind('rate', $data['rate'], PDO::PARAM_INT);
         $this->db->bind('duration', $data['duration'], PDO::PARAM_STR);
-        $this->db->bind('type', $data['type'], PDO::PARAM_INT);
+        $this->db->bind('class_type', $data['class_type'], PDO::PARAM_STR);
         $this->db->bind('medium', $data['medium'], PDO::PARAM_INT);
 
         return $this->db->execute();
@@ -254,15 +256,30 @@ class ModelTutorDashboard
 
     public function setClass($data): bool {
         $this->db->startTransaction();
+        $classDetails = $this->getPriceAndClassTypeByRequestId($data['id']);
+        $data['rate'] = $classDetails['session_rate'];
+        $data['class_type'] = $classDetails['class_type'];
         $this->setNewClass($data);
         $class_id = $this->getNewlyAddedclass();
         $this->setStudentAproveRequest($data['id']);
         $this->declineSameTimeSlotRequests($data['time_slot_list'],$data['id']);
         $this->setDaysofClass(intval($class_id['id']),$data);
         $this->setActivitiesofDay($class_id['id']);
-        $this->UpdateTutorTimeSlotWithRequest($data['time_slot_id'], $class_id['id']);
+        $this->UpdateTutorTimeSlotWithRequest(explode(",", $data['time_slot_list']), $class_id['id']);
 
         return $this->db->commitTransaction();
+    }
+
+//    When the tutor request id is given, this will give the corresponding
+//    class template's price and Class type (Revision/theory)
+    public function getPriceAndClassTypeByRequestId(int $id): array {
+        $this->db->query('
+                SELECT tutoring_class_template.* FROM tutoring_class_template 
+                JOIN request ON tutoring_class_template.id = request.class_template_id WHERE request.id=:id
+            ');
+
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+        return $this->db->resultOneAssoc();
     }
 
     public function declineSameTimeSlotRequests($data,$r_id): bool {

@@ -42,13 +42,18 @@ MainNavbar::render($request);
                button = `<button data-link =${value.link} class="msg_box button">View Details</button>`;
           }
 
+          let description = `<p></p>`;
+          if(value.description !== null) {
+              description = `<p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;">${value.description}</p>`
+          }
+
           let message = `<div data-id = ${value.id} class="msg_box_one">
                <div class="header">
                     <h4>${value.title}</h4>
                     <button class="close x"><i class="fa fa-times x"></i></button>
                </div>
                <div class="content">
-                    <p style="color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;">${value.description}</p>
+                    ${description}
                     ${button}
                </div>
           </div>`

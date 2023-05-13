@@ -2,10 +2,14 @@
 class TutorDashboard extends Controller
 {
     private ModelTutorDashboard $dashboardModel;
+    private ModelStudentNotification $notificationModel;
+    private ModelStudentRequest $requestModel;
 
     public function __construct()
     {
         $this->dashboardModel = $this->model('ModelTutorDashboard');
+        $this->notificationModel = $this->model('ModelStudentNotification');
+        $this->requestModel = $this->model('ModelStudentRequest');
     }
 
     public function dashboard(Request $request)
@@ -230,6 +234,14 @@ class TutorDashboard extends Controller
         $body = $request->getBody();
 
         if ($this->dashboardModel->declineStudentAproveRequest($body['id'])) {
+//            Send a notification to student
+            $studentId = $this->requestModel->getStudentIdByRequestId($body['id']);
+
+            $this->notificationModel->createNotification(
+                $studentId,
+                "Your request has been declined",
+                "#",
+                "Requested tutor has declined your request");
             echo json_encode([
                 "message" => "Data saved successfully",
                 "id" => $body['id']
