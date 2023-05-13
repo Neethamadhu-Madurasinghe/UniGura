@@ -762,7 +762,11 @@
                 <?php if ($aClassDay->completion_status === 0) : ?>
                     <div class="one-class">
                         <div class="student-profile">
-                            <img src="<?php echo URLROOT ?><?php echo $aClassDay->student->profile_picture ?>" alt="student profile picture">
+                            <?php if ($aClassDay->student->profile_picture === NULL) : ?>
+                                <img src="<?php echo URLROOT ?>/public/img/common/profile.png" alt="tutor profile picture">
+                            <?php else : ?>
+                                <img src="<?php echo URLROOT ?><?php echo $aClassDay->student->profile_picture ?>" alt="student profile picture">
+                            <?php endif; ?>
                         </div>
                         <div class="class-details">
                             <div class="student-name">
@@ -799,7 +803,11 @@
                 <?php if ($aClassDay->completion_status === 1) : ?>
                     <div class="one-class">
                         <div class="student-profile">
-                            <img src="<?php echo URLROOT ?><?php echo $aClassDay->student->profile_picture ?>" alt="student profile picture">
+                            <?php if ($aClassDay->student->profile_picture === NULL) : ?>
+                                <img src="<?php echo URLROOT ?>/public/img/common/profile.png" alt="tutor profile picture">
+                            <?php else : ?>
+                                <img src="<?php echo URLROOT ?><?php echo $aClassDay->student->profile_picture ?>" alt="student profile picture">
+                            <?php endif; ?>
                         </div>
                         <div class="class-details">
                             <div class="student-name">

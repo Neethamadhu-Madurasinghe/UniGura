@@ -24,11 +24,11 @@
             <div class="checkbox-button">
                 <div class="check-side">
                     <?php if ($data['oneTutorComplaint']->is_inquired == 1) { ?>
-                        <input type="checkbox" name="complainStatus" checked class="checkbox" id="checkboxID">
-                        <label for="checkboxID">Complaint Solved or not: </label>
+                        <input type="checkbox" name="complainStatus" checked class="checkbox" id="complaintCheckboxID">
+                        <label for="complaintCheckboxID">Complaint Solved or not: </label>
                     <?php } else { ?>
-                        <input type="checkbox" name="complainStatus" class="checkbox" id="checkboxID">
-                        <label for="checkboxID">Complaint Solved or not: </label>
+                        <input type="checkbox" name="complainStatus" class="checkbox" id="complaintCheckboxID">
+                        <label for="complaintCheckboxID">Complaint Solved or not: </label>
                     <?php } ?>
                 </div>
 
@@ -50,11 +50,11 @@
             <div class="checkbox-button">
                 <div class="check-side">
                     <?php if ($data['oneTutorComplaint']->is_suspended == 1) { ?>
-                        <input type="checkbox" name="complainStatus" checked class="checkbox" id="checkboxID">
-                        <label for="checkboxID">Class Suspended or not: </label>
+                        <input type="checkbox" name="complainStatus" checked class="checkbox" id="ClassCheckboxID">
+                        <label for="ClassCheckboxID">Class Suspended or not: </label>
                     <?php } else { ?>
-                        <input type="checkbox" name="complainStatus" class="checkbox" id="checkboxID">
-                        <label for="checkboxID">Class Suspended or not: </label>
+                        <input type="checkbox" name="complainStatus" class="checkbox" id="ClassCheckboxID">
+                        <label for="ClassCheckboxID">Class Suspended or not: </label>
                     <?php } ?>
                 </div>
 

@@ -44,10 +44,6 @@
                     <div class="name">
                         <h2><?php echo $aStudent->first_name . ' ' . $aStudent->last_name ?></h2>
                     </div>
-                    <div class="info">
-                        <h5>Phone: <?php echo $aStudent->phone_number ?></h5>
-                        <h5>Exam Year: <?php echo $aStudent->year_of_exam ?></h5>
-                    </div>
                     <div class="view-profile">
                         <a href="viewStudentProfile?studentID=<?php echo $aStudent->user_id ?>"><button class="view-student-profile-btn">View Profile</button></a>
                     </div>

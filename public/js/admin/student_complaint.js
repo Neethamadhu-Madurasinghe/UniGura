@@ -88,35 +88,3 @@ const student_complaint_btn = document.getElementById('student-complaint');
 student_complaint_btn.style.background = "linear-gradient(180deg, #FFA620 0%, #FF7A20 100%)";
 
 
-
-
-// student_complaint_filter.addEventListener("change", () => {
-//     let search_student_name_value = search_student_name.value.toLowerCase();
-//     let student_complaint_filter_value = student_complaint_filter.value;
-
-//     console.log(search_student_name_value);
-//     console.log(student_complaint_filter_value);
-
-
-//     const xhr = new XMLHttpRequest();
-
-//     xhr.open("GET", "studentComplainSearchFilter?search_student_name_value=" + search_student_name_value+"&student_complaint_filter_value=" + student_complaint_filter_value, true);
-
-//     xhr.onload = function () {
-//         if (this.status === 200) {
-//             student_complain.innerHTML = this.responseText;
-//             // searchFilterResult = this.responseText;
-//         }
-//     }
-
-//     xhr.send();
-
-// })
-
-
-
-
-
-
-
-
