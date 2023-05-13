@@ -13,7 +13,11 @@
     <div class="one-class">
         <div class="tutor">
             <div class="profile-img">
-                <img src="<?php echo URLROOT ?><?php echo $x->tutor->profile_picture ?>" alt="tutor profile picture">
+                <?php if ($x->tutor->profile_picture === NULL) : ?>
+                    <img src="<?php echo URLROOT ?>/public/img/common/profile.png" alt="tutor profile picture">
+                <?php else : ?>
+                    <img src="<?php echo URLROOT ?><?php echo $x->tutor->profile_picture ?>" alt="tutor profile picture">
+                <?php endif; ?>
             </div>
             <div class="name">
                 <h1><i class="fa-solid fa-person-chalkboard"></i> Tutor </h1>
@@ -26,7 +30,11 @@
                 <h1><?php echo $x->student_first_name . ' ' . $x->student_last_name ?></h1>
             </div>
             <div class="profile-img">
-                <img src="<?php echo URLROOT ?><?php echo $x->student_profile_picture ?>" alt="student profile picture">
+                <?php if ($x->student_profile_picture === NULL) : ?>
+                    <img src="<?php echo URLROOT ?>/public/img/common/profile.png" alt="tutor profile picture">
+                <?php else : ?>
+                    <img src="<?php echo URLROOT ?><?php echo $x->student_profile_picture ?>" alt="tutor profile picture">
+                <?php endif; ?>
             </div>
         </div>
         <div class="class-details">

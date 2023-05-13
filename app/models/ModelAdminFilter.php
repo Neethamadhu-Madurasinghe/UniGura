@@ -54,7 +54,7 @@ class ModelAdminFilter
     public function getActiveTutorialClass($studentID)
     {
         $this->db->query("SELECT * FROM tutoring_class WHERE student_id = :studentID AND completion_status = '0'");
-        $this->db->bind(':studentID', $studentID);
+        $this->db->bind(':studentID', $studentID,PDO::PARAM_INT);
 
         $rows = $this->db->resultAll();
 
@@ -68,7 +68,7 @@ class ModelAdminFilter
     public function getCompletedTutorialClass($studentID)
     {
         $this->db->query("SELECT * FROM tutoring_class WHERE student_id = :studentID AND completion_status = '1'");
-        $this->db->bind(':studentID', $studentID);
+        $this->db->bind(':studentID', $studentID,PDO::PARAM_INT);
 
         $rows = $this->db->resultAll();
 
@@ -82,7 +82,7 @@ class ModelAdminFilter
     public function getTutorById($tutorID)
     {
         $this->db->query("SELECT * FROM user WHERE id = :tutorID");
-        $this->db->bind(':tutorID', $tutorID);
+        $this->db->bind(':tutorID', $tutorID,PDO::PARAM_INT);
 
         $row = $this->db->resultOne();
 
@@ -97,7 +97,7 @@ class ModelAdminFilter
     public function getClassTemplateById($classTemplateID)
     {
         $this->db->query("SELECT * FROM tutoring_class_template WHERE id = :classTemplateID");
-        $this->db->bind(':classTemplateID', $classTemplateID);
+        $this->db->bind(':classTemplateID', $classTemplateID,PDO::PARAM_INT);
 
         $row = $this->db->resultOne();
 
@@ -114,7 +114,7 @@ class ModelAdminFilter
     public function getSubjectById($subjectID)
     {
         $this->db->query("SELECT * FROM subject WHERE id = :subjectID");
-        $this->db->bind(':subjectID', $subjectID);
+        $this->db->bind(':subjectID', $subjectID,PDO::PARAM_INT);
 
         $row = $this->db->resultOne();
 
@@ -128,7 +128,7 @@ class ModelAdminFilter
     public function getModuleById($moduleID)
     {
         $this->db->query("SELECT * FROM module WHERE id = :moduleID");
-        $this->db->bind(':moduleID', $moduleID);
+        $this->db->bind(':moduleID', $moduleID,PDO::PARAM_INT);
 
         $row = $this->db->resultOne();
 
@@ -143,7 +143,7 @@ class ModelAdminFilter
     public function getClassDayByTutorialClassId($tutorialClassID)
     {
         $this->db->query("SELECT * FROM day WHERE class_id = :tutorialClassID");
-        $this->db->bind(':tutorialClassID', $tutorialClassID);
+        $this->db->bind(':tutorialClassID', $tutorialClassID,PDO::PARAM_INT);
 
         $rows = $this->db->resultAll();
 
@@ -181,12 +181,24 @@ class ModelAdminFilter
             return false;
         }
     }
+
+    public function getStudentByQuery($sql){
+        $this->db->query($sql);
+
+        $rows = $this->db->resultAll();
+
+        if ($this->db->rowCount() >= 0) {
+            return $rows;
+        } else {
+            return false;
+        }
+    }
     
 
     public function getTutorContactDetails($tutorID)
     {
         $this->db->query("SELECT * FROM user WHERE id = :tutor_id");
-        $this->db->bind(':tutor_id', $tutorID);
+        $this->db->bind(':tutor_id', $tutorID,PDO::PARAM_INT);
 
         $row = $this->db->resultOne();
 
@@ -196,9 +208,6 @@ class ModelAdminFilter
             return false;
         }
     }
-
-
-
 
 
 
@@ -215,7 +224,7 @@ class ModelAdminFilter
     {
         $this->db->query("SELECT * FROM user WHERE id = :student_id");
 
-        $this->db->bind(':student_id', $studentId);
+        $this->db->bind(':student_id', $studentId,PDO::PARAM_INT);
 
         return $this->db->resultOne();
     }
@@ -224,7 +233,7 @@ class ModelAdminFilter
     {
         $this->db->query("SELECT * FROM user WHERE id = :tutor_id");
 
-        $this->db->bind(':tutor_id', $tutorId);
+        $this->db->bind(':tutor_id', $tutorId,PDO::PARAM_INT);
 
         return $this->db->resultOne();
     }
@@ -233,7 +242,7 @@ class ModelAdminFilter
     {
         $this->db->query("SELECT * FROM day WHERE class_id = :class_id");
 
-        $this->db->bind(':class_id', $classId);
+        $this->db->bind(':class_id', $classId,PDO::PARAM_INT);
 
         return $this->db->resultOne();
     }
@@ -242,7 +251,7 @@ class ModelAdminFilter
     {
         $this->db->query("SELECT * FROM tutoring_class_template WHERE id = :class_template_id");
 
-        $this->db->bind(':class_template_id', $classTemplateId);
+        $this->db->bind(':class_template_id', $classTemplateId,PDO::PARAM_INT);
 
         return $this->db->resultOne();
     }
@@ -251,7 +260,7 @@ class ModelAdminFilter
     {
         $this->db->query("SELECT * FROM module WHERE id = :module_id");
 
-        $this->db->bind(':module_id', $moduleId);
+        $this->db->bind(':module_id', $moduleId,PDO::PARAM_INT);
 
         return $this->db->resultOne();
     }
@@ -260,7 +269,7 @@ class ModelAdminFilter
     {
         $this->db->query("SELECT * FROM subject WHERE id = :subject_id");
 
-        $this->db->bind(':subject_id', $subjectId);
+        $this->db->bind(':subject_id', $subjectId,PDO::PARAM_INT);
 
         return $this->db->resultOne();
     }

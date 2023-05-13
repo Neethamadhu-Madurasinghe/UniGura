@@ -28,6 +28,6 @@ class AdminTutorRequest extends Controller {
             'totalNumOfTutorRequest' => $totalNumOfTutorRequest
         ];
 
-        $this->view('admin/tutor_request', $request, $data);
+        $this->view('admin/tutorRequest', $request, $data);
     }
 }

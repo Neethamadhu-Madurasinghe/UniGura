@@ -27,6 +27,7 @@ class AdminHideShowBlockUnblock extends Controller
         }
     }
 
+
     public function showTutor(Request $request)
     {
 
@@ -43,6 +44,7 @@ class AdminHideShowBlockUnblock extends Controller
             redirect('/admin/viewTutorProfile?tutorID=' . $tutorId);
         }
     }
+
 
     public function blockTutor(Request $request)
     {
@@ -61,6 +63,7 @@ class AdminHideShowBlockUnblock extends Controller
         }
     }
 
+
     public function unblockTutor(Request $request)
     {
 
@@ -77,6 +80,7 @@ class AdminHideShowBlockUnblock extends Controller
             redirect('/admin/viewTutorProfile?tutorID=' . $tutorId);
         }
     }
+
 
     public function blockStudent(Request $request)
     {
@@ -95,6 +99,7 @@ class AdminHideShowBlockUnblock extends Controller
         }
     }
 
+    
     public function unblockStudent(Request $request)
     {
 

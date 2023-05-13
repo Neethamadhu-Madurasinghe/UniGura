@@ -149,20 +149,6 @@ function validatePassword(string $password, string $confirmPassword): String
 // *******************  START - created by madusharini (For tutor profile update validation) ********************
 
 
-function validateRate(string $number): String
-{
-    if (filter_var($number, FILTER_VALIDATE_INT)) {
-        $int = intval($number);
-        if ($int >= 500 && $int < 5000) {
-            return "";
-        } else {
-            return "Amount must in a range between LKR (500 - 5000)";
-        }
-    } else {
-        return "Please enter a valid amount";
-    }
-}
-
 function validateAccountNameForTutor(String $holderName, ModelTutorStudentCompleteProfile $modelObject, int $tutor_id): String
 {
     if (empty($holderName) || !preg_match("/^[a-zA-Z\s]*$/", $holderName)) {
@@ -235,11 +221,11 @@ function validateBranch(String $branch): String
 
 // created by viraj
 
-function validateTutorReportReason(String $reason, ModelTutorStudentCompleteProfile $modelObject): String
+function validateTutorReportReason(String $reason, ModelTutorStudentCompleteProfile $modelObject,bool $unique = true): String
 {
     if (empty($reason) || strlen($reason) < 3) {
         return 'Please enter a valid reason';
-    } elseif ($modelObject->findReasonIdByTutorReportReason($reason)) {
+    } elseif ($unique && $modelObject->findReasonIdByTutorReportReason($reason)) {
         return 'Reason is already in use';
     } else if (strlen($reason) > 40) {
         return 'Reason should have less than 40 characters';
@@ -249,11 +235,11 @@ function validateTutorReportReason(String $reason, ModelTutorStudentCompleteProf
 }
 
 
-function validateStudentReportReason(String $reason, ModelTutorStudentCompleteProfile $modelObject): String
+function validateStudentReportReason(String $reason, ModelTutorStudentCompleteProfile $modelObject,bool $unique = true): String
 {
     if (empty($reason) || strlen($reason) < 3) {
         return 'Please enter a valid reason';
-    } elseif ($modelObject->findReasonIdByStudentReportReason($reason)) {
+    } elseif ($unique && $modelObject->findReasonIdByStudentReportReason($reason)) {
         return 'Reason is already in use';
     } else if (strlen($reason) > 40) {
         return 'Reason should have less than 40 characters';

@@ -78,3 +78,26 @@ body{
 .notification-title{
     line-height: 1.4;
 }
+
+
+
+/* ======================RESULT NOT FOUND SECTION====================================  */
+
+.result-not-found {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.result-not-found img {
+    width: 500px;
+}
+
+.result-not-found h1 {
+    font-size: 50px;
+    color: #fff;
+}
+
+.result-not-found p {
+    font-size: 17px;
+    margin-top: 4px;
+}

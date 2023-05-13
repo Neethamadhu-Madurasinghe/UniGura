@@ -136,7 +136,7 @@ class ModelAdminTutor
     public function getModuleById($moduleID)
     {
         $this->db->query("SELECT * FROM module WHERE id = :moduleID");
-        $this->db->bind(':moduleID', $moduleID);
+        $this->db->bind(':moduleID', $moduleID, PDO::PARAM_INT);
 
         $row = $this->db->resultOne();
 
@@ -164,7 +164,7 @@ class ModelAdminTutor
     public function getClassDayByTutorialClassId($tutorialClassID)
     {
         $this->db->query("SELECT * FROM day WHERE class_id = :tutorialClassID");
-        $this->db->bind(':tutorialClassID', $tutorialClassID);
+        $this->db->bind(':tutorialClassID', $tutorialClassID, PDO::PARAM_INT);
 
         $rows = $this->db->resultAll();
 
@@ -178,7 +178,7 @@ class ModelAdminTutor
     public function getAllTutorialClassesByClassId($classID)
     {
         $this->db->query("SELECT * FROM tutoring_class WHERE id = :classID");
-        $this->db->bind(':classID', $classID);
+        $this->db->bind(':classID', $classID, PDO::PARAM_INT);
 
         return $this->db->resultOne();
     }
@@ -186,7 +186,7 @@ class ModelAdminTutor
     public function getClassTemplateByClassTemplateId($classTemplateID)
     {
         $this->db->query("SELECT * FROM tutoring_class_template WHERE id = :classTemplateID");
-        $this->db->bind(':classTemplateID', $classTemplateID);
+        $this->db->bind(':classTemplateID', $classTemplateID, PDO::PARAM_INT);
 
         return $this->db->resultOne();
     }
@@ -194,7 +194,7 @@ class ModelAdminTutor
     public function getStudentById($studentID)
     {
         $this->db->query("SELECT * FROM student WHERE user_id = :studentID");
-        $this->db->bind(':studentID', $studentID);
+        $this->db->bind(':studentID', $studentID, PDO::PARAM_INT);
 
         $rows = $this->db->resultOne();
 
@@ -208,7 +208,7 @@ class ModelAdminTutor
     public function getTutorByUserId($userID)
     {
         $this->db->query("SELECT * FROM tutor WHERE user_id = :userID");
-        $this->db->bind(':userID', $userID);
+        $this->db->bind(':userID', $userID, PDO::PARAM_INT);
 
         $rows = $this->db->resultOne();
 
@@ -223,7 +223,7 @@ class ModelAdminTutor
     public function getAllTimeSlotsByTutorId($tutorID)
     {
         $this->db->query("SELECT * FROM time_slot WHERE tutor_id = :tutorID");
-        $this->db->bind(':tutorID', $tutorID);
+        $this->db->bind(':tutorID', $tutorID, PDO::PARAM_INT);
 
         $rows = $this->db->resultAll();
 
@@ -238,7 +238,7 @@ class ModelAdminTutor
     public function getCountActiveTutorialClassesByTutorId($tutorID)
     {
         $this->db->query("SELECT * FROM tutoring_class WHERE tutor_id = :tutorID AND completion_status = 0");
-        $this->db->bind(':tutorID', $tutorID);
+        $this->db->bind(':tutorID', $tutorID, PDO::PARAM_INT);
         $this->db->resultAll();
 
         return $this->db->rowCount();
@@ -248,7 +248,7 @@ class ModelAdminTutor
     public function getCountCompletedTutorialClassesByTutorId($tutorID)
     {
         $this->db->query("SELECT * FROM tutoring_class WHERE tutor_id = :tutorID AND completion_status = 1");
-        $this->db->bind(':tutorID', $tutorID);
+        $this->db->bind(':tutorID', $tutorID, PDO::PARAM_INT);
         $this->db->resultAll();
 
         return $this->db->rowCount();

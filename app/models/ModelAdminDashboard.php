@@ -45,7 +45,7 @@ class ModelAdminDashboard {
 
     public function tutorGetById($tutorID){
         $this->db->query("SELECT * FROM user WHERE id = :tutorID");
-        $this->db->bind(':tutorID', $tutorID);
+        $this->db->bind(':tutorID', $tutorID,PDO::PARAM_INT);
 
         return $this->db->resultOne();
     }
@@ -65,7 +65,7 @@ class ModelAdminDashboard {
 
     public function studentGetById($studentID){
         $this->db->query("SELECT * FROM user WHERE id = :studentID");
-        $this->db->bind(':studentID', $studentID);
+        $this->db->bind(':studentID', $studentID,PDO::PARAM_INT);
 
         return $this->db->resultOne();
     }

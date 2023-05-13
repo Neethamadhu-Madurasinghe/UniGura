@@ -21,7 +21,7 @@ class ModelAdminClass
     {
         $this->db->query("SELECT * FROM user WHERE id = :student_id");
 
-        $this->db->bind(':student_id', $studentId);
+        $this->db->bind('student_id', $studentId,PDO::PARAM_INT);
 
         return $this->db->resultOne();
     }
@@ -30,7 +30,7 @@ class ModelAdminClass
     {
         $this->db->query("SELECT * FROM user WHERE id = :tutor_id");
 
-        $this->db->bind(':tutor_id', $tutorId);
+        $this->db->bind('tutor_id', $tutorId,PDO::PARAM_INT);
 
         return $this->db->resultOne();
     }
@@ -39,7 +39,7 @@ class ModelAdminClass
     {
         $this->db->query("SELECT * FROM day WHERE class_id = :class_id");
 
-        $this->db->bind(':class_id', $classId);
+        $this->db->bind(':class_id', $classId,PDO::PARAM_INT);
 
         return $this->db->resultOne();
     }
@@ -48,7 +48,7 @@ class ModelAdminClass
     {
         $this->db->query("SELECT * FROM tutoring_class_template WHERE id = :class_template_id");
 
-        $this->db->bind(':class_template_id', $classTemplateId);
+        $this->db->bind(':class_template_id', $classTemplateId,PDO::PARAM_INT);
 
         return $this->db->resultOne();
     }
@@ -57,7 +57,7 @@ class ModelAdminClass
     {
         $this->db->query("SELECT * FROM module WHERE id = :module_id");
 
-        $this->db->bind(':module_id', $moduleId);
+        $this->db->bind(':module_id', $moduleId,PDO::PARAM_INT);
 
         return $this->db->resultOne();
     }
@@ -66,7 +66,7 @@ class ModelAdminClass
     {
         $this->db->query("SELECT * FROM subject WHERE id = :subject_id");
 
-        $this->db->bind(':subject_id', $subjectId);
+        $this->db->bind(':subject_id', $subjectId,PDO::PARAM_INT);
 
         return $this->db->resultOne();
     }

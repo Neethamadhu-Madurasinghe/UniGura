@@ -97,39 +97,3 @@ for (var i = 0; i < checkboxes.length; i++) {
     });
 }
 
-
-
-
-
-// // -------------------------CARD SHOW PROFILE BUTTON---------------------------------------
-
-// showProfileBtn();
-
-// function showProfileBtn () {
-//     const profilePicture = document.querySelectorAll('.profile-picture');
-//     const cardBlurEffect = document.querySelectorAll('.card-blur-effect');
-//     const card = document.querySelectorAll('.card');
-//     const viewProfileBtn = document.querySelectorAll('.view-profile-btn');
-
-
-
-//     for (let i = 0; i < card.length; i++) {
-//         card[i].addEventListener('mouseenter', function () {
-//             cardBlurEffect[i].style.height = '70%';
-//             viewProfileBtn[i].style.zIndex = '10';
-//             card[i].style.backgroundColor = '#ffb75e';
-//         });
-//     }
-
-//     for (let i = 0; i < card.length; i++) {
-//         card[i].addEventListener('mouseleave', function () {
-//             cardBlurEffect[i].style.height = '0%';
-//             viewProfileBtn[i].style.zIndex = '-1';
-//             card[i].style.backgroundColor = '#ffb75e';
-
-//         });
-//     }
-
-// }
-
-
