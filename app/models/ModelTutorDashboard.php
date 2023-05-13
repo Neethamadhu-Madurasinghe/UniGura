@@ -13,8 +13,7 @@ class ModelTutorDashboard
     {
         $this->db->query('SELECT first_name FROM user where id = :id');
         $this->db->bind('id', $id, PDO::PARAM_INT);
-        $result = $this->db->resultOne();
-        return $result;
+        return $this->db->resultOneAssoc();
     }
 
     public function countTutoringActiveClasses($id)
