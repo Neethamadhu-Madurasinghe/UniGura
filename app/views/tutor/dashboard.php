@@ -29,9 +29,7 @@ MainNavbar::render($request);
             <div id="usergreeting" style="background-color: #ffffff;    padding :  25px;padding-top: 0px;margin-bottom: 40px;border-radius:10px;height:210px">
                 <div id="details">
                     <div class="text">
-                        <h1 style="font-size: 30px; font-weight:700;">Hello
-                            <?php print_r($data['tutor_name']['first_name']);?>
-                        </h1>
+                        <h1 id='tutor_name' style="font-size: 30px; font-weight:700;"></h1>
                         <p>Its Good to see you !</p>
                     </div>
                     <div id="createcoursebtn">
@@ -131,7 +129,7 @@ MainNavbar::render($request);
 
                     </div>
                     <div class="Payments_box">
-                        
+
                     </div>
                 </div>
 
@@ -141,7 +139,7 @@ MainNavbar::render($request);
             <div class="card" id="todayclasses" style="height: 450px;">
                 <div id="heading">
                     <h1>Today Classes</h1>
-                    <div class="all_message">
+                    <div class="all_message" id='today_classes'>
 
                         <div class="msg_box">
                             <header>
@@ -235,12 +233,11 @@ MainNavbar::render($request);
                         $rate = (string) $array['current_rating'];
                         $count = (string) $array['class_count'];
 
-                        if($medium == 0){
+                        if ($medium == 0) {
                             $medium = 'Sinhala';
-                        }
-                        else if($medium == 1){
+                        } else if ($medium == 1) {
                             $medium = 'English';
-                        }else{
+                        } else {
                             $medium = 'Tamil';
                         }
 
@@ -309,37 +306,41 @@ MainNavbar::render($request);
 <script>
     //declaring varibles
     let root = '<?php echo URLROOT ?>';
+    let tutor_name_string = '<?php echo json_encode($data['tutor_name']) ?>';
+    let tutor_name_obj =  JSON.parse(tutor_name_string)
+    let class_counts = <?php echo $data['active_class_count'] ?>;
+    
+
+
+    //seting tutors name
+
+    document.getElementById('tutor_name').innerText = tutor_name_obj.first_name;
 
     let active_class_count = document.querySelector('#active-class-count');
     let block_class_count = document.querySelector('#blocked-class-count');
     let complete_class_count = document.querySelector('#complete-class-count');
 
 
-    document.querySelector('.active-class').addEventListener('click',()=>{
-        window.location= `${root}/tutor/classes`;
+    //Setting Class Counts Redirects
+    document.querySelector('.active-class').addEventListener('click', () => {
+        window.location = `${root}/tutor/classes`;
     })
 
-    document.querySelector('.completed-class').addEventListener('click',()=>{
-        window.location= `${root}/tutor/classes?completion_status=1`;
+    document.querySelector('.completed-class').addEventListener('click', () => {
+        window.location = `${root}/tutor/classes?completion_status=1`;
     })
 
-    document.querySelector('.blocked-class').addEventListener('click',()=>{
-        window.location= `${root}/tutor/classes?is_suspended=1`;
+    document.querySelector('.blocked-class').addEventListener('click', () => {
+        window.location = `${root}/tutor/classes?is_suspended=1`;
     })
 
-    //Getting active class count
-    let class_counts = <?php echo $data['active_class_count'] ?>;
-
+    //Settking Class Counts
+  
     active_class_count.innerHTML = class_counts['active'];
     block_class_count.innerHTML = class_counts['blocked'];
     complete_class_count.innerHTML = class_counts['complete'];
 
 
-    //Getting Complete class count
-
-    //Getting block class count
-
-    // Get the modal - Result Model
 
     const card_container = document.querySelector('#course_cards');
 
@@ -432,59 +433,61 @@ MainNavbar::render($request);
     list_payment(payments)
 
     function list_payment(payments) {
-          let table = document.createElement('table');
-          console.log(payments)
-          for (const element of payments) {
-               let payment_status;
-               if (element.payment_status == 0) {
-                    payment_status = "PENDING";
-               } else if (element.payment_status == 1) {
-                    payment_status = "RECIVED";
-               } else {
-                    payment_status = "PAID-OFF";
-               }
-             
-               let year = element.date.slice(0,4);
-             
-               let month = element.date.toString().slice(5, 7);
-               let day = element.date.toString().slice(8, 10);
-               let month_text = new Date(Date.UTC(2023, parseInt(month) - 1, 1)).toLocaleString('default', {
-                    month: 'short'
-               });
-           
+        let table = document.createElement('table');
+        console.log(payments)
+        for (const element of payments) {
+            let payment_status;
+            if (element.payment_status == 0) {
+                payment_status = "PENDING";
+            } else if (element.payment_status == 1) {
+                payment_status = "RECIVED";
+            } else {
+                payment_status = "PAID-OFF";
+            }
 
-               let tr = document.createElement('tr');
-               let cell1 = document.createElement('td');
-               let cell2 = document.createElement('td');
-               let cell3 = document.createElement('td');
-               let cell4 = document.createElement('td');
-               let cell5 = document.createElement('td');
+            let year = element.date.slice(0, 4);
 
-               cell1.innerHTML = `<img src="${root}/${element.profile_picture}">`;
-               cell2.innerHTML = `${element.first_name} ${element.last_name}</span>
+            let month = element.date.toString().slice(5, 7);
+            let day = element.date.toString().slice(8, 10);
+            let month_text = new Date(Date.UTC(2023, parseInt(month) - 1, 1)).toLocaleString('default', {
+                month: 'short'
+            });
+
+
+            let tr = document.createElement('tr');
+            let cell1 = document.createElement('td');
+            let cell2 = document.createElement('td');
+            let cell3 = document.createElement('td');
+            let cell4 = document.createElement('td');
+            let cell5 = document.createElement('td');
+
+            cell1.innerHTML = `<img src="${root}/${element.profile_picture}">`;
+            cell2.innerHTML = `${element.first_name} ${element.last_name}</span>
                          <p>${element.module}</p>
                     `;
-               cell3.innerHTML = `Rs.${element.session_rate}`;
-               cell4.innerHTML = `<span   class='p_status ${payment_status.toLowerCase()}' >${payment_status}</span>`;
-               cell5.innerHTML = `<i style="color:#7c7c8f9c ;font-size: 18px;" class="fas fa-calendar-alt"></i><span> ${month_text} ${day} ${year}</span>`;
+            cell3.innerHTML = `Rs.${element.session_rate}`;
+            cell4.innerHTML = `<span   class='p_status ${payment_status.toLowerCase()}' >${payment_status}</span>`;
+            cell5.innerHTML = `<i style="color:#7c7c8f9c ;font-size: 18px;" class="fas fa-calendar-alt"></i><span> ${month_text} ${day} ${year}</span>`;
+
+
+
+            tr.appendChild(cell1);
+            tr.appendChild(cell2);
+            tr.appendChild(cell3);
+            tr.appendChild(cell4);
+            tr.appendChild(cell5);
+            table.appendChild(tr);
+        }
+        payment_container.appendChild(table);
+
+    }
+
+
+    //seting today classes.
+
+    let class_container = document.getElementById('today_classes');
 
     
-
-               tr.appendChild(cell1);
-               tr.appendChild(cell2);
-               tr.appendChild(cell3);
-               tr.appendChild(cell4);
-               tr.appendChild(cell5);
-               table.appendChild(tr);
-          }
-          payment_container.appendChild(table);
-     
-     }
-
-
-   
-
-
 </script>
 
 
