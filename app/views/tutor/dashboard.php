@@ -123,7 +123,7 @@ MainNavbar::render($request);
                     <div class="Payments_header">
                         <h1>Payments</h1>
                         <div class="dropdown" style="margin-top: 20px;">
-                            <p class="view_all"><a href="">View All</a></p>
+                            <p class="view_all"><a href="payments">View All</a></p>
 
                         </div>
 
@@ -141,74 +141,6 @@ MainNavbar::render($request);
                     <h1>Today Classes</h1>
                     <div class="all_message" id='today_classes'>
 
-                        <div class="msg_box">
-                            <header>
-                                <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg">
-                                <div class="text_box">
-                                    <h4> Isuru Udana</h4>
-                                    <p>2pm - 5pm</p>
-                                </div>
-                            </header>
-                            <div style="margin-top: 10px;">
-                                <div class="text_box">
-                                    <p>Online 62%</p>
-                                    <p>Progress Bar</p>
-                                </div>
-                                <button class="msg_box button">View</button>
-                            </div>
-                        </div>
-
-
-                        <div class="msg_box">
-                            <header>
-                                <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg">
-                                <div class="text_box">
-                                    <h4> Isuru Udana</h4>
-                                    <p>2pm - 5pm</p>
-                                </div>
-                            </header>
-                            <div style="margin-top: 10px;">
-                                <div class="text_box">
-                                    <p>Online 62%</p>
-                                    <p>Progress Bar</p>
-                                </div>
-                                <button class="msg_box button">View</button>
-                            </div>
-                        </div>
-
-                        <div class="msg_box">
-                            <header>
-                                <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg">
-                                <div class="text_box">
-                                    <h4> Isuru Udana</h4>
-                                    <p>2pm - 5pm</p>
-                                </div>
-                            </header>
-                            <div style="margin-top: 10px;">
-                                <div class="text_box">
-                                    <p>Online 62%</p>
-                                    <p>Progress Bar</p>
-                                </div>
-                                <button class="msg_box button">View</button>
-                            </div>
-                        </div>
-
-                        <div class="msg_box">
-                            <header>
-                                <img src="<?php echo URLROOT ?>/public/img/tutor/class/images/user.jpg">
-                                <div class="text_box">
-                                    <h4> Isuru Udana</h4>
-                                    <p>2pm - 5pm</p>
-                                </div>
-                            </header>
-                            <div style="margin-top: 10px;">
-                                <div class="text_box">
-                                    <p>Online 62%</p>
-                                    <p>Progress Bar</p>
-                                </div>
-                                <button class="msg_box button">View</button>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -276,7 +208,7 @@ MainNavbar::render($request);
             <div class="card" id="balancetime" style="background-color: #ffffff;    padding :  25px;padding-top: 0px;margin-bottom: 40px;border-radius:10px;height:390px">
                 <div id="heading">
                     <h1>
-                        Balance Time
+                        Your Teach Time Balance
                     </h1>
                 </div>
                 <div id="content">
@@ -288,11 +220,11 @@ MainNavbar::render($request);
                             <div class="percentage-box">
                                 <div class="Working">
                                     <h1 id="working"></h1>
-                                    <span>Working Time</span>
+                                    <span>Available Time</span>
                                 </div>
                                 <div class="free">
                                     <h1 id="acting"></h1>
-                                    <span>Free Time</span>
+                                    <span>Teach Time</span>
                                 </div>
 
                             </div>
@@ -307,13 +239,14 @@ MainNavbar::render($request);
     //declaring varibles
     let root = '<?php echo URLROOT ?>';
     let tutor_name_string = '<?php echo json_encode($data['tutor_name']) ?>';
-    let tutor_name_obj =  JSON.parse(tutor_name_string)
+    let tutor_name_obj = JSON.parse(tutor_name_string)
     let class_counts = <?php echo $data['active_class_count'] ?>;
 
-    let tutor_classes =  <?php echo $data['tutor_classes'] ?>;
+    let tutor_classes = <?php echo $data['tutor_classes'] ?>;
 
-    console.log(tutor_classes)
-    
+
+
+
 
 
     //seting tutors name
@@ -339,7 +272,7 @@ MainNavbar::render($request);
     })
 
     //Settking Class Counts
-  
+
     active_class_count.innerHTML = class_counts['active'];
     block_class_count.innerHTML = class_counts['blocked'];
     complete_class_count.innerHTML = class_counts['complete'];
@@ -491,11 +424,84 @@ MainNavbar::render($request);
 
     let class_container = document.getElementById('today_classes');
 
+    class_container.addEventListener('click', (event) => {
+        if (event.target.classList.contains('msg_box') && event.target.classList.contains('button')) {
+            const classid = event.target.dataset.classid;
+            window.location = `${root}/tutor/classes?id=${classid}`
+        }
+    });
 
 
-console.log(typeof(tutor_classes))
+    if(tutor_classes.length == 0){
+        class_container.innerHTML += `
+        <div class="msg_box">
+            <div class="text_box">
+                        <h4>Sorry !</h4>
+                        <p>You dont have any class today</p> 
+                   </div>
+       
+        </div>
+ `
+    }
 
-    
+
+    for (const obj of tutor_classes) {
+        if (obj['profile_picture'] == '') {
+            obj['profile_picture'] = 'profile.png'
+        }
+
+        const startTime = obj['time'];
+        const duration = parseInt(obj['duration']); 
+       
+        // Convert time to Date object
+        const date = new Date();
+        const timeParts = startTime.split(':');
+
+        date.setHours(parseInt(timeParts[0]));
+        date.setMinutes(parseInt(timeParts[1]));
+
+        // Calculate end time
+        const endTime = new Date(date.getTime() + duration * 60 * 60 * 1000);
+
+        // Format time as string
+        const startTimeString = formatTime(date);
+        const endTimeString = formatTime(endTime);
+
+        // Format time string as "start - end" format
+        const timeString = `${startTimeString} - ${endTimeString}`;
+        code = ` 
+        <div class="msg_box">
+            <header>
+                <img src="${root}/public/profile_pictures/${obj['profile_picture']}">
+                    <div class="text_box">
+                        <h4> ${obj['first_name']} ${obj['last_name']}</h4>
+                        <p>Start at ${timeString}</p>
+                            
+                   </div>
+                </header>
+            <div style="margin-top: 10px;">
+            <div class="text_box">
+                <p>Mode - ${obj['mode']}</p>
+                <p>Fee - ${obj['session_rate']}</p>
+            </div>
+            <button class="msg_box button" data-classid = ${obj['classid']}>View</button>
+            </div>
+        </div>
+        `
+
+        class_container.innerHTML += code;
+
+    }
+
+    // Function to format a Date object as a string in "HH:MM AM/PM" format
+    function formatTime(date) {
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        const formattedHours = hours % 12 || 12;
+        const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+        return `${formattedHours}:${formattedMinutes} ${ampm}`;
+    }
 </script>
 
 

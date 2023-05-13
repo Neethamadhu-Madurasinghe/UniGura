@@ -348,7 +348,7 @@ class ModelTutorDashboard
 
     public function getTutoringClasses($id,$today): array
     {
-        $this->db->query('SELECT c.id as classid , c.mode , c.student_id ,ct.class_type , m.name, u.first_name , u.last_name , u.profile_picture 
+        $this->db->query('SELECT c.id as classid , c.mode , c.student_id , c.session_rate, c.time , c.duration , ct.class_type , m.name, u.first_name , u.last_name , u.profile_picture 
         FROM tutoring_class AS c
         JOIN user AS u 
         ON c.student_id = u.id
@@ -362,7 +362,7 @@ class ModelTutorDashboard
         $this->db->bind('today',$today);
         
 
-        return $this->db->resultAllAssoc();
+        return $this->db->resultAll();
     }
 
 }

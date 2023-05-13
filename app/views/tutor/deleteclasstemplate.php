@@ -6,21 +6,6 @@
  */
 ?>
 
-<?php
-require_once APPROOT . '/views/common/inc/Header.php';
-require_once APPROOT . '/views/common/inc/Footer.php';
-require_once APPROOT . '/views/tutor/inc/components/MainNavbar.php';
-
-Header::render(
-    'Tutor Dashboard',
-    [
-        URLROOT . '/public/css/tutor/base.css?v=1.0',
-        URLROOT . '/public/css/tutor/dashboard.css?v=1.8'
-    ]
-);
-
-MainNavbar::render($request);
-?>
 
 <?php
 require_once APPROOT . '/views/common/inc/Header.php';
@@ -30,37 +15,27 @@ require_once APPROOT . '/views/common/inc/Footer.php';
 Header::render(
     'Delete Course',
     [
-        'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css',
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css',
-        URLROOT . '/public/css/common/student-base-style.css',
-        URLROOT . '/public/css/tutor/forms.css?v=1.1'
+        URLROOT . '/public/css/tutor/forms.css?v=1.2'
     ]
     //    Student base style is used here, because In this part, both student and tutor looks same
 );
 ?>
 
 <div class="lightbox">
-    <div class="box" style="width: 30%; margin-left: 35%;">
+    <div class="box" >
+        <button class="close">
+            <i class="fa fa-times"></i>
+        </button>
         <i class="fa-solid fa-circle-exclamation" id="alert_icon"></i>
-        <h2 style="text-align: center;width: 100%;padding-bottom: 0px; font-weight: 400;">Are You Sure?</h2>
-        <p style="text-align: center;margin-bottom: 0px;">You want to delete this Course</p>
+        <h2 id='heading' >Are You Sure?</h2>
+        <p id = 'message' >You want to delete this Course</p>
         <div class="form_container">
             <form action="" method="POST" enctype='multipart/form-data'>
-                <input type="hidden" name='id' value="<?php echo $data['id'] ?>">
-                <div>
-                    <div class="grid" style="margin-top: 0px;">
-                        <div class="dropdown">
-                            <button class="no">Cancle</button>
-                        </div>
-
-                        <div class="dropdown">
-                            <button type="submit" class="yes">Delete</button>
-                        </div>
-
+                <input type="hidden" name='id' id='id'>
+                    <div class='btn_div'>
+                        <button type="submit" class="yes">Yes</button>
                     </div>
-
-                </div>
-
 
             </form>
 
@@ -68,6 +43,11 @@ Header::render(
     </div>
 </div>
 
+<script>
+    let data_string = '<?php echo json_encode($data) ?>';
+    let root = '<?php echo URLROOT ?>';
+</script>
+
 <?php Footer::render(
-    []
+    [URLROOT . '/public/js/tutor/deleteclasstemplate.js?v=1.2']
 ); ?>
