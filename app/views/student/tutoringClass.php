@@ -96,6 +96,15 @@ Header::render(
         </div>
     </div>
 
+    <div class="popup-send-message invisible">
+        <p id="success-message">Send a message</p>
+        <textarea id="msg-input"></textarea>
+        <div class="send-msg-btn-container">
+            <button class="btn btn-msg" id="msg-cancel">Cancel</button>
+            <button class="btn btn-msg" id="msg-send">OK</button>
+        </div>
+    </div>
+
     <div class="popup-report invisible">
         <h1>Report a Problem</h1>
         <form action="" id="tutor-report-form">
@@ -163,7 +172,7 @@ Header::render(
         </div>
 
         <div class="message-tutor-button-container">
-            <button class="btn">Message Tutor</button>
+            <button class="btn quick-message-btn" >Message Tutor</button>
         </div>
 
 
@@ -202,6 +211,7 @@ Header::render(
         URLROOT . '/public/js/student/tutor-report-handler.js',
         URLROOT . '/public/js/student/tutor-feedback.js',
         URLROOT . '/public/js/student/reschedule-handler.js',
+        URLROOT . '/public/js/student/send-quick-message.js',
         URLROOT . '/public/js/student/payment.js'
     ]
 );

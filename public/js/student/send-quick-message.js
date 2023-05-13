@@ -2,12 +2,17 @@ const messageSendPopupUI = document.querySelector(".popup-send-message");
 const messageSendBtn = document.getElementById("msg-send");
 const messageCancelBtn = document.getElementById("msg-cancel");
 const messageInputField = document.getElementById("msg-input");
-let chosenTutorId;
+let chosenTutorId = null;
 
 
 // Send
 messageSendBtn.addEventListener("click", async (e) => {
     const message = messageInputField.value.trim();
+    const _dataElement = document.getElementById('template-data');
+    console.log(chosenTutorId);
+    if(_dataElement?.dataset.tutor !== null && (chosenTutorId === null || Number.isNaN(chosenTutorId)) ) {
+        chosenTutorId = _dataElement?.dataset.tutor
+    }
 
     if(message.length <= 0) {
         showErrorMessage("Please enter a valid message");
