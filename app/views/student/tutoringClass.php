@@ -153,6 +153,18 @@ Header::render(
         </form>
     </div>
 
+    <div class="popup-tutor-details invisible">
+        <div class="popup-img-container">
+            <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>">
+        </div>
+        <div class="popup-tutor-detail-container">
+            <h1>Your name</h1>
+            <h2>City</h2>
+            <h2>Rating: 10</h2>
+            <button class="btn" id="tutor-detail-close-btn">Close</button>
+        </div>
+    </div>
+
 </div>
 
 
@@ -173,6 +185,7 @@ Header::render(
 
         <div class="message-tutor-button-container">
             <button class="btn quick-message-btn" >Message Tutor</button>
+            <button class="btn" id="tutor-detail-btn">See tutor details</button>
         </div>
 
 
@@ -212,7 +225,8 @@ Header::render(
         URLROOT . '/public/js/student/tutor-feedback.js',
         URLROOT . '/public/js/student/reschedule-handler.js',
         URLROOT . '/public/js/student/send-quick-message.js',
-        URLROOT . '/public/js/student/payment.js'
+        URLROOT . '/public/js/student/payment.js',
+        URLROOT . '/public/js/student/tutor-profile-popup.js'
     ]
 );
 ?>

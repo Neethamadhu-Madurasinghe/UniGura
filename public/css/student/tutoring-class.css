@@ -94,6 +94,10 @@ h1, h2, h3 {
     padding: 15px 0 15px 0;
 }
 
+#tutor-detail-btn {
+    margin-left: 10px;
+}
+
 @media screen and (max-width: 600px) {
     .message-tutor-button-container {
         display: flex;
@@ -506,7 +510,53 @@ h1, h2, h3 {
     height: 40px;
     margin: 3px;
 }
-/* Send of popup send message */
+/* end of popup send message */
+
+
+/* Tutor details popup */
+
+.popup-tutor-details {
+    width: 400px;
+    height: 400px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-img-container {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-img-container img {
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+}
+
+.popup-tutor-detail-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.popup-tutor-detail-container h1, .popup-tutor-detail-container h2 {
+    margin: 5px;
+}
+
+.popup-tutor-detail-container .btn {
+    margin-top: 20px;
+}
 
 
 
