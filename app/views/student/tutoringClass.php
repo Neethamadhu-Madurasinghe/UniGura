@@ -70,7 +70,7 @@ Header::render(
 
         <div class="popup-button-container">
             <button class="btn btn-search" id="time-table-cancel">Cancel</button>
-            <button class="btn btn-search" id="reschedule-send">Request</button>
+            <button class="btn btn-search" id="reschedule-send">Reschedule</button>
         </div>
 
     </div>
@@ -162,7 +162,7 @@ Header::render(
     <div class="main-area">
         <h1 class="main-title"><?php echo $data['subject_name'] ?> <?php echo $data['module_name'] . ' - ' . ucwords($data['class_type']) ?></h1>
         <h3 class="sub-title">By <?php echo $data['tutor_name'] ?></h3>
-        <h3 class="tutor-name">Date and time: <?php echo $data['date'] . ' @ ' . $data['time'] ?></h3>
+        <h3 class="tutor-name">Date and time: <?php echo $data['date'] . ' @ ' . $data['time'] . ' (' . ($data['mode'] == 'physical' ? 'Physical' : 'Online') . ')' ?></h3>
 
         <div class="progress-bar-container">
             <h2>Completed <?php echo ($data['day_count'] !== 0 ? round($data['incomplete_day_count'] * 100/$data['day_count']) : 0) . '%' ?></h2>
