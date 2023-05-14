@@ -113,7 +113,7 @@ function validateFilePath(String $filePath, String $messageOnError): String
 
 function validateDescription(String $description): String
 {
-    if (strlen($description) >= 100) {
+    if (strlen($description) >= 1000) {
         return 'Bio should have less than 1000 characters';
     } else {
         return '';
