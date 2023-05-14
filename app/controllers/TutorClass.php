@@ -365,4 +365,32 @@ class TutorClass extends Controller
         $this->view('tutor/startchat',$request,$data);
     }
 
+    public function deleteActivity(Request $request){
+        cors();
+
+        $body = json_decode(file_get_contents('php://input'), true);
+
+
+        if (!$request->isLoggedIn() || !$request->isTutor()) {
+            header("HTTP/1.0 401 Unauthorized");
+            return;
+        }
+
+        $this->classModel->deleteActivity($body['activity_id']);
+
+        // if ($request->isPost()) {
+        //     if($body['tutor_id'] === $request->getUserId()){
+        //         if (isset($body['activity_id'])) {
+                    
+        //         }else{
+        //             header("HTTP/1.0 400 Bad Request");
+        //         }
+        //     }
+        //     else{
+        //         header("HTTP/1.0 401 Unauthorized Tutor");
+        //         return;
+        //     }
+        // }
+    } 
+
 }
