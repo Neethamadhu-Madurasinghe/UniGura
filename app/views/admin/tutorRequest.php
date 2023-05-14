@@ -10,14 +10,6 @@
     <p></p>
     <p></p>
 
-    <!-- <div class="menu-bar">
-        <div class="menu-bar-selection-btn">
-            <div class="tutor-request-btn" id="tutor-request-btn">
-                <a href="tutorRequest"><button id="tutor-request">Tutor Request</button></a>
-            </div>
-        </div>
-    </div> -->
-
     <section class="table tutor-request-table" id="tutor-request-table">
         <section class="table-header">
             <h1>TUTOR'S REQUEST</h1>

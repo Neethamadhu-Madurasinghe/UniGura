@@ -15,8 +15,8 @@
             <input type="hidden" name="complainStatus" id="complainStatus" value="<?php echo $data['oneTutorComplaint']->is_inquired ?>">
             <input type="hidden" name="tutorComplaintId" value="<?php echo $data['oneTutorComplaint']->tutorReportID ?>">
 
-            <input type="hidden" name="studentId" value="<?php echo $data['oneTutorComplaint']->studentID ?>">
-            <input type="hidden" name="tutorId" value="<?php echo $data['oneTutorComplaint']->tutorID ?>">
+            <input type="hidden" name="studentId" value="<?php echo $data['oneTutorComplaint']->student_id ?>">
+            <input type="hidden" name="tutorId" value="<?php echo $data['oneTutorComplaint']->tutor_id ?>">
 
 
             <div class="checkbox-button">
@@ -41,8 +41,8 @@
             <input type="hidden" name="suspendStatus" id="suspendStatus" value="<?php echo $data['oneTutorComplaint']->is_suspended ?>">
             <input type="hidden" name="tutorClassTemplateId" value="<?php echo $data['oneTutorComplaint']->tutorClassTemplateId ?>">
 
-            <input type="hidden" name="studentId" value="<?php echo $data['oneTutorComplaint']->studentID ?>">
-            <input type="hidden" name="tutorId" value="<?php echo $data['oneTutorComplaint']->tutorID ?>">
+            <input type="hidden" name="studentId" value="<?php echo $data['oneTutorComplaint']->student_id ?>">
+            <input type="hidden" name="tutorId" value="<?php echo $data['oneTutorComplaint']->tutor_id ?>">
 
 
             <div class="checkbox-button">

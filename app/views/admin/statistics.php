@@ -13,10 +13,12 @@
     <div class="statistic-page">
         <div class="div1">
             <div style="width: 810px;" class="myChart">
+                <h1>Students & Tutors(Hide/Show/Ban)</h1>
                 <canvas id="myChart"></canvas>
             </div>
 
             <div style="width: 450px;" class="myChart2">
+                <h1>Active & Completed Classes</h1>
                 <canvas id="myChart2"></canvas>
             </div>
         </div>
@@ -49,6 +51,7 @@
             </div>
 
             <div style="width: 880px;" class="myChart5">
+                <h1>User Feedback</h1>
                 <canvas id="myChart5"></canvas>
             </div>
 
@@ -57,10 +60,12 @@
 
 
         <div style="width: 1310px; text-align: center;" class="myChart4">
+            <h1>Payment & Withdrawal Summary</h1>
             <canvas id="myChart4"></canvas>
         </div>
 
         <div style="width: 1310px; text-align: center;" class="myChart3">
+            <h1>Student & Tutor Population According to the District</h1>
             <canvas id="myChart3"></canvas>
         </div>
 

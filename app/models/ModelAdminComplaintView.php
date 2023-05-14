@@ -23,7 +23,7 @@ class ModelAdminComplaintView
 
     public function getTutorComplaints()
     {
-        $this->db->query("SELECT tutor_report.id as tutorReportID,tutor_report.description,tutor_report.is_inquired,tutor_report.student_id ,tutor_report.tutor_id, tutor_report.tutoring_class_template_id as tutorClassTemplateId,report_reason.description as ReportReason,tutoring_class.* FROM tutor_report LEFT JOIN report_reason ON tutor_report.reason_id = report_reason.id  INNER JOIN tutoring_class ON tutor_report.tutoring_class_template_id = tutoring_class.class_template_id");
+        $this->db->query("SELECT tutor_report.id as tutorReportID,tutor_report.description,tutor_report.is_inquired,tutor_report.student_id ,tutor_report.tutor_id, tutor_report.tutoring_class_template_id as tutorClassTemplateId,report_reason.description as ReportReason FROM tutor_report JOIN report_reason ON tutor_report.reason_id = report_reason.id");
         return $this->db->resultAll();
     }
 
@@ -38,8 +38,15 @@ class ModelAdminComplaintView
 
     public function tutorReportById($reportID)
     {
-        $this->db->query("SELECT tutor_report.id as tutorReportID,tutor_report.description,tutor_report.is_inquired,tutor_report.student_id as studentID,tutor_report.tutor_id as tutorID, tutor_report.tutoring_class_template_id as tutorClassTemplateId,report_reason.description as ReportReason,tutoring_class.is_suspended,tutoring_class.completion_status FROM tutor_report LEFT JOIN report_reason ON tutor_report.reason_id = report_reason.id  INNER JOIN tutoring_class ON tutor_report.tutoring_class_template_id = tutoring_class.class_template_id WHERE tutor_report.id = :report_id");
+        $this->db->query("SELECT tutor_report.id as tutorReportID,tutor_report.description,tutor_report.is_inquired,tutor_report.student_id,tutor_report.tutor_id, tutor_report.tutoring_class_template_id as tutorClassTemplateId,report_reason.description as ReportReason,tutoring_class.is_suspended,tutoring_class.completion_status FROM tutor_report LEFT JOIN report_reason ON tutor_report.reason_id = report_reason.id  LEFT JOIN tutoring_class ON tutor_report.tutoring_class_template_id = tutoring_class.class_template_id WHERE tutor_report.id = :report_id");
         $this->db->bind(':report_id', $reportID, PDO::PARAM_INT);
+        return $this->db->resultOne();
+    }
+
+    public function tutoringClassGetByClassTemplateId($classTemplateID)
+    {
+        $this->db->query("SELECT * FROM tutoring_class WHERE class_template_id = :classTemplateID");
+        $this->db->bind(':classTemplateID', $classTemplateID, PDO::PARAM_INT);
         return $this->db->resultOne();
     }
 
