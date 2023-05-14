@@ -10,7 +10,6 @@
     <p></p>
 
 
-
     <div class="payment-page">
         <div class="payment">
             <div class="payment-left-side">

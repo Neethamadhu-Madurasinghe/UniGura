@@ -67,6 +67,7 @@
     </div>
 
 
+    
     <div class="tutor-name">
         <h1>Tutor Name</h1>
         <h3><a href="viewTutorProfile?tutorID=<?php echo $data['oneStudentComplaint']->tutor_id ?>"><?php echo $data['oneStudentComplaint']->tutor->first_name . ' ' . $data['oneStudentComplaint']->tutor->last_name ?></a></h3>
