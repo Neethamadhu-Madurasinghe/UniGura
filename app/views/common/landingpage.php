@@ -31,8 +31,8 @@ Header::render(
                </div>
 
                <div class="topnav">
-                    <a class="active" href="#home">Find Tutors</a>
-                    <a href="#tutor">Become a Tutor</a>
+                    <a class="active" href="http://localhost/UniGura/login">Find Tutors</a>
+                    <a href="http://localhost/UniGura/login">Become a Tutor</a>
                     <a href="#about">About us</a>
                </div>
           </div>
