@@ -67,3 +67,14 @@
 
 
 
+.day_box_container .day_box .textbox-one .activity_body{
+    background: #000;
+    background-color: #0000002c;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    
+
+    
+}

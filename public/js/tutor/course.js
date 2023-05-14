@@ -281,7 +281,7 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    activity_id : parseInt(this.dataset.activityid),
+                    activity_id : parseInt(btn.dataset.activityid),
                     tutor_id : data.tutor_id
                 })
             })
