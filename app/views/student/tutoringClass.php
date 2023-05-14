@@ -70,7 +70,7 @@ Header::render(
 
         <div class="popup-button-container">
             <button class="btn btn-search" id="time-table-cancel">Cancel</button>
-            <button class="btn btn-search" id="reschedule-send">Request</button>
+            <button class="btn btn-search" id="reschedule-send">Reschedule</button>
         </div>
 
     </div>
@@ -153,6 +153,18 @@ Header::render(
         </form>
     </div>
 
+    <div class="popup-tutor-details invisible">
+        <div class="popup-img-container">
+            <img src="<?php echo URLROOT . '/public/img/student/profile.png' ?>">
+        </div>
+        <div class="popup-tutor-detail-container">
+            <h1>Your name</h1>
+            <h2>City</h2>
+            <h2>Rating: 10</h2>
+            <button class="btn" id="tutor-detail-close-btn">Close</button>
+        </div>
+    </div>
+
 </div>
 
 
@@ -162,7 +174,7 @@ Header::render(
     <div class="main-area">
         <h1 class="main-title"><?php echo $data['subject_name'] ?> <?php echo $data['module_name'] . ' - ' . ucwords($data['class_type']) ?></h1>
         <h3 class="sub-title">By <?php echo $data['tutor_name'] ?></h3>
-        <h3 class="tutor-name">Date and time: <?php echo $data['date'] . ' @ ' . $data['time'] ?></h3>
+        <h3 class="tutor-name">Date and time: <?php echo $data['date'] . ' @ ' . $data['time'] . ' (' . ($data['mode'] == 'physical' ? 'Physical' : 'Online') . ')' ?></h3>
 
         <div class="progress-bar-container">
             <h2>Completed <?php echo ($data['day_count'] !== 0 ? round($data['incomplete_day_count'] * 100/$data['day_count']) : 0) . '%' ?></h2>
@@ -173,6 +185,7 @@ Header::render(
 
         <div class="message-tutor-button-container">
             <button class="btn quick-message-btn" >Message Tutor</button>
+            <button class="btn" id="tutor-detail-btn">See tutor details</button>
         </div>
 
 
@@ -212,7 +225,8 @@ Header::render(
         URLROOT . '/public/js/student/tutor-feedback.js',
         URLROOT . '/public/js/student/reschedule-handler.js',
         URLROOT . '/public/js/student/send-quick-message.js',
-        URLROOT . '/public/js/student/payment.js'
+        URLROOT . '/public/js/student/payment.js',
+        URLROOT . '/public/js/student/tutor-profile-popup.js'
     ]
 );
 ?>
