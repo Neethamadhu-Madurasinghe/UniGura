@@ -116,7 +116,8 @@ MainNavbar::render($request);
     [
         URLROOT . '/public/js/tutor/tutor-main.js?v=1.2',
         URLROOT . '/public/js/tutor/chat.js',
-        URLROOT . '/public/js/tutor/chat-connection.js'
+        URLROOT . '/public/js/tutor/chat-connection.js',
+        URLROOT . '/public/js/tutor/check-notification-count.js'
     ]
 );
 ?>

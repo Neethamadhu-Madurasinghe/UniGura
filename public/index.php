@@ -17,6 +17,7 @@ $router->registerController('/api/example', [ExampleRestAPI::class, 'testAPI']);
 $router->registerController('/load-file', [FileLoader::class, 'loadFile']);
 $router->registerController('/logout', [TutorStudentAuth::class, 'logout']);
 $router->registerController('/not-found', [Common::class, 'notFound']);
+$router->registerController('/home', [Common::class, 'landing']);
 
 
 
@@ -29,11 +30,6 @@ $router->registerController('/reset-password/initiate', [TutorStudentAuth::class
 $router->registerController('/reset-password/verify', [TutorStudentAuth::class, 'resetPassword']);
 $router->registerController('/reset-password/reset', [TutorStudentAuth::class, 'resetPassword']);
 $router->registerController('/api/user-feedback', [Common::class, 'saveFeedback']);
-
-
-
-
-
 
 
 

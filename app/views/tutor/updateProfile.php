@@ -1014,6 +1014,7 @@ MainNavbar::render($request);
     [
         'https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js',
         URLROOT . '/public/js/tutor/tutor-main.js?v=1.2',
-        URLROOT . '/public/js/tutor/tutor-profile-location-change.js'
+        URLROOT . '/public/js/tutor/tutor-profile-location-change.js',
+        URLROOT . '/public/js/tutor/check-notification-count.js'
     ]
 );

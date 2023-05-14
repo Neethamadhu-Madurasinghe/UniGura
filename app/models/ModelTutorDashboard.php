@@ -13,8 +13,7 @@ class ModelTutorDashboard
     {
         $this->db->query('SELECT first_name FROM user where id = :id');
         $this->db->bind('id', $id, PDO::PARAM_INT);
-        $result = $this->db->resultOne();
-        return $result;
+        return $this->db->resultOneAssoc();
     }
 
     public function countTutoringActiveClasses($id)
@@ -107,7 +106,7 @@ class ModelTutorDashboard
     public function getTutoringClassTemplates($id): array
     {
 
-        $this->db->query(' SELECT c.current_rating, c.mode, c.medium, m.name as module , s.name as subject, c.id as course_id,
+        $this->db->query(' SELECT c.current_rating, c.mode, c.medium, c.session_rate, m.name as module , s.name as subject, c.id as course_id,
         (SELECT COUNT(*) FROM tutoring_class WHERE class_template_id = c.id) as class_count
         FROM tutoring_class_template AS c
         JOIN subject AS s 
@@ -243,7 +242,7 @@ class ModelTutorDashboard
     public function setActivitiesofDay($class_id):bool{
         $this->db->query('
         INSERT INTO activity (day_id, description, type ,link )
-        SELECT d.id , a.description , 0 , a.link 
+        SELECT d.id , a.description , a.type, a.link 
         FROM activity_template as a JOIN day as d on d.day_template_id = a.day_template_id
         WHERE d.class_id = :class_id ;
             ');
@@ -346,6 +345,26 @@ class ModelTutorDashboard
         return $this->db->resultAllAssoc();
 
     }
+
+    public function getTutoringClasses($id,$today): array
+    {
+        $this->db->query('SELECT c.id as classid , c.mode , c.student_id , c.session_rate, c.time , c.duration , ct.class_type , m.name, u.first_name , u.last_name , u.profile_picture 
+        FROM tutoring_class AS c
+        JOIN user AS u 
+        ON c.student_id = u.id
+        JOIN tutoring_class_template AS ct 
+        ON ct.id = c.class_template_id
+        Join module AS m 
+        ON m.id = ct.module_id
+        WHERE c.tutor_id = :id AND c.completion_status = 0 AND c.is_suspended = 0 AND c.date=:today');
+
+        $this->db->bind('id', $id , PDO::PARAM_INT);
+        $this->db->bind('today',$today);
+        
+
+        return $this->db->resultAll();
+    }
+
 }
 
 

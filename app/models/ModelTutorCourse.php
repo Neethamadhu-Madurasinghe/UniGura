@@ -37,7 +37,7 @@ public function setClassTemplateDay($data): bool
 
     public function getActivities($id): array
     {
-        $this->db->query('SELECT a.id , a.day_template_id , a.description, a.type , a.link FROM activity_template AS a JOIN day_template as d ON d.id = a.day_template_id WHERE d.class_template_id = :id ORDER BY a.type ASC;');
+        $this->db->query('SELECT a.id , a.day_template_id , a.description, a.type , a.link FROM activity_template AS a JOIN day_template as d ON d.id = a.day_template_id WHERE d.class_template_id = :id ;');
         $this->db->bind('id', $id, PDO::PARAM_INT);
         return $this->db->resultAllAssoc();
     }
