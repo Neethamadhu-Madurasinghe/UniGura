@@ -25,7 +25,7 @@ class ModelStudentReport {
     }
 
     public function doesReportExist($data): bool {
-        $this->db->query('SELECT * FROM tutor_report WHERE
+        $this->db->query('SELECT * FROM student_report WHERE
                           tutor_id=:tutor_id AND
                           student_id=:student_id AND
                           tutoring_class_template_id=:template_id AND

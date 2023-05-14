@@ -127,7 +127,6 @@ Header::render(
                         <select name="class-type" class="tutor-filter filter-md" id="class-type">
                             <option value="theory">Theory</option>
                             <option value="revision">Revision</option>
-                            <option value="paper">Paper</option>
                         </select>
 
                         <select name="medium" class="tutor-filter filter-md" id="medium">
