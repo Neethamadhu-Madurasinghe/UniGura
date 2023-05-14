@@ -110,7 +110,7 @@ class ModelTutorClass
 
     public function markDayAsComplete($id) : bool 
     {
-        $this->db->query('UPDATE day SET is_completed = 1 WHERE id = :id ;');
+        $this->db->query('UPDATE day SET is_completed = 1 UPDATE day SET payment_status=1 , timestamp = NOW() WHERE id = :id ;');
         $this->db->bind('id', $id, PDO::PARAM_INT);
 //      Returns whether the row count is greater than 0
         return $this->db->execute();

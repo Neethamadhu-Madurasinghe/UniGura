@@ -117,13 +117,13 @@
 
                 } else if(activity.type == 1){
                     activity_item += `<div class="activity-container">
-                                        <i class="fas fa-paper-plane"></i>
+                                        <i class="fa-solid fa-download"></i>
                                          <a class="activity-anchor">${activity.description}</a>
                                          <div class="delete-btn"  data-activityid = ${activity.id}><i class="fas fa-trash-alt"></i></div>
                                     </div>`
                 }else if(activity.type == 2){
                     activity_item += `<div class="activity-container">
-                                        <i class="fas fa-comment"></i>
+                                         <i class="fa-solid fa-t"></i>
                                          <a class="activity-anchor">${activity.description}</a>
                                          <div class="delete-btn"  data-activityid = ${activity.id}><i class="fas fa-trash-alt"></i></div>
                                     </div>`

@@ -47,16 +47,16 @@ MainNavbar::render($request);
                <div class="grid">
                     <div class="part01">
                          <div id="monthly-pending" class="pen">
-                              Pending : Rs.20000.00
+                              
                          </div>
 
-                         <div id="monthly-earings" class="Rec"> Received : Rs.25000.00
+                         <div id="monthly-earings" class="Rec"> 
                          </div>
 
                     </div>
                     <div></div>
                     <div class="container">
-                         <span id="earing_percentage" class="circle">40%</span>
+                         <span id="earing_percentage" class="circle"></span>
                          <canvas width="200" height="200"></canvas>
                     </div>
                </div>
@@ -161,6 +161,7 @@ toggle between hiding and showing the dropdown content */
 
 
      list_payment(payments);
+     console.log(amounts);
 
      let pending = (amounts[0].Pending*90)/100;
      let earning = (amounts[0].Earns*90)/100;
@@ -363,7 +364,8 @@ toggle between hiding and showing the dropdown content */
 
 <?php Footer::render(
      [
-          URLROOT . '/public/js/tutor/tutor-main.js?v=1.2'
+          URLROOT . '/public/js/tutor/tutor-main.js?v=1.2',
+          URLROOT . '/public/js/tutor/check-notification-count.js'
      ]
 );
 ?>

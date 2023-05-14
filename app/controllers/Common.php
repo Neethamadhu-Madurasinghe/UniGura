@@ -1,20 +1,23 @@
 <?php
 
-class Common extends Controller{
+class Common extends Controller
+{
     private ModelFeedback $feedbackModel;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->feedbackModel = $this->model('ModelFeedback');
     }
 
-    public function notFound(Request $request) {
+    public function notFound(Request $request)
+    {
         $data = [];
         header("HTTP/1.0 404 Not Found");
         $this->view('common/notFound', $request, $data);
-
     }
 
-    public function saveFeedback(Request $request) {
+    public function saveFeedback(Request $request)
+    {
         cors();
 
         $body = json_decode(file_get_contents('php://input'), true);
@@ -58,6 +61,15 @@ class Common extends Controller{
         }
     }
 
-//    TODO: Put landing page here
+    //    TODO: Put landing page here
 
+    public function landing(Request $request)
+    {
+        if($request->isLoggedIn()) {
+            redirectBasedOnUserRole($request);
+        }
+        $data = [];
+
+        $this->view('common/landingpage', $request, $data);
+    }
 }

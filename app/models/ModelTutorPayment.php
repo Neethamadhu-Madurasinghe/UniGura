@@ -40,7 +40,7 @@ class ModelTutorPayment
 
     public function getMonthlyPaymentStatus($tutorId): array
     {
-        $this->db->query("SELECT SUM(CASE WHEN payment_status = 0 THEN c.session_rate ELSE 0 END) AS Pending, SUM(CASE WHEN payment_status = 1  THEN c.session_rate ELSE 0 END) AS Earns FROM tutoring_class AS c JOIN day AS d ON d.class_id = c.id WHERE c.tutor_id = :tutorId ;");
+        $this->db->query("SELECT SUM(CASE WHEN payment_status = 0 AND is_completed = 1 THEN c.session_rate ELSE 0 END) AS Pending, SUM(CASE WHEN payment_status = 1 AND is_completed = 1  THEN c.session_rate ELSE 0 END) AS Earns FROM tutoring_class AS c JOIN day AS d ON d.class_id = c.id WHERE c.tutor_id = :tutorId ;");
         $this->db->bind(':tutorId', $tutorId, PDO::PARAM_INT);
 
         $this->db->execute();

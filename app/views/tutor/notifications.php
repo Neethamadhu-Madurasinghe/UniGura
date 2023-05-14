@@ -15,7 +15,8 @@ Header::render(
      'Tutor Notifications',
      [
           URLROOT . '/public/css/tutor/base.css?v=1.1',
-          URLROOT . '/public/css/tutor/style.css?v=1.7'
+          URLROOT . '/public/css/tutor/style.css?v=1.7',
+          URLROOT . '/public/js/tutor/check-notification-count.js'
      ]
 );
 

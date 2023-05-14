@@ -292,7 +292,6 @@ class TutorCourse extends Controller
             $data = [
                 'id' => $body['id']
             ];
-            echo $body['id'];
             $this->view('tutor/deleteclasstemplate', $request, $data);
         }
 

@@ -12,7 +12,7 @@ require_once APPROOT . '/views/common/inc/Footer.php';
 
 
 Header::render(
-    'Create Class',
+    'Course Page',
     [
 
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css',
@@ -73,6 +73,7 @@ Header::render(
 
 <?php Footer::render(
     [
-        URLROOT . '/public/js/tutor/course.js'
+        URLROOT . '/public/js/tutor/course.js?v=1.1'
+      
     ]
 ); ?>

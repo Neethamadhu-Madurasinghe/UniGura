@@ -472,7 +472,8 @@ MainNavbar::render($request);
 
 <?php Footer::render(
      [
-          URLROOT . '/public/js/tutor/tutor-main.js?v=1.2'
+          URLROOT . '/public/js/tutor/tutor-main.js?v=1.2',
+          URLROOT . '/public/js/tutor/check-notification-count.js'
      ]
 );
 ?>

@@ -40,7 +40,7 @@ class TutorClass extends Controller
             $data['is_suspended'] = 0;
         }
 
-
+       
 
         $data['tutor_classes'] = json_encode($this->classModel->getTutoringClasses($request->getUserId(),$data));
 
