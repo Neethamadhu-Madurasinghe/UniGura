@@ -355,9 +355,8 @@
     align-items: center;
 }
 
-.actions .button img{
-    width: 30px;
-    vertical-align: middle;
+.actions .button i{
+    font-size: 20px;
 }
 
 .actions .button{
