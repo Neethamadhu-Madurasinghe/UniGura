@@ -13,7 +13,7 @@ require_once APPROOT . '/views/tutor/inc/components/MainNavbar.php';
 require_once APPROOT . '/views/common/inc/components/IntermediateNavBar.php';
 
 Header::render(
-    'Tutor Dashboard',
+    'Tutor Pending',
     [
         URLROOT . '/public/css/components/intermediate-nav-bar.css?v=1.2',
         URLROOT . '/public/css/tutor/forms.css'

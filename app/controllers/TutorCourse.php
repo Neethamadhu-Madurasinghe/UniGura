@@ -65,6 +65,7 @@ class TutorCourse extends Controller
             redirect('tutor/not-found');
         }
 
+
         $days = $this->courseModel->getTutoringClassTemplateDays($data['id']);
         $activities = $this->courseModel->getActivities($data['id']);
 
@@ -95,6 +96,19 @@ class TutorCourse extends Controller
             redirectBasedOnUserRole($request);
         }
 
+        if ($request->isTimeSlotNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isAdmin()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isStudent()) {
+            redirectBasedOnUserRole($request);
+        }
+
+
         //Fetch all the visible subjects, modules and maximum class price
 
         if ($request->isGet()) {
@@ -113,6 +127,11 @@ class TutorCourse extends Controller
                 ]
             ];
         };
+
+        
+        
+       
+    
 
 
         if ($request->isPost()) {
@@ -223,7 +242,21 @@ class TutorCourse extends Controller
             redirectBasedOnUserRole($request);
         }
 
+        if ($request->isTimeSlotNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
 
+        if ($request->isAdmin()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isStudent()) {
+            redirectBasedOnUserRole($request);
+        }
+
+
+
+        
 
         if ($request->isGet()) {
             $data = [];
@@ -299,6 +332,18 @@ class TutorCourse extends Controller
             redirectBasedOnUserRole($request);
         }
 
+        if ($request->isTimeSlotNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isAdmin()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isStudent()) {
+            redirectBasedOnUserRole($request);
+        }
+
         if ($request->isGet()) {
             $data = [];
 
@@ -341,6 +386,21 @@ class TutorCourse extends Controller
         if ($request->isBankDetialsNotCompletedTutor()) {
             redirectBasedOnUserRole($request);
         }
+
+        
+        if ($request->isTimeSlotNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isAdmin()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isStudent()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        
 
 
 
@@ -425,6 +485,25 @@ class TutorCourse extends Controller
             redirectBasedOnUserRole($request);
         }
 
+        if ($request->isTimeSlotNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isAdmin()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isStudent()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        $tutor_id = $this->courseModel->validate_tutor_for_day($request->getUserId());
+
+     
+        if($tutor_id == 0){
+            redirect('tutor/not-found');
+        }
+
         //Fetch all the visible subjects, modules and maximum class price
 
         if ($request->isGet()) {
@@ -507,6 +586,20 @@ class TutorCourse extends Controller
         if ($request->isBankDetialsNotCompletedTutor()) {
             redirectBasedOnUserRole($request);
         }
+
+        if ($request->isTimeSlotNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isAdmin()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isStudent()) {
+            redirectBasedOnUserRole($request);
+        }
+
+
 
         if ($request->isGet()) {
             $data = [];

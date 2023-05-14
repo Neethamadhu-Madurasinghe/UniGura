@@ -157,6 +157,8 @@ MainNavbar::render($request);
     let requests = <?php echo $data['tutor_requests'] ?>;
     let courses = <?php echo $data['tutoring_class_template'] ?>;
 
+    console.log(tutor_classes)
+
 
     //courses component
 

@@ -356,10 +356,10 @@ class ModelTutorDashboard
         ON ct.id = c.class_template_id
         Join module AS m 
         ON m.id = ct.module_id
-        WHERE c.tutor_id = :id AND c.completion_status = 0 AND c.is_suspended = 0 AND c.date=:today');
+        WHERE c.tutor_id = :id AND c.completion_status = 0 AND c.is_suspended = 0 AND c.date = :today');
 
         $this->db->bind('id', $id , PDO::PARAM_INT);
-        $this->db->bind('today',$today);
+        $this->db->bind('today',$today, PDO::PARAM_STR);
         
 
         return $this->db->resultAll();

@@ -228,4 +228,19 @@ public function setClassTemplateDay($data): bool
         return $classes;
 
     }
+
+    public function validate_tutor_for_day($tutor) : int
+    {
+
+        $this->db->query('SELECT * FROM day_template as d join tutoring_class_template as c on d.class_template_id = c.id WHERE c.tutor_id = :tutor');
+
+        $this->db->bind('tutor', $tutor, PDO::PARAM_INT);
+
+//      Returns whether the row count is greater than 0
+        return count($this->db->resultAll());
+    }
+
+ 
+    
+
 }
