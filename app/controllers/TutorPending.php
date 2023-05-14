@@ -17,13 +17,35 @@ class TutorPending extends Controller
             redirect('/login');
         }
 
+        
+
         $is_approved = $this->tutorPendingModel->getTutorRole($_SESSION['user_id']);
+
+
         if ($is_approved == 1) {
             $_SESSION['user_role'] = 8;
             $this->tutorPendingModel->setUserRole($request->getUserId(), 8);
+        }elseif($is_approved == 2){
+            $_SESSION['user_role'] = 5;
+            $this->tutorPendingModel->setUserRole($request->getUserId(), 5);
+
+            $username = $this->tutorPendingModel->getTutorName($_SESSION['user_id']);
+
+            $data = [
+                'user_name' => $username,
+                'decline' => 1
+            ];
+    
+            $this->view('tutor/pending', $request, $data);
         }
 
         if ($request->isProfileNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+       
+
+        if ($request->isApprovedTutor()) {
             redirectBasedOnUserRole($request);
         }
 
@@ -31,18 +53,28 @@ class TutorPending extends Controller
             redirectBasedOnUserRole($request);
         }
 
-        if ($request->isApprovedTutor()) {
+        if ($request->isBankDetialsNotCompletedTutor()) {
             redirectBasedOnUserRole($request);
         }
 
-        if ($request->isTutor()) {
+        if ($request->isTimeSlotNotCompletedTutor()) {
             redirectBasedOnUserRole($request);
         }
+
+        if ($request->isAdmin()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isStudent()) {
+            redirectBasedOnUserRole($request);
+        }
+
 
         $username = $this->tutorPendingModel->getTutorName($_SESSION['user_id']);
 
         $data = [
-            'user_name' => $username
+            'user_name' => $username,
+            'decline' => 0
         ];
 
         $this->view('tutor/pending', $request, $data);
@@ -75,6 +107,19 @@ class TutorPending extends Controller
             redirectBasedOnUserRole($request);
         }
 
+        if ($request->isTimeSlotNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isAdmin()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isStudent()) {
+            redirectBasedOnUserRole($request);
+        }
+
+
 
         $username = $this->tutorPendingModel->getTutorName($_SESSION['user_id']);
 
@@ -102,6 +147,19 @@ class TutorPending extends Controller
         if ($request->isTutor()) {
             redirectBasedOnUserRole($request);
         }
+
+        if ($request->isTimeSlotNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isAdmin()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isStudent()) {
+            redirectBasedOnUserRole($request);
+        }
+
 
         if ($_SESSION['user_role'] !== 9) {
             $_SESSION['user_role'] = 9;
@@ -206,6 +264,19 @@ class TutorPending extends Controller
         if ($request->isTutor()) {
             redirectBasedOnUserRole($request);
         }
+
+        if ($request->isBankDetialsNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isAdmin()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isStudent()) {
+            redirectBasedOnUserRole($request);
+        }
+
 
         $this->view('tutor/timeslotinputform', $request);
     }

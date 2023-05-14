@@ -14,10 +14,10 @@ function validateName(string $name): String
 
 function validateAccountName(string $name): String
 {
-    if (empty($name) || !preg_match("/^[a-zA-Z]*$/", $name)) {
+    if (empty($name) || !preg_match("/^[a-zA-Z ]+$/", $name)) {
         return 'Please enter a valid name';
-    } elseif (strlen($name) > 50 && strlen($name) > 0) {
-        return 'Account Name should have less than 50 characters and more than 2 characters ';
+    } elseif (strlen($name) > 50 || strlen($name) < 2) {
+        return 'Account Name should have between 2 and 50 characters';
     } else {
         return '';
     }
@@ -260,6 +260,11 @@ function validateStudentReportReason(String $reason, ModelTutorStudentCompletePr
         return '';
     }
 }
+
+
+
+
+
 
 
 

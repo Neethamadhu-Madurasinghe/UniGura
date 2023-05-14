@@ -28,6 +28,17 @@ class TutorCourse extends Controller
             redirectBasedOnUserRole($request);
         }
 
+        if ($request->isTimeSlotNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isAdmin()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isStudent()) {
+            redirectBasedOnUserRole($request);
+        }
 
         $data = [];
 
@@ -49,6 +60,10 @@ class TutorCourse extends Controller
                 'is_hidden'=>$details[0]['is_hidden']
             ];
         };
+
+        if($data['tutor_id'] !== $request->getUserId()){
+            redirect('tutor/not-found');
+        }
 
         $days = $this->courseModel->getTutoringClassTemplateDays($data['id']);
         $activities = $this->courseModel->getActivities($data['id']);
@@ -581,5 +596,7 @@ class TutorCourse extends Controller
                 return;
             }
         }
-    }  
+    }
+    
+    
 }

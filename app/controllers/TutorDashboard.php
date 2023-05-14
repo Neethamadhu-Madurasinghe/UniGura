@@ -31,6 +31,19 @@ class TutorDashboard extends Controller
             redirectBasedOnUserRole($request);
         }
 
+        if ($request->isTimeSlotNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isAdmin()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isStudent()) {
+            redirectBasedOnUserRole($request);
+        }
+
+
         $data = [];
 
         //Fetch all the classes of this student
@@ -64,6 +77,13 @@ class TutorDashboard extends Controller
         if ($request->isBankDetialsNotCompletedTutor()) {
             redirectBasedOnUserRole($request);
         }
+
+        if ($request->isTimeSlotNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        
+
 
 
         $data = ['modules' => []];
