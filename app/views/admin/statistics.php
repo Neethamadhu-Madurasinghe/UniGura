@@ -65,7 +65,7 @@
         </div>
 
         <div style="width: 1310px; text-align: center;" class="myChart3">
-            <h1>Student & Tutor according to the district</h1>
+            <h1>Student & Tutor Population According to the District</h1>
             <canvas id="myChart3"></canvas>
         </div>
 
