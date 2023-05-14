@@ -69,12 +69,12 @@
 
     <div class="tutor-name">
         <h1>Tutor Name</h1>
-        <h3><?php echo $data['oneStudentComplaint']->tutor->first_name . ' ' . $data['oneStudentComplaint']->tutor->last_name ?></h3>
+        <h3><a href="viewTutorProfile?tutorID=<?php echo $data['oneStudentComplaint']->tutor_id ?>"><?php echo $data['oneStudentComplaint']->tutor->first_name . ' ' . $data['oneStudentComplaint']->tutor->last_name ?></a></h3>
     </div>
 
     <div class="student-name">
         <h1>Student Name</h1>
-        <h3><?php echo $data['oneStudentComplaint']->student->first_name . ' ' . $data['oneStudentComplaint']->student->last_name ?></h3>
+        <h3><a href="viewStudentProfile?studentID=<?php echo $data['oneStudentComplaint']->student_id ?>"><?php echo $data['oneStudentComplaint']->student->first_name . ' ' . $data['oneStudentComplaint']->student->last_name ?></a></h3>
     </div>
 
     <div class="report-reason">
