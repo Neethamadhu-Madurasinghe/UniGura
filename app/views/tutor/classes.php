@@ -214,7 +214,7 @@ MainNavbar::render($request);
 
                               if (day.payment_status == 0 && day.is_completed == 1) {
                                    payment_status = `Not paid`
-                                   checkbox = `<input class = 'checkmark-input' type="checkbox" data-id=${day.dayid} checked><span class="checkmark" ></span>`;
+                                   checkbox = `<input class = 'checkmark-input' type="checkbox" data-id=${day.dayid} checked ><span class="checkmark" ></span>`;
                               } else if (day.payment_status == 1 && day.is_completed == 1) {
                                    payment_status = `Paid`;
                                    checkbox = `<input class = 'checkmark-input' type="checkbox" data-id=${day.dayid} checked disabled><span class="checkmark" ></span>`;
@@ -345,14 +345,12 @@ MainNavbar::render($request);
                                                   return response.text();
                                              })
                                              .then(function(responseText) {
-                                                  console.log('ok');
+                                                  console.log(input.getAttribute('data-id'));
                                              })
                                              .catch(function(error) {
                                                   console.error('Error retrieving data:', error);
                                              });
                                    }
-
-
                               })
                          })
 

@@ -271,7 +271,7 @@ MainNavbar::render($request);
 
     //seting tutors name
 
-    document.getElementById('tutor_name').innerText = `Hello ${tutor_name_obj.first_name}`;
+    document.getElementById('tutor_name').innerText = `Hi ${tutor_name_obj.first_name}`;
 
     let active_class_count = document.querySelector('#active-class-count');
     let block_class_count = document.querySelector('#blocked-class-count');
