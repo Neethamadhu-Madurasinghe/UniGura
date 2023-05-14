@@ -286,7 +286,15 @@ body{
 
 .complaints_list .complaint-details {
     margin-left: 15px;
+    width: 250px;
+    overflow-x: auto;
 }
+
+.complaints_list .complaint-details::-webkit-scrollbar {
+    display: none;
+}
+
+
 
 .no_complaint{
     text-align: center;
@@ -332,10 +340,13 @@ body{
     height: 60px;
     margin-bottom: 15px;
     background-color: #ffb75e54;
-
+    width: 340px;
+    overflow-x: scroll;
 }
 
-
+.requested_list .available-request::-webkit-scrollbar {
+    display: none;
+}
 
 
 .requested_list .request-details {
@@ -588,3 +599,5 @@ body{
     font-size: 15px;
     font-weight: bold;
 }
+
+
