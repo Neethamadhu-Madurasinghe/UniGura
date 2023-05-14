@@ -106,7 +106,7 @@ class ModelTutorDashboard
     public function getTutoringClassTemplates($id): array
     {
 
-        $this->db->query(' SELECT c.current_rating, c.mode, c.medium, m.name as module , s.name as subject, c.id as course_id,
+        $this->db->query(' SELECT c.current_rating, c.mode, c.medium, c.session_rate, m.name as module , s.name as subject, c.id as course_id,
         (SELECT COUNT(*) FROM tutoring_class WHERE class_template_id = c.id) as class_count
         FROM tutoring_class_template AS c
         JOIN subject AS s 
@@ -242,7 +242,7 @@ class ModelTutorDashboard
     public function setActivitiesofDay($class_id):bool{
         $this->db->query('
         INSERT INTO activity (day_id, description, type ,link )
-        SELECT d.id , a.description , 0 , a.link 
+        SELECT d.id , a.description , a.type, a.link 
         FROM activity_template as a JOIN day as d on d.day_template_id = a.day_template_id
         WHERE d.class_id = :class_id ;
             ');

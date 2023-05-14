@@ -70,6 +70,17 @@ p {
     display: grid;
     grid-template-columns: 1fr 2fr;
     height: 200px;
+    background-color: #ffffff;    
+    padding :  25px;
+    padding-top: 0px;
+    margin-bottom: 40px;
+    border-radius:10px;
+    height:210px;
+}
+
+.container .left #usergreeting #tutor_name{
+  font-size: 30px; 
+  font-weight:700;
 }
 
 h1{
