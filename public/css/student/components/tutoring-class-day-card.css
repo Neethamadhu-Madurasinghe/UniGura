@@ -1,0 +1,194 @@
+.class-card {
+    width: 400px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin: 10px 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .class-card {
+        width: 100%;
+        height: auto;
+        display: flex;
+        margin: 10px 0px;
+    }
+}
+
+
+.class-card-top-section {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border: 2px solid var(--bright-orange);
+    padding: 6px;
+}
+
+.class-card-top-section h2 {
+    color: white;
+    font-weight: lighter;
+}
+
+/* Check box*/
+
+.custom-checkbox {
+    display: inline-flex;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.custom-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: var(--lightest-orrange);
+}
+
+.checkmark:after {
+    content: "";
+    display: none;
+    width: 6px;
+    height: 12px;
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    transform: translateY(-2px) rotate(45deg);
+
+}
+
+.disabled-check-box {
+    cursor: not-allowed;
+}
+
+.disabled {
+    border: 1px solid gray;
+    cursor: not-allowed;
+}
+
+.disabled:after {
+    border: solid gray;
+    border-width: 0 3px 3px 0;
+}
+
+.custom-checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+    background-color: var(--lightest-orrange);
+}
+
+/* check box end */
+
+
+.class-card-bottom-section {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 0;
+    overflow-y: scroll;
+}
+
+.class-card-bottom-section::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.class-card-bottom-section::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: var(--dark-orange);
+    visibility: hidden;
+}
+
+.class-card-bottom-section::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
+.payment-btn-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 10px;
+}
+
+.btn-payment {
+    width: 150px;
+    height: 30px;
+    justify-self: flex-end;
+    font-size: 0.9rem;
+}
+
+.payment-btn-container h4 {
+    margin: 0;
+    color: green;
+}
+
+.activity-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 8px;
+}
+
+.activity-row div {
+    display: flex;
+    align-items: center;
+}
+
+.activity-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+
+.file-upload-form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.activity-row .activity-component {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: ligher;
+    margin: 3px;
+    /*text-decoration: none;*/
+    color: black;
+}
+
+
+/* File upload component */
+
+.file-upload-label {
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    color: #333;
+    cursor: pointer;
+}
+
+.file-upload-input {
+    display: none;
+}

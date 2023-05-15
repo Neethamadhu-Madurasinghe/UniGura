@@ -1,0 +1,221 @@
+.tutor-name, .student-name, .description, .report-reason{
+    margin:20px 50px;
+}
+
+
+.tutor-name h1, .student-name h1,.description h1, .report-reason h1{
+    font-size: 20px;
+    font-weight: 600;    
+    margin-bottom: 5px;
+}
+
+.tutor-name h3, .student-name h3, .report-reason h3{
+    font-size: 17px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    border: 2px solid #FFA620;
+    padding: 10px;
+    border-radius: 5px;
+    width: 370px;
+    background-color: #F5F5F5;
+}
+
+
+.description h3{
+    font-size: 17px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    border: 2px solid #FFA620;
+    padding: 10px;
+    border-radius: 5px;
+    width: 600px;
+    background-color: #F5F5F5;
+}
+
+
+
+/* ================================================== REVIEW SECTION ===================================================================== */
+
+.tutor-review-section{
+    /* width: 70%; */
+    margin: 0px 50px;
+    margin-top: 40px;
+}
+
+
+.tutor-review{
+    overflow-y: scroll;
+    height: 35vh;
+    margin-top: 20px;
+}
+
+.tutor-review::-webkit-scrollbar{
+    display: none;
+}
+
+
+.one-tutor-review{
+    margin-top: 25px;
+}
+
+.tutor-review-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 0px 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+}
+
+.profile-img img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 5px;
+    margin-right: 15px;
+}
+
+.tutor-review-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.tutor-review-description{
+    background-color: white;
+    padding: 10px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    /* border: 1px solid #FFA620; */
+    /* background-color: #F5F5F5; */
+}
+
+
+.tutor-review-title h3{
+    font-size: 20px;
+}
+
+.tutor-review-title h5{
+    font-size: 17px;
+}
+
+.tutor-review-title{
+    line-height: 1.4;
+}
+
+
+
+/* ======================================================= COMPLAIN CHECK STATUS =============================================================== */
+
+
+
+.complain-check{
+    height: 20vh;
+    position: absolute;
+    left: 120vh;
+    top: 60px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.complain-check form{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-top: 20px;
+}
+
+
+.submit-status-btn button{
+    background-color: #FFA620;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    margin-left: 10px;
+    margin-bottom: 3px;
+}
+
+/* ======================RESULT NOT FOUND SECTION====================================  */
+
+.result-not-found{
+    width: 100%;
+    /* height: 100vw; */
+    /* text-align: center; */
+    /* margin-top: 50px; */
+}
+
+.result-not-found img{
+    width: 250px;
+    margin-left: 20px;
+}
+
+.result-not-found h1{
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+
+.checkbox-button{
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+}
+
+
+/* =========================== CHECKBOX STYLE =========================================== */
+
+.checkbox-button label {
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.checkbox {
+    display: none;
+}
+
+.checkbox+label {
+    position: relative;
+    cursor: pointer;
+    padding-left: 30px;
+    user-select: none;
+}
+
+.checkbox+label::after {
+    content: "\2716";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 22px;
+    font-size: 15px;
+    height: 22px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    transition: 0.3s;
+    text-align: center;
+}
+
+.checkbox:checked+label::after {
+    content: "✔";
+    background-color: #0d0;
+    color: #fff;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bolder;
+    border-radius: 5px;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    transition: 0.3s;
+}
+
+
+

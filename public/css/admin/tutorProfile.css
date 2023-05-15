@@ -1,0 +1,469 @@
+.tutor-profile-page{
+    height: 95vh;
+    overflow-y: scroll;
+}
+
+
+.tutor-profile-page::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.tutor-profile-page::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.tutor-profile-page:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
+
+
+.top-details-box {
+    width: 96%;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10px;
+    margin: 20px auto;
+    padding: 15px;
+}
+
+.profile-picture img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+.class-summary {
+    width: 100%;
+    margin-right: 10px;
+    /* background: #000; */
+}
+
+.total-class {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    border: 2px solid #FC941D;
+    padding: 8px;
+    border-radius: 5px;
+
+}
+
+.pending-amount {
+    margin: 10px 0;
+    border: 2px solid #FC941D;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.pending-amount .qualification-files{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.pending-amount .qualification-files .qualification{
+    width: 100%;
+    margin-top: 10px;
+}
+
+.pending-amount .qualification-files .qualification a{
+    text-decoration: none;
+}
+
+.class-summary h1 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.class-summary h2 {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.name-actions {
+    position: relative;
+}
+
+
+
+.name-actions .name{
+    margin-bottom: 15px;
+}
+
+.name-actions .name h1{
+    font-size: 35px;
+}
+
+
+.tutor-details {
+    display: flex;
+    align-items: center;
+    width: 45%;
+    margin-right: 60px;
+}
+
+.name-actions {
+    margin-left: 30px;
+    margin-bottom: 15px;
+}
+
+.name-actions .name{
+    overflow: auto;
+    overflow-wrap:break-word;   
+    width: 300px;
+}
+
+.actions .chat button {
+    background: #FC941D;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+.actions .chat i {
+    margin-right: 8px;
+    position: relative;
+    top: 2px;
+
+}
+
+
+
+/* ========================= CLASS CARDS ============================== */
+
+.active-classes {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 30px;
+    width: 96%;
+    margin: 20px auto;
+    padding: 15px;
+    height: 50vh;
+    border-radius: 10px;
+    overflow-y: scroll;
+    display: none;
+    background-color: #fff;
+}
+
+
+.active-classes::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.active-classes::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.active-classes:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
+
+.finished-classes {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 30px;
+    width: 96%;
+    padding: 15px;
+    height: 50vh;
+    border-radius: 10px;
+    overflow-y: scroll;
+    margin: 20px auto;
+    display: none;
+    background-color: #fff;
+}
+
+.finished-classes::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.finished-classes::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.finished-classes:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
+
+
+.one-class {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    background-color: #ffb75e54;
+    padding: 10px;
+    border-radius: 5px;
+    height: 100px;
+    border: 2px solid #FFA620;
+}
+
+.student-profile img {
+    width: 90px;
+    height: 90px;
+    margin-top: 5px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.class-details {
+    margin-left: 8px;
+}
+
+.class-details>div {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    line-height: 1.4;
+}
+
+
+.class-details h1 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.class-details h2 {
+    font-size: 18px;
+    font-weight: 400;
+    margin-left: 10px;
+}
+
+
+
+/* ========================= MENU SELECTION AREA ============================== */
+
+
+.filed-selection-btn{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    width: 95%;
+    margin: 20px auto;
+}
+
+.filed-selection-btn button{
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px;
+    margin-right: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    /* background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%); */
+    background-color: #fff;
+    user-select: none;
+}
+
+.filed-selection-btn button:hover {
+    transform: scale(1.05);
+}
+
+.filed-selection-btn button:active {
+    background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
+}
+
+
+
+/* ========================= tutor INFO ============================== */
+
+.tutor-info {
+    width: 96%;
+    background: white;
+    height: 50vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* display: none; */
+    padding: 15px;
+    margin: 20px auto;
+    border-radius: 10px;
+}
+
+.tutor-info>div {
+    width: 34%;
+}
+
+.tutor-info>div>div {
+    border: 2px solid #FC941D;
+    padding: 13px;
+    border-radius: 5px;
+    margin: 20px 0;
+
+}
+
+.tutor-info h1 {
+    font-size: 18px;
+    font-weight:bold;
+}
+
+.tutor-info h2 {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.section-1>div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffb75e54;
+    margin: 10px 0;
+}
+
+.section-2>div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffb75e54;
+    margin: 10px 0;
+}
+
+
+/*  ========================= HIDE SHOW / BLOCK UNBLOCK/ CHAT ============================== */
+
+.actions{
+    display: flex;
+    justify-content: space-around;
+    width: 150px;
+    align-items: center;
+}
+
+.actions .button i{
+    font-size: 20px;
+}
+
+.actions .button{
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 1px 1px 2px 2px #FC941D;
+    height: 48px;
+    width: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 13px;
+    margin-right: 10px;
+}
+
+
+
+
+/* ============================================== TIME SLOT OF TUTOR ====================================== */
+
+.color-introduce table tr{
+    display: flex;
+    flex-direction: column;
+}
+
+.color-introduce table tr td{
+    width: 110px;
+    padding: 10px;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pop-time-table {
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    margin: 20px auto;
+    width: 96%;
+}
+
+.pop-time-table h2 {
+    font-family: 'DM Sans', sans-serif;
+}
+
+.time-table-container {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#time-table {
+    width: 100%;
+    border-spacing: 15px;
+
+}
+
+#time-table tr th {
+    color: var(--bright-orange);
+    font-size: 0.75rem;
+    width: 80px;
+}
+
+.slot {
+    border-radius: 5px;
+    height: 36px;
+    width: 100px;
+    margin: 10px;
+}
+
+
+.slot-used {
+    background-color: #d2d4f5;
+
+}
+
+.slot-free {
+    background-color:#FFCFAC;
+}
+
+.slot-selected {
+    background-image: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+}
+
+
+/* ======================RESULT NOT FOUND SECTION====================================  */
+
+.result-not-found {
+    width: 80vw;
+    /* height: 100vw; */
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.result-not-found img {
+    width: 300px;
+}
+
+.result-not-found h1 {
+    font-size: 30px;
+    margin-left: 15px;
+}

@@ -17,3 +17,211 @@ CREATE TABLE Posts (
     FOREIGN KEY user_id REFERENCES user(id)
 );
 
+
+
+
+CREATE VIEW tutoring_class_tutor AS
+SELECT
+user.first_name,
+user.last_name,
+user.city,
+user.profile_picture,
+user.location,
+user.gender,
+tutor.user_id,
+tutor.description,
+tutor.education_qualification,
+subject.name as subject_name,
+module.name as module_name,
+tutoring_class_template.id,
+tutoring_class_template.subject_id,
+tutoring_class_template.module_id,
+tutoring_class_template.session_rate,
+tutoring_class_template.class_type,
+tutoring_class_template.mode,
+tutoring_class_template.duration,
+tutoring_class_template.current_rating,
+tutoring_class_template.medium
+FROM tutoring_class_template
+INNER JOIN tutor ON tutoring_class_template.tutor_id = tutor.user_id
+INNER JOIN user ON tutor.user_id = user.id
+INNER JOIN subject ON tutoring_class_template.subject_id = subject.id
+INNER JOIN module ON tutoring_class_template.module_id = module.id
+WHERE
+tutoring_class_template.is_hidden = 0 AND
+tutor.is_approved = 1 AND
+user.is_banned = 0 AND
+tutor.is_hidden = 0;
+
+SELECT ST_X(location) as longitude, ST_Y(location) as latitude FROM unigura.user;
+
+
+$this->db->query('SELECT first_name FROM tutoring_class_tutor
+                                       WHERE subject_id=:subject_id
+                                       AND module_id=:module_id
+                                       AND class_type=:class_type
+                                       AND medium!=:medium
+                                       AND session_rate BETWEEN :price_low AND :price_high
+                                       ');
+
+
+Codes for fill timeslot
+
+INSERT INTO time_slot (tutor_id, day, time, state, tutoring_class_id) VALUES (16, 'monday', '08:00:00', 0, null), (16, 'monday', '10:00:00', 1, null), (16, 'monday', '12:00:00', 2, 1), (16, 'monday', '14:00:00', 0, null), (16, 'monday', '16:00:00', 1, null), (16, 'monday', '18:00:00', 2, 1), (16, 'monday', '20:00:00', 0, null), (16, 'monday', '22:00:00', 1, null), (16, 'tuesday', '08:00:00', 2, 1), (16, 'tuesday', '10:00:00', 0, null), (16, 'tuesday', '12:00:00', 1, null), (16, 'tuesday', '14:00:00', 2, 1), (16, 'tuesday', '16:00:00', 0, null), (16, 'tuesday', '18:00:00', 1, null), (16, 'tuesday', '20:00:00', 2, 1), (16, 'tuesday', '22:00:00', 0, null);
+
+INSERT INTO time_slot (tutor_id, day, time, state, tutoring_class_id) VALUES (16, 'wednesday', '08:00:00', 0, null), (16, 'wednesday', '10:00:00', 2, 1), (16, 'wednesday', '12:00:00', 2, 1), (16, 'wednesday', '14:00:00', 0, null), (16, 'wednesday', '16:00:00', 1, null), (16, 'wednesday', '18:00:00', 0, null), (16, 'wednesday', '20:00:00', 0, null), (16, 'wednesday', '22:00:00', 1, null), (16, 'thursday', '08:00:00', 2, 1), (16, 'thursday', '10:00:00', 0, null), (16, 'thursday', '12:00:00', 1, null), (16, 'thursday', '14:00:00', 2, 1), (16, 'thursday', '16:00:00', 2, 1), (16, 'thursday', '18:00:00', 1, null), (16, 'thursday', '20:00:00', 2, 1), (16, 'thursday', '22:00:00', 2, 1);
+
+UPDATE time_slot set day = 'mon' WHERE day = 'monday';
+UPDATE time_slot set day = 'tue' WHERE day ='tuesday';
+UPDATE time_slot set day = 'wed' WHERE day ='wednesday';
+UPDATE time_slot set day = 'thu' WHERE day ='thursday';
+UPDATE time_slot set day = 'fri' WHERE day= 'friday';
+UPDATE time_slot set day = 'sat' WHERE day ='saturday';
+
+
+INSERT INTO time_slot (tutor_id, day, time, state, tutoring_class_id)
+VALUES
+  (19, 'mon', '08:00:00', 0, null),
+  (19, 'mon', '10:00:00', 1, null),
+  (19, 'mon', '12:00:00', 2, 5),
+  (19, 'mon', '14:00:00', 0, null),
+  (19, 'mon', '16:00:00', 1, null),
+  (19, 'mon', '18:00:00', 2, 5),
+  (19, 'mon', '20:00:00', 0, null),
+  (19, 'mon', '22:00:00', 1, null);
+
+INSERT INTO time_slot (tutor_id, day, time, state, tutoring_class_id)
+VALUES
+  (19, 'tue', '08:00:00', 1, null),
+  (19, 'tue', '10:00:00', 0, null),
+  (19, 'tue', '12:00:00', 2, 5),
+  (19, 'tue', '14:00:00', 1, null),
+  (19, 'tue', '16:00:00', 0, null),
+  (19, 'tue', '18:00:00', 2, 5),
+  (19, 'tue', '20:00:00', 1, null),
+  (19, 'tue', '22:00:00', 0, null);
+
+INSERT INTO time_slot (tutor_id, day, time, state, tutoring_class_id)
+VALUES
+  (19, 'wed', '08:00:00', 0, null),
+  (19, 'wed', '10:00:00', 2, 5),
+  (19, 'wed', '12:00:00', 1, null),
+  (19, 'wed', '14:00:00', 0, null),
+  (19, 'wed', '16:00:00', 2, 5),
+  (19, 'wed', '18:00:00', 1, null),
+  (19, 'wed', '20:00:00', 0, null),
+  (19, 'wed', '22:00:00', 2, 5);
+
+INSERT INTO time_slot (tutor_id, day, time, state, tutoring_class_id)
+VALUES
+  (19, 'thu', '08:00:00', 2, 5),
+  (19, 'thu', '10:00:00', 1, null),
+  (19, 'thu', '12:00:00', 0, null),
+  (19, 'thu', '14:00:00', 2, 5),
+  (19, 'thu', '16:00:00', 1, null),
+  (19, 'thu', '18:00:00', 0, null),
+  (19, 'thu', '20:00:00', 2, 5),
+  (19, 'thu', '22:00:00', 1, null);
+
+INSERT INTO time_slot (tutor_id, day, time, state, tutoring_class_id)
+VALUES
+  (19, 'fri', '08:00:00', 2, 5),
+  (19, 'fri', '10:00:00', 2, 5),
+  (19, 'fri', '12:00:00', 0, null),
+  (19, 'fri', '14:00:00', 1, null),
+  (19, 'fri', '16:00:00', 1, null),
+  (19, 'fri', '18:00:00', 0, null),
+  (19, 'fri', '20:00:00', 2, 5),
+  (19, 'fri', '22:00:00', 1, null);
+
+
+INSERT INTO time_slot (tutor_id, day, time, state, tutoring_class_id)
+VALUES
+  (19, 'fri', '08:00:00', 2, 2),
+  (19, 'fri', '10:00:00', 1, null),
+  (19, 'fri', '12:00:00', 0, null),
+  (19, 'fri', '14:00:00', 2, 2),
+  (19, 'fri', '16:00:00', 1, null),
+  (19, 'fri', '18:00:00', 0, null),
+  (19, 'fri', '20:00:00', 2, 2),
+  (19, 'fri', '22:00:00', 1, null);
+
+INSERT INTO time_slot (tutor_id, day, time, state, tutoring_class_id)
+VALUES
+  (19, 'sat', '08:00:00', 2, 2),
+  (19, 'sat', '10:00:00', 1, null),
+  (19, 'sat', '12:00:00', 0, null),
+  (19, 'sat', '14:00:00', 2, 2),
+  (19, 'sat', '16:00:00', 1, null),
+  (19, 'sat', '18:00:00', 0, null),
+  (19, 'sat', '20:00:00', 2, 2),
+  (19, 'sat', '22:00:00', 1, null);
+
+
+INSERT INTO time_slot (tutor_id, day, time, state, tutoring_class_id)
+VALUES
+  (19, 'sun', '08:00:00', 0, null),
+  (19, 'sun', '10:00:00', 2, 2),
+  (19, 'sun', '12:00:00', 1, null),
+  (19, 'sun', '14:00:00', 0, null),
+  (19, 'sun', '16:00:00', 2, 2),
+  (19, 'sun', '18:00:00', 1, null),
+  (19, 'sun', '20:00:00', 0, null),
+  (19, 'sun', '22:00:00', 2, 2);
+
+
+SELECT
+COUNT(time_slot.time),
+user.first_name,
+user.last_name,
+user.city,
+user.profile_picture,
+user.location,
+user.gender,
+tutor.user_id,
+tutor.description,
+tutor.education_qualification,
+tutoring_class_template.id,
+tutoring_class_template.subject_id,
+tutoring_class_template.module_id,
+tutoring_class_template.session_rate,
+tutoring_class_template.class_type,
+tutoring_class_template.mode,
+tutoring_class_template.duration,
+tutoring_class_template.current_rating,
+tutoring_class_template.medium
+FROM tutoring_class_template
+INNER JOIN tutor ON tutoring_class_template.tutor_id = tutor.user_id
+INNER JOIN user ON tutor.user_id = user.id
+INNER JOIN time_slot ON time_slot.tutor_id = tutor.user_id
+WHERE
+tutoring_class_template.is_hidden = 0 AND
+tutor.is_approved = 1 AND
+user.is_banned = 0 AND
+tutor.is_hidden = 0;
+
+SELECT COUNT(id) FROM time_slot WHERE time_slot.tutor_id = 16 AND time_slot.state = 2 GROUP BY time_slot.day HAVING COUNT(id) > 1;
+
+SELECT request.id, request.mode, request.class_template_id, user.first_name, user.last_name FROM request INNER JOIN user ON request.tutor_id = user.id WHERE request.id = 20;
+SELECT subject.name AS subject_name, module.name AS module_name FROM tutoring_class_template INNER JOIN subject ON tutoring_class_template.subject_id = subject.id INNER JOIN module ON tutoring_class_template.module_id = module.id WHERE tutoring_class_template.id = 3;
+
+
+CREATE TRIGGER `class_rating` AFTER INSERT ON `review` FOR EACH ROW UPDATE tutoring_class_template SET current_rating = ROUND(((current_rating * rating_count) + NEW.rating) / (rating_count + 1), 1), rating_count = rating_count + 1 WHERE id = NEW.class_template_id;
+
+
+SELECT tutoring_class.*, user.first_name, user.last_name, user.profile_picture,
+subject.name as subject_name, module.name as module_name,
+day_counts.day_count, incompleted_day_counts.incomplete_day_count, payment_due_day_counts.payment_due_day_count
+FROM tutoring_class JOIN user ON tutoring_class.tutor_id = user.id
+JOIN tutoring_class_template ON tutoring_class.class_template_id = tutoring_class_template.id
+JOIN subject ON tutoring_class_template.subject_id = subject.id
+JOIN module ON tutoring_class_template.module_id = module.id
+LEFT JOIN (
+SELECT day.class_id, COUNT(*) AS day_count FROM day WHERE day.is_hidden = 0 GROUP BY day.class_id)
+AS day_counts ON tutoring_class.id = day_counts.class_id
+LEFT JOIN (
+SELECT day.class_id, COUNT(*) AS incomplete_day_count FROM day WHERE day.is_hidden = 0 AND is_completed=0 GROUP BY day.class_id)
+AS incompleted_day_counts ON tutoring_class.id = incompleted_day_counts.class_id
+LEFT JOIN (
+SELECT day.class_id, COUNT(*) AS payment_due_day_count FROM day WHERE day.is_hidden = 0 AND is_completed=1 AND payment_status=0 GROUP BY day.class_id)
+AS payment_due_day_counts ON payment_due_day_counts.class_id = day_counts.class_id WHERE tutoring_class.student_id = 17;

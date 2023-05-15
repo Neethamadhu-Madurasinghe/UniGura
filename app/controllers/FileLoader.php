@@ -2,8 +2,8 @@
 
 class FileLoader {
     public function loadFile(Request $request): void {
-        if (!$request->isLoggedIn()) {
-//            TODO: Handle Login
+        if(!$request->isLoggedIn()) {
+            redirect('/login');
             die('Please log in to download the file');
         }
 

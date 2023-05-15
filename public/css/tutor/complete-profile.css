@@ -1,0 +1,320 @@
+.main-area-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    min-height: 100%;
+}
+
+.main-area {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 90%;
+}
+
+.main-title {
+    margin: 20px 0 0 0;
+    align-self: center;
+}
+
+.sub-title {
+    margin: 0;
+}
+
+#complete-profile-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.upload-picture-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.upload-picture-container img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+#profile-image-upload-btn {
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    font-size: 0.8rem;
+    color: white;
+    padding: 0.5rem;
+    font-family: sans-serif;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    width: 150px;
+    text-align: center;
+    transition: transform 0.1s;
+}
+
+
+#profile-image-upload-btn:hover {
+    transform: scale(1.05);
+}
+
+#profile-image-upload-btn:active {
+    background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
+}
+
+.profile-picture-added {
+    background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%) !important;
+}
+
+
+ .form-main-area {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  
+}
+
+
+.form-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+
+.form .form-field {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    width: 100%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.form-field label span {
+    color: red;
+    font-size: 0.7rem;
+    font-weight: normal;
+}
+
+
+.upload-button-error {
+    color: red;
+    font-size: 0.7rem;
+    font-weight: normal;
+}
+
+#description-field {
+    width: 100%;
+}
+
+
+.form-field input, .form-field select, .form-field textarea {
+    border: none;
+    background-color: rgb(255, 237, 220);
+    border-bottom: 1px solid var(--bright-orange);
+    font-size: 1rem;
+    height: 35px;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+.form-field textarea {
+    height: 150px;
+    resize: none;
+}
+
+.map-container input {
+    font-family: 'DM Sans', sans-serif;
+    position: relative;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    width: 100px;
+    border: none;
+    background-color: white;
+    color: black;
+}
+
+.map-container-title {
+    display: flex;
+    align-items: center;
+}
+
+.map-container-title p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    position: relative;
+    width: auto;
+}
+
+#help {
+    background-color: var(--bright-orange);
+    width: 15px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 0.7rem;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+#help .tooltiptext {
+    visibility: hidden;
+    opacity: 0;
+    width: 120px;
+    background-color: var(--bright-orange);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    margin-left: 10px;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    transition: all linear 0.2s;
+}
+
+#help:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.map {
+    height: 200px;
+    border: 1px solid var(--bright-orange);
+    border-radius: 5px;
+    padding: 1px 1px;
+    cursor: grab;
+}
+
+#marker {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: no-repeat top center;
+    background-size:100%;
+    opacity: 1;
+    cursor: move;
+}
+
+
+.upload-btn-row {
+    justify-content: space-between;
+}
+
+.btn-field {
+    width: auto;
+}
+
+#al-result-upload-btn, #al-identity-card-btn, #university-entrance-letter{
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    font-size: 0.9rem;
+    color: white;
+    padding: 0.5rem;
+    font-family: sans-serif;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    width: 170px;
+    height: 50px;
+    text-align: center;
+    transition: transform 0.1s;
+}
+
+#al-result-upload-btn:hover, #al-identity-card-btn:hover, #university-entrance-letter:hover {
+    transform: scale(1.05);
+}
+
+#al-result-upload-btn:active, #al-identity-card-btn:active, #university-entrance-letter:active {
+    background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
+}
+
+
+.btn-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+
+.btn {
+    width: 180px;
+    height: 40px;
+    font-size: 1rem;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.1s;
+    user-select: none;
+    padding: 10px;
+    text-align: center;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn:active {
+    background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
+}
+
+
+/* multipart form css */
+
+form{
+    position: relative;
+    margin-top: 20px;
+    width: 100%;
+    
+}
+
+
+ form .form{
+    position: absolute;
+    background-color: #fff;
+    transition: 0.3s ease;
+    width: 80%;
+}
+.second{
+    display: none;
+    pointer-events: none;
+    transform: translateX(100%);
+}
+
+form.secActive .second{
+    display: block;
+    pointer-events: auto;
+    transform: translateX(0);
+}
+form.secActive .first{
+    display: none;
+    pointer-events: none;
+    transform: translateX(-100%);
+}
+
+
+

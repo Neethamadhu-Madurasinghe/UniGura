@@ -1,0 +1,842 @@
+APPROOT : C:\xampp\htdocs\UniGura\app
+ROOT : C:\xampp\htdocs\UniGura
+URLROOT : http://localhost:8080/UniGura
+
+// load the student js file
+        // const script = document.createElement('script');
+        // script.src = "../student/main.js";
+        // document.head.prepend(script);
+
+
+
+<?php foreach ($data as $x) { ?>
+    <?php if (in_array($x->mode, $arrayModes) ){ ?>
+        <?php if(($x->classTemplate->session_rate >= $minFeesInput && $x->classTemplate->session_rate <= $maxFeesInput) || ($x->classTemplate->session_rate >= $minFeedSlider && $x->classTemplate->session_rate <= $maxFeedSlider)) { ?>
+            <div class="one-class">
+                <div class="tutor">
+                    <div class="profile-img">
+                        <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                    </div>
+                    <div class="name">
+                        <h1>Tutor Name</h1>
+                        <h1><?php echo $x->tutor->first_name . ' ' . $x->tutor->last_name ?></h1>
+                    </div>
+                </div>
+                <div class="student">
+                    <div class="name">
+                        <h1>Student Name</h1>
+                        <h1><?php echo $x->student->first_name . ' ' . $x->student->last_name ?></h1>
+                    </div>
+                    <div class="profile-img">
+                        <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                    </div>
+                </div>
+                <div class="class-details">
+                    <div class="subject">
+                        <h1>Subject: <?php echo $x->subject->name ?></h1>
+                    </div>
+                    <div class="module">
+                        <h1>Module: <?php echo $x->module->name ?></h1>
+                    </div>
+                    <div class="day">
+                        <h1>Day: <?php echo $x->classDay->title ?></h1>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+
+    <?php } else if(($x->classTemplate->session_rate >= $minFeesInput && $x->classTemplate->session_rate <= $maxFeesInput) || ($x->classTemplate->session_rate >= $minFeedSlider && $x->classTemplate->session_rate <= $maxFeedSlider)) { ?>
+        <?php if(in_array($x->mode, $arrayModes)) { ?>
+            <div class="one-class">
+                <div class="tutor">
+                    <div class="profile-img">
+                        <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                    </div>
+                    <div class="name">
+                        <h1>Tutor Name</h1>
+                        <h1><?php echo $x->tutor->first_name . ' ' . $x->tutor->last_name ?></h1>
+                    </div>
+                </div>
+                <div class="student">
+                    <div class="name">
+                        <h1>Student Name</h1>
+                        <h1><?php echo $x->student->first_name . ' ' . $x->student->last_name ?></h1>
+                    </div>
+                    <div class="profile-img">
+                        <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                    </div>
+                </div>
+                <div class="class-details">
+                    <div class="subject">
+                        <h1>Subject: <?php echo $x->subject->name ?></h1>
+                    </div>
+                    <div class="module">
+                        <h1>Module: <?php echo $x->module->name ?></h1>
+                    </div>
+                    <div class="day">
+                        <h1>Day: <?php echo $x->classDay->title ?></h1>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+    <?php } else if(in_array($x->mode, $arrayModes) || ($x->classTemplate->session_rate >= $minFeesInput && $x->classTemplate->session_rate <= $maxFeesInput) || ($x->classTemplate->session_rate >= $minFeedSlider && $x->classTemplate->session_rate <= $maxFeedSlider)) { ?>
+        <div class="one-class">
+            <div class="tutor">
+                <div class="profile-img">
+                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                </div>
+                <div class="name">
+                    <h1>Tutor Name</h1>
+                    <h1><?php echo $x->tutor->first_name . ' ' . $x->tutor->last_name ?></h1>
+                </div>
+            </div>
+            <div class="student">
+                <div class="name">
+                    <h1>Student Name</h1>
+                    <h1><?php echo $x->student->first_name . ' ' . $x->student->last_name ?></h1>
+                </div>
+                <div class="profile-img">
+                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                </div>
+            </div>
+            <div class="class-details">
+                <div class="subject">
+                    <h1>Subject: <?php echo $x->subject->name ?></h1>
+                </div>
+                <div class="module">
+                    <h1>Module: <?php echo $x->module->name ?></h1>
+                </div>
+                <div class="day">
+                    <h1>Day: <?php echo $x->classDay->title ?></h1>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+<?php } ?>
+
+
+
+
+    <?php if ($aClass->classTemplate->session_rate >= $filterResult['classFees'][0] && $aClass->classTemplate->session_rate <= $filterResult['classFees'][1]) { ?>
+        <div class="one-class">
+            <div class="tutor">
+                <div class="profile-img">
+                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                </div>
+                <div class="name">
+                    <h1>Tutor Name</h1>
+                    <h1><?php echo $aClass->tutor->first_name . ' ' . $aClass->tutor->last_name ?></h1>
+                </div>
+            </div>
+            <div class="student">
+                <div class="name">
+                    <h1>Student Name</h1>
+                    <h1><?php echo $aClass->student->first_name . ' ' . $aClass->student->last_name ?></h1>
+                </div>
+                <div class="profile-img">
+                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                </div>
+            </div>
+            <div class="class-details">
+                <div class="subject">
+                    <h1>Subject: <?php echo $aClass->subject->name ?></h1>
+                </div>
+                <div class="module">
+                    <h1>Module: <?php echo $aClass->module->name ?></h1>
+                </div>
+                <div class="day">
+                    <h1>Day: <?php echo $aClass->classDay->title ?></h1>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+
+
+    <?php foreach ($data as $aClass) { ?>
+
+    <?php if ($aClass->classTemplate->session_rate <= $filterResult['classFees'][1] ) { ?>
+        <?php if ($aClass->classTemplate->session_rate >= $filterResult['classFees'][0] ) { ?>
+            <?php if (in_array($aClass->classTemplate->mode, $filterResult['classConductMode'])) { ?>
+                <?php if (in_array($aClass->subject->name, $filterResult['classSubject'])) { ?>
+                    <?php $pageContent[] = $aClass; ?>
+                <?php } ?>
+            <?php } ?>
+        <?php } ?>
+    <?php } ?>
+
+<?php } ?>
+
+
+
+<?php
+$arrayModes =  explode(',', $_GET['classConductModeValue']);
+$arraySubject =  explode(',', $_GET['selectedSubject']);
+
+$FeesInput = explode(',', $_GET['classFeesInputField']);
+$minFeesInput = $FeesInput[0];
+$maxFeesInput = $FeesInput[1];
+
+$feedSlider = explode(',', $_GET['classFeesSliderField']);
+$minFeedSlider = $feedSlider[0];
+// $maxFeedSlider = $feedSlider[1];
+
+
+$filterResult = [];
+$pageContent = [];
+
+$filterResult['classConductMode'] = $arrayModes;
+$filterResult['classFees'] = $FeesInput;
+$filterResult['classSubject'] = $arraySubject;
+
+
+echo '<pre>';
+print_r($filterResult);
+echo '</pre>';
+
+// echo '<pre>';
+// print_r($data);
+// echo '</pre>';
+
+
+?>
+
+
+<?php foreach ($data as $aClass) { ?>
+
+    <?php if ($aClass->classTemplate->session_rate <= $filterResult['classFees'][1] ) { ?>
+        <?php if ($aClass->classTemplate->session_rate >= $filterResult['classFees'][0] ) { ?>
+            <?php if (in_array($aClass->classTemplate->mode, $filterResult['classConductMode'])) { ?>
+                <?php if (in_array($aClass->subject->name, $filterResult['classSubject'])) { ?>
+                    <?php $pageContent[] = $aClass; ?>
+                <?php } ?>
+            <?php } ?>
+        <?php } ?>
+    <?php } ?>
+
+<?php } ?>
+
+
+
+<?php 
+    $pageContent = array_unique($pageContent, SORT_REGULAR);
+    // $uniquePageContent = array_values($pageContent);
+
+    // echo '<pre>';
+    // print_r($pageContent);
+    // echo '</pre>';
+?>
+
+
+<?php foreach($pageContent as $aClass) { ?>
+    <div class="one-class">
+            <div class="tutor">
+                <div class="profile-img">
+                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                </div>
+                <div class="name">
+                    <h1>Tutor Name</h1>
+                    <h1><?php echo $aClass->tutor->first_name . ' ' . $aClass->tutor->last_name ?></h1>
+                </div>
+            </div>
+            <div class="student">
+                <div class="name">
+                    <h1>Student Name</h1>
+                    <h1><?php echo $aClass->student->first_name . ' ' . $aClass->student->last_name ?></h1>
+                </div>
+                <div class="profile-img">
+                    <img src="<?php echo URLROOT ?>/public/img/admin/profile.png" alt="">
+                </div>
+            </div>
+            <div class="class-details">
+                <div class="subject">
+                    <h1>Subject: <?php echo $aClass->subject->name ?></h1>
+                </div>
+                <div class="module">
+                    <h1>Module: <?php echo $aClass->module->name ?></h1>
+                </div>
+                <div class="day">
+                    <h1>Day: <?php echo $aClass->classDay->title ?></h1>
+                </div>
+            </div>
+        </div>
+<?php } ?>
+
+
+
+
+
+
+
+
+
+div class="total-payoff">
+                    <div class="amount">
+                        <h2>Total Payoffs</h2>
+                        <h3>Rs. 4050.00</h3>
+                    </div>
+                    <div class="pay-button">
+                        <button>Pay For Tutor</button>
+                    </div>
+                </div>
+
+                <div class="paymentSlip-bankDetails">
+                    <div class="upload-payment-slip">
+                        <div class="bank-slip-uploader">
+                            <div class="header-section">
+                                <h1>Upload Bank Payment Slip</h1>
+                                <p>This this is payment slip will help to the when tutor</p>
+                                <p>PDF & Images are allowed</p>
+                            </div>
+                            <div class="drop-section">
+                                <div class="col-1" id="col-1">
+                                    <img src="#" alt="upload files"><br><br>
+                                    <span>Drag & Drop your files here</span><br><br>
+                                    <span>OR</span><br><br>
+                                    <label class="file-selector" for="browseFiles">Browse Files</label><br><br>
+                                    <input type="file" name="browseFiles" class="file-selector-input" id="browseFiles" multiple hidden>
+                                </div>
+                                <div class="col-2" id="col-2">
+                                    <div class="drop-here">Drop Here</div>
+                                </div>
+                            </div>
+                            <div class="list-section" id="list-section">
+                                <div class="list">
+                                    <!-- <li class="in-prog" id="in-prog">
+                                        <div class='file-box'>
+                                            <div class='col'><img src='./pdf.png' alt=''></div>
+                                            <div class='details'>
+                                                <div class='file-name'>
+                                                    <div class='name'>file.name</div>
+                                                    <span>50%</span>
+                                                </div>
+                                                <div class='file-progress'><span></span></div>
+                                                <div class='file-size'>file.size</div>
+                                            </div>
+                                            <div class='icon'>
+                                                <i class="fa fa-trash"></i>
+                                                <i class='fa fa-circle-xmark'></i>
+                                            </div>
+                                        </div>
+                                    </li> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bank-details">
+                        <div class="bank-details-title">
+                            <h3>Bank Details</h3>
+                        </div>
+                        <div class="bank-details-content">
+                            <div class="account-name">
+                                <div class="bank-details-content-title">
+                                    <h3>Account Name</h3>
+                                </div>
+                                <div class="bank-details-content-text">
+                                    <h3>Viraj Sandakelum</h3>
+                                </div>
+                            </div>
+
+                            <div class="account-number">
+                                <div class="bank-details-content-title">
+                                    <h3>Account Number</h3>
+                                </div>
+                                <div class="bank-details-content-text">
+                                    <h3>123456789</h3>
+                                </div>
+                            </div>
+
+                            <div class="bank-name">
+                                <div class="bank-details-content-title">
+                                    <h3>Bank Name</h3>
+                                </div>
+                                <div class="bank-details-content-text">
+                                    <h3>Bank of Ceylon</h3>
+                                </div>
+                            </div>
+
+                            <div class="branch-name">
+                                <div class="bank-details-content-title">
+                                    <h3>Branch Name</h3>
+                                </div>
+                                <div class="bank-details-content-text">
+                                    <h3>Colombo</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="class-details-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th id="subject-thead">Student</th>
+                                <th>Subject</th>
+                                <th>Lesson</th>
+                                <th>Day</th>
+                                <th>Method</th>
+                                <th id="classFees-thead">Class Fess</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Viraj Sandakelum</td>
+                                <td>Maths</td>
+                                <td>1</td>
+                                <td>Monday</td>
+                                <td>Online</td>
+                                <td>Rs. 1350.00</td>
+                            </tr>
+
+                            <tr>
+                                <td>Viraj Sandakelum</td>
+                                <td>Maths</td>
+                                <td>1</td>
+                                <td>Monday</td>
+                                <td>Online</td>
+                                <td>Rs. 1350.00</td>
+                            </tr>
+
+                            <tr>
+                                <td>Viraj Sandakelum</td>
+                                <td>Maths</td>
+                                <td>1</td>
+                                <td>Monday</td>
+                                <td>Online</td>
+                                <td>Rs. 1350.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public function studentComplainSearch(Request $request){
+        $allStudentComplaints = $this->ModelAdminSearchFilter->getStudentComplaints();
+        $allTutorComplaints = $this->ModelAdminSearchFilter->getTutorComplaints();
+        $allTutorRequest = $this->ModelAdminSearchFilter->getTutorRequest();
+
+        // echo '<pre>';
+        // print_r($allStudentComplaints);
+        // echo '</pre>';
+
+        foreach ($allTutorRequest as $x) {
+            $tutorID = $x->user_id;
+            $tutor = $this->ModelAdminSearchFilter->userById($tutorID);
+            $x->tutor = $tutor;
+        }
+
+        
+        
+        foreach ($allTutorComplaints as $x) {
+            $reasonID = $x->reason_id;
+            $reportReason = $this->ModelAdminSearchFilter->reportReasonById($reasonID);
+            $x->reportReason = $reportReason;
+
+            $tutorID = $x->tutor_id;
+            $tutor = $this->ModelAdminSearchFilter->userById($tutorID);
+            $x->tutor = $tutor;
+
+            $studentID = $x->student_id;
+            $student = $this->ModelAdminSearchFilter->userById($studentID);
+            $x->student = $student;
+        }
+
+
+
+        foreach ($allStudentComplaints as $x) {
+            $reasonID = $x->reason_id;
+            $reportReason = $this->ModelAdminSearchFilter->reportSeasonById($reasonID);
+            $x->reportReason = $reportReason;
+
+            $tutorID = $x->tutor_id;
+            $tutor = $this->ModelAdminSearchFilter->userById($tutorID);
+            $x->tutor = $tutor;
+
+            $studentID = $x->student_id;
+            $student = $this->ModelAdminSearchFilter->userById($studentID);
+            $x->student = $student;
+        }
+
+        $searchResult = [];
+        $studentName = '';
+
+        if($request->isGet()){
+            $bodyData = $request->getBody();
+            $studentName = $bodyData['search_student_name_value'];
+        }
+
+
+        foreach ($allStudentComplaints as $x) {
+            if(str_contains(strtolower($x->student->first_name), strtolower($studentName))){
+                array_push($searchResult, $x);
+            }
+        }
+        
+        $data = [
+            'allTutorComplaints' => $allTutorComplaints,
+            'allTutorRequest' => $allTutorRequest,
+            'searchResult' => $searchResult,
+        ];
+
+        // echo '<pre>';
+        // print_r($data);
+        // echo '</pre>';
+
+        $this->view('admin/studentComplainSearchResult', $request, $data);
+
+    }
+
+    
+
+    
+    
+    public function studentComplainFilter(Request $request){
+
+        $allStudentComplaints = $this->ModelAdminSearchFilter->getStudentComplaints();
+        $allTutorComplaints = $this->ModelAdminSearchFilter->getTutorComplaints();
+        $allTutorRequest = $this->ModelAdminSearchFilter->getTutorRequest();
+
+        // echo '<pre>';
+        // print_r($this->studentComplaintsSearchResult);
+        // echo '</pre>';
+
+        foreach ($allTutorRequest as $x) {
+            $tutorID = $x->user_id;
+            $tutor = $this->ModelAdminSearchFilter->userById($tutorID);
+            $x->tutor = $tutor;
+        }
+
+        
+        foreach ($allTutorComplaints as $x) {
+            $reasonID = $x->reason_id;
+            $reportReason = $this->ModelAdminSearchFilter->reportReasonById($reasonID);
+            $x->reportReason = $reportReason;
+
+            $tutorID = $x->tutor_id;
+            $tutor = $this->ModelAdminSearchFilter->userById($tutorID);
+            $x->tutor = $tutor;
+
+            $studentID = $x->student_id;
+            $student = $this->ModelAdminSearchFilter->userById($studentID);
+            $x->student = $student;
+        }
+
+        foreach ($allStudentComplaints as $x) {
+            $reasonID = $x->reason_id;
+            $reportReason = $this->ModelAdminSearchFilter->reportSeasonById($reasonID);
+            $x->reportReason = $reportReason;
+
+            $tutorID = $x->tutor_id;
+            $tutor = $this->ModelAdminSearchFilter->userById($tutorID);
+            $x->tutor = $tutor;
+
+            $studentID = $x->student_id;
+            $student = $this->ModelAdminSearchFilter->userById($studentID);
+            $x->student = $student;
+        }
+
+        $filterResult = [];
+        $filterType = '';
+
+
+        if($request->isGet()){
+            $bodyData = $request->getBody();
+            $filterType = $bodyData['student_complaint_filter_value'];
+        }
+
+
+        if($filterType == 'not_resolve'){
+            $filterType = 0;
+        }
+
+        if($filterType == 'solved'){
+            $filterType = 1;
+        }
+
+
+        foreach ($allStudentComplaints as $x) {
+            if($x->is_inquired == $filterType){
+                array_push($filterResult, $x);
+            }
+        }
+
+        if($filterType == 'all'){
+            $filterResult = $allStudentComplaints;
+        }
+
+
+        $data = [
+            'allTutorComplaints' => $allTutorComplaints,
+            'allTutorRequest' => $allTutorRequest,
+            'filterResult' => $filterResult,
+        ];
+
+        // echo '<pre>';
+        // print_r($data);
+        // echo '</pre>';
+
+        $this->view('admin/studentComplainFilterResult', $request, $data);
+    }
+
+
+
+
+
+
+     if (empty($searchTutorName) && empty($classConductModeValue) && empty($visibilityFilterValue) && empty($tutorDurationFilterValue)) {
+                $filterResult = $allTutors;
+            } elseif (empty($searchTutorName) && empty($classConductModeValue) && empty($visibilityFilterValue) && !empty($tutorDurationFilterValue)) {
+                foreach ($allTutors as $aTutor) {
+
+                    date_default_timezone_set('UTC');
+
+                    $current_time = new DateTime();
+
+                    $joinedDate = $aTutor->contactDetails->joined_date;
+                    $specific_time = new DateTime($joinedDate);
+
+                    $time_diff = $current_time->diff($specific_time)->y;
+
+                    // echo $time_diff;
+
+                    foreach ($arrayDuration as $duration) {
+                        if ($time_diff <= $duration) {
+                            array_push($filterResult, $aTutor);
+                        }
+                    }
+                }
+            } elseif (empty($searchTutorName) && empty($classConductModeValue) && !empty($visibilityFilterValue) && empty($tutorDurationFilterValue)) {
+                foreach ($allTutors as $aTutor) {
+                    if (in_array($aTutor->contactDetails->is_banned, $arrayVisibility)) {
+                        array_push($filterResult, $aTutor);
+                    }
+                }
+            } elseif (empty($searchTutorName) && empty($classConductModeValue) && !empty($visibilityFilterValue) && !empty($tutorDurationFilterValue)) {
+                foreach ($allTutors as $aTutor) {
+
+                    $currentTime = new DateTime();
+                    $joinedDate = new DateTime($aTutor->contactDetails->joined_date);
+
+                    $tutorTimeDuration =  $currentTime->diff($joinedDate)->format("%y");
+
+                    date_default_timezone_set('UTC');
+
+                    $current_time = new DateTime();
+
+                    $joinedDate = $aTutor->contactDetails->joined_date;
+                    $specific_time = new DateTime($joinedDate);
+
+                    $time_diff = $current_time->diff($specific_time)->y;
+
+                    // echo $time_diff;
+
+                    foreach ($arrayDuration as $duration) {
+                        if ($time_diff <= $duration) {
+                            array_push($filterResult, $aTutor);
+                        }
+                    }
+
+                    if (in_array($aTutor->contactDetails->is_banned, $arrayVisibility)) {
+                        array_push($filterResult, $aTutor);
+                    }
+                }
+            } elseif (empty($searchTutorName) && !empty($classConductModeValue) && empty($visibilityFilterValue) && empty($tutorDurationFilterValue)) {
+                foreach ($allTutors as $aTutor) {
+                    if (in_array($aTutor->contactDetails->mode, $arrayModes)) {
+                        array_push($filterResult, $aTutor);
+                    }
+                }
+            } elseif (empty($searchTutorName) && !empty($classConductModeValue) && empty($visibilityFilterValue) && !empty($tutorDurationFilterValue)) {
+                foreach ($allTutors as $aTutor) {
+
+                    date_default_timezone_set('UTC');
+
+                    $current_time = new DateTime();
+
+                    $joinedDate = $aTutor->contactDetails->joined_date;
+                    $specific_time = new DateTime($joinedDate);
+
+                    $time_diff = $current_time->diff($specific_time)->y;
+
+                    // echo $time_diff;
+
+                    foreach ($arrayDuration as $duration) {
+                        if ($time_diff <= $duration) {
+                            array_push($filterResult, $aTutor);
+                        }
+                    }
+
+                    if (in_array($aTutor->contactDetails->mode, $arrayModes)) {
+                        array_push($filterResult, $aTutor);
+                    }
+                }
+            } elseif (empty($searchTutorName) && !empty($classConductModeValue) && !empty($visibilityFilterValue)) {
+                foreach ($allTutors as $aTutor) {
+                    if (in_array($aTutor->contactDetails->mode, $arrayModes) && in_array($aTutor->contactDetails->is_banned, $arrayVisibility)) {
+                        array_push($filterResult, $aTutor);
+                    }
+                }
+            } elseif (empty($searchTutorName) && !empty($classConductModeValue) && !empty($visibilityFilterValue) && !empty($tutorDurationFilterValue)) {
+                foreach ($allTutors as $aTutor) {
+
+                    date_default_timezone_set('UTC');
+
+                    $current_time = new DateTime();
+
+                    $joinedDate = $aTutor->contactDetails->joined_date;
+                    $specific_time = new DateTime($joinedDate);
+
+                    $time_diff = $current_time->diff($specific_time)->y;
+
+                    // echo $time_diff;
+
+                    foreach ($arrayDuration as $duration) {
+                        if ($time_diff <= $duration) {
+                            array_push($filterResult, $aTutor);
+                        }
+                    }
+
+
+                    if (in_array($aTutor->contactDetails->mode, $arrayModes) && in_array($aTutor->contactDetails->is_banned, $arrayVisibility)) {
+                        array_push($filterResult, $aTutor);
+                    }
+                }
+            } elseif (!empty($searchTutorName) && empty($classConductModeValue) && empty($visibilityFilterValue) && empty($tutorDurationFilterValue)) {
+                foreach ($allTutors as $aTutor) {
+                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName))) {
+                        array_push($filterResult, $aTutor);
+                    }
+                }
+            } elseif (!empty($searchTutorName) && empty($classConductModeValue) && empty($visibilityFilterValue) && !empty($tutorDurationFilterValue)) {
+                foreach ($allTutors as $aTutor) {
+
+                    date_default_timezone_set('UTC');
+
+                    $current_time = new DateTime();
+
+                    $joinedDate = $aTutor->contactDetails->joined_date;
+                    $specific_time = new DateTime($joinedDate);
+
+                    $time_diff = $current_time->diff($specific_time)->y;
+
+                    // echo $time_diff;
+
+                    foreach ($arrayDuration as $duration) {
+                        if ($time_diff <= $duration) {
+                            array_push($filterResult, $aTutor);
+                        }
+                    }
+
+                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName))) {
+                        array_push($filterResult, $aTutor);
+                    }
+                }
+            } elseif (!empty($searchTutorName) && empty($classConductModeValue) && !empty($visibilityFilterValue) && empty($tutorDurationFilterValue)) {
+                foreach ($allTutors as $aTutor) {
+                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && in_array($aTutor->contactDetails->is_banned, $arrayVisibility)) {
+                        array_push($filterResult, $aTutor);
+                    }
+                }
+            } elseif (!empty($searchTutorName) && empty($classConductModeValue) && !empty($visibilityFilterValue) && !empty($tutorDurationFilterValue)) {
+                foreach ($allTutors as $aTutor) {
+
+                    date_default_timezone_set('UTC');
+
+                    $current_time = new DateTime();
+
+                    $joinedDate = $aTutor->contactDetails->joined_date;
+                    $specific_time = new DateTime($joinedDate);
+
+                    $time_diff = $current_time->diff($specific_time)->y;
+
+                    // echo $time_diff;
+
+                    foreach ($arrayDuration as $duration) {
+                        if ($time_diff <= $duration) {
+                            array_push($filterResult, $aTutor);
+                        }
+                    }
+
+                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && in_array($aTutor->contactDetails->is_banned, $arrayVisibility)) {
+                        array_push($filterResult, $aTutor);
+                    }
+                }
+            } elseif (!empty($searchTutorName) && !empty($classConductModeValue) && empty($visibilityFilterValue) && empty($tutorDurationFilterValue)) {
+                foreach ($allTutors as $aTutor) {
+                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && in_array($aTutor->contactDetails->mode, $arrayModes)) {
+                        array_push($filterResult, $aTutor);
+                    }
+                }
+            } elseif (!empty($searchTutorName) && !empty($classConductModeValue) && empty($visibilityFilterValue) && !empty($tutorDurationFilterValue)) {
+                foreach ($allTutors as $aTutor) {
+
+                    date_default_timezone_set('UTC');
+
+                    $current_time = new DateTime();
+
+                    $joinedDate = $aTutor->contactDetails->joined_date;
+                    $specific_time = new DateTime($joinedDate);
+
+                    $time_diff = $current_time->diff($specific_time)->y;
+
+                    // echo $time_diff;
+
+                    foreach ($arrayDuration as $duration) {
+                        if ($time_diff <= $duration) {
+                            array_push($filterResult, $aTutor);
+                        }
+                    }
+
+                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && in_array($aTutor->contactDetails->mode, $arrayModes)) {
+                        array_push($filterResult, $aTutor);
+                    }
+                }
+            } elseif (!empty($searchTutorName) && !empty($classConductModeValue) && !empty($visibilityFilterValue) && empty($tutorDurationFilterValue)) {
+                foreach ($allTutors as $aTutor) {
+                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && in_array($aTutor->contactDetails->mode, $arrayModes) && in_array($aTutor->contactDetails->is_banned, $arrayVisibility)) {
+                        array_push($filterResult, $aTutor);
+                    }
+                }
+            } elseif (!empty($searchTutorName) && !empty($classConductModeValue) && !empty($visibilityFilterValue) && !empty($tutorDurationFilterValue)) {
+                foreach ($allTutors as $aTutor) {
+
+                    date_default_timezone_set('UTC');
+
+                    $current_time = new DateTime();
+
+                    $joinedDate = $aTutor->contactDetails->joined_date;
+                    $specific_time = new DateTime($joinedDate);
+
+                    $time_diff = $current_time->diff($specific_time)->y;
+
+                    // echo $time_diff;
+
+                    foreach ($arrayDuration as $duration) {
+                        if ($time_diff <= $duration) {
+                            array_push($filterResult, $aTutor);
+                        }
+                    }
+
+                    if (str_contains(strtolower($aTutor->contactDetails->first_name . ' ' . $aTutor->contactDetails->last_name), strtolower($searchTutorName)) && in_array($aTutor->contactDetails->mode, $arrayModes) && in_array($aTutor->contactDetails->is_banned, $arrayVisibility)) {
+                        array_push($filterResult, $aTutor);
+                    }
+                }
+            } else {
+                $filterResult = $allTutors;
+            }

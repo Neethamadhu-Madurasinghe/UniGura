@@ -1,0 +1,681 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+/* ----------------------------TABLE---------------------------------- */
+
+section.table {
+    margin: 20px 50px;
+    height: 77vh;
+    background-color: #fff5;
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    /* background-color: #ffb75e; */
+}
+
+section .tutor-request-table{
+    margin-top: 80px;
+}
+
+
+.table-header {
+    width: 100%;
+    height: 10%;
+    background-color: #fff4;
+    padding: .8rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table-header h1{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.table-header .search {
+    width: 35%;
+    height: 100%;
+    background-color: #fff5;
+    padding: 0 .8rem;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .2s;
+}
+
+
+.table-header i{
+    font-size: 20px;
+    margin: 0 10px;
+}
+
+.table-header .search input {
+    width: 100%;
+    padding: 0 .5rem 0 .3rem;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    background-color: #fff5;
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+}
+
+.filter i{
+    font-size: 20px;
+    margin: 0 5px;
+}
+
+.filter select {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 17px;
+}
+
+
+.table-body {
+    height: 57vh;
+    width: 95%;
+    background-color: #fffb;
+    margin: .8rem auto;
+    border-radius: .6rem;
+    overflow: overlay;
+}
+
+.table-body::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.table-body::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.table-body:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
+table {
+    width: 100%;
+}
+
+
+table,
+th,
+td {
+    border-collapse: collapse;
+    padding: 22px;
+    text-align: center;
+}
+
+
+thead th {
+    background-color: #ffa620a3;
+    text-transform: capitalize;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #0000000b;
+}
+
+tbody tr:hover {
+    background-color: #ffa62044;
+}
+
+
+tbody td div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+tbody td div h6{
+    margin: 0 10px;
+    font-size: 15px;
+}
+
+tbody img{
+    width: 20px;
+}
+
+.pagination {
+    width: 100%;
+    height: 8%;
+    background-color: #fff4;
+    padding: .8rem 1rem;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-top: 10px;
+    position: fixed;
+}
+
+.pagination button{
+    width: 85px;
+    height: 2rem;
+    background-color: #F7711A;
+    border: 1px solid white;
+    margin: 0 .2rem;
+    outline: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.1s;
+    user-select: none;
+}
+
+.pagination button:hover {
+    transform: scale(1.05);
+}
+
+.pagination button:active {
+    background-color: #FFA620;
+}
+
+
+
+.pagination button a{
+    text-decoration: none;
+    color:white;
+    font-size: 15px;
+}
+
+.pagination .page-count{
+    margin: 0 10px;
+}
+
+.action .view-student-complaint {
+    background-color: #2A8BF2;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+
+.action .view-tutor-complaint {
+    background-color: #2A8BF2;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+
+.action-tutor-request{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.action-tutor-request .accept{
+    background-color: #2A8BF2;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.action-tutor-request .reject{
+    background-color: red;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.action-tutor-request .reject a{
+    text-decoration: none;
+    color: white;
+}
+
+.action-tutor-request .accept a{
+    text-decoration: none;
+    color: white;
+}
+
+
+.student-complaint td img{
+    width: 30px;
+}
+
+
+/* ------------------------filter-box------------------------------- */
+
+.search-filter {
+    display: flex;
+    justify-content: space-between;
+}
+
+.filter-box {
+    border: 2px solid #F7931A;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    position: relative;
+    bottom: 5px;
+    margin-left: 15px;
+}
+
+.filter-box i {
+    color: #F7931A;
+    font-size: 25px;
+}
+
+.filter-box img {
+    width: 25px;
+    padding-left: 5px;
+}
+
+.filter-box select {
+    border: none;
+    outline: none;
+    padding: 5px;
+    width: 100%;
+    font-size: 15px;
+    font-weight: bold;
+    color: #F7931A;
+}
+
+
+/* ----------------------------complaints-settings--------------------------- */
+
+.complaints-settings-btn {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-right: 15px;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+
+.complaints-settings-btn i span {
+    font-size: 17px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.complaints-settings-btn i {
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+
+.add-complaint form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.add-complaint form input {
+    border: none;
+    outline: none;
+    border: 2px solid #F7931A;
+    border-radius: 5px;
+    width: 75%;
+    padding: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #F7931A;
+}
+
+.add-complaint form button {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    border: 2px solid #F7931A;
+    background-color: #F7931A;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.complaints-list {
+    padding: 10px;
+    height: 50vh;
+    overflow-y: scroll;
+}
+
+.complaints-list::-webkit-scrollbar{
+    width: 0;
+}
+
+.one-complaint form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+
+
+.one-complaint form a {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    border: 2px solid #F7931A;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.one-complaint form button {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    border: 2px solid #F7931A;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.one-complaint input{
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    width: 60%;
+    padding: 8px;
+    font-size: 17px;
+    font-weight: bold;
+    /* background-color: #ffa620a3; */
+    color: black;
+    background-color: transparent;
+    margin-top: 15px;
+}
+
+
+/* ========================= MENU SELECTION AREA ============================== */
+
+.menu-bar-selection-btn{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    width: 95%;
+    margin: 20px auto;
+    /* background-color: #ffa620a3; */
+}
+
+
+
+.menu-bar-selection-btn button{
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+    /* background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%); */
+    border: 2px solid black;
+    background-color: #fff;
+}
+
+.menu-bar-selection-btn button:hover {
+    transform: scale(1.05);
+}
+
+.menu-bar-selection-btn button:active {
+    background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
+}
+
+
+
+
+/*===================================== CURVE NAV BAR ========================================== */
+
+.menu ul li{
+    position: relative;
+}
+
+
+.menu ul li.active a{
+    background-color: #f5f7fa;
+}
+
+
+.menu ul li.active p:nth-child(1){
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background-color: #faf7f5;
+    top: -12px;
+    left: 0;
+}
+
+
+.menu ul li.active p:nth-child(1)::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background-color: #FFA620;
+    border-bottom-right-radius: 60px;
+    left: 0;
+}
+
+
+
+.menu ul li.active p:nth-child(2){
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background-color: #faf7f5;
+    bottom: -12px;
+    left: 0;
+}
+
+
+.menu ul li.active p:nth-child(2)::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background-color: #FFA620;
+    border-top-right-radius: 60px;
+    bottom: 0;
+    left: 0;
+}
+
+
+
+
+/* ----------------------------complaints-settings POP UP --------------------------- */
+
+.complaint-setting {
+    width: 90%;
+    height: 600px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 0 30px;
+    color: #333;
+    visibility: visible;
+    z-index: 1;
+    background-color: #FFFFFF;
+    margin-top: 30px;
+}
+
+.complaint-reason > div{
+    border: 2px solid #F7931A;
+    border-radius: 5px;
+    padding: 20px 40px;
+    margin-right: 20px;
+    margin-top: 40px;
+    width: 100%;
+    background-color: #fffb;
+}
+
+
+.complaint-reason{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+
+.open_complaint_setting {
+    transition: transform 0.4s, top 0.4s, visibility 0.4s;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+    top: 50%;
+}
+
+
+.save-cancel {
+    display: none;
+}
+
+.save-cancel.show {
+    display: block;
+}
+
+.complaint_input_filed {
+    background-color: #fff;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+.noDataDisplay{
+    position: absolute;
+    left: 30%;
+    top: 45%;    
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+
+
+/* --------------------------- DUPLICATE ENTRY POPUP ERROR MESSAGE -------------------------------- */
+
+
+.popup img {
+    width: 100px;
+    margin-top: -50px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.popup {
+    width: 400px;
+    background-color: #F7931A;
+    border-radius: 6px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    visibility: visible;
+    transition: transform 0.4s, top 0.4s, visibility 0.4s;
+    z-index: 20000;
+}
+
+.open_popup {
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+
+.close_popup {
+    visibility: hidden;
+    top: 0%;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+
+.popup h2 {
+    font-size: 38px;
+    font-weight: 500;
+    margin: 10px;
+    margin-bottom: 20px;
+}
+
+.popup button {
+    width: 100%;
+    margin-top: 50px;
+    padding: 10px 0;
+    background-color: red;
+    color: #fff;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+.blur-filter {
+    background: #f7941a57;
+    z-index: 10000;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    backdrop-filter: blur(5px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+
+.delete_icon{
+    margin-left: 40px;
+}
+
+
+
+

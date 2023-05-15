@@ -1,0 +1,80 @@
+.classes {
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 15px;
+    background: #ffffff;
+    padding: 20px;
+    width: 93%;
+    left: 20%;
+    right: 0%;
+    height: 100vh;
+    background-color: var(--primary-color);
+    opacity: 0;
+}
+
+.studnt-details-container{
+    display: none;
+}
+
+.notification.close{
+    left: 34%;
+    width: 80%;
+}
+
+.classes .left {
+    display: grid;
+    grid-template-rows: 1fr;
+    left: 50%;
+    width: 80%;
+
+}
+
+.classes .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #ffffff;
+    overflow-y: yscroll;
+
+
+}
+
+.classes .classcard {
+    background-color: #ffeed5;
+    width: 80%;
+    height: 100px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.classes.textbox_activity{
+    color: rgba(112, 124, 151, 1) ;
+     margin-top: 8px;
+     text-align: justify;
+     margin-bottom: 0px
+}
+.classes.payment{
+    text-align: right;
+    font-size: 17px;
+    font-weight: 600;
+    color:#f7721adc;
+    margin-top: 5px;
+}
+
+
+
+
+
+.day_box_container .day_box .textbox-one .activity_body{
+    background: #000;
+    background-color: #0000002c;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    
+
+    
+}

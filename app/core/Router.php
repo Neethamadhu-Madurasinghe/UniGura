@@ -23,9 +23,8 @@ class Router {
 
         //      Not found route
         if ($callback === false) {
-//            TODO: Handle not found
-            echo '<pre>' . $this->request->getPath() . '</pre>';
-            die('404');
+            header("HTTP/1.0 404 Not Found");
+            redirect('/not-found');
         }
 
         if (file_exists('../app/controllers/' . $callback[0] . '.php')) {

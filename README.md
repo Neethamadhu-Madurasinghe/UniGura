@@ -31,3 +31,14 @@ See test results https://sonarcloud.io/summary/overall?id=Neethamadhu-Madurasing
 Add a new connection using "+" button > 
 - Give the new connection a name > Click next > Add a new token > Next... Create > Setup node.exe path > Ok
 - A popup will be appear at this point > Configure binding > Tick Bind project to SonarQube/SonarCloud > Select connection we mae earlier > Add Porject-key (Update local storage if needed) > Ok
+
+
+## User Roles
+- 0 - Admin 
+- 1 - Valid tutor
+- 2 - Valid student
+- 3 - Tutor, but has not validated his email
+- 4 - Student, but has not validated his email
+- 5 - Tutor, but has not completed his personal details
+- 6 - Student, but has not completed his personal details
+- 7 - Tutor, but has not completed his education qualification details

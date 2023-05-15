@@ -1,0 +1,40 @@
+.container {
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+    background: #ffff;
+    padding: 20px;
+    width: 93%;
+    left: 7%;
+    right: 0%;
+    height: 100vh;
+    background-color: var(--primary-color);
+}
+
+.container .left {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+}
+
+.container .right {
+    display: grid;
+    grid-template-rows: 1fr;
+    margin-bottom: 20px;
+}
+
+.class_template{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,219 @@
+.main-area-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    min-height: 90%;
+}
+
+.main-area {
+    width: 90%;
+    min-height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.main-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 50px;
+}
+
+
+@media screen and (max-width: 600px) {
+    .main-container {
+        flex-direction: column;
+        height:auto;
+    }
+}
+
+.filter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    width: 20%;
+    min-width: 300px;
+    height: 100%;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+}
+
+
+@media screen and (max-width: 1024px) {
+    .filter-container {
+        min-width: 35%
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .filter-container {
+        width: 100%;
+    }
+}
+
+.filter-container h2 {
+    color: white
+}
+
+
+@media screen and (max-width: 600px) {
+    .filter-container h2 {
+        margin: 10px;
+    }
+}
+
+/* FILTER CSS */
+
+.filter-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+}
+
+.filter-container form label {
+    font-weight: bold;
+    margin: 10px;
+    width: 25%;
+}
+
+.filter-container form select {
+    border: none;
+    border-radius: 5px;
+    background-color: #EFEFF1;
+    font-size: 1rem;
+    padding: 7px;
+    margin: 10px 0;
+    width: 100%;
+    font-weight: bold;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* Filter CSS END */
+
+.class-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    border-radius: 10px;
+    width: 80%;
+    margin-left: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+    .class-container {
+        width: 65%;
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+    .class-container {
+        width: 100%;
+        justify-content: center;
+        margin: 10px 0 0 0;
+    }
+}
+
+.no-class-message-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0 10px 0;
+}
+
+.no-class-message-container h1 {
+    color: var(--bright-orange);
+    margin: 0;
+    padding: 0;
+}
+
+.no-class-message-container h3 {
+    color: var(--bright-orange);
+    font-weight: normal;
+}
+
+.class-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+    .class-card-container {
+        width: 65%;
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+    .class-card-container {
+        width: 100%;
+        justify-content: center;
+        margin: 10px 0 0 0;
+    }
+}
+
+/* Class card css goes here */
+
+.add-new-class-button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.add-new-class-button-container img {
+    transition: transform 0.1s;
+    cursor: pointer;
+}
+
+.add-new-class-button-container img:hover {
+    transform: scale(1.05);
+}
+
+.add-new-class-button {
+    transition: transform 0.1s;
+}
+
+.add-new-class-button:hover {
+    transform: scale(1.05);
+}
+
+
+.btn {
+    width: 180px;
+    height: 40px;
+    font-size: 1rem;
+    background: linear-gradient(180deg, #FFA620 0%, #F7711A 100%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.1s;
+    user-select: none;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn:active {
+    background: linear-gradient(180deg, #ae6902 0%, #ae4804 100%);
+}
+
+.btn-enter-class {
+    width: 140px;
+    height: 40px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}

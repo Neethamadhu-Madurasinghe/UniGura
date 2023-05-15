@@ -1,0 +1,503 @@
+/* ---------------------SUBJECT MODULE CONTENT----------------------------------- */
+
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container>h2 {
+    font-size: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 20px;
+    text-decoration: underline;
+}
+
+.add-subject {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+}
+
+.form {
+    width: 50%;
+    height: 100%;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 10px;
+    /* border: 2px solid #F7931A; */
+}
+
+.form .add-subject input {
+    width: 100%;
+    height: 35px;
+    /* border: 2px solid #F7931A; */
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #ffffff;
+    margin-right: 15px;
+    font-size: 17px;
+}
+
+
+.form .add-subject button {
+    width: 21%;
+    height: 37px;
+    background-color: #F7931A;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+/* ---------------------------SUBJECT - MODULE-------------------------------- */
+
+.subject_module_area {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-gap: 40px;
+    margin-top: 40px;
+    width: calc(100% - 78px);
+}
+
+
+.subject_module_box {
+    border-radius: 10px;
+    /* border: 2px solid #F7931A; */
+    height: 45vh;
+    /* padding: 15px; */
+    /* width: 26vw; */
+    background-color: #ffffff;
+}
+
+.subject_module_box .subject {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    padding: 15px;
+    border-bottom: 3px solid #F7931A;
+}
+
+
+.subject_module_box .module {
+    padding: 15px;
+}
+
+.subject_module_box .show_module .actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.show_module .module_loop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.subject input {
+    font-size: 27px;
+    font-weight: bold;
+    width: 100%;
+    margin-bottom: 8px;
+    border: none;
+    color: #000000;
+    background-color: #fff;
+
+}
+
+
+.module_loop {
+    margin-bottom: 10px;
+}
+
+.insert_module form {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+}
+
+.insert_module input {
+    width: 80%;
+    height: 35px;
+    /* border: 2px solid #F7931A; */
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #ffffff;
+}
+
+.insert_module button {
+    width: 16%;
+    height: 35px;
+    background-color: #F7931A;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.subject_module_box a {
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 17px;
+    cursor: pointer;
+    padding: 3px;
+    user-select: none;
+}
+
+
+.show_module .show_btn button {
+    background-color: #19ca05e0;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+    color: #000000;
+    outline: none;
+    border: none;
+    width: 45px;
+    font-weight: bold;
+}
+
+.show_module .hide_btn button {
+    background-color: #ff0404d2;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+    color: #ffffff;
+    outline: none;
+    width: 45px;
+    border: none;
+    font-weight: bold;
+}
+
+.subject .show_btn {
+    background-color: #19ca05e0;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+    color: #000000;
+    outline: none;
+    border: none;
+    width: 45px;
+    font-weight: bold;
+}
+
+
+.subject .hide_btn {
+    background-color: #ff0404d2;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+    color: #ffffff;
+    outline: none;
+    width: 45px;
+    border: none;
+    font-weight: bold;
+}
+
+
+.show_module {
+    height: 18vh;
+    margin-top: 20px;
+    overflow-y: scroll;
+    padding-right: 5px;
+}
+
+.show_module::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.show_module::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #f7941a6b;
+    visibility: hidden;
+}
+
+.show_module:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
+.subject_module_area a .edit_icon {
+    width: 20px;
+}
+
+.subject_module_area a .edit_icon_js {
+    width: 20px;
+}
+
+
+
+.addition_icon {
+    width: 20px;
+    margin-top: 5px;
+}
+
+
+/* ---------------------------LIVE UPDATE module_input_filed-------------------------------- */
+
+.module_input_filed {
+    border: none;
+    outline: none;
+    font-size: 17px;
+    font-weight: bold;
+    width: 100%;
+    color: #000000;
+    background-color: #fff;
+}
+
+
+
+.subject_module_area {
+    overflow-y: scroll;
+    height: 65vh;
+    padding-right: 20px;
+}
+
+
+.subject_module_area::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.subject_module_area::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #f7941a6b;
+    visibility: hidden;
+}
+
+.subject_module_area:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
+
+/* --------------------------- DUPLICATE ENTRY POPUP ERROR MESSAGE -------------------------------- */
+
+
+.popup img {
+    width: 100px;
+    margin-top: -50px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.popup {
+    width: 400px;
+    background-color: #F7931A;
+    border-radius: 6px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    visibility: visible;
+    transition: transform 0.4s, top 0.4s, visibility 0.4s;
+    z-index: 20000;
+}
+
+.open_popup {
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+
+.close_popup {
+    visibility: hidden;
+    top: 0%;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+
+.popup h2 {
+    font-size: 38px;
+    font-weight: 500;
+    margin: 10px;
+    margin-bottom: 20px;
+}
+
+.popup button {
+    width: 100%;
+    margin-top: 50px;
+    padding: 10px 0;
+    background-color: red;
+    color: #fff;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+.blur-filter {
+    background: #f7941a57;
+    z-index: 10000;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    backdrop-filter: blur(5px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+
+
+/* --------------------------- SUBJECT & MODULE update -------------------------------- */
+
+
+.save-cancel-subject {
+    display: none;
+}
+
+.save-cancel-subject.show {
+    display: inline-block;
+}
+
+
+.module_loop .module_name {
+    width: 20vw;
+}
+
+.save-cancel-subject a {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    border: 2px solid #F7931A;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 15px;
+
+}
+
+.save-cancel-subject button {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    border: 2px solid #F7931A;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+
+
+.save-cancel-module {
+    display: none;
+}
+
+.save-cancel-module.show {
+    display: flex;
+}
+
+.cancel-module {
+    margin-right: 5px;
+}
+
+
+.save-cancel-module a {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    border: 2px solid #F7931A;
+    padding: 3px;
+    border-radius: 5px;
+}
+
+.save-cancel-module button {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    border: 2px solid #F7931A;
+    padding: 3px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.hide-show {
+    position: relative;
+    margin-bottom: 10px;
+    margin-top: -5px;
+}
+
+
+.module_loop form .action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/* ---------------------------------- SUBJECT & MODULE update Field ---------------------------- */
+
+
+.subject_name_filed.editSubject {
+    border-radius: 5px;
+    border: 1px dotted #000000;
+    padding: 3px;
+    width: 100%;
+    color: #000000;
+    background-color: #ffffff;
+    transition: all 0.5s ease;
+}
+
+
+.subject_name_filed.cancelEditSubject {
+    border-radius: 0px;
+    border: none;
+    padding: 0px;
+    width: 100%;
+    color: #000000;
+    background-color: #ffffff;
+    transition: all 0.5s ease;
+}
+
+
+.module_input_filed.editModule {
+    border-radius: 5px;
+    border: 1px dotted #000000;
+    padding: 3px;
+    width: 100%;
+    color: #000000;
+    background-color: #ffffff;
+    transition: all 0.5s ease;
+}
+
+
+.module_input_filed.cancelEditModule {
+    border-radius: 0px;
+    border: none;
+    padding: 0px;
+    width: 100%;
+    color: #000000;
+    background-color: #ffffff;
+    transition: all 0.5s ease;
+}

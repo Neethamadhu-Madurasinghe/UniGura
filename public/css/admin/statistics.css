@@ -1,0 +1,135 @@
+
+.div1{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 50px 20px;
+}
+
+.div1 .myChart{
+    text-align: center;
+}
+
+.div1 .myChart h1{
+    margin-bottom: 25px;
+}
+
+
+.div1 .myChart2{
+    text-align: center;
+}
+
+.div1 .myChart2 h1{
+    margin-bottom: 25px;
+}
+
+
+.myChart5{
+    text-align: center;
+}
+
+
+.myChart5 h1{
+    margin-bottom: 25px;
+}
+
+
+.myChart4{
+    text-align: center;
+}
+
+
+.myChart4 h1{
+    margin-bottom: 35px;
+}
+
+
+
+.myChart3{
+    text-align: center;
+}
+
+
+.myChart3 h1{
+    margin-bottom: 35px;
+}
+
+
+
+.div2{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 50px 20px;
+}
+
+.div2 .rating-summary{
+    text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.div2 .rating-summary h1{
+    font-size: 60px;
+}
+
+.div2 .rating-summary span{
+    font-size: 35px;
+    color: #FFD700;
+}
+
+
+.div2 .rating-summary span .fa-star {
+    color: #f5a623;
+}
+
+.div2 .rating-summary span .fa-star-half-o {
+    color: #f5a623;
+}
+
+.div2 .rating-summary span .fa-star-o {
+    color: #d8d8d8;
+}
+
+
+.myChart{
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 10px;
+}
+
+.myChart2{
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 10px;
+}
+
+
+.myChart3{
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 10px;
+    margin: 70px auto;
+}
+
+
+.myChart4{
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 10px;
+    margin: 70px auto;
+}
+
+.myChart5{
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 10px;
+}
+
+
+.statistic-page{
+    height: 94vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}

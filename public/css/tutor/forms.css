@@ -1,0 +1,518 @@
+body{
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #000000;
+    text-align: left;
+    height: 100%;
+  }
+
+h1, h2, h3, h4, h5, h6 {
+ margin-top: 0;
+ margin-bottom: 0.5rem;
+}
+
+h2{
+    font-weight: 400;
+}
+h4{
+    font-weight: 600;
+}
+
+p {
+ margin-top: 0;
+ margin-bottom: 1rem;
+ font-size: 15px;
+}
+
+/* create_class_form_container */
+.lightbox{
+    height: 100vh;
+    background-repeat: no-repeat;
+    background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+}
+.lightbox .box{
+    background-color: rgb(255, 255, 255);
+    width: 30%;
+    padding: 50px;
+    padding-top: 30px;
+    border-radius: 20px ;
+    align-content: center;
+    margin-left: 32%;
+    position: absolute;
+    top: 100px;
+    margin-bottom: 30px;
+
+    margin-left: 35%;
+
+}
+.lightbox .box .close{
+    position: absolute;
+    font-size: 18px;
+    height: 40px;
+    width: 50px;
+    border-radius: 0px 20px ;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+    color: #ffffff;  
+    right: 0px; 
+    top: 0px;
+    
+}
+
+.lightbox .box .close:hover{
+    background: #ff8f0ea9;
+    color: #ffffff;  
+}
+.lightbox .box i {
+    margin-left: 1.5px;
+    margin-top: 2px;
+
+
+}
+
+
+.lightbox .form_container{
+    margin-top: 30px;
+    
+
+  
+}
+
+.lightbox .form_container .dropdown{
+    width: 100%;
+    margin-top: 20px;
+}
+
+.lightbox .form_container .dropdown .dropdown_name{
+    font-size: 17px;
+    color: rgb(0, 0, 0);
+}
+
+.lightbox .form_container .dropdown     select{
+         width: 100%;
+         height: 40px;
+         border: 0px;
+         font-size: 15px;
+         padding-left: 10px;
+         margin-top: 5px;
+         border-radius: 5px;
+         border: 1px solid #e4e4e4;
+         color: #000000d0;
+    }
+
+    .lightbox .form_container .dropdown     select:hover{
+         background-color: #ffffff;
+         border: 1px solid #ff8800;
+
+    }
+
+    .lightbox .form_container .dropdown     select:focus-visible{
+         background-color: #ffffff;
+         border: 1px solid #ff8800;
+         outline: none;
+
+    }
+
+    .lightbox .form_container .dropdown     input{
+         width: 95%;
+         height: 40px;
+         border: 0px;
+         font-size: 15px;
+         padding-left: 10px;
+         margin-top: 5px;
+         border-radius: 5px;
+         border: 1px solid #e4e4e4;
+         color: #000000d0;
+    }
+
+    .lightbox .form_container .dropdown     input:hover{
+         background-color: #ffffff;
+         border: 1px solid #ff8800;
+
+    }
+
+    .lightbox .form_container .dropdown     input:focus-visible{
+         background-color: #ffffff;
+         border: 1px solid #ff8800;
+         outline: none;
+
+    }
+
+    .lightbox .form_container .grid{
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         gap: 20px;
+    } 
+
+    .lightbox .form_container .grid2{
+         display: grid;
+         grid-template-columns: 1fr 5fr;
+         gap: 20px;
+    } 
+
+    .lightbox .form_container #uploadbox{
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+    }
+
+    .lightbox .form_container button, .lightbox .form_container .button{
+         background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+         border-radius: 5px;
+         color: #ffffff;
+         width: 30%;
+         border: none;
+         height: 40px;
+         margin-top: 30px;
+         font-size: 17px;
+         font-weight: 600;
+         cursor: pointer;
+         margin-left: 70%;
+       
+     }
+
+     .lightbox .form_container button:hover{
+         background: #ff8f0ea9;
+         color: #ffffff; 
+    }
+
+    .lightbox .form_container .error{
+        background-color: #ffffff;
+        border: 1px solid #ff0000;
+        outline: none;
+
+   }
+
+
+
+
+/* end create_class_form_container */
+
+/* add activity */
+
+.lightbox .form_container .upload_btn{
+    background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+    border-radius: 0px 5px 5px 0px;
+    color: #ffffff;
+    width: 100%;
+    border: none;
+    height: 40px;
+    margin-top: 0px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 0%;
+    border: 1px solid #ff8800;
+  
+}
+
+.lightbox .form_container .upload_label{
+    background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+    border-radius: 0px 5px 5px 0px;
+    color: #ffffff;
+    width: 100%;
+    border: none;
+    height: 29px;
+    margin-top: 0px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 0%;
+    border: 1px solid #ff8800;
+    padding-top: 7px ;
+    padding-left: 10px;
+  
+}
+
+.lightbox .form_container .upload_btn:hover{
+    background: #ff8f0ea9;
+    color: #ffffff; 
+    border: 1px solid #ff8f0e52;
+}
+
+.lightbox .form_container span{
+    color: rgb(231, 0, 0);
+    font-size: 12px;
+}
+
+.lightbox .form_container .Uploadbox{
+    display: grid;
+    grid-template-columns: 3fr 1fr ;
+    width: 100%;
+    margin-bottom: 40px;
+
+}
+
+.lightbox .form_container .dropdown  .Uploadbox   input{
+    width: 96%;
+    height: 36px;
+    border: 0px;
+    font-size: 15px;
+    padding-left: 8px;
+    margin-top: 0px;
+    border-radius: 5px 0px 0px 5px;
+    border: 1px solid #e4e4e4;
+    color: #000000d0;
+}
+
+
+
+.lightbox .form_container .dropdown  .Uploadbox   input:hover{
+    background-color: #ffffff;
+    border: 1px solid #ff8800;
+
+}
+
+.lightbox .form_container .dropdown   .Uploadbox  input:focus-visible{
+    background-color: #ffffff;
+    border: 1px solid #ff8800;
+    outline: none;
+
+}
+
+/* end add Activity */
+
+/* delete */
+.lightbox .form_container .yes{
+    background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+    border-radius: 20px;
+    color: #ffffff;
+    border: none;
+    height: 40px;
+    margin-top: 0px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid #ff8800;
+    width: 50%;
+    margin : auto;
+  
+}
+
+.lightbox .form_container .no{
+    background: #fff;
+    border-radius: 20px;
+    color: #ff8800;
+    width: 50%;
+    border: none;
+    height: 40px;
+    margin-top: 0px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 10%;
+    border: 1px solid #ff8800;
+  
+}
+
+.lightbox .form_container .no:hover , .lightbox .form_container .yes:hover{
+    background: #ff8f0ea9;
+    color: #ffffff; 
+    border: 0px solid #ff8f0e52;
+}
+
+#alert_icon{
+    font-size: 60px;
+    height: 50px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #fa9726;
+    width: 100%;
+}
+
+#heading{
+    text-align: center;
+    width: 100%;
+    padding-bottom: 0px;
+    font-weight: 400;
+}
+
+#message{
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+.form_container .btn_div{
+    display: flex; 
+    justify-content: center;
+    text-align: center;
+
+}
+
+/* end delete */
+
+
+/* report */
+/* The container */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius:50%;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .container input:checked ~ .checkmark {
+    background-color: #ff8800;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+    left: 7px;
+    top: 4px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  .lightbox textarea{
+    border: 0px;
+    font-size: 15px;
+    margin-top: 0px;
+    border-radius: 10px;
+    border: 1px solid #e4e4e4;
+    color: #000000d0;
+    height:200px;
+    width: 92%; 
+    resize: none;
+    font-family: "Poppins", sans-serif;
+    padding: 20px;
+    
+}
+
+.lightbox textarea::-webkit-scrollbar-thumb,
+.lightbox textarea::-webkit-scrollbar-track {
+ border-radius: 10px;
+ 
+ 
+ 
+
+
+}
+
+.lightbox textarea::-webkit-scrollbar {
+    width: 7px;
+    background-color: #ffffff00;
+    padding-top: 12px;
+    border-radius: 10px;
+    border-right:10px solid #e4e4e470;
+  }
+  .lightbox textarea::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(255, 166, 32, 0.95) 0%, rgba(247, 113, 26, 0.95) 100%);
+    margin-right: 10px;
+}
+
+
+
+.lightbox textarea:hover{
+    border: 1px solid #ff8800;
+}
+.lightbox textarea:focus-visible{
+    outline: 0.5px solid #ff8800;
+
+
+}
+
+
+
+/* report end */
+.lightbox .box .stu_img{
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-top: 20px;
+    border: 4px solid #fa9726;
+    padding: 4px;
+
+  }
+
+  .lightbox .box .table{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+
+  }
+
+/* new student request */
+.new_req_table{
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+    margin-bottom: 3px;
+}
+
+.new_req_table .text{
+    text-align: left;
+    color: #5e5f6d;
+    font-size: 18px;
+}
+
+.new_req_table i{
+    display: flex;
+    justify-items: center;
+    color: #9d9eaf;
+    font-size: 18px;
+}
+.content{
+    margin-top: 25px;
+}
+
+#map-container {
+    height: 150px;
+    border: 1px solid var(--bright-orange);
+    border-radius: 5px;
+    padding: 1px 1px;
+    cursor: grab;
+}
+/* end new student request */
