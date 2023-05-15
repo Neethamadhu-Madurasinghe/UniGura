@@ -40,9 +40,9 @@ class AdminNotification extends Controller
         $data = $notificationCount;
         // $this->view('admin/class', $request, $data);
 
-        // echo json_encode([
-        //     "notificationCount" => $data
-        // ]);
+        echo json_encode([
+            "notificationCount" => $data
+        ]);
     }
 
 
@@ -54,6 +54,7 @@ class AdminNotification extends Controller
             redirect('/login');
         }
 
+
         $adminID = $request->getUserId();
 
 
@@ -62,6 +63,7 @@ class AdminNotification extends Controller
         echo json_encode([
             "notificationCount" => "successfully"
         ]);
+
     }
 
     public function deleteNotification(Request $request)
