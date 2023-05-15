@@ -68,12 +68,12 @@
 
     <div class="tutor-name">
         <h1>Tutor Name</h1>
-        <h3><?php echo $data['oneTutorComplaint']->tutor->first_name . ' ' . $data['oneTutorComplaint']->tutor->last_name ?></h3>
+        <h3><a href="viewTutorProfile?tutorID=<?php echo $data['oneTutorComplaint']->tutor_id ?>"><?php echo $data['oneTutorComplaint']->tutor->first_name . ' ' . $data['oneTutorComplaint']->tutor->last_name ?></a></h3>
     </div>
 
     <div class="student-name">
         <h1>Student Name</h1>
-        <h3><?php echo $data['oneTutorComplaint']->student->first_name . ' ' . $data['oneTutorComplaint']->student->last_name ?></h3>
+        <h3><a href="viewStudentProfile?studentID=<?php echo $data['oneTutorComplaint']->student_id ?>"><?php echo $data['oneTutorComplaint']->student->first_name . ' ' . $data['oneTutorComplaint']->student->last_name ?></a></h3>
     </div>
 
     <div class="report-reason">

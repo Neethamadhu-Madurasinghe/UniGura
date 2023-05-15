@@ -34,7 +34,6 @@
             <?php endif; ?>
 
 
-
             <?php if ($data[3] == 'Duplicate entry') : ?>
                 <div class="popup" id="popup">
                     <img src="<?php echo URLROOT ?>/public/img/admin/duplicate-entry-warning.png" alt="">

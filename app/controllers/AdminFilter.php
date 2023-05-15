@@ -71,7 +71,7 @@ class AdminFilter extends Controller
                 }
 
                 if ($arrayVisibility[0] == 'unblock') {
-                    $sql .= " (AND user.is_banned = '0'";
+                    $sql .= " AND (user.is_banned = '0'";
                 }
 
                 if ($arrayVisibility[1] == 'block') {

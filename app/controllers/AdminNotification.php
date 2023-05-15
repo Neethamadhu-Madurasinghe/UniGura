@@ -54,23 +54,16 @@ class AdminNotification extends Controller
             redirect('/login');
         }
 
-        // if ($request->isGet()) {
-
-        // $bodyData = $request->getBody();
-
-        // $notificationID = $bodyData['notificationID'];
 
         $adminID = $request->getUserId();
 
 
         $this->notificationModel->clearNotification($adminID);
-        // }
 
         echo json_encode([
             "notificationCount" => "successfully"
         ]);
 
-        // $this->notification($request);
     }
 
     public function deleteNotification(Request $request)

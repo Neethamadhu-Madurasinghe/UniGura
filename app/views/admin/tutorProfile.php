@@ -690,12 +690,10 @@
             </div>
         </div>
 
-
-
         <div class="3-filed-section">
             <div class="filed-selection-btn">
                 <div>
-                    <button class="info-btn"><i class="fa-solid fa-circle-info"></i> Student Info</button>
+                    <button class="info-btn"><i class="fa-solid fa-circle-info"></i> Tutor Info</button>
                 </div>
                 <div>
                     <button class="active-class-btn"><i class="fa-solid fa-rotate fa-spin-pulse"></i> Active Class</button>
