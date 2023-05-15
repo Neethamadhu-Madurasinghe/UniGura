@@ -195,6 +195,7 @@ $router->registerController('/tutor/markdayascomplete', [TutorClass::class, 'mar
 $router->registerController('/tutor/sendpositioninclass', [TutorClass::class, 'sendposition']);
 $router->registerController('/tutor/finishclass', [TutorClass::class, 'finishclass']);
 $router->registerController('/tutor/startchat', [TutorClass::class, 'startchat']);
+$router->registerController('/tutor/deleteactivitycustom', [TutorClass::class, 'deleteActivity']);
 
 
 

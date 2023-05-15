@@ -49,8 +49,8 @@ Header::render(
                                         <input name="module" id='module' type="hidden">
                                         <input name="c_id" id='cid' type="hidden">
 
-                                        <input style="width : 100% " name='description' type="text">
-                                        <input type="file" id="activity-doc" name="activity-doc" hidden />
+                                        <input style="width : 100% " name='description' type="text" required>
+                                        <input type="file" id="activity-doc" name="activity-doc" required style="opacity: 0; width: 0; height: 0;"  />
                                    </div>
                                    <label for="activity-doc" class="upload_label">Upload</label>
                               </div>

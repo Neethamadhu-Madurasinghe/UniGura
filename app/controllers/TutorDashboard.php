@@ -31,6 +31,19 @@ class TutorDashboard extends Controller
             redirectBasedOnUserRole($request);
         }
 
+        if ($request->isTimeSlotNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isAdmin()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        if ($request->isStudent()) {
+            redirectBasedOnUserRole($request);
+        }
+
+
         $data = [];
 
         //Fetch all the classes of this student
@@ -39,10 +52,9 @@ class TutorDashboard extends Controller
         $data['tutoring_class_template'] = json_encode($this->dashboardModel->getTutoringClassTemplates($request->getUserId()));
         $data['tutor_time_slots'] = json_encode($this->dashboardModel->getTutorTimeSlots($request->getUserId()));
         $data['payments'] = json_encode($this->dashboardModel->getAllPaymentDetails($request->getUserId()));
-        $data['tutor_classes'] = json_encode($this->dashboardModel->getTutoringClasses($request->getUserId(),date('D')));
+        $data['tutor_classes'] = json_encode($this->dashboardModel->getTutoringClasses($request->getUserId(),strtolower(date('D'))));
 
         $data['tutor_requests'] = json_encode($this->dashboardModel->getStudentRequests($request->getUserId()));
-
         $this->view('tutor/dashboard', $request, $data);
     }
 
@@ -64,6 +76,13 @@ class TutorDashboard extends Controller
         if ($request->isBankDetialsNotCompletedTutor()) {
             redirectBasedOnUserRole($request);
         }
+
+        if ($request->isTimeSlotNotCompletedTutor()) {
+            redirectBasedOnUserRole($request);
+        }
+
+        
+
 
 
         $data = ['modules' => []];

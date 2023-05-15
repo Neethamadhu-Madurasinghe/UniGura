@@ -244,21 +244,24 @@ MainNavbar::render($request);
                                    let element = activities[key];
                                    if (element.day_id == day.dayid) {
                                         if (element.type == 0) {
-                                             day_container.querySelector(`#text${day.dayid}`).innerHTML += `<img class='activity-icon' src='http://localhost/UniGura/public/img/tutor/class/icons/file.png' style="width: 6%; height:6%; margin-top: 9px; border-radius : 0%" >
-                                                  <a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 1px;' href = "http://localhost/unigura/tutor/viewactivitydoc?file=${element.link}">${element.description}</a><br>`
+                                             day_container.querySelector(`#text${day.dayid}`).innerHTML += `<div class='activity_body' style='display:flex; flex-direction: row;justify-content: space-between;align-items: center;'><div><img class='activity-icon' src='http://localhost/UniGura/public/img/tutor/class/icons/file.png' style="width: 10%; height:10%; margin-top: 9px; border-radius : 0%" >
+                                                  <a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px; margin-bottom: 1px; ' href = "http://localhost/unigura/tutor/viewactivitydoc?file=${element.link}">${element.description}</a></div>
+                                                       <div class="delete-btn"  data-activityid = ${element.id}  data-dayid=${day.dayid} '><i class="fas fa-trash-alt"></i></div></div>`
                                         } else if (element.type == 1) {
                                              console.log(element)
                                              if (element.is_completed == 0) {
                                                   console.log(element.description)
-                                                  day_container.querySelector(`#text${day.dayid}`).innerHTML += `<img class='activity-icon' src='http://localhost/UniGura/public/img/tutor/class/icons/share-arrow.png'  style="width: 6%; height:6%; margin-top: 9px; border-radius : 0%" >
-                                                  <a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;' >${element.description}</a><br>`
+                                                  day_container.querySelector(`#text${day.dayid}`).innerHTML += `<div class='activity_body' style='display:flex; flex-direction: row;justify-content: space-between;align-items: center;'><div><img class='activity-icon' src='http://localhost/UniGura/public/img/tutor/class/icons/share-arrow.png'  style="width: 7%; height:7%; margin-top: 9px; border-radius : 0%" >
+                                                  <a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px; margin-right: 270px;' >${element.description}</a></div>
+                                                  <div class="delete-btn"  data-activityid = ${element.id}  data-dayid=${day.dayid} style='margin-top: 5px;'><i class="fas fa-trash-alt"></i></div></div>`
                                              } else if (element.is_completed == 1) {
-                                                  day_container.querySelector(`#text${day.dayid}`).innerHTML += `<img class='activity-icon' src='http://localhost/UniGura/public/img/tutor/class/icons/share-arrow.png' style="width: 6%; height:6%; margin-top: 9px; border-radius : 0%" >
-                                                  <a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 1px;' href = "http://localhost/unigura/tutor/viewactivitydoc?file=${element.link}">${element.description}</a><br>`
+                                                  day_container.querySelector(`#text${day.dayid}`).innerHTML += `<div class='activity_body' style='display:flex; flex-direction: row;justify-content: space-between;align-items: center;'><div><img class='activity-icon' src='http://localhost/UniGura/public/img/tutor/class/icons/share-arrow.png' style="width: 7%; height:7%; margin-top: 9px; border-radius : 0%" >
+                                                  <a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 1px; margin-right: 270px;' href = "http://localhost/unigura/tutor/viewactivitydoc?file=${element.link}">${element.description}</a></div><br></br>`
                                              }
                                         } else if (element.type == 2) {
-                                             day_container.querySelector(`#text${day.dayid}`).innerHTML += `<img class='activity-icon' src='http://localhost/UniGura/public/img/tutor/class/icons/cast.png'  style="width: 6%; height:6%; margin-top: 9px; border-radius : 0%" >
-                                                  <a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px;'>${element.description}</a><br>`
+                                             day_container.querySelector(`#text${day.dayid}`).innerHTML += `<div class='activity_body' style='display:flex; flex-direction: row;justify-content: space-between;align-items: center;'><div><img class='activity-icon' src='http://localhost/UniGura/public/img/tutor/class/icons/cast.png'  style="width: 10%; height:10%; margin-top: 9px; border-radius : 0%" >
+                                                  <a style='color: rgba(112, 124, 151, 1) ; margin-top: 8px;text-align: justify;margin-bottom: 0px; '>${element.description}</a></div>
+                                                  <div class="delete-btn"  data-activityid = ${element.id}  data-dayid=${day.dayid} style='margin-top: 5px;'><i class="fas fa-trash-alt"></i></div></div>`
                                         }
                                    }
                               }
@@ -325,6 +328,32 @@ MainNavbar::render($request);
                                         });
                               })
                          })
+
+                         var deleteactivitybtns = document.querySelectorAll(".delete-btn");
+                              deleteactivitybtns.forEach(btn => {
+                                   btn.addEventListener('click', function() {
+                                        const url = "http://localhost/unigura/tutor/deleteactivitycustom";
+                                        fetch(url, {
+                                                  method: 'POST',
+                                                  body: JSON.stringify({
+                                                       activity_id: btn.getAttribute('data-activityid')
+                                                  })
+                                             })
+                                             .then(function(response) {
+                                                  if (!response.ok) {
+                                                       throw new Error('Network response was not ok');
+                                                  }
+                                                  return response.text();
+                                             })
+                                             .then(function(responseText) {
+                                             
+                                                  btn.parentElement.style.display = 'none'
+                                             })
+                                             .catch(function(error) {
+                                                  console.error('Error retrieving data:', error);
+                                             });
+                                   })
+                              })
 
 
                          var checkmark_inputs = document.querySelectorAll('.checkmark-input');

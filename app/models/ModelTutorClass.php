@@ -163,4 +163,14 @@ class ModelTutorClass
           }
         return 1;
     }
+
+    public function deleteActivity($id) : bool 
+    {
+
+        $this->db->query('DELETE FROM activity WHERE id = :id;');
+        $this->db->bind('id', $id, PDO::PARAM_INT);
+
+//      Returns whether the row count is greater than 0
+        return $this->db->execute();
+    }
 }
