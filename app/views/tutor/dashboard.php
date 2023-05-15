@@ -257,7 +257,7 @@ MainNavbar::render($request);
             request_list.appendChild(listItem);
         }
     } else {
-        request_list.innerHTML = 'No Reuquest for you'
+        request_list.innerHTML = 'No Request for you'
     }
 
     //Student request ridirect button--------------------
@@ -469,7 +469,7 @@ MainNavbar::render($request);
             code = ` 
         <div class="msg_box">
             <header>
-                <img src="${root}/public/profile_pictures/${obj['profile_picture']}">
+                <img src="${root}${obj['profile_picture']}">
                     <div class="text_box">
                         <h4> ${obj['first_name']} ${obj['last_name']}</h4>
                         <p>Start at ${timeString}</p>
